@@ -1,0 +1,36 @@
+{
+  "name": "htmlhint",
+  "version": "0.9.1",
+  "description": "A Static Code Analysis Tool for HTML",
+  "main": "./index",
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "~0.4.0rc7",
+    "grunt-contrib-clean": "~0.4.0rc6",
+    "grunt-contrib-concat": "~0.1.2rc6",
+    "grunt-contrib-uglify": "~0.1.1rc6",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-replace": "~0.4.0",
+    "mocha": "*",
+    "expect.js": "*",
+    "jscover": "*"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/yaniswang/HTMLHint.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yaniswang/HTMLHint/issues"
+  },
+  "keywords": [
+    "html",
+    "hint",
+    "Analysis",
+    "Javascript"
+  ],
+  "author": "Yanis Wang",
+  "license": "MIT"
+}
