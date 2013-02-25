@@ -11,13 +11,8 @@ HTMLHint.addRule({
             mapEmptyTags = parser.makeMap("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed");//HTML 4.01
         parser.addListener('tagstart', function(event){
             var tagName = event.tagName.toLowerCase();
-            if(mapEmptyTags[tagName] !== undefined){
-                if(!event.close){
-                    reporter.error('The empty tag must closed by self.', event.line, event.col, self, event.raw);
-                }
-            }
-            else if (!event.close){
-                stack.push(event.tagName.toLowerCase());
+            if (mapEmptyTags[tagName] === undefined && !event.close){
+                stack.push(tagName);
             }
         });
         parser.addListener('tagend', function(event){
