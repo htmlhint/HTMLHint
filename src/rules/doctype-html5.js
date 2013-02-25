@@ -7,16 +7,16 @@ HTMLHint.addRule({
     description: 'Doctype must be html5.',
     init: function(parser, reporter){
         var self = this;
-        function comment(event){
+        function onComment(event){
             if(event.long === false && event.content.toLowerCase() !== 'doctype html'){
                 reporter.error('Doctype must be html5.', event.line, event.col, self, event.raw);
             }
         }
-        function tagStart(){
-            parser.removeListener('comment', comment);
-            parser.removeListener('tagstart', tagStart);
+        function onTagStart(){
+            parser.removeListener('comment', onComment);
+            parser.removeListener('tagstart', onTagStart);
         }
-        parser.addListener('all', comment);
-        parser.addListener('tagstart', tagStart);
+        parser.addListener('all', onComment);
+        parser.addListener('tagstart', onTagStart);
     }
 });
