@@ -10,7 +10,7 @@ HTMLHint.addRule({
         parser.addListener('text', function(event){
             var match = event.raw.match(/[<>]/);
             if(match !== null){
-                reporter.error('Special characters must be escaped [ '+match[0]+' ].', event.line, event.col + match.index, self, event.raw);
+                reporter.error('Special characters must be escaped : [ '+match[0]+' ].', event.line, event.col + match.index, self, event.raw);
             }
         });
     }
