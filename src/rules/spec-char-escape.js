@@ -8,8 +8,9 @@ HTMLHint.addRule({
     init: function(parser, reporter){
         var self = this;
         parser.addListener('text', function(event){
-            if(/[<>]/.test(event.raw) === true){
-                reporter.error('Special characters must be escaped.', event.line, event.col, self, event.raw);
+            var match = event.raw.match(/[<>]/);
+            if(match !== null){
+                reporter.error('Special characters must be escaped [ '+match[0]+' ].', event.line, event.col + match.index, self, event.raw);
             }
         });
     }
