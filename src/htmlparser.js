@@ -28,7 +28,7 @@ var HTMLParser = (function(undefined){
             var self = this,
                 mapCdataTags = self._mapCdataTags;
 
-            var regTag=/<(?:\/([^\s>]+)|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:"[^"]*"|'[^']*'|[^"'<>])*?)\s*(\/?))>/g,
+            var regTag=/<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:"[^"]*"|'[^']*'|[^"'<>])*?)\s*(\/?))>/g,
                 regAttr = /\s*([\w\-:]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s]+)))?/g,
                 regLine = /\r?\n/g;
 
