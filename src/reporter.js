@@ -7,7 +7,7 @@
     var Reporter = function(){
         var self = this;
         self._init.apply(self,arguments);
-    }
+    };
 
     Reporter.prototype = {
         _init: function(lines, ruleset){

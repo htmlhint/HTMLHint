@@ -3,18 +3,48 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks('grunt-mocha-hack');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-exec');
 
     // Project configuration.
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
+        jshint: {
+            all: {
+                src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+                options: {
+                    jshintrc: "src/jshint.json"
+                }
+            }
+        },
         clean: ["lib"],
         concat: {
             htmlhint: {
                 src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
                 dest: 'lib/htmlhint.js'
+            }
+        },
+        "mocha-hack": {
+            test: {
+                src: "test/**/*.js",
+                options: {
+                    useColors: true,
+                    reporter: 'spec'
+                }
+            }
+        },
+        exec: {
+            jscover: {
+                command: '.\\node_modules\\.bin\\jscover lib lib-cov',
+                stdout: false,
+                stderr: false
+            },
+            savecover: {
+                command: 'set HTMLHINT_COV=1 & .\\node_modules\\.bin\\mocha --recursive --reporter html-cov > coverage.html'
             }
         },
         uglify: {
@@ -38,18 +68,23 @@ module.exports = function(grunt) {
                     variables: {
                         'VERSION': '<%= pkg.version %>'
                     }
-                },
+                }
             }
         },
         watch: {
             src: {
-                files: 'src/**/*.js',
-                tasks: 'concat',
+                files: ['src/**/*.js', 'test/**/*.js'],
+                tasks: 'dev'
             }
         }
     });
 
-    // Default task.
-    grunt.registerTask('default', ['clean', 'concat', 'uglify', 'replace']);
+    grunt.registerTask('dev', ['jshint', 'concat', 'test']);
+
+    grunt.registerTask('test', 'mocha-hack');
+
+    grunt.registerTask('test-cov', ['exec:jscover', 'exec:savecover']);
+
+    grunt.registerTask('default', ['jshint', 'clean', 'concat', 'test', 'test-cov', 'uglify', 'replace']);
 
 };

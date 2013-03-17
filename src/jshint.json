@@ -1,0 +1,27 @@
+{
+    "curly": true,
+    "expr": true,
+    "newcap": false,
+    "regexdash": true,
+    "trailing": true,
+    "undef": true,
+    "unused": true,
+    "maxerr": 100,
+
+    "eqnull": true,
+    "evil": true,
+    "sub": true,
+
+    "browser": true,
+    "wsh": true,
+
+    "predef": [
+        "HTMLHint",
+        "HTMLParser",
+        "require",
+        "exports",
+        "describe",
+        "it",
+        "console"
+    ]
+}

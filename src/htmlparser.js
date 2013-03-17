@@ -10,7 +10,7 @@ var HTMLParser = (function(undefined){
     };
 
     HTMLParser.prototype = {
-        _init: function(options){
+        _init: function(){
             var self = this;
             self._listeners = {};
             self._mapCdataTags = self.makeMap("script,style");
@@ -19,7 +19,9 @@ var HTMLParser = (function(undefined){
 
         makeMap: function(str){
             var obj = {}, items = str.split(",");
-            for ( var i = 0; i < items.length; i++ )obj[ items[i] ] = true;
+            for ( var i = 0; i < items.length; i++ ){
+                obj[ items[i] ] = true;
+            }
             return obj;
         },
 
@@ -42,7 +44,7 @@ var HTMLParser = (function(undefined){
                 col: 1
             });
 
-            while(match = regTag.exec(html)){
+            while((match = regTag.exec(html))){
                 matchIndex = match.index;
                 if(matchIndex > lastIndex){//保存前面的文本或者CDATA
                     text = html.substring(lastIndex, matchIndex);
@@ -55,7 +57,7 @@ var HTMLParser = (function(undefined){
                 }
                 lastIndex = regTag.lastIndex;
 
-                if(tagName = match[1]){
+                if((tagName = match[1])){
                     if(tagCDATA && tagName === tagCDATA){//结束标签前输出CDATA
                         text = arrCDATA.join('');
                         saveBlock('cdata', text, lastCDATAIndex, {
@@ -77,10 +79,10 @@ var HTMLParser = (function(undefined){
                     arrCDATA.push(match[0]);
                 }
                 else{
-                    if(tagName = match[4]){//标签开始
+                    if((tagName = match[4])){//标签开始
                         arrAttrs = [];
                         var attrs = match[5], attrMatch;
-                        while(attrMatch = regAttr.exec(attrs)){
+                        while((attrMatch = regAttr.exec(attrs))){
                             var name = attrMatch[1],
                                 quote = attrMatch[2] ? attrMatch[2] :
                                     attrMatch[4] ? attrMatch[4] : '',
@@ -108,7 +110,7 @@ var HTMLParser = (function(undefined){
                     }
                 }
             }
-            
+
             if(html.length > lastIndex){
                 //结尾文本
                 text = html.substring(lastIndex, html.length);
@@ -134,7 +136,7 @@ var HTMLParser = (function(undefined){
                 arrBlocks.push(data);
                 self.fire(type, data);
                 var lineMatch;
-                while(lineMatch = regLine.exec(raw)){
+                while((lineMatch = regLine.exec(raw))){
                     line ++;
                     lastLineIndex = pos + regLine.lastIndex;
                 }
@@ -142,11 +144,11 @@ var HTMLParser = (function(undefined){
 
         },
 
-        addListener: function(type, listener){
+        addListener: function(types, listener){
             var _listeners = this._listeners;
-            var arrType = type.split(/[,\s]/), type;
-            for(var i=0, l = arrType.length;i<l;i++){
-                type = arrType[i];
+            var arrTypes = types.split(/[,\s]/), type;
+            for(var i=0, l = arrTypes.length;i<l;i++){
+                type = arrTypes[i];
                 if (_listeners[type] === undefined){
                     _listeners[type] = [];
                 }
@@ -171,7 +173,7 @@ var HTMLParser = (function(undefined){
             }
             for (var i = 0, l = listeners.length; i < l; i++){
                 listeners[i].call(self, data);
-            }          
+            }
         },
 
         removeListener: function(type, listener){
@@ -192,5 +194,5 @@ var HTMLParser = (function(undefined){
 })();
 
 if (typeof exports === 'object' && exports){
-    exports.HTMLHint = HTMLHint;
+    exports.HTMLParser = HTMLParser;
 }

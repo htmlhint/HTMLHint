@@ -15,7 +15,7 @@ HTMLHint.addRule({
                 reporter.error('Doctype must be first.', event.line, event.col, self, event.raw);
             }
             parser.removeListener('all', allEvent);
-        }
+        };
         parser.addListener('all', allEvent);
     }
 });

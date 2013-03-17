@@ -32,7 +32,7 @@ HTMLHint.addRule({
                 message = rule.message;
             parser.addListener('tagstart', function(event){
                 var attrs = event.attrs, attr;
-                for(var i=0, l=attrs.length;i<l;i++){
+                for(var i=0, l1=attrs.length;i<l1;i++){
                     attr = attrs[i];
                     if(attr.name.toLowerCase() === 'id'){
                         if(regId.test(attr.value) === false){
@@ -41,8 +41,8 @@ HTMLHint.addRule({
                     }
                     if(attr.name.toLowerCase() === 'class'){
                         var arrClass = attr.value.split(/\s+/g), classValue;
-                        for(var i=0, l=arrClass.length;i<l;i++){
-                            classValue = arrClass[i];
+                        for(var j=0, l2=arrClass.length;j<l2;j++){
+                            classValue = arrClass[j];
                             if(classValue && regId.test(classValue) === false){
                                 reporter.error(message, event.line, event.col, self, classValue);
                             }

@@ -12,14 +12,14 @@ var HTMLHint = (function (undefined) {
 
     HTMLHint.addRule = function(rule){
         rules[rule.id] = rule;
-    }
+    };
 
     HTMLHint.verify = function(html, ruleset){
         var parser = new HTMLParser(),
             reporter = new HTMLHint.Reporter(html.split(/\r?\n/), ruleset);
-       
+
         var rule;
-        for (id in ruleset){
+        for (var id in ruleset){
             rule = rules[id];
             if (rule !== undefined){
                 rule.init(parser, reporter, ruleset[id]);
@@ -27,9 +27,9 @@ var HTMLHint = (function (undefined) {
         }
 
         parser.parse(html);
-        
+
         return reporter.messages;
-    }
+    };
 
     return HTMLHint;
 
