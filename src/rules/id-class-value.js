@@ -31,12 +31,14 @@ HTMLHint.addRule({
             var regId = rule.regId,
                 message = rule.message;
             parser.addListener('tagstart', function(event){
-                var attrs = event.attrs, attr;
+                var attrs = event.attrs,
+                    attr,
+                    col = event.col + event.tagName.length + 1;
                 for(var i=0, l1=attrs.length;i<l1;i++){
                     attr = attrs[i];
                     if(attr.name.toLowerCase() === 'id'){
                         if(regId.test(attr.value) === false){
-                            reporter.error(message, event.line, event.col, self, attr.raw);
+                            reporter.error(message, event.line, col + attr.index, self, attr.raw);
                         }
                     }
                     if(attr.name.toLowerCase() === 'class'){
@@ -44,7 +46,7 @@ HTMLHint.addRule({
                         for(var j=0, l2=arrClass.length;j<l2;j++){
                             classValue = arrClass[j];
                             if(classValue && regId.test(classValue) === false){
-                                reporter.error(message, event.line, event.col, self, classValue);
+                                reporter.error(message, event.line, col + attr.index, self, classValue);
                             }
                         }
                     }

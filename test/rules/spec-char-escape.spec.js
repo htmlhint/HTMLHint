@@ -2,3 +2,29 @@
  * Copyright (c) 2013, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
+
+var expect  = require("expect.js");
+
+var HTMLHint  = require("../../index").HTMLHint;
+
+describe('Rules: spec-char-escape', function(){
+
+    it('Special characters: <> should result in an error', function(){
+        var code = '<p>aaa>bbb< ccc</p>';
+        var messages = HTMLHint.verify(code, {'spec-char-escape': true});
+        expect(messages.length).to.be(2);
+        expect(messages[0].rule.id).to.be('spec-char-escape');
+        expect(messages[0].line).to.be(1);
+        expect(messages[0].col).to.be(7);
+        expect(messages[1].rule.id).to.be('spec-char-escape');
+        expect(messages[1].line).to.be(1);
+        expect(messages[1].col).to.be(11);
+    });
+
+    it('Normal text should not result in an error', function(){
+        var code = '<p>abc</p>';
+        var messages = HTMLHint.verify(code, {'spec-char-escape': true});
+        expect(messages.length).to.be(0);
+    });
+
+});
