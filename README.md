@@ -5,12 +5,18 @@ HTMLHint
 
 A Static Code Analysis Tool for HTML
 
-[![Build Status](https://travis-ci.org/yaniswang/HTMLHint.png?branch=master)](https://travis-ci.org/yaniswang/HTMLHint)
+[![Build Status](https://travis-ci.org/yaniswang/HTMLHint.png?branch=master)](https://travis-ci.org/yaniswang/HTMLHint) [![NPM version](https://badge.fury.io/js/htmlhint.png)](http://badge.fury.io/js/htmlhint)
 
 jsCoverage: [98%](http://yaniswang.com/HTMLHint/coverage.html)
 
 How to use HTMLHint
 =======================
+
+Hint your html code:
+
+    HTMLHint.verify(code, rules);
+
+Read more about all rules: [Rules](https://github.com/yaniswang/HTMLHint/wiki/Rules)
 
 1. With nodejs
 
