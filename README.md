@@ -7,7 +7,7 @@ A Static Code Analysis Tool for HTML
 
 [![Build Status](https://travis-ci.org/yaniswang/HTMLHint.png?branch=master)](https://travis-ci.org/yaniswang/HTMLHint) [![NPM version](https://badge.fury.io/js/htmlhint.png)](http://badge.fury.io/js/htmlhint)
 
-jsCoverage: [98%](http://yaniswang.com/HTMLHint/coverage.html)
+jsCoverage: [98%](http://htmlhint.com/coverage.html)
 
 How to use HTMLHint
 =======================
@@ -90,6 +90,6 @@ Thanks
 
 * mocha: [https://github.com/visionmedia/mocha](https://github.com/visionmedia/mocha)
 * expect.js: [https://github.com/LearnBoost/expect.js](https://github.com/LearnBoost/expect.js)
-* jscover [https://github.com/fengmk2/jscover](https://github.com/fengmk2/jscover)
-* Grunt [http://gruntjs.com/](http://gruntjs.com/)
+* jscover: [https://github.com/fengmk2/jscover](https://github.com/fengmk2/jscover)
+* Grunt: [http://gruntjs.com/](http://gruntjs.com/)
 * GitHub: [https://github.com/](https://github.com/)
