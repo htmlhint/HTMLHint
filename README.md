@@ -5,6 +5,8 @@ HTMLHint
 
 A Static Code Analysis Tool for HTML
 
+[![Build Status](https://travis-ci.org/yaniswang/HTMLHint.png?branch=master)](https://travis-ci.org/yaniswang/HTMLHint)
+
 jsCoverage: [98%](http://yaniswang.com/HTMLHint/coverage.html)
 
 How to use HTMLHint
