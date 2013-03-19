@@ -1,6 +1,8 @@
 HTMLHint
 =======================
 
+![HTMLHint logo](https://raw.github.com/yaniswang/HTMLHint/master/logo.png)
+
 A Static Code Analysis Tool for HTML
 
 jsCoverage: [98%](http://yaniswang.com/HTMLHint/coverage.html)
