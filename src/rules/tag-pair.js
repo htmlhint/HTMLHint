@@ -43,7 +43,7 @@ HTMLHint.addRule({
                 arrTags.push('</'+stack[i]+'>');
             }
             if(arrTags.length > 0){
-                reporter.error('Tag must be paired, Missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, event.raw);
+                reporter.error('Tag must be paired, Missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, '');
             }
         });
     }

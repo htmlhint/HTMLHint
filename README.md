@@ -3,6 +3,51 @@ HTMLHint
 
 A Static Code Analysis Tool for HTML
 
+jsCoverage: [98%](http://yaniswang.com/HTMLHint/coverage.html)
+
+How to use HTMLHint
+=======================
+
+1. With nodejs
+
+        var HTMLHint  = require("htmlhint").HTMLHint;
+        var messages = HTMLHint.verify('<ul><li></ul>', {'tag-pair': true});
+
+2. With browser
+
+        <script type="text/javascript" src="htmlhint.js"></script>
+        <script type="text/javascript">
+            var messages = HTMLHint.verify('<ul><li></ul>', {'tag-pair': true});
+        </script>
+
+How to build HTMLHint
+=======================
+
+1. Clone from git
+
+        git clone git://github.com/yaniswang/HTMLHint.git
+
+2. Install nodejs
+    
+        http://nodejs.org/
+
+3. Install grunt
+
+        npm install grunt-cli -g
+        cd HTMLHint && npm install
+
+4. Watch src and test files
+
+        grunt watch
+
+5. Run tests
+
+        grunt test
+
+6. Build
+
+        grunt
+
 License
 ================
 
