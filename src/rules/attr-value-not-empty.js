@@ -3,7 +3,7 @@
  * MIT Licensed
  */
 HTMLHint.addRule({
-    id: 'attr-value-empty',
+    id: 'attr-value-not-empty',
     description: 'Attribute must set value.',
     init: function(parser, reporter){
         var self = this;
