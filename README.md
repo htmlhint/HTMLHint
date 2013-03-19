@@ -30,6 +30,11 @@ Read more about all rules: [Rules](https://github.com/yaniswang/HTMLHint/wiki/Ru
             var messages = HTMLHint.verify('<ul><li></ul>', {'tag-pair': true});
         </script>
 
+How to reporting a bug
+=======================
+
+You can create a [new issue](https://github.com/yaniswang/HTMLHint/issues/new) in github and describe your problem or suggestion.
+
 How to build HTMLHint
 =======================
 
