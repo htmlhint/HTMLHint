@@ -10,11 +10,24 @@ var HTMLHint = (function (undefined) {
 
     HTMLHint.version = '@VERSION';
 
+    //默认配置
+    HTMLHint.defaultRuleset = {
+        'tagname-lowercase': true,
+        'attr-lowercase': true,
+        'attr-value-double-quotes': true,
+        'doctype-first': true,
+        'tag-pair': true,
+        'spec-char-escape': true
+    };
+
     HTMLHint.addRule = function(rule){
         rules[rule.id] = rule;
     };
 
     HTMLHint.verify = function(html, ruleset){
+        if(ruleset === undefined){
+            ruleset = HTMLHint.defaultRuleset;
+        }
         var parser = new HTMLParser(),
             reporter = new HTMLHint.Reporter(html.split(/\r?\n/), ruleset);
 

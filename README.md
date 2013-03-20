@@ -18,6 +18,17 @@ Hint your html code:
 
 Read more about all rules: [Rules](https://github.com/yaniswang/HTMLHint/wiki/Rules)
 
+If rules is undefined, it will use default ruleset:
+
+    {
+        'tagname-lowercase': true,
+        'attr-lowercase': true,
+        'attr-value-double-quotes': true,
+        'doctype-first': true,
+        'tag-pair': true,
+        'spec-char-escape': true
+    }
+
 1. With nodejs
 
         var HTMLHint  = require("htmlhint").HTMLHint;
