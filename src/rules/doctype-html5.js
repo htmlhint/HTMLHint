@@ -9,7 +9,7 @@ HTMLHint.addRule({
         var self = this;
         function onComment(event){
             if(event.long === false && event.content.toLowerCase() !== 'doctype html'){
-                reporter.error('Doctype must be html5.', event.line, event.col, self, event.raw);
+                reporter.warn('Doctype must be html5.', event.line, event.col, self, event.raw);
             }
         }
         function onTagStart(){

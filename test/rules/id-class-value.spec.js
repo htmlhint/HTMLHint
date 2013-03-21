@@ -16,9 +16,11 @@ describe('Rules: id-class-value', function(){
         expect(messages[0].rule.id).to.be('id-class-value');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(5);
+        expect(messages[0].type).to.be('warning');
         expect(messages[1].rule.id).to.be('id-class-value');
         expect(messages[1].line).to.be(1);
         expect(messages[1].col).to.be(17);
+        expect(messages[1].type).to.be('warning');
     });
 
     it('Id and class value be lower case and split by underline should not result in an error', function(){

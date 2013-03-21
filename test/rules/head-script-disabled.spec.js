@@ -16,6 +16,7 @@ describe('Rules: head-script-disabled', function(){
         expect(messages[0].rule.id).to.be('head-script-disabled');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(7);
+        expect(messages[0].type).to.be('warning');
     });
 
     it('Internal Script in head should result in an error', function(){

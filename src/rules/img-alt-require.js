@@ -18,7 +18,7 @@ HTMLHint.addRule({
                     }
                 }
                 if(haveAlt === false){
-                    reporter.error('Alt of img tag must be set value.', event.line, event.col, self, event.raw);
+                    reporter.warn('Alt of img tag must be set value.', event.line, event.col, self, event.raw);
                 }
             }
         });

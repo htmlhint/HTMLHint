@@ -14,7 +14,7 @@ HTMLHint.addRule({
             for(var i=0, l=attrs.length;i<l;i++){
                 attr = attrs[i];
                 if(attr.quote === '' && attr.value === ''){
-                    reporter.error('The attribute [ '+attr.name+' ] must set value.', event.line, col + attr.index, self, attr.raw);
+                    reporter.warn('The attribute [ '+attr.name+' ] must set value.', event.line, col + attr.index, self, attr.raw);
                 }
             }
         });

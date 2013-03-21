@@ -16,6 +16,7 @@ describe('Rules: attr-value-not-empty', function(){
         expect(messages[0].rule.id).to.be('attr-value-not-empty');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(7);
+        expect(messages[0].type).to.be('warning');
     });
 
     it('Attribute value closed by quote but no value should not result in an error', function(){

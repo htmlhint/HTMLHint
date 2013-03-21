@@ -16,6 +16,7 @@ describe('Rules: img-alt-require', function(){
         expect(messages[0].rule.id).to.be('img-alt-require');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(1);
+        expect(messages[0].type).to.be('warning');
     });
 
     it('Img tag have alt attr should not result in an error', function(){

@@ -16,6 +16,7 @@ describe('Rules: doctype-html5', function(){
         expect(messages[0].rule.id).to.be('doctype-html5');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(1);
+        expect(messages[0].type).to.be('warning');
     });
 
     it('Doctype html5 should not result in an error', function(){

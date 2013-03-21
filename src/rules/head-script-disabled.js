@@ -9,7 +9,7 @@ HTMLHint.addRule({
         var self = this;
         function onTagStart(event){
             if(event.tagName.toLowerCase() === 'script'){
-                reporter.error('The script tag can not be used in head.', event.line, event.col, self, event.raw);
+                reporter.warn('The script tag can not be used in head.', event.line, event.col, self, event.raw);
             }
         }
         function onTagEnd(event){

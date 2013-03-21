@@ -38,7 +38,7 @@ HTMLHint.addRule({
                     attr = attrs[i];
                     if(attr.name.toLowerCase() === 'id'){
                         if(regId.test(attr.value) === false){
-                            reporter.error(message, event.line, col + attr.index, self, attr.raw);
+                            reporter.warn(message, event.line, col + attr.index, self, attr.raw);
                         }
                     }
                     if(attr.name.toLowerCase() === 'class'){
@@ -46,7 +46,7 @@ HTMLHint.addRule({
                         for(var j=0, l2=arrClass.length;j<l2;j++){
                             classValue = arrClass[j];
                             if(classValue && regId.test(classValue) === false){
-                                reporter.error(message, event.line, col + attr.index, self, classValue);
+                                reporter.warn(message, event.line, col + attr.index, self, classValue);
                             }
                         }
                     }

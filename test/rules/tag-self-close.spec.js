@@ -16,9 +16,11 @@ describe('Rules: tag-self-close', function(){
         expect(messages[0].rule.id).to.be('tag-self-close');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(1);
+        expect(messages[0].type).to.be('warning');
         expect(messages[1].rule.id).to.be('tag-self-close');
         expect(messages[1].line).to.be(1);
         expect(messages[1].col).to.be(5);
+        expect(messages[1].type).to.be('warning');
     });
 
     it('Closed empty tag should not result in an error', function(){

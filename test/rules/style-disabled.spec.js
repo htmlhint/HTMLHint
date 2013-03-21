@@ -16,6 +16,7 @@ describe('Rules: style-disabled', function(){
         expect(messages[0].rule.id).to.be('style-disabled');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(7);
+        expect(messages[0].type).to.be('warning');
     });
 
     it('Stylesheet link should not result in an error', function(){
