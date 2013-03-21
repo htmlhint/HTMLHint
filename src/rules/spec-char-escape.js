@@ -12,7 +12,8 @@ HTMLHint.addRule({
                 reSpecChar = /[<>]/g,
                 match;
             while((match = reSpecChar.exec(raw))){
-                reporter.error('Special characters must be escaped : [ '+match[0]+' ].', event.line, event.col + match.index, self, event.raw);
+                var fixedPos = parser.fixPos(event, match.index);
+                reporter.error('Special characters must be escaped : [ '+match[0]+' ].', fixedPos.line, fixedPos.col, self, event.raw);
             }
         });
     }

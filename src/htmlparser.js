@@ -25,6 +25,7 @@ var HTMLParser = (function(undefined){
             return obj;
         },
 
+        // parse html code
         parse: function(html){
 
             var self = this,
@@ -144,6 +145,7 @@ var HTMLParser = (function(undefined){
 
         },
 
+        // add event
         addListener: function(types, listener){
             var _listeners = this._listeners;
             var arrTypes = types.split(/[,\s]/), type;
@@ -156,6 +158,7 @@ var HTMLParser = (function(undefined){
             }
         },
 
+        // fire event
         fire: function(type, data){
             if (data === undefined){
                 data = {};
@@ -176,6 +179,7 @@ var HTMLParser = (function(undefined){
             }
         },
 
+        // remove event
         removeListener: function(type, listener){
             var listenersType = this._listeners[type];
             if(listenersType !== undefined){
@@ -186,6 +190,26 @@ var HTMLParser = (function(undefined){
                     }
                 }
             }
+        },
+
+        //fix pos if event.raw have \n
+        fixPos: function(event, index){
+            var text = event.raw.substr(0, index);
+            var arrLines = text.split(/\r?\n/),
+                lineCount = arrLines.length - 1,
+                line = event.line, col;
+            if(lineCount >= 1){
+                line += lineCount;
+                col = arrLines[lineCount].length + 1;
+            }
+            else{
+                col = event.col + index;
+            }
+            return {
+                line: line,
+                col: col
+            };
+
         }
     };
 
