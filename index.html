@@ -1,107 +1,97 @@
-<!doctype html>
-<!-- The Time Machine GitHub pages theme was designed and developed by Jon Rohan, on Feb 7, 2012. -->
-<!-- Follow him for fun. http://twitter.com/jonrohan. Tail his code on http://github.com/jonrohan -->
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>HTMLHint</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+          padding-top: 20px;
+          padding-bottom: 40px;
+        }
 
-  <link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen"/>
-  <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script type="text/javascript" src="javascripts/script.js"></script>
+        .container-narrow {
+          margin: 0 auto;
+          max-width: 990px;
+        }
+        .container-narrow > hr {
+          margin: 30px 0;
+        }
+        
+        #editor{
+            border:1px solid #ccc;
+            border-radius: 4px;
+            height:400px;
+        }
+        
+        .footer{
+            text-align:center;
+        }
+    </style>
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+  </head>
 
-  <title>HTMLHint</title>
-  <meta name="description" content="A Static Code Analysis Tool for HTML">
+  <body>
 
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-
-</head>
-
-<body>
-
-  <div class="wrapper">
-    <header>
-      <h1 class="title">HTMLHint</h1>
-    </header>
-    <div id="container">
-      <p class="tagline">A Static Code Analysis Tool for HTML</p>
-      <div id="main" role="main">
-        <div class="download-bar">
-        <div class="inner">
-          <a href="https://github.com/yaniswang/HTMLHint/tarball/master" class="download-button tar"><span>Download</span></a>
-          <a href="https://github.com/yaniswang/HTMLHint/zipball/master" class="download-button zip"><span>Download</span></a>
-          <a href="https://github.com/yaniswang/HTMLHint" class="code">View HTMLHint on GitHub</a>
+    <div class="container-narrow">
+        <a href="https://github.com/yaniswang/HTMLHint"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme.png" alt="Fork me on GitHub"></a>
+        <div class="masthead">
+          <ul class="nav nav-pills pull-right">
+            <li class="active"><a href="http://htmlhint.com/">Home</a></li>
+            <li><a href="https://github.com/yaniswang/HTMLHint/wiki/About">About</a></li>
+            <li><a href="https://github.com/yaniswang/HTMLHint/wiki/Rules">Rules</a></li>
+          </ul>
+          <h3 class="muted">HTMLHint</h3>
         </div>
-        <span class="blc"></span><span class="trc"></span>
+
+        <hr>
+
+        <p><strong>Place your html code here:</strong></p>
+        
+        <div id="editor">&lt;!DOCTYPE HTML&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&quot;UTF-8&quot;&gt;
+	&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    HTMLHint: help your html code better
+&lt;/body&gt;
+&lt;/html&gt;</div>
+        <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+        <script>
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/clouds");
+            editor.getSession().setMode("ace/mode/html");
+            editor.on('change', function(e){
+                var code = editor.getValue();
+                var messages = HTMLHint.verify(code);
+                var errors = [], message;
+                for(var i=0, l=messages.length;i<l;i++){
+                    message = messages[i];
+                    errors.push({
+                        row: message.line-1,
+                        column: message.col-1,
+                        text: message.message,
+                        type: message.type,
+                        raw: message.raw
+                    });
+                }
+                editor.getSession().setAnnotations(errors);
+            });
+        </script>
+        <hr>
+
+        <div class="footer">
+            <p>&copy; HTMLHint.com 2013</p>
         </div>
-        <article class="markdown-body">
-          <h1>HTMLHint</h1>
 
-<p>A Static Code Analysis Tool for HTML</p>
-
-<h1>License</h1>
-
-<p>jWebDriver is released under the MIT license:</p>
-
-<blockquote>
-<p>The MIT License</p>
-
-<p>Copyright (c) 2012 Yanis Wang &lt;<a href="mailto:yanis.wang@gmail.com">yanis.wang@gmail.com</a>&gt;</p>
-
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-
-<p>The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.</p>
-
-<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.</p>
-</blockquote>
-
-<h1>Thanks</h1>
-
-<ul>
-<li>mocha: <a href="https://github.com/visionmedia/mocha">https://github.com/visionmedia/mocha</a>
-</li>
-<li>expect.js: <a href="https://github.com/LearnBoost/expect.js">https://github.com/LearnBoost/expect.js</a>
-</li>
-<li>jscover <a href="https://github.com/fengmk2/jscover">https://github.com/fengmk2/jscover</a>
-</li>
-<li>Grunt <a href="http://gruntjs.com/">http://gruntjs.com/</a>
-</li>
-<li>GitHub: <a href="https://github.com/">https://github.com/</a>
-</li>
-</ul>
-        </article>
-      </div>
     </div>
-    <footer>
-      <div class="owner">
-      <p><a href="https://github.com/yaniswang" class="avatar"><img src="https://secure.gravatar.com/avatar/3d625dc2e8a21fb10b98831113fd13bb?s=30&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="48" height="48"/></a> <a href="https://github.com/yaniswang">yaniswang</a> maintains <a href="https://github.com/yaniswang/HTMLHint">HTMLHint</a></p>
-
-
-      </div>
-      <div class="creds">
-        <small>This page generated using <a href="https://pages.github.com/">GitHub Pages</a><br/>theme by <a href="http://twitter.com/jonrohan/">Jon Rohan</a></small>
-      </div>
-    </footer>
-  </div>
-  <div class="current-section">
-    <a href="#top">Scroll to top</a>
-    <a href="https://github.com/yaniswang/HTMLHint/tarball/master" class="tar">tar</a><a href="https://github.com/yaniswang/HTMLHint/zipball/master" class="zip">zip</a><a href="" class="code">source code</a>
-    <p class="name"></p>
-  </div>
-
-  
-</body>
+    
+    <script src="js/htmlhint-0.9.1.js"></script>
+    <!--[if lte IE 8]> 
+    <script type="text/javascript" src="js/ie-warning.js" ></script>
+    <![endif]-->
+  </body>
 </html>
