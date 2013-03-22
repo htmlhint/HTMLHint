@@ -63,10 +63,14 @@
 &lt;/html&gt;</div>
         <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
         <script>
-            var editor = ace.edit("editor");
+            var editor = ace.edit("editor"), upTimer;
             editor.setTheme("ace/theme/clouds");
             editor.getSession().setMode("ace/mode/html");
             editor.on('change', function(e){
+                clearTimeout(upTimer);
+                upTimer = setTimeout(updateHTMLHint, 500);
+            });
+            function updateHTMLHint(){
                 var code = editor.getValue();
                 var messages = HTMLHint.verify(code);
                 var errors = [], message;
@@ -81,7 +85,7 @@
                     });
                 }
                 editor.getSession().setAnnotations(errors);
-            });
+            }
         </script>
         <hr>
 
