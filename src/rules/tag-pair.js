@@ -34,7 +34,7 @@ HTMLHint.addRule({
                 stack.length=pos;
             }
             else{
-                reporter.error('Tag must be paired, No start tag.', event.line, event.col, self, event.raw);
+                reporter.error('Tag must be paired, No start tag: [ ' + event.raw + ' ]', event.line, event.col, self, event.raw);
             }
         });
         parser.addListener('end', function(event){
