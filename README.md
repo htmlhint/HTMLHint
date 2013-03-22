@@ -3,76 +3,18 @@ HTMLHint
 
 ![HTMLHint logo](https://raw.github.com/yaniswang/HTMLHint/master/logo.png)
 
-A Static Code Analysis Tool for HTML
+HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in build system.
 
 [![Build Status](https://travis-ci.org/yaniswang/HTMLHint.png?branch=master)](https://travis-ci.org/yaniswang/HTMLHint) [![NPM version](https://badge.fury.io/js/htmlhint.png)](http://badge.fury.io/js/htmlhint)
 
 jsCoverage: [98%](http://htmlhint.com/coverage.html)
 
-How to use HTMLHint
+Guide
 =======================
 
-Hint your html code:
-
-    HTMLHint.verify(code, rules);
-
-Read more about all rules: [Rules](https://github.com/yaniswang/HTMLHint/wiki/Rules)
-
-If rules is undefined, it will use default ruleset:
-
-    {
-        'tagname-lowercase': true,
-        'attr-lowercase': true,
-        'attr-value-double-quotes': true,
-        'doctype-first': true,
-        'tag-pair': true,
-        'spec-char-escape': true
-    }
-
-1. With nodejs
-
-        var HTMLHint  = require("htmlhint").HTMLHint;
-        var messages = HTMLHint.verify('<ul><li></ul>', {'tag-pair': true});
-
-2. With browser
-
-        <script type="text/javascript" src="htmlhint.js"></script>
-        <script type="text/javascript">
-            var messages = HTMLHint.verify('<ul><li></ul>', {'tag-pair': true});
-        </script>
-
-How to reporting a bug
-=======================
-
-You can create a [new issue](https://github.com/yaniswang/HTMLHint/issues/new) in github and describe your problem or suggestion.
-
-How to build HTMLHint
-=======================
-
-1. Clone from git
-
-        git clone git://github.com/yaniswang/HTMLHint.git
-
-2. Install nodejs
-    
-        http://nodejs.org/
-
-3. Install grunt
-
-        npm install grunt-cli -g
-        cd HTMLHint && npm install
-
-4. Watch src and test files
-
-        grunt watch
-
-5. Run tests
-
-        grunt test
-
-6. Build
-
-        grunt
+1. [How to use](https://github.com/yaniswang/HTMLHint/wiki/Usage)
+2. [All Rules](https://github.com/yaniswang/HTMLHint/wiki/Rules)
+2. [How to Develop](https://github.com/yaniswang/HTMLHint/wiki/Developer-guide)
 
 License
 ================
@@ -81,7 +23,7 @@ HTMLHint is released under the MIT license:
 
 > The MIT License
 >
-> Copyright (c) 2012 Yanis Wang \< yanis.wang@gmail.com \>
+> Copyright (c) 2013 Yanis Wang \< yanis.wang@gmail.com \>
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

@@ -198,7 +198,7 @@ var HTMLParser = (function(undefined){
             var arrLines = text.split(/\r?\n/),
                 lineCount = arrLines.length - 1,
                 line = event.line, col;
-            if(lineCount >= 1){
+            if(lineCount > 0){
                 line += lineCount;
                 col = arrLines[lineCount].length + 1;
             }
