@@ -4,36 +4,12 @@
     <meta charset="utf-8">
     <title>HTMLHint</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <style type="text/css">
-        body {
-          padding-top: 20px;
-          padding-bottom: 40px;
-        }
-
-        .container-narrow {
-          margin: 0 auto;
-          max-width: 990px;
-        }
-        .container-narrow > hr {
-          margin: 30px 0;
-        }
-        
-        #editor{
-            border:1px solid #ccc;
-            border-radius: 4px;
-            height:400px;
-        }
-        
-        .footer{
-            text-align:center;
-        }
-    </style>
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
   </head>
-
   <body>
-
     <div class="container-narrow">
         <a href="https://github.com/yaniswang/HTMLHint"><img style="position: absolute; top: 0; right: 0; border: 0;" src="img/forkme.png" alt="Fork me on GitHub"></a>
         <div class="masthead">
@@ -46,56 +22,70 @@
           </ul>
           <h3 class="muted">HTMLHint</h3>
         </div>
-
         <hr>
-
         <p><strong>Place your html code here:</strong></p>
-        
         <div id="editor">&lt;!DOCTYPE HTML&gt;
 &lt;html&gt;
 &lt;head&gt;
 	&lt;meta charset=&quot;UTF-8&quot;&gt;
-	&lt;title&gt;&lt;/title&gt;
+	&lt;title&gt;HTMLHint&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
     HTMLHint: help your html code better
 &lt;/body&gt;
 &lt;/html&gt;</div>
-        <script src="js/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-        <script>
-            var editor = ace.edit("editor"), upTimer;
-            editor.setTheme("ace/theme/clouds");
-            editor.getSession().setMode("ace/mode/html");
-            editor.on('change', function(e){
-                clearTimeout(upTimer);
-                upTimer = setTimeout(updateHTMLHint, 500);
-            });
-            function updateHTMLHint(){
-                var code = editor.getValue();
-                var messages = HTMLHint.verify(code);
-                var errors = [], message;
-                for(var i=0, l=messages.length;i<l;i++){
-                    message = messages[i];
-                    errors.push({
-                        row: message.line-1,
-                        column: message.col-1,
-                        text: message.message,
-                        type: message.type,
-                        raw: message.raw
-                    });
-                }
-                editor.getSession().setAnnotations(errors);
-            }
-        </script>
+        <div id="options">
+            <div class="row-fluid">
+              <div class="span4">
+                <h3>Standard</h3>
+                <ul>
+                    <li><label class="checkbox" title="Tagname must be lowercase."><input type="checkbox" id="tagname-lowercase"> tagname-lowercase</label></li>
+                    <li><label class="checkbox" title="Attribute name must be lowercase."><input type="checkbox" id="attr-lowercase"> attr-lowercase</label></li>
+                    <li><label class="checkbox" title="Attribute value must closed by double quotes."><input type="checkbox" id="attr-value-double-quotes"> attr-value-double-quotes</label></li>
+                    <li><label class="checkbox" title="Attribute must set value."><input type="checkbox" id="attr-value-not-empty"> attr-value-not-empty</label></li>
+                    <li><label class="checkbox" title="Doctype must be first."><input type="checkbox" id="doctype-first"> doctype-first</label></li>
+                    <li><label class="checkbox" title="Tag must be paired."><input type="checkbox" id="tag-pair"> tag-pair</label></li>
+                    <li><label class="checkbox" title="The empty tag must closed by self."><input type="checkbox" id="tag-self-close"> tag-self-close</label></li>
+                    <li><label class="checkbox" title="Special characters must be escaped."><input type="checkbox" id="spec-char-escape"> spec-char-escape</label></li>
+                </ul>
+              </div>
+              <div class="span4">
+                <h3>Performance</h3>
+                <ul>
+                    <li><label class="checkbox" title="The script tag can not be used in head."><input type="checkbox" id="head-script-disabled"> head-script-disabled</label></li>
+                </ul>
+              </div>
+              <div class="span4">
+                <h3>Accessibility</h3>
+                <ul>
+                    <li><label class="checkbox" title="Alt of img tag must be set value."><input type="checkbox" id="img-alt-require"> img-alt-require</label></li>
+                </ul>
+              </div>
+            </div>
+            <div class="row-fluid">
+              <div class="span4">
+                <h3>Specification</h3>
+                <ul>
+                    <li><label class="checkbox" title="Doctype must be html5."><input type="checkbox" id="doctype-html5"> doctype-html5</label></li>
+                    <li>
+                        <label class="checkbox" title="Id and class value must meet some rules: underline, dash, hump."><input type="checkbox" id="id-class-value"> id-class-value</label>
+                        <div id="id-class-value_valuearea"><select id="id-class-value_value" class="span5"><option value="underline">underline</option><option value="dash">dash</option><option value="hump">hump</option></select></div>
+                    </li>
+                    <li><label class="checkbox" title="Style tag can not be use."><input type="checkbox" id="style-disabled"> style-disabled</label></li>
+                </ul>
+              </div>
+            </div>
+        </div>
         <hr>
-
         <div class="footer">
             <p>&copy; HTMLHint.com 2013</p>
         </div>
-
     </div>
-    
-    <script src="js/htmlhint-0.9.1.js"></script>
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery.cookie.js"></script>
+    <script type="text/javascript" src="js/htmlhint-0.9.1.js"></script>
+    <script type="text/javascript" src="js/ace/ace.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/index.js"></script>
     <!--[if lte IE 8]> 
     <script type="text/javascript" src="js/ie-warning.js" ></script>
     <![endif]-->

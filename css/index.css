@@ -1,0 +1,40 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 990px;
+}
+.container-narrow > hr {
+  margin: 20px 0;
+}
+
+#editor{
+    border:1px solid #ccc;
+    border-radius: 4px;
+    height:300px;
+}
+
+.footer{
+    text-align:center;
+}
+
+#options{
+    padding:20px;
+}
+
+#options h3{
+    font-size: 18px;
+}
+
+#options ul{
+    list-style: none;
+    margin: 0;
+}
+
+#options li div{
+    display:none;
+    padding-left:20px;
+}
