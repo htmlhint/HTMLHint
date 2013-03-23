@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        clean: ["lib"],
+        clean: ["lib", "lib-cov"],
         concat: {
             htmlhint: {
                 src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
@@ -39,12 +39,12 @@ module.exports = function(grunt) {
         },
         exec: {
             jscover: {
-                command: '.\\node_modules\\.bin\\jscover lib lib-cov',
+                command: './node_modules/.bin/jscover lib lib-cov',
                 stdout: false,
                 stderr: false
             },
             savecover: {
-                command: 'set HTMLHINT_COV=1 & .\\node_modules\\.bin\\mocha --recursive --reporter html-cov > coverage.html'
+                command: 'export HTMLHINT_COV=1 & ./node_modules/.bin/mocha -R html-cov > coverage.html'
             }
         },
         uglify: {
@@ -62,7 +62,7 @@ module.exports = function(grunt) {
         },
         replace: {
             htmlhint: {
-                files: { 'lib/':'lib/htmlhint.js'},
+                files: { 'lib/htmlhint.js':'lib/htmlhint.js'},
                 options: {
                     prefix: '@',
                     variables: {
