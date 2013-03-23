@@ -1,7 +1,4 @@
 language: node_js
 node_js:
     - 0.8
-install:
-    - npm install mocha
-    - npm install expect.js
-script: "mocha --recursive --reporter spec"
+    - 0.10

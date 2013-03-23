@@ -5,6 +5,7 @@
   "main": "./index",
   "dependencies": {},
   "devDependencies": {
+    "grunt-cli": "*",
     "grunt": "~0.4.0rc7",
     "grunt-contrib-clean": "~0.4.0rc6",
     "grunt-contrib-concat": "~0.1.2rc6",
@@ -17,6 +18,12 @@
     "mocha": "*",
     "expect.js": "~0.2.0",
     "jscover": "*"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/grunt test",
+    "test-cov": "node_modules/.bin/grunt test-cov",
+    "build": "node_modules/.bin/grunt",
+    "prepublish": "node_modules/.bin/grunt"
   },
   "repository": {
     "type": "git",
