@@ -12,7 +12,7 @@ HTMLHint.addRule({
             var tagName = event.tagName.toLowerCase();
             if(mapEmptyTags[tagName] !== undefined){
                 if(!event.close){
-                    reporter.warn('The empty tag must closed by self.', event.line, event.col, self, event.raw);
+                    reporter.warn('The empty tag : [ '+tagName+' ] must closed by self.', event.line, event.col, self, event.raw);
                 }
             }
         });
