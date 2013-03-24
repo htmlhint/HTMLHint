@@ -1,4 +1,6 @@
 /*global module:false*/
+var set = require('os').platform === 'win32' ? 'set' : 'export';
+
 module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
@@ -44,7 +46,7 @@ module.exports = function(grunt) {
                 stderr: false
             },
             savecover: {
-                command: 'set HTMLHINT_COV=1 & "./node_modules/.bin/mocha" --recursive --reporter html-cov > coverage.html'
+                command: set + ' HTMLHINT_COV=1 & "./node_modules/.bin/mocha" --recursive --reporter html-cov > coverage.html'
             }
         },
         uglify: {

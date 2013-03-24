@@ -19,6 +19,12 @@
     "expect.js": "~0.2.0",
     "jscover": "~0.2.4"
   },
+  "scripts": {
+    "test": "node_modules/.bin/grunt test",
+    "test-cov": "node_modules/.bin/grunt test-cov",
+    "build": "node_modules/.bin/grunt",
+    "prepublish": "node_modules/.bin/grunt"
+  },
   "repository": {
     "type": "git",
     "url": "git://github.com/yaniswang/HTMLHint.git"
