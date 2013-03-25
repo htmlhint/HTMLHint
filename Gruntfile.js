@@ -1,7 +1,9 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-    var setCmd = process.platform === 'win32' ? 'set' : 'export';
+    var bWin32 = process.platform === 'win32',
+        setCmd = bWin32 ? 'set' : 'export',
+        cmdSplit = bWin32 ? '&' : '&&';
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
@@ -23,7 +25,7 @@ module.exports = function(grunt) {
                 }
             }
         },
-        clean: ["lib", "lib-cov"],
+        clean: ["lib", "lib-cov", "coverage.html"],
         concat: {
             htmlhint: {
                 src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
@@ -42,11 +44,13 @@ module.exports = function(grunt) {
         exec: {
             jscover: {
                 command: '"./node_modules/.bin/jscover" lib lib-cov',
-                stdout: false,
-                stderr: false
+                stdout: true,
+                stderr: true
             },
             savecover: {
-                command: setCmd + ' HTMLHINT_COV=1 & "./node_modules/.bin/mocha" --recursive --reporter html-cov > coverage.html'
+                command: setCmd + ' HTMLHINT_COV=1 '+cmdSplit+' "./node_modules/.bin/mocha" --recursive --reporter html-cov > coverage.html',
+                stdout: true,
+                stderr: true
             }
         },
         uglify: {
