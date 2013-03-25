@@ -1,6 +1,8 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
+    var setCmd = process.platform === 'win32' ? 'set' : 'export';
+
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks("grunt-contrib-jshint");
@@ -17,7 +19,7 @@ module.exports = function(grunt) {
             all: {
                 src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
                 options: {
-                    jshintrc: "src/jshint.json"
+                    jshintrc: "jshint.json"
                 }
             }
         },
@@ -44,7 +46,7 @@ module.exports = function(grunt) {
                 stderr: false
             },
             savecover: {
-                command: 'set HTMLHINT_COV=1 & "./node_modules/.bin/mocha" --recursive --reporter html-cov > coverage.html'
+                command: setCmd + ' HTMLHINT_COV=1 & "./node_modules/.bin/mocha" --recursive --reporter html-cov > coverage.html'
             }
         },
         uglify: {

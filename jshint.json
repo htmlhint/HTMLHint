@@ -20,6 +20,7 @@
         "HTMLParser",
         "require",
         "exports",
+        "process",
         "describe",
         "it",
         "console"
