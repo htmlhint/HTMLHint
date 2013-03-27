@@ -11,7 +11,9 @@
     };
     loadRules();
     //init editor
-    var editor = ace.edit("editor"), upTimer;
+    var editor = ace.edit("editor"),
+        upTimer,
+        arrHints = [];
     editor.setShowPrintMargin(false);
     editor.setTheme("ace/theme/merbivore");
     editor.getSession().setMode("ace/mode/html");
@@ -19,6 +21,22 @@
         clearTimeout(upTimer);
         upTimer = setTimeout(updateHTMLHint, 500);
     });
+    editor.commands.addCommand({
+        name: 'last hint',
+        bindKey: {win: 'Ctrl-Left',  mac: 'Command-Left'},
+        exec: showLastHint,
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
+    editor.commands.addCommand({
+        name: 'next hint',
+        bindKey: {win: 'Ctrl-Right',  mac: 'Command-Right'},
+        exec: showNextHint,
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
+    var jHintState = $('#hint-state'),
+        jButtonArea = $('#button-area'),
+        jShowLast = $('#show-last'),
+        jShowNext = $('#show-next');
     function updateHTMLHint(){
         var code = editor.getValue();
         var messages = HTMLHint.verify(code, ruleSets);
@@ -33,8 +51,57 @@
                 raw: message.raw
             });
         }
+        arrHints = errors;
         editor.getSession().setAnnotations(errors);
+        var errorCount = errors.length;
+        jHintState.html('Find Hints: <strong>'+errorCount+'</strong>');
+        if(errorCount>0){
+            jButtonArea.show();
+        }
+        else{
+            jButtonArea.hide();
+        }
     }
+    function showLastHint(){
+        if(arrHints.length>0){
+            var cursor = editor.selection.getCursor(),
+                curRow = cursor.row,
+                curColumn = cursor.column;
+            var hint, hintRow, hintCol;
+            for(var i=arrHints.length-1;i>=0;i--){
+                hint = arrHints[i];
+                hintRow = hint.row;
+                hintCol = hint.column;
+                if(hintRow < curRow || (hintRow === curRow && hintCol < curColumn)){
+                    editor.moveCursorTo(hintRow, hintCol)
+                    editor.selection.clearSelection();
+                    break;
+                }
+            }
+        }
+        return false;
+    }
+    function showNextHint(){
+        if(arrHints.length>0){
+            var cursor = editor.selection.getCursor(),
+                curRow = cursor.row,
+                curColumn = cursor.column;
+            var hint, hintRow, hintCol;
+            for(var i=0;i<arrHints.length;i++){
+                hint = arrHints[i];
+                hintRow = hint.row;
+                hintCol = hint.column;
+                if(hintRow > curRow || (hintRow === curRow && hintCol > curColumn)){
+                    editor.moveCursorTo(hintRow, hintCol)
+                    editor.selection.clearSelection();
+                    break;
+                }
+            }
+        }
+        return false;
+    }
+    jShowLast.mousedown(showLastHint);
+    jShowNext.mousedown(showNextHint);
     function loadRules(){
         var saveRuleSets = $.cookie('htmlhintRules');
         if(saveRuleSets){

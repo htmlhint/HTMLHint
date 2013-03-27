@@ -17,6 +17,16 @@ body {
     height:300px;
 }
 
+#stat-bar{
+    padding:5px 0;
+}
+
+#button-area{
+    float:right;
+    padding:0 10px;
+    display:none;
+}
+
 .footer{
     text-align:center;
 }
