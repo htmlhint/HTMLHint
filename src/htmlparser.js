@@ -82,7 +82,9 @@ var HTMLParser = (function(undefined){
                 else{
                     if((tagName = match[4])){//标签开始
                         arrAttrs = [];
-                        var attrs = match[5], attrMatch;
+                        var attrs = match[5],
+                            attrMatch,
+                            attrMatchCount = 0;
                         while((attrMatch = regAttr.exec(attrs))){
                             var name = attrMatch[1],
                                 quote = attrMatch[2] ? attrMatch[2] :
@@ -91,16 +93,22 @@ var HTMLParser = (function(undefined){
                                     attrMatch[5] ? attrMatch[5] :
                                     attrMatch[6] ? attrMatch[6] : '';
                             arrAttrs.push({'name': name, 'value': value, 'quote': quote, 'index': attrMatch.index, 'raw': attrMatch[0]});
+                            attrMatchCount += attrMatch[0].length;
                         }
-                        saveBlock('tagstart', match[0], matchIndex, {
-                            'tagName': tagName,
-                            'attrs': arrAttrs,
-                            'close': match[6]
-                        });
-                        if(mapCdataTags[tagName]){
-                            tagCDATA = tagName;
-                            arrCDATA = [];
-                            lastCDATAIndex = lastIndex;
+                        if(attrMatchCount === attrs.length){
+                            saveBlock('tagstart', match[0], matchIndex, {
+                                'tagName': tagName,
+                                'attrs': arrAttrs,
+                                'close': match[6]
+                            });
+                            if(mapCdataTags[tagName]){
+                                tagCDATA = tagName;
+                                arrCDATA = [];
+                                lastCDATAIndex = lastIndex;
+                            }
+                        }
+                        else{//如果出现漏匹配，则把当前内容匹配为text
+                            saveBlock('text', match[0], matchIndex);
                         }
                     }
                     else if(match[2] || match[3]){//注释标签
