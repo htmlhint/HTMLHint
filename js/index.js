@@ -19,8 +19,6 @@
     var ruleJSHint = {
         verify: JSHINT,
         options: {
-            "undef": true,
-            "unused": true
         }
     };
     
