@@ -61,13 +61,13 @@
                     <li><label class="checkbox" title="The script tag can not be used in head."><input type="checkbox" id="head-script-disabled"> head-script-disabled</label></li>
                 </ul>
               </div>
-              <div class="span3">
+              <div class="span2">
                 <h3>Accessibility</h3>
                 <ul>
                     <li><label class="checkbox" title="Alt of img tag must be set value."><input type="checkbox" id="img-alt-require"> img-alt-require</label></li>
                 </ul>
               </div>
-              <div class="span3">
+              <div class="span2">
                 <h3>Specification</h3>
                 <ul>
                     <li><label class="checkbox" title="Doctype must be html5."><input type="checkbox" id="doctype-html5"> doctype-html5</label></li>
@@ -76,6 +76,13 @@
                         <div id="id-class-value_valuearea"><select id="id-class-value_value" class="span7"><option value="underline">underline</option><option value="dash">dash</option><option value="hump">hump</option></select></div>
                     </li>
                     <li><label class="checkbox" title="Style tag can not be use."><input type="checkbox" id="style-disabled"> style-disabled</label></li>
+                </ul>
+              </div>
+              <div class="span2">
+                <h3>Other</h3>
+                <ul>
+                    <li><label class="checkbox" title="Scan css with csslint."><input type="checkbox" id="csslint"> csslint</label></li>
+                    <li><label class="checkbox" title="Scan script with jshint."><input type="checkbox" id="jshint"> jshint</label></li>
                 </ul>
               </div>
             </div>
@@ -89,6 +96,8 @@
     <script type="text/javascript" src="js/jquery.cookie.js"></script>
     <script type="text/javascript" src="js/htmlhint.js"></script>
     <script type="text/javascript" src="js/ace/ace.js" charset="utf-8"></script>
+    <script type="text/javascript" src="js/csslint.js"></script>
+    <script type="text/javascript" src="js/jshint.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
     <!--[if lte IE 8]> 
     <script type="text/javascript" src="js/ie-warning.js" ></script>

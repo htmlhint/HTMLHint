@@ -9,6 +9,21 @@
         'tag-pair': true,
         'spec-char-escape': true
     };
+    var ruleCSSLint = {
+        verify: CSSLint.verify,
+        options:{
+            "display-property-grouping": true,
+            "known-properties": true
+        }
+    };
+    var ruleJSHint = {
+        verify: JSHINT,
+        options: {
+            "undef": true,
+            "unused": true
+        }
+    };
+    
     loadRules();
     //init editor
     var editor = ace.edit("editor"),
@@ -38,6 +53,12 @@
         jShowLast = $('#show-last'),
         jShowNext = $('#show-next');
     function updateHTMLHint(){
+        if(ruleSets['csslint'] === true){
+            ruleSets['csslint'] = ruleCSSLint;
+        }
+        if(ruleSets['jshint'] === true){
+            ruleSets['jshint'] = ruleJSHint;
+        }
         var code = editor.getValue();
         var messages = HTMLHint.verify(code, ruleSets);
         var errors = [], message;
