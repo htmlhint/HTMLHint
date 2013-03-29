@@ -12,7 +12,7 @@ var HTMLHint  = require("../../index").HTMLHint;
 describe('Rules: jshint', function(){
 
     it('should result in an error', function(){
-        var code = 'a<script>\r\nvar b;\r\ndebugger;\r\na=1</script>b';
+        var code = 'a<script>\r\nvar b;\r\n		debugger;\r\na=1</script>b';
         var messages = HTMLHint.verify(code, {'jshint': {
             verify: JSHINT,
             options: {
@@ -23,7 +23,7 @@ describe('Rules: jshint', function(){
         expect(messages.length).to.be(4);
         expect(messages[0].rule.id).to.be('jshint');
         expect(messages[0].line).to.be(3);
-        expect(messages[0].col).to.be(9);
+        expect(messages[0].col).to.be(11);
         expect(messages[0].type).to.be('warning');
         expect(messages[1].rule.id).to.be('jshint');
         expect(messages[1].line).to.be(4);
