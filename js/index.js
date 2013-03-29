@@ -21,6 +21,17 @@
         options: {
         }
     };
+    var settings = {
+        editorTheme: 'merbivore'
+    };
+    var jEditorTheme = $('#editor-theme');
+    loadSettings();
+    jEditorTheme.val(settings.editorTheme);
+    jEditorTheme.change(function(){
+        settings.editorTheme = jEditorTheme.val();
+        editor.setTheme("ace/theme/"+settings.editorTheme);
+        saveSettings();
+    });
     
     loadRules();
     //init editor
@@ -28,7 +39,7 @@
         upTimer,
         arrHints = [];
     editor.setShowPrintMargin(false);
-    editor.setTheme("ace/theme/merbivore");
+    editor.setTheme("ace/theme/"+settings.editorTheme);
     editor.getSession().setMode("ace/mode/html");
     editor.on('change', function(e){
         clearTimeout(upTimer);
@@ -121,6 +132,15 @@
     }
     jShowLast.mousedown(showLastHint);
     jShowNext.mousedown(showNextHint);
+    function loadSettings(){
+        var saveSettings = $.cookie('htmlhintSettings');
+        if(saveSettings){
+            settings = saveSettings;
+        }
+    }
+    function saveSettings(){
+        $.cookie('htmlhintSettings', settings, { expires: 365 });
+    }
     function loadRules(){
         var saveRuleSets = $.cookie('htmlhintRules');
         if(saveRuleSets){
