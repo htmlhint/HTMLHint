@@ -65,4 +65,28 @@ describe('Rules: id-class-value', function(){
         expect(messages.length).to.be(0);
     });
 
+    it('Id and class value be not meet regexp should result in an error', function(){
+        var code = '<div id="aa-bb" class="ccc-ddd">';
+        var messages = HTMLHint.verify(code, {'id-class-value': {
+            'regId': /^_[a-z\d]+(-[a-z\d]+)*$/,
+            'message': 'Id and class value must meet regexp'
+        }});
+        expect(messages.length).to.be(2);
+        expect(messages[0].rule.id).to.be('id-class-value');
+        expect(messages[0].line).to.be(1);
+        expect(messages[0].col).to.be(5);
+        expect(messages[1].rule.id).to.be('id-class-value');
+        expect(messages[1].line).to.be(1);
+        expect(messages[1].col).to.be(16);
+    });
+
+    it('Id and class value be meet regexp should not result in an error', function(){
+        var code = '<div id="_aaa-bb" class="_ccc-ddd">';
+        var messages = HTMLHint.verify(code, {'id-class-value': {
+            'regId': /^_[a-z\d]+(-[a-z\d]+)*$/,
+            'message': 'Id and class value must meet regexp'
+        }});
+        expect(messages.length).to.be(0);
+    });
+
 });

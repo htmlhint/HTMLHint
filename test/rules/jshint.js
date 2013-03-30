@@ -5,8 +5,6 @@
 
 var expect  = require("expect.js");
 
-var JSHINT = require('jshint').JSHINT;
-
 var HTMLHint  = require("../../index").HTMLHint;
 
 describe('Rules: jshint', function(){
@@ -14,11 +12,8 @@ describe('Rules: jshint', function(){
     it('should result in an error', function(){
         var code = 'a<script>\r\nvar b;\r\n		debugger;\r\na=1</script>b';
         var messages = HTMLHint.verify(code, {'jshint': {
-            verify: JSHINT,
-            options: {
-                "undef": true,
-                "unused": true
-            }
+            "undef": true,
+            "unused": true
         }});
         expect(messages.length).to.be(4);
         expect(messages[0].rule.id).to.be('jshint');

@@ -3,7 +3,11 @@
   "version": "0.9.2",
   "description": "A Static Code Analysis Tool for HTML",
   "main": "./index",
-  "dependencies": {},
+  "dependencies": {
+    "commander": "~1.1.1",
+    "jshint": "~1.1.0",
+    "csslint": "~0.9.10"
+  },
   "devDependencies": {
     "grunt-cli": "~0.1.6",
     "grunt": "~0.4.1",
@@ -17,9 +21,10 @@
     "grunt-exec": "~0.4.0",
     "mocha": "~1.8.2",
     "expect.js": "~0.2.0",
-    "jscover": "~0.2.4",
-    "jshint": "~1.1.0",
-    "csslint": "~0.9.10"
+    "jscover": "~0.2.4"
+  },
+  "bin": {
+    "htmlhint": "./bin/htmlhint"
   },
   "repository": {
     "type": "git",

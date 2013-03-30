@@ -10,14 +10,20 @@ HTMLHint.addRule({
         parser.addListener('cdata', function(event){
             if(event.tagName.toLowerCase() === 'script'){
 
-                var jsVerify = options.verify,
-                    jsOptions = options.options;
+                var jsVerify;
 
-                if(jsVerify !== undefined && jsOptions !== undefined){
+                if(typeof exports === 'object' && require){
+                    jsVerify = require('jshint').JSHINT;
+                }
+                else{
+                    jsVerify = JSHINT;
+                }
+
+                if(options !== undefined){
                     var styleLine = event.line - 1,
                         styleCol = event.col - 1;
                     var code = event.raw.replace(/\t/g,' ');
-                    var status = jsVerify(code, jsOptions);
+                    var status = jsVerify(code, options);
                     if(status === false){
                         jsVerify.errors.forEach(function(error){
                             var line = error.line;

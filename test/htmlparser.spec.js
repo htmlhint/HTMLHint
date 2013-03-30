@@ -327,7 +327,7 @@ describe('HTMLParser: Object parse', function(){
             expect(arrEvents[2]).to.event('cdata',
             {
                 tagName: 'script',
-                raw: 'alert(1);\r\nalert(2);'
+                raw: 'alert(1);\r\nalert("</html>");'
             });
             expect(arrEvents[3]).to.event('tagend',
             {
@@ -335,7 +335,7 @@ describe('HTMLParser: Object parse', function(){
             });
             done();
         });
-        parser.parse('<script type="text/javascript">alert(1);\r\nalert(2);</script>');
+        parser.parse('<script type="text/javascript">alert(1);\r\nalert("</html>");</script>');
     });
 
 

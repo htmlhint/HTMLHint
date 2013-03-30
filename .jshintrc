@@ -23,6 +23,8 @@
         "process",
         "describe",
         "it",
-        "console"
+        "console",
+        "JSHINT",
+        "CSSLint"
     ]
 }

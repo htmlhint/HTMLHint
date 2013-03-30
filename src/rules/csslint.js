@@ -10,13 +10,19 @@ HTMLHint.addRule({
         parser.addListener('cdata', function(event){
             if(event.tagName.toLowerCase() === 'style'){
 
-                var cssVerify = options.verify,
-                    cssOptions = options.options;
+                var cssVerify;
 
-                if(cssVerify !== undefined && cssOptions !== undefined){
+                if(typeof exports === 'object' && require){
+                    cssVerify = require("csslint").CSSLint.verify;
+                }
+                else{
+                    cssVerify = CSSLint.verify;
+                }
+
+                if(options !== undefined){
                     var styleLine = event.line - 1,
                         styleCol = event.col - 1;
-                    var messages = cssVerify(event.raw, cssOptions).messages;
+                    var messages = cssVerify(event.raw, options).messages;
                     messages.forEach(function(error){
                         var line = error.line;
                         reporter[error.type==='warning'?'warn':'error'](error.message, styleLine + line, (line === 1 ? styleCol : 0) + error.col, self, error.evidence);

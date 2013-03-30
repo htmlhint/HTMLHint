@@ -5,8 +5,8 @@ HTMLHint change log
 
 add：
 
-1. add csslint rule
-2. add jshint rule
+1. add rule: csslint 
+2. add rule: jshint
 
 fix：
 
@@ -19,4 +19,18 @@ fix：
 
 ## ver 0.9.1 (2013-3-23)
 
-first version
+add:
+
+1. add rule: attr-lowercase
+2. add rule: attr-value-double-quotes
+3. add rule: attr-value-not-empty
+4. add rule: doctype-first
+5. add rule: doctype-html5
+6. add rule: head-script-disabled
+7. add rule: id-class-value
+8. add rule: img-alt-require
+9. add rule: spec-char-escape
+10. add rule: style-disabled
+11. add rule: tagname-lowercase
+12. add rule: tag-pair
+13. add rule: tag-self-close
