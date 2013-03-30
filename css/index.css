@@ -6,6 +6,7 @@ body {
 .container-narrow {
   margin: 0 auto;
   max-width: 990px;
+  min-width: 500px;
 }
 .container-narrow > hr {
   margin: 20px 0;
