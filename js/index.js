@@ -10,16 +10,10 @@
         'spec-char-escape': true
     };
     var ruleCSSLint = {
-        verify: CSSLint.verify,
-        options:{
-            "display-property-grouping": true,
-            "known-properties": true
-        }
+        "display-property-grouping": true,
+        "known-properties": true
     };
     var ruleJSHint = {
-        verify: JSHINT,
-        options: {
-        }
     };
     var settings = {
         editorTheme: 'merbivore'
@@ -46,14 +40,26 @@
         upTimer = setTimeout(updateHTMLHint, 500);
     });
     editor.commands.addCommand({
-        name: 'last hint',
+        name: 'left',
         bindKey: {win: 'Ctrl-Left',  mac: 'Command-Left'},
         exec: showLastHint,
         readOnly: true // false if this command should not apply in readOnly mode
     });
     editor.commands.addCommand({
-        name: 'next hint',
+        name: 'up',
+        bindKey: {win: 'Ctrl-Up',  mac: 'Command-Up'},
+        exec: showLastHint,
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
+    editor.commands.addCommand({
+        name: 'right',
         bindKey: {win: 'Ctrl-Right',  mac: 'Command-Right'},
+        exec: showNextHint,
+        readOnly: true // false if this command should not apply in readOnly mode
+    });
+    editor.commands.addCommand({
+        name: 'down',
+        bindKey: {win: 'Ctrl-Down',  mac: 'Command-Down'},
         exec: showNextHint,
         readOnly: true // false if this command should not apply in readOnly mode
     });
