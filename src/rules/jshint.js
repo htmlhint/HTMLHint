@@ -10,6 +10,14 @@ HTMLHint.addRule({
         parser.addListener('cdata', function(event){
             if(event.tagName.toLowerCase() === 'script'){
 
+                var mapAttrs = parser.getMapAttrs(event.attrs),
+                    type = mapAttrs.type;
+
+                // Only scan javascript
+                if(type && /^(text\/javascript)$/i.test(type) === false){
+                    return;
+                }
+
                 var jsVerify;
 
                 if(typeof exports === 'object' && require){
@@ -23,13 +31,16 @@ HTMLHint.addRule({
                     var styleLine = event.line - 1,
                         styleCol = event.col - 1;
                     var code = event.raw.replace(/\t/g,' ');
-                    var status = jsVerify(code, options);
-                    if(status === false){
-                        jsVerify.errors.forEach(function(error){
-                            var line = error.line;
-                            reporter.warn(error.reason, styleLine + line, (line === 1 ? styleCol : 0) + error.character, self, error.evidence);
-                        });
+                    try{
+                        var status = jsVerify(code, options);
+                        if(status === false){
+                            jsVerify.errors.forEach(function(error){
+                                var line = error.line;
+                                reporter.warn(error.reason, styleLine + line, (line === 1 ? styleCol : 0) + error.character, self, error.evidence);
+                            });
+                        }
                     }
+                    catch(e){}
                 }
 
             }

@@ -35,7 +35,7 @@ var HTMLParser = (function(undefined){
                 regAttr = /\s*([\w\-:]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s]+)))?/g,
                 regLine = /\r?\n/g;
 
-            var match, matchIndex, lastIndex = 0, tagName, arrAttrs, tagCDATA, arrCDATA, lastCDATAIndex = 0, text;
+            var match, matchIndex, lastIndex = 0, tagName, arrAttrs, tagCDATA, attrsCDATA, arrCDATA, lastCDATAIndex = 0, text;
             var lastLineIndex = 0, line = 1;
             var arrBlocks = self._arrBlocks;
 
@@ -62,9 +62,11 @@ var HTMLParser = (function(undefined){
                     if(tagCDATA && tagName === tagCDATA){//结束标签前输出CDATA
                         text = arrCDATA.join('');
                         saveBlock('cdata', text, lastCDATAIndex, {
-                            'tagName': tagCDATA
+                            'tagName': tagCDATA,
+                            'attrs': attrsCDATA
                         });
                         tagCDATA = null;
+                        attrsCDATA = null;
                         arrCDATA = null;
                     }
                     if(!tagCDATA){
@@ -103,6 +105,7 @@ var HTMLParser = (function(undefined){
                             });
                             if(mapCdataTags[tagName]){
                                 tagCDATA = tagName;
+                                attrsCDATA = arrAttrs.concat();
                                 arrCDATA = [];
                                 lastCDATAIndex = lastIndex;
                             }
@@ -217,7 +220,17 @@ var HTMLParser = (function(undefined){
                 line: line,
                 col: col
             };
+        },
 
+        // covert array type of attrs to map
+        getMapAttrs: function(arrAttrs){
+            var mapAttrs = {},
+                attr;
+            for(var i=0,l=arrAttrs.length;i<l;i++){
+                attr = arrAttrs[i];
+                mapAttrs[attr.name] = attr.value;
+            }
+            return mapAttrs;
         }
     };
 

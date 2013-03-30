@@ -319,16 +319,20 @@ describe('HTMLParser: Object parse', function(){
         var parser = new HTMLParser();
         var arrEvents = [];
         getAllEvents(parser, arrEvents, function(){
+            var mapAttrs;
             expect(arrEvents[1]).to.event('tagstart',
             {
-                tagName: 'script',
-                type: 'text/javascript'
+                tagName: 'script'
             });
+            mapAttrs = parser.getMapAttrs(arrEvents[1].attrs);
+            expect(mapAttrs.type).to.be('text/javascript');
             expect(arrEvents[2]).to.event('cdata',
             {
                 tagName: 'script',
                 raw: 'alert(1);\r\nalert("</html>");'
             });
+            mapAttrs = parser.getMapAttrs(arrEvents[2].attrs);
+            expect(mapAttrs.type).to.be('text/javascript');
             expect(arrEvents[3]).to.event('tagend',
             {
                 tagName: 'script'
