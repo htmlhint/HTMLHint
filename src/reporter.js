@@ -38,7 +38,11 @@
                 evidence: self.lines[line-1],
                 line: line,
                 col: col,
-                rule: rule
+                rule: {
+                    id: rule.id,
+                    description: rule.description,
+                    link: 'https://github.com/yaniswang/HTMLHint/wiki/' + rule.id
+                }
             });
         }
     };
