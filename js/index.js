@@ -8,7 +8,8 @@
             'attr-value-double-quotes': true,
             'doctype-first': true,
             'tag-pair': true,
-            'spec-char-escape': true
+            'spec-char-escape': true,
+            'id-unique': true
         },
         ruleCSSLint = {
                 "display-property-grouping": true,
