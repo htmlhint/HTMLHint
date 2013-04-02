@@ -25,7 +25,7 @@ HTMLHint.addRule({
                             mapIdCount[id] ++;
                         }
                         if(mapIdCount[id] > 1){
-                            reporter.warn('Id redefinition of [ '+id+' ].', event.line, col + attr.index, self, attr.raw);
+                            reporter.error('Id redefinition of [ '+id+' ].', event.line, col + attr.index, self, attr.raw);
                         }
                     }
                     break;

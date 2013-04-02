@@ -16,7 +16,7 @@ describe('Rules: id-unique', function(){
         expect(messages[0].rule.id).to.be('id-unique');
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(26);
-        expect(messages[0].type).to.be('warning');
+        expect(messages[0].type).to.be('error');
     });
 
     it('Id no redefine should not result in an error', function(){
