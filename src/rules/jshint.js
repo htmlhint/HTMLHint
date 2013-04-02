@@ -13,8 +13,8 @@ HTMLHint.addRule({
                 var mapAttrs = parser.getMapAttrs(event.attrs),
                     type = mapAttrs.type;
 
-                // Only scan javascript
-                if(type && /^(text\/javascript)$/i.test(type) === false){
+                // Only scan internal javascript
+                if(mapAttrs.src !== undefined || (type && /^(text\/javascript)$/i.test(type) === false)){
                     return;
                 }
 

@@ -52,4 +52,13 @@ describe('Rules: jshint', function(){
         expect(messages.length).not.to.be(0);
     });
 
+    it('type of script be text/javascript but have src should not result in an error', function(){
+        var code = 'a<script type="text/javascript" src="test.js">\r\nvar b;\r\n     debugger;\r\na=1</script>b';
+        var messages = HTMLHint.verify(code, {'jshint': {
+            "undef": true,
+            "unused": true
+        }});
+        expect(messages.length).to.be(0);
+    });
+
 });
