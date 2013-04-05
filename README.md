@@ -50,4 +50,8 @@ Thanks
 * expect.js: [https://github.com/LearnBoost/expect.js](https://github.com/LearnBoost/expect.js)
 * jscover: [https://github.com/fengmk2/jscover](https://github.com/fengmk2/jscover)
 * Grunt: [http://gruntjs.com/](http://gruntjs.com/)
+* commander.js: [https://github.com/visionmedia/commander.js](https://github.com/visionmedia/commander.js)
+* colors.js: [https://github.com/Marak/colors.js](https://github.com/Marak/colors.js)
+* jshint: [https://github.com/jshint/jshint](https://github.com/jshint/jshint)
+* csslint: [https://github.com/stubbornella/csslint](https://github.com/stubbornella/csslint)
 * GitHub: [https://github.com/](https://github.com/)
