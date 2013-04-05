@@ -7,6 +7,7 @@ add：
 
 1. add rule: csslint 
 2. add rule: jshint
+3. add cli
 
 fix：
 

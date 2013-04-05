@@ -4,11 +4,11 @@
  */
 var HTMLHint = (function (undefined) {
 
-    var rules = [];
-
     var HTMLHint = {};
 
     HTMLHint.version = '@VERSION';
+
+    HTMLHint.rules = {};
 
     //默认配置
     HTMLHint.defaultRuleset = {
@@ -17,11 +17,12 @@ var HTMLHint = (function (undefined) {
         'attr-value-double-quotes': true,
         'doctype-first': true,
         'tag-pair': true,
-        'spec-char-escape': true
+        'spec-char-escape': true,
+        'id-unique': true
     };
 
     HTMLHint.addRule = function(rule){
-        rules[rule.id] = rule;
+        HTMLHint.rules[rule.id] = rule;
     };
 
     HTMLHint.verify = function(html, ruleset){
@@ -31,7 +32,8 @@ var HTMLHint = (function (undefined) {
         var parser = new HTMLParser(),
             reporter = new HTMLHint.Reporter(html.split(/\r?\n/), ruleset);
 
-        var rule;
+        var rules = HTMLHint.rules,
+            rule;
         for (var id in ruleset){
             rule = rules[id];
             if (rule !== undefined){

@@ -5,6 +5,7 @@
   "main": "./index",
   "dependencies": {
     "commander": "~1.1.1",
+    "colors": "~0.6.0-1",
     "jshint": "~1.1.0",
     "csslint": "~0.9.10"
   },

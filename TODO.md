@@ -1,5 +1,5 @@
 TODO
 ==================
 
-1. nodejs cli
-2. grunt plugin
+1. grunt plugin
+2. w3c rule
