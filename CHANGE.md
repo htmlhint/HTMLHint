@@ -1,13 +1,14 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.2 (2013-3-28)
+## ver 0.9.2 (2013-4-6)
 
 add：
 
 1. add rule: csslint 
 2. add rule: jshint
-3. add cli
+3. add rule: id-unique
+4. add cli
 
 fix：
 

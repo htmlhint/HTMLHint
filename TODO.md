@@ -1,5 +1,5 @@
 TODO
 ==================
 
-1. grunt plugin
+1. reporter support
 2. w3c rule
