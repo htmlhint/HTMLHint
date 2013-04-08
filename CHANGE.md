@@ -1,6 +1,16 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.3 (2013-4-8)
+
+add:
+
+1. add ruleid to csslint message
+
+fix:
+
+1. fix csslint rule: del undefined of raw
+
 ## ver 0.9.2 (2013-4-6)
 
 add：
