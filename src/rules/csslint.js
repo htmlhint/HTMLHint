@@ -26,7 +26,7 @@ HTMLHint.addRule({
                         var messages = cssVerify(event.raw, options).messages;
                         messages.forEach(function(error){
                             var line = error.line;
-                            reporter[error.type==='warning'?'warn':'error']('['+error.rule.id+'] '+error.message, styleLine + line, (line === 1 ? styleCol : 0) + error.col, self, '');
+                            reporter[error.type==='warning'?'warn':'error']('['+error.rule.id+'] '+error.message, styleLine + line, (line === 1 ? styleCol : 0) + error.col, self, error.evidence);
                         });
                     }
                     catch(e){}
