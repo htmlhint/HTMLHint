@@ -223,6 +223,45 @@ describe('HTMLParser: Object parse', function(){
         parser.parse('<div class=foo">');
     });
 
+    it('should not parse start tag: <div class="foo"">', function(done){
+        var parser = new HTMLParser();
+        var arrEvents = [];
+        getAllEvents(parser, arrEvents, function(){
+            expect(arrEvents[1]).to.event('text',
+            {
+                raw: '<div class="foo"">'
+            });
+            done();
+        });
+        parser.parse('<div class="foo"">');
+    });
+
+    it('should not parse start tag: <div class="foo""><span">', function(done){
+        var parser = new HTMLParser();
+        var arrEvents = [];
+        getAllEvents(parser, arrEvents, function(){
+            expect(arrEvents[1]).to.event('text',
+            {
+                raw: '<div class="foo""><span">'
+            });
+            done();
+        });
+        parser.parse('<div class="foo""><span">');
+    });
+
+    it('should not parse start tag: <div class="foo""><a><span">', function(done){
+        var parser = new HTMLParser();
+        var arrEvents = [];
+        getAllEvents(parser, arrEvents, function(){
+            expect(arrEvents[1]).to.event('text',
+            {
+                raw: '<div class="foo"">'
+            });
+            done();
+        });
+        parser.parse('<div class="foo""><a><span">');
+    });
+
     it('should parse tag attrs', function(done){
         var parser = new HTMLParser();
         var arrEvents = [];

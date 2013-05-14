@@ -10,6 +10,7 @@ add:
 fix:
 
 1. fix csslint rule: del undefined of raw
+2. fix parser for: `<div class="foo""><a><span">`
 
 ## ver 0.9.2 (2013-4-6)
 
