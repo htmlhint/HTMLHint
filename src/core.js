@@ -4,6 +4,19 @@
  */
 var HTMLHint = (function (undefined) {
 
+    function extend() {
+        var args = arguments, parent = args[0];
+        for (var i = 1, prop, len = args.length; i < len; i++) {
+            var arg = args[i];
+            for (prop in arg) {
+                if (arg.hasOwnProperty(prop)) {
+                    parent[prop] = arg[prop];
+                }
+            }
+        }
+        return parent;
+    }
+
     var HTMLHint = {};
 
     HTMLHint.version = '@VERSION';
@@ -26,18 +39,19 @@ var HTMLHint = (function (undefined) {
     };
 
     HTMLHint.verify = function(html, ruleset){
-        if(ruleset === undefined){
-            ruleset = HTMLHint.defaultRuleset;
-        }
+        ruleset = extend({}, HTMLHint.defaultRuleset, ruleset);
+
         var parser = new HTMLParser(),
             reporter = new HTMLHint.Reporter(html.split(/\r?\n/), ruleset);
 
         var rules = HTMLHint.rules,
             rule;
         for (var id in ruleset){
-            rule = rules[id];
-            if (rule !== undefined){
-                rule.init(parser, reporter, ruleset[id]);
+            if (ruleset.hasOwnProperty(id) && ruleset[id]) {
+                rule = rules[id];
+                if (rule !== undefined){
+                    rule.init(parser, reporter, ruleset[id]);
+                }
             }
         }
 

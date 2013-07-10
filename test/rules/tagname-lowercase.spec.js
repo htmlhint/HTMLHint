@@ -4,6 +4,7 @@
  */
 
 var expect  = require("expect.js");
+var cleanRules = require('../utils').cleanRules;
 
 var HTMLHint  = require("../../index").HTMLHint;
 
@@ -11,7 +12,7 @@ describe('Rules: tagname-lowercase', function(){
 
     it('The tag name not all lower case should result in an error', function(){
         var code = '<A href=""></A><SPAN>aab</spaN>';
-        var messages = HTMLHint.verify(code, {'tagname-lowercase': true});
+        var messages = HTMLHint.verify(code, cleanRules({'tagname-lowercase': true}));
         expect(messages.length).to.be(4);
         expect(messages[0].rule.id).to.be('tagname-lowercase');
         expect(messages[0].line).to.be(1);
@@ -29,7 +30,7 @@ describe('Rules: tagname-lowercase', function(){
 
     it('All lower case tag name should not result in an error', function(){
         var code = '<a href=""></a><span>test</span>';
-        var messages = HTMLHint.verify(code, {'tagname-lowercase': true});
+        var messages = HTMLHint.verify(code, cleanRules({'tagname-lowercase': true}));
         expect(messages.length).to.be(0);
     });
 

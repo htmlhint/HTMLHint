@@ -4,6 +4,7 @@
  */
 
 var expect  = require("expect.js");
+var cleanRules = require('../utils').cleanRules;
 
 var HTMLHint  = require("../../index").HTMLHint;
 
@@ -11,10 +12,10 @@ describe('Rules: csslint', function(){
 
     it('should result in an error', function(){
         var code = 'a<style> \r\n body{color:red1;\r\ndisplay:inline;height:100px;}</style>b';
-        var messages = HTMLHint.verify(code, {'csslint': {
+        var messages = HTMLHint.verify(code, cleanRules({'csslint': {
             "display-property-grouping": true,
             "known-properties": true
-        }});
+        }}));
         expect(messages.length).to.be(2);
         expect(messages[0].rule.id).to.be('csslint');
         expect(messages[0].line).to.be(2);

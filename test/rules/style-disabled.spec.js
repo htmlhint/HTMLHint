@@ -4,6 +4,7 @@
  */
 
 var expect  = require("expect.js");
+var cleanRules = require('../utils').cleanRules;
 
 var HTMLHint  = require("../../index").HTMLHint;
 
@@ -11,7 +12,7 @@ describe('Rules: style-disabled', function(){
 
     it('Style tag should result in an error', function(){
         var code = '<body><style>body{}</style></body>';
-        var messages = HTMLHint.verify(code, {'style-disabled': true});
+        var messages = HTMLHint.verify(code, cleanRules({'style-disabled': true}));
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be('style-disabled');
         expect(messages[0].line).to.be(1);
@@ -21,7 +22,7 @@ describe('Rules: style-disabled', function(){
 
     it('Stylesheet link should not result in an error', function(){
         var code = '<body><link rel="stylesheet" href="test.css" /></body>';
-        var messages = HTMLHint.verify(code, {'style-disabled': true});
+        var messages = HTMLHint.verify(code, cleanRules({'style-disabled': true}));
         expect(messages.length).to.be(0);
     });
 

@@ -4,6 +4,7 @@
  */
 
 var expect  = require("expect.js");
+var cleanRules = require('../utils').cleanRules;
 
 var HTMLHint  = require("../../index").HTMLHint;
 
@@ -11,7 +12,7 @@ describe('Rules: spec-char-escape', function(){
 
     it('Special characters: <> should result in an error', function(){
         var code = '<p>aaa>bbb< ccc</p>ddd\r\neee<';
-        var messages = HTMLHint.verify(code, {'spec-char-escape': true});
+        var messages = HTMLHint.verify(code, cleanRules({'spec-char-escape': true}));
         expect(messages.length).to.be(3);
         expect(messages[0].rule.id).to.be('spec-char-escape');
         expect(messages[0].line).to.be(1);
@@ -26,7 +27,7 @@ describe('Rules: spec-char-escape', function(){
 
     it('Normal text should not result in an error', function(){
         var code = '<p>abc</p>';
-        var messages = HTMLHint.verify(code, {'spec-char-escape': true});
+        var messages = HTMLHint.verify(code, cleanRules({'spec-char-escape': true}));
         expect(messages.length).to.be(0);
     });
 
