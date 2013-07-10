@@ -15,16 +15,17 @@
     "browser": true,
     "wsh": true,
 
-    "predef": [
-        "HTMLHint",
-        "HTMLParser",
-        "require",
-        "exports",
-        "process",
-        "describe",
-        "it",
-        "console",
-        "JSHINT",
-        "CSSLint"
-    ]
+    "globals": {
+        "HTMLHint": true,
+        "HTMLParser": true,
+        "require": false,
+        "module": false,
+        "exports": false,
+        "process": false,
+        "describe": false,
+        "it": false,
+        "console": false,
+        "JSHINT": false,
+        "CSSLint": false
+    }
 }
