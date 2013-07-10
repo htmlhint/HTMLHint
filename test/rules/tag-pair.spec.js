@@ -4,6 +4,7 @@
  */
 
 var expect  = require("expect.js");
+var cleanRules = require('../utils').cleanRules;
 
 var HTMLHint  = require("../../index").HTMLHint;
 
@@ -11,7 +12,7 @@ describe('Rules: tag-pair', function(){
 
     it('No end tag should result in an error', function(){
         var code = '<ul><li></ul><span>';
-        var messages = HTMLHint.verify(code, {'tag-pair': true});
+        var messages = HTMLHint.verify(code, cleanRules({'tag-pair': true}));
         expect(messages.length).to.be(2);
         expect(messages[0].rule.id).to.be('tag-pair');
         expect(messages[0].line).to.be(1);
@@ -23,7 +24,7 @@ describe('Rules: tag-pair', function(){
 
     it('No start tag should result in an error', function(){
         var code = '</div>';
-        var messages = HTMLHint.verify(code, {'tag-pair': true});
+        var messages = HTMLHint.verify(code, cleanRules({'tag-pair': true}));
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be('tag-pair');
         expect(messages[0].line).to.be(1);
@@ -32,7 +33,7 @@ describe('Rules: tag-pair', function(){
 
     it('Tag be paired should not result in an error', function(){
         var code = '<p>aaa</p>';
-        var messages = HTMLHint.verify(code, {'tag-pair': true});
+        var messages = HTMLHint.verify(code, cleanRules({'tag-pair': true}));
         expect(messages.length).to.be(0);
     });
 

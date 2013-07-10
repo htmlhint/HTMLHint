@@ -4,6 +4,7 @@
  */
 
 var expect  = require("expect.js");
+var cleanRules = require('../utils').cleanRules;
 
 var HTMLHint  = require("../../index").HTMLHint;
 
@@ -11,7 +12,7 @@ describe('Rules: attr-lowercase', function(){
 
     it('Not all lowercase attr should result in an error', function(){
         var code = '<p TEST="abc">';
-        var messages = HTMLHint.verify(code, {'attr-lowercase': true});
+        var messages = HTMLHint.verify(code, cleanRules({'attr-lowercase': true}));
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be('attr-lowercase');
         expect(messages[0].line).to.be(1);
@@ -20,7 +21,7 @@ describe('Rules: attr-lowercase', function(){
 
     it('Lowercase attr should not result in an error', function(){
         var code = '<p test="abc">';
-        var messages = HTMLHint.verify(code, {'attr-lowercase': true});
+        var messages = HTMLHint.verify(code, cleanRules({'attr-lowercase': true}));
         expect(messages.length).to.be(0);
     });
 
