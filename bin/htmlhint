@@ -26,7 +26,7 @@ program.on('--help', function(){
 });
 
 program
-    .version('0.9.3')
+    .version('0.9.4')
     .usage('[options] <file ...>')
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')

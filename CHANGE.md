@@ -1,6 +1,12 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.4 (2013-9-1)
+
+fix:
+
+1. fix attr-value-double-quotes: without quotes should not result in an error
+
 ## ver 0.9.3 (2013-5-24)
 
 add:
