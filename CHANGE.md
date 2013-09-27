@@ -3,7 +3,7 @@ HTMLHint change log
 
 ## ver 0.9.4 (2013-9-27)
 
-1. add rule: src-not-empty-string
+1. add rule: src-not-empty
 
 ## ver 0.9.3 (2013-5-24)
 

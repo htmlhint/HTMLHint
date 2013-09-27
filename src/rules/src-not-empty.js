@@ -3,7 +3,7 @@
  * MIT Licensed
  */
 HTMLHint.addRule({
-    id: 'src-not-empty-string',
+    id: 'src-not-empty',
     description: 'Src of img(script,link) must set value.',
     init: function(parser, reporter){
         var self = this;
