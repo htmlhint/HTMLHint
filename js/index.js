@@ -9,7 +9,8 @@
             'doctype-first': true,
             'tag-pair': true,
             'spec-char-escape': true,
-            'id-unique': true
+            'id-unique': true,
+            'src-not-empty': true
         },
         ruleCSSLint = {
                 "display-property-grouping": true,
