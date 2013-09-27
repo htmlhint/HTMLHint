@@ -5,6 +5,10 @@ HTMLHint change log
 
 1. add rule: src-not-empty
 
+fix:
+ 
+1. fix attr-value-double-quotes rule: `<img src=''>` should result error
+
 ## ver 0.9.3 (2013-5-24)
 
 add:
