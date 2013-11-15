@@ -22,6 +22,7 @@ program.on('--help', function(){
     console.log('    htmlhint -l');
     console.log('    htmlhint -r tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint -c .htmlhintrc test.html');
+    console.log('    htmlhint --nocolor');
     console.log('');
 });
 
@@ -31,6 +32,7 @@ program
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)
+    .option('--nocolor', 'disable colored log')
     .parse(process.argv);
 
 if(program.list){
@@ -44,6 +46,9 @@ var ruleset = program.rules;
 if(ruleset === undefined){
     ruleset = getConfig(program.config);
 }
+
+// log with color or not
+var nocolor = program.nocolor;
 
 quit(processFiles(arrAllFiles, ruleset));
 
@@ -113,10 +118,14 @@ function processFiles(arrFiles, ruleset){
             allHintCount += hintCount;
         }
     });
-    if(allHintCount > 0){
+
+    if(allHintCount > 0 && !nocolor){
         console.log('\r\n%d problems.'.red, allHintCount);
-    }
-    else{
+    } else if (allHintCount > 0 && nocolor) {
+        console.log('\r\n%d problems.', allHintCount);
+    } else if (nocolor) {
+        console.log('No problem.');
+    } else{
         console.log('No problem.'.green);
     }
     return exitcode;
@@ -125,10 +134,15 @@ function processFiles(arrFiles, ruleset){
 function hintFile(filepath, ruleset){
     var html = fs.readFileSync(filepath, 'utf-8');
     var messages = HTMLHint.verify(html, ruleset);
+    var msg;
     if(messages.length > 0){
         console.log(filepath+':');
         messages.forEach(function(hint){
-            console.log('\tline %d, col %d: %s', hint.line, hint.col, hint.message[hint.type === 'error'?'red':'yellow']);
+            msg = hint.message[hint.type === 'error'?'red':'yellow'];
+            if (nocolor) {
+                msg = hint.message;
+            }
+            console.log('\tline %d, col %d: %s', hint.line, hint.col, msg);
         });
         console.log('');
     }

@@ -25,6 +25,10 @@ program.on('--help', function(){
     console.log('');
 });
 
+program.on('--no', function(){
+    console.log('hoge');
+});
+
 program
     .version('0.9.4')
     .usage('[options] <file ...>')
