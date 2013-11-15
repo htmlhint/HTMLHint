@@ -22,6 +22,7 @@ program.on('--help', function(){
     console.log('    htmlhint -l');
     console.log('    htmlhint -r tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint -c .htmlhintrc test.html');
+    console.log('    htmlhint --nocolor');
     console.log('');
 });
 
@@ -31,7 +32,7 @@ program
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)
-    .option('--nocolor', 'to log without colors')
+    .option('--nocolor', 'disable colored log')
     .parse(process.argv);
 
 if(program.list){
