@@ -36,9 +36,11 @@ var HTMLHint = (function (undefined) {
         var rules = HTMLHint.rules,
             rule;
         for (var id in ruleset){
-            rule = rules[id];
-            if (rule !== undefined){
-                rule.init(parser, reporter, ruleset[id]);
+            if (ruleset[id]) {
+                rule = rules[id];
+                if (rule !== undefined){
+                    rule.init(parser, reporter, ruleset[id]);
+                }
             }
         }
 
