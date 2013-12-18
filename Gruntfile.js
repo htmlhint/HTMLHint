@@ -7,6 +7,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks("grunt-contrib-jshint");
     grunt.loadNpmTasks('grunt-mocha-hack');
     grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -30,6 +31,13 @@ module.exports = function(grunt) {
             htmlhint: {
                 src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
                 dest: 'lib/htmlhint.js'
+            }
+        },
+        copy: {
+            formatters: {
+                files: [
+                    {expand: true, cwd: 'src/formatters/', src: ['**'], dest: 'lib/formatters/'}
+                ]
             }
         },
         "mocha-hack": {
@@ -92,12 +100,12 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('dev', ['jshint', 'concat', 'test']);
+    grunt.registerTask('dev', ['jshint', 'concat', 'copy', 'test']);
 
     grunt.registerTask('test', 'mocha-hack');
 
     grunt.registerTask('test-cov', ['exec:jscover', 'exec:savecover']);
 
-    grunt.registerTask('default', ['jshint', 'clean', 'concat', 'test', 'test-cov', 'uglify', 'replace']);
+    grunt.registerTask('default', ['jshint', 'clean', 'concat', 'copy', 'test', 'test-cov', 'uglify', 'replace']);
 
 };
