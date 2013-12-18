@@ -46,8 +46,7 @@ var ruleset = program.rules;
 if(ruleset === undefined){
     ruleset = getConfig(program.config);
 }
-var format = program.format || 'text';
-var formatter = require('../lib/formatters/' + format);
+var formatter = HTMLHint.getFormatter(program.format || 'text');
 
 quit(processFiles(arrAllFiles, ruleset));
 
