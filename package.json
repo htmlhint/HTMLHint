@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "0.9.4",
+  "version": "0.9.5",
   "description": "A Static Code Analysis Tool for HTML",
   "main": "./index",
   "dependencies": {
