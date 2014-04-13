@@ -48,8 +48,8 @@ if(ruleset === undefined){
 quit(processFiles(arrAllFiles, ruleset));
 
 function listRules(){
-    var rules = HTMLHint.rules,
-        rule;
+    var rules = HTMLHint.rules;
+	var rule;
     console.log('\r\nAll rules:');
     console.log('======================================');
     for (var id in rules){
