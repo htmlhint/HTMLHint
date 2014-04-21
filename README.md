@@ -9,6 +9,8 @@ HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in 
 
 jsCoverage: [98%](http://htmlhint.com/coverage.html)
 
+Official Site: [http://htmlhint.com/](http://htmlhint.com/)
+
 Guide
 =======================
 
