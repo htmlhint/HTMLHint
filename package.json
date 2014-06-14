@@ -7,7 +7,7 @@
     "commander": "1.1.1",
     "colors": "0.6.0-1",
     "jshint": "1.1.0",
-    "csslint": "0.9.10"
+    "csslint": "0.10.0"
   },
   "devDependencies": {
     "grunt-cli": "0.1.6",
