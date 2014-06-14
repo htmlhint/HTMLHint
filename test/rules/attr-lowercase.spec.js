@@ -29,4 +29,10 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(0);
     });
 
+    it('Set is false not result in an error', function(){
+        var code = '<p TEST="abc">';
+        ruleOptions[ruldId] = false;
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+    });
 });
