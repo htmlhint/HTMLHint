@@ -38,8 +38,8 @@ var HTMLHint = (function (undefined) {
             rule;
         for (var id in ruleset){
             rule = rules[id];
-            if (rule !== undefined){
-                rule.init(parser, reporter, ruleset[id]);
+            if (rule !== undefined && ruleset[id] !== false){
+              rule.init(parser, reporter, ruleset[id]);
             }
         }
 
