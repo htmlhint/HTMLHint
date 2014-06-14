@@ -19,7 +19,8 @@ var HTMLHint = (function (undefined) {
         'tag-pair': true,
         'spec-char-escape': true,
         'id-unique': true,
-        'src-not-empty': true
+        'src-not-empty': true,
+        'attr-no-duplication': true // added: 2014-6-14
     };
 
     HTMLHint.addRule = function(rule){

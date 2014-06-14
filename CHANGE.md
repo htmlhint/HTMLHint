@@ -1,6 +1,12 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.6 (2014-6-14)
+
+1. add rule: attr-no-duplication
+2. add rule: space-tab-mixed-disabled
+2. add default rule: attr-no-duplication
+
 ## ver 0.9.4 (2013-9-27)
 
 1. add rule: src-not-empty

@@ -69,8 +69,7 @@ module.exports = function(grunt) {
         replace: {
             htmlhint: {
                 files: {
-                    'lib/htmlhint.js':'lib/htmlhint.js',
-                    'bin/htmlhint':'src/cli.js'
+                    'lib/htmlhint.js':'lib/htmlhint.js'
                 },
                 options: {
                     prefix: '@',
