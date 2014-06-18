@@ -42,7 +42,7 @@ var HTMLHint = (function (undefined) {
                 }
                 ruleset[key] = value;
             });
-            return '';
+            return all;
         });
         if(newRuleset !== undefined){
             ruleset = ruleset || {};
