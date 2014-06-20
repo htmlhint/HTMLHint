@@ -21,19 +21,30 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
-        expect(messages[0].col).to.be(0);
+        expect(messages[0].col).to.be(1);
         // tab before space
         code = '		 <a href="a">bbb</a>';
         messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
-        expect(messages[0].col).to.be(0);
+        expect(messages[0].col).to.be(1);
+        // multi line
+        code = '<div>\r\n	 <a href="a">bbb</a>';
+        messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
+        expect(messages[0].rule.id).to.be(ruldId);
+        expect(messages[0].line).to.be(2);
+        expect(messages[0].col).to.be(1);
     });
 
     it('Only spaces in front of line should not result in an error', function(){
         var code = '     <a href="a">bbb</a>';
         var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+
+        code = '<div>\r\n     <a href="a">bbb</a>';
+        messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
 

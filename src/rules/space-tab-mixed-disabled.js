@@ -8,8 +8,12 @@ HTMLHint.addRule({
     init: function(parser, reporter){
         var self = this;
         parser.addListener('text', function(event){
-            if(event.pos === 0 && /^( +\t|\t+ )/.test(event.raw) === true){
-                reporter.warn('Mixed spaces and tabs in front of line.', event.line, 0, self, event.raw);
+            var raw = event.raw;
+            var reMixed = /(^|\r?\n)( +\t|\t+ )/g;
+            var match;
+            while((match = reMixed.exec(raw))){
+                var fixedPos = parser.fixPos(event, match.index + match[1].length);
+                reporter.warn('Mixed spaces and tabs in front of line.', fixedPos.line, 1, self, event.raw);
             }
         });
     }
