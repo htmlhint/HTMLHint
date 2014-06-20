@@ -6,8 +6,9 @@ HTMLHint change log
 1. add rule: attr-no-duplication
 2. add rule: space-tab-mixed-disabled
 3. add rule: id-class-ad-disabled
-4. add default rule: attr-no-duplication
-5. add inline ruleset support
+4. add rule: href-abs-or-rel
+5. add default rule: attr-no-duplication
+6. add inline ruleset support
 
 ## ver 0.9.4 (2013-9-27)
 
