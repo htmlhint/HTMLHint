@@ -10,7 +10,8 @@
             'tag-pair': true,
             'spec-char-escape': true,
             'id-unique': true,
-            'src-not-empty': true
+            'src-not-empty': true,
+            'attr-no-duplication': true
         },
         ruleCSSLint = {
                 "display-property-grouping": true,

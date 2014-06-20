@@ -88,6 +88,7 @@
                     <li><label class="checkbox" title="Attribute name must be lowercase."><input type="checkbox" id="attr-lowercase"> attr-lowercase</label></li>
                     <li><label class="checkbox" title="Attribute value must closed by double quotes."><input type="checkbox" id="attr-value-double-quotes"> attr-value-double-quotes</label></li>
                     <li><label class="checkbox" title="Attribute must set value."><input type="checkbox" id="attr-value-not-empty"> attr-value-not-empty</label></li>
+                    <li><label class="checkbox" title="Attribute name can not been duplication."><input type="checkbox" id="attr-no-duplication"> attr-no-duplication</label></li>
                     <li><label class="checkbox" title="Doctype must be first."><input type="checkbox" id="doctype-first"> doctype-first</label></li>
                     <li><label class="checkbox" title="Tag must be paired."><input type="checkbox" id="tag-pair"> tag-pair</label></li>
                     <li><label class="checkbox" title="The empty tag must closed by self."><input type="checkbox" id="tag-self-close"> tag-self-close</label></li>
@@ -108,7 +109,7 @@
                     <li><label class="checkbox" title="Alt of img tag must be set value."><input type="checkbox" id="img-alt-require"> img-alt-require</label></li>
                 </ul>
               </div>
-              <div class="span2">
+              <div class="span3">
                 <h3>Specification</h3>
                 <ul>
                     <li><label class="checkbox" title="Doctype must be html5."><input type="checkbox" id="doctype-html5"> doctype-html5</label></li>
@@ -117,9 +118,15 @@
                         <div id="id-class-value_valuearea"><select id="id-class-value_value" class="span7"><option value="underline">underline</option><option value="dash">dash</option><option value="hump">hump</option></select></div>
                     </li>
                     <li><label class="checkbox" title="Style tag can not be use."><input type="checkbox" id="style-disabled"> style-disabled</label></li>
+                    <li><label class="checkbox" title="Spaces and tabs can not mixed in front of line."><input type="checkbox" id="space-tab-mixed-disabled"> space-tab-mixed-disabled</label></li>
+                    <li><label class="checkbox" title="Id and class can not use ad keyword, it will blocked by adblock software."><input type="checkbox" id="id-class-ad-disabled"> id-class-ad-disabled</label></li>
+                    <li>
+                        <label class="checkbox" title="Href must be absolute or relative."><input type="checkbox" id="href-abs-or-rel"> href-abs-or-rel</label>
+                        <div id="href-abs-or-rel_valuearea"><select id="href-abs-or-rel" class="span7"><option value="abs">abs</option><option value="rel">rel</option></select></div>
+                    </li>
                 </ul>
               </div>
-              <div class="span2">
+              <div class="span1">
                 <h3>Other</h3>
                 <ul>
                     <li><label class="checkbox" title="Scan css with csslint."><input type="checkbox" id="csslint"> csslint</label></li>
@@ -130,7 +137,7 @@
         </div>
         <hr>
         <div class="footer">
-            <p>&copy; HTMLHint.com 2013</p>
+            <p>&copy; HTMLHint.com 2014</p>
         </div>
     </div>
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
