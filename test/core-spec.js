@@ -17,15 +17,17 @@ describe('Core', function(){
 
     it('Inline ruleset not worked should result in an error', function(){
         var code = '<!-- htmlhint img-alt-require:true-->\r\n<img src="test.gif" />';
-        var messages = HTMLHint.verify(code);
+        var messages = HTMLHint.verify(code, {
+            'img-alt-require': false
+        });
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be('img-alt-require');
         expect(messages[0].line).to.be(2);
         expect(messages[0].col).to.be(1);
 
-        // overwrite inline ruleset
+        code = '<!-- htmlhint img-alt-require:false-->\r\n<img src="test.gif" />';
         messages = HTMLHint.verify(code, {
-            'img-alt-require': false
+            'img-alt-require': true
         });
         expect(messages.length).to.be(0);
     });

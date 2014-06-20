@@ -27,12 +27,13 @@ var HTMLHint = (function (undefined) {
         HTMLHint.rules[rule.id] = rule;
     };
 
-    HTMLHint.verify = function(html, newRuleset){
+    HTMLHint.verify = function(html, ruleset){
         var id;
-        var ruleset;
         // parse inline ruleset
         html = html.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, function(all, strRuleset){
-            ruleset = {};
+            if(ruleset === undefined){
+                ruleset = {};
+            }
             strRuleset.replace(/(?:^|,)\s*([^:]+)\s*:\s*([^,\s]+)/g, function(all, key, value){
                 if(value === 'false'){
                     value = false;
@@ -44,12 +45,6 @@ var HTMLHint = (function (undefined) {
             });
             return '';
         });
-        if(newRuleset !== undefined){
-            ruleset = ruleset || {};
-            for (id in newRuleset){
-                ruleset[id] = newRuleset[id];
-            }
-        }
         if(ruleset === undefined){
             ruleset = HTMLHint.defaultRuleset;
         }
