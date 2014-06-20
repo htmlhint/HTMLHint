@@ -31,7 +31,7 @@ var HTMLHint = (function (undefined) {
         var id;
         var ruleset;
         // parse inline ruleset
-        html = html.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->\s*/i, function(all, strRuleset){
+        html = html.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, function(all, strRuleset){
             ruleset = {};
             strRuleset.replace(/(?:^|,)\s*([^:]+)\s*:\s*([^,\s]+)/g, function(all, key, value){
                 if(value === 'false'){
@@ -42,7 +42,7 @@ var HTMLHint = (function (undefined) {
                 }
                 ruleset[key] = value;
             });
-            return all;
+            return '';
         });
         if(newRuleset !== undefined){
             ruleset = ruleset || {};
