@@ -9,9 +9,23 @@ var HTMLHint  = require("../index").HTMLHint;
 
 describe('Core', function(){
 
-    it('Default ruleset not worked should result in an error', function(){
+    it('Set false to rule no effected should result in an error', function(){
+        var code = '<img src="test.gif" />';
+        var messages = HTMLHint.verify(code, {
+            'img-alt-require': false
+        });
+        expect(messages.length).to.be(0);
+    });
+
+    it('Not load default ruleset when use undefined ruleset should result in an error', function(){
         var code = '<P ATTR=\'1\' id="a">><div id="a"><img src="" a="1" a="2"/></div>';
         var messages = HTMLHint.verify(code);
+        expect(messages.length).to.be(9);
+    });
+
+    it('Not load default ruleset when use empty ruleset should result in an error', function(){
+        var code = '<P ATTR=\'1\' id="a">><div id="a"><img src="" a="1" a="2"/></div>';
+        var messages = HTMLHint.verify(code, {});
         expect(messages.length).to.be(9);
     });
 

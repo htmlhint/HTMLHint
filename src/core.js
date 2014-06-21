@@ -44,7 +44,10 @@ var HTMLHint = (function (undefined) {
             });
             return '';
         });
-        ruleset = ruleset || HTMLHint.defaultRuleset;
+
+        if(ruleset === undefined || Object.keys(ruleset).length ===0){
+            ruleset = HTMLHint.defaultRuleset;
+        }
 
         var parser = new HTMLParser();
         var reporter = new HTMLHint.Reporter(html.split(/\r?\n/), ruleset);
