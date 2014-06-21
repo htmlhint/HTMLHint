@@ -28,7 +28,6 @@ var HTMLHint = (function (undefined) {
     };
 
     HTMLHint.verify = function(html, ruleset){
-        var id;
         // parse inline ruleset
         html = html.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, function(all, strRuleset){
             if(ruleset === undefined){
@@ -45,16 +44,14 @@ var HTMLHint = (function (undefined) {
             });
             return '';
         });
-        if(ruleset === undefined){
-            ruleset = HTMLHint.defaultRuleset;
-        }
+        ruleset = ruleset || HTMLHint.defaultRuleset;
 
         var parser = new HTMLParser();
         var reporter = new HTMLHint.Reporter(html.split(/\r?\n/), ruleset);
 
         var rules = HTMLHint.rules,
             rule;
-        for (id in ruleset){
+        for (var id in ruleset){
             rule = rules[id];
             if (rule !== undefined && ruleset[id] !== false){
               rule.init(parser, reporter, ruleset[id]);

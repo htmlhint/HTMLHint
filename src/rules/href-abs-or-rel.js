@@ -20,7 +20,7 @@ HTMLHint.addRule({
                 if(attr.name === 'href'){
                     if((hrefMode === 'absolute' && /^\w+?:/.test(attr.value) === false) ||
                         (hrefMode === 'relative' && /^https?:\/\//.test(attr.value) === true)){
-                        reporter.error('The value of href [ '+attr.value+' ] must be '+hrefMode+'.', event.line, col + attr.index, self, attr.raw);
+                        reporter.warn('The value of href [ '+attr.value+' ] must be '+hrefMode+'.', event.line, col + attr.index, self, attr.raw);
                     }
                     break;
                 }
