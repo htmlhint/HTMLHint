@@ -15,6 +15,7 @@
     "browser": true,
     "wsh": true,
     "-W099": true,
+	"-W100": true,
 
     "predef": [
         "HTMLHint",
