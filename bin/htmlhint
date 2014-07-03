@@ -79,7 +79,16 @@ function getAllFiles(arrTargets){
     var arrAllFiles = [];
     if(arrTargets.length > 0){
         for(var i=0,l=arrTargets.length;i<l;i++){
-            getFiles(arrTargets[i], arrAllFiles);
+            var filepath = path.resolve(process.cwd(), arrTargets[i]);
+            if(fs.existsSync(filepath) !== false){            
+              if(fs.statSync(filepath).isFile) {
+                arrAllFiles.push(filepath);
+              } else {
+                getFiles(arrTargets[i], arrAllFiles);
+              }
+            } else {
+              console.log('File %s does not exist'.red, arrTargets[i]);
+            }
         }
     }
     else{
