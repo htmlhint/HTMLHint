@@ -4,10 +4,11 @@
   "description": "A Static Code Analysis Tool for HTML",
   "main": "./index",
   "dependencies": {
-    "commander": "1.1.1",
     "colors": "0.6.0-1",
+    "commander": "1.1.1",
+    "csslint": "0.10.0",
     "jshint": "1.1.0",
-    "csslint": "0.10.0"
+    "semver": "^2.3.1"
   },
   "devDependencies": {
     "grunt-cli": "0.1.6",
