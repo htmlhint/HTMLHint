@@ -1,3 +1,4 @@
+/* global __dirname */
 var exec = require('child_process').exec;
 
 var expect  = require("expect.js");
