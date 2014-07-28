@@ -24,8 +24,8 @@ HTMLHint.addRule({
             }
             if ((tagName === 'area' && 'href' in attrMap) ||
                 (tagName === 'input' && attrMap['type'] === 'image')) {
-                selector = tagName === 'area' ? 'area[href]' : 'input[type=image]';
                 if (!('alt' in attrMap) || attrMap['alt'] === '') {
+                    selector = tagName === 'area' ? 'area[href]' : 'input[type=image]';
                     reporter.warn('Alt of ' + selector + ' must be set value.', event.line, col, self, event.raw);
                 }
             }
