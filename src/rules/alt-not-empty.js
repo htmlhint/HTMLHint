@@ -5,7 +5,7 @@
  */
 HTMLHint.addRule({
     id: 'alt-not-empty',
-    description: 'Alt of input[type=image], area[href] must set value.',
+    description: 'Alt of area[href] and input[type=image] must set value.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -26,7 +26,7 @@ HTMLHint.addRule({
                 (tagName === 'input' && attrMap['type'] === 'image')) {
                 selector = tagName === 'area' ? 'area[href]' : 'input[type=image]';
                 if (!('alt' in attrMap) || attrMap['alt'] === '') {
-                    reporter.warn('Alt of ' + tagName + ' must be set value.', event.line, col, self, event.raw);
+                    reporter.warn('Alt of ' + selector + ' must be set value.', event.line, col, self, event.raw);
                 }
             }
         });
