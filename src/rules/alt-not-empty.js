@@ -10,21 +10,15 @@ HTMLHint.addRule({
         var self = this;
         parser.addListener('tagstart', function(event){
             var tagName = event.tagName.toLowerCase(),
-                attrs = event.attrs,
-                attrMap = {},
-                attr,
+                mapAttrs = parser.getMapAttrs(event.attrs),
                 col = event.col + tagName.length + 1,
                 selector;
             if (tagName !== 'area' && tagName !== 'input'){
                 return;
             }
-            for(var i=0, l=attrs.length;i<l;i++){
-                attr = attrs[i];
-                attrMap[attr.name.toLowerCase()] = attr.value;
-            }
-            if ((tagName === 'area' && 'href' in attrMap) ||
-                (tagName === 'input' && attrMap['type'] === 'image')) {
-                if (!('alt' in attrMap) || attrMap['alt'] === '') {
+            if ((tagName === 'area' && 'href' in mapAttrs) ||
+                (tagName === 'input' && mapAttrs['type'] === 'image')) {
+                if (!('alt' in mapAttrs) || mapAttrs['alt'] === '') {
                     selector = tagName === 'area' ? 'area[href]' : 'input[type=image]';
                     reporter.warn('Alt of ' + selector + ' must be set value.', event.line, col, self, event.raw);
                 }

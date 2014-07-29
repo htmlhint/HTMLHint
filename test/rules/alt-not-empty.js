@@ -22,7 +22,7 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(0);
     });
 
-    it('Area tag have not href and alt attribute should not result in an error', function(){
+    it('Area tag have not href and alt attributes should not result in an error', function(){
         var code = '<area>';
         var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
@@ -54,7 +54,7 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(0);
     });
 
-    it('Input tag have not type and alt attribute should not result in an error', function(){
+    it('Input tag have not type and alt attributes should not result in an error', function(){
         var code = '<input>';
         var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
