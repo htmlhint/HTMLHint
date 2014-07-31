@@ -3,6 +3,7 @@
 var program = require('commander'),
     fs = require('fs'),
     path = require('path'),
+    semver = require('semver'),
     HTMLHint  = require("../index").HTMLHint,
     pkg = require('../package.json');
 
@@ -137,7 +138,7 @@ function hintFile(filepath, ruleset){
 }
 
 function quit(code){
-    if ((!process.stdout.flush || !process.stdout.flush()) && (parseFloat(process.versions.node) < 0.5)) {
+    if ((!process.stdout.flush || !process.stdout.flush()) && semver.lt(process.versions.node,'0.5.0')) {
         process.once("drain", function () {
             process.exit(code || 0);
         });
