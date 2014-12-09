@@ -1,0 +1,120 @@
+{
+    "title": "JSON schema for .htmlhintrc json configuration files for the HTMLHint static code analysis tool for HTML.",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
+    "type": "object",
+
+    "additionalProperties": true,
+
+    "properties": {
+        "tagname-lowercase": {
+            "description": "Tagname must be lowercase.",
+            "type": "boolean"
+        },
+
+        "attr-lowercase": {
+            "description": "Attribute name must be lowercase.",
+            "type": "boolean"
+        },
+
+        "attr-value-double-quotes": {
+            "description": "Attribute value must closed by double quotes.",
+            "type": "boolean"
+        },
+
+        "attr-value-not-empty": {
+            "description": "Attribute must set value.",
+            "type": "boolean"
+        },
+
+        "attr-no-duplication": {
+            "description": "Attribute name can not been duplication.",
+            "type": "boolean"
+        },
+
+        "doctype-first": {
+            "description": "Doctype must be first.",
+            "type": "boolean"
+        },
+
+        "tag-pair": {
+            "description": "Tag must be paired.",
+            "type": "boolean"
+        },
+
+        "tag-self-close": {
+            "description": "The empty tag must closed by self.",
+            "type": "boolean"
+        },
+
+        "spec-char-escape": {
+            "description": "Special characters must be escaped.",
+            "type": "boolean"
+        },
+
+        "id-unique": {
+            "description": "Id must be unique.",
+            "type": "boolean"
+        },
+
+        "src-not-empty": {
+            "description": "Src of img(script,link) must set value. An empty src will visit the current page twice.",
+            "type": "boolean"
+        },
+
+        "head-script-disabled": {
+            "description": "The script tag can not be used in head.",
+            "type": "boolean"
+        },
+
+        "img-alt-require": {
+            "description": "Alt of img tag must be set value.",
+            "type": "boolean"
+        },
+
+        "doctype-html5": {
+            "description": "Doctype must be html5.",
+            "type": "boolean"
+        },
+
+        "id-class-value": {
+            "description": "Id and class value must meet some rules: underline, dash, hump.",
+            "type": "boolean"
+        },
+
+        "style-disabled": {
+            "description": "Style tag can not be use.",
+            "type": "boolean"
+        },
+
+        "space-tab-mixed-disabled": {
+            "description": "Spaces and tabs can not mixed in front of line.",
+            "type": "boolean"
+        },
+
+        "id-class-ad-disabled": {
+            "description": "Id and class can not use ad keyword, it will blocked by adblock software.",
+            "type": "boolean"
+        },
+
+        "href-abs-or-rel": {
+            "description": "Href must be absolute or relative.",
+            "type": "boolean"
+        },
+
+        "attr-unsafe-chars": {
+            "description": "Attribute value cant not use unsafe chars.",
+            "type": "boolean"
+        },
+
+        "csslint": {
+            "description": "Scan css with csslint.",
+            "type": "boolean"
+        },
+
+        "jshint": {
+            "description": "Scan script with jshint.",
+            "type": "boolean"
+        }
+    }
+}
