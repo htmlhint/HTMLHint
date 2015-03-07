@@ -5,7 +5,7 @@
 
 var expect  = require("expect.js");
 
-var HTMLHint  = require("../index").HTMLHint;
+var HTMLHint  = require("../lib/htmlhint.src.js").HTMLHint;
 
 describe('Core', function(){
 
@@ -34,6 +34,7 @@ describe('Core', function(){
         var messages = HTMLHint.verify(code, {
             'alt-require': false
         });
+
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be('alt-require');
         expect(messages[0].line).to.be(2);

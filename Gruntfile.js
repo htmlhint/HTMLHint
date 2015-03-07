@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         concat: {
             htmlhint: {
                 src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
-                dest: 'lib/htmlhint.js'
+                dest: 'lib/htmlhint.src.js'
             }
         },
         "mocha-hack": {
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
         uglify: {
             htmlhint: {
                 options: {
-                    banner: "/*!\r\n * HTMLHint v<%= pkg.version %>\r\n * https://github.com/yaniswang/HTMLHint\r\n *\r\n * (c) 2013 Yanis Wang <yanis.wang@gmail.com>.\r\n * MIT Licensed\r\n */\n",
+                    banner: "/*!\r\n * HTMLHint v<%= pkg.version %>\r\n * https://github.com/yaniswang/HTMLHint\r\n *\r\n * (c) 2015 Yanis Wang <yanis.wang@gmail.com>.\r\n * MIT Licensed\r\n */\n",
                     beautify: {
                         ascii_only: true
                     }

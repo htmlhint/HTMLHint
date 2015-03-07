@@ -5,7 +5,7 @@
 
 var expect  = require("expect.js");
 
-var HTMLHint  = require("../../index").HTMLHint;
+var HTMLHint  = require("../../lib/htmlhint.src.js").HTMLHint;
 
 var ruldId = 'space-tab-mixed-disabled',
     ruleOptions = {};

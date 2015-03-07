@@ -4,9 +4,9 @@
   "description": "A Static Code Analysis Tool for HTML",
   "main": "./index",
   "dependencies": {
-    "commander": "1.1.1",
-    "colors": "0.6.0-1",
-    "jshint": "1.1.0",
+    "commander": "2.6.0",
+    "colors": "1.0.3",
+    "jshint": "2.6.3",
     "csslint": "0.10.0"
   },
   "devDependencies": {

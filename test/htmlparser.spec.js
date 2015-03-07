@@ -5,7 +5,7 @@
 
 var expect  = require("expect.js");
 
-var HTMLParser  = require("../index").HTMLParser;
+var HTMLParser  = require("../lib/htmlhint.src.js").HTMLParser;
 
 expect.Assertion.prototype.event = function(type, attr){
     var self = this,

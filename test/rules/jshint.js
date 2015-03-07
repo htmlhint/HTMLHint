@@ -5,7 +5,7 @@
 
 var expect  = require("expect.js");
 
-var HTMLHint  = require("../../index").HTMLHint;
+var HTMLHint  = require("../../lib/htmlhint.src.js").HTMLHint;
 
 var ruldId = 'jshint',
     ruleOptions = {};
@@ -23,7 +23,7 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(4);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(3);
-        expect(messages[0].col).to.be(11);
+        expect(messages[0].col).to.be(3);
         expect(messages[0].type).to.be('warning');
         expect(messages[1].rule.id).to.be(ruldId);
         expect(messages[1].line).to.be(4);
@@ -35,7 +35,7 @@ describe('Rules: '+ruldId, function(){
         expect(messages[2].type).to.be('warning');
         expect(messages[3].rule.id).to.be(ruldId);
         expect(messages[3].line).to.be(2);
-        expect(messages[3].col).to.be(6);
+        expect(messages[3].col).to.be(5);
         expect(messages[3].type).to.be('warning');
     });
 

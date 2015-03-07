@@ -1,6 +1,12 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.7 (2015-3-7)
+
+fix:
+
+1. fix 'No such file' issue on mac
+
 ## ver 0.9.6 (2014-6-18)
 
 add:
