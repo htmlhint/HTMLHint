@@ -5,7 +5,7 @@
 
 var expect  = require("expect.js");
 
-var HTMLHint  = require("../lib/htmlhint.src.js").HTMLHint;
+var HTMLHint  = require("../index").HTMLHint;
 
 describe('Core', function(){
 

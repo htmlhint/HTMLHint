@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013, Yanis Wang <yanis.wang@gmail.com>
+ * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
 HTMLHint.addRule({
@@ -7,8 +7,12 @@ HTMLHint.addRule({
     description: 'The script tag can not be used in head.',
     init: function(parser, reporter){
         var self = this;
+        var reScript = /^(text\/javascript|application\/javascript)$/i;
         function onTagStart(event){
-            if(event.tagName.toLowerCase() === 'script'){
+            var mapAttrs = parser.getMapAttrs(event.attrs);
+            var type = mapAttrs.type;
+            if(event.tagName.toLowerCase() === 'script' &&
+                (!type || reScript.test(type) === true)){
                 reporter.warn('The script tag can not be used in head.', event.line, event.col, self, event.raw);
             }
         }

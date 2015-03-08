@@ -1,11 +1,11 @@
 /**
- * Copyright (c) 2013, Yanis Wang <yanis.wang@gmail.com>
+ * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
 
 var expect  = require("expect.js");
 
-var HTMLHint  = require("../../lib/htmlhint.src.js").HTMLHint;
+var HTMLHint  = require("../../index").HTMLHint;
 
 var ruldId = 'head-script-disabled',
     ruleOptions = {};
@@ -31,11 +31,26 @@ describe('Rules: '+ruldId, function(){
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(7);
+        code = '<head><script type="text/javascript">console.log(1)</script></head>';
+        messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
+        code = '<head><script type="application/javascript">console.log(2)</script></head>';
+        messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
     });
 
     it('Script in body not result in an error', function(){
         var code = '<head></head><body><script src="test.js"></script></body>';
         var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+    });
+
+    it('Template script in head not result in an error', function(){
+        var code = '<head><script type="text/template"><img src="test.png" /></script></head>';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+        code = '<head><script type="text/ng-template"><img src="test.png" /></script></head>';
+        messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
 

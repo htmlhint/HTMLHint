@@ -1,11 +1,12 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.7 (2015-3-7)
+## ver 0.9.7 (2015-3-8)
 
 fix:
 
 1. fix 'No such file' issue on mac
+2. head-script-disabled: not match template script
 
 ## ver 0.9.6 (2014-6-18)
 

@@ -1,12 +1,12 @@
 /**
- * Copyright (c) 2013, Yanis Wang <yanis.wang@gmail.com>
+ * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * Copyright (c) 2014, Takeshi Kurosawa <taken.spc@gmail.com>
  * MIT Licensed
  */
 
 var expect  = require("expect.js");
 
-var HTMLHint  = require("../../lib/htmlhint.src.js").HTMLHint;
+var HTMLHint  = require("../../index").HTMLHint;
 
 var ruldId = 'alt-require',
     ruleOptions = {};

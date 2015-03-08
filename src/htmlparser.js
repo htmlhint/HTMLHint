@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013, Yanis Wang <yanis.wang@gmail.com>
+ * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
 var HTMLParser = (function(undefined){

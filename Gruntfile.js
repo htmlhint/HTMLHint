@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         concat: {
             htmlhint: {
                 src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
-                dest: 'lib/htmlhint.src.js'
+                dest: 'lib/htmlhint.js'
             }
         },
         "mocha-hack": {
