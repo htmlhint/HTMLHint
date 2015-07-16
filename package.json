@@ -8,7 +8,7 @@
     "commander": "2.6.0",
     "csslint": "0.10.0",
     "jshint": "2.6.3",
-    "strip-json-comments": "^1.0.2"
+    "strip-json-comments": "1.0.2"
   },
   "devDependencies": {
     "expect.js": "0.2.0",
