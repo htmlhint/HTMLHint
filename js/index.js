@@ -30,7 +30,8 @@
     var jHintState = $('#hint-state'),
         jButtonArea = $('#button-area'),
         jShowLast = $('#show-last'),
-        jShowNext = $('#show-next');
+        jShowNext = $('#show-next'),
+        jsDownloadConfig = $('#download-config');
         
     loadSettings();
     loadRules();
@@ -178,6 +179,15 @@
         return false;
     }
     
+    function downloadConfigFile(){
+        jsDownloadConfig.attr('href', [
+            'data:text/json;charset=utf-8',
+            encodeURIComponent(JSON.stringify(ruleSets, null, 2))
+        ].join())
+
+        jsDownloadConfig.attr('download', 'htmlhintrc');
+    }
+
     function initOptions(){
         $('input[type=checkbox]').change(function(){
             var jThis = $(this),
@@ -214,5 +224,7 @@
                 $('#'+id+'_valuearea').show();
             }
         }
+
+        jsDownloadConfig.mousedown(downloadConfigFile);
     }
 })();
