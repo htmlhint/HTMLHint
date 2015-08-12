@@ -54,4 +54,10 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(0);
     });
 
+    it('Omitted head HTML with script not result in an error', function(){
+        var code = '<p>...</p><script src="test.js"></script>';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+    });
+
 });
