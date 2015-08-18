@@ -23,6 +23,7 @@ program.on('--help', function(){
     console.log('    htmlhint -l');
     console.log('    htmlhint -r tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint -c .htmlhintrc test.html');
+    console.log('    htmlhint -s test.html');
     console.log('');
 });
 
@@ -32,6 +33,7 @@ program
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)
+    .option('-s, --suppress <file>', 'reduces verbosity within the linting process.')
     .parse(process.argv);
 
 if(program.list){
@@ -39,7 +41,27 @@ if(program.list){
     quit(0);
 }
 
-var arrAllFiles = getAllFiles(program.args);
+var noProblemSuppressed = 0;
+var filePathArr;
+
+if(process.argv[2] === '-l' || process.argv[2] === '-c' || process.argv[2] === '-l' || process.argv[2] === '-s'){ 
+    filePathArr = process.cwd() + '/' + process.argv[3];
+}
+else {
+    filePathArr = process.cwd() + '/' + process.argv[2];
+}
+
+var directoryFiles = [];
+
+fs.readdirSync(filePathArr).forEach(function(fileName){
+    directoryFiles.push(filePathArr + '/' + fileName);
+});
+
+var arrAllFiles = getAllFiles(directoryFiles);
+
+if(program.suppress){
+    noProblemSuppressed = 1;
+}
 
 var ruleset = program.rules;
 if(ruleset === undefined){
@@ -117,7 +139,7 @@ function processFiles(arrFiles, ruleset){
     if(allHintCount > 0){
         console.log('\r\n%d problems.'.red, allHintCount);
     }
-    else{
+    else if(noProblemSuppressed === 0) {
         console.log('No problem.'.green);
     }
     return exitcode;
