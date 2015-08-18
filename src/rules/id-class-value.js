@@ -4,21 +4,21 @@
  */
 HTMLHint.addRule({
     id: 'id-class-value',
-    description: 'Id and class value must meet some rules.',
+    description: 'The id and class attribute values must meet the specified rules.',
     init: function(parser, reporter, options){
         var self = this;
         var arrRules = {
             'underline': {
                 'regId': /^[a-z\d]+(_[a-z\d]+)*$/,
-                'message': 'Id and class value must lower case and split by underline.'
+                'message': 'The id and class attribute values must be in lowercase and split by an underscore.'
             },
             'dash': {
                 'regId': /^[a-z\d]+(-[a-z\d]+)*$/,
-                'message': 'Id and class value must lower case and split by dash.'
+                'message': 'The id and class attribute values must be in lowercase and split by a dash.'
             },
             'hump': {
                 'regId': /^[a-z][a-zA-Z\d]*([A-Z][a-zA-Z\d]*)*$/,
-                'message': 'Id and class value must meet hump style.'
+                'message': 'The id and class attribute values must meet the camelCase style.'
             }
         }, rule;
         if(typeof options === 'string'){

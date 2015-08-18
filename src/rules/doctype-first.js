@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'doctype-first',
-    description: 'Doctype must be first.',
+    description: 'Doctype must be declared first.',
     init: function(parser, reporter){
         var self = this;
         var allEvent = function(event){
@@ -12,7 +12,7 @@ HTMLHint.addRule({
                 return;
             }
             if((event.type !== 'comment' && event.long === false) || /^DOCTYPE\s+/i.test(event.content) === false){
-                reporter.error('Doctype must be first.', event.line, event.col, self, event.raw);
+                reporter.error('Doctype must be declared first.', event.line, event.col, self, event.raw);
             }
             parser.removeListener('all', allEvent);
         };

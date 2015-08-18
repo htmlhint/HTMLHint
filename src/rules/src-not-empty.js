@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'src-not-empty',
-    description: 'Src of img(script,link) must set value.',
+    description: 'The src attribute of an img(script,link) must have a value.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -18,7 +18,7 @@ HTMLHint.addRule({
                     (tagName === 'link' && attr.name === 'href') ||
                     (tagName === 'object' && attr.name === 'data')) &&
                     attr.value === ''){
-                    reporter.error('[ '+attr.name + '] of [ '+tagName+' ] must set value.', event.line, col + attr.index, self, attr.raw);
+                    reporter.error('The attribute [ '+attr.name + ' ] of the tag [ '+tagName+' ] must have a value.', event.line, col + attr.index, self, attr.raw);
                 }
             }
         });

@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'href-abs-or-rel',
-    description: 'Href must be absolute or relative.',
+    description: 'An href attribute must be either absolute or relative.',
     init: function(parser, reporter, options){
         var self = this;
 
@@ -20,7 +20,7 @@ HTMLHint.addRule({
                 if(attr.name === 'href'){
                     if((hrefMode === 'absolute' && /^\w+?:/.test(attr.value) === false) ||
                         (hrefMode === 'relative' && /^https?:\/\//.test(attr.value) === true)){
-                        reporter.warn('The value of href [ '+attr.value+' ] must be '+hrefMode+'.', event.line, col + attr.index, self, attr.raw);
+                        reporter.warn('The value of the href attribute [ '+attr.value+' ] must be '+hrefMode+'.', event.line, col + attr.index, self, attr.raw);
                     }
                     break;
                 }

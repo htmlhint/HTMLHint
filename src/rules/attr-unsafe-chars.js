@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'attr-unsafe-chars',
-    description: 'Attribute value cant not use unsafe chars.',
+    description: 'Attribute values cannot contain unsafe chars.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -15,7 +15,7 @@ HTMLHint.addRule({
             for(var i=0, l=attrs.length;i<l;i++){
                 attr = attrs[i];
                 if(regUnsafe.test(attr.value) === true){
-                    reporter.warn('The value of attribute [ '+attr.name+' ] cant not use unsafe chars.', event.line, col + attr.index, self, attr.raw);
+                    reporter.warn('The value of attribute [ '+attr.name+' ] cannot contain an unsafe char.', event.line, col + attr.index, self, attr.raw);
                 }
             }
         });

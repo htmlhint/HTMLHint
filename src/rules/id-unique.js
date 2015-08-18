@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'id-unique',
-    description: 'Id must be unique.',
+    description: 'The value of id attributes must be unique.',
     init: function(parser, reporter){
         var self = this;
         var mapIdCount = {};
@@ -25,7 +25,7 @@ HTMLHint.addRule({
                             mapIdCount[id] ++;
                         }
                         if(mapIdCount[id] > 1){
-                            reporter.error('Id redefinition of [ '+id+' ].', event.line, col + attr.index, self, attr.raw);
+                            reporter.error('The id value [ '+id+' ] must be unique.', event.line, col + attr.index, self, attr.raw);
                         }
                     }
                     break;

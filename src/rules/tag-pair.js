@@ -29,12 +29,12 @@ HTMLHint.addRule({
                     arrTags.push('</'+stack[i]+'>');
                 }
                 if(arrTags.length > 0){
-                    reporter.error('Tag must be paired, Missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, event.raw);
+                    reporter.error('Tag must be paired, missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, event.raw);
                 }
                 stack.length=pos;
             }
             else{
-                reporter.error('Tag must be paired, No start tag: [ ' + event.raw + ' ]', event.line, event.col, self, event.raw);
+                reporter.error('Tag must be paired, no start tag: [ ' + event.raw + ' ]', event.line, event.col, self, event.raw);
             }
         });
         parser.addListener('end', function(event){
@@ -43,7 +43,7 @@ HTMLHint.addRule({
                 arrTags.push('</'+stack[i]+'>');
             }
             if(arrTags.length > 0){
-                reporter.error('Tag must be paired, Missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, '');
+                reporter.error('Tag must be paired, missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, '');
             }
         });
     }
