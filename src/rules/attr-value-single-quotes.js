@@ -13,8 +13,7 @@ HTMLHint.addRule({
                 col = event.col + event.tagName.length + 1;
             for(var i=0, l=attrs.length;i<l;i++){
                 attr = attrs[i];
-                if((attr.value !== '' && attr.quote === '"') || 
-                    (attr.value === '' && attr.quote === '"')){ 
+                if((attr.value !== '' && attr.quote === '"') || (attr.value === '' && attr.quote === '"')){
                     reporter.error('The value of attribute [ '+attr.name+' ] must be in single quotes.', event.line, col + attr.index, self, attr.raw);
                 }
             }
