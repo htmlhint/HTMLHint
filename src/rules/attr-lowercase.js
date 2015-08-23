@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'attr-lowercase',
-    description: 'Attribute name must be lowercase.',
+    description: 'All attribute names must be in lowercase.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -15,7 +15,7 @@ HTMLHint.addRule({
                 attr = attrs[i];
                 var attrName = attr.name;
                 if(attrName !== attrName.toLowerCase()){
-                    reporter.error('Attribute name [ '+attrName+' ] must be lower case.', event.line, col + attr.index, self, attr.raw);
+                    reporter.error('The attribute name of [ '+attrName+' ] must be in lowercase.', event.line, col + attr.index, self, attr.raw);
                 }
             }
         });

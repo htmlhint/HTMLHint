@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'tag-self-close',
-    description: 'The empty tag must closed by self.',
+    description: 'Empty tags must be self closed.',
     init: function(parser, reporter){
         var self = this;
         var mapEmptyTags = parser.makeMap("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed");//HTML 4.01
@@ -12,7 +12,7 @@ HTMLHint.addRule({
             var tagName = event.tagName.toLowerCase();
             if(mapEmptyTags[tagName] !== undefined){
                 if(!event.close){
-                    reporter.warn('The empty tag : [ '+tagName+' ] must closed by self.', event.line, event.col, self, event.raw);
+                    reporter.warn('The empty tag : [ '+tagName+' ] must be self closed.', event.line, event.col, self, event.raw);
                 }
             }
         });

@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'attr-value-double-quotes',
-    description: 'Attribute value must closed by double quotes.',
+    description: 'Attribute values must be in double quotes.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -15,7 +15,7 @@ HTMLHint.addRule({
                 attr = attrs[i];
                 if((attr.value !== '' && attr.quote !== '"') ||
                     (attr.value === '' && attr.quote === "'")){
-                    reporter.error('The value of attribute [ '+attr.name+' ] must closed by double quotes.', event.line, col + attr.index, self, attr.raw);
+                    reporter.error('The value of attribute [ '+attr.name+' ] must be in double quotes.', event.line, col + attr.index, self, attr.raw);
                 }
             }
         });

@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'head-script-disabled',
-    description: 'The script tag can not be used in head.',
+    description: 'The <script> tag cannot be used in a <head> tag.',
     init: function(parser, reporter){
         var self = this;
         var reScript = /^(text\/javascript|application\/javascript)$/i;
@@ -13,7 +13,7 @@ HTMLHint.addRule({
             var type = mapAttrs.type;
             if(event.tagName.toLowerCase() === 'script' &&
                 (!type || reScript.test(type) === true)){
-                reporter.warn('The script tag can not be used in head.', event.line, event.col, self, event.raw);
+                reporter.warn('The <script> tag cannot be used in a <head> tag.', event.line, event.col, self, event.raw);
             }
         }
         function onTagEnd(event){

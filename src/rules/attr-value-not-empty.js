@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'attr-value-not-empty',
-    description: 'Attribute must set value.',
+    description: 'All attributes must have values.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -14,7 +14,7 @@ HTMLHint.addRule({
             for(var i=0, l=attrs.length;i<l;i++){
                 attr = attrs[i];
                 if(attr.quote === '' && attr.value === ''){
-                    reporter.warn('The attribute [ '+attr.name+' ] must set value.', event.line, col + attr.index, self, attr.raw);
+                    reporter.warn('The attribute [ '+attr.name+' ] must have a value.', event.line, col + attr.index, self, attr.raw);
                 }
             }
         });

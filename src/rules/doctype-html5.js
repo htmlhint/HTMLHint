@@ -4,12 +4,12 @@
  */
 HTMLHint.addRule({
     id: 'doctype-html5',
-    description: 'Doctype must be html5.',
+    description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
     init: function(parser, reporter){
         var self = this;
         function onComment(event){
             if(event.long === false && event.content.toLowerCase() !== 'doctype html'){
-                reporter.warn('Doctype must be html5.', event.line, event.col, self, event.raw);
+                reporter.warn('Invalid doctype. Use: "<!DOCTYPE html>"', event.line, event.col, self, event.raw);
             }
         }
         function onTagStart(){
