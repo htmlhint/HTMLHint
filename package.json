@@ -4,10 +4,11 @@
   "description": "A Static Code Analysis Tool for HTML",
   "main": "./index",
   "dependencies": {
-    "commander": "2.6.0",
     "colors": "1.0.3",
+    "commander": "2.6.0",
+    "csslint": "0.10.0",
     "jshint": "2.6.3",
-    "csslint": "0.10.0"
+    "strip-json-comments": "^1.0.2"
   },
   "devDependencies": {
     "expect.js": "0.2.0",

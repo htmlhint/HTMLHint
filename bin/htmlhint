@@ -3,7 +3,8 @@
 var program = require('commander'),
     fs = require('fs'),
     path = require('path'),
-    HTMLHint  = require("../index").HTMLHint,
+    stripJsonComments = require('strip-json-comments'),
+    HTMLHint  = require('../index').HTMLHint,
     pkg = require('../package.json');
 
 require('colors');
@@ -68,7 +69,7 @@ function getConfig(configFile){
         var config = fs.readFileSync(configFile, 'utf-8'),
             ruleset;
         try{
-            ruleset = JSON.parse(config);
+            ruleset = JSON.parse(stripJsonComments(config));
         }
         catch(e){}
         return ruleset;
