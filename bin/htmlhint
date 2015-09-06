@@ -32,6 +32,7 @@ program
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)
+    .option('-j, --json', 'output messages as raw JSON')
     .parse(process.argv);
 
 if(program.list){
@@ -46,7 +47,9 @@ if(ruleset === undefined){
     ruleset = getConfig(program.config);
 }
 
-quit(processFiles(arrAllFiles, ruleset));
+var jsonOutput = program.json && [];
+
+quit(processFiles(arrAllFiles, ruleset, jsonOutput));
 
 function listRules(){
     var rules = HTMLHint.rules;
@@ -104,36 +107,54 @@ function getFiles(filepath, arrFiles){
     }
 }
 
-function processFiles(arrFiles, ruleset){
+function processFiles(arrFiles, ruleset, jsonOutput){
     var exitcode = 0,
         allHintCount = 0;
     arrFiles.forEach(function(filepath){
-        var hintCount = hintFile(filepath, ruleset);
+        var hintCount = hintFile(filepath, ruleset, jsonOutput);
         if(hintCount > 0){
             exitcode = 1;
             allHintCount += hintCount;
         }
     });
-    if(allHintCount > 0){
-        console.log('\r\n%d problems.'.red, allHintCount);
+    if(jsonOutput){
+        console.log(JSON.stringify(jsonOutput));
     }
     else{
-        console.log('No problem.'.green);
+        if(allHintCount > 0){
+            console.log('\r\n%d problems.'.red, allHintCount);
+        }
+        else{
+            console.log('No problem.'.green);
+        }
     }
     return exitcode;
 }
 
-function hintFile(filepath, ruleset){
+function hintFile(filepath, ruleset, jsonOutput){
     var html = fs.readFileSync(filepath, 'utf-8');
     var messages = HTMLHint.verify(html, ruleset);
     if(messages.length > 0){
-        console.log(filepath+':');
-        messages.forEach(function(hint){
-            console.log('\tline %d, col %d: %s', hint.line, hint.col, hint.message[hint.type === 'error'?'red':'yellow']);
-        });
-        console.log('');
+        if(jsonOutput){
+            logJson(filepath, messages, jsonOutput);
+        }
+        else{
+            logPretty(filepath, messages);
+        }
     }
     return messages.length;
+}
+
+function logPretty(filepath, messages){
+    console.log(filepath+':');
+    messages.forEach(function(hint){
+        console.log('\tline %d, col %d: %s', hint.line, hint.col, hint.message[hint.type === 'error'?'red':'yellow']);
+    });
+    console.log('');
+}
+
+function logJson(filepath, messages, jsonOutput){
+    jsonOutput.push({'file': filepath, 'messages': messages});
 }
 
 function quit(code){
