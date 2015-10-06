@@ -36,7 +36,7 @@ program
 
 if(program.list){
     listRules();
-    quit(0);
+    process.exit(0);
 }
 
 var arrAllFiles = getAllFiles(program.args);
@@ -46,7 +46,12 @@ if(ruleset === undefined){
     ruleset = getConfig(program.config);
 }
 
-quit(processFiles(arrAllFiles, ruleset));
+var exitcode = 0;
+processFiles(arrAllFiles, ruleset);
+
+process.on('exit', function(){
+    process.exit(exitcode);
+});
 
 function listRules(){
     var rules = HTMLHint.rules;
@@ -105,22 +110,21 @@ function getFiles(filepath, arrFiles){
 }
 
 function processFiles(arrFiles, ruleset){
-    var exitcode = 0,
-        allHintCount = 0;
+    var allHintCount = 0;
     arrFiles.forEach(function(filepath){
         var hintCount = hintFile(filepath, ruleset);
         if(hintCount > 0){
-            exitcode = 1;
             allHintCount += hintCount;
         }
     });
     if(allHintCount > 0){
+        exitcode = 1;
         console.log('\r\n%d problems.'.red, allHintCount);
     }
     else{
+        exitcode = 0;
         console.log('No problem.'.green);
     }
-    return exitcode;
 }
 
 function hintFile(filepath, ruleset){
@@ -134,14 +138,4 @@ function hintFile(filepath, ruleset){
         console.log('');
     }
     return messages.length;
-}
-
-function quit(code){
-    if ((!process.stdout.flush || !process.stdout.flush()) && (parseFloat(process.versions.node) < 0.5)) {
-        process.once("drain", function () {
-            process.exit(code || 0);
-        });
-    } else {
-        process.exit(code || 0);
-    }
 }
