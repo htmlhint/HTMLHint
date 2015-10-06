@@ -1,14 +1,9 @@
 /*global module:false*/
 module.exports = function(grunt) {
 
-    var bWin32 = process.platform === 'win32',
-        setCmd = bWin32 ? 'set' : 'export',
-        cmdSplit = bWin32 ? '&' : '&&';
-
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks('grunt-mocha-hack');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-replace');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -25,30 +20,16 @@ module.exports = function(grunt) {
                 }
             }
         },
-        clean: ["lib", "lib-cov", "coverage.html"],
+        clean: ["lib", "coverage"],
         concat: {
             htmlhint: {
                 src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
                 dest: 'lib/htmlhint.js'
             }
         },
-        "mocha-hack": {
-            test: {
-                src: "test/**/*.js",
-                options: {
-                    useColors: true,
-                    reporter: 'spec'
-                }
-            }
-        },
         exec: {
-            jscover: {
-                command: '"./node_modules/.bin/jscover" lib lib-cov',
-                stdout: true,
-                stderr: true
-            },
-            savecover: {
-                command: setCmd + ' HTMLHINT_COV=1 '+cmdSplit+' "./node_modules/.bin/mocha" --recursive --reporter html-cov > coverage.html',
+            test: {
+                command: '"./node_modules/.bin/istanbul" cover "./node_modules/mocha/bin/_mocha" -- --recursive',
                 stdout: true,
                 stderr: true
             }
@@ -81,22 +62,14 @@ module.exports = function(grunt) {
         },
         watch: {
             src: {
-                files: ['src/**/*.js'],
+                files: ['src/**/*.js', 'test/**/*.js'],
                 tasks: 'dev'
-            },
-            test: {
-                files: ['test/**/*.js'],
-                tasks: 'test'
             }
         }
     });
 
-    grunt.registerTask('dev', ['jshint', 'concat', 'test']);
+    grunt.registerTask('dev', ['jshint', 'clean', 'concat', 'exec:test']);
 
-    grunt.registerTask('test', 'mocha-hack');
-
-    grunt.registerTask('test-cov', ['exec:jscover', 'exec:savecover']);
-
-    grunt.registerTask('default', ['jshint', 'clean', 'concat', 'test', 'test-cov', 'uglify', 'replace']);
+    grunt.registerTask('default', ['dev', 'uglify', 'replace']);
 
 };

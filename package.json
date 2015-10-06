@@ -20,10 +20,9 @@
     "grunt-contrib-uglify": "0.2.0",
     "grunt-contrib-watch": "0.3.1",
     "grunt-exec": "0.4.0",
-    "grunt-mocha-hack": "0.1.0",
     "grunt-replace": "0.4.0",
-    "jscover": "0.2.4",
-    "mocha": "2.2.0"
+    "mocha": "2.2.0",
+    "istanbul-coveralls": "1.0.3"
   },
   "bin": {
     "htmlhint": "./bin/htmlhint"
