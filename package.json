@@ -6,7 +6,7 @@
   "dependencies": {
     "commander": "2.6.0",
     "colors": "1.0.3",
-    "jshint": "2.6.3",
+    "jshint": "2.8.0",
     "csslint": "0.10.0"
   },
   "devDependencies": {
