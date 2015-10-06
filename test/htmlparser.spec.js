@@ -422,4 +422,21 @@ describe('HTMLParser: Case parse', function(){
         parser.parse('</p >');
     });
 
+    it('should parse special no quotes tags', function(done){
+        var parser = new HTMLParser();
+        var arrEvents = [];
+        getAllEvents(parser, arrEvents, function(){
+            expect(arrEvents[1]).to.event('tagstart',
+            {
+                tagName: 'link'
+            });
+            expect(arrEvents[2]).to.event('tagstart',
+            {
+                tagName: 'link'
+            });
+            done();
+        });
+        parser.parse('<link rel=icon><link rel=icon>');
+    });
+
 });
