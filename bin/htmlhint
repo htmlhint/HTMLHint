@@ -83,7 +83,7 @@ function getAllFiles(arrTargets){
     if(arrTargets.length > 0){
         for(var i=0,l=arrTargets.length;i<l;i++){
             var filepath = path.resolve(process.cwd(), arrTargets[i]);
-            if(fs.existsSync(filepath) !== false){            
+            if(fs.existsSync(filepath) !== false){
               if(fs.statSync(filepath).isFile) {
                 arrAllFiles.push(filepath);
               } else {
