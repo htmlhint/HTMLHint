@@ -67,7 +67,16 @@ function listRules(){
 
 function getConfig(configFile){
     if(configFile === undefined){
-        configFile = '.htmlhintrc';
+        // find default config file in parent directory
+        var curDir = process.cwd();
+        while(curDir){
+            var tmpConfigFile = path.resolve(curDir+path.sep, '.htmlhintrc');
+            if(fs.existsSync(tmpConfigFile)){
+                configFile = tmpConfigFile;
+                break;
+            }
+            curDir = curDir.substring(0,curDir.lastIndexOf(path.sep));
+        }
     }
     if(fs.existsSync(configFile)){
         var config = fs.readFileSync(configFile, 'utf-8'),

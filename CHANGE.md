@@ -1,6 +1,20 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.8 (2015-10-6)
+
+add:
+
+1. Search `.htmlhintrc` in parent directory
+2. Allow comments in json
+3. Support hint any file without `.html` or `.htm` extension, just like: `htmlhint test.xhtml`
+4. Support json raw format in cli
+
+fix:
+
+1. fix issue: #77 `<link rel=icon><link rel=icon>`
+2. Made the descriptions and error messages of rules more clear to people
+
 ## ver 0.9.7 (2015-3-8)
 
 fix:
@@ -27,7 +41,7 @@ add:
 1. add rule: src-not-empty
 
 fix:
- 
+
 1. fix attr-value-double-quotes rule: `<img src=''>` should result error
 
 ## ver 0.9.3 (2013-5-24)
@@ -45,14 +59,14 @@ fix:
 
 add：
 
-1. add rule: csslint 
+1. add rule: csslint
 2. add rule: jshint
 3. add rule: id-unique
 4. add cli
 
 fix：
 
-1. compatible with: 
+1. compatible with:
 
         <div class="foo"
         <div class"foo">
