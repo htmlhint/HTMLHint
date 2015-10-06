@@ -9,6 +9,7 @@ add:
 2. Allow comments in json
 3. Support hint any file without `.html` or `.htm` extension, just like: `htmlhint test.xhtml`
 4. Support json raw format in cli
+5. tag-pair(rule): Show the line of the start tag
 
 fix:
 

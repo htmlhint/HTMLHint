@@ -12,24 +12,29 @@ HTMLHint.addRule({
         parser.addListener('tagstart', function(event){
             var tagName = event.tagName.toLowerCase();
             if (mapEmptyTags[tagName] === undefined && !event.close){
-                stack.push(tagName);
+                stack.push({
+                    tagName: tagName,
+                    line: event.line,
+                    raw: event.raw
+                });
             }
         });
         parser.addListener('tagend', function(event){
             var tagName = event.tagName.toLowerCase();
             //向上寻找匹配的开始标签
             for(var pos = stack.length-1;pos >= 0; pos--){
-                if(stack[pos] === tagName){
+                if(stack[pos].tagName === tagName){
                     break;
                 }
             }
             if(pos >= 0){
                 var arrTags = [];
                 for(var i=stack.length-1;i>pos;i--){
-                    arrTags.push('</'+stack[i]+'>');
+                    arrTags.push('</'+stack[i].tagName+'>');
                 }
                 if(arrTags.length > 0){
-                    reporter.error('Tag must be paired, missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, event.raw);
+                    var lastEvent = stack[stack.length-1];
+                    reporter.error('Tag must be paired, missing: [ '+ arrTags.join('') + ' ], start tag match failed [ ' + lastEvent.raw + ' ] on line ' + lastEvent.line + '.', event.line, event.col, self, event.raw);
                 }
                 stack.length=pos;
             }
@@ -40,10 +45,11 @@ HTMLHint.addRule({
         parser.addListener('end', function(event){
             var arrTags = [];
             for(var i=stack.length-1;i>=0;i--){
-                arrTags.push('</'+stack[i]+'>');
+                arrTags.push('</'+stack[i].tagName+'>');
             }
             if(arrTags.length > 0){
-                reporter.error('Tag must be paired, missing: [ '+ arrTags.join('') + ' ]', event.line, event.col, self, '');
+                var lastEvent = stack[stack.length-1];
+                reporter.error('Tag must be paired, missing: [ '+ arrTags.join('') + ' ], open tag match failed [ ' + lastEvent.raw + ' ] on line ' + lastEvent.line + '.', event.line, event.col, self, '');
             }
         });
     }
