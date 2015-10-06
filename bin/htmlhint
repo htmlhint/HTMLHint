@@ -1,10 +1,12 @@
 #!/usr/bin/env node
 
-var program = require('commander'),
-    fs = require('fs'),
-    path = require('path'),
-    HTMLHint  = require("../index").HTMLHint,
-    pkg = require('../package.json');
+var program = require('commander');
+var fs = require('fs');
+var path = require('path');
+var stripJsonComments = require('strip-json-comments');
+
+var HTMLHint  = require("../index").HTMLHint;
+var pkg = require('../package.json');
 
 require('colors');
 
@@ -71,7 +73,7 @@ function getConfig(configFile){
         var config = fs.readFileSync(configFile, 'utf-8'),
             ruleset;
         try{
-            ruleset = JSON.parse(config);
+            ruleset = JSON.parse(stripJsonComments(config));
         }
         catch(e){}
         return ruleset;
