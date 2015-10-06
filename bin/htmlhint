@@ -168,7 +168,7 @@ function hintFile(filepath, ruleset, jsonOutput){
 function logPretty(filepath, messages){
     console.log(filepath+':');
     messages.forEach(function(hint){
-        console.log('\tline %d, col %d: %s', hint.line, hint.col, hint.message[hint.type === 'error'?'red':'yellow']);
+        console.log('\t[%s] line %d, col %d: %s', hint.rule.id.green, hint.line, hint.col, hint.message[hint.type === 'error'?'red':'yellow']);
     });
     console.log('');
 }
