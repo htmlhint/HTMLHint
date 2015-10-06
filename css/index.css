@@ -12,6 +12,10 @@ body {
   margin: 20px 0;
 }
 
+.muted span{
+  font-size: 12px;
+}
+
 #editor-title{
     padding:20px 0;
 }
