@@ -436,7 +436,22 @@ describe('HTMLParser: Case parse', function(){
             });
             done();
         });
-        parser.parse('<link rel=icon><link rel=icon>');
+        parser.parse('<link rel=icon /><link rel=icon />');
+    });
+
+    it('should parse special empty attr', function(done){
+        var parser = new HTMLParser();
+        var arrEvents = [];
+        getAllEvents(parser, arrEvents, function(){
+            expect(arrEvents[1]).to.event('tagstart',
+            {
+                tagName: 'img',
+                close: '/'
+            });
+            expect(arrEvents[1].attrs.length).to.be(2);
+            done();
+        });
+        parser.parse('<img src="aaa" alt= />');
     });
 
 });
