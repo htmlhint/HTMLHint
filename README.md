@@ -6,7 +6,7 @@ HTMLHint
 HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in build system.
 
 [![Build Status](https://img.shields.io/travis/yaniswang/HTMLHint.svg)](https://travis-ci.org/yaniswang/HTMLHint)
-[![Coverage Status](https://img.shields.io/coveralls/yaniswang/htmlhint.svg?style=flat)](https://coveralls.io/r/yaniswang/htmlhint?branch=master)
+[![Coverage Status](https://img.shields.io/coveralls/yaniswang/HTMLHint.svg?style=flat)](https://coveralls.io/github/yaniswang/HTMLHint?branch=master)
 [![NPM version](https://img.shields.io/npm/v/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![NPM count](https://img.shields.io/npm/dm/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![NPM count](https://img.shields.io/npm/dt/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
