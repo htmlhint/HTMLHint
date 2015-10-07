@@ -48,7 +48,7 @@ module.exports = function(grunt) {
         uglify: {
             htmlhint: {
                 options: {
-                    banner: "/*!\r\n * HTMLHint v<%= pkg.version %>\r\n * https://github.com/yaniswang/HTMLHint\r\n *\r\n * (c) 2015 Yanis Wang <yanis.wang@gmail.com>.\r\n * MIT Licensed\r\n */\n",
+                    banner: "/*!\r\n * HTMLHint v<%= pkg.version %>\r\n * https://github.com/yaniswang/HTMLHint\r\n *\r\n * (c) 2014-"+new Date().getFullYear()+" Yanis Wang <yanis.wang@gmail.com>.\r\n * MIT Licensed\r\n */\n",
                     beautify: {
                         ascii_only: true
                     }
