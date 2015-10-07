@@ -133,7 +133,7 @@ var HTMLParser = (function(undefined){
             self.fire('end', {
                 pos: lastIndex,
                 line: line,
-                col: lastIndex - lastLineIndex + 1
+                col: html.length - lastLineIndex + 1
             });
 
             //存储区块

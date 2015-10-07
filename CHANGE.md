@@ -1,6 +1,16 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.9 (2015-10-7)
+
+add:
+
+1. add config loaded message to cli log
+
+fix:
+
+1. fix end event col
+
 ## ver 0.9.8 (2015-10-7)
 
 add:
