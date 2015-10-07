@@ -11,7 +11,8 @@
             'spec-char-escape': true,
             'id-unique': true,
             'src-not-empty': true,
-            'attr-no-duplication': true
+            'attr-no-duplication': true,
+            'title-require': true
         },
         ruleCSSLint = {
                 "display-property-grouping": true,
