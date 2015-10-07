@@ -446,9 +446,12 @@ describe('HTMLParser: Case parse', function(){
             expect(arrEvents[1]).to.event('tagstart',
             {
                 tagName: 'img',
-                close: '/'
+                close: ''
             });
-            expect(arrEvents[1].attrs.length).to.be(2);
+            var attrs = arrEvents[1].attrs;
+            expect(attrs.length).to.be(2);
+            expect(attrs[1].name).to.be('alt');
+            expect(attrs[1].value).to.be('/');
             done();
         });
         parser.parse('<img src="aaa" alt= />');

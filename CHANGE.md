@@ -11,10 +11,11 @@ add:
 4. Support json raw format in cli
 5. tag-pair(rule): Show the line of the start tag
 6. space-tab-mixed-disabled(rule): Support space and tab mode, for check only space or tab
+7. Make cli logs more clear to people
 
 fix:
 
-1. fix issue: #77 `<link rel=icon><link rel=icon>`
+1. Fix issue: #77 `<link rel=icon><link rel=icon>`
 2. Made the descriptions and error messages of rules more clear to people
 
 ## ver 0.9.7 (2015-3-8)

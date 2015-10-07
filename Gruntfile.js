@@ -13,10 +13,16 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         jshint: {
-            all: {
-                src: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js', 'bin/*'],
+            browser: {
+                src: ['src/**/*.js'],
                 options: {
-                    jshintrc: ".jshintrc"
+                    jshintrc: ".jshintrc1"
+                }
+            },
+            node: {
+                src: ['Gruntfile.js', 'test/**/*.js', 'bin/*'],
+                options: {
+                    jshintrc: ".jshintrc2"
                 }
             }
         },
@@ -74,7 +80,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('build', ['jshint', 'clean', 'concat']);
-    
+
     grunt.registerTask('dev', ['build', 'exec:test']);
 
     grunt.registerTask('default', ['build', 'exec:cover', 'uglify', 'replace:version']);

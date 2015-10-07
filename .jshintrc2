@@ -12,21 +12,12 @@
     "evil": true,
     "sub": true,
 
-    "browser": true,
-    "wsh": true,
+    "node": true,
     "-W099": true,
 	"-W100": true,
 
     "predef": [
-        "HTMLHint",
-        "HTMLParser",
-        "require",
-        "exports",
-        "process",
         "describe",
-        "it",
-        "console",
-        "JSHINT",
-        "CSSLint"
+        "it"
     ]
 }

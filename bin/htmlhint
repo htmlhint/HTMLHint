@@ -95,7 +95,7 @@ function getAllFiles(arrTargets){
         for(var i=0,l=arrTargets.length;i<l;i++){
             var filepath = path.resolve(process.cwd(), arrTargets[i]);
             if(fs.existsSync(filepath) !== false){
-              if(fs.statSync(filepath).isFile) {
+              if(fs.statSync(filepath).isFile()) {
                 arrAllFiles.push(filepath);
               } else {
                 getFiles(arrTargets[i], arrAllFiles);
@@ -128,12 +128,15 @@ function getFiles(filepath, arrFiles){
 }
 
 function processFiles(arrFiles, ruleset, jsonOutput){
-    var exitcode = 0,
-        allHintCount = 0;
+    var exitcode = 0;
+    var allFileCount = 0;
+    var allHintCount = 0;
+    console.log('');
     arrFiles.forEach(function(filepath){
         var hintCount = hintFile(filepath, ruleset, jsonOutput);
         if(hintCount > 0){
             exitcode = 1;
+            allFileCount ++;
             allHintCount += hintCount;
         }
     });
@@ -142,10 +145,10 @@ function processFiles(arrFiles, ruleset, jsonOutput){
     }
     else{
         if(allHintCount > 0){
-            console.log('\r\n%d problems.'.red, allHintCount);
+            console.log('%d errors in %d files'.red, allHintCount, allFileCount);
         }
         else{
-            console.log('No problem.'.green);
+            console.log('Done, without errors.'.green);
         }
     }
     return exitcode;
@@ -166,11 +169,16 @@ function hintFile(filepath, ruleset, jsonOutput){
 }
 
 function logPretty(filepath, messages){
-    console.log(filepath+':');
+    console.log('   '+path.relative(process.cwd(), filepath));
     messages.forEach(function(hint){
-        console.log('[ %s ] line %d, col %d: %s', hint.rule.id.green, hint.line, hint.col, hint.message[hint.type === 'error'?'red':'yellow']);
+        console.log('      L%d |%s', hint.line, hint.evidence.replace(/\t/g, ' ').gray);
+        console.log('      %s^ %s', repeatStr(String(hint.line).length + 3 + hint.col - 1), (hint.message + ' (' + hint.rule.id+')')[hint.type === 'error'?'red':'yellow']);
     });
     console.log('');
+}
+
+function repeatStr(n, str){
+    return new Array(n + 1).join(str || ' ');
 }
 
 function logJson(filepath, messages, jsonOutput){
