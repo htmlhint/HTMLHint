@@ -12,6 +12,7 @@ add:
 5. tag-pair(rule): Show the line of the start tag
 6. space-tab-mixed-disabled(rule): Support space and tab mode, for check only space or tab
 7. Make cli logs more clear to people
+8. add rule: title-require, `<title>` must be present in `<head>` tag.
 
 fix:
 

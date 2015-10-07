@@ -21,7 +21,8 @@ var HTMLHint = (function (undefined) {
         'spec-char-escape': true,
         'id-unique': true,
         'src-not-empty': true,
-        'attr-no-duplication': true
+        'attr-no-duplication': true,
+        'title-require': true
     };
 
     HTMLHint.addRule = function(rule){
