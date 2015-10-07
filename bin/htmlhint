@@ -82,6 +82,7 @@ function getConfig(configFile){
             ruleset;
         try{
             ruleset = JSON.parse(stripJsonComments(config));
+            console.log('   Config loaded: %s', configFile.cyan);
         }
         catch(e){}
         return ruleset;
