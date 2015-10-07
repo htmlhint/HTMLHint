@@ -13,6 +13,41 @@ HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in 
 
 Official Site: [http://htmlhint.com/](http://htmlhint.com/)
 
+Quick start
+======================
+
+1. install & hint
+
+        npm install htmlhint -g
+        htmlhint -V
+        htmlhint --help
+        htmlhint test.html
+
+2. result
+
+           test.html
+              L5 |    </head>
+                      ^ <title> must be present in <head> tag. (title-require)
+              L8 |    </body>
+                      ^ Tag must be paired, missing: [ </div> ], start tag match failed [ <div> ] on line 7. (tag-pair)
+
+        2 errors in 1 files
+
+3. config rules
+
+    search `.htmlhintrc` file in current directory and all parents directory:
+
+        htmlhint
+        htmlhint test.html
+
+    custom config file:
+
+        htmlhint --config htmlhint.conf test.html
+
+    custom rules:
+
+        htmlhint --rules tag-pair,id-class-value=underline test.html
+
 Guide
 =======================
 

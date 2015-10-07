@@ -56,12 +56,11 @@ quit(processFiles(arrAllFiles, ruleset, jsonOutput));
 function listRules(){
     var rules = HTMLHint.rules;
 	var rule;
-    console.log('\r\nAll rules:');
-    console.log('======================================');
+    console.log('     All rules:');
+    console.log(' ==================================================');
     for (var id in rules){
         rule = rules[id];
-        console.log('\r\n'+rule.id+' :');
-        console.log('    '+rule.description);
+        console.log('     %s : %s', rule.id.green, rule.description);
     }
 }
 
