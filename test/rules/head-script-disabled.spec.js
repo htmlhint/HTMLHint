@@ -54,4 +54,10 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(0);
     });
 
+    it('No head not result in an error', function(){
+        var code = '<html><script src="test.js"></script></html>';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+    });
+
 });

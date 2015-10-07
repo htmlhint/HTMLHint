@@ -16,13 +16,13 @@ module.exports = function(grunt) {
             browser: {
                 src: ['src/**/*.js'],
                 options: {
-                    jshintrc: ".jshintrc1"
+                    jshintrc: ".jshintrc-browser"
                 }
             },
             node: {
                 src: ['Gruntfile.js', 'test/**/*.js', 'bin/*'],
                 options: {
-                    jshintrc: ".jshintrc2"
+                    jshintrc: ".jshintrc-node"
                 }
             }
         },

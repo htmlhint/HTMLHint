@@ -17,6 +17,7 @@ fix:
 
 1. Fix issue: #77 `<link rel=icon><link rel=icon>`
 2. Made the descriptions and error messages of rules more clear to people
+3. head-script-disabled(fule): No head not result error
 
 ## ver 0.9.7 (2015-3-8)
 
