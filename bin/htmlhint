@@ -22,15 +22,15 @@ function map(val) {
 program.on('--help', function(){
     console.log('  Examples:');
     console.log('');
-    console.log('    htmlhint -l');
-    console.log('    htmlhint -r tag-pair,id-class-value=underline test.html');
-    console.log('    htmlhint -c .htmlhintrc test.html');
+    console.log('    htmlhint --list');
+    console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
+    console.log('    htmlhint --config .htmlhintrc test.html');
     console.log('');
 });
 
 program
     .version(pkg.version)
-    .usage('[options] <file ...>')
+    .usage('<file ...> [options]')
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)

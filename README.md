@@ -23,7 +23,7 @@ Quick start
         htmlhint --help
         htmlhint test.html
 
-2. result
+2. results
 
            test.html
               L5 |    </head>
@@ -35,7 +35,7 @@ Quick start
 
 3. config rules
 
-    search `.htmlhintrc` file in current directory and all parents directory:
+    search `.htmlhintrc` file in current directory and all parent directorys:
 
         htmlhint
         htmlhint test.html
@@ -47,6 +47,13 @@ Quick start
     custom rules:
 
         htmlhint --rules tag-pair,id-class-value=underline test.html
+
+    Inline rules in `test.html`:
+
+        <!--htmlhint tag-pair,id-class-value:underline -->
+        <html>
+        <head>
+            ...
 
 Guide
 =======================

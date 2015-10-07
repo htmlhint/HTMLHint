@@ -35,14 +35,14 @@ var HTMLHint = (function (undefined) {
             if(ruleset === undefined){
                 ruleset = {};
             }
-            strRuleset.replace(/(?:^|,)\s*([^:]+)\s*:\s*([^,\s]+)/g, function(all, key, value){
+            strRuleset.replace(/(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g, function(all, key, value){
                 if(value === 'false'){
                     value = false;
                 }
                 else if(value === 'true'){
                     value = true;
                 }
-                ruleset[key] = value;
+                ruleset[key] = value === undefined ? true : value;
             });
             return '';
         });
