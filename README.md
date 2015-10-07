@@ -52,7 +52,7 @@ Thanks
 
 * mocha: [https://github.com/visionmedia/mocha](https://github.com/visionmedia/mocha)
 * expect.js: [https://github.com/LearnBoost/expect.js](https://github.com/LearnBoost/expect.js)
-* jscover: [https://github.com/fengmk2/jscover](https://github.com/fengmk2/jscover)
+* istanbul: [https://github.com/gotwarlost/istanbul](https://github.com/gotwarlost/istanbul)
 * Grunt: [http://gruntjs.com/](http://gruntjs.com/)
 * commander.js: [https://github.com/visionmedia/commander.js](https://github.com/visionmedia/commander.js)
 * colors.js: [https://github.com/Marak/colors.js](https://github.com/Marak/colors.js)
