@@ -1,7 +1,7 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.8 (2015-10-6)
+## ver 0.9.8 (2015-10-7)
 
 add:
 
@@ -10,6 +10,7 @@ add:
 3. Support hint any file without `.html` or `.htm` extension, just like: `htmlhint test.xhtml`
 4. Support json raw format in cli
 5. tag-pair(rule): Show the line of the start tag
+6. space-tab-mixed-disabled(rule): Support space and tab mode, for check only space or tab
 
 fix:
 

@@ -29,6 +29,11 @@ module.exports = function(grunt) {
         },
         exec: {
             test: {
+                command: '"./node_modules/.bin/mocha" --recursive',
+                stdout: true,
+                stderr: true
+            },
+            cover: {
                 command: '"./node_modules/.bin/istanbul" cover "./node_modules/mocha/bin/_mocha" -- --recursive',
                 stdout: true,
                 stderr: true
@@ -48,7 +53,7 @@ module.exports = function(grunt) {
             }
         },
         replace: {
-            htmlhint: {
+            version: {
                 files: {
                     'lib/htmlhint.js':'lib/htmlhint.js'
                 },
@@ -68,8 +73,10 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('dev', ['jshint', 'clean', 'concat', 'exec:test']);
+    grunt.registerTask('build', ['jshint', 'clean', 'concat']);
+    
+    grunt.registerTask('dev', ['build', 'exec:test']);
 
-    grunt.registerTask('default', ['dev', 'uglify', 'replace']);
+    grunt.registerTask('default', ['build', 'exec:cover', 'uglify', 'replace:version']);
 
 };
