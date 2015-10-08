@@ -4,6 +4,7 @@ var program = require('commander');
 var fs = require('fs');
 var path = require('path');
 var stripJsonComments = require('strip-json-comments');
+var async = require('async');
 
 var HTMLHint  = require("../index").HTMLHint;
 var pkg = require('../package.json');
@@ -42,17 +43,17 @@ if(program.list){
     process.exit(0);
 }
 
-var arrAllFiles = getAllFiles(program.args);
-
-var ruleset = program.rules;
-if(ruleset === undefined){
-    ruleset = getConfig(program.config);
+var arrTargets = program.args;
+if(arrTargets.length === 0){
+    arrTargets.push(process.cwd());
 }
 
-var jsonOutput = program.json && [];
+hintAllFiles(arrTargets, {
+    ruleset: program.rules,
+    json: program.json
+});
 
-processFiles(arrAllFiles, ruleset, jsonOutput);
-
+// list all rules
 function listRules(){
     var rules = HTMLHint.rules;
 	var rule;
@@ -60,127 +61,206 @@ function listRules(){
     console.log(' ==================================================');
     for (var id in rules){
         rule = rules[id];
-        console.log('     %s : %s', rule.id.green, rule.description);
+        console.log('     %s : %s', rule.id.bold, rule.description);
     }
 }
 
-function getConfig(configFile){
-    if(configFile === undefined){
-        // find default config file in parent directory
-        var curDir = process.cwd();
-        while(curDir){
-            var tmpConfigFile = path.resolve(curDir+path.sep, '.htmlhintrc');
-            if(fs.existsSync(tmpConfigFile)){
-                configFile = tmpConfigFile;
-                break;
+// hint all files
+function hintAllFiles(arrTargets, options){
+    var exitcode = 0;
+    var allFileCount = 0;
+    var allHintCount = 0;
+
+    // json mode
+    var json = options.json;
+    var arrJson = [];
+
+    if(!json){
+        console.log('');
+    }
+
+    // init ruleset
+    var ruleset = options.ruleset;
+    if(ruleset === undefined){
+        ruleset = getConfig(program.config, arrTargets, json);
+    }
+
+    var hintQueue = async.queue(function (filepath, next) {
+        var messages = hintFile(filepath, ruleset);
+        var hintCount = messages.length;
+        if(hintCount > 0){
+            if(json){
+                arrJson.push({'file': filepath, 'messages': messages});
             }
-            curDir = curDir.substring(0,curDir.lastIndexOf(path.sep));
+            else{
+                console.log('   '+path.relative(process.cwd(), filepath));
+                messages.forEach(function(hint){
+                    var leftWindow = 40;
+                    var rightWindow = leftWindow + 20;
+                    var evidence = hint.evidence;
+                    var line = hint.line;
+                    var col = hint.col;
+                    var evidenceCount = evidence.length;
+                    var leftCol = col > leftWindow + 1 ? col - leftWindow : 1;
+                    var rightCol = evidence.length > col + rightWindow ? col + rightWindow : evidenceCount;
+                    if(col < leftWindow + 1){
+                        rightCol += leftWindow - col + 1;
+                    }
+                    evidence = evidence.replace(/\t/g, ' ').substring(leftCol - 1, rightCol);
+                    // add ...
+                    if(leftCol > 1){
+                        evidence = '...' + evidence;
+                        leftCol -= 3;
+                    }
+                    if(rightCol < evidenceCount){
+                        evidence += '...';
+                    }
+                    // show evidence
+                    console.log('      L%d |%s', line, evidence.gray);
+                    // show pointer & message
+                    var pointCol = col - leftCol;
+                    // add double byte character
+                    var match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g);
+                    if(match !== null){
+                        pointCol += match.length;
+                    }
+                    console.log('      %s^ %s', repeatStr(String(line).length + 3 + pointCol), (hint.message + ' (' + hint.rule.id+')')[hint.type === 'error'?'red':'yellow']);
+                });
+                console.log('');
+            }
+            exitcode = 1;
+            allFileCount ++;
+            allHintCount += hintCount;
+        }
+        setImmediate(next);
+    }, 10);
+    // start hint
+    var isWalkDone = false;
+    var isHintDone = true;
+    walkTargets(arrTargets, function onPath(filepath){
+        isHintDone = false;
+        hintQueue.push(filepath);
+    }, function onFinised(){
+        isWalkDone = true;
+        checkAllHinted();
+    });
+    hintQueue.drain = function() {
+        isHintDone = true;
+        checkAllHinted();
+    };
+    function checkAllHinted(){
+        if(isWalkDone && isHintDone){
+            if(json){
+                console.log(JSON.stringify(arrJson));
+            }
+            else{
+                if(allHintCount > 0){
+                    console.log('%d errors in %d files'.red, allHintCount, allFileCount);
+                }
+                else{
+                    console.log('Done, without errors.'.green);
+                }
+            }
+            process.exit(exitcode);
         }
     }
+}
+
+// search and load config
+function getConfig(configFile, arrTargets, json){
+    if(configFile === undefined){
+        // find default config file in parent directory
+        arrTargets.forEach(function(curDir){
+            while(curDir){
+                var tmpConfigFile = path.resolve(curDir+path.sep, '.htmlhintrc');
+                if(fs.existsSync(tmpConfigFile)){
+                    configFile = tmpConfigFile;
+                    break;
+                }
+                curDir = curDir.substring(0,curDir.lastIndexOf(path.sep));
+            }
+        });
+    }
+
     if(fs.existsSync(configFile)){
         var config = fs.readFileSync(configFile, 'utf-8'),
             ruleset;
         try{
             ruleset = JSON.parse(stripJsonComments(config));
-            console.log('   Config loaded: %s', configFile.cyan);
+            if(!json){
+                console.log('   Config loaded: %s', configFile.cyan);
+                console.log('');
+            }
         }
         catch(e){}
         return ruleset;
     }
 }
 
-function getAllFiles(arrTargets){
-    var arrAllFiles = [];
-    if(arrTargets.length > 0){
-        for(var i=0,l=arrTargets.length;i<l;i++){
-            var filepath = path.resolve(process.cwd(), arrTargets[i]);
-            if(fs.existsSync(filepath) !== false){
-              if(fs.statSync(filepath).isFile()) {
-                arrAllFiles.push(filepath);
-              } else {
-                getFiles(arrTargets[i], arrAllFiles);
-              }
-            } else {
-              console.log('File %s does not exist'.red, arrTargets[i]);
+// walk targets
+function walkTargets(arrTargets, callback, onFinish){
+    var arrTasks = [];
+    arrTargets.forEach(function(target){
+        if(fs.existsSync(target)){
+            if(fs.statSync(target).isDirectory()){
+                // directory
+                arrTasks.push(function(next){
+                    walkPath(target, callback, next);
+                });
+            }
+            else{
+                // file
+                callback(target);
             }
         }
-    }
-    else{
-        getFiles(process.cwd(), arrAllFiles);
-    }
-    return arrAllFiles;
+    });
+    async.series(arrTasks, function(){
+        onFinish && onFinish();
+    });
 }
 
-function getFiles(filepath, arrFiles){
-    if(fs.existsSync(filepath) === false){
-        return;
-    }
-    filepath = path.resolve(process.cwd(), filepath);
-    var stat = fs.statSync(filepath);
-    if(stat.isFile() && /\.html?$/i.test(filepath)){
-        arrFiles.push(filepath);
-    }
-    else if(stat.isDirectory()){
-        fs.readdirSync(filepath).forEach(function(filename){
-            getFiles(filepath + '/' + filename, arrFiles);
+// walk path
+function walkPath(dir, callback, onFinish) {
+    fs.readdir(dir, function (err, files) {
+        var arrTasks = [];
+        files.forEach(function(file){
+            arrTasks.push(function(next){
+                var pathname = path.join(dir, file);
+                fs.stat(pathname, function (err, stats) {
+                    if(stats){
+                        if (stats.isDirectory()) {
+                            if(/^(\.svn|\.git|\.build|node_modules)$/i.test(file) === false){
+                                walkPath(pathname, callback, next);
+                            }
+                            else{
+                                next();
+                            }
+                        } else {
+                            if(/\.html?$/i.test(file)){
+                                callback(path.normalize(pathname));
+                            }
+                            next();
+                        }
+                    }
+                    else{
+                        next();
+                    }
+                });
+            });
         });
-    }
-}
-
-function processFiles(arrFiles, ruleset, jsonOutput){
-    var exitcode = 0;
-    var allFileCount = 0;
-    var allHintCount = 0;
-    console.log('');
-    arrFiles.forEach(function(filepath){
-        var hintCount = hintFile(filepath, ruleset, jsonOutput);
-        if(hintCount > 0){
-            exitcode = 1;
-            allFileCount ++;
-            allHintCount += hintCount;
-        }
+        async.series(arrTasks, function(){
+            onFinish && onFinish();
+        });
     });
-    if(jsonOutput){
-        console.log(JSON.stringify(jsonOutput));
-    }
-    else{
-        if(allHintCount > 0){
-            console.log('%d errors in %d files'.red, allHintCount, allFileCount);
-        }
-        else{
-            console.log('Done, without errors.'.green);
-        }
-    }
-    process.exit(exitcode);
 }
 
-function hintFile(filepath, ruleset, jsonOutput){
+// hint file
+function hintFile(filepath, ruleset){
     var html = fs.readFileSync(filepath, 'utf-8');
-    var messages = HTMLHint.verify(html, ruleset);
-    if(messages.length > 0){
-        if(jsonOutput){
-            logJson(filepath, messages, jsonOutput);
-        }
-        else{
-            logPretty(filepath, messages);
-        }
-    }
-    return messages.length;
+    return HTMLHint.verify(html, ruleset);
 }
 
-function logPretty(filepath, messages){
-    console.log('   '+path.relative(process.cwd(), filepath));
-    messages.forEach(function(hint){
-        console.log('      L%d |%s', hint.line, hint.evidence.replace(/\t/g, ' ').gray);
-        console.log('      %s^ %s', repeatStr(String(hint.line).length + 3 + hint.col - 1), (hint.message + ' (' + hint.rule.id+')')[hint.type === 'error'?'red':'yellow']);
-    });
-    console.log('');
-}
-
+// repeat string
 function repeatStr(n, str){
     return new Array(n + 1).join(str || ' ');
-}
-
-function logJson(filepath, messages, jsonOutput){
-    jsonOutput.push({'file': filepath, 'messages': messages});
 }

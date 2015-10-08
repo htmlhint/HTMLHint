@@ -1,11 +1,12 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.9 (2015-10-7)
+## ver 0.9.9 (2015-10-8)
 
 add:
 
 1. add config loaded message to cli log
+2. support async for cli
 
 fix:
 
