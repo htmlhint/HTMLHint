@@ -93,7 +93,7 @@ function hintAllFiles(arrTargets, options){
                 arrJson.push({'file': filepath, 'messages': messages});
             }
             else{
-                console.log('   '+path.relative(process.cwd(), filepath));
+                console.log('   '+path.relative(process.cwd(), filepath).white);
                 messages.forEach(function(hint){
                     var leftWindow = 40;
                     var rightWindow = leftWindow + 20;
@@ -116,7 +116,7 @@ function hintAllFiles(arrTargets, options){
                         evidence += '...';
                     }
                     // show evidence
-                    console.log('      L%d |%s', line, evidence.gray);
+                    console.log('      L%d |%s'.white, line, evidence.gray);
                     // show pointer & message
                     var pointCol = col - leftCol;
                     // add double byte character
@@ -124,7 +124,7 @@ function hintAllFiles(arrTargets, options){
                     if(match !== null){
                         pointCol += match.length;
                     }
-                    console.log('      %s^ %s', repeatStr(String(line).length + 3 + pointCol), (hint.message + ' (' + hint.rule.id+')')[hint.type === 'error'?'red':'yellow']);
+                    console.log('      %s^ %s'.white, repeatStr(String(line).length + 3 + pointCol), (hint.message + ' (' + hint.rule.id+')')[hint.type === 'error'?'red':'yellow']);
                 });
                 console.log('');
             }
