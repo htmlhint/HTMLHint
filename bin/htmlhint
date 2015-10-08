@@ -39,7 +39,7 @@ program
 
 if(program.list){
     listRules();
-    quit(0);
+    process.exit(0);
 }
 
 var arrAllFiles = getAllFiles(program.args);
@@ -51,7 +51,7 @@ if(ruleset === undefined){
 
 var jsonOutput = program.json && [];
 
-quit(processFiles(arrAllFiles, ruleset, jsonOutput));
+processFiles(arrAllFiles, ruleset, jsonOutput);
 
 function listRules(){
     var rules = HTMLHint.rules;
@@ -151,7 +151,7 @@ function processFiles(arrFiles, ruleset, jsonOutput){
             console.log('Done, without errors.'.green);
         }
     }
-    return exitcode;
+    process.exit(exitcode);
 }
 
 function hintFile(filepath, ruleset, jsonOutput){
