@@ -48,7 +48,7 @@ if(arrTargets.length === 0){
     arrTargets.push(process.cwd());
 }
 
-hintAllFiles(arrTargets, {
+hintTargets(arrTargets, {
     ruleset: program.rules,
     json: program.json
 });
@@ -65,9 +65,7 @@ function listRules(){
     }
 }
 
-// hint all files
-function hintAllFiles(arrTargets, options){
-    var exitcode = 0;
+function hintTargets(arrTargets, options){
     var allFileCount = 0;
     var allHintCount = 0;
 
@@ -78,13 +76,53 @@ function hintAllFiles(arrTargets, options){
     if(!json){
         console.log('');
     }
+    var arrTasks = [];
+    arrTargets.forEach(function(target){
+        target = path.resolve(target);
+        if(fs.existsSync(target)){
+            arrTasks.push(function(next){
+                hintAllFiles(target, options, function(result){
+                    allFileCount += result.targetFileCount;
+                    allHintCount += result.targetHintCount;
+                    arrJson = arrJson.concat(result.arrJson);
+                    next();
+                });
+            });
+        }
+    });
+    async.series(arrTasks, function(){
+        if(json){
+            console.log(JSON.stringify(arrJson));
+        }
+        else{
+            if(allHintCount > 0){
+                console.log('%d errors in %d files'.red, allHintCount, allFileCount);
+            }
+            else{
+                console.log('Done, without errors.'.green);
+            }
+        }
+        process.exit(allHintCount > 0 ? 1: 0);
+    });
+}
+
+// hint all files
+function hintAllFiles(target, options, onFinised){
+    // hint count
+    var targetFileCount = 0;
+    var targetHintCount = 0;
+
+    // json mode
+    var json = options.json;
+    var arrJson = [];
 
     // init ruleset
     var ruleset = options.ruleset;
     if(ruleset === undefined){
-        ruleset = getConfig(program.config, arrTargets, json);
+        ruleset = getConfig(program.config, target, json);
     }
 
+    // hint queue
     var hintQueue = async.queue(function (filepath, next) {
         var messages = hintFile(filepath, ruleset);
         var hintCount = messages.length;
@@ -128,58 +166,58 @@ function hintAllFiles(arrTargets, options){
                 });
                 console.log('');
             }
-            exitcode = 1;
-            allFileCount ++;
-            allHintCount += hintCount;
+            targetFileCount ++;
+            targetHintCount += hintCount;
         }
         setImmediate(next);
     }, 10);
     // start hint
     var isWalkDone = false;
     var isHintDone = true;
-    walkTargets(arrTargets, function onPath(filepath){
-        isHintDone = false;
-        hintQueue.push(filepath);
-    }, function onFinised(){
+    var stats = fs.statSync(target);
+    if(stats.isDirectory()){
+        walkPath(target, function onPath(filepath){
+            isHintDone = false;
+            hintQueue.push(filepath);
+        }, function onFinised(){
+            isWalkDone = true;
+            checkAllHinted();
+        });
+    }
+    else{
         isWalkDone = true;
-        checkAllHinted();
-    });
+        hintQueue.push(target);
+    }
     hintQueue.drain = function() {
         isHintDone = true;
         checkAllHinted();
     };
     function checkAllHinted(){
         if(isWalkDone && isHintDone){
-            if(json){
-                console.log(JSON.stringify(arrJson));
-            }
-            else{
-                if(allHintCount > 0){
-                    console.log('%d errors in %d files'.red, allHintCount, allFileCount);
-                }
-                else{
-                    console.log('Done, without errors.'.green);
-                }
-            }
-            process.exit(exitcode);
+            onFinised({
+                targetFileCount: targetFileCount,
+                targetHintCount: targetHintCount,
+                arrJson: arrJson
+            });
         }
     }
 }
 
 // search and load config
-function getConfig(configFile, arrTargets, json){
+function getConfig(configFile, target, json){
     if(configFile === undefined){
         // find default config file in parent directory
-        arrTargets.forEach(function(curDir){
-            while(curDir){
-                var tmpConfigFile = path.resolve(curDir+path.sep, '.htmlhintrc');
-                if(fs.existsSync(tmpConfigFile)){
-                    configFile = tmpConfigFile;
-                    break;
-                }
-                curDir = curDir.substring(0,curDir.lastIndexOf(path.sep));
+        if(fs.statSync(target).isDirectory() === false){
+            target = path.dirname(target);
+        }
+        while(target){
+            var tmpConfigFile = path.resolve(target+path.sep, '.htmlhintrc');
+            if(fs.existsSync(tmpConfigFile)){
+                configFile = tmpConfigFile;
+                break;
             }
-        });
+            target = target.substring(0,target.lastIndexOf(path.sep));
+        }
     }
 
     if(fs.existsSync(configFile)){
@@ -195,28 +233,6 @@ function getConfig(configFile, arrTargets, json){
         catch(e){}
         return ruleset;
     }
-}
-
-// walk targets
-function walkTargets(arrTargets, callback, onFinish){
-    var arrTasks = [];
-    arrTargets.forEach(function(target){
-        if(fs.existsSync(target)){
-            if(fs.statSync(target).isDirectory()){
-                // directory
-                arrTasks.push(function(next){
-                    walkPath(target, callback, next);
-                });
-            }
-            else{
-                // file
-                callback(target);
-            }
-        }
-    });
-    async.series(arrTasks, function(){
-        onFinish && onFinish();
-    });
 }
 
 // walk path
