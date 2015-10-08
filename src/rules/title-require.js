@@ -19,7 +19,7 @@ HTMLHint.addRule({
                     reporter.error('<title> must be present in <head> tag.', event.line, event.col, self, event.raw);
                 }
                 parser.removeListener('tagstart', onTagStart);
-                parser.removeListener('tagstart', onTagEnd);
+                parser.removeListener('tagend', onTagEnd);
             }
         }
         parser.addListener('tagstart', onTagStart);

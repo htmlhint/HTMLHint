@@ -25,7 +25,7 @@ HTMLHint.addRule({
         function onTagEnd(event){
             if(event.tagName.toLowerCase() === 'head'){
                 parser.removeListener('tagstart', onTagStart);
-                parser.removeListener('tagstart', onTagEnd);
+                parser.removeListener('tagend', onTagEnd);
             }
         }
         parser.addListener('tagstart', onTagStart);
