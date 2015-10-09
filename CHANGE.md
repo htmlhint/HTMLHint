@@ -1,7 +1,7 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.9 (2015-10-8)
+## ver 0.9.9 (2015-10-10)
 
 add:
 
@@ -10,7 +10,9 @@ add:
 
 fix:
 
-1. fix end event col
+1. close issue: #79, fix exit with 0 when hint errors
+2. fix end event col
+2. attr-unsafe-chars(rule): exclude `\r\n`
 
 ## ver 0.9.8 (2015-10-7)
 
