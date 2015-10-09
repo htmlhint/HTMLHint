@@ -28,6 +28,10 @@ describe('Rules: '+ruldId, function(){
         code = '<html><head></head><body><title>test</title></body></html>';
         messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(1);
+
+        code = '<html><title>test</title><head></head><body></body></html>';
+        messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
     });
 
     it('No head should not result in an error', function(){
