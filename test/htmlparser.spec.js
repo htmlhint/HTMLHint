@@ -14,7 +14,12 @@ expect.Assertion.prototype.event = function(type, attr){
         attr.type = type;
     }
     else{
-        attr = {'type': type};
+        if(typeof attr === 'string'){
+            attr = {'type': type};
+        }
+        else{
+            attr = type;
+        }
     }
     self.assert(
         eqlEvent(obj, attr),
@@ -24,7 +29,7 @@ expect.Assertion.prototype.event = function(type, attr){
 
 function eqlEvent(event, attr){
     for(var name in attr){
-        if(event[name] !== attr[name]){
+        if(name !== 'attrs' && event[name] !== attr[name]){
             return false;
         }
     }
@@ -47,7 +52,9 @@ describe('HTMLParser: Base parse', function(){
       var arrEvents = [];
       var targetEvents = [{"pos":0,"line":1,"col":1,"type":"start"},{"content":"DOCTYPE HTML","long":false,"raw":"<!DOCTYPE HTML>","pos":0,"line":1,"col":1,"type":"comment"},{"tagName":"html","attrs":[],"close":"","raw":"<html>","pos":15,"line":1,"col":16,"type":"tagstart"},{"tagName":"head","attrs":[],"close":"","raw":"<head>","pos":21,"line":1,"col":22,"type":"tagstart"},{"tagName":"meta","attrs":[{"name":"charset","value":"UTF-8","quote":"\"","index":0,"raw":" charset=\"UTF-8\""}],"close":"","raw":"<meta charset=\"UTF-8\">","pos":27,"line":1,"col":28,"type":"tagstart"},{"tagName":"title","attrs":[],"close":"","raw":"<title>","pos":49,"line":1,"col":50,"type":"tagstart"},{"raw":"testtitle","pos":56,"line":1,"col":57,"type":"text"},{"tagName":"title","raw":"</title>","pos":65,"line":1,"col":66,"type":"tagend"},{"tagName":"head","raw":"</head>","pos":73,"line":1,"col":74,"type":"tagend"},{"tagName":"body","attrs":[],"close":"","raw":"<body>","pos":80,"line":1,"col":81,"type":"tagstart"},{"tagName":"p","attrs":[],"close":"","raw":"<p>","pos":86,"line":1,"col":87,"type":"tagstart"},{"tagName":"a","attrs":[{"name":"href","value":"testhref","quote":"\"","index":0,"raw":" href=\"testhref\""},{"name":"title","value":"atitle","quote":"\"","index":16,"raw":" title=\"atitle\""}],"close":"","raw":"<a href=\"testhref\" title=\"atitle\">","pos":89,"line":1,"col":90,"type":"tagstart"},{"raw":"aaa","pos":123,"line":1,"col":124,"type":"text"},{"tagName":"span","attrs":[],"close":"","raw":"<span>","pos":126,"line":1,"col":127,"type":"tagstart"},{"raw":"bbb","pos":132,"line":1,"col":133,"type":"text"},{"tagName":"span","raw":"</span>","pos":135,"line":1,"col":136,"type":"tagend"},{"raw":"ccc","pos":142,"line":1,"col":143,"type":"text"},{"tagName":"a","raw":"</a>","pos":145,"line":1,"col":146,"type":"tagend"},{"tagName":"p","raw":"</p>","pos":149,"line":1,"col":150,"type":"tagend"},{"tagName":"body","raw":"</body>","pos":153,"line":1,"col":154,"type":"tagend"},{"tagName":"html","raw":"</html>","pos":160,"line":1,"col":161,"type":"tagend"},{"pos":167,"line":1,"col":168,"type":"end"}];
       getAllEvents(parser, arrEvents, function(){
-        expect(arrEvents).to.eql(targetEvents);
+        arrEvents.forEach(function(event, i){
+            expect(event).to.event(targetEvents[i]);
+        });
         done();
       });
       parser.parse('<!DOCTYPE HTML><html><head><meta charset="UTF-8"><title>testtitle</title></head><body><p><a href="testhref" title="atitle">aaa<span>bbb</span>ccc</a></p></body></html>');

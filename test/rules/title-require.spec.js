@@ -15,7 +15,7 @@ ruleOptions[ruldId] = true;
 describe('Rules: '+ruldId, function(){
 
     it('<title> be present in <head> tag should not result in an error', function(){
-        var code = '<html><head><title></title></head><body></body></html>';
+        var code = '<html><head><title>test</title></head><body></body></html>';
         var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
@@ -38,5 +38,15 @@ describe('Rules: '+ruldId, function(){
         var code = '<html><body></body></html>';
         var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
+    });
+
+    it('<title></title> is empty should result in an error', function(){
+        var code = '<html><head><title></title></head><body></body></html>';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
+
+        code = '<html><head><title>  \t   </title></head><body></body></html>';
+        messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
     });
 });

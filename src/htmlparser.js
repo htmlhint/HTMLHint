@@ -16,6 +16,7 @@ var HTMLParser = (function(undefined){
             self._listeners = {};
             self._mapCdataTags = self.makeMap("script,style");
             self._arrBlocks = [];
+            self.lastEvent = null;
         },
 
         makeMap: function(str){
@@ -186,6 +187,12 @@ var HTMLParser = (function(undefined){
             if (listenersAll !== undefined){
                 listeners = listeners.concat(listenersAll);
             }
+            var lastEvent = self.lastEvent;
+            if(lastEvent !== null){
+                delete lastEvent['lastEvent'];
+                data.lastEvent = lastEvent;
+            }
+            self.lastEvent = data;
             for (var i = 0, l = listeners.length; i < l; i++){
                 listeners[i].call(self, data);
             }
