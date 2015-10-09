@@ -44,7 +44,7 @@ if(program.list){
 var noProblemSuppressed = 0;
 var filePathArr;
 
-if(process.argv[2] === '-l' || process.argv[2] === '-c' || process.argv[2] === '-l' || process.argv[2] === '-s'){ 
+if(process.argv[2] === '-l' || process.argv[2] === '-c' || process.argv[2] === '-s'){ 
     filePathArr = process.cwd() + '/' + process.argv[3];
 }
 else {
