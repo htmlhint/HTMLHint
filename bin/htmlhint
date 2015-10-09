@@ -25,6 +25,7 @@ program.on('--help', function(){
     console.log('');
     console.log('    htmlhint --list');
     console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
+    console.log('    htmlhint --rulesPath ./rules test.html');
     console.log('    htmlhint --config .htmlhintrc test.html');
     console.log('');
 });
@@ -35,6 +36,7 @@ program
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)
+    .option('--rulesPath <folder>', 'load custom rules from folder')
     .option('-j, --json', 'output messages as raw JSON')
     .parse(process.argv);
 
@@ -48,9 +50,19 @@ if(arrTargets.length === 0){
     arrTargets.push(process.cwd());
 }
 
+program.rulesPath = path.resolve(program.rulesPath);
+
+if (!(program.rulesPath &&
+    fs.existsSync(program.rulesPath) &&
+    fs.lstatSync(program.rulesPath).isDirectory())) {
+    console.log('Bad custom folder for rule: '.red,program.rulesPath);
+    process.exit(0);
+}
+
 hintTargets(arrTargets, {
     ruleset: program.rules,
-    json: program.json
+    json: program.json,
+    rulesPath: program.rulesPath
 });
 
 // list all rules
@@ -69,13 +81,26 @@ function hintTargets(arrTargets, options){
     var allFileCount = 0;
     var allHintCount = 0;
 
+    var rulesPath = path.resolve(options.rulesPath);
+
     // json mode
     var json = options.json;
     var arrJson = [];
-
     if(!json){
         console.log('');
     }
+    if (rulesPath) {
+        fs.readdir(rulesPath, function(err, rules) {
+            rules.forEach(function(ruleName) {
+                var rulePath = path.join(rulesPath,ruleName);
+                var rule = require(rulePath);
+
+                rule(HTMLHint);
+            });
+        });
+    }
+
+
     var arrTasks = [];
     arrTargets.forEach(function(target){
         target = path.resolve(target);
