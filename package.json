@@ -8,8 +8,6 @@
     "colors": "1.0.3",
     "commander": "2.6.0",
     "csslint": "0.10.0",
-    "iconv-lite": "^0.4.13",
-    "jschardet": "1.3.0",
     "jshint": "2.8.0",
     "strip-json-comments": "1.0.4"
   },

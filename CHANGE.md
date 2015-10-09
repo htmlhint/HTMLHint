@@ -5,7 +5,7 @@ HTMLHint change log
 
 add:
 
-1. support detect file encoding in cli
+1. attr-unsafe-chars(rule): show unsafe code in message
 
 fix:
 

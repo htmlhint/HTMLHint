@@ -23,6 +23,7 @@
         "exports",
         "console",
         "JSHINT",
-        "CSSLint"
+        "CSSLint",
+        "escape"
     ]
 }
