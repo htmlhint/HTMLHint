@@ -7,9 +7,14 @@ HTMLHint.addRule({
     description: '<title> must be present in <head> tag.',
     init: function(parser, reporter){
         var self = this;
-        var hasTitle = false;
+        var headBegin = false,
+            hasTitle = false;
         function onTagStart(event){
-            if(event.tagName.toLowerCase() === 'title'){
+            var tagName = event.tagName.toLowerCase();
+            if(tagName === 'head'){
+                headBegin = true;
+            }
+            if(tagName === 'title' && headBegin){
                 hasTitle = true;
             }
         }
