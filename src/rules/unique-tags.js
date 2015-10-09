@@ -20,7 +20,7 @@ HTMLHint.addRule({
             if(typeof map[tagName] !== 'undefined'){
 
                 if (++map[tagName] > 1) {
-                    reporter.error('<' + tagName +'> must be one page', event.line, event.col, self, event.raw);
+                    reporter.error('there should be only one <' + tagName +'> per page', event.line, event.col, self, event.raw);
                 }
             }
         }
