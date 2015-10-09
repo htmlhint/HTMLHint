@@ -5,6 +5,8 @@ var fs = require('fs');
 var path = require('path');
 var stripJsonComments = require('strip-json-comments');
 var async = require('async');
+var jschardet = require("jschardet");
+var iconv = require('iconv-lite');
 
 var HTMLHint  = require("../index").HTMLHint;
 var pkg = require('../package.json');
@@ -272,8 +274,11 @@ function walkPath(dir, callback, onFinish) {
 
 // hint file
 function hintFile(filepath, ruleset){
-    var html = fs.readFileSync(filepath, 'utf-8');
-    return HTMLHint.verify(html, ruleset);
+    var content = fs.readFileSync(filepath);
+    // detect encoding
+    var encoding = jschardet.detect(content).encoding || 'utf-8';
+    content = iconv.decode(content, encoding);
+    return HTMLHint.verify(content, ruleset);
 }
 
 // repeat string
