@@ -10,6 +10,7 @@ add:
 fix:
 
 1. title-require(rule): report error when `<html><title>test</title><head></head><body></body></html>`
+1. title-require(rule): report error when `<html><head><title></title></head><body></body></html>`
 
 ## ver 0.9.9 (2015-10-9)
 

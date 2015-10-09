@@ -1,4 +1,2 @@
 TODO
 ==================
-
-security rule
