@@ -5,7 +5,7 @@
  */
 HTMLHint.addRule({
     id: 'unique-tags',
-    description: 'unique tags <title> or <main>, must be one on page!',
+    description: 'there can only be one <title> and <main> tag per page',
     init: function(parser, reporter){
         var uniqueTags = ["title", "main"],
             map = {},
