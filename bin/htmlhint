@@ -53,7 +53,7 @@ if(program.list){
 
 var arrTargets = program.args;
 if(arrTargets.length === 0){
-    arrTargets.push('.');
+    arrTargets.push('./');
 }
 
 hintTargets(arrTargets, {
