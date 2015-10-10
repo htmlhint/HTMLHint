@@ -1,16 +1,17 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.10 (2015-10-9)
+## ver 0.9.10 (2015-10-10)
 
 add:
 
 1. attr-unsafe-chars(rule): show unsafe code in message
+2. support glob pattern for cli
 
 fix:
 
 1. title-require(rule): report error when `<html><title>test</title><head></head><body></body></html>`
-1. title-require(rule): report error when `<html><head><title></title></head><body></body></html>`
+2. title-require(rule): report error when `<html><head><title></title></head><body></body></html>`
 
 ## ver 0.9.9 (2015-10-9)
 

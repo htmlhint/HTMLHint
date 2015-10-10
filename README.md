@@ -22,7 +22,9 @@ Quick start
         npm install htmlhint -g
         htmlhint -V
         htmlhint --help
-        htmlhint test.html
+        htmlhint www
+        htmlhint www/test.html
+        htmlhint www/**/*.xhtml
 
 2. results
 

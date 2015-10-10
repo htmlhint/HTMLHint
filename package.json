@@ -8,7 +8,9 @@
     "colors": "1.0.3",
     "commander": "2.6.0",
     "csslint": "0.10.0",
+    "glob": "5.0.15",
     "jshint": "2.8.0",
+    "parse-glob": "3.0.4",
     "strip-json-comments": "1.0.4"
   },
   "devDependencies": {

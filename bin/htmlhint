@@ -5,6 +5,8 @@ var fs = require('fs');
 var path = require('path');
 var stripJsonComments = require('strip-json-comments');
 var async = require('async');
+var glob = require("glob");
+var parseGlob = require('parse-glob');
 
 var HTMLHint  = require("../index").HTMLHint;
 var pkg = require('../package.json');
@@ -14,8 +16,8 @@ require('colors');
 function map(val) {
     var objMap = {};
     val.split(',').forEach(function(item){
-    var arrItem = item.split(/\s*=\s*/);
-    objMap[arrItem[0]] = arrItem[1]?arrItem[1]:true;
+        var arrItem = item.split(/\s*=\s*/);
+        objMap[arrItem[0]] = arrItem[1]?arrItem[1]:true;
     });
     return objMap;
 }
@@ -23,21 +25,27 @@ function map(val) {
 program.on('--help', function(){
     console.log('  Examples:');
     console.log('');
+    console.log('    htmlhint');
+    console.log('    htmlhint www');
+    console.log('    htmlhint www/test.html');
+    console.log('    htmlhint www/**/*.xhtml');
     console.log('    htmlhint --list');
     console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint --rulesPath ./rules test.html');
     console.log('    htmlhint --config .htmlhintrc test.html');
+    console.log('    htmlhint --ignore **/build/**,**/test/**');
     console.log('');
 });
 
 program
     .version(pkg.version)
-    .usage('<file ...> [options]')
+    .usage('<file|folder|pattern ...> [options]')
     .option('-l, --list', 'show all of the rules available.')
     .option('-c, --config <file>', 'custom configuration file.')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)
     .option('--rulesPath <folder>', 'load custom rules from folder')
     .option('-j, --json', 'output messages as raw JSON')
+    .option('-i, --ignore <pattern, pattern ...>', 'Add pattern to exclude matches')
     .parse(process.argv);
 
 if(program.list){
@@ -47,7 +55,7 @@ if(program.list){
 
 var arrTargets = program.args;
 if(arrTargets.length === 0){
-    arrTargets.push(process.cwd());
+    arrTargets.push('.');
 }
 
 program.rulesPath = path.resolve(program.rulesPath);
@@ -61,14 +69,15 @@ if (!(program.rulesPath &&
 
 hintTargets(arrTargets, {
     ruleset: program.rules,
+	rulesPath: program.rulesPath,
     json: program.json,
-    rulesPath: program.rulesPath
+    ignore: program.ignore
 });
 
 // list all rules
 function listRules(){
     var rules = HTMLHint.rules;
-	var rule;
+    var rule;
     console.log('     All rules:');
     console.log(' ==================================================');
     for (var id in rules){
@@ -79,7 +88,9 @@ function listRules(){
 
 function hintTargets(arrTargets, options){
     var allFileCount = 0;
+    var allHintFileCount = 0;
     var allHintCount = 0;
+    var startTime = new Date().getTime();
 
     var rulesPath = path.resolve(options.rulesPath);
 
@@ -103,28 +114,27 @@ function hintTargets(arrTargets, options){
 
     var arrTasks = [];
     arrTargets.forEach(function(target){
-        target = path.resolve(target);
-        if(fs.existsSync(target)){
-            arrTasks.push(function(next){
-                hintAllFiles(target, options, function(result){
-                    allFileCount += result.targetFileCount;
-                    allHintCount += result.targetHintCount;
-                    arrJson = arrJson.concat(result.arrJson);
-                    next();
-                });
+        arrTasks.push(function(next){
+            hintAllFiles(target, options, function(result){
+                allFileCount += result.targetFileCount;
+                allHintFileCount += result.targetHintFileCount;
+                allHintCount += result.targetHintCount;
+                arrJson = arrJson.concat(result.arrJson);
+                next();
             });
-        }
+        });
     });
     async.series(arrTasks, function(){
         if(json){
             console.log(JSON.stringify(arrJson));
         }
         else{
+            var spendTime = new Date().getTime() - startTime;
             if(allHintCount > 0){
-                console.log('%d errors in %d files'.red, allHintCount, allFileCount);
+                console.log('Scan %d files, found %d errors in %d files (%d ms)'.red, allFileCount, allHintCount, allHintFileCount, spendTime);
             }
             else{
-                console.log('Done, without errors.'.green);
+                console.log('Scan %d files, without errors (%d ms).'.green, allFileCount, spendTime);
             }
         }
         process.exit(allHintCount > 0 ? 1: 0);
@@ -133,8 +143,12 @@ function hintTargets(arrTargets, options){
 
 // hint all files
 function hintAllFiles(target, options, onFinised){
+    var globInfo = getGlobInfo(target);
+    globInfo.ignore = options.ignore;
+
     // hint count
     var targetFileCount = 0;
+    var targetHintFileCount = 0;
     var targetHintCount = 0;
 
     // json mode
@@ -144,7 +158,7 @@ function hintAllFiles(target, options, onFinised){
     // init ruleset
     var ruleset = options.ruleset;
     if(ruleset === undefined){
-        ruleset = getConfig(program.config, target, json);
+        ruleset = getConfig(program.config, globInfo.base, json);
     }
 
     // hint queue
@@ -156,7 +170,7 @@ function hintAllFiles(target, options, onFinised){
                 arrJson.push({'file': filepath, 'messages': messages});
             }
             else{
-                console.log('   '+path.relative(process.cwd(), filepath).white);
+                console.log('   '+filepath.white);
                 messages.forEach(function(hint){
                     var leftWindow = 40;
                     var rightWindow = leftWindow + 20;
@@ -191,28 +205,22 @@ function hintAllFiles(target, options, onFinised){
                 });
                 console.log('');
             }
-            targetFileCount ++;
+            targetHintFileCount ++;
             targetHintCount += hintCount;
         }
+        targetFileCount ++;
         setImmediate(next);
     }, 10);
     // start hint
     var isWalkDone = false;
     var isHintDone = true;
-    var stats = fs.statSync(target);
-    if(stats.isDirectory()){
-        walkPath(target, function onPath(filepath){
-            isHintDone = false;
-            hintQueue.push(filepath);
-        }, function onFinised(){
-            isWalkDone = true;
-            checkAllHinted();
-        });
-    }
-    else{
+    walkPath(globInfo, function(filepath){
+        isHintDone = false;
+        hintQueue.push(filepath);
+    }, function(){
         isWalkDone = true;
-        hintQueue.push(target);
-    }
+        checkAllHinted();
+    });
     hintQueue.drain = function() {
         isHintDone = true;
         checkAllHinted();
@@ -221,6 +229,7 @@ function hintAllFiles(target, options, onFinised){
         if(isWalkDone && isHintDone){
             onFinised({
                 targetFileCount: targetFileCount,
+                targetHintFileCount: targetHintFileCount,
                 targetHintCount: targetHintCount,
                 arrJson: arrJson
             });
@@ -228,20 +237,53 @@ function hintAllFiles(target, options, onFinised){
     }
 }
 
-// search and load config
-function getConfig(configFile, target, json){
-    if(configFile === undefined){
-        // find default config file in parent directory
-        if(fs.statSync(target).isDirectory() === false){
-            target = path.dirname(target);
+// split target to base & glob
+function getGlobInfo(target){
+    // fix windows sep
+    target = target.replace(/\\/g, '/');
+    var globInfo = parseGlob(target);
+    var base = globInfo.base;
+    base += /\/$/.test(base) ? '' : '/';
+    var pattern = globInfo.glob;
+    var globPath = globInfo.path;
+    var defaultGlob = '*.{htm,html}';
+    if(globInfo.is.glob === true){
+        // no basename
+        if(globPath.basename === ''){
+            pattern += defaultGlob;
         }
-        while(target){
-            var tmpConfigFile = path.resolve(target+path.sep, '.htmlhintrc');
+    }
+    else{
+        // no basename
+        if(globPath.basename === ''){
+            pattern += '**/' + defaultGlob;
+        }
+        // detect directory
+        else if(fs.existsSync(target) && fs.statSync(target).isDirectory()){
+            base += globPath.basename + '/';
+            pattern = '**/' + defaultGlob;
+        }
+    }
+    return {
+        base: base,
+        pattern: pattern
+    };
+}
+
+// search and load config
+function getConfig(configFile, base, json){
+    if(configFile === undefined && fs.existsSync(base)){
+        // find default config file in parent directory
+        if(fs.statSync(base).isDirectory() === false){
+            base = path.dirname(base);
+        }
+        while(base){
+            var tmpConfigFile = path.resolve(base+path.sep, '.htmlhintrc');
             if(fs.existsSync(tmpConfigFile)){
                 configFile = tmpConfigFile;
                 break;
             }
-            target = target.substring(0,target.lastIndexOf(path.sep));
+            base = base.substring(0,base.lastIndexOf(path.sep));
         }
     }
 
@@ -261,37 +303,29 @@ function getConfig(configFile, target, json){
 }
 
 // walk path
-function walkPath(dir, callback, onFinish) {
-    fs.readdir(dir, function (err, files) {
-        var arrTasks = [];
-        files.forEach(function(file){
-            arrTasks.push(function(next){
-                var pathname = path.join(dir, file);
-                fs.stat(pathname, function (err, stats) {
-                    if(stats){
-                        if (stats.isDirectory()) {
-                            if(/^(\.svn|\.git|\.build|node_modules)$/i.test(file) === false){
-                                walkPath(pathname, callback, next);
-                            }
-                            else{
-                                next();
-                            }
-                        } else {
-                            if(/\.html?$/i.test(file)){
-                                callback(path.normalize(pathname));
-                            }
-                            next();
-                        }
-                    }
-                    else{
-                        next();
-                    }
-                });
-            });
+function walkPath(globInfo, callback, onFinish) {
+    var base = globInfo.base;
+    var pattern = globInfo.pattern;
+    var ignore = globInfo.ignore;
+    var arrIgnores = ['**/node_modules/**'];
+    if(ignore){
+        ignore.split(',').forEach(function(pattern){
+            arrIgnores.push(pattern);
         });
-        async.series(arrTasks, function(){
-            onFinish && onFinish();
-        });
+    }
+    var walk = glob(pattern, {
+        'cwd': base,
+        'dot': false,
+        'ignore': arrIgnores,
+        'nodir': true,
+        'strict': false,
+        'silent': true
+    },function() {
+        onFinish();
+    });
+    walk.on('match', function(file){
+        base = base.replace(/^.\//, '');
+        callback(base + file);
     });
 }
 
