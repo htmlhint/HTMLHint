@@ -35,6 +35,7 @@ program.on('--help', function(){
     console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint --config .htmlhintrc test.html');
     console.log('    htmlhint --ignore **/build/**,**/test/**');
+    console.log('    htmlhint --plugin ./plugins/');
     console.log('');
 });
 
