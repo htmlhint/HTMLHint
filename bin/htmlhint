@@ -7,6 +7,7 @@ var stripJsonComments = require('strip-json-comments');
 var async = require('async');
 var glob = require("glob");
 var parseGlob = require('parse-glob');
+var xml = require('xml');
 
 var HTMLHint  = require("../index").HTMLHint;
 var pkg = require('../package.json');
@@ -29,6 +30,7 @@ program.on('--help', function(){
     console.log('    htmlhint www');
     console.log('    htmlhint www/test.html');
     console.log('    htmlhint www/**/*.xhtml');
+    console.log('    htmlhint www/**/*.{htm,html}');
     console.log('    htmlhint --list');
     console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint --config .htmlhintrc test.html');
@@ -39,11 +41,12 @@ program.on('--help', function(){
 program
     .version(pkg.version)
     .usage('<file|folder|pattern ...> [options]')
-    .option('-l, --list', 'show all of the rules available.')
-    .option('-c, --config <file>', 'custom configuration file.')
-    .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available.', map)
-    .option('-j, --json', 'output messages as raw JSON')
-    .option('-i, --ignore <pattern, pattern ...>', 'Add pattern to exclude matches')
+    .option('-l, --list', 'show all of the rules available')
+    .option('-c, --config <file>', 'custom configuration file')
+    .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available', map)
+    .option('-p, --plugin <file|folder>', 'load custom rules from file or folder')
+    .option('-f, --format <json|junit|checkstyle>', 'output messages as custom format')
+    .option('-i, --ignore <pattern, pattern ...>', 'add pattern to exclude matches')
     .parse(process.argv);
 
 if(program.list){
@@ -57,8 +60,9 @@ if(arrTargets.length === 0){
 }
 
 hintTargets(arrTargets, {
+    plugin: program.plugin,
     ruleset: program.rules,
-    json: program.json,
+    format: program.format,
     ignore: program.ignore
 });
 
@@ -80,11 +84,11 @@ function hintTargets(arrTargets, options){
     var allHintCount = 0;
     var startTime = new Date().getTime();
 
-    // json mode
-    var json = options.json;
-    var arrJson = [];
+    // custom format
+    var format = options.format;
+    var arrAllMessages = [];
 
-    if(!json){
+    if(!format){
         console.log('');
     }
     var arrTasks = [];
@@ -94,17 +98,22 @@ function hintTargets(arrTargets, options){
                 allFileCount += result.targetFileCount;
                 allHintFileCount += result.targetHintFileCount;
                 allHintCount += result.targetHintCount;
-                arrJson = arrJson.concat(result.arrJson);
+                arrAllMessages = arrAllMessages.concat(result.arrTargetMessages);
                 next();
             });
         });
     });
     async.series(arrTasks, function(){
-        if(json){
-            console.log(JSON.stringify(arrJson));
+        var spendTime = new Date().getTime() - startTime;
+        // output as custom format
+        if(format){
+            formatResult({
+                arrAllMessages: arrAllMessages,
+                allFileCount: allFileCount,
+                time: spendTime
+            }, format);
         }
         else{
-            var spendTime = new Date().getTime() - startTime;
             if(allHintCount > 0){
                 console.log('Scan %d files, found %d errors in %d files (%d ms)'.red, allFileCount, allHintCount, allHintFileCount, spendTime);
             }
@@ -114,6 +123,117 @@ function hintTargets(arrTargets, options){
         }
         process.exit(allHintCount > 0 ? 1: 0);
     });
+}
+
+// output as custom format
+function formatResult(hintInfo, format){
+    switch(format){
+        case 'json':
+            console.log(JSON.stringify(hintInfo.arrAllMessages));
+            break;
+        case 'junit':
+            formatJunit(hintInfo);
+            break;
+        case 'checkstyle':
+            formatCheckstyle(hintInfo);
+            break;
+        default:
+            console.log('No supported format, supported format:json, junit, checkstyle.'.red);
+            process.exit(1);
+    }
+}
+
+// format as junit
+function formatJunit(hintInfo){
+    var arrTestcase = [];
+    var arrAllMessages = hintInfo.arrAllMessages;
+    arrAllMessages.forEach(function(fileInfo){
+        var arrMessages = fileInfo.messages;
+        var arrLogs = HTMLHint.format(arrMessages);
+        arrTestcase.push({
+            testcase: [
+                {
+                  _attr: {
+                    name: fileInfo.file,
+                    time: (fileInfo.time / 1000).toFixed(3)
+                  }
+                },
+                {
+                    failure: {
+                        _attr: {
+                            message: 'Found '+arrMessages.length+' errors'
+                        },
+                        _cdata: arrLogs.join('\r\n')
+                    }
+                }
+            ]
+        });
+    });
+    var objXml = {
+        testsuites: [
+            {
+                testsuite: [
+                    {
+                      _attr: {
+                        name: 'HTMLHint Tests',
+                        time: (hintInfo.time / 1000).toFixed(3),
+                        tests: hintInfo.allFileCount,
+                        failures: arrAllMessages.length
+                      }
+                    }
+                ].concat(arrTestcase)
+            }
+        ]
+    };
+    console.log(xml(objXml, {
+        declaration: true,
+        indent: '    '
+    }));
+}
+
+// format as checkstyle
+function formatCheckstyle(hintInfo){
+    var arrFiles = [];
+    var arrAllMessages = hintInfo.arrAllMessages;
+    arrAllMessages.forEach(function(fileInfo){
+        var arrMessages = fileInfo.messages;
+        var arrErrors = [];
+        arrMessages.forEach(function(message){
+            arrErrors.push({
+                error: {
+                    _attr: {
+                        line: message.line,
+                        column: message.col,
+                        severity: message.type,
+                        message: message.message,
+                        source: 'htmlhint.'+message.rule.id
+                    }
+                }
+            });
+        });
+        arrFiles.push({
+            file: [
+                {
+                    _attr: {
+                        name: fileInfo.file
+                    }
+                }
+            ].concat(arrErrors)
+        });
+    });
+    var objXml = {
+        checkstyle: [
+            {
+              _attr: {
+                version: '4.3'
+              }
+            }
+        ].concat(arrFiles)
+    };
+    console.log(xml(objXml, {
+        declaration: true,
+        indent: '    '
+    }));
 }
 
 // hint all files
@@ -126,57 +246,38 @@ function hintAllFiles(target, options, onFinised){
     var targetHintFileCount = 0;
     var targetHintCount = 0;
 
-    // json mode
-    var json = options.json;
-    var arrJson = [];
+    // custom format
+    var format = options.format;
+    var arrTargetMessages = [];
 
     // init ruleset
     var ruleset = options.ruleset;
     if(ruleset === undefined){
-        ruleset = getConfig(program.config, globInfo.base, json);
+        ruleset = getConfig(program.config, globInfo.base, format);
     }
 
     // hint queue
     var hintQueue = async.queue(function (filepath, next) {
+        var startTime = new Date().getTime();
         var messages = hintFile(filepath, ruleset);
+        var spendTime = new Date().getTime() - startTime;
         var hintCount = messages.length;
         if(hintCount > 0){
-            if(json){
-                arrJson.push({'file': filepath, 'messages': messages});
+            if(format){
+                arrTargetMessages.push({
+                    'file': filepath,
+                    'messages': messages,
+                    'time': spendTime
+                });
             }
             else{
                 console.log('   '+filepath.white);
-                messages.forEach(function(hint){
-                    var leftWindow = 40;
-                    var rightWindow = leftWindow + 20;
-                    var evidence = hint.evidence;
-                    var line = hint.line;
-                    var col = hint.col;
-                    var evidenceCount = evidence.length;
-                    var leftCol = col > leftWindow + 1 ? col - leftWindow : 1;
-                    var rightCol = evidence.length > col + rightWindow ? col + rightWindow : evidenceCount;
-                    if(col < leftWindow + 1){
-                        rightCol += leftWindow - col + 1;
-                    }
-                    evidence = evidence.replace(/\t/g, ' ').substring(leftCol - 1, rightCol);
-                    // add ...
-                    if(leftCol > 1){
-                        evidence = '...' + evidence;
-                        leftCol -= 3;
-                    }
-                    if(rightCol < evidenceCount){
-                        evidence += '...';
-                    }
-                    // show evidence
-                    console.log('      L%d |%s'.white, line, evidence.gray);
-                    // show pointer & message
-                    var pointCol = col - leftCol;
-                    // add double byte character
-                    var match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g);
-                    if(match !== null){
-                        pointCol += match.length;
-                    }
-                    console.log('      %s^ %s'.white, repeatStr(String(line).length + 3 + pointCol), (hint.message + ' (' + hint.rule.id+')')[hint.type === 'error'?'red':'yellow']);
+                var arrLogs = HTMLHint.format(messages, {
+                    colors: true,
+                    indent: 6
+                });
+                arrLogs.forEach(function(str){
+                    console.log(str);
                 });
                 console.log('');
             }
@@ -206,7 +307,7 @@ function hintAllFiles(target, options, onFinised){
                 targetFileCount: targetFileCount,
                 targetHintFileCount: targetHintFileCount,
                 targetHintCount: targetHintCount,
-                arrJson: arrJson
+                arrTargetMessages: arrTargetMessages
             });
         }
     }
@@ -246,7 +347,7 @@ function getGlobInfo(target){
 }
 
 // search and load config
-function getConfig(configFile, base, json){
+function getConfig(configFile, base, format){
     if(configFile === undefined && fs.existsSync(base)){
         // find default config file in parent directory
         if(fs.statSync(base).isDirectory() === false){
@@ -267,7 +368,7 @@ function getConfig(configFile, base, json){
             ruleset;
         try{
             ruleset = JSON.parse(stripJsonComments(config));
-            if(!json){
+            if(!format){
                 console.log('   Config loaded: %s', configFile.cyan);
                 console.log('');
             }
@@ -308,9 +409,4 @@ function walkPath(globInfo, callback, onFinish) {
 function hintFile(filepath, ruleset){
     var content = fs.readFileSync(filepath, 'utf-8');
     return HTMLHint.verify(content, ruleset);
-}
-
-// repeat string
-function repeatStr(n, str){
-    return new Array(n + 1).join(str || ' ');
 }

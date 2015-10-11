@@ -7,6 +7,7 @@ add:
 
 1. attr-unsafe-chars(rule): show unsafe code in message
 2. support glob pattern for cli
+3. support format as custom: json, junit, checkstyle
 
 fix:
 

@@ -11,7 +11,8 @@
     "glob": "5.0.15",
     "jshint": "2.8.0",
     "parse-glob": "3.0.4",
-    "strip-json-comments": "1.0.4"
+    "strip-json-comments": "1.0.4",
+    "xml": "1.0.0"
   },
   "devDependencies": {
     "expect.js": "0.2.0",
