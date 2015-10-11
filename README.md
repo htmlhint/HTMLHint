@@ -25,6 +25,7 @@ Quick start
         htmlhint www
         htmlhint www/test.html
         htmlhint www/**/*.xhtml
+        htmlhint www/**/*.{htm,html}
 
 2. results
 
@@ -101,6 +102,7 @@ Thanks
 * Grunt: [http://gruntjs.com/](http://gruntjs.com/)
 * commander.js: [https://github.com/visionmedia/commander.js](https://github.com/visionmedia/commander.js)
 * colors.js: [https://github.com/Marak/colors.js](https://github.com/Marak/colors.js)
+* glob: [https://github.com/isaacs/node-glob](https://github.com/isaacs/node-glob)
 * jshint: [https://github.com/jshint/jshint](https://github.com/jshint/jshint)
 * csslint: [https://github.com/stubbornella/csslint](https://github.com/stubbornella/csslint)
 * GitHub: [https://github.com/](https://github.com/)
