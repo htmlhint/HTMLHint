@@ -47,4 +47,23 @@ describe('Core', function(){
         expect(messages.length).to.be(0);
     });
 
+    it('Show formated result should not result in an error', function(){
+        var code = 'tttttttttttttttttttttttttttttttttttt<div>中文<img src="test.gif" />tttttttttttttttttttttttttttttttttttttttttttttt';
+        var messages = HTMLHint.verify(code, {
+            'tag-pair': true,
+            'alt-require': true
+        });
+        var arrLogs = HTMLHint.format(messages);
+        expect(arrLogs.length).to.be(4);
+
+        arrLogs = HTMLHint.format(messages, {
+            colors: true,
+            indent: 4
+        });
+        var log = arrLogs[0];
+        expect(/\[37m/.test(log)).to.be(true);
+        expect(/    L1 /.test(log)).to.be(true);
+        expect(/|\.\.\./.test(log)).to.be(true);
+        expect(/t\.\.\./.test(log)).to.be(true);
+    });
 });
