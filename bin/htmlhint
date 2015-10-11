@@ -84,6 +84,12 @@ function hintTargets(arrTargets, options){
     var allHintCount = 0;
     var startTime = new Date().getTime();
 
+    // load plugins
+    var pluginPath = options.plugin;
+    if(pluginPath){
+        loadPlugins(pluginPath);
+    }
+
     // custom format
     var format = options.format;
     var arrAllMessages = [];
@@ -123,6 +129,38 @@ function hintTargets(arrTargets, options){
         }
         process.exit(allHintCount > 0 ? 1: 0);
     });
+}
+
+// load plugins
+function loadPlugins(pluginPath){
+    pluginPath = pluginPath.replace(/\\/g, '/');
+    if(fs.existsSync(pluginPath)){
+        if(fs.statSync(pluginPath).isDirectory()){
+            pluginPath += /\/$/.test(pluginPath)?'':'/';
+            pluginPath += '**/*.js';
+            var arrFiles = glob.sync(pluginPath, {
+                'dot': false,
+                'nodir': true,
+                'strict': false,
+                'silent': true
+            });
+            arrFiles.forEach(function(file){
+                loadPlugin(file);
+            });
+        }
+        else{
+            loadPlugin(pluginPath);
+        }
+    }
+}
+
+function loadPlugin(filepath){
+    filepath = path.resolve(filepath);
+    try{
+        var plugin = require(filepath);
+        plugin(HTMLHint);
+    }
+    catch(e){}
 }
 
 // output as custom format
