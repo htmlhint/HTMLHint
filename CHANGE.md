@@ -1,7 +1,7 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.10 (2015-10-11)
+## ver 0.9.10 (2015-10-12)
 
 add:
 
@@ -9,6 +9,8 @@ add:
 2. support glob pattern for cli
 3. support format as custom: json, junit, checkstyle
 4. support plugin: `htmlhint --plugin ./plugins/`
+5. add rule: inline-style-disabled
+6. add rule: inline-script-disabled
 
 fix:
 
