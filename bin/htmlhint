@@ -446,6 +446,10 @@ function walkPath(globInfo, callback, onFinish) {
 
 // hint file
 function hintFile(filepath, ruleset){
-    var content = fs.readFileSync(filepath, 'utf-8');
+    var content = '';
+    try{
+        content = fs.readFileSync(filepath, 'utf-8');
+    }
+    catch(e){}
     return HTMLHint.verify(content, ruleset);
 }
