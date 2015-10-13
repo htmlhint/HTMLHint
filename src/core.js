@@ -8,6 +8,7 @@ var HTMLHint = (function (undefined) {
     var HTMLHint = {};
 
     HTMLHint.version = '@VERSION';
+    HTMLHint.release = '@RELEASE';
 
     HTMLHint.rules = {};
 
