@@ -190,7 +190,7 @@
     }
 
     function initOptions(){
-        $('#ver').text('v'+HTMLHint.version);
+        $('#ver').text('v'+HTMLHint.version + ' ('+HTMLHint.release+')');
         $('input[type=checkbox]').change(function(){
             var jThis = $(this),
                 id = jThis.attr('id'),
