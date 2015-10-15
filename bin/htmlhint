@@ -46,7 +46,7 @@ program
     .option('-c, --config <file>', 'custom configuration file')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available', map)
     .option('-p, --plugin <file|folder>', 'load custom rules from file or folder')
-    .option('-f, --format <json|junit|checkstyle>', 'output messages as custom format')
+    .option('-f, --format <json|junit|checkstyle|unix>', 'output messages as custom format')
     .option('-i, --ignore <pattern, pattern ...>', 'add pattern to exclude matches')
     .parse(process.argv);
 
@@ -176,8 +176,11 @@ function formatResult(hintInfo, format){
         case 'checkstyle':
             formatCheckstyle(hintInfo);
             break;
+        case 'unix':
+            formatUnix(hintInfo);
+            break;
         default:
-            console.log('No supported format, supported format:json, junit, checkstyle.'.red);
+            console.log('No supported format, supported format:json, junit, checkstyle, unix.'.red);
             process.exit(1);
     }
 }
@@ -273,6 +276,22 @@ function formatCheckstyle(hintInfo){
         declaration: true,
         indent: '    '
     }));
+}
+
+// format as unix style
+function formatUnix(hintInfo){
+    hintInfo.arrAllMessages.forEach(function (fileInfo) {
+        var file = path.relative(process.cwd(), fileInfo.file);
+        fileInfo.messages.forEach(function (message) {
+            console.log([
+                file,
+                message.line,
+                message.col,
+                " " + message.type,
+                " " + message.message
+            ].join(":"));
+        });
+    });
 }
 
 // hint all files
