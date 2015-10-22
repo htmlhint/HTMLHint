@@ -181,9 +181,15 @@
     }
     
     function downloadConfigFile(){
+        var downRules = {};
+        for(var key in ruleSets){
+            if(key !== 'editor-theme'){
+                downRules[key] = ruleSets[key];
+            }
+        }
         jsDownloadConfig.attr('href', [
             'data:text/json;charset=utf-8',
-            encodeURIComponent(JSON.stringify(ruleSets, null, 2))
+            encodeURIComponent(JSON.stringify(downRules, null, 2))
         ].join())
 
         jsDownloadConfig.attr('download', 'htmlhintrc');
