@@ -2,36 +2,42 @@
  * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
-var formatter = {
-    onStart: function(){
+var defaultFormatter = function(formatter, HTMLHint, options){
+    var nocolor = options.nocolor;
+    formatter.on('start', function(){
         console.log('');
-    },
-    onConfigLoaded: function(config, configPath){
-        console.log('   Config loaded: %s', configPath.cyan);
+    });
+    formatter.on('config', function(event){
+        var configPath = event.configPath;
+        console.log('   Config loaded: %s', nocolor ? configPath : configPath.cyan);
         console.log('');
-    },
-    onFileHint: function(result, HTMLHint){
-        console.log('   '+result.file.white);
-        var arrLogs = HTMLHint.format(result.messages, {
-            colors: true,
+    });
+    formatter.on('file', function(event){
+        console.log('   '+event.file.white);
+        var arrLogs = HTMLHint.format(event.messages, {
+            colors: nocolor ? false : true,
             indent: 6
         });
         arrLogs.forEach(function(str){
             console.log(str);
         });
         console.log('');
-    },
-    onEnd: function(hintInfo){
-        var allFileCount = hintInfo.allFileCount;
-        var allHintCount = hintInfo.allHintCount;
-        var allHintFileCount = hintInfo.allHintFileCount;
-        var time = hintInfo.time;
+    });
+    formatter.on('end', function(event){
+        var allFileCount = event.allFileCount;
+        var allHintCount = event.allHintCount;
+        var allHintFileCount = event.allHintFileCount;
+        var time = event.time;
+        var message;
         if(allHintCount > 0){
-            console.log('Scan %d files, found %d errors in %d files (%d ms)'.red, allFileCount, allHintCount, allHintFileCount, time);
+            message = 'Scan %d files, found %d errors in %d files (%d ms)';
+            console.log(nocolor ? message : message.red, allFileCount, allHintCount, allHintFileCount, time);
         }
         else{
-            console.log('Scan %d files, without errors (%d ms).'.green, allFileCount, time);
+            message = 'Scan %d files, without errors (%d ms).';
+            console.log(nocolor ? message : message.green, allFileCount, time);
         }
-    }
+    });
 };
-module.exports = formatter;
+
+module.exports = defaultFormatter;

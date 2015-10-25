@@ -9,6 +9,7 @@ var glob = require("glob");
 var parseGlob = require('parse-glob');
 
 var HTMLHint  = require("../index").HTMLHint;
+var formatter = require('./formatter');
 var pkg = require('../package.json');
 
 require('colors');
@@ -38,14 +39,7 @@ program.on('--help', function(){
     console.log('');
 });
 
-// load custom formatters
-var mapFormatters = loadFormatters();
-var arrSupportedFormatters = [];
-for(var formatterName in mapFormatters){
-    if(formatterName !== 'default'){
-        arrSupportedFormatters.push(formatterName);
-    }
-}
+var arrSupportedFormatters = formatter.getSupported();
 
 program
     .version(pkg.version)
@@ -56,6 +50,7 @@ program
     .option('-R, --rulesdir <file|folder>', 'load custom rules from file or folder')
     .option('-f, --format <'+arrSupportedFormatters.join('|')+'>', 'output messages as custom format')
     .option('-i, --ignore <pattern, pattern ...>', 'add pattern to exclude matches')
+    .option('--nocolor', 'disable color')
     .parse(process.argv);
 
 if(program.list){
@@ -68,12 +63,13 @@ if(arrTargets.length === 0){
     arrTargets.push('./');
 }
 
-// check format
+// init formatter
+formatter.init(HTMLHint, {
+    'nocolor': program.nocolor
+});
 var format = program.format || 'default';
-var formatter = mapFormatters[format];
-if(formatter === undefined){
-    console.log('No supported formatter, supported formatters: %s'.red, arrSupportedFormatters.join(', '));
-    process.exit(1);
+if(format){
+    formatter.setFormat(format);
 }
 
 hintTargets(arrTargets, {
@@ -111,9 +107,8 @@ function hintTargets(arrTargets, options){
     }
 
     // start hint
-    if(formatter.onStart){
-        formatter.onStart();
-    }
+    formatter.emit('start');
+
     var arrTasks = [];
     arrTargets.forEach(function(target){
         arrTasks.push(function(next){
@@ -129,35 +124,15 @@ function hintTargets(arrTargets, options){
     async.series(arrTasks, function(){
         // end hint
         var spendTime = new Date().getTime() - startTime;
-        if(formatter.onEnd){
-            formatter.onEnd({
-                arrAllMessages: arrAllMessages,
-                allFileCount: allFileCount,
-                allHintFileCount: allHintFileCount,
-                allHintCount: allHintCount,
-                time: spendTime
-            }, HTMLHint);
-        }
+        formatter.emit('end', {
+            arrAllMessages: arrAllMessages,
+            allFileCount: allFileCount,
+            allHintFileCount: allHintFileCount,
+            allHintCount: allHintCount,
+            time: spendTime
+        });
         process.exit(allHintCount > 0 ? 1: 0);
     });
-}
-
-// load all formatters
-function loadFormatters(){
-    var arrFiles = glob.sync('./formatters/*.js', {
-        'cwd': __dirname,
-        'dot': false,
-        'nodir': true,
-        'strict': false,
-        'silent': true
-    });
-    var mapFormatters = {};
-    arrFiles.forEach(function(file){
-        var fileInfo = path.parse(file);
-        var formatterPath = path.resolve(__dirname, file);
-        mapFormatters[fileInfo.name] = require(formatterPath);
-    });
-    return mapFormatters;
 }
 
 // load custom rles
@@ -219,13 +194,11 @@ function hintAllFiles(target, options, onFinised){
         var spendTime = new Date().getTime() - startTime;
         var hintCount = messages.length;
         if(hintCount > 0){
-            if(formatter.onFileHint){
-                formatter.onFileHint({
-                    'file': filepath,
-                    'messages': messages,
-                    'time': spendTime
-                }, HTMLHint);
-            }
+            formatter.emit('file', {
+                'file': filepath,
+                'messages': messages,
+                'time': spendTime
+            });
             arrTargetMessages.push({
                 'file': filepath,
                 'messages': messages,
@@ -318,9 +291,10 @@ function getConfig(configPath, base, formatter){
             ruleset;
         try{
             ruleset = JSON.parse(stripJsonComments(config));
-            if(formatter.onConfigLoaded){
-                formatter.onConfigLoaded(ruleset, configPath);
-            }
+            formatter.emit('config', {
+                ruleset: ruleset,
+                configPath: configPath
+            });
         }
         catch(e){}
         return ruleset;

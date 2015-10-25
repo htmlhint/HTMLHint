@@ -2,12 +2,12 @@
  * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
-var formatter = {
-    onEnd: function(hintInfo, HTMLHint){
+var markdownFormatter = function(formatter, HTMLHint, options){
+    formatter.on('end', function(event){
         console.log('# TOC');
         var arrToc = [];
         var arrContents = [];
-        var arrAllMessages = hintInfo.arrAllMessages;
+        var arrAllMessages = event.arrAllMessages;
         arrAllMessages.forEach(function(fileInfo){
             var filePath = fileInfo.file;
             var arrMessages = fileInfo.messages;
@@ -35,6 +35,6 @@ var formatter = {
         });
         console.log(arrToc.join('\r\n')+'\r\n');
         console.log(arrContents.join('\r\n'));
-    }
+    });
 };
-module.exports = formatter;
+module.exports = markdownFormatter;

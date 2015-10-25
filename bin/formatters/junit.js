@@ -4,10 +4,10 @@
  */
 var xml = require('xml');
 
-var formatter = {
-    onEnd: function(hintInfo, HTMLHint){
+var junitFormatter = function(formatter, HTMLHint, options){
+    formatter.on('end', function(event){
         var arrTestcase = [];
-        var arrAllMessages = hintInfo.arrAllMessages;
+        var arrAllMessages = event.arrAllMessages;
         arrAllMessages.forEach(function(fileInfo){
             var arrMessages = fileInfo.messages;
             var arrLogs = HTMLHint.format(arrMessages);
@@ -37,8 +37,8 @@ var formatter = {
                         {
                           _attr: {
                             name: 'HTMLHint Tests',
-                            time: (hintInfo.time / 1000).toFixed(3),
-                            tests: hintInfo.allFileCount,
+                            time: (event.time / 1000).toFixed(3),
+                            tests: event.allFileCount,
                             failures: arrAllMessages.length
                           }
                         }
@@ -50,6 +50,6 @@ var formatter = {
             declaration: true,
             indent: '    '
         }));
-    }
+    });
 };
-module.exports = formatter;
+module.exports = junitFormatter;

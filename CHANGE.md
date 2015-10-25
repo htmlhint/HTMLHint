@@ -8,6 +8,7 @@ add:
 1. change cli parameter: `--plugin` to `--rulesdir`
 2. add formatter directory support
 3. add formatters: compact, markdown
+4. add cli parameter:`--nocolor`, disable color in cli
 
 ## ver 0.9.10 (2015-10-12)
 

@@ -2,23 +2,25 @@
  * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
-var formatter = {
-    onFileHint: function(result){
-        result.messages.forEach(function (message) {
+var unixFormatter = function(formatter, HTMLHint, options){
+    var nocolor = options.nocolor;
+    formatter.on('file', function(event){
+        event.messages.forEach(function (message) {
             console.log([
-                result.file,
+                event.file,
                 message.line,
                 message.col,
                 " " + message.message + ' ['+message.type+'/'+message.rule.id+']'
             ].join(":"));
         });
-    },
-    onEnd: function(hintInfo){
-        var allHintCount = hintInfo.allHintCount;
+    });
+    formatter.on('end', function(event){
+        var allHintCount = event.allHintCount;
         if(allHintCount > 0){
             console.log('');
-            console.log('%d problems', hintInfo.allHintCount);
+            var message = '%d problems';
+            console.log(nocolor ? message : message.red, event.allHintCount);
         }
-    }
+    });
 };
-module.exports = formatter;
+module.exports = unixFormatter;

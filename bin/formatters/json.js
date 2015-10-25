@@ -2,9 +2,9 @@
  * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
-var formatter = {
-    onEnd: function(hintInfo){
-        console.log(JSON.stringify(hintInfo.arrAllMessages));
-    }
+var jsonFormatter = function(formatter, HTMLHint, options){
+    formatter.on('end', function(event){
+        console.log(JSON.stringify(event.arrAllMessages));
+    });
 };
-module.exports = formatter;
+module.exports = jsonFormatter;

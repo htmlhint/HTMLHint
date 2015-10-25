@@ -4,10 +4,10 @@
  */
 var xml = require('xml');
 
-var formatter = {
-    onEnd: function(hintInfo){
+var checkstyleFormatter = function(formatter, HTMLHint, options){
+    formatter.on('end', function(event){
         var arrFiles = [];
-        var arrAllMessages = hintInfo.arrAllMessages;
+        var arrAllMessages = event.arrAllMessages;
         arrAllMessages.forEach(function(fileInfo){
             var arrMessages = fileInfo.messages;
             var arrErrors = [];
@@ -47,6 +47,6 @@ var formatter = {
             declaration: true,
             indent: '    '
         }));
-    }
+    });
 };
-module.exports = formatter;
+module.exports = checkstyleFormatter;
