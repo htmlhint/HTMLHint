@@ -4,7 +4,7 @@
  */
 var xml = require('xml');
 
-var checkstyleFormatter = function(formatter, HTMLHint, options){
+var checkstyleFormatter = function(formatter){
     formatter.on('end', function(event){
         var arrFiles = [];
         var arrAllMessages = event.arrAllMessages;

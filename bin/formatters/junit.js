@@ -4,7 +4,7 @@
  */
 var xml = require('xml');
 
-var junitFormatter = function(formatter, HTMLHint, options){
+var junitFormatter = function(formatter, HTMLHint){
     formatter.on('end', function(event){
         var arrTestcase = [];
         var arrAllMessages = event.arrAllMessages;

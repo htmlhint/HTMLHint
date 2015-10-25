@@ -37,11 +37,11 @@ function loadFormatters(){
 var formatter =new events.EventEmitter();
 formatter.getSupported = function(){
     return arrSupportedFormatters;
-}
+};
 formatter.init = function(tmpHTMLHint, tmpOptions){
     HTMLHint = tmpHTMLHint;
     options = tmpOptions;
-}
+};
 formatter.setFormat = function(format){
     var formatHandel = mapFormatters[format];
     if(formatHandel === undefined){
@@ -49,8 +49,8 @@ formatter.setFormat = function(format){
         process.exit(1);
     }
     else{
-        formatHandel(formatter, HTMLHint, options)
+        formatHandel(formatter, HTMLHint, options);
     }
-}
+};
 
 module.exports = formatter;

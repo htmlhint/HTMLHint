@@ -2,7 +2,7 @@
  * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
  * MIT Licensed
  */
-var markdownFormatter = function(formatter, HTMLHint, options){
+var markdownFormatter = function(formatter, HTMLHint){
     formatter.on('end', function(event){
         console.log('# TOC');
         var arrToc = [];
