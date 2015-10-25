@@ -1,6 +1,14 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.13 (2015-10-25)
+
+add:
+
+1. change cli parameter: `--plugin` to `--rulesdir`
+2. add formatter directory support
+3. add formatters: compact, markdown
+
 ## ver 0.9.10 (2015-10-12)
 
 add:
