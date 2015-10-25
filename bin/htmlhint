@@ -35,7 +35,7 @@ program.on('--help', function(){
     console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint --config .htmlhintrc test.html');
     console.log('    htmlhint --ignore **/build/**,**/test/**');
-    console.log('    htmlhint --plugin ./plugins/');
+    console.log('    htmlhint --rulesdir ./rules/');
     console.log('');
 });
 
@@ -45,7 +45,7 @@ program
     .option('-l, --list', 'show all of the rules available')
     .option('-c, --config <file>', 'custom configuration file')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available', map)
-    .option('-p, --plugin <file|folder>', 'load custom rules from file or folder')
+    .option('-R, --rulesdir <file|folder>', 'load custom rules from file or folder')
     .option('-f, --format <json|junit|checkstyle|unix>', 'output messages as custom format')
     .option('-i, --ignore <pattern, pattern ...>', 'add pattern to exclude matches')
     .parse(process.argv);
@@ -61,7 +61,7 @@ if(arrTargets.length === 0){
 }
 
 hintTargets(arrTargets, {
-    plugin: program.plugin,
+    rulesdir: program.rulesdir,
     ruleset: program.rules,
     format: program.format,
     ignore: program.ignore
@@ -85,10 +85,10 @@ function hintTargets(arrTargets, options){
     var allHintCount = 0;
     var startTime = new Date().getTime();
 
-    // load plugins
-    var pluginPath = options.plugin;
-    if(pluginPath){
-        loadPlugins(pluginPath);
+    // load custom rules
+    var rulesdir = options.rulesdir;
+    if(rulesdir){
+        loadCustomRules(rulesdir);
     }
 
     // custom format
@@ -132,34 +132,35 @@ function hintTargets(arrTargets, options){
     });
 }
 
-// load plugins
-function loadPlugins(pluginPath){
-    pluginPath = pluginPath.replace(/\\/g, '/');
-    if(fs.existsSync(pluginPath)){
-        if(fs.statSync(pluginPath).isDirectory()){
-            pluginPath += /\/$/.test(pluginPath)?'':'/';
-            pluginPath += '**/*.js';
-            var arrFiles = glob.sync(pluginPath, {
+// load custom rles
+function loadCustomRules(rulesdir){
+    rulesdir = rulesdir.replace(/\\/g, '/');
+    if(fs.existsSync(rulesdir)){
+        if(fs.statSync(rulesdir).isDirectory()){
+            rulesdir += /\/$/.test(rulesdir)?'':'/';
+            rulesdir += '**/*.js';
+            var arrFiles = glob.sync(rulesdir, {
                 'dot': false,
                 'nodir': true,
                 'strict': false,
                 'silent': true
             });
             arrFiles.forEach(function(file){
-                loadPlugin(file);
+                loadRule(file);
             });
         }
         else{
-            loadPlugin(pluginPath);
+            loadRule(rulesdir);
         }
     }
 }
 
-function loadPlugin(filepath){
+// load rule
+function loadRule(filepath){
     filepath = path.resolve(filepath);
     try{
-        var plugin = require(filepath);
-        plugin(HTMLHint);
+        var module = require(filepath);
+        module(HTMLHint);
     }
     catch(e){}
 }
