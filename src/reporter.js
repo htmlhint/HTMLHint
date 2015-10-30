@@ -16,26 +16,39 @@
             self.ruleset = ruleset;
             self.messages = [];
         },
-        //错误
+        // error message
         error: function(message, line, col, rule, raw){
             this.report('error', message, line, col, rule, raw);
         },
-        //警告
+        // warning message
         warn: function(message, line, col, rule, raw){
             this.report('warning', message, line, col, rule, raw);
         },
-        //信息
+        // info message
         info: function(message, line, col, rule, raw){
             this.report('info', message, line, col, rule, raw);
         },
-        //报告
+        // save report
         report: function(type, message, line, col, rule, raw){
             var self = this;
+            var lines = self.lines;
+            var evidence, evidenceLen;
+            for(var i=line-1, lineCount=lines.length;i<lineCount;i++){
+                evidence = lines[i];
+                evidenceLen = evidence.length;
+                if(col > evidenceLen && line < lineCount){
+                    line ++;
+                    col -= evidenceLen;
+                }
+                else{
+                    break;
+                }
+            }
             self.messages.push({
                 type: type,
                 message: message,
                 raw: raw,
-                evidence: self.lines[line-1],
+                evidence: evidence,
                 line: line,
                 col: col,
                 rule: {

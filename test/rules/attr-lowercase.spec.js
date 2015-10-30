@@ -21,6 +21,13 @@ describe('Rules: '+ruldId, function(){
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(3);
+
+        code = '<p id=""\r\n TEST="abc">';
+        messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
+        expect(messages[0].rule.id).to.be(ruldId);
+        expect(messages[0].line).to.be(2);
+        expect(messages[0].col).to.be(1);
     });
 
     it('Lowercase attr should not result in an error', function(){

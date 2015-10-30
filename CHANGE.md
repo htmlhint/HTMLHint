@@ -1,7 +1,7 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.13 (2015-10-25)
+## ver 0.9.13 (2015-10-30)
 
 add:
 
@@ -9,6 +9,10 @@ add:
 2. add formatter directory support
 3. add formatters: compact, markdown
 4. add cli parameter:`--nocolor`, disable color in cli
+
+fix:
+
+1. fix: report error evidence if tag attrs include `\r\n`
 
 ## ver 0.9.10 (2015-10-12)
 
