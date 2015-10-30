@@ -53,7 +53,7 @@ var HTMLHint = (function (undefined) {
         }
 
         var parser = new HTMLParser();
-        var reporter = new HTMLHint.Reporter(html.split(/\r?\n/), ruleset);
+        var reporter = new HTMLHint.Reporter(html, ruleset);
 
         var rules = HTMLHint.rules,
             rule;
