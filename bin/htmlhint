@@ -131,7 +131,13 @@ function hintTargets(arrTargets, options){
             allHintCount: allHintCount,
             time: spendTime
         });
-        process.exit(allHintCount > 0 ? 1: 0);
+        if(formatter.needDrain) {
+            process.stdout.on('drain', function() {
+                process.exit(allHintCount > 0 ? 1: 0);
+            });
+        } else {
+            process.exit(allHintCount > 0 ? 1: 0);
+        }
     });
 }
 

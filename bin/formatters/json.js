@@ -4,7 +4,12 @@
  */
 var jsonFormatter = function(formatter){
     formatter.on('end', function(event){
-        console.log(JSON.stringify(event.arrAllMessages));
+        var writeFull = process.stdout.write(JSON.stringify(event.arrAllMessages));
+        if(!writeFull) {
+          formatter.needDrain = true;
+        } else {
+          formatter.needDrain = false;
+        }
     });
 };
 module.exports = jsonFormatter;
