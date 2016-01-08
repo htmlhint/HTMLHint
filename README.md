@@ -39,7 +39,7 @@ Quick start
 
 3. config rules
 
-    search `.htmlhintrc` file in current directory and all parent directorys:
+    search `.htmlhintrc` file in current directory and all parent directories:
 
         htmlhint
         htmlhint test.html
