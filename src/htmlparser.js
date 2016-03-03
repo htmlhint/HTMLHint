@@ -33,8 +33,8 @@ var HTMLParser = (function(undefined){
             var self = this,
                 mapCdataTags = self._mapCdataTags;
 
-            var regTag=/<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[\w\-:]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g,
-                regAttr = /\s*([\w\-:]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
+            var regTag=/<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[\[\]\*\(\)\w\-:]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g,
+                regAttr = /\s*([\[\]\*\(\)\w\-:]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
                 regLine = /\r?\n/g;
 
             var match, matchIndex, lastIndex = 0, tagName, arrAttrs, tagCDATA, attrsCDATA, arrCDATA, lastCDATAIndex = 0, text;
@@ -103,6 +103,7 @@ var HTMLParser = (function(undefined){
                             saveBlock('tagstart', match[0], matchIndex, {
                                 'tagName': tagName,
                                 'attrs': arrAttrs,
+                                'html': match[0],
                                 'close': match[6]
                             });
                             if(mapCdataTags[tagName]){

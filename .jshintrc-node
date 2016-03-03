@@ -8,6 +8,8 @@
     "unused": true,
     "maxerr": 100,
 
+    "esnext": true,
+
     "eqnull": true,
     "evil": true,
     "sub": true,
