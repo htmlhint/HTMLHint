@@ -47,6 +47,24 @@ describe('Core', function(){
         expect(messages.length).to.be(0);
     });
 
+    it('Inline ruleset not worked should result in an error - angular 2', function(){
+        var code = '<!-- htmlhint alt-require:true-->\r\n<img [src]="test.gif" />';
+        var messages = HTMLHint.verify(code, {
+            'alt-require': false
+        });
+
+        expect(messages.length).to.be(1);
+        expect(messages[0].rule.id).to.be('alt-require');
+        expect(messages[0].line).to.be(2);
+        expect(messages[0].col).to.be(5);
+
+        code = '<!-- htmlhint alt-require:false-->\r\n<img *ngIf="false" />';
+        messages = HTMLHint.verify(code, {
+            'alt-require': true
+        });
+        expect(messages.length).to.be(0);
+    });
+
     it('Show formated result should not result in an error', function(){
         var code = 'tttttttttttttttttttttttttttttttttttt<div>中文<img src="test.gif" />tttttttttttttttttttttttttttttttttttttttttttttt';
         var messages = HTMLHint.verify(code, {
