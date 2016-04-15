@@ -16,7 +16,7 @@ HTMLHint.addRule({
                 if(options === 'space' && /^ +$/.test(match[2]) === false){
                     reporter.warn('Please use space for indentation.', fixedPos.line, 1, self, event.raw);
                 }
-                else if(options === 'tab' && /^\t+$/.test(match[2]) === false){
+                else if (options === 'tab' && /^\t+$/.test(match[2]) === false && match.input.indexOf('\n') !== -1) {
                     reporter.warn('Please use tab for indentation.', fixedPos.line, 1, self, event.raw);
                 }
                 else if(/ +\t|\t+ /.test(match[2]) === true){
