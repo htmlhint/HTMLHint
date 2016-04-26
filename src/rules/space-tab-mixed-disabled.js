@@ -7,7 +7,7 @@ HTMLHint.addRule({
     description: 'Do not mix tabs and spaces for indentation.',
     init: function(parser, reporter, options){
         var self = this;
-        parser.addListener('text', function(event){
+        parser.addListener('newline', function(event){
             var raw = event.raw;
             var reMixed = /(^|\r?\n)([ \t]+)/g;
             var match;
