@@ -13,6 +13,9 @@ HTMLHint.addRule({
             var match;
             while((match = reMixed.exec(raw))){
                 var fixedPos = parser.fixPos(event, match.index + match[1].length);
+                if(fixedPos.col !== 1){
+                    continue;
+                }
                 if(options === 'space' && /^ +$/.test(match[2]) === false){
                     reporter.warn('Please use space for indentation.', fixedPos.line, 1, self, event.raw);
                 }
