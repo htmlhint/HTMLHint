@@ -289,9 +289,17 @@ describe('HTMLParser: Object parse', function(){
             expect(attrAlt.name).to.be('alt');
             expect(attrAlt.value).to.be('abc');
             expect(attrAlt.quote).to.be("");
+            var attrAB = arrEvents[1].attrs[3];
+            expect(attrAB.name).to.be('a.b');
+            expect(attrAB.value).to.be('ccc');
+            expect(attrAB.quote).to.be("");
+            var attrCD = arrEvents[1].attrs[4];
+            expect(attrCD.name).to.be('c*d');
+            expect(attrCD.value).to.be('ddd');
+            expect(attrCD.quote).to.be("");
             done();
         });
-        parser.parse('<img width="200" height=\'300\' alt=abc>');
+        parser.parse('<img width="200" height=\'300\' alt=abc a.b=ccc c*d=ddd>');
     });
 
     it('should parse end tag', function(done){

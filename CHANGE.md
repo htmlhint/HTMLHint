@@ -13,8 +13,9 @@ add:
 
 fix:
 
-1. fix: report error evidence if tag attrs include `\r\n`
-2. fix: space-tab-mixed-disabled issue #119
+1. report error evidence if tag attrs include `\r\n`
+2. space-tab-mixed-disabled issue #119
+3. attr name support all w3c defined characters
 
 ## ver 0.9.10 (2015-10-12)
 
