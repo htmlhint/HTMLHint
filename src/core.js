@@ -31,6 +31,11 @@ var HTMLHint = (function (undefined) {
     };
 
     HTMLHint.verify = function(html, ruleset){
+
+        if(ruleset === undefined || Object.keys(ruleset).length ===0){
+            ruleset = HTMLHint.defaultRuleset;
+        }
+
         // parse inline ruleset
         html = html.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, function(all, strRuleset){
             if(ruleset === undefined){
@@ -47,10 +52,6 @@ var HTMLHint = (function (undefined) {
             });
             return '';
         });
-
-        if(ruleset === undefined || Object.keys(ruleset).length ===0){
-            ruleset = HTMLHint.defaultRuleset;
-        }
 
         var parser = new HTMLParser();
         var reporter = new HTMLHint.Reporter(html, ruleset);

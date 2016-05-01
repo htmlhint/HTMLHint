@@ -18,6 +18,10 @@ fix:
 2. space-tab-mixed-disabled issue #119
 3. attr name support all w3c defined characters
 
+improve:
+
+1. Parse inline ruleset after default ruleset
+
 ## ver 0.9.10 (2015-10-12)
 
 add:
