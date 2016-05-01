@@ -57,47 +57,47 @@ describe('Rules: '+ruldId, function(){
         var messages = HTMLHint.verify(code, ruleMixOptions);
         expect(messages.length).to.be(0);
     });
-    
+
     it('Not only space in front of line should result in an error', function(){
         // mixed 1
         var code = '    	<a href="a">bbb</a>';
         var messages = HTMLHint.verify(code, ruleSpaceOptions);
         expect(messages.length).to.be(1);
-        
+
         // mixed 2
         code = '	    <a href="a">bbb</a>';
         messages = HTMLHint.verify(code, ruleSpaceOptions);
         expect(messages.length).to.be(1);
-        
+
         // only tab
         code = '		<a href="a">bbb</a>';
         messages = HTMLHint.verify(code, ruleSpaceOptions);
         expect(messages.length).to.be(1);
     });
-    
+
     it('Only space in front of line should not result in an error', function(){
         var code = '            <a href="a">bbb</a>';
         var messages = HTMLHint.verify(code, ruleSpaceOptions);
         expect(messages.length).to.be(0);
     });
-    
+
     it('Not only tab in front of line should result in an error', function(){
         // mixed 1
-        var code = '	    <a href="a">bbb</a>';
+        var code = '\n	    <a href="a">bbb</a>';
         var messages = HTMLHint.verify(code, ruleTabOptions);
         expect(messages.length).to.be(1);
-        
+
         // mixed 2
-        code = '    	<a href="a">bbb</a>';
+        code = '\n    	<a href="a">bbb</a>';
         messages = HTMLHint.verify(code, ruleTabOptions);
         expect(messages.length).to.be(1);
-        
+
         // only space
-        code = '       <a href="a">bbb</a>';
+        code = '\n       <a href="a">bbb</a>';
         messages = HTMLHint.verify(code, ruleTabOptions);
         expect(messages.length).to.be(1);
     });
-    
+
     it('Only tab in front of line should not result in an error', function(){
         // only tab
         var code = '		<a href="a">bbb</a>';
