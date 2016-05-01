@@ -26,6 +26,7 @@ Quick start
         htmlhint www/test.html
         htmlhint www/**/*.xhtml
         htmlhint www/**/*.{htm,html}
+        cat test.html | htmlhint stdin
 
 2. results
 
@@ -73,7 +74,7 @@ HTMLHint is released under the MIT license:
 
 > The MIT License
 >
-> Copyright (c) 2014-2015 Yanis Wang \< yanis.wang@gmail.com \>
+> Copyright (c) 2014-2016 Yanis Wang \< yanis.wang@gmail.com \>
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal

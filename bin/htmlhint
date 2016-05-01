@@ -31,6 +31,7 @@ program.on('--help', function(){
     console.log('    htmlhint www/test.html');
     console.log('    htmlhint www/**/*.xhtml');
     console.log('    htmlhint www/**/*.{htm,html}');
+    console.log('    cat test.html | htmlhint stdin');
     console.log('    htmlhint --list');
     console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
     console.log('    htmlhint --config .htmlhintrc test.html');
@@ -190,36 +191,37 @@ function hintAllFiles(target, options, onFinised){
     // hint queue
     var hintQueue = async.queue(function (filepath, next) {
         var startTime = new Date().getTime();
-        var messages = hintFile(filepath, ruleset);
-        var spendTime = new Date().getTime() - startTime;
-        var hintCount = messages.length;
-        if(hintCount > 0){
-            formatter.emit('file', {
-                'file': filepath,
-                'messages': messages,
-                'time': spendTime
-            });
-            arrTargetMessages.push({
-                'file': filepath,
-                'messages': messages,
-                'time': spendTime
-            });
-            targetHintFileCount ++;
-            targetHintCount += hintCount;
+        if(filepath === 'stdin'){
+            hintStdin(ruleset, hintNext);
         }
-        targetFileCount ++;
-        setImmediate(next);
+        else{
+            var messages = hintFile(filepath, ruleset);
+            hintNext(messages);
+        }
+        function hintNext(messages){
+            var spendTime = new Date().getTime() - startTime;
+            var hintCount = messages.length;
+            if(hintCount > 0){
+                formatter.emit('file', {
+                    'file': filepath,
+                    'messages': messages,
+                    'time': spendTime
+                });
+                arrTargetMessages.push({
+                    'file': filepath,
+                    'messages': messages,
+                    'time': spendTime
+                });
+                targetHintFileCount ++;
+                targetHintCount += hintCount;
+            }
+            targetFileCount ++;
+            setImmediate(next);
+        }
     }, 10);
     // start hint
     var isWalkDone = false;
     var isHintDone = true;
-    walkPath(globInfo, function(filepath){
-        isHintDone = false;
-        hintQueue.push(filepath);
-    }, function(){
-        isWalkDone = true;
-        checkAllHinted();
-    });
     hintQueue.drain = function() {
         isHintDone = true;
         checkAllHinted();
@@ -233,6 +235,19 @@ function hintAllFiles(target, options, onFinised){
                 arrTargetMessages: arrTargetMessages
             });
         }
+    }
+    if(target === 'stdin'){
+        isWalkDone = true;
+        hintQueue.push(target);
+    }
+    else{
+        walkPath(globInfo, function(filepath){
+            isHintDone = false;
+            hintQueue.push(filepath);
+        }, function(){
+            isWalkDone = true;
+            checkAllHinted();
+        });
     }
 }
 
@@ -336,4 +351,19 @@ function hintFile(filepath, ruleset){
     }
     catch(e){}
     return HTMLHint.verify(content, ruleset);
+}
+
+// hint stdin
+function hintStdin(ruleset, callback){
+    process.stdin.setEncoding('utf8');
+    var buffers = [];
+    process.stdin.on('data', function(text){
+        buffers.push(text);
+    });
+
+    process.stdin.on('end', function(){
+        var content = buffers.join('');
+        var messages = HTMLHint.verify(content, ruleset);
+        callback(messages);
+    });
 }
