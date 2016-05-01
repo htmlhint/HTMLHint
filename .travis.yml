@@ -4,15 +4,17 @@ language: node_js
 node_js:
     - "0.10"
     - "0.12"
-    - "4.1"
-    
+    - "4.x"
+    - "5.x"
+    - "6.x"
+
 cache:
   directories:
     - node_modules
 
 matrix:
   fast_finish: true
-  
+
 script: "grunt"
 
 after_success: istanbul-coveralls
