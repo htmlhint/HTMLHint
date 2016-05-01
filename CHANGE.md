@@ -10,6 +10,7 @@ add:
 3. add formatters: compact, markdown
 4. add cli parameter:`--nocolor`, disable color in cli
 5. space-tab-mixed-disabled plugin: add space length require
+6. add empty elements: track,command,source,keygen,wbr
 
 fix:
 

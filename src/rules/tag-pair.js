@@ -8,7 +8,7 @@ HTMLHint.addRule({
     init: function(parser, reporter){
         var self = this;
         var stack=[],
-            mapEmptyTags = parser.makeMap("area,base,basefont,br,col,embed,frame,hr,img,input,isindex,keygen,link,meta,param,source,track");//HTML 4.01 + HTML5
+            mapEmptyTags = parser.makeMap("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr");//HTML 4.01 + HTML 5
         parser.addListener('tagstart', function(event){
             var tagName = event.tagName.toLowerCase();
             if (mapEmptyTags[tagName] === undefined && !event.close){
