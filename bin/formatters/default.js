@@ -30,11 +30,11 @@ var defaultFormatter = function(formatter, HTMLHint, options){
         var time = event.time;
         var message;
         if(allHintCount > 0){
-            message = 'Scan %d files, found %d errors in %d files (%d ms)';
+            message = 'Scanned %d files, found %d errors in %d files (%d ms)';
             console.log(nocolor ? message : message.red, allFileCount, allHintCount, allHintFileCount, time);
         }
         else{
-            message = 'Scan %d files, without errors (%d ms).';
+            message = 'Scanned %d files, no errors found (%d ms).';
             console.log(nocolor ? message : message.green, allFileCount, time);
         }
     });
