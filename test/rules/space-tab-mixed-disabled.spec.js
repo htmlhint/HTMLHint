@@ -10,10 +10,14 @@ var HTMLHint  = require("../../index").HTMLHint;
 var ruldId = 'space-tab-mixed-disabled';
 var ruleMixOptions = {};
 var ruleSpaceOptions = {};
+var ruleSpace4Options = {};
+var ruleSpace5Options = {};
 var ruleTabOptions = {};
 
 ruleMixOptions[ruldId] = true;
 ruleSpaceOptions[ruldId] = 'space';
+ruleSpace4Options[ruldId] = 'space4';
+ruleSpace5Options[ruldId] = 'space5';
 ruleTabOptions[ruldId] = 'tab';
 
 describe('Rules: '+ruldId, function(){
@@ -73,6 +77,40 @@ describe('Rules: '+ruldId, function(){
         code = '		<a href="a">      bbb</a>';
         messages = HTMLHint.verify(code, ruleSpaceOptions);
         expect(messages.length).to.be(1);
+    });
+
+    it('Not only space and 4 length in front of line should result in an error', function(){
+
+        var code = '     <a href="a">      bbb</a>';
+        var messages = HTMLHint.verify(code, ruleSpace4Options);
+        expect(messages.length).to.be(1);
+        expect(messages[0].message).to.be('Please use space for indentation and keep 4 length.');
+
+    });
+
+    it('Only space and 4 length in front of line should not result in an error', function(){
+
+        var code = '        <a href="a">      bbb</a>';
+        var messages = HTMLHint.verify(code, ruleSpace4Options);
+        expect(messages.length).to.be(0);
+
+    });
+
+    it('Not only space and 5 length in front of line should result in an error', function(){
+
+        var code = '      <a href="a">      bbb</a>';
+        var messages = HTMLHint.verify(code, ruleSpace5Options);
+        expect(messages.length).to.be(1);
+        expect(messages[0].message).to.be('Please use space for indentation and keep 5 length.');
+
+    });
+
+    it('Only space and 5 length in front of line should not result in an error', function(){
+
+        var code = '          <a href="a">      bbb</a>';
+        var messages = HTMLHint.verify(code, ruleSpace5Options);
+        expect(messages.length).to.be(0);
+
     });
 
     it('Only space in front of line should not result in an error', function(){

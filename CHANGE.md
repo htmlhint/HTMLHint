@@ -1,7 +1,7 @@
 HTMLHint change log
 ====================
 
-## ver 0.9.13 (2015-10-30)
+## ver 0.9.13 (2016-5-1)
 
 add:
 
@@ -9,10 +9,12 @@ add:
 2. add formatter directory support
 3. add formatters: compact, markdown
 4. add cli parameter:`--nocolor`, disable color in cli
+5. space-tab-mixed-disabled plugin: add space length require
 
 fix:
 
 1. fix: report error evidence if tag attrs include `\r\n`
+2. fix: space-tab-mixed-disabled issue #119
 
 ## ver 0.9.10 (2015-10-12)
 
