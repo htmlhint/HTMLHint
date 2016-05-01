@@ -151,6 +151,10 @@ var HTMLParser = (function(undefined){
                 self.fire(type, data);
                 var lineMatch;
                 while((lineMatch = regLine.exec(raw))){
+                    self.fire('newline', {
+                        raw: lineMatch.input,
+                        line: line
+                    });
                     line ++;
                     lastLineIndex = pos + regLine.lastIndex;
                 }

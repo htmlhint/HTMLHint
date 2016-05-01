@@ -375,7 +375,7 @@ describe('HTMLParser: Object parse', function(){
             expect(arrEvents[2]).to.event('cdata',
             {
                 tagName: 'script',
-                raw: 'alert(1);\r\nalert("</html>");'
+                raw: 'alert(1);alert("</html>");'
             });
             mapAttrs = parser.getMapAttrs(arrEvents[2].attrs);
             expect(mapAttrs.type).to.be('text/javascript');
@@ -385,7 +385,7 @@ describe('HTMLParser: Object parse', function(){
             });
             done();
         });
-        parser.parse('<script type="text/javascript">alert(1);\r\nalert("</html>");</script>');
+        parser.parse('<script type="text/javascript">alert(1);alert("</html>");</script>');
     });
 
 
@@ -401,7 +401,7 @@ describe('HTMLParser: Object parse', function(){
             expect(arrEvents[2]).to.event('cdata',
             {
                 tagName: 'style',
-                raw: 'body{font-size:12px;\r\nbackground-color:green;}'
+                raw: 'body{font-size:12px;background-color:green;}'
             });
             expect(arrEvents[3]).to.event('tagend',
             {
@@ -409,7 +409,7 @@ describe('HTMLParser: Object parse', function(){
             });
             done();
         });
-        parser.parse('<style type="text/css">body{font-size:12px;\r\nbackground-color:green;}</style>');
+        parser.parse('<style type="text/css">body{font-size:12px;background-color:green;}</style>');
     });
 
 });
