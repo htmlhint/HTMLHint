@@ -107,4 +107,5 @@ Thanks
 * glob: [https://github.com/isaacs/node-glob](https://github.com/isaacs/node-glob)
 * jshint: [https://github.com/jshint/jshint](https://github.com/jshint/jshint)
 * csslint: [https://github.com/stubbornella/csslint](https://github.com/stubbornella/csslint)
+* request: [https://github.com/request/request](https://github.com/request/request)
 * GitHub: [https://github.com/](https://github.com/)
