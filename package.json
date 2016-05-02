@@ -11,6 +11,7 @@
     "glob": "5.0.15",
     "jshint": "2.8.0",
     "parse-glob": "3.0.4",
+    "path-parse": "1.0.5",
     "request": "2.72.0",
     "strip-json-comments": "1.0.4",
     "xml": "1.0.0"

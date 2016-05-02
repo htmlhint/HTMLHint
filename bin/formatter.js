@@ -1,6 +1,7 @@
 var path = require('path');
 var events = require('events');
 var glob = require('glob');
+path.parse = path.parse || require('path-parse');
 
 var mapFormatters;
 var arrSupportedFormatters;
