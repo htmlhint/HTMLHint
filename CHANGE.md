@@ -1,6 +1,13 @@
 HTMLHint change log
 ====================
 
+## ver 0.9.14 (2016-5-2)
+
+add:
+
+1. cli: support hint for url
+2. attr-lowercase: add test case
+
 ## ver 0.9.13 (2016-5-1)
 
 add:

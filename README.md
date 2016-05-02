@@ -26,6 +26,7 @@ Quick start
         htmlhint www/test.html
         htmlhint www/**/*.xhtml
         htmlhint www/**/*.{htm,html}
+        htmlhint http://www.alibaba.com/
         cat test.html | htmlhint stdin
 
 2. results

@@ -7,6 +7,7 @@ var stripJsonComments = require('strip-json-comments');
 var async = require('async');
 var glob = require("glob");
 var parseGlob = require('parse-glob');
+var request = require('request');
 
 var HTMLHint  = require("../index").HTMLHint;
 var formatter = require('./formatter');
@@ -31,6 +32,7 @@ program.on('--help', function(){
     console.log('    htmlhint www/test.html');
     console.log('    htmlhint www/**/*.xhtml');
     console.log('    htmlhint www/**/*.{htm,html}');
+    console.log('    htmlhint http://www.alibaba.com/');
     console.log('    cat test.html | htmlhint stdin');
     console.log('    htmlhint --list');
     console.log('    htmlhint --rules tag-pair,id-class-value=underline test.html');
@@ -44,7 +46,7 @@ var arrSupportedFormatters = formatter.getSupported();
 
 program
     .version(pkg.version)
-    .usage('<file|folder|pattern ...> [options]')
+    .usage('<file|folder|pattern|stdin|url ...> [options]')
     .option('-l, --list', 'show all of the rules available')
     .option('-c, --config <file>', 'custom configuration file')
     .option('-r, --rules <ruleid, ruleid=value ...>', 'set all of the rules available', map)
@@ -194,6 +196,9 @@ function hintAllFiles(target, options, onFinised){
         if(filepath === 'stdin'){
             hintStdin(ruleset, hintNext);
         }
+        else if(/^https?:\/\//.test(filepath)){
+            hintUrl(filepath, ruleset, hintNext);
+        }
         else{
             var messages = hintFile(filepath, ruleset);
             hintNext(messages);
@@ -237,6 +242,10 @@ function hintAllFiles(target, options, onFinised){
         }
     }
     if(target === 'stdin'){
+        isWalkDone = true;
+        hintQueue.push(target);
+    }
+    else if(/^https?:\/\//.test(target)){
         isWalkDone = true;
         hintQueue.push(target);
     }
@@ -365,5 +374,18 @@ function hintStdin(ruleset, callback){
         var content = buffers.join('');
         var messages = HTMLHint.verify(content, ruleset);
         callback(messages);
+    });
+}
+
+// hint url
+function hintUrl(url, ruleset, callback){
+    request.get(url, function(error, response, body){
+        if(!error && response.statusCode == 200){
+            var messages = HTMLHint.verify(body, ruleset);
+            callback(messages);
+        }
+        else{
+            callback([]);
+        }
     });
 }

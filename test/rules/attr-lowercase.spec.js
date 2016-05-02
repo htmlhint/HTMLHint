@@ -7,8 +7,8 @@ var expect  = require("expect.js");
 
 var HTMLHint  = require("../../index").HTMLHint;
 
-var ruldId = 'attr-lowercase',
-    ruleOptions = {};
+var ruldId = 'attr-lowercase';
+var ruleOptions = {};
 
 ruleOptions[ruldId] = true;
 
@@ -39,9 +39,16 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(0);
     });
 
-    it('Set is false not result in an error', function(){
+    it('Set is false should not result in an error', function(){
         var code = '<p TEST="abc">';
         ruleOptions[ruldId] = false;
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+    });
+
+    it('Set to array list should not result in an error', function(){
+        var code = '<p testBox="abc" tttAAA="ccc">';
+        ruleOptions[ruldId] = ['testBox', 'tttAAA'];
         var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
