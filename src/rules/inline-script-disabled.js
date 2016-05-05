@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'inline-script-disabled',
-    description: 'Inline script cannot be use.',
+    description: 'Inline script cannot be used.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -18,11 +18,11 @@ HTMLHint.addRule({
                 attr = attrs[i];
                 attrName = attr.name.toLowerCase();
                 if(reEvent.test(attrName) === true){
-                    reporter.warn('Inline script [ '+attr.raw+' ] cannot be use.', event.line, col + attr.index, self, attr.raw);
+                    reporter.warn('Inline script [ '+attr.raw+' ] cannot be used.', event.line, col + attr.index, self, attr.raw);
                 }
                 else if(attrName === 'src' || attrName === 'href'){
                     if(/^\s*javascript:/i.test(attr.value)){
-                        reporter.warn('Inline script [ '+attr.raw+' ] cannot be use.', event.line, col + attr.index, self, attr.raw);
+                        reporter.warn('Inline script [ '+attr.raw+' ] cannot be used.', event.line, col + attr.index, self, attr.raw);
                     }
                 }
             }
