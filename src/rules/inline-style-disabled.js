@@ -4,7 +4,7 @@
  */
 HTMLHint.addRule({
     id: 'inline-style-disabled',
-    description: 'Inline style cannot be use.',
+    description: 'Inline style cannot be used.',
     init: function(parser, reporter){
         var self = this;
         parser.addListener('tagstart', function(event){
@@ -14,7 +14,7 @@ HTMLHint.addRule({
             for(var i=0, l=attrs.length;i<l;i++){
                 attr = attrs[i];
                 if(attr.name.toLowerCase() === 'style'){
-                    reporter.warn('Inline style [ '+attr.raw+' ] cannot be use.', event.line, col + attr.index, self, attr.raw);
+                    reporter.warn('Inline style [ '+attr.raw+' ] cannot be used.', event.line, col + attr.index, self, attr.raw);
                 }
             }
         });
