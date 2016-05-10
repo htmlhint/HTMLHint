@@ -4,20 +4,20 @@
   "description": "A Static Code Analysis Tool for HTML",
   "main": "./index",
   "dependencies": {
-    "async": "1.4.2",
-    "colors": "1.0.3",
-    "commander": "2.6.0",
+    "async": "1.5.2",
+    "colors": "1.1.2",
+    "commander": "2.9.0",
     "csslint": "0.10.0",
-    "glob": "5.0.15",
-    "jshint": "2.8.0",
+    "glob": "7.0.3",
+    "jshint": "2.9.2",
     "parse-glob": "3.0.4",
     "path-parse": "1.0.5",
     "request": "2.72.0",
-    "strip-json-comments": "1.0.4",
-    "xml": "1.0.0"
+    "strip-json-comments": "2.0.1",
+    "xml": "1.0.1"
   },
   "devDependencies": {
-    "expect.js": "0.2.0",
+    "expect.js": "0.3.1",
     "grunt": "0.4.1",
     "grunt-cli": "0.1.6",
     "grunt-contrib-clean": "0.4.0",
@@ -25,11 +25,11 @@
     "grunt-contrib-jshint": "0.11.3",
     "grunt-contrib-uglify": "0.2.0",
     "grunt-contrib-watch": "0.3.1",
-    "grunt-exec": "0.4.0",
+    "grunt-exec": "0.4.6",
     "grunt-replace": "0.4.0",
-    "istanbul": "0.3.22",
+    "istanbul": "0.4.3",
     "istanbul-coveralls": "1.0.3",
-    "mocha": "2.2.0"
+    "mocha": "2.4.5"
   },
   "bin": {
     "htmlhint": "./bin/htmlhint"
