@@ -42,4 +42,10 @@ describe('Rules: '+ruldId, function(){
         expect(messages.length).to.be(0);
     });
 
+    it('Properly formed HTML entities should not result in an error', function(){
+        var code = '<p>Steinway &amp; &gt; Sons Q&amp;A </p>';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+    });
+
 });
