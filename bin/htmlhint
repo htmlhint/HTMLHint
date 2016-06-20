@@ -267,6 +267,7 @@ function getGlobInfo(target){
     var globInfo = parseGlob(target);
     var base = globInfo.base;
     base += /\/$/.test(base) ? '' : '/';
+    base = path.resolve(base);
     var pattern = globInfo.glob;
     var globPath = globInfo.path;
     var defaultGlob = '*.{htm,html}';
