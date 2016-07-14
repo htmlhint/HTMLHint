@@ -16,6 +16,7 @@ export { default as idClassValue } from './id-class-value';
 export { default as idUnique } from './id-unique';
 export { default as inlineScriptDisabled } from './inline-script-disabled';
 export { default as inlineStyleDisabled } from './inline-style-disabled';
+export { default as inputRequiresLabel } from './input-requires-label';
 export { default as scriptDisabled } from './script-disabled';
 export { default as spaceTabMixedDisabled } from './space-tab-mixed-disabled';
 export { default as specCharEscape } from './spec-char-escape';
