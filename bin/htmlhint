@@ -300,12 +300,13 @@ function getConfig(configPath, base, formatter){
         if(fs.statSync(base).isDirectory() === false){
             base = path.dirname(base);
         }
-        while(base){
-            var tmpConfigFile = path.resolve(base+path.sep, '.htmlhintrc');
+        while(true){
+            var tmpConfigFile = path.resolve(base, '.htmlhintrc');
             if(fs.existsSync(tmpConfigFile)){
                 configPath = tmpConfigFile;
                 break;
             }
+            if (!base) break;
             base = base.substring(0,base.lastIndexOf(path.sep));
         }
     }
