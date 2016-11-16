@@ -306,7 +306,7 @@ function getConfig(configPath, base, formatter){
                 configPath = tmpConfigFile;
                 break;
             }
-            if (!base) break;
+            if (!base) {break;}
             base = base.substring(0,base.lastIndexOf(path.sep));
         }
     }
