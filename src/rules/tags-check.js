@@ -27,7 +27,7 @@ var tagsTypings = {
     }
 };
 
-var assign = function(target, firstSource) {
+var assign = function(target) {
     'use strict';
     if (target === undefined || target === null) {
         throw new TypeError('Cannot convert first argument to object');
