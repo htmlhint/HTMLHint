@@ -12,7 +12,8 @@ var ruldId = 'tags-check',
 
 ruleOptions[ruldId] = {
     sometag: {
-        selfclosing: true
+        selfclosing: true,
+        attrsRequired: [['attrname', 'attrvalue']]
     }
 };
 
@@ -53,8 +54,14 @@ describe('Rules: ' + ruldId, function(){
     it('Should be extendable trought config', function(){
         var code = '<sometag></sometag>';
         var messages = HTMLHint.verify(code, ruleOptions);
-        expect(messages.length).to.be(1);
+        expect(messages.length).to.be(2);
         expect(messages[0].rule.id).to.be(ruldId);
+        
+    });
+    it('Should check required attributes with specifyed values', function(){
+        var code = '<sometag attrname="attrvalue" />';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
     });
 
 });
