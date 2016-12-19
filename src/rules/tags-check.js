@@ -86,14 +86,14 @@ HTMLHint.addRule({
 
                             if (attrs.some(function (attr) {return attr.name === realID;})) {
                                 attrs.forEach(function (attr) {
-                                    if (attr.name === realID && !values.includes(attr.value)) {
+                                    if (attr.name === realID && values.indexOf(attr.value) === -1) {
                                         reporter.error('The <' + tagName +'> tag must have attr \'' + realID + '\' with one value of \'' + values.join('\' or \'') + '\'.', event.line, col, self, event.raw);
                                     }
                                 });
                             } else {
                                 reporter.error('The <' + tagName + '> tag must have attr \'' + realID + '\'.', event.line, col, self, event.raw);
                             }
-                        } else if (!attrs.some(function (attr) {return id.split('|').includes(attr.name);})) {
+                        } else if (!attrs.some(function (attr) {return id.split('|').indexOf(attr.name) !== -1;})) {
                             reporter.error('The <' + tagName + '> tag must have attr \'' + id + '\'.', event.line, col, self, event.raw);
                         }
                     });
@@ -107,7 +107,7 @@ HTMLHint.addRule({
 
                             if (attrs.some(function (attr) {return attr.name === realID;})) {
                                 attrs.forEach(function (attr) {
-                                    if (attr.name === realID && !values.includes(attr.value)) {
+                                    if (attr.name === realID && values.indexOf(attr.value) === -1) {
                                         reporter.error('The <' + tagName + '> tag must have optional attr \'' + realID +
                                             '\' with one value of \'' + values.join('\' or \'') + '\'.', event.line, col, self, event.raw);
                                     }
