@@ -62,6 +62,9 @@ describe('Rules: ' + ruldId, function(){
         var code = '<sometag attrname="attrvalue" />';
         var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
+        code = '<sometag attrname="wrong_value" />';
+        messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
     });
 
 });
