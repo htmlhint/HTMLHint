@@ -9,10 +9,10 @@
     "commander": "2.9.0",
     "csslint": "0.10.0",
     "glob": "7.0.3",
-    "jshint": "2.9.2",
+    "jshint": "2.9.3",
     "parse-glob": "3.0.4",
     "path-parse": "1.0.5",
-    "request": "2.72.0",
+    "request": "2.74.0",
     "strip-json-comments": "2.0.1",
     "xml": "1.0.1"
   },
