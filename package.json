@@ -9,7 +9,7 @@
     "commander": "2.9.0",
     "csslint": "0.10.0",
     "glob": "7.0.3",
-    "jshint": "2.9.2",
+    "jshint": "2.9.4",
     "parse-glob": "3.0.4",
     "path-parse": "1.0.5",
     "request": "2.72.0",
