@@ -29,7 +29,7 @@ module.exports = function(grunt) {
         clean: ["lib", "coverage"],
         concat: {
             htmlhint: {
-                src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/rules/*.js'],
+                src: ['src/core.js', 'src/reporter.js', 'src/htmlparser.js', 'src/utils.js', 'src/rules/*.js', 'src/rules/**/*.js'],
                 dest: 'lib/htmlhint.js'
             }
         },

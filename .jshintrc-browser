@@ -11,6 +11,7 @@
     "eqnull": true,
     "evil": true,
     "sub": true,
+    "esnext":true,   
 
     "browser": true,
     "-W099": true,
