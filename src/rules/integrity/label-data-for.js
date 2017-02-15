@@ -16,7 +16,7 @@ HTMLHint.addRule({
             var tagName = event.tagName.toLowerCase();           
             if (inTable && tagName==="label" && !HTMLHint.utils.isAttributeExists(event.attrs,"data-for"))
             {
-               reporter.error('label within a dynamic table should have a data-for attribute.', event.line, event.col, self, event.raw);
+               reporter.error('label within a dynamic table should have a data-for attribute. Error on line ' + event.line , event.line, event.col, self, event.raw);
             }         
             if (isDynamicTable(tagName,event.attrs)  && !event.close){
                unclosedTablesCounter++;

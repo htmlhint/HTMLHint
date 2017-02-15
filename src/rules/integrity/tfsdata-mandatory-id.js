@@ -11,7 +11,7 @@ HTMLHint.addRule({
             parser.addListener('tagstart', function (event) {
                 if (isPublicElement(event.attrs)) {
                     if (!HTMLHint.utils.isAttributeExists(event.attrs,"id")) {
-                        reporter.error('elements with tfsdata/tfsrowdata must have an id attribute.', event.line, event.col, self, event.raw);
+                        reporter.error('elements with tfsdata/tfsrowdata must have an id attribute. Error on line ' + event.line, event.line, event.col, self, event.raw);
                     }
                 }
             });

@@ -7,7 +7,7 @@ HTMLHint.addRule({
                 var tagName = event.tagName.toLowerCase();
                 if (tagName === 'select') {
                     if (!HTMLHint.utils.isAttributeExists(event.attrs,"id")) {
-                        reporter.error('select element must have an id attribute!', event.line, event.col, self, event.raw);
+                        reporter.error('select element must have an id attribute. Error on line ' + event.line, event.line, event.col, self, event.raw);
                     }
                 }
             });
