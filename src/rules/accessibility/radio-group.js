@@ -3,17 +3,29 @@ HTMLHint.addRule({
     description: 'group of radio buttons should have role of radiogroup. every radio button should have radio role',
     init: function(parser, reporter){
         var isRadiogroupContainer = function(event) { 
-                return event.class && event.class.toLowerCase() === "radio";
+            var isRadioClassExist = false;
+            var classNames = HTMLHint.utils.getAttribute(event.attrs,"class");
+            if(!classNames){
+                return false;
+            }
+            var classesArray = classNames.value.split(/\s+/g);
+            classesArray.forEach(function(className){
+                if(className.toLowerCase() ==="radio" ){
+                    isRadioClassExist = true;
+                }
+            });
+            return isRadioClassExist;
         };
         
         var self = this;        
         parser.addListener('tagstart', function(event){
-          
-            if (isRadiogroupContainer(event) && HTMLHint.utils.getAttribute(event.attrs,"role") !== 'radiogroup')
+            var roleAttribute = HTMLHint.utils.getAttribute(event.attrs,"role");
+            var ariaLabelAttribute = HTMLHint.utils.getAttribute(event.attrs,"aria-labelledby");
+            if (isRadiogroupContainer(event) && (!roleAttribute || roleAttribute.value !== 'radiogroup'))
             {
                reporter.error('radiogroup container should have role attr with radiogroup value' + event.line , event.line, event.col, self, event.raw);
             }  
-             if (!HTMLHint.utils.getAttribute(event.attrs,"aria-labelledby"))
+             if (isRadiogroupContainer(event) && (!ariaLabelAttribute || ariaLabelAttribute.value === ''))
             {
                reporter.error('radiogroup container should have aria-labelledby attribute with value' + event.line , event.line, event.col, self, event.raw);
             }                 
