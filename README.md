@@ -1,25 +1,16 @@
-HTMLHint
+HTMLFormHint
 =======================
 
-![HTMLHint logo](https://raw.github.com/yaniswang/HTMLHint/master/logo.png)
 
-HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in build system.
+Static Code Analysis Tool for HTML, you can use it with IDE or in build system.
 
-[![Build Status](https://img.shields.io/travis/yaniswang/HTMLHint.svg)](https://travis-ci.org/yaniswang/HTMLHint)
-[![Coverage Status](https://img.shields.io/coveralls/yaniswang/HTMLHint.svg)](https://coveralls.io/github/yaniswang/HTMLHint?branch=master)
-[![NPM version](https://img.shields.io/npm/v/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![License](https://img.shields.io/npm/l/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![NPM count](https://img.shields.io/npm/dm/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![NPM count](https://img.shields.io/npm/dt/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-
-Official Site: [http://htmlhint.com/](http://htmlhint.com/)
 
 Quick start
 ======================
 
 1. install & hint
 
-        npm install htmlhint -g
+        npm install htmlformhint -g
         htmlhint -V
         htmlhint --help
         htmlhint www
@@ -61,21 +52,12 @@ Quick start
         <head>
             ...
 
-Guide
-=======================
-
-1. [How to use](https://github.com/yaniswang/HTMLHint/wiki/Usage)
-2. [All Rules](https://github.com/yaniswang/HTMLHint/wiki/Rules)
-2. [How to Develop](https://github.com/yaniswang/HTMLHint/wiki/Developer-guide)
-
 License
 ================
 
 HTMLHint is released under the MIT license:
 
 > The MIT License
->
-> Copyright (c) 2014-2016 Yanis Wang \< yanis.wang@gmail.com \>
 >
 > Permission is hereby granted, free of charge, to any person obtaining a copy
 > of this software and associated documentation files (the "Software"), to deal
@@ -98,6 +80,7 @@ HTMLHint is released under the MIT license:
 Thanks
 ================
 
+* HTMLHint: [https://github.com/yaniswang/HTMLHint](https://github.com/yaniswang/HTMLHint)
 * mocha: [https://github.com/visionmedia/mocha](https://github.com/visionmedia/mocha)
 * expect.js: [https://github.com/LearnBoost/expect.js](https://github.com/LearnBoost/expect.js)
 * istanbul: [https://github.com/gotwarlost/istanbul](https://github.com/gotwarlost/istanbul)

@@ -1,6 +1,6 @@
 {
-  "name": "htmlhint",
-  "version": "0.9.14",
+  "name": "htmlformhint",
+  "version": "1.1.2",
   "description": "A Static Code Analysis Tool for HTML",
   "main": "./index",
   "dependencies": {
@@ -36,10 +36,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/yaniswang/HTMLHint.git"
+    "url": "git://github.com/rziv/HTMLHint.git"
   },
   "bugs": {
-    "url": "https://github.com/yaniswang/HTMLHint/issues"
+    "url": "https://github.com/rziv/HTMLHint/issues"
   },
   "keywords": [
     "html",
@@ -47,6 +47,6 @@
     "Analysis",
     "Javascript"
   ],
-  "author": "Yanis Wang",
+  "author": "Ran Ziv (forked from Yanis Wang HTMLHint)",
   "license": "MIT"
 }
