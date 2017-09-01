@@ -20,7 +20,7 @@ HTMLHint.addRule({
 
                 var jsVerify;
 
-                if(typeof exports === 'object' && require){
+                if(typeof exports === 'object' && typeof exports.nodeName !== 'string'){
                     jsVerify = require('jshint').JSHINT;
                 }
                 else{

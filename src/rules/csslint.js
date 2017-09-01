@@ -12,7 +12,7 @@ HTMLHint.addRule({
 
                 var cssVerify;
 
-                if(typeof exports === 'object' && require){
+                if(typeof exports === 'object' && typeof exports.nodeName !== 'string'){
                     cssVerify = require("csslint").CSSLint.verify;
                 }
                 else{
