@@ -29,6 +29,16 @@ var HTMLParser = (function(undefined){
 
         // parse html code
         parse: function(html){
+            html = html.replace(/<\?(?:php)?(?:[\s\S])+?\?>/gi, function (match) {
+                var newlines = match.match(/\r?\n|\r/g);
+                var newlineCount = newlines ? newlines.length : 0;
+
+                var ret = '';
+                for (var i = 0; i < newlineCount; i++) {
+                    ret += '\n';
+                }
+                return ret;
+            });
 
             var self = this,
                 mapCdataTags = self._mapCdataTags;
