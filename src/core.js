@@ -31,6 +31,12 @@ var HTMLHint = (function (undefined) {
     };
 
     HTMLHint.verify = function(html, ruleset){
+        html = html.replace(/<\?(?:php)?(?:[\s\S])+?\?>/gi, function (match) {
+            var newlines = match.match(/\r?\n|\r/g);
+            var newlineCount = newlines ? newlines.length : 0;
+
+            return '\n'.repeat(newlineCount);
+        });
 
         if(ruleset === undefined || Object.keys(ruleset).length ===0){
             ruleset = HTMLHint.defaultRuleset;

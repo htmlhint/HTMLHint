@@ -66,4 +66,13 @@ describe('Core', function(){
         expect(/|\.\.\./.test(log)).to.be(true);
         expect(/t\.\.\./.test(log)).to.be(true);
     });
+
+    it('PHP should be ignored', function(){
+        var code = '<p><?php echo "Hello, world!"; ?></p>';
+        var messages = HTMLHint.verify(code, {
+            'spec-char-escape': true,
+        });
+
+        expect(messages.length).to.be(0);
+    });
 });
