@@ -69,30 +69,12 @@ describe('HTMLParser: Base parse', function(){
             };
         };
 
-        /*
-        it('- should not parse json', function(done){
-            var parser = new HTMLParser();
-            var arrEvents = [];
-            getAllEvents(parser, arrEvents, expectEnd(arrEvents, done));
-            parser.parse('{"test": [{ "json": "Should not parse" }]}');
-        });
-        */
-
         it('- should not parse php', function(done){
             var parser = new HTMLParser();
             var arrEvents = [];
             getAllEvents(parser, arrEvents, expectEnd(arrEvents, done));
             parser.parse('<?php echo "Hello, world!"; ?>');
         });
-
-        /*
-        it('- should not parse css', function(done){
-            var parser = new HTMLParser();
-            var arrEvents = [];
-            getAllEvents(parser, arrEvents, expectEnd(arrEvents, done));
-            parser.parse('body { color: red; }');
-        });
-        */
     });
 });
 

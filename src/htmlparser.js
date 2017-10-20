@@ -46,31 +46,9 @@ var HTMLParser = (function(undefined){
 
             // Break if only whitespace
             if (html.replace(/\s/g, '').length <= 0) {
-                console.log(html);
-                console.log(html.replace(/\s/g, '').length);
-                console.log('breaking');
                 self.fire('end');
                 return;
             }
-
-            /*
-            // Break if json
-            var isJson = (function (str) {
-                try {
-                    JSON.parse(str);
-                } catch (e) {
-                    return false;
-                }
-                return true;
-            })(html);
-            if (isJson) {
-                console.log(html);
-                console.log('isJson: ', isJson);
-                console.log('breaking');
-                self.fire('end');
-                return;
-            }
-            */
 
             var regTag=/<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g,
                 regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
