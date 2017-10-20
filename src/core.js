@@ -31,6 +31,7 @@ var HTMLHint = (function (undefined) {
     };
 
     HTMLHint.verify = function(html, ruleset){
+
         if(ruleset === undefined || Object.keys(ruleset).length ===0){
             ruleset = HTMLHint.defaultRuleset;
         }

@@ -60,22 +60,6 @@ describe('HTMLParser: Base parse', function(){
       parser.parse('<!DOCTYPE HTML><html><head><meta charset="UTF-8"><title>testtitle</title></head><body><p><a href="testhref" title="atitle">aaa<span>bbb</span>ccc</a></p></body></html>');
     });
 
-    describe('Parser should not parse code with no HTML', function () {
-        var expectEnd = function(arrEvents, done){
-            return function(){
-                expect(arrEvents.length).to.be(1);
-                expect(arrEvents[0].type).to.be('end');
-                done();
-            };
-        };
-
-        it('- should not parse php', function(done){
-            var parser = new HTMLParser();
-            var arrEvents = [];
-            getAllEvents(parser, arrEvents, expectEnd(arrEvents, done));
-            parser.parse('<?php echo "Hello, world!"; ?>');
-        });
-    });
 });
 
 describe('HTMLParser: Object parse', function(){

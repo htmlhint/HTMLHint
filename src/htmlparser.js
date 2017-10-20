@@ -29,26 +29,9 @@ var HTMLParser = (function(undefined){
 
         // parse html code
         parse: function(html){
+
             var self = this,
                 mapCdataTags = self._mapCdataTags;
-
-            // Remove PHP
-            html = html.replace(/<\?(?:php)?(?:[\s\S])+?\?>/gi, function (match) {
-                var newlines = match.match(/\r?\n|\r/g);
-                var newlineCount = newlines ? newlines.length : 0;
-
-                var ret = '';
-                for (var i = 0; i < newlineCount; i++) {
-                    ret += '\n';
-                }
-                return ret;
-            });
-
-            // Break if only whitespace
-            if (html.replace(/\s/g, '').length <= 0) {
-                self.fire('end');
-                return;
-            }
 
             var regTag=/<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g,
                 regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
