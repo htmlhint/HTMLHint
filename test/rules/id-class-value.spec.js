@@ -14,7 +14,7 @@ ruleOptionsUnderline[ruldId] = 'underline';
 ruleOptionsDash[ruldId] = 'dash';
 ruleOptionsHump[ruldId] = 'hump';
 ruleOptionsReg[ruldId] = {
-        'regId': /^_[a-z\d]+(-[a-z\d]+)*$/,
+        'regId': '^_[a-z\d]+(-[a-z\d]+)*$',
         'message': 'Id and class value must meet regexp'
     };
 

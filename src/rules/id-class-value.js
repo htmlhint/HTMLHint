@@ -30,6 +30,9 @@ HTMLHint.addRule({
         if(rule && rule.regId){
             var regId = rule.regId,
                 message = rule.message;
+            if(!(regId instanceof RegExp)) {
+                regId = new RegExp(regId);
+            }
             parser.addListener('tagstart', function(event){
                 var attrs = event.attrs,
                     attr,
