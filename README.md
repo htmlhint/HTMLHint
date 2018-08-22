@@ -10,7 +10,7 @@ HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in 
 
 ## Getting started
 
-1. install & hint
+1. Installation & hints
 
         npm install htmlhint -g
         htmlhint -V
@@ -22,7 +22,7 @@ HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in 
         htmlhint http://www.alibaba.com/
         cat test.html | htmlhint stdin
 
-2. results
+2. Results
 
            test.html
               L5 |    </head>
@@ -32,7 +32,7 @@ HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in 
 
         2 errors in 1 files
 
-3. config rules
+3. Config rules
 
     search `.htmlhintrc` file in current directory and all parent directories:
 
