@@ -10,7 +10,7 @@ HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in 
 [![NPM version](https://img.shields.io/npm/v/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![License](https://img.shields.io/npm/l/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![NPM count](https://img.shields.io/npm/dm/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![NPM count](https://img.shields.io/npm/dt/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
+[![NPM count](https://img.shields.io/npm/dt/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint) [![Greenkeeper badge](https://badges.greenkeeper.io/thedaviddias/HTMLHint.svg)](https://greenkeeper.io/)
 
 Official Site: [http://htmlhint.com/](http://htmlhint.com/)
 
