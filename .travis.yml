@@ -1,20 +1,22 @@
-sudo: false
-
 language: node_js
+sudo: false
 node_js:
-    - "0.10"
-    - "0.12"
-    - "4.4.3"
-    - "5.9.1"
-    - "6.0.0"
-
+    - "6.14.1"
 cache:
   directories:
     - node_modules
-
-matrix:
-  fast_finish: true
-
-script: "grunt"
-
-after_success: istanbul-coveralls
+install:
+  - npm install
+  - npm install -g codecov
+notifications:
+  email:
+    recipients:
+      - thedaviddias@gmail.com
+branches:
+  only:
+    - master
+    - /^greenkeeper/.*$/
+script:
+    - "grunt"
+    - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
+    - codecov
