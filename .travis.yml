@@ -1,22 +1,29 @@
 language: node_js
-sudo: false
-node_js:
-    - "6.14.1"
 cache:
   directories:
     - node_modules
-install:
-  - npm install
-  - npm install -g codecov
+    - ~/.npm
 notifications:
   email:
     recipients:
       - thedaviddias@gmail.com
+node_js:
+  - '10'
+  - '9'
+  - '8'
+  - '6'
+install:
+  - npm install
+  - npm install -g codecov
+script:
+    - "grunt"
+    - istanbul cover ./node_modules/mocha/bin/_mocha --reporter test -- -R spec
+    - codecov
+after_success:
+  - npm run travis-deploy-once "npm run semantic-release"
 branches:
   only:
     - master
     - /^greenkeeper/.*$/
-script:
-    - "grunt"
-    - istanbul cover ./node_modules/mocha/bin/_mocha --reporter lcovonly -- -R spec
-    - codecov
+  except:
+    - /^v\d+\.\d+\.\d+$/
