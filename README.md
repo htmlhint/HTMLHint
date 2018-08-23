@@ -56,9 +56,9 @@ HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in 
 
 ## Guide
 
-1. [How to use](https://github.com/yaniswang/HTMLHint/wiki/Usage)
-2. [All Rules](https://github.com/yaniswang/HTMLHint/wiki/Rules)
-2. [How to Develop](https://github.com/yaniswang/HTMLHint/wiki/Developer-guide)
+1. [How to use](https://github.com/thedaviddias/HTMLHint/wiki/Usage)
+2. [All Rules](https://github.com/thedaviddias/HTMLHint/wiki/Rules)
+2. [How to Develop](https://github.com/thedaviddias/HTMLHint/wiki/Developer-guide)
 
 ## License
 

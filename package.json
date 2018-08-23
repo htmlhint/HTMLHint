@@ -36,10 +36,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/yaniswang/HTMLHint.git"
+    "url": "git://github.com/thedaviddias/HTMLHint.git"
   },
   "bugs": {
-    "url": "https://github.com/yaniswang/HTMLHint/issues"
+    "url": "https://github.com/thedaviddias/HTMLHint/issues"
   },
   "keywords": [
     "html",
