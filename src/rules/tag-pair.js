@@ -21,7 +21,7 @@ HTMLHint.addRule({
         });
         parser.addListener('tagend', function(event){
             var tagName = event.tagName.toLowerCase();
-            //向上寻找匹配的开始标签
+            // Look up the matching start tag
             for(var pos = stack.length-1;pos >= 0; pos--){
                 if(stack[pos].tagName === tagName){
                     break;
