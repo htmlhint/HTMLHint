@@ -266,7 +266,7 @@ function getGlobInfo(target){
     // fix windows sep
     target = target.replace(/\\/g, '/');
     var globInfo = parseGlob(target);
-    var base = path.resolve(globInfo.base);
+    var base = globInfo.base;
     base += /\/$/.test(base) ? '' : '/';
     base = path.resolve(base);
     var pattern = globInfo.glob;
