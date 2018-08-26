@@ -12,7 +12,7 @@ var HTMLHint = (function (undefined) {
 
     HTMLHint.rules = {};
 
-    //默认配置
+    // standard configuration
     HTMLHint.defaultRuleset = {
         'tagname-lowercase': true,
         'attr-lowercase': true,

@@ -19,11 +19,10 @@ script:
     - "grunt"
     - istanbul cover ./node_modules/mocha/bin/_mocha --reporter test -- -R spec
     - codecov
-after_success:
-  - npm run travis-deploy-once "npm run semantic-release"
 branches:
   only:
     - master
+    - develop
     - /^greenkeeper/.*$/
   except:
     - /^v\d+\.\d+\.\d+$/

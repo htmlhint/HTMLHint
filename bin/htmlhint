@@ -54,6 +54,7 @@ program
     .option('-f, --format <'+arrSupportedFormatters.join('|')+'>', 'output messages as custom format')
     .option('-i, --ignore <pattern, pattern ...>', 'add pattern to exclude matches')
     .option('--nocolor', 'disable color')
+    .option('--warn', 'Warn only, exit with 0')
     .parse(process.argv);
 
 if(program.list){
@@ -134,7 +135,7 @@ function hintTargets(arrTargets, options){
             allHintCount: allHintCount,
             time: spendTime
         });
-        process.exit(allHintCount > 0 ? 1: 0);
+        process.exit(!program.warn && allHintCount > 0 ? 1 : 0);
     });
 }
 
@@ -267,7 +268,6 @@ function getGlobInfo(target){
     var globInfo = parseGlob(target);
     var base = path.resolve(globInfo.base);
     base += /\/$/.test(base) ? '' : '/';
-    base = path.resolve(base);
     var pattern = globInfo.glob;
     var globPath = globInfo.path;
     var defaultGlob = '*.{htm,html}';
