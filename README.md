@@ -5,6 +5,9 @@
 [![NPM version](https://img.shields.io/npm/v/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![NPM count](https://img.shields.io/npm/dm/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![License](https://img.shields.io/npm/l/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
+[![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg?style=flat)](https://discord.gg/nJ6J9CP)
+
+
 
 HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in build system.
 
