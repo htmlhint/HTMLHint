@@ -7,7 +7,7 @@
     "async": "1.5.2",
     "colors": "1.1.2",
     "commander": "2.9.0",
-    "csslint": "0.10.0",
+    "csslint": "1.0.0",
     "glob": "7.0.3",
     "jshint": "2.9.4",
     "parse-glob": "3.0.4",
