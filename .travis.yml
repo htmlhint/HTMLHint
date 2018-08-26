@@ -1,20 +1,29 @@
-sudo: false
-
 language: node_js
-node_js:
-    - "0.10"
-    - "0.12"
-    - "4.4.3"
-    - "5.9.1"
-    - "6.0.0"
-
 cache:
   directories:
     - node_modules
-
-matrix:
-  fast_finish: true
-
-script: "grunt"
-
-after_success: istanbul-coveralls
+    - ~/.npm
+notifications:
+  email:
+    recipients:
+      - thedaviddias@gmail.com
+node_js:
+  - '10'
+  - '9'
+  - '8'
+  - '6'
+install:
+  - npm install
+  - npm install -g codecov
+script:
+    - "grunt"
+    - istanbul cover ./node_modules/mocha/bin/_mocha --reporter test -- -R spec
+    - codecov
+after_success:
+  - npm run travis-deploy-once "npm run semantic-release"
+branches:
+  only:
+    - master
+    - /^greenkeeper/.*$/
+  except:
+    - /^v\d+\.\d+\.\d+$/
