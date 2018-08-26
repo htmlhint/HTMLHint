@@ -1,7 +1,7 @@
 # HTMLHint
 
 [![Build Status](https://img.shields.io/travis/thedaviddias/HTMLHint.svg)](https://travis-ci.org/thedaviddias/HTMLHint)
-[![Coverage Status](https://img.shields.io/coveralls/thedaviddias/HTMLHint.svg)](https://coveralls.io/github/thedaviddias/HTMLHint?branch=master)
+[![codecov](https://codecov.io/gh/thedaviddias/HTMLHint/branch/master/graph/badge.svg)](https://codecov.io/gh/thedaviddias/HTMLHint)
 [![NPM version](https://img.shields.io/npm/v/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![NPM count](https://img.shields.io/npm/dm/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![License](https://img.shields.io/npm/l/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
