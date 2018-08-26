@@ -4,6 +4,8 @@
 [![codecov](https://codecov.io/gh/thedaviddias/HTMLHint/branch/master/graph/badge.svg)](https://codecov.io/gh/thedaviddias/HTMLHint)
 [![NPM version](https://img.shields.io/npm/v/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![NPM count](https://img.shields.io/npm/dm/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
+[![Greenkeeper badge](https://badges.greenkeeper.io/thedaviddias/HTMLHint.svg?style=flat)](https://greenkeeper.io/)
+[![NPM count](https://img.shields.io/npm/dt/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint) 
 [![License](https://img.shields.io/npm/l/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
 [![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg?style=flat)](https://discord.gg/nJ6J9CP)
 
