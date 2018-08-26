@@ -61,7 +61,7 @@
                 rule: {
                     id: rule.id,
                     description: rule.description,
-                    link: 'https://github.com/yaniswang/HTMLHint/wiki/' + rule.id
+                    link: 'https://github.com/thedaviddias/HTMLHint/wiki/' + rule.id
                 }
             });
         }
