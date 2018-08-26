@@ -1,7 +1,7 @@
 {
   "name": "htmlhint",
-  "version": "0.9.14",
-  "description": "A Static Code Analysis Tool for HTML",
+  "version": "0.0.0-development",
+  "description": "The Static Code Analysis Tool for your HTML",
   "main": "./index",
   "dependencies": {
     "async": "1.5.2",
@@ -9,7 +9,7 @@
     "commander": "2.9.0",
     "csslint": "0.10.0",
     "glob": "7.0.3",
-    "jshint": "2.9.2",
+    "jshint": "2.9.4",
     "parse-glob": "3.0.4",
     "path-parse": "1.0.5",
     "request": "2.72.0",
@@ -29,24 +29,28 @@
     "grunt-replace": "0.4.0",
     "istanbul": "0.4.3",
     "istanbul-coveralls": "1.0.3",
-    "mocha": "2.4.5"
+    "mocha": "2.4.5",
+    "semantic-release": "^15.9.9"
   },
   "bin": {
     "htmlhint": "./bin/htmlhint"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/yaniswang/HTMLHint.git"
+    "url": "https://github.com/thedaviddias/HTMLHint.git"
   },
   "bugs": {
-    "url": "https://github.com/yaniswang/HTMLHint/issues"
+    "url": "https://github.com/thedaviddias/HTMLHint/issues"
   },
   "keywords": [
     "html",
     "hint",
-    "Analysis",
-    "Javascript"
+    "analysis",
+    "javascript"
   ],
-  "author": "Yanis Wang",
-  "license": "MIT"
+  "author": "David Dias (thedaviddias@gmail.com)",
+  "license": "MIT",
+  "scripts": {
+    "semantic-release": "semantic-release"
+  }
 }
