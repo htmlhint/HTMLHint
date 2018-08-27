@@ -3,20 +3,19 @@
  * MIT Licensed
  */
 
-var expect  = require("expect.js");
+const expect = require('expect.js');
 
-var HTMLHint  = require("../../index").HTMLHint;
+const HTMLHint = require('../../index').HTMLHint;
 
-var ruldId = 'tagname-lowercase',
-    ruleOptions = {};
+const ruldId = 'tagname-lowercase';
+const ruleOptions = {};
 
 ruleOptions[ruldId] = true;
 
-describe('Rules: '+ruldId, function(){
-
-    it('The tag name not all lower case should result in an error', function(){
-        var code = '<A href=""></A><SPAN>aab</spaN>';
-        var messages = HTMLHint.verify(code, ruleOptions);
+describe(`Rules: ${ruldId}`, function() {
+    it('The tag name not all lower case should result in an error', function() {
+        const code = '<A href=""></A><SPAN>aab</spaN>';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(4);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
@@ -32,10 +31,9 @@ describe('Rules: '+ruldId, function(){
         expect(messages[3].col).to.be(25);
     });
 
-    it('All lower case tag name should not result in an error', function(){
-        var code = '<a href=""></a><span>test</span>';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('All lower case tag name should not result in an error', function() {
+        const code = '<a href=""></a><span>test</span>';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
-
 });
