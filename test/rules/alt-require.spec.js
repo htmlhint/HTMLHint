@@ -1,9 +1,3 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * Copyright (c) 2014, Takeshi Kurosawa <taken.spc@gmail.com>
- * MIT Licensed
- */
-
 const expect = require('expect.js');
 
 const HTMLHint = require('../../index').HTMLHint;

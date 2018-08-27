@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2014, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 HTMLHint.addRule({
     id: 'id-class-ad-disabled',
     description: 'The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.',
