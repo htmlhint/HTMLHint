@@ -53,6 +53,12 @@
       "email": "thedaviddias@gmail.com",
       "url": "https://thedaviddias.me"
   },
+  "contributors": [
+    {
+      "name": "Yanis Wang",
+      "email": "yanis.wang@gmail.com"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "semantic-release": "semantic-release"
