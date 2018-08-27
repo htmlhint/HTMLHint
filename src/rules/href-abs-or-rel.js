@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2014, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 HTMLHint.addRule({
     id: 'href-abs-or-rel',
     description: 'An href attribute must be either absolute or relative.',
