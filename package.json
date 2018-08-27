@@ -48,7 +48,11 @@
     "analysis",
     "javascript"
   ],
-  "author": "David Dias (thedaviddias@gmail.com)",
+  "author": {
+      "name": "David Dias",
+      "email": "thedaviddias@gmail.com",
+      "url": "https://thedaviddias.me"
+  },
   "license": "MIT",
   "scripts": {
     "semantic-release": "semantic-release"
