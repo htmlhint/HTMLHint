@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2014, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 HTMLHint.addRule({
     id: 'space-tab-mixed-disabled',
     description: 'Do not mix tabs and spaces for indentation.',
