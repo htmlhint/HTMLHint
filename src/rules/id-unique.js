@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 HTMLHint.addRule({
     id: 'id-unique',
     description: 'The value of id attributes must be unique.',

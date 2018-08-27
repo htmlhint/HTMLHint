@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 HTMLHint.addRule({
     id: 'attr-value-double-quotes',
     description: 'Attribute values must be in double quotes.',
