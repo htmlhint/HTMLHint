@@ -48,7 +48,25 @@
     "analysis",
     "javascript"
   ],
-  "author": "David Dias (thedaviddias@gmail.com)",
+  "author": {
+      "name": "David Dias",
+      "email": "thedaviddias@gmail.com",
+      "url": "https://thedaviddias.me"
+  },
+  "contributors": [
+    {
+      "name": "Yanis Wang",
+      "email": "yanis.wang@gmail.com"
+    },
+    {
+      "name": "Serj Lavrin",
+      "url": "https://lavrins.com"
+    },
+    {
+      "name": "Christopher Quadflieg",
+      "email": "chrissi92@hotmail.de"
+    }
+  ],
   "license": "MIT",
   "scripts": {
     "semantic-release": "semantic-release"
