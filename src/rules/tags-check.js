@@ -37,7 +37,7 @@ function assign(target) {
         }
     }
     return target;
-};
+}
 
 HTMLHint.addRule({
     id: 'tags-check',
