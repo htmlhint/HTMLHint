@@ -27,7 +27,7 @@ var tagsTypings = {
     }
 };
 
-var assign = function assign(target) {
+function assign(target) {
     var _source;
 
     for (var i = 1; i < arguments.length; i++) {
