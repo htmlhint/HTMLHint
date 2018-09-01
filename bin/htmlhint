@@ -312,10 +312,11 @@ function getConfig(configPath, base, formatter){
     }
 
     if(fs.existsSync(configPath)){
-        var config = fs.readFileSync(configPath, 'utf-8'),
+        var configJson = fs.readFileSync(configPath, 'utf-8'),
             ruleset;
         try{
-            ruleset = JSON.parse(stripJsonComments(config));
+            var config = JSON.parse(stripJsonComments(configJson));
+            ruleset = config.rules;
             formatter.emit('config', {
                 ruleset: ruleset,
                 configPath: configPath
