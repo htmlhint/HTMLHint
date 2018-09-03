@@ -88,7 +88,7 @@ This project exists thanks to all these people. [Contribute](CONTRIBUTING.md).
 
 ## 🏅 Backers
 
-Thank you to all our backers! [Become a backer](https://opencollective.com/stylelint#backer).
+Thank you to all our backers! [Become a backer](https://opencollective.com/htmlhint#backer).
 
 <a href="https://opencollective.com/htmlhint#backers" target="_blank"><img src="https://opencollective.com/htmlhint/backers.svg?width=890"></a>
 
