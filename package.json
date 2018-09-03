@@ -45,9 +45,7 @@
         "async": "2.6.1",
         "colors": "1.3.2",
         "commander": "2.17.1",
-        "csslint": "1.0.5",
         "glob": "7.1.3",
-        "jshint": "2.9.6",
         "parse-glob": "3.0.4",
         "path-parse": "1.0.6",
         "request": "2.88.0",
@@ -80,5 +78,9 @@
         "pretty-quick": "^1.6.0",
         "travis-deploy-once": "^5.0.7",
         "semantic-release": "^15.9.12"
+    },
+    "optionalDependencies": {
+      "csslint": "^1.0.5",
+      "jshint": "^2.9.6"
     }
 }
