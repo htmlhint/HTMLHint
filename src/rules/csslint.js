@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 HTMLHint.addRule({
     id: 'csslint',
     description: 'Scan css with csslint.',
@@ -13,7 +9,7 @@ HTMLHint.addRule({
                 var cssVerify;
 
                 if(typeof exports === 'object' && require){
-                    cssVerify = require("csslint").CSSLint.verify;
+                    cssVerify = require('csslint').CSSLint.verify;
                 }
                 else{
                     cssVerify = CSSLint.verify;

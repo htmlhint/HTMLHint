@@ -1,22 +1,16 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
+const expect = require('expect.js');
 
-var expect  = require("expect.js");
+const HTMLHint = require('../../index').HTMLHint;
 
-var HTMLHint  = require("../../index").HTMLHint;
-
-var ruldId = 'attr-value-not-empty',
-    ruleOptions = {};
+const ruldId = 'attr-value-not-empty';
+const ruleOptions = {};
 
 ruleOptions[ruldId] = true;
 
-describe('Rules: '+ruldId, function(){
-
-    it('Attribute value have no value should result in an error', function(){
-        var code = '<input disabled>';
-        var messages = HTMLHint.verify(code, ruleOptions);
+describe(`Rules: ${ruldId}`, function() {
+    it('Attribute value have no value should result in an error', function() {
+        const code = '<input disabled>';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
@@ -24,16 +18,15 @@ describe('Rules: '+ruldId, function(){
         expect(messages[0].type).to.be('warning');
     });
 
-    it('Attribute value closed by quote but no value should not result in an error', function(){
-        var code = '<input disabled="">';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('Attribute value closed by quote but no value should not result in an error', function() {
+        const code = '<input disabled="">';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
 
-    it('Attribute value closed by quote and have value should not result in an error', function(){
-        var code = '<input disabled="disabled">';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('Attribute value closed by quote and have value should not result in an error', function() {
+        const code = '<input disabled="disabled">';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
-
 });

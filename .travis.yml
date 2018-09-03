@@ -1,28 +1,29 @@
 language: node_js
 cache:
-  directories:
-    - node_modules
-    - ~/.npm
+    directories:
+        - ~/.npm
 notifications:
-  email:
-    recipients:
-      - thedaviddias@gmail.com
+    email:
+        recipients:
+            - thedaviddias@gmail.com
 node_js:
-  - '10'
-  - '9'
-  - '8'
-  - '6'
+    - '10'
+    - '9'
+    - '8'
+    - '6'
 install:
-  - npm install
-  - npm install -g codecov
+    - npm install -g codecov
+    - npm install
 script:
-    - "grunt"
+    - 'grunt'
     - istanbul cover ./node_modules/mocha/bin/_mocha --reporter test -- -R spec
     - codecov
 branches:
-  only:
-    - master
-    - develop
-    - /^greenkeeper/.*$/
-  except:
-    - /^v\d+\.\d+\.\d+$/
+    only:
+        - master
+        - develop
+        - /^greenkeeper/.*$/
+    except:
+        - /^v\d+\.\d+\.\d+$/
+after_success:
+    - test $TRAVIS_BRANC = "master" && test $TRAVIS_PULL_REQUEST = "false" && npm run travis-deploy-once "npm run semantic-release"

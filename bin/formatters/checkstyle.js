@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 var xml = require('xml');
 
 var checkstyleFormatter = function(formatter){
