@@ -3,7 +3,7 @@ HTMLHint.addRule({
     description: 'Empty tags must be self closed.',
     init: function(parser, reporter){
         var self = this;
-        var mapEmptyTags = parser.makeMap("area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr");//HTML 4.01 + HTML 5
+        var mapEmptyTags = parser.makeMap('area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr');//HTML 4.01 + HTML 5
         parser.addListener('tagstart', function(event){
             var tagName = event.tagName.toLowerCase();
             if(mapEmptyTags[tagName] !== undefined){
