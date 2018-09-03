@@ -28,7 +28,7 @@ HTMLHint.addRule({
                         styleCol = event.col - 1;
                     var code = event.raw.replace(/\t/g,' ');
                     try{
-                        var status = jsVerify(code, options);
+                        var status = jsVerify(code, options, options.globals);
                         if(status === false){
                             jsVerify.errors.forEach(function(error){
                                 var line = error.line;
