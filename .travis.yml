@@ -1,7 +1,6 @@
 language: node_js
 cache:
     directories:
-        - node_modules
         - ~/.npm
 notifications:
     email:
@@ -26,3 +25,5 @@ branches:
         - /^greenkeeper/.*$/
     except:
         - /^v\d+\.\d+\.\d+$/
+after_success:
+    - test $TRAVIS_BRANC = "master" && test $TRAVIS_PULL_REQUEST = "false" && npm run travis-deploy-once "npm run semantic-release"
