@@ -1,19 +1,20 @@
-const expect = require('expect.js');
+var expect  = require("expect.js");
 
-const HTMLHint = require('../../index').HTMLHint;
+var HTMLHint  = require("../../index").HTMLHint;
 
-const ruldId = 'csslint';
-const ruleOptions = {};
+var ruldId = 'csslint',
+    ruleOptions = {};
 
 ruleOptions[ruldId] = {
-    'display-property-grouping': true,
-    'known-properties': true
-};
+        "display-property-grouping": true,
+        "known-properties": true
+    };
 
-describe(`Rules: ${ruldId}`, function() {
-    it('should result in an error', function() {
-        const code = 'a<style> \r\n body{color:red1;\r\ndisplay:inline;height:100px;}</style>b';
-        const messages = HTMLHint.verify(code, ruleOptions);
+describe('Rules: '+ruldId, function(){
+
+    it('should result in an error', function(){
+        var code = 'a<style> \r\n body{color:red1;\r\ndisplay:inline;height:100px;}</style>b';
+        var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(2);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(2);
@@ -24,4 +25,5 @@ describe(`Rules: ${ruldId}`, function() {
         expect(messages[1].col).to.be(16);
         expect(messages[1].type).to.be('warning');
     });
+
 });

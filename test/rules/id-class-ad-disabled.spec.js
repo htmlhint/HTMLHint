@@ -1,16 +1,17 @@
-const expect = require('expect.js');
+var expect  = require("expect.js");
 
-const HTMLHint = require('../../index').HTMLHint;
+var HTMLHint  = require("../../index").HTMLHint;
 
-const ruldId = 'id-class-ad-disabled';
-const ruleOptions = {};
+var ruldId = 'id-class-ad-disabled',
+    ruleOptions = {};
 
 ruleOptions[ruldId] = true;
 
-describe(`Rules: ${ruldId}`, function() {
-    it('Id use ad keyword should result in an error', function() {
-        let code = '<div id="ad">test</div>';
-        let messages = HTMLHint.verify(code, ruleOptions);
+describe('Rules: '+ruldId, function(){
+
+    it('Id use ad keyword should result in an error', function(){
+        var code = '<div id="ad">test</div>';
+        var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(1);
         expect(messages[0].type).to.be('warning');
         expect(messages[0].rule.id).to.be(ruldId);
@@ -60,9 +61,9 @@ describe(`Rules: ${ruldId}`, function() {
         expect(messages[0].col).to.be(5);
     });
 
-    it('Class use ad keyword should result in an error', function() {
-        let code = '<div class="ad">test</div>';
-        let messages = HTMLHint.verify(code, ruleOptions);
+    it('Class use ad keyword should result in an error', function(){
+        var code = '<div class="ad">test</div>';
+        var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
@@ -111,9 +112,9 @@ describe(`Rules: ${ruldId}`, function() {
         expect(messages[0].col).to.be(5);
     });
 
-    it('Id and class no ad keyword used should not result in an error', function() {
-        let code = '<div id="ad1" class="ad2">test</div>';
-        let messages = HTMLHint.verify(code, ruleOptions);
+    it('Id and class no ad keyword used should not result in an error', function(){
+        var code = '<div id="ad1" class="ad2">test</div>';
+        var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
 
         code = '<div id="ad1-222" class="ad2-222">test</div>';
@@ -124,4 +125,5 @@ describe(`Rules: ${ruldId}`, function() {
         messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
+
 });

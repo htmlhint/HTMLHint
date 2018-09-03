@@ -1,19 +1,14 @@
-const expect = require('expect.js');
+var expect = require('expect.js');
 
-const ChildProcess = require('child_process');
-const path = require('path');
+var ChildProcess = require('child_process');
+var path = require('path');
 
-describe('Executable', function() {
-    it('should close stream before exit', function(done) {
-        const c = ChildProcess.spawn('node', [
-            path.resolve(__dirname, '../bin/htmlhint'),
-            '--format',
-            'json',
-            path.resolve(__dirname, './html/executable.html')
-        ]);
-        let stdoutEnd = false;
-        let processEnd = false;
-        let isDone = 0;
+describe('Executable', function () {
+    it('should close stream before exit', function (done) {
+        var c = ChildProcess.spawn('node', [path.resolve(__dirname,'../bin/htmlhint'), '--format', 'json', path.resolve(__dirname,'./html/executable.html')]);
+        var stdoutEnd = false;
+        var processEnd = false;
+        var isDone = 0;
 
         function checkDone() {
             isDone++;
@@ -22,17 +17,17 @@ describe('Executable', function() {
             }
         }
 
-        c.stdout.on('close', () => {
+        c.stdout.on('close', function() {
             stdoutEnd = true;
             checkDone();
         });
 
-        c.on('exit', () => {
+        c.on('exit', function() {
             processEnd = true;
             checkDone();
         });
 
-        c.stdout.on('data', () => {
+        c.stdout.on('data', function() {
             expect(stdoutEnd || processEnd).to.be(false);
         });
     });

@@ -43,25 +43,6 @@ var HTMLParser = (function(undefined){
                 col: 1
             });
 
-            // Memory block
-            function saveBlock(type, raw, pos, data){
-                var col = pos - lastLineIndex + 1;
-                if(data === undefined){
-                    data = {};
-                }
-                data.raw = raw;
-                data.pos = pos;
-                data.line = line;
-                data.col = col;
-                arrBlocks.push(data);
-                self.fire(type, data);
-                var lineMatch;
-                while((lineMatch = regLine.exec(raw))){
-                    line ++;
-                    lastLineIndex = pos + regLine.lastIndex;
-                }
-            }
-
             while((match = regTag.exec(html))){
                 matchIndex = match.index;
                 if(matchIndex > lastIndex){// Save the previous text or CDATA
@@ -151,6 +132,25 @@ var HTMLParser = (function(undefined){
                 line: line,
                 col: html.length - lastLineIndex + 1
             });
+
+            // Memory block
+            function saveBlock(type, raw, pos, data){
+                var col = pos - lastLineIndex + 1;
+                if(data === undefined){
+                    data = {};
+                }
+                data.raw = raw;
+                data.pos = pos;
+                data.line = line;
+                data.col = col;
+                arrBlocks.push(data);
+                self.fire(type, data);
+                var lineMatch;
+                while((lineMatch = regLine.exec(raw))){
+                    line ++;
+                    lastLineIndex = pos + regLine.lastIndex;
+                }
+            }
 
         },
 
