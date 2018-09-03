@@ -28,7 +28,7 @@
     "husky": {
         "hooks": {
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-            "pre-commit": "lint-staged",
+            "pre-commit": "pretty-quick --staged",
             "pre-push": "npm test"
         }
     },
@@ -38,14 +38,6 @@
         },
         "cz-customizable": {
             "config": "commitizen.config.js"
-        }
-    },
-    "lint-staged": {
-        "linters": {
-            "*.{js,json, md}": [
-                "pretty-quick --staged",
-                "git add"
-            ]
         }
     },
     "dependencies": {
