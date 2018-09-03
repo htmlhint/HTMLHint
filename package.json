@@ -1,6 +1,6 @@
 {
     "name": "htmlhint",
-    "version": "0.9.14",
+    "version": "0.0.0-development",
     "description": "The Static Code Analysis Tool for your HTML",
     "repository": {
         "type": "git",
@@ -23,7 +23,9 @@
     "scripts": {
         "commit": "npx git-cz",
         "prettier": "prettier --write ./**/*.{js,json,md} --ignore-path ./.prettierignore",
-        "test": "grunt exec:test"
+        "test": "grunt exec:test",
+        "travis-deploy-once": "travis-deploy-once",
+        "semantic-release": "semantic-release"
     },
     "husky": {
         "hooks": {
@@ -75,6 +77,8 @@
         "lint-staged": "^7.2.2",
         "mocha": "5.2.0",
         "prettier": "^1.14.2",
-        "pretty-quick": "^1.6.0"
+        "pretty-quick": "^1.6.0",
+        "travis-deploy-once": "^5.0.7",
+        "semantic-release": "^15.9.12"
     }
 }
