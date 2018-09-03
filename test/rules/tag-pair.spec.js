@@ -1,22 +1,16 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
+const expect = require('expect.js');
 
-var expect  = require("expect.js");
+const HTMLHint = require('../../index').HTMLHint;
 
-var HTMLHint  = require("../../index").HTMLHint;
-
-var ruldId = 'tag-pair',
-    ruleOptions = {};
+const ruldId = 'tag-pair';
+const ruleOptions = {};
 
 ruleOptions[ruldId] = true;
 
-describe('Rules: '+ruldId, function(){
-
-    it('No end tag should result in an error', function(){
-        var code = '<ul><li></ul><span>';
-        var messages = HTMLHint.verify(code, ruleOptions);
+describe(`Rules: ${ruldId}`, function() {
+    it('No end tag should result in an error', function() {
+        let code = '<ul><li></ul><span>';
+        let messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(2);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
@@ -32,19 +26,18 @@ describe('Rules: '+ruldId, function(){
         expect(messages[0].col).to.be(9);
     });
 
-    it('No start tag should result in an error', function(){
-        var code = '</div>';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('No start tag should result in an error', function() {
+        const code = '</div>';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(1);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(1);
         expect(messages[0].col).to.be(1);
     });
 
-    it('Tag be paired should not result in an error', function(){
-        var code = '<p>aaa</p>';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('Tag be paired should not result in an error', function() {
+        const code = '<p>aaa</p>';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
-
 });

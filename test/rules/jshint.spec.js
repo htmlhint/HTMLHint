@@ -1,25 +1,19 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
+const expect = require('expect.js');
 
-var expect  = require("expect.js");
+const HTMLHint = require('../../index').HTMLHint;
 
-var HTMLHint  = require("../../index").HTMLHint;
-
-var ruldId = 'jshint',
-    ruleOptions = {};
+const ruldId = 'jshint';
+const ruleOptions = {};
 
 ruleOptions[ruldId] = {
-        "undef": true,
-        "unused": true
-    };
+    undef: true,
+    unused: true
+};
 
-describe('Rules: '+ruldId, function(){
-
-    it('should result in an error', function(){
-        var code = 'a<script>\r\nvar b;\r\n		debugger;\r\na=1</script>b';
-        var messages = HTMLHint.verify(code, ruleOptions);
+describe(`Rules: ${ruldId}`, function() {
+    it('should result in an error', function() {
+        const code = 'a<script>\r\nvar b;\r\n		debugger;\r\na=1</script>b';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(4);
         expect(messages[0].rule.id).to.be(ruldId);
         expect(messages[0].line).to.be(3);
@@ -39,22 +33,23 @@ describe('Rules: '+ruldId, function(){
         expect(messages[3].type).to.be('warning');
     });
 
-    it('type of script be not text/javascript should not result in an error', function(){
-        var code = 'a<script type="text/html">\r\nvar b;\r\n     debugger;\r\na=1</script>b';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('type of script be not text/javascript should not result in an error', function() {
+        const code = 'a<script type="text/html">\r\nvar b;\r\n     debugger;\r\na=1</script>b';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
 
-    it('type of script be text/javascript should result in an error', function(){
-        var code = 'a<script type="text/javascript">\r\nvar b;\r\n     debugger;\r\na=1</script>b';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('type of script be text/javascript should result in an error', function() {
+        const code =
+            'a<script type="text/javascript">\r\nvar b;\r\n     debugger;\r\na=1</script>b';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).not.to.be(0);
     });
 
-    it('type of script be text/javascript but have src should not result in an error', function(){
-        var code = 'a<script type="text/javascript" src="test.js">\r\nvar b;\r\n     debugger;\r\na=1</script>b';
-        var messages = HTMLHint.verify(code, ruleOptions);
+    it('type of script be text/javascript but have src should not result in an error', function() {
+        const code =
+            'a<script type="text/javascript" src="test.js">\r\nvar b;\r\n     debugger;\r\na=1</script>b';
+        const messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
-
 });
