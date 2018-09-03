@@ -78,7 +78,7 @@
         "pretty-quick": "^1.6.0",
         "travis-deploy-once": "^5.0.7",
         "semantic-release": "^15.9.12"
-    }
+    },
     "optionalDependencies": {
       "csslint": "^1.0.5",
       "jshint": "^2.9.6"
