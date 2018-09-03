@@ -4,19 +4,19 @@ HTMLHint.addRule({
     init: function(parser, reporter, options){
         var self = this;
         var arrRules = {
-            'underline': {
-                'regId': /^[a-z\d]+(_[a-z\d]+)*$/,
-                'message': 'The id and class attribute values must be in lowercase and split by an underscore.'
-            },
-            'dash': {
-                'regId': /^[a-z\d]+(-[a-z\d]+)*$/,
-                'message': 'The id and class attribute values must be in lowercase and split by a dash.'
-            },
-            'hump': {
-                'regId': /^[a-z][a-zA-Z\d]*([A-Z][a-zA-Z\d]*)*$/,
-                'message': 'The id and class attribute values must meet the camelCase style.'
-            }
-        }, rule;
+                'underline': {
+                    'regId': /^[a-z\d]+(_[a-z\d]+)*$/,
+                    'message': 'The id and class attribute values must be in lowercase and split by an underscore.'
+                },
+                'dash': {
+                    'regId': /^[a-z\d]+(-[a-z\d]+)*$/,
+                    'message': 'The id and class attribute values must be in lowercase and split by a dash.'
+                },
+                'hump': {
+                    'regId': /^[a-z][a-zA-Z\d]*([A-Z][a-zA-Z\d]*)*$/,
+                    'message': 'The id and class attribute values must meet the camelCase style.'
+                }
+            }, rule;
         if(typeof options === 'string'){
             rule = arrRules[options];
         }
