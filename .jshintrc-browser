@@ -7,7 +7,7 @@
     "undef": true,
     "unused": true,
     "maxerr": 100,
-
+    "laxbreak":true,
     "eqnull": true,
     "evil": true,
     "sub": true,
