@@ -25,5 +25,7 @@
         "JSHINT",
         "CSSLint",
         "escape"
-    ]
+    ],
+
+    "laxbreak": true
 }
