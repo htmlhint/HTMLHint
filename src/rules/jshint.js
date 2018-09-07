@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 HTMLHint.addRule({
     id: 'jshint',
     description: 'Scan script with jshint.',
@@ -32,7 +28,7 @@ HTMLHint.addRule({
                         styleCol = event.col - 1;
                     var code = event.raw.replace(/\t/g,' ');
                     try{
-                        var status = jsVerify(code, options);
+                        var status = jsVerify(code, options, options.globals);
                         if(status === false){
                             jsVerify.errors.forEach(function(error){
                                 var line = error.line;

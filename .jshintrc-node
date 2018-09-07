@@ -14,10 +14,9 @@
 
     "node": true,
     "-W099": true,
-	"-W100": true,
+    "-W100": true,
 
-    "predef": [
-        "describe",
-        "it"
-    ]
+    "predef": ["describe", "it"],
+
+    "esversion": 6
 }

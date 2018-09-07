@@ -14,7 +14,7 @@
 
     "browser": true,
     "-W099": true,
-	"-W100": true,
+    "-W100": true,
 
     "predef": [
         "HTMLHint",
@@ -25,5 +25,7 @@
         "JSHINT",
         "CSSLint",
         "escape"
-    ]
+    ],
+
+    "laxbreak": true
 }
