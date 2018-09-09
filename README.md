@@ -1,15 +1,44 @@
-# HTMLHint
+<h1 align="center">
+  <br>
+  <a href="https://htmlhint.io"><img src="https://raw.githubusercontent.com/htmlhint/htmlhint/master/src/img/htmlhint.png" alt="Logo HTMLHint" width="170"></a>
+  <br>
+  HTMLHint
+  <br>
+</h1>
 
-[![Build Status](https://img.shields.io/travis/thedaviddias/HTMLHint.svg)](https://travis-ci.org/thedaviddias/HTMLHint)
-[![codecov](https://codecov.io/gh/thedaviddias/HTMLHint/branch/master/graph/badge.svg)](https://codecov.io/gh/thedaviddias/HTMLHint)
-[![NPM version](https://img.shields.io/npm/v/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![NPM count](https://img.shields.io/npm/dm/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![Greenkeeper badge](https://badges.greenkeeper.io/thedaviddias/HTMLHint.svg?style=flat)](https://greenkeeper.io/)
-[![NPM count](https://img.shields.io/npm/dt/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![License](https://img.shields.io/npm/l/htmlhint.svg?style=flat)](https://www.npmjs.com/package/htmlhint)
-[![Discord](https://img.shields.io/badge/chat-on%20discord-7289da.svg?style=flat)](https://discord.gg/nJ6J9CP)
+<h4 align="center">The static code analysis tool you need for your HTML.</h4>
 
-HTMLHint is a Static Code Analysis Tool for HTML, you can use it with IDE or in build system.
+<p align="center">
+  <a href="https://travis-ci.org/htmlhint/HTMLHint">
+    <img src="https://img.shields.io/travis/htmlhint/HTMLHint.svg" alt="Travis Build Status">
+  </a>
+  <a href="https://codecov.io/gh/htmlhint/HTMLHint">
+    <img src="https://codecov.io/gh/htmlhint/HTMLHint/branch/master/graph/badge.svg" alt="Codecov">
+  </a>
+  <a href="https://www.npmjs.com/package/htmlhint">
+    <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="NPM count">
+  </a>
+  <img src="https://badgen.net/badge/license/MIT/green" alt="MIT Licence" />
+  <a href="https://discord.gg/nJ6J9CP">
+    <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
+  </a>
+  <a href="http://feedback.docz.site/roadmap">
+    <img src="https://img.shields.io/badge/check-our%20roadmap-EE503E.svg" alt="Chat">
+  </a>
+</p>
+
+<p align="center">
+  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="http://roadmap.htmlhint.io/">Roadmap</a> • <a href="https://htmlhint.io">Website</a>
+</p>
+
+## Table of Contents
+
+- **[Installation and Usage](#installation-and-usage)**
+  - **[Local Installation and Usage](#local-installation-and-usage)**
+  - **[Global Installation and Usage](#global-installation-and-usage)**
+- **[Example output](#example-output)**
+- **[Configuration](#configuration)**
+- **[Docs](#docs)**
 
 ## 📟 Installation and Usage
 
@@ -85,20 +114,20 @@ Inline rules in `test.html`:
 ...
 ```
 
-## 🗺 Guide
+## 📙 Docs
 
-1. [How to use](https://github.com/thedaviddias/HTMLHint/wiki/Usage)
-2. [All Rules](https://github.com/thedaviddias/HTMLHint/wiki/Rules)
-3. [How to Develop](https://github.com/thedaviddias/HTMLHint/wiki/Developer-guide)
+1. [How to use](https://github.com/htmlhint/HTMLHint/wiki/Usage)
+2. [All Rules](https://github.com/htmlhint/HTMLHint/wiki/Rules)
+3. [How to Develop](https://github.com/htmlhint/HTMLHint/wiki/Developer-guide)
 
 ## © License
 
-[MIT License](./LICENSE).
+[MIT License](./LICENSE)
 
 ## 💪🏻 Contributors
 
 This project exists thanks to all these people. [Contribute](CONTRIBUTING.md).
-<a href="https://github.com/thedaviddias/HTMLHint/graphs/contributors"><img src="https://opencollective.com/htmlhint/contributors.svg?width=890" /></a>
+<a href="https://github.com/htmlhint/HTMLHint/graphs/contributors"><img src="https://opencollective.com/htmlhint/contributors.svg?width=890" /></a>
 
 ## 🏅 Backers
 
