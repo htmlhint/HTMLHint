@@ -33,6 +33,8 @@
 
 ## Table of Contents
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/htmlhint/HTMLHint.svg)](https://greenkeeper.io/)
+
 - **[Installation and Usage](#installation-and-usage)**
   - **[Local Installation and Usage](#local-installation-and-usage)**
   - **[Global Installation and Usage](#global-installation-and-usage)**
