@@ -33,12 +33,12 @@
 
 ## Table of Contents
 
-- **[Installation and Usage](#installation-and-usage)**
+- **[Installation and Usage](#-installation-and-usage)**
   - **[Local Installation and Usage](#local-installation-and-usage)**
   - **[Global Installation and Usage](#global-installation-and-usage)**
-- **[Example output](#example-output)**
-- **[Configuration](#configuration)**
-- **[Docs](#docs)**
+- **[Example output](#-example-output)**
+- **[Configuration](#-configuration)**
+- **[Docs](#-docs)**
 
 ## 📟 Installation and Usage
 
