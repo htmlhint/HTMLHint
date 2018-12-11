@@ -122,7 +122,7 @@ Inline rules in `test.html`:
 
 ## © License
 
-[MIT License](./LICENSE)
+[MIT License](./LICENSE.md)
 
 ## 💪🏻 Contributors
 
