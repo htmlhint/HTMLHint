@@ -52,7 +52,7 @@
     "parse-glob": "3.0.4",
     "path-parse": "1.0.6",
     "request": "2.88.0",
-    "snyk": "^1.94.0",
+    "snyk": "^1.124.1",
     "strip-json-comments": "2.0.1",
     "xml": "1.0.1"
   },
