@@ -52,7 +52,6 @@
     "parse-glob": "3.0.4",
     "path-parse": "1.0.6",
     "request": "2.88.0",
-    "snyk": "^1.94.0",
     "strip-json-comments": "2.0.1",
     "xml": "1.0.1"
   },
@@ -80,8 +79,9 @@
     "mocha": "5.2.0",
     "prettier": "^1.14.2",
     "pretty-quick": "^1.6.0",
-    "travis-deploy-once": "^5.0.7",
-    "semantic-release": "^15.9.12"
+    "semantic-release": "^15.9.12",
+    "snyk": "^1.130.0",
+    "travis-deploy-once": "^5.0.7"
   },
   "optionalDependencies": {
     "csslint": "^1.0.5",
