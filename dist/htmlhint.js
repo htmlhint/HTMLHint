@@ -92,65 +92,68 @@
         a.d(n, 'attrValueNotEmpty', function() {
           return d;
         }),
+        a.d(n, 'attrWhitespace', function() {
+          return f;
+        }),
         a.d(n, 'csslint', function() {
-          return h;
+          return g;
         }),
         a.d(n, 'doctypeFirst', function() {
-          return g;
+          return p;
         }),
         a.d(n, 'doctypeHTML5', function() {
           return m;
         }),
         a.d(n, 'headScriptDisabled', function() {
-          return p;
-        }),
-        a.d(n, 'hrefAbsOrRel', function() {
           return v;
         }),
-        a.d(n, 'idClsasAdDisabled', function() {
+        a.d(n, 'hrefAbsOrRel', function() {
           return b;
         }),
-        a.d(n, 'idClassValue', function() {
+        a.d(n, 'idClsasAdDisabled', function() {
           return w;
         }),
-        a.d(n, 'idUnique', function() {
+        a.d(n, 'idClassValue', function() {
           return y;
         }),
-        a.d(n, 'inlineScriptDisabled', function() {
+        a.d(n, 'idUnique', function() {
           return L;
         }),
-        a.d(n, 'inlineStyleDisabled', function() {
+        a.d(n, 'inlineScriptDisabled', function() {
           return x;
         }),
-        a.d(n, 'jshint', function() {
-          return N;
+        a.d(n, 'inlineStyleDisabled', function() {
+          return T;
         }),
-        a.d(n, 'scriptDisabled', function() {
+        a.d(n, 'jshint', function() {
           return C;
         }),
-        a.d(n, 'spaceTabMixedDisabled', function() {
+        a.d(n, 'scriptDisabled', function() {
           return k;
         }),
-        a.d(n, 'specCharEscape', function() {
+        a.d(n, 'spaceTabMixedDisabled', function() {
           return j;
+        }),
+        a.d(n, 'specCharEscape', function() {
+          return A;
         }),
         a.d(n, 'srcNotEmpty', function() {
           return q;
         }),
         a.d(n, 'styleDisabled', function() {
-          return A;
-        }),
-        a.d(n, 'tagPair', function() {
           return S;
         }),
-        a.d(n, 'tagSelfClose', function() {
+        a.d(n, 'tagPair', function() {
           return M;
         }),
-        a.d(n, 'tagnameLowercase', function() {
+        a.d(n, 'tagSelfClose', function() {
           return E;
         }),
-        a.d(n, 'titleRequire', function() {
+        a.d(n, 'tagnameLowercase', function() {
           return _;
+        }),
+        a.d(n, 'titleRequire', function() {
+          return D;
         });
       var r = class {
         constructor() {
@@ -179,12 +182,12 @@
             f = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
             h = /\r?\n/g,
             g = 0,
-            m = 0,
             p = 0,
+            m = 0,
             v = 1,
             b = u._arrBlocks;
           function w(e, t, a, n) {
-            var r = a - p + 1;
+            var r = a - m + 1;
             for (
               void 0 === n && (n = {}),
                 n.raw = t,
@@ -196,7 +199,7 @@
               h.exec(t);
 
             )
-              v++, (p = a + h.lastIndex);
+              v++, (m = a + h.lastIndex);
           }
           for (u.fire('start', { pos: 0, line: 1, col: 1 }); (t = d.exec(e)); )
             if (
@@ -206,7 +209,7 @@
               !(n = t[1]) ||
                 (i &&
                   n === i &&
-                  (w('cdata', (l = o.join('')), m, { tagName: i, attrs: s }),
+                  (w('cdata', (l = o.join('')), p, { tagName: i, attrs: s }),
                   (i = null),
                   (s = null),
                   (o = null)),
@@ -234,7 +237,7 @@
                       attrs: r,
                       close: t[6]
                     }),
-                    c[n] && ((i = n), (s = r.concat()), (o = []), (m = g)))
+                    c[n] && ((i = n), (s = r.concat()), (o = []), (p = g)))
                   : w('text', t[0], a);
               } else
                 (t[2] || t[3]) &&
@@ -244,7 +247,7 @@
                   });
             else w('tagend', t[0], a, { tagName: n });
           e.length > g && w('text', (l = e.substring(g, e.length)), g),
-            u.fire('end', { pos: g, line: v, col: e.length - p + 1 });
+            u.fire('end', { pos: g, line: v, col: e.length - m + 1 });
         }
         addListener(e, t) {
           for (
@@ -511,15 +514,57 @@
             });
           }
         },
-        f = a(0),
-        h = {
+        f = {
+          id: 'attr-whitespace',
+          description:
+            'All attributes should be separated by only one space and not have leading/trailing whitespace.',
+          init: function(e, t, a) {
+            var n = this,
+              r = Array.isArray(a) ? a : [];
+            e.addListener('tagstart', function(e) {
+              var a,
+                i = e.attrs,
+                s = e.col + e.tagName.length + 1;
+              i.forEach(function(i) {
+                a = i;
+                var o = i.name;
+                -1 === r.indexOf(o) &&
+                  (console.log('Here'),
+                  i.value.trim(i.value) !== i.value &&
+                    (console.log('Here3'),
+                    t.error(
+                      'The attributes of [ ' +
+                        o +
+                        ' ] must not have trailing whitespace.',
+                      e.line,
+                      s + a.index,
+                      n,
+                      a.raw
+                    )),
+                  i.value.replace(/ +(?= )/g, '') !== i.value &&
+                    (console.log('Here2'),
+                    t.error(
+                      'The attributes of [ ' +
+                        o +
+                        ' ] must be separated by only one space.',
+                      e.line,
+                      s + a.index,
+                      n,
+                      a.raw
+                    )));
+              });
+            });
+          }
+        },
+        h = a(0),
+        g = {
           id: 'csslint',
           description: 'Scan css with csslint.',
           init: function(e, t, a) {
             var n = this;
             e.addListener('cdata', function(e) {
               if ('style' === e.tagName.toLowerCase()) {
-                var r = f.CSSLint.verify;
+                var r = h.CSSLint.verify;
                 if (void 0 !== a) {
                   var i = e.line - 1,
                     s = e.col - 1;
@@ -540,7 +585,7 @@
             });
           }
         },
-        g = {
+        p = {
           id: 'doctype-first',
           description: 'Doctype must be declared first.',
           init: function(e, t) {
@@ -584,7 +629,7 @@
               });
           }
         },
-        p = {
+        v = {
           id: 'head-script-disabled',
           description: 'The <script> tag cannot be used in a <head> tag.',
           init: function(e, t) {
@@ -614,7 +659,7 @@
               });
           }
         },
-        v = {
+        b = {
           id: 'href-abs-or-rel',
           description: 'An href attribute must be either absolute or relative.',
           init: function(e, t, a) {
@@ -650,7 +695,7 @@
             });
           }
         },
-        b = {
+        w = {
           id: 'id-class-ad-disabled',
           description:
             'The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.',
@@ -682,7 +727,7 @@
             });
           }
         },
-        w = {
+        y = {
           id: 'id-class-value',
           description:
             'The id and class attribute values must meet the specified rules.',
@@ -742,7 +787,7 @@
             }
           }
         },
-        y = {
+        L = {
           id: 'id-unique',
           description: 'The value of id attributes must be unique.',
           init: function(e, t) {
@@ -775,7 +820,7 @@
             });
           }
         },
-        L = {
+        x = {
           id: 'inline-script-disabled',
           description: 'Inline script cannot be used.',
           init: function(e, t) {
@@ -813,7 +858,7 @@
             });
           }
         },
-        x = {
+        T = {
           id: 'inline-style-disabled',
           description: 'Inline style cannot be used.',
           init: function(e, t) {
@@ -839,8 +884,8 @@
             });
           }
         },
-        T = a(1),
-        N = {
+        N = a(1),
+        C = {
           id: 'jshint',
           description: 'Scan script with jshint.',
           init: function(e, t, a) {
@@ -854,7 +899,7 @@
                   (s && !1 === /^(text\/javascript)$/i.test(s))
                 )
                   return;
-                var o = T.JSHINT;
+                var o = N.JSHINT;
                 if (void 0 !== a) {
                   var l = r.line - 1,
                     u = r.col - 1,
@@ -877,7 +922,7 @@
             });
           }
         },
-        C = {
+        k = {
           id: 'script-disabled',
           description: 'The <script> tag cannot be used.',
           init: function(e, t) {
@@ -894,7 +939,7 @@
             });
           }
         },
-        k = {
+        j = {
           id: 'space-tab-mixed-disabled',
           description: 'Do not mix tabs and spaces for indentation.',
           init: function(e, t, a) {
@@ -955,7 +1000,7 @@
             });
           }
         },
-        j = {
+        A = {
           id: 'spec-char-escape',
           description: 'Special characters must be escaped.',
           init: function(e, t) {
@@ -1011,7 +1056,7 @@
             });
           }
         },
-        A = {
+        S = {
           id: 'style-disabled',
           description: '<style> tags cannot be used.',
           init: function(e, t) {
@@ -1028,7 +1073,7 @@
             });
           }
         },
-        S = {
+        M = {
           id: 'tag-pair',
           description: 'Tag must be paired.',
           init: function(e, t) {
@@ -1093,7 +1138,7 @@
               });
           }
         },
-        M = {
+        E = {
           id: 'tag-self-close',
           description: 'Empty tags must be self closed.',
           init: function(e, t) {
@@ -1115,7 +1160,7 @@
             });
           }
         },
-        E = {
+        _ = {
           id: 'tagname-lowercase',
           description: 'All html element names must be in lowercase.',
           init: function(e, t, a) {
@@ -1137,7 +1182,7 @@
             });
           }
         },
-        _ = {
+        D = {
           id: 'title-require',
           description: '<title> must be present in <head> tag.',
           init: function(e, t) {
@@ -1167,7 +1212,7 @@
           }
         };
       a.d(t, 'HTMLHint', function() {
-        return D;
+        return I;
       }),
         a.d(t, 'HTMLRules', function() {
           return n;
@@ -1178,7 +1223,7 @@
         a.d(t, 'HTMLParser', function() {
           return r;
         });
-      class D {
+      class I {
         constructor() {
           (this.rules = {}),
             (this.defaultRuleset = {
@@ -1243,14 +1288,14 @@
                 (t = t.replace(/\t/g, ' ').substring(l - 1, u)),
                 l > 1 && ((t = '...' + t), (l -= 3)),
                 u < o && (t += '...'),
-                a.push(n.white + I(r) + 'L' + i + ' |' + n.grey + t + n.reset);
+                a.push(n.white + H(r) + 'L' + i + ' |' + n.grey + t + n.reset);
               var c = s - l,
                 d = t.substring(0, c).match(/[^\u0000-\u00ff]/g);
               null !== d && (c += d.length),
                 a.push(
                   n.white +
-                    I(r) +
-                    I(String(i).length + 3 + c) +
+                    H(r) +
+                    H(String(i).length + 3 + c) +
                     '^ ' +
                     n.red +
                     e.message +
@@ -1264,14 +1309,14 @@
           );
         }
       }
-      function I(e, t) {
+      function H(e, t) {
         return new Array(e + 1).join(t || ' ');
       }
-      const P = new D();
+      const O = new I();
       Object.values(n).forEach(e => {
-        P.addRule(e);
+        O.addRule(e);
       });
-      t.default = P;
+      t.default = O;
     }
   ]);
 });
