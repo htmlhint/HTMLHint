@@ -10,7 +10,7 @@ module.exports = {
     libraryTarget: 'umd',
     // See https://github.com/webpack/webpack/issues/6784
     // And https://github.com/webpack/webpack/pull/8625
-    globalObject: 'typeof self !== \'undefined\' ? self : this',
+    globalObject: "typeof self !== 'undefined' ? self : this"
   },
   externals: {
     jshint: {
