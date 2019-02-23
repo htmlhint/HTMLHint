@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
   id: 'tag-pair',
   description: 'Tag must be paired.',
   init: function(parser, reporter) {
@@ -80,4 +80,4 @@ HTMLHint.addRule({
       }
     });
   }
-});
+};
