@@ -301,11 +301,9 @@
             (this.brLen = null !== a ? a[0].length : 0),
               (this.ruleset = t),
               (this.messages = []),
-              ['error', 'warn', 'info'].forEach(e => {
-                (this.error = this.report.bind(this, 'error')),
-                  (this.warn = this.report.bind(this, 'warn')),
-                  (this.info = this.report.bind(this, 'info'));
-              });
+              (this.error = this.report.bind(this, 'error')),
+              (this.warn = this.report.bind(this, 'warning')),
+              (this.info = this.report.bind(this, 'info'));
           }
           report(e, t, a, n, r, i) {
             for (

@@ -7,11 +7,9 @@ class Reporter {
     this.ruleset = ruleset;
     this.messages = [];
 
-    ['error', 'warn', 'info'].forEach(type => {
-      this.error = this.report.bind(this, 'error');
-      this.warn = this.report.bind(this, 'warn');
-      this.info = this.report.bind(this, 'info');
-    });
+    this.error = this.report.bind(this, 'error');
+    this.warn = this.report.bind(this, 'warning');
+    this.info = this.report.bind(this, 'info');
   }
   report(type, message, line, col, rule, raw) {
     var self = this;
