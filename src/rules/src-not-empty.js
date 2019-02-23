@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'src-not-empty',
     description: 'The src attribute of an img(script,link) must have a value.',
     init: function(parser, reporter){
@@ -19,4 +19,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

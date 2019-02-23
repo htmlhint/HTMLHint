@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'doctype-html5',
     description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
     init: function(parser, reporter){
@@ -15,4 +15,4 @@ HTMLHint.addRule({
         parser.addListener('all', onComment);
         parser.addListener('tagstart', onTagStart);
     }
-});
+}

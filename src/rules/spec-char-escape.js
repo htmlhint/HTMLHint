@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'spec-char-escape',
     description: 'Special characters must be escaped.',
     init: function(parser, reporter){
@@ -13,4 +13,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

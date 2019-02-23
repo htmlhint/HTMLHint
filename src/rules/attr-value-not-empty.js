@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'attr-value-not-empty',
     description: 'All attributes must have values.',
     init: function(parser, reporter){
@@ -15,4 +15,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}
