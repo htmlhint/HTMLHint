@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'attr-value-double-quotes',
     description: 'Attribute values must be in double quotes.',
     init: function(parser, reporter){
@@ -16,4 +16,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

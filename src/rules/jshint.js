@@ -1,4 +1,6 @@
-HTMLHint.addRule({
+import { JSHINT } from 'jshint'
+
+export default {
     id: 'jshint',
     description: 'Scan script with jshint.',
     init: function(parser, reporter, options){
@@ -14,14 +16,7 @@ HTMLHint.addRule({
                     return;
                 }
 
-                var jsVerify;
-
-                if(typeof exports === 'object' && require){
-                    jsVerify = require('jshint').JSHINT;
-                }
-                else{
-                    jsVerify = JSHINT;
-                }
+                var jsVerify = JSHINT;
 
                 if(options !== undefined){
                     var styleLine = event.line - 1,
@@ -42,4 +37,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

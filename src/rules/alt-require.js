@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'alt-require',
     description: 'The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.',
     init: function(parser, reporter){
@@ -20,4 +20,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}
