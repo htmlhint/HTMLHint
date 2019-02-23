@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
   init: function(parser, reporter) {
@@ -53,4 +53,4 @@ HTMLHint.addRule({
       }
     });
   }
-});
+};
