@@ -1,4 +1,4 @@
-export default {
+HTMLHint.addRule({
   id: 'tag-self-close',
   description: 'Empty tags must be self closed.',
   init: function(parser, reporter) {
@@ -21,4 +21,4 @@ export default {
       }
     });
   }
-};
+});

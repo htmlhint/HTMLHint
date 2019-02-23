@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 
-const HTMLParser = require('../dist/htmlhint.js').HTMLParser;
+const HTMLParser = require('../index').HTMLParser;
 
 expect.Assertion.prototype.event = function(type, attr) {
   const self = this;

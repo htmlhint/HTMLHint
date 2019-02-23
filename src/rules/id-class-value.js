@@ -1,4 +1,4 @@
-export default {
+HTMLHint.addRule({
   id: 'id-class-value',
   description:
     'The id and class attribute values must meet the specified rules.',
@@ -67,4 +67,4 @@ export default {
       });
     }
   }
-};
+});

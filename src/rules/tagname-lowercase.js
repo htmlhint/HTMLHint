@@ -1,4 +1,4 @@
-export default {
+HTMLHint.addRule({
   id: 'tagname-lowercase',
   description: 'All html element names must be in lowercase.',
   init: function(parser, reporter, options) {
@@ -20,4 +20,4 @@ export default {
       }
     });
   }
-};
+});

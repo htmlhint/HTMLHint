@@ -1,13 +1,17 @@
-import { CSSLint } from 'csslint';
-
-export default {
+HTMLHint.addRule({
   id: 'csslint',
   description: 'Scan css with csslint.',
   init: function(parser, reporter, options) {
     var self = this;
     parser.addListener('cdata', function(event) {
       if (event.tagName.toLowerCase() === 'style') {
-        var cssVerify = CSSLint.verify;
+        var cssVerify;
+
+        if (typeof exports === 'object' && require) {
+          cssVerify = require('csslint').CSSLint.verify;
+        } else {
+          cssVerify = CSSLint.verify;
+        }
 
         if (options !== undefined) {
           var styleLine = event.line - 1,
@@ -29,4 +33,4 @@ export default {
       }
     });
   }
-};
+});
