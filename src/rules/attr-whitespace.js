@@ -5,9 +5,7 @@ HTMLHint.addRule({
   init: function(parser, reporter, options) {
     var self = this;
     var exceptions = Array.isArray(options) ? options : [];
-    //console.log(exceptions);
-    if (exceptions.length == 0) {
-    }
+
     parser.addListener('tagstart', function(event) {
       var attrs = event.attrs,
         attr,
@@ -15,6 +13,11 @@ HTMLHint.addRule({
       attrs.forEach(function(elem) {
         attr = elem;
         var attrName = elem.name;
+
+        if (exceptions.indexOf(attrName) !== -1) {
+          return;
+        }
+
         //Check first and last characters for spaces
         if (elem.value.trim(elem.value) !== elem.value) {
           reporter.error(
