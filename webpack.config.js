@@ -11,5 +11,19 @@ module.exports = {
     // See https://github.com/webpack/webpack/issues/6784
     // And https://github.com/webpack/webpack/pull/8625
     globalObject: 'typeof self !== \'undefined\' ? self : this',
+  },
+  externals: {
+    jshint: {
+      commonjs: 'jshint',
+      commonjs2: 'jshint',
+      amd: 'jshint',
+      root: 'JSHINT'
+    },
+    csslint: {
+      commonjs: 'csslint',
+      commonjs2: 'csslint',
+      amd: 'csslint',
+      root: 'CSSLint'
+    }
   }
 };

@@ -1,3 +1,5 @@
+import { CSSLint } from 'csslint'
+
 export default {
   id: 'csslint',
   description: 'Scan css with csslint.',
@@ -5,13 +7,7 @@ export default {
     var self = this;
     parser.addListener('cdata', function(event) {
       if (event.tagName.toLowerCase() === 'style') {
-        var cssVerify;
-
-        if (typeof exports === 'object' && require) {
-          cssVerify = require('csslint').CSSLint.verify;
-        } else {
-          cssVerify = CSSLint.verify;
-        }
+        var cssVerify = CSSLint.verify;
 
         if (options !== undefined) {
           var styleLine = event.line - 1,
