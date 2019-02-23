@@ -15,7 +15,7 @@ install:
   - npm install
 script:
   - 'npm run build'
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter test -- -R spec
+  - istanbul cover ./node_modules/mocha/bin/_mocha --recursive --reporter test -- -R spec
   - codecov
 branches:
   only:
