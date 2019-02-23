@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 
-const HTMLHint = require('../../index').HTMLHint;
+const HTMLHint = require('../../dist/htmlhint.js').default;
 
 describe('Rules: default', function() {
   it('should result 3 errors', function() {

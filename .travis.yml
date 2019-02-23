@@ -10,13 +10,12 @@ node_js:
   - '10'
   - '9'
   - '8'
-  - '6'
 install:
   - npm install -g codecov
   - npm install
 script:
-  - 'grunt'
-  - istanbul cover ./node_modules/mocha/bin/_mocha --reporter test -- -R spec
+  - 'npm run build'
+  - ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive
   - codecov
 branches:
   only:

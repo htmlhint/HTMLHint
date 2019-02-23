@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
   id: 'script-disabled',
   description: 'The <script> tag cannot be used.',
   init: function(parser, reporter) {
@@ -18,4 +18,4 @@ HTMLHint.addRule({
       }
     });
   }
-});
+};

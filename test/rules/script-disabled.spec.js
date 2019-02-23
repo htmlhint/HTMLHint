@@ -1,5 +1,5 @@
 var expect = require('expect.js'),
-  HTMLHint = require('../../index').HTMLHint;
+  HTMLHint = require('../../dist/htmlhint.js').default;
 var ruldId = 'script-disabled',
   ruleOptions = {};
 ruleOptions[ruldId] = true;
