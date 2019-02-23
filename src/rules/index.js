@@ -5,6 +5,7 @@ export { default as attrUnsafeChars } from './attr-unsafe-chars';
 export { default as attrValueDoubleQuotes } from './attr-value-double-quotes';
 export { default as attrValueNotEmpty } from './attr-value-not-empty';
 export { default as attrWhitespace } from './attr-whitespace';
+export { default as attrSingleQuotes } from './attr-single-quotes';
 export { default as csslint } from './csslint';
 export { default as doctypeFirst } from './doctype-first';
 export { default as doctypeHTML5 } from './doctype-html5';
