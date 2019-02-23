@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 
-const HTMLHint = require('../../index').HTMLHint;
+const HTMLHint = require('../../dist/htmlhint.js').default;
 
 const ruldId = 'tag-self-close';
 const ruleOptions = {};
@@ -15,6 +15,7 @@ describe(`Rules: ${ruldId}`, function() {
     expect(messages[0].rule.id).to.be(ruldId);
     expect(messages[0].line).to.be(1);
     expect(messages[0].col).to.be(1);
+    console.log('lll', messages[0].type)
     expect(messages[0].type).to.be('warning');
     expect(messages[1].rule.id).to.be(ruldId);
     expect(messages[1].line).to.be(1);
