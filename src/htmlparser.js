@@ -1,30 +1,19 @@
-/* jshint -W079 */
-var HTMLParser = (function(undefined) {
-  var HTMLParser = function() {
-    var self = this;
-    self._init.apply(self, arguments);
-  };
-
-  HTMLParser.prototype = {
-    _init: function() {
-      var self = this;
-      self._listeners = {};
-      self._mapCdataTags = self.makeMap('script,style');
-      self._arrBlocks = [];
-      self.lastEvent = null;
-    },
-
-    makeMap: function(str) {
+class HTMLParser {
+  constructor () {
+    this._listeners = {};
+    this._mapCdataTags = this.makeMap('script,style');
+    this._arrBlocks = [];
+    this.lastEvent = null;
+  }
+  makeMap (str) {
       var obj = {},
         items = str.split(',');
       for (var i = 0; i < items.length; i++) {
         obj[items[i]] = true;
       }
       return obj;
-    },
-
-    // parse html code
-    parse: function(html) {
+  }
+  parse (html) {
       var self = this,
         mapCdataTags = self._mapCdataTags;
 
@@ -175,10 +164,8 @@ var HTMLParser = (function(undefined) {
         line: line,
         col: html.length - lastLineIndex + 1
       });
-    },
-
-    // add event
-    addListener: function(types, listener) {
+  }
+  addListener (types, listener) {
       var _listeners = this._listeners;
       var arrTypes = types.split(/[,\s]/),
         type;
@@ -189,10 +176,8 @@ var HTMLParser = (function(undefined) {
         }
         _listeners[type].push(listener);
       }
-    },
-
-    // fire event
-    fire: function(type, data) {
+  }
+  fire (type, data) {
       if (data === undefined) {
         data = {};
       }
@@ -216,10 +201,8 @@ var HTMLParser = (function(undefined) {
       for (var i = 0, l = listeners.length; i < l; i++) {
         listeners[i].call(self, data);
       }
-    },
-
-    // remove event
-    removeListener: function(type, listener) {
+  }
+  removeListener (type, listener) {
       var listenersType = this._listeners[type];
       if (listenersType !== undefined) {
         for (var i = 0, l = listenersType.length; i < l; i++) {
@@ -229,10 +212,8 @@ var HTMLParser = (function(undefined) {
           }
         }
       }
-    },
-
-    //fix pos if event.raw have \n
-    fixPos: function(event, index) {
+  }
+  fixPos (event, index) {
       var text = event.raw.substr(0, index);
       var arrLines = text.split(/\r?\n/),
         lineCount = arrLines.length - 1,
@@ -248,10 +229,8 @@ var HTMLParser = (function(undefined) {
         line: line,
         col: col
       };
-    },
-
-    // covert array type of attrs to map
-    getMapAttrs: function(arrAttrs) {
+  }
+  getMapAttrs (arrAttrs) {
       var mapAttrs = {},
         attr;
       for (var i = 0, l = arrAttrs.length; i < l; i++) {
@@ -259,12 +238,7 @@ var HTMLParser = (function(undefined) {
         mapAttrs[attr.name] = attr.value;
       }
       return mapAttrs;
-    }
-  };
-
-  return HTMLParser;
-})();
-
-if (typeof exports === 'object' && exports) {
-  exports.HTMLParser = HTMLParser;
+  }
 }
+
+export default HTMLParser
