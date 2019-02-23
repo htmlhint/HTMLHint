@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
   id: 'attr-whitespace',
   description:
     'All attributes should be separated by only one space and not have leading/trailing whitespace.',
@@ -44,4 +44,4 @@ HTMLHint.addRule({
       });
     });
   }
-});
+};
