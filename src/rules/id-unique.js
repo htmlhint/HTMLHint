@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'id-unique',
     description: 'The value of id attributes must be unique.',
     init: function(parser, reporter){
@@ -29,4 +29,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

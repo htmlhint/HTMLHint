@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
   id: 'csslint',
   description: 'Scan css with csslint.',
   init: function(parser, reporter, options) {
@@ -33,4 +33,4 @@ HTMLHint.addRule({
       }
     });
   }
-});
+}

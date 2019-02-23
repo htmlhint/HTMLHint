@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'style-disabled',
     description: '<style> tags cannot be used.',
     init: function(parser, reporter){
@@ -9,4 +9,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

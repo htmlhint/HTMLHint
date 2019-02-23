@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'jshint',
     description: 'Scan script with jshint.',
     init: function(parser, reporter, options){
@@ -42,4 +42,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}
