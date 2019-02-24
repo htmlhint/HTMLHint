@@ -92,71 +92,74 @@
         a.d(n, 'attrValueNotEmpty', function() {
           return d;
         }),
-        a.d(n, 'attrWhitespace', function() {
+        a.d(n, 'attrValueSingleQuotes', function() {
           return f;
         }),
-        a.d(n, 'csslint', function() {
-          return g;
+        a.d(n, 'attrWhitespace', function() {
+          return h;
         }),
-        a.d(n, 'doctypeFirst', function() {
+        a.d(n, 'csslint', function() {
           return m;
         }),
-        a.d(n, 'doctypeHTML5', function() {
+        a.d(n, 'doctypeFirst', function() {
           return p;
         }),
-        a.d(n, 'headScriptDisabled', function() {
+        a.d(n, 'doctypeHTML5', function() {
           return v;
         }),
-        a.d(n, 'hrefAbsOrRel', function() {
+        a.d(n, 'headScriptDisabled', function() {
           return b;
         }),
-        a.d(n, 'idClsasAdDisabled', function() {
+        a.d(n, 'hrefAbsOrRel', function() {
           return w;
         }),
-        a.d(n, 'idClassValue', function() {
+        a.d(n, 'idClsasAdDisabled', function() {
           return y;
         }),
-        a.d(n, 'idUnique', function() {
+        a.d(n, 'idClassValue', function() {
           return L;
         }),
-        a.d(n, 'inlineScriptDisabled', function() {
+        a.d(n, 'idUnique', function() {
           return x;
         }),
-        a.d(n, 'inlineStyleDisabled', function() {
+        a.d(n, 'inlineScriptDisabled', function() {
           return T;
         }),
-        a.d(n, 'jshint', function() {
-          return C;
+        a.d(n, 'inlineStyleDisabled', function() {
+          return N;
         }),
-        a.d(n, 'scriptDisabled', function() {
+        a.d(n, 'jshint', function() {
           return k;
         }),
-        a.d(n, 'spaceTabMixedDisabled', function() {
+        a.d(n, 'scriptDisabled', function() {
           return j;
+        }),
+        a.d(n, 'spaceTabMixedDisabled', function() {
+          return q;
         }),
         a.d(n, 'specCharEscape', function() {
           return A;
         }),
         a.d(n, 'srcNotEmpty', function() {
-          return q;
-        }),
-        a.d(n, 'styleDisabled', function() {
           return S;
         }),
-        a.d(n, 'tagPair', function() {
+        a.d(n, 'styleDisabled', function() {
           return M;
         }),
-        a.d(n, 'tagSelfClose', function() {
+        a.d(n, 'tagPair', function() {
           return E;
         }),
-        a.d(n, 'tagnameLowercase', function() {
+        a.d(n, 'tagSelfClose', function() {
           return _;
         }),
-        a.d(n, 'tagnameSpecialChars', function() {
+        a.d(n, 'tagnameLowercase', function() {
           return D;
         }),
-        a.d(n, 'titleRequire', function() {
+        a.d(n, 'tagnameSpecialChars', function() {
           return I;
+        }),
+        a.d(n, 'titleRequire', function() {
+          return O;
         });
       var r = class {
         constructor() {
@@ -518,6 +521,35 @@
           }
         },
         f = {
+          id: 'attr-value-single-quotes',
+          description: 'Attribute values must be in single quotes.',
+          init: function(e, t) {
+            var a = this;
+            e.addListener('tagstart', function(e) {
+              for (
+                var n,
+                  r = e.attrs,
+                  i = e.col + e.tagName.length + 1,
+                  s = 0,
+                  o = r.length;
+                s < o;
+                s++
+              )
+                (('' !== (n = r[s]).value && "'" !== n.quote) ||
+                  ('' === n.value && '"' === n.quote)) &&
+                  t.error(
+                    'The value of attribute [ ' +
+                      n.name +
+                      ' ] must be in single quotes.',
+                    e.line,
+                    i + n.index,
+                    a,
+                    n.raw
+                  );
+            });
+          }
+        },
+        h = {
           id: 'attr-whitespace',
           description:
             'All attributes should be separated by only one space and not have leading/trailing whitespace.',
@@ -556,15 +588,15 @@
             });
           }
         },
-        h = a(0),
-        g = {
+        g = a(0),
+        m = {
           id: 'csslint',
           description: 'Scan css with csslint.',
           init: function(e, t, a) {
             var n = this;
             e.addListener('cdata', function(e) {
               if ('style' === e.tagName.toLowerCase()) {
-                var r = h.CSSLint.verify;
+                var r = g.CSSLint.verify;
                 if (void 0 !== a) {
                   var i = e.line - 1,
                     s = e.col - 1;
@@ -585,7 +617,7 @@
             });
           }
         },
-        m = {
+        p = {
           id: 'doctype-first',
           description: 'Doctype must be declared first.',
           init: function(e, t) {
@@ -607,7 +639,7 @@
             e.addListener('all', n);
           }
         },
-        p = {
+        v = {
           id: 'doctype-html5',
           description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
           init: function(e, t) {
@@ -629,7 +661,7 @@
               });
           }
         },
-        v = {
+        b = {
           id: 'head-script-disabled',
           description: 'The <script> tag cannot be used in a <head> tag.',
           init: function(e, t) {
@@ -659,7 +691,7 @@
               });
           }
         },
-        b = {
+        w = {
           id: 'href-abs-or-rel',
           description: 'An href attribute must be either absolute or relative.',
           init: function(e, t, a) {
@@ -695,7 +727,7 @@
             });
           }
         },
-        w = {
+        y = {
           id: 'id-class-ad-disabled',
           description:
             'The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.',
@@ -727,7 +759,7 @@
             });
           }
         },
-        y = {
+        L = {
           id: 'id-class-value',
           description:
             'The id and class attribute values must meet the specified rules.',
@@ -787,7 +819,7 @@
             }
           }
         },
-        L = {
+        x = {
           id: 'id-unique',
           description: 'The value of id attributes must be unique.',
           init: function(e, t) {
@@ -820,7 +852,7 @@
             });
           }
         },
-        x = {
+        T = {
           id: 'inline-script-disabled',
           description: 'Inline script cannot be used.',
           init: function(e, t) {
@@ -858,7 +890,7 @@
             });
           }
         },
-        T = {
+        N = {
           id: 'inline-style-disabled',
           description: 'Inline style cannot be used.',
           init: function(e, t) {
@@ -884,8 +916,8 @@
             });
           }
         },
-        N = a(1),
-        C = {
+        C = a(1),
+        k = {
           id: 'jshint',
           description: 'Scan script with jshint.',
           init: function(e, t, a) {
@@ -899,7 +931,7 @@
                   (s && !1 === /^(text\/javascript)$/i.test(s))
                 )
                   return;
-                var o = N.JSHINT;
+                var o = C.JSHINT;
                 if (void 0 !== a) {
                   var l = r.line - 1,
                     u = r.col - 1,
@@ -922,7 +954,7 @@
             });
           }
         },
-        k = {
+        j = {
           id: 'script-disabled',
           description: 'The <script> tag cannot be used.',
           init: function(e, t) {
@@ -939,7 +971,7 @@
             });
           }
         },
-        j = {
+        q = {
           id: 'space-tab-mixed-disabled',
           description: 'Do not mix tabs and spaces for indentation.',
           init: function(e, t, a) {
@@ -1019,7 +1051,7 @@
             });
           }
         },
-        q = {
+        S = {
           id: 'src-not-empty',
           description:
             'The src attribute of an img(script,link) must have a value.',
@@ -1056,7 +1088,7 @@
             });
           }
         },
-        S = {
+        M = {
           id: 'style-disabled',
           description: '<style> tags cannot be used.',
           init: function(e, t) {
@@ -1073,7 +1105,7 @@
             });
           }
         },
-        M = {
+        E = {
           id: 'tag-pair',
           description: 'Tag must be paired.',
           init: function(e, t) {
@@ -1138,7 +1170,7 @@
               });
           }
         },
-        E = {
+        _ = {
           id: 'tag-self-close',
           description: 'Empty tags must be self closed.',
           init: function(e, t) {
@@ -1160,7 +1192,7 @@
             });
           }
         },
-        _ = {
+        D = {
           id: 'tagname-lowercase',
           description: 'All html element names must be in lowercase.',
           init: function(e, t, a) {
@@ -1182,7 +1214,7 @@
             });
           }
         },
-        D = {
+        I = {
           id: 'tagname-specialchars',
           description: 'All html element names must be in lowercase.',
           init: function(e, t) {
@@ -1203,7 +1235,7 @@
             });
           }
         },
-        I = {
+        O = {
           id: 'title-require',
           description: '<title> must be present in <head> tag.',
           init: function(e, t) {
@@ -1233,7 +1265,7 @@
           }
         };
       a.d(t, 'HTMLHint', function() {
-        return O;
+        return P;
       }),
         a.d(t, 'HTMLRules', function() {
           return n;
@@ -1244,7 +1276,7 @@
         a.d(t, 'HTMLParser', function() {
           return r;
         });
-      class O {
+      class P {
         constructor() {
           (this.rules = {}),
             (this.defaultRuleset = {
@@ -1309,14 +1341,14 @@
                 (t = t.replace(/\t/g, ' ').substring(l - 1, u)),
                 l > 1 && ((t = '...' + t), (l -= 3)),
                 u < o && (t += '...'),
-                a.push(n.white + P(r) + 'L' + i + ' |' + n.grey + t + n.reset);
+                a.push(n.white + $(r) + 'L' + i + ' |' + n.grey + t + n.reset);
               var c = s - l,
                 d = t.substring(0, c).match(/[^\u0000-\u00ff]/g);
               null !== d && (c += d.length),
                 a.push(
                   n.white +
-                    P(r) +
-                    P(String(i).length + 3 + c) +
+                    $(r) +
+                    $(String(i).length + 3 + c) +
                     '^ ' +
                     n.red +
                     e.message +
@@ -1330,14 +1362,14 @@
           );
         }
       }
-      function P(e, t) {
+      function $(e, t) {
         return new Array(e + 1).join(t || ' ');
       }
-      const $ = new O();
+      const H = new P();
       Object.values(n).forEach(e => {
-        $.addRule(e);
+        H.addRule(e);
       });
-      t.default = $;
+      t.default = H;
     }
   ]);
 });
