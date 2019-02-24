@@ -155,8 +155,11 @@
         a.d(n, 'tagnameLowercase', function() {
           return D;
         }),
-        a.d(n, 'titleRequire', function() {
+        a.d(n, 'tagnameSpecialChars', function() {
           return I;
+        }),
+        a.d(n, 'titleRequire', function() {
+          return O;
         });
       var r = class {
         constructor() {
@@ -1212,6 +1215,27 @@
           }
         },
         I = {
+          id: 'tagname-specialchars',
+          description: 'All html element names must be in lowercase.',
+          init: function(e, t) {
+            var a = this,
+              n = /[^a-zA-Z0-9\-:_]/;
+            e.addListener('tagstart,tagend', function(e) {
+              var r = e.tagName;
+              n.test(r) &&
+                t.error(
+                  'The html element name of [ ' +
+                    r +
+                    ' ] contains special character.',
+                  e.line,
+                  e.col,
+                  a,
+                  e.raw
+                );
+            });
+          }
+        },
+        O = {
           id: 'title-require',
           description: '<title> must be present in <head> tag.',
           init: function(e, t) {
@@ -1241,7 +1265,7 @@
           }
         };
       a.d(t, 'HTMLHint', function() {
-        return O;
+        return P;
       }),
         a.d(t, 'HTMLRules', function() {
           return n;
@@ -1252,7 +1276,7 @@
         a.d(t, 'HTMLParser', function() {
           return r;
         });
-      class O {
+      class P {
         constructor() {
           (this.rules = {}),
             (this.defaultRuleset = {
@@ -1317,14 +1341,14 @@
                 (t = t.replace(/\t/g, ' ').substring(l - 1, u)),
                 l > 1 && ((t = '...' + t), (l -= 3)),
                 u < o && (t += '...'),
-                a.push(n.white + P(r) + 'L' + i + ' |' + n.grey + t + n.reset);
+                a.push(n.white + $(r) + 'L' + i + ' |' + n.grey + t + n.reset);
               var c = s - l,
                 d = t.substring(0, c).match(/[^\u0000-\u00ff]/g);
               null !== d && (c += d.length),
                 a.push(
                   n.white +
-                    P(r) +
-                    P(String(i).length + 3 + c) +
+                    $(r) +
+                    $(String(i).length + 3 + c) +
                     '^ ' +
                     n.red +
                     e.message +
@@ -1338,14 +1362,14 @@
           );
         }
       }
-      function P(e, t) {
+      function $(e, t) {
         return new Array(e + 1).join(t || ' ');
       }
-      const $ = new O();
+      const H = new P();
       Object.values(n).forEach(e => {
-        $.addRule(e);
+        H.addRule(e);
       });
-      t.default = $;
+      t.default = H;
     }
   ]);
 });

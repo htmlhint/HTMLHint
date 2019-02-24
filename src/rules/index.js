@@ -25,4 +25,5 @@ export { default as styleDisabled } from './style-disabled';
 export { default as tagPair } from './tag-pair';
 export { default as tagSelfClose } from './tag-self-close';
 export { default as tagnameLowercase } from './tagname-lowercase';
+export { default as tagnameSpecialChars } from './tagname-specialchars';
 export { default as titleRequire } from './title-require';
