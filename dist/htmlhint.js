@@ -92,14 +92,12 @@
         a.d(n, 'attrValueDoubleQuotes', function() {
           return d;
         }),
-        a.d(n, 'attrValueNotEmpty', function() {
           return f;
         }),
         a.d(n, 'attrWhitespace', function() {
           return h;
         }),
         a.d(n, 'csslint', function() {
-          return p;
         }),
         a.d(n, 'doctypeFirst', function() {
           return m;
@@ -135,13 +133,12 @@
           return j;
         }),
         a.d(n, 'spaceTabMixedDisabled', function() {
-          return A;
         }),
         a.d(n, 'specCharEscape', function() {
           return S;
         }),
         a.d(n, 'srcNotEmpty', function() {
-          return q;
+          return S;
         }),
         a.d(n, 'styleDisabled', function() {
           return M;
@@ -150,13 +147,6 @@
           return E;
         }),
         a.d(n, 'tagSelfClose', function() {
-          return O;
-        }),
-        a.d(n, 'tagnameLowercase', function() {
-          return I;
-        }),
-        a.d(n, 'titleRequire', function() {
-          return _;
         });
       var r = class {
         constructor() {
@@ -185,12 +175,12 @@
             f = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
             h = /\r?\n/g,
             g = 0,
-            p = 0,
             m = 0,
+            p = 0,
             v = 1,
             b = u._arrBlocks;
           function w(e, t, a, n) {
-            var r = a - m + 1;
+            var r = a - p + 1;
             for (
               void 0 === n && (n = {}),
                 n.raw = t,
@@ -202,7 +192,7 @@
               h.exec(t);
 
             )
-              v++, (m = a + h.lastIndex);
+              v++, (p = a + h.lastIndex);
           }
           for (u.fire('start', { pos: 0, line: 1, col: 1 }); (t = d.exec(e)); )
             if (
@@ -212,7 +202,7 @@
               !(n = t[1]) ||
                 (i &&
                   n === i &&
-                  (w('cdata', (l = o.join('')), p, { tagName: i, attrs: s }),
+                  (w('cdata', (l = o.join('')), m, { tagName: i, attrs: s }),
                   (i = null),
                   (s = null),
                   (o = null)),
@@ -240,7 +230,7 @@
                       attrs: r,
                       close: t[6]
                     }),
-                    c[n] && ((i = n), (s = r.concat()), (o = []), (p = g)))
+                    c[n] && ((i = n), (s = r.concat()), (o = []), (m = g)))
                   : w('text', t[0], a);
               } else
                 (t[2] || t[3]) &&
@@ -250,7 +240,7 @@
                   });
             else w('tagend', t[0], a, { tagName: n });
           e.length > g && w('text', (l = e.substring(g, e.length)), g),
-            u.fire('end', { pos: g, line: v, col: e.length - m + 1 });
+            u.fire('end', { pos: g, line: v, col: e.length - p + 1 });
         }
         addListener(e, t) {
           for (
@@ -609,7 +599,6 @@
           }
         },
         g = a(0),
-        p = {
           id: 'csslint',
           description: 'Scan css with csslint.',
           init: function(e, t, a) {
@@ -991,7 +980,6 @@
             });
           }
         },
-        A = {
           id: 'space-tab-mixed-disabled',
           description: 'Do not mix tabs and spaces for indentation.',
           init: function(e, t, a) {
@@ -1071,7 +1059,7 @@
             });
           }
         },
-        q = {
+        S = {
           id: 'src-not-empty',
           description:
             'The src attribute of an img(script,link) must have a value.',
@@ -1190,7 +1178,6 @@
               });
           }
         },
-        O = {
           id: 'tag-self-close',
           description: 'Empty tags must be self closed.',
           init: function(e, t) {
@@ -1212,7 +1199,6 @@
             });
           }
         },
-        I = {
           id: 'tagname-lowercase',
           description: 'All html element names must be in lowercase.',
           init: function(e, t, a) {
@@ -1234,7 +1220,6 @@
             });
           }
         },
-        _ = {
           id: 'title-require',
           description: '<title> must be present in <head> tag.',
           init: function(e, t) {
@@ -1264,7 +1249,6 @@
           }
         };
       a.d(t, 'HTMLHint', function() {
-        return D;
       }),
         a.d(t, 'HTMLRules', function() {
           return n;
@@ -1275,7 +1259,6 @@
         a.d(t, 'HTMLParser', function() {
           return r;
         });
-      class D {
         constructor() {
           (this.rules = {}),
             (this.defaultRuleset = {
@@ -1340,14 +1323,11 @@
                 (t = t.replace(/\t/g, ' ').substring(l - 1, u)),
                 l > 1 && ((t = '...' + t), (l -= 3)),
                 u < o && (t += '...'),
-                a.push(n.white + P(r) + 'L' + i + ' |' + n.grey + t + n.reset);
               var c = s - l,
                 d = t.substring(0, c).match(/[^\u0000-\u00ff]/g);
               null !== d && (c += d.length),
                 a.push(
                   n.white +
-                    P(r) +
-                    P(String(i).length + 3 + c) +
                     '^ ' +
                     n.red +
                     e.message +
@@ -1361,14 +1341,6 @@
           );
         }
       }
-      function P(e, t) {
-        return new Array(e + 1).join(t || ' ');
-      }
-      const $ = new D();
-      Object.values(n).forEach(e => {
-        $.addRule(e);
-      });
-      t.default = $;
     }
   ]);
 });
