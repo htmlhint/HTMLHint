@@ -146,7 +146,7 @@
         a.d(n, 'tagPair', function() {
           return M;
         }),
-        a.d(n, 'tagSelfClose', function() {
+        a.d(n, 'emptyTagNotSelfClosed', function() {
           return E;
         }),
         a.d(n, 'tagnameLowercase', function() {
@@ -1139,8 +1139,8 @@
           }
         },
         E = {
-          id: 'tag-self-close',
-          description: 'Empty tags must be self closed.',
+          id: 'empty-tag-not-self-closed',
+          description: 'Empty tags does not need to be self closed.',
           init: function(e, t) {
             var a = this,
               n = e.makeMap(
@@ -1149,14 +1149,16 @@
             e.addListener('tagstart', function(e) {
               var r = e.tagName.toLowerCase();
               void 0 !== n[r] &&
-                (e.close ||
-                  t.warn(
-                    'The empty tag : [ ' + r + ' ] must be self closed.',
-                    e.line,
-                    e.col,
-                    a,
-                    e.raw
-                  ));
+                e.close &&
+                t.warn(
+                  'The empty tag : [ ' +
+                    r +
+                    ' ] does not need to be self closed.',
+                  e.line,
+                  e.col,
+                  a,
+                  e.raw
+                );
             });
           }
         },
@@ -1257,7 +1259,8 @@
               'id-unique': !0,
               'src-not-empty': !0,
               'attr-no-duplication': !0,
-              'title-require': !0
+              'title-require': !0,
+              'empty-tag-not-self-closed': !0
             });
         }
         addRule(e) {

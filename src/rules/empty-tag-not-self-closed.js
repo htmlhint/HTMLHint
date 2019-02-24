@@ -1,6 +1,6 @@
 export default {
-  id: 'tag-self-close',
-  description: 'Empty tags must be self closed.',
+  id: 'empty-tag-not-self-closed',
+  description: 'Empty tags does not need to be self closed.',
   init: function(parser, reporter) {
     var self = this;
     var mapEmptyTags = parser.makeMap(
@@ -9,9 +9,11 @@ export default {
     parser.addListener('tagstart', function(event) {
       var tagName = event.tagName.toLowerCase();
       if (mapEmptyTags[tagName] !== undefined) {
-        if (!event.close) {
+        if (event.close) {
           reporter.warn(
-            'The empty tag : [ ' + tagName + ' ] must be self closed.',
+            'The empty tag : [ ' +
+              tagName +
+              ' ] does not need to be self closed.',
             event.line,
             event.col,
             self,

@@ -14,7 +14,8 @@ class HTMLHint {
       'id-unique': true,
       'src-not-empty': true,
       'attr-no-duplication': true,
-      'title-require': true
+      'title-require': true,
+      'empty-tag-not-self-closed': true
     };
   }
   addRule(rule) {
