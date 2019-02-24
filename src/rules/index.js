@@ -1,9 +1,11 @@
 export { default as altRequire } from './alt-require';
 export { default as attrLowercase } from './attr-lowercase';
+export { default as attrSort } from './attr-sorted';
 export { default as attrNoDuplication } from './attr-no-duplication';
 export { default as attrUnsafeChars } from './attr-unsafe-chars';
 export { default as attrValueDoubleQuotes } from './attr-value-double-quotes';
 export { default as attrValueNotEmpty } from './attr-value-not-empty';
+export { default as attrValueSingleQuotes } from './attr-value-single-quotes';
 export { default as attrWhitespace } from './attr-whitespace';
 export { default as csslint } from './csslint';
 export { default as doctypeFirst } from './doctype-first';

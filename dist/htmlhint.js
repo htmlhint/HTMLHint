@@ -80,83 +80,73 @@
         a.d(n, 'attrLowercase', function() {
           return o;
         }),
-        a.d(n, 'attrNoDuplication', function() {
+        a.d(n, 'attrSort', function() {
           return l;
         }),
-        a.d(n, 'attrUnsafeChars', function() {
+        a.d(n, 'attrNoDuplication', function() {
           return u;
         }),
-        a.d(n, 'attrValueDoubleQuotes', function() {
+        a.d(n, 'attrUnsafeChars', function() {
           return c;
         }),
-        a.d(n, 'attrValueNotEmpty', function() {
+        a.d(n, 'attrValueDoubleQuotes', function() {
           return d;
         }),
-        a.d(n, 'attrWhitespace', function() {
           return f;
         }),
+        a.d(n, 'attrWhitespace', function() {
+          return h;
+        }),
         a.d(n, 'csslint', function() {
-          return g;
         }),
         a.d(n, 'doctypeFirst', function() {
           return m;
         }),
         a.d(n, 'doctypeHTML5', function() {
-          return p;
-        }),
-        a.d(n, 'headScriptDisabled', function() {
           return v;
         }),
-        a.d(n, 'hrefAbsOrRel', function() {
+        a.d(n, 'headScriptDisabled', function() {
           return b;
         }),
-        a.d(n, 'idClsasAdDisabled', function() {
+        a.d(n, 'hrefAbsOrRel', function() {
           return w;
         }),
-        a.d(n, 'idClassValue', function() {
+        a.d(n, 'idClsasAdDisabled', function() {
           return y;
         }),
-        a.d(n, 'idUnique', function() {
+        a.d(n, 'idClassValue', function() {
           return L;
         }),
-        a.d(n, 'inlineScriptDisabled', function() {
+        a.d(n, 'idUnique', function() {
           return x;
         }),
-        a.d(n, 'inlineStyleDisabled', function() {
+        a.d(n, 'inlineScriptDisabled', function() {
           return T;
         }),
-        a.d(n, 'jshint', function() {
-          return C;
+        a.d(n, 'inlineStyleDisabled', function() {
+          return N;
         }),
-        a.d(n, 'scriptDisabled', function() {
+        a.d(n, 'jshint', function() {
           return k;
         }),
-        a.d(n, 'spaceTabMixedDisabled', function() {
+        a.d(n, 'scriptDisabled', function() {
           return j;
         }),
+        a.d(n, 'spaceTabMixedDisabled', function() {
+        }),
         a.d(n, 'specCharEscape', function() {
-          return A;
-        }),
-        a.d(n, 'srcNotEmpty', function() {
-          return q;
-        }),
-        a.d(n, 'styleDisabled', function() {
           return S;
         }),
-        a.d(n, 'tagPair', function() {
+        a.d(n, 'srcNotEmpty', function() {
+          return S;
+        }),
+        a.d(n, 'styleDisabled', function() {
           return M;
         }),
         a.d(n, 'emptyTagNotSelfClosed', function() {
           return E;
         }),
-        a.d(n, 'tagnameLowercase', function() {
-          return _;
-        }),
-        a.d(n, 'tagnameSpecialChars', function() {
-          return D;
-        }),
-        a.d(n, 'titleRequire', function() {
-          return I;
+        a.d(n, 'tagSelfClose', function() {
         });
       var r = class {
         constructor() {
@@ -397,6 +387,58 @@
           }
         },
         l = {
+          id: 'attr-sorted',
+          description: 'Attribute tags must be in proper order.',
+          init: function(e, t) {
+            for (
+              var a = this,
+                n = {},
+                r = [
+                  'class',
+                  'id',
+                  'name',
+                  'src',
+                  'for',
+                  'type',
+                  'href',
+                  'value',
+                  'title',
+                  'alt',
+                  'role'
+                ],
+                i = 0;
+              i < r.length;
+              i++
+            )
+              n[r[i]] = i;
+            e.addListener('tagstart', function(e) {
+              for (var r = e.attrs, i = [], s = 0; s < r.length; s++)
+                i.push(r[s].name);
+              var o = JSON.stringify(i);
+              i.sort(function(e, t) {
+                return null == n[e] && null == n[t]
+                  ? 0
+                  : null == n[e]
+                    ? 1
+                    : null == n[t]
+                      ? -1
+                      : n[e] - n[t] || e.localeCompare(t);
+              }),
+                o !== JSON.stringify(i) &&
+                  t.error(
+                    'Inaccurate order ' +
+                      o +
+                      ' should be in hierarchy ' +
+                      JSON.stringify(i) +
+                      ' ',
+                    e.line,
+                    e.col,
+                    a
+                  );
+            });
+          }
+        },
+        u = {
           id: 'attr-no-duplication',
           description: 'Elements cannot have duplicate attributes.',
           init: function(e, t) {
@@ -425,7 +467,7 @@
             });
           }
         },
-        u = {
+        c = {
           id: 'attr-unsafe-chars',
           description: 'Attribute values cannot contain unsafe chars.',
           init: function(e, t) {
@@ -461,7 +503,7 @@
             });
           }
         },
-        c = {
+        d = {
           id: 'attr-value-double-quotes',
           description: 'Attribute values must be in double quotes.',
           init: function(e, t) {
@@ -490,7 +532,7 @@
             });
           }
         },
-        d = {
+        f = {
           id: 'attr-value-not-empty',
           description: 'All attributes must have values.',
           init: function(e, t) {
@@ -517,7 +559,7 @@
             });
           }
         },
-        f = {
+        h = {
           id: 'attr-whitespace',
           description:
             'All attributes should be separated by only one space and not have leading/trailing whitespace.',
@@ -556,15 +598,14 @@
             });
           }
         },
-        h = a(0),
-        g = {
+        g = a(0),
           id: 'csslint',
           description: 'Scan css with csslint.',
           init: function(e, t, a) {
             var n = this;
             e.addListener('cdata', function(e) {
               if ('style' === e.tagName.toLowerCase()) {
-                var r = h.CSSLint.verify;
+                var r = g.CSSLint.verify;
                 if (void 0 !== a) {
                   var i = e.line - 1,
                     s = e.col - 1;
@@ -607,7 +648,7 @@
             e.addListener('all', n);
           }
         },
-        p = {
+        v = {
           id: 'doctype-html5',
           description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
           init: function(e, t) {
@@ -629,7 +670,7 @@
               });
           }
         },
-        v = {
+        b = {
           id: 'head-script-disabled',
           description: 'The <script> tag cannot be used in a <head> tag.',
           init: function(e, t) {
@@ -659,7 +700,7 @@
               });
           }
         },
-        b = {
+        w = {
           id: 'href-abs-or-rel',
           description: 'An href attribute must be either absolute or relative.',
           init: function(e, t, a) {
@@ -695,7 +736,7 @@
             });
           }
         },
-        w = {
+        y = {
           id: 'id-class-ad-disabled',
           description:
             'The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.',
@@ -727,7 +768,7 @@
             });
           }
         },
-        y = {
+        L = {
           id: 'id-class-value',
           description:
             'The id and class attribute values must meet the specified rules.',
@@ -787,7 +828,7 @@
             }
           }
         },
-        L = {
+        x = {
           id: 'id-unique',
           description: 'The value of id attributes must be unique.',
           init: function(e, t) {
@@ -820,7 +861,7 @@
             });
           }
         },
-        x = {
+        T = {
           id: 'inline-script-disabled',
           description: 'Inline script cannot be used.',
           init: function(e, t) {
@@ -858,7 +899,7 @@
             });
           }
         },
-        T = {
+        N = {
           id: 'inline-style-disabled',
           description: 'Inline style cannot be used.',
           init: function(e, t) {
@@ -884,8 +925,8 @@
             });
           }
         },
-        N = a(1),
-        C = {
+        C = a(1),
+        k = {
           id: 'jshint',
           description: 'Scan script with jshint.',
           init: function(e, t, a) {
@@ -899,7 +940,7 @@
                   (s && !1 === /^(text\/javascript)$/i.test(s))
                 )
                   return;
-                var o = N.JSHINT;
+                var o = C.JSHINT;
                 if (void 0 !== a) {
                   var l = r.line - 1,
                     u = r.col - 1,
@@ -922,7 +963,7 @@
             });
           }
         },
-        k = {
+        j = {
           id: 'script-disabled',
           description: 'The <script> tag cannot be used.',
           init: function(e, t) {
@@ -939,7 +980,6 @@
             });
           }
         },
-        j = {
           id: 'space-tab-mixed-disabled',
           description: 'Do not mix tabs and spaces for indentation.',
           init: function(e, t, a) {
@@ -1000,7 +1040,7 @@
             });
           }
         },
-        A = {
+        S = {
           id: 'spec-char-escape',
           description: 'Special characters must be escaped.',
           init: function(e, t) {
@@ -1019,7 +1059,7 @@
             });
           }
         },
-        q = {
+        S = {
           id: 'src-not-empty',
           description:
             'The src attribute of an img(script,link) must have a value.',
@@ -1056,7 +1096,7 @@
             });
           }
         },
-        S = {
+        M = {
           id: 'style-disabled',
           description: '<style> tags cannot be used.',
           init: function(e, t) {
@@ -1073,7 +1113,7 @@
             });
           }
         },
-        M = {
+        E = {
           id: 'tag-pair',
           description: 'Tag must be paired.',
           init: function(e, t) {
@@ -1162,7 +1202,6 @@
             });
           }
         },
-        _ = {
           id: 'tagname-lowercase',
           description: 'All html element names must be in lowercase.',
           init: function(e, t, a) {
@@ -1184,28 +1223,6 @@
             });
           }
         },
-        D = {
-          id: 'tagname-specialchars',
-          description: 'All html element names must be in lowercase.',
-          init: function(e, t) {
-            var a = this,
-              n = /[^a-zA-Z0-9\-:_]/;
-            e.addListener('tagstart,tagend', function(e) {
-              var r = e.tagName;
-              n.test(r) &&
-                t.error(
-                  'The html element name of [ ' +
-                    r +
-                    ' ] contains special character.',
-                  e.line,
-                  e.col,
-                  a,
-                  e.raw
-                );
-            });
-          }
-        },
-        I = {
           id: 'title-require',
           description: '<title> must be present in <head> tag.',
           init: function(e, t) {
@@ -1235,7 +1252,6 @@
           }
         };
       a.d(t, 'HTMLHint', function() {
-        return O;
       }),
         a.d(t, 'HTMLRules', function() {
           return n;
@@ -1246,7 +1262,6 @@
         a.d(t, 'HTMLParser', function() {
           return r;
         });
-      class O {
         constructor() {
           (this.rules = {}),
             (this.defaultRuleset = {
@@ -1312,14 +1327,11 @@
                 (t = t.replace(/\t/g, ' ').substring(l - 1, u)),
                 l > 1 && ((t = '...' + t), (l -= 3)),
                 u < o && (t += '...'),
-                a.push(n.white + P(r) + 'L' + i + ' |' + n.grey + t + n.reset);
               var c = s - l,
                 d = t.substring(0, c).match(/[^\u0000-\u00ff]/g);
               null !== d && (c += d.length),
                 a.push(
                   n.white +
-                    P(r) +
-                    P(String(i).length + 3 + c) +
                     '^ ' +
                     n.red +
                     e.message +
@@ -1333,14 +1345,6 @@
           );
         }
       }
-      function P(e, t) {
-        return new Array(e + 1).join(t || ' ');
-      }
-      const $ = new O();
-      Object.values(n).forEach(e => {
-        $.addRule(e);
-      });
-      t.default = $;
     }
   ]);
 });
