@@ -99,10 +99,10 @@
           return g;
         }),
         a.d(n, 'doctypeFirst', function() {
-          return p;
+          return m;
         }),
         a.d(n, 'doctypeHTML5', function() {
-          return m;
+          return p;
         }),
         a.d(n, 'headScriptDisabled', function() {
           return v;
@@ -152,8 +152,11 @@
         a.d(n, 'tagnameLowercase', function() {
           return _;
         }),
-        a.d(n, 'titleRequire', function() {
+        a.d(n, 'tagnameSpecialChars', function() {
           return D;
+        }),
+        a.d(n, 'titleRequire', function() {
+          return I;
         });
       var r = class {
         constructor() {
@@ -182,12 +185,12 @@
             f = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
             h = /\r?\n/g,
             g = 0,
-            p = 0,
             m = 0,
+            p = 0,
             v = 1,
             b = u._arrBlocks;
           function w(e, t, a, n) {
-            var r = a - m + 1;
+            var r = a - p + 1;
             for (
               void 0 === n && (n = {}),
                 n.raw = t,
@@ -199,7 +202,7 @@
               h.exec(t);
 
             )
-              v++, (m = a + h.lastIndex);
+              v++, (p = a + h.lastIndex);
           }
           for (u.fire('start', { pos: 0, line: 1, col: 1 }); (t = d.exec(e)); )
             if (
@@ -209,7 +212,7 @@
               !(n = t[1]) ||
                 (i &&
                   n === i &&
-                  (w('cdata', (l = o.join('')), p, { tagName: i, attrs: s }),
+                  (w('cdata', (l = o.join('')), m, { tagName: i, attrs: s }),
                   (i = null),
                   (s = null),
                   (o = null)),
@@ -237,7 +240,7 @@
                       attrs: r,
                       close: t[6]
                     }),
-                    c[n] && ((i = n), (s = r.concat()), (o = []), (p = g)))
+                    c[n] && ((i = n), (s = r.concat()), (o = []), (m = g)))
                   : w('text', t[0], a);
               } else
                 (t[2] || t[3]) &&
@@ -247,7 +250,7 @@
                   });
             else w('tagend', t[0], a, { tagName: n });
           e.length > g && w('text', (l = e.substring(g, e.length)), g),
-            u.fire('end', { pos: g, line: v, col: e.length - m + 1 });
+            u.fire('end', { pos: g, line: v, col: e.length - p + 1 });
         }
         addListener(e, t) {
           for (
@@ -529,9 +532,7 @@
                 a = i;
                 var o = i.name;
                 -1 === r.indexOf(o) &&
-                  (console.log('Here'),
-                  i.value.trim(i.value) !== i.value &&
-                    (console.log('Here3'),
+                  (i.value.trim(i.value) !== i.value &&
                     t.error(
                       'The attributes of [ ' +
                         o +
@@ -540,9 +541,8 @@
                       s + a.index,
                       n,
                       a.raw
-                    )),
+                    ),
                   i.value.replace(/ +(?= )/g, '') !== i.value &&
-                    (console.log('Here2'),
                     t.error(
                       'The attributes of [ ' +
                         o +
@@ -551,7 +551,7 @@
                       s + a.index,
                       n,
                       a.raw
-                    )));
+                    ));
               });
             });
           }
@@ -585,7 +585,7 @@
             });
           }
         },
-        p = {
+        m = {
           id: 'doctype-first',
           description: 'Doctype must be declared first.',
           init: function(e, t) {
@@ -607,7 +607,7 @@
             e.addListener('all', n);
           }
         },
-        m = {
+        p = {
           id: 'doctype-html5',
           description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
           init: function(e, t) {
@@ -1183,6 +1183,27 @@
           }
         },
         D = {
+          id: 'tagname-specialchars',
+          description: 'All html element names must be in lowercase.',
+          init: function(e, t) {
+            var a = this,
+              n = /[^a-zA-Z0-9\-:_]/;
+            e.addListener('tagstart,tagend', function(e) {
+              var r = e.tagName;
+              n.test(r) &&
+                t.error(
+                  'The html element name of [ ' +
+                    r +
+                    ' ] contains special character.',
+                  e.line,
+                  e.col,
+                  a,
+                  e.raw
+                );
+            });
+          }
+        },
+        I = {
           id: 'title-require',
           description: '<title> must be present in <head> tag.',
           init: function(e, t) {
@@ -1212,7 +1233,7 @@
           }
         };
       a.d(t, 'HTMLHint', function() {
-        return I;
+        return O;
       }),
         a.d(t, 'HTMLRules', function() {
           return n;
@@ -1223,7 +1244,7 @@
         a.d(t, 'HTMLParser', function() {
           return r;
         });
-      class I {
+      class O {
         constructor() {
           (this.rules = {}),
             (this.defaultRuleset = {
@@ -1288,14 +1309,14 @@
                 (t = t.replace(/\t/g, ' ').substring(l - 1, u)),
                 l > 1 && ((t = '...' + t), (l -= 3)),
                 u < o && (t += '...'),
-                a.push(n.white + H(r) + 'L' + i + ' |' + n.grey + t + n.reset);
+                a.push(n.white + P(r) + 'L' + i + ' |' + n.grey + t + n.reset);
               var c = s - l,
                 d = t.substring(0, c).match(/[^\u0000-\u00ff]/g);
               null !== d && (c += d.length),
                 a.push(
                   n.white +
-                    H(r) +
-                    H(String(i).length + 3 + c) +
+                    P(r) +
+                    P(String(i).length + 3 + c) +
                     '^ ' +
                     n.red +
                     e.message +
@@ -1309,14 +1330,14 @@
           );
         }
       }
-      function H(e, t) {
+      function P(e, t) {
         return new Array(e + 1).join(t || ' ');
       }
-      const O = new I();
+      const $ = new O();
       Object.values(n).forEach(e => {
-        O.addRule(e);
+        $.addRule(e);
       });
-      t.default = O;
+      t.default = $;
     }
   ]);
 });
