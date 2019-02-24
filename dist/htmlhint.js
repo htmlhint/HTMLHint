@@ -80,29 +80,27 @@
         a.d(n, 'attrLowercase', function() {
           return o;
         }),
-        a.d(n, 'attrNoDuplication', function() {
+        a.d(n, 'attrSort', function() {
           return l;
         }),
-        a.d(n, 'attrUnsafeChars', function() {
+        a.d(n, 'attrNoDuplication', function() {
           return u;
         }),
-        a.d(n, 'attrValueDoubleQuotes', function() {
+        a.d(n, 'attrUnsafeChars', function() {
           return c;
         }),
-        a.d(n, 'attrValueNotEmpty', function() {
+        a.d(n, 'attrValueDoubleQuotes', function() {
           return d;
         }),
-        a.d(n, 'attrValueSingleQuotes', function() {
           return f;
         }),
         a.d(n, 'attrWhitespace', function() {
           return h;
         }),
         a.d(n, 'csslint', function() {
-          return m;
         }),
         a.d(n, 'doctypeFirst', function() {
-          return p;
+          return m;
         }),
         a.d(n, 'doctypeHTML5', function() {
           return v;
@@ -135,10 +133,9 @@
           return j;
         }),
         a.d(n, 'spaceTabMixedDisabled', function() {
-          return q;
         }),
         a.d(n, 'specCharEscape', function() {
-          return A;
+          return S;
         }),
         a.d(n, 'srcNotEmpty', function() {
           return S;
@@ -150,16 +147,6 @@
           return E;
         }),
         a.d(n, 'tagSelfClose', function() {
-          return _;
-        }),
-        a.d(n, 'tagnameLowercase', function() {
-          return D;
-        }),
-        a.d(n, 'tagnameSpecialChars', function() {
-          return I;
-        }),
-        a.d(n, 'titleRequire', function() {
-          return O;
         });
       var r = class {
         constructor() {
@@ -400,6 +387,58 @@
           }
         },
         l = {
+          id: 'attr-sorted',
+          description: 'Attribute tags must be in proper order.',
+          init: function(e, t) {
+            for (
+              var a = this,
+                n = {},
+                r = [
+                  'class',
+                  'id',
+                  'name',
+                  'src',
+                  'for',
+                  'type',
+                  'href',
+                  'value',
+                  'title',
+                  'alt',
+                  'role'
+                ],
+                i = 0;
+              i < r.length;
+              i++
+            )
+              n[r[i]] = i;
+            e.addListener('tagstart', function(e) {
+              for (var r = e.attrs, i = [], s = 0; s < r.length; s++)
+                i.push(r[s].name);
+              var o = JSON.stringify(i);
+              i.sort(function(e, t) {
+                return null == n[e] && null == n[t]
+                  ? 0
+                  : null == n[e]
+                    ? 1
+                    : null == n[t]
+                      ? -1
+                      : n[e] - n[t] || e.localeCompare(t);
+              }),
+                o !== JSON.stringify(i) &&
+                  t.error(
+                    'Inaccurate order ' +
+                      o +
+                      ' should be in hierarchy ' +
+                      JSON.stringify(i) +
+                      ' ',
+                    e.line,
+                    e.col,
+                    a
+                  );
+            });
+          }
+        },
+        u = {
           id: 'attr-no-duplication',
           description: 'Elements cannot have duplicate attributes.',
           init: function(e, t) {
@@ -428,7 +467,7 @@
             });
           }
         },
-        u = {
+        c = {
           id: 'attr-unsafe-chars',
           description: 'Attribute values cannot contain unsafe chars.',
           init: function(e, t) {
@@ -464,7 +503,7 @@
             });
           }
         },
-        c = {
+        d = {
           id: 'attr-value-double-quotes',
           description: 'Attribute values must be in double quotes.',
           init: function(e, t) {
@@ -493,7 +532,7 @@
             });
           }
         },
-        d = {
+        f = {
           id: 'attr-value-not-empty',
           description: 'All attributes must have values.',
           init: function(e, t) {
@@ -512,35 +551,6 @@
                   '' === n.value &&
                   t.warn(
                     'The attribute [ ' + n.name + ' ] must have a value.',
-                    e.line,
-                    i + n.index,
-                    a,
-                    n.raw
-                  );
-            });
-          }
-        },
-        f = {
-          id: 'attr-value-single-quotes',
-          description: 'Attribute values must be in single quotes.',
-          init: function(e, t) {
-            var a = this;
-            e.addListener('tagstart', function(e) {
-              for (
-                var n,
-                  r = e.attrs,
-                  i = e.col + e.tagName.length + 1,
-                  s = 0,
-                  o = r.length;
-                s < o;
-                s++
-              )
-                (('' !== (n = r[s]).value && "'" !== n.quote) ||
-                  ('' === n.value && '"' === n.quote)) &&
-                  t.error(
-                    'The value of attribute [ ' +
-                      n.name +
-                      ' ] must be in single quotes.',
                     e.line,
                     i + n.index,
                     a,
@@ -589,7 +599,6 @@
           }
         },
         g = a(0),
-        m = {
           id: 'csslint',
           description: 'Scan css with csslint.',
           init: function(e, t, a) {
@@ -617,7 +626,7 @@
             });
           }
         },
-        p = {
+        m = {
           id: 'doctype-first',
           description: 'Doctype must be declared first.',
           init: function(e, t) {
@@ -971,7 +980,6 @@
             });
           }
         },
-        q = {
           id: 'space-tab-mixed-disabled',
           description: 'Do not mix tabs and spaces for indentation.',
           init: function(e, t, a) {
@@ -1032,7 +1040,7 @@
             });
           }
         },
-        A = {
+        S = {
           id: 'spec-char-escape',
           description: 'Special characters must be escaped.',
           init: function(e, t) {
@@ -1170,7 +1178,6 @@
               });
           }
         },
-        _ = {
           id: 'tag-self-close',
           description: 'Empty tags must be self closed.',
           init: function(e, t) {
@@ -1192,7 +1199,6 @@
             });
           }
         },
-        D = {
           id: 'tagname-lowercase',
           description: 'All html element names must be in lowercase.',
           init: function(e, t, a) {
@@ -1214,28 +1220,6 @@
             });
           }
         },
-        I = {
-          id: 'tagname-specialchars',
-          description: 'All html element names must be in lowercase.',
-          init: function(e, t) {
-            var a = this,
-              n = /[^a-zA-Z0-9\-:_]/;
-            e.addListener('tagstart,tagend', function(e) {
-              var r = e.tagName;
-              n.test(r) &&
-                t.error(
-                  'The html element name of [ ' +
-                    r +
-                    ' ] contains special character.',
-                  e.line,
-                  e.col,
-                  a,
-                  e.raw
-                );
-            });
-          }
-        },
-        O = {
           id: 'title-require',
           description: '<title> must be present in <head> tag.',
           init: function(e, t) {
@@ -1265,7 +1249,6 @@
           }
         };
       a.d(t, 'HTMLHint', function() {
-        return P;
       }),
         a.d(t, 'HTMLRules', function() {
           return n;
@@ -1276,7 +1259,6 @@
         a.d(t, 'HTMLParser', function() {
           return r;
         });
-      class P {
         constructor() {
           (this.rules = {}),
             (this.defaultRuleset = {
@@ -1341,14 +1323,11 @@
                 (t = t.replace(/\t/g, ' ').substring(l - 1, u)),
                 l > 1 && ((t = '...' + t), (l -= 3)),
                 u < o && (t += '...'),
-                a.push(n.white + $(r) + 'L' + i + ' |' + n.grey + t + n.reset);
               var c = s - l,
                 d = t.substring(0, c).match(/[^\u0000-\u00ff]/g);
               null !== d && (c += d.length),
                 a.push(
                   n.white +
-                    $(r) +
-                    $(String(i).length + 3 + c) +
                     '^ ' +
                     n.red +
                     e.message +
@@ -1362,14 +1341,6 @@
           );
         }
       }
-      function $(e, t) {
-        return new Array(e + 1).join(t || ' ');
-      }
-      const H = new P();
-      Object.values(n).forEach(e => {
-        H.addRule(e);
-      });
-      t.default = H;
     }
   ]);
 });
