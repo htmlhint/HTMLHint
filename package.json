@@ -19,7 +19,7 @@
   "bin": {
     "htmlhint": "./bin/htmlhint"
   },
-  "main": "dist/htmlhint.js",
+  "main": "lib/htmlhint.js",
   "module": "src/core.js",
   "scripts": {
     "commit": "npx git-cz",

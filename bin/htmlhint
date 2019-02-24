@@ -9,7 +9,7 @@ var glob = require("glob");
 var parseGlob = require('parse-glob');
 var request = require('request');
 
-var HTMLHint  = require("../dist/htmlhint.js").default;
+var HTMLHint  = require("../").default;
 var formatter = require('./formatter');
 var pkg = require('../package.json');
 

@@ -5,7 +5,7 @@ module.exports = {
   mode: 'production',
   output: {
     filename: 'htmlhint.js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'lib'),
     library: 'HTMLHint',
     libraryTarget: 'umd',
     // See https://github.com/webpack/webpack/issues/6784
