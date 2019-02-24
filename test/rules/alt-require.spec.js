@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 
-const HTMLHint = require('../../dist/htmlhint.js').default;
+const HTMLHint = require('../../').default;
 
 const ruldId = 'alt-require';
 const ruleOptions = {};
