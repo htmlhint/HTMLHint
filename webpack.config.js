@@ -3,6 +3,11 @@ const path = require('path');
 module.exports = {
   entry: './src/core.js',
   mode: 'production',
+  watch: true,
+  watchOptions: {
+    aggregateTimeout: 300,
+    ignored: /node_modules/,
+  },
   output: {
     filename: 'htmlhint.js',
     path: path.resolve(__dirname, 'dist'),

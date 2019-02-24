@@ -26,6 +26,7 @@
     "prettier": "prettier --write ./**/*.{js,json,md} --ignore-path ./.prettierignore",
     "test": "mocha --recursive",
     "build": "webpack",
+    "watch": "webpack --watch",
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release"
   },
