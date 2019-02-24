@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'title-require',
     description: '<title> must be present in <head> tag.',
     init: function(parser, reporter){
@@ -37,4 +33,4 @@ HTMLHint.addRule({
         parser.addListener('tagstart', onTagStart);
         parser.addListener('tagend', onTagEnd);
     }
-});
+}

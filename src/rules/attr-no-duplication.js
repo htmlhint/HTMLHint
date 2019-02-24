@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2014, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'attr-no-duplication',
     description: 'Elements cannot have duplicate attributes.',
     init: function(parser, reporter){
@@ -24,4 +20,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

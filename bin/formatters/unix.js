@@ -1,7 +1,3 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
 var unixFormatter = function(formatter, HTMLHint, options){
     var nocolor = options.nocolor;
     formatter.on('file', function(event){

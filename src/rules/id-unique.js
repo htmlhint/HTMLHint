@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'id-unique',
     description: 'The value of id attributes must be unique.',
     init: function(parser, reporter){
@@ -33,4 +29,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

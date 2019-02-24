@@ -1,9 +1,4 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * Copyright (c) 2014, Takeshi Kurosawa <taken.spc@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'alt-require',
     description: 'The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.',
     init: function(parser, reporter){
@@ -25,4 +20,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

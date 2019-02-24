@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2014, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'href-abs-or-rel',
     description: 'An href attribute must be either absolute or relative.',
     init: function(parser, reporter, options){
@@ -27,4 +23,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'spec-char-escape',
     description: 'Special characters must be escaped.',
     init: function(parser, reporter){
@@ -17,4 +13,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

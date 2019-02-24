@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'attr-lowercase',
     description: 'All attribute names must be in lowercase.',
     init: function(parser, reporter, options){
@@ -21,4 +17,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'attr-value-not-empty',
     description: 'All attributes must have values.',
     init: function(parser, reporter){
@@ -19,4 +15,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

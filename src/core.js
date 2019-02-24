@@ -1,19 +1,10 @@
-/* jshint -W079 */
-/**
- * Copyright (c) 2015, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-var HTMLHint = (function (undefined) {
-
-    var HTMLHint = {};
-
-    HTMLHint.version = '@VERSION';
-    HTMLHint.release = '@RELEASE';
-
-    HTMLHint.rules = {};
-
-    //默认配置
-    HTMLHint.defaultRuleset = {
+import HTMLParser from './htmlparser'
+import Reporter from './reporter'
+import * as HTMLRules from './rules'
+class HTMLHint {
+    constructor () {
+      this.rules = {}
+      this.defaultRuleset = {
         'tagname-lowercase': true,
         'attr-lowercase': true,
         'attr-value-double-quotes': true,
@@ -24,16 +15,15 @@ var HTMLHint = (function (undefined) {
         'src-not-empty': true,
         'attr-no-duplication': true,
         'title-require': true
-    };
-
-    HTMLHint.addRule = function(rule){
-        HTMLHint.rules[rule.id] = rule;
-    };
-
-    HTMLHint.verify = function(html, ruleset){
+      }
+    }
+    addRule (rule) {
+        this.rules[rule.id] = rule
+    }
+    verify (html, ruleset) {
 
         if(ruleset === undefined || Object.keys(ruleset).length ===0){
-            ruleset = HTMLHint.defaultRuleset;
+            ruleset = this.defaultRuleset;
         }
 
         // parse inline ruleset
@@ -54,9 +44,9 @@ var HTMLHint = (function (undefined) {
         });
 
         var parser = new HTMLParser();
-        var reporter = new HTMLHint.Reporter(html, ruleset);
+        var reporter = new Reporter(html, ruleset);
 
-        var rules = HTMLHint.rules,
+        var rules = this.rules,
             rule;
         for (var id in ruleset){
             rule = rules[id];
@@ -68,10 +58,8 @@ var HTMLHint = (function (undefined) {
         parser.parse(html);
 
         return reporter.messages;
-    };
-
-    // format messages
-    HTMLHint.format = function(arrMessages, options){
+    }
+    format (arrMessages, options) {
         options = options || {};
         var arrLogs = [];
         var colors = {
@@ -81,13 +69,13 @@ var HTMLHint = (function (undefined) {
             reset: ''
         };
         if(options.colors){
-            colors.white = '\033[37m';
-            colors.grey = '\033[90m';
-            colors.red = '\033[31m';
-            colors.reset = '\033[39m';
+            colors.white = '\x1b[37m';
+            colors.grey = '\x1b[90m';
+            colors.red = '\x1b[31m';
+            colors.reset = '\x1b[39m';
         }
         var indent = options.indent || 0;
-        arrMessages.forEach(function(hint){
+        arrMessages.forEach((hint) => {
             var leftWindow = 40;
             var rightWindow = leftWindow + 20;
             var evidence = hint.evidence;
@@ -120,17 +108,22 @@ var HTMLHint = (function (undefined) {
             arrLogs.push(colors.white+repeatStr(indent)+repeatStr(String(line).length + 3 + pointCol)+'^ ' + colors.red + hint.message + ' (' + hint.rule.id+')' + colors.reset);
         });
         return arrLogs;
-    };
+    }
+}
 
     // repeat string
     function repeatStr(n, str){
         return new Array(n + 1).join(str || ' ');
     }
 
-    return HTMLHint;
-
-})();
-
-if (typeof exports === 'object' && exports){
-    exports.HTMLHint = HTMLHint;
+const hint = new HTMLHint()
+Object.values(HTMLRules).forEach(rule => {
+    hint.addRule(rule)
+})
+export default hint
+export {
+    HTMLRules,
+    Reporter,
+    HTMLParser,
+    HTMLHint,
 }

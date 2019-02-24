@@ -1,8 +1,4 @@
-/**
- * Copyright (c) 2014, Yanis Wang <yanis.wang@gmail.com>
- * MIT Licensed
- */
-HTMLHint.addRule({
+export default {
     id: 'space-tab-mixed-disabled',
     description: 'Do not mix tabs and spaces for indentation.',
     init: function(parser, reporter, options){
@@ -45,4 +41,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}
