@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'inline-script-disabled',
     description: 'Inline script cannot be used.',
     init: function(parser, reporter){
@@ -24,4 +24,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

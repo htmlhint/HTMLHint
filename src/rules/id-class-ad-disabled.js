@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
   id: 'id-class-ad-disabled',
   description:
     'The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.',
@@ -29,4 +29,4 @@ HTMLHint.addRule({
       }
     });
   }
-});
+}

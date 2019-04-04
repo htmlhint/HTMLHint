@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'head-script-disabled',
     description: 'The <script> tag cannot be used in a <head> tag.',
     init: function(parser, reporter){
@@ -27,4 +27,4 @@ HTMLHint.addRule({
         parser.addListener('tagstart', onTagStart);
         parser.addListener('tagend', onTagEnd);
     }
-});
+}

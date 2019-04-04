@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'inline-style-disabled',
     description: 'Inline style cannot be used.',
     init: function(parser, reporter){
@@ -15,4 +15,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}

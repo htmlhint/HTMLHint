@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'doctype-first',
     description: 'Doctype must be declared first.',
     init: function(parser, reporter){
@@ -14,4 +14,4 @@ HTMLHint.addRule({
         };
         parser.addListener('all', allEvent);
     }
-});
+}

@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'attr-no-duplication',
     description: 'Elements cannot have duplicate attributes.',
     init: function(parser, reporter){
@@ -20,4 +20,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+}
