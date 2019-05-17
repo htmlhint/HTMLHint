@@ -143,8 +143,8 @@ function repeatStr(n, str) {
 }
 
 const hint = new HTMLHint();
-Object.values(HTMLRules).forEach(rule => {
-  hint.addRule(rule);
+Object.keys(HTMLRules).forEach(key => {
+  hint.addRule(HTMLRules[key]);
 });
 export default hint;
 export { HTMLRules, Reporter, HTMLParser, HTMLHint };
