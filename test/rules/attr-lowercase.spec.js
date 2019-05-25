@@ -46,4 +46,18 @@ describe(`Rules: ${ruldId}`, function() {
     const messages = HTMLHint.verify(code, ruleOptions);
     expect(messages.length).to.be(0);
   });
+
+  it('Set to array list with RegExp should not result in an error', function() {
+    const code = '<p testBox="abc" bind:tapTop="ccc">';
+    ruleOptions[ruldId] = ['testBox', /bind:.*/];
+    const messages = HTMLHint.verify(code, ruleOptions);
+    expect(messages.length).to.be(0);
+  });
+
+  it('Set to array list with regex string should not result in an error', function() {
+    const code = '<p testBox="abc" [ngFor]="ccc">';
+    ruleOptions[ruldId] = ['testBox', '/\\[.*\\]/'];
+    const messages = HTMLHint.verify(code, ruleOptions);
+    expect(messages.length).to.be(0);
+  });
 });
