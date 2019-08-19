@@ -4,10 +4,10 @@
   "description": "The Static Code Analysis Tool for your HTML",
   "repository": {
     "type": "git",
-    "url": "https://github.com/thedaviddias/HTMLHint.git"
+    "url": "https://github.com/htmlhint/HTMLHint.git"
   },
   "bugs": {
-    "url": "https://github.com/thedaviddias/HTMLHint/issues"
+    "url": "https://github.com/htmlhint/HTMLHint/issues"
   },
   "keywords": [
     "html",
@@ -31,17 +31,42 @@
   },
   "husky": {
     "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "pretty-quick --staged"
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true"
     }
   },
   "config": {
     "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
+      "path": "cz-conventional-changelog"
     },
     "cz-customizable": {
       "config": "commitizen.config.js"
     }
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
+      }
+    ]
   },
   "dependencies": {
     "async": "2.6.1",
@@ -55,21 +80,21 @@
     "xml": "1.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^7.1.1",
-    "@commitlint/config-conventional": "^7.1.1",
-    "@commitlint/travis-cli": "^7.1.1",
-    "commitizen": "^2.10.1",
-    "commitlint": "^7.1.1",
-    "cz-conventional-changelog": "^2.1.0",
-    "cz-customizable": "^5.2.0",
+    "@commitlint/cli": "8.1.0",
+    "@commitlint/config-conventional": "8.1.0",
+    "@commitlint/travis-cli": "8.1.0",
+    "commitizen": "4.0.3",
+    "commitlint": "8.1.0",
+    "cz-conventional-changelog": "3.0.2",
+    "cz-customizable": "6.2.0",
     "expect.js": "0.3.1",
-    "husky": "^1.0.0-rc.13",
+    "husky": "3.0.3",
     "istanbul": "0.4.5",
-    "lint-staged": "^7.2.2",
+    "lint-staged": "9.2.1",
     "mocha": "5.2.0",
     "prettier": "^1.14.2",
     "pretty-quick": "^1.6.0",
-    "semantic-release": "^15.9.12",
+    "semantic-release": "15.13.21",
     "travis-deploy-once": "^5.0.7",
     "webpack": "^4.29.5",
     "webpack-cli": "^3.2.3"
