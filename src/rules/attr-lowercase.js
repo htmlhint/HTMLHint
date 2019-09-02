@@ -1,3 +1,43 @@
+/**
+ * testAgainstStringOrRegExp
+ * @param {string} value string to test
+ * @param {string|RegExp} comparison raw string or regex string
+ * @returns {boolean}
+ */
+function testAgainstStringOrRegExp(value, comparison) {
+  // If it's a RegExp, test directly
+  if (comparison instanceof RegExp) {
+    return comparison.test(value)
+      ? { match: value, pattern: comparison }
+      : false;
+  }
+
+  // Check if it's RegExp in a string
+  const firstComparisonChar = comparison[0];
+  const lastComparisonChar = comparison[comparison.length - 1];
+  const secondToLastComparisonChar = comparison[comparison.length - 2];
+
+  const comparisonIsRegex =
+    firstComparisonChar === '/' &&
+    (lastComparisonChar === '/' ||
+      (secondToLastComparisonChar === '/' && lastComparisonChar === 'i'));
+
+  const hasCaseInsensitiveFlag =
+    comparisonIsRegex && lastComparisonChar === 'i';
+
+  // If so, create a new RegExp from it
+  if (comparisonIsRegex) {
+    const valueMatches = hasCaseInsensitiveFlag
+      ? new RegExp(comparison.slice(1, -2), 'i').test(value)
+      : new RegExp(comparison.slice(1, -1)).test(value);
+
+    return valueMatches;
+  }
+
+  // Otherwise, it's a string. Do a strict comparison
+  return value === comparison;
+}
+
 export default {
   id: 'attr-lowercase',
   description: 'All attribute names must be in lowercase.',
@@ -12,7 +52,7 @@ export default {
         attr = attrs[i];
         var attrName = attr.name;
         if (
-          exceptions.indexOf(attrName) === -1 &&
+          !exceptions.find(exp => testAgainstStringOrRegExp(attrName, exp)) &&
           attrName !== attrName.toLowerCase()
         ) {
           reporter.error(
