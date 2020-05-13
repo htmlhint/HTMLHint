@@ -71,15 +71,15 @@
     ]
   },
   "dependencies": {
-    "async": "2.6.1",
+    "async": "3.2.0",
     "colors": "1.4.0",
-    "commander": "2.17.1",
+    "commander": "5.1.0",
     "esm": "3.2.25",
     "glob": "7.1.6",
     "parse-glob": "3.0.4",
     "path-parse": "1.0.6",
     "request": "2.88.2",
-    "strip-json-comments": "2.0.1",
+    "strip-json-comments": "3.1.0",
     "xml": "1.0.1"
   },
   "devDependencies": {
@@ -93,16 +93,16 @@
     "cz-conventional-changelog": "3.2.0",
     "cz-customizable": "6.2.0",
     "expect.js": "0.3.1",
-    "husky": "3.0.3",
+    "husky": "4.2.5",
     "istanbul": "0.4.5",
-    "lint-staged": "9.2.1",
+    "lint-staged": "10.2.2",
     "mocha": "7.1.2",
-    "prettier": "^1.14.2",
-    "pretty-quick": "^1.6.0",
+    "prettier": "2.0.5",
+    "pretty-quick": "2.0.1",
     "rollup": "2.9.1",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-terser": "5.3.0",
-    "semantic-release": "15.13.21",
+    "semantic-release": "17.0.7",
     "travis-deploy-once": "^5.0.7"
   }
 }
