@@ -146,5 +146,4 @@ const hint = new HTMLHint();
 Object.keys(HTMLRules).forEach(key => {
   hint.addRule(HTMLRules[key]);
 });
-export default hint;
-export { HTMLRules, Reporter, HTMLParser, HTMLHint };
+export { hint, HTMLRules, Reporter, HTMLParser, HTMLHint };
