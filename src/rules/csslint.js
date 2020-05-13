@@ -1,4 +1,4 @@
-import { CSSLint } from 'csslint'
+import { CSSLint } from 'csslint';
 
 export default {
   id: 'csslint',
@@ -29,4 +29,4 @@ export default {
       }
     });
   }
-}
+};

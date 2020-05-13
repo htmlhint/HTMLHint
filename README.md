@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://htmlhint.io"><img src="https://raw.githubusercontent.com/htmlhint/htmlhint/develop/src/img/htmlhint.png" alt="Logo HTMLHint" width="170"></a>
+  <a href="https://htmlhint.com"><img src="https://raw.githubusercontent.com/htmlhint/htmlhint/develop/src/img/htmlhint.png" alt="Logo HTMLHint" width="170"></a>
   <br>
   HTMLHint
   <br>
@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="http://roadmap.htmlhint.io/">Roadmap</a> • <a href="https://htmlhint.io">Website</a>
+  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="http://roadmap.htmlhint.io/">Roadmap</a> • <a href="https://htmlhint.com">Website</a>
 </p>
 
 ## Table of Contents
@@ -79,7 +79,7 @@ $ htmlhint www/**/*.html
 You can even launch HTMLHint to analyse an URL:
 
 ```
-$ htmlhint https://htmlhint.io/
+$ htmlhint https://htmlhint.com/
 ```
 
 ## 📃 Example output

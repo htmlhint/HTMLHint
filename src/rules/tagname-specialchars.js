@@ -1,17 +1,16 @@
 export default {
-  id: 'tagname-lowercase',
+  id: 'tagname-specialchars',
   description: 'All html element names must be in lowercase.',
-  init: function(parser, reporter, options) {
+  init: function(parser, reporter) {
     var self = this;
-    var exceptions = Array.isArray(options) ? options : [];
+    var specialchars = /[^a-zA-Z0-9\-:_]/;
     parser.addListener('tagstart,tagend', function(event) {
       var tagName = event.tagName;
-      if (
-        exceptions.indexOf(tagName) === -1 &&
-        tagName !== tagName.toLowerCase()
-      ) {
+      if (specialchars.test(tagName)) {
         reporter.error(
-          'The html element name of [ ' + tagName + ' ] must be in lowercase.',
+          'The html element name of [ ' +
+            tagName +
+            ' ] contains special character.',
           event.line,
           event.col,
           self,
