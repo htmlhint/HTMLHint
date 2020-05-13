@@ -7,21 +7,19 @@ notifications:
     recipients:
       - thedaviddias@gmail.com
 node_js:
+  - '12'
   - '10'
-  - '9'
-  - '8'
 install:
   - npm install -g codecov
   - npm install
 script:
   - 'npm run build'
-  - ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- --recursive
+  - ./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha
   - codecov
 branches:
   only:
     - master
     - develop
-    - /^greenkeeper/.*$/
   except:
     - /^v\d+\.\d+\.\d+$/
 after_success:
