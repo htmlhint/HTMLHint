@@ -2,15 +2,15 @@ const expect = require('expect.js');
 
 const HTMLHint = require('../../dist/htmlhint.js').default;
 
-const ruldId = 'attr-value-double-quotes';
+const ruldId = 'attr-value-single-quotes';
 const ruleOptions = {};
 
 ruleOptions[ruldId] = true;
 
-describe(`Rules: ${ruldId}`, function() {
-  it('Attribute value closed by single quotes should result in an error', function() {
-    const code = "<a href='abc' title=abc style=''>";
-    const messages = HTMLHint.verify(code, ruleOptions);
+describe('Rules: ' + ruldId, function() {
+  it('Attribute value closed by double quotes should result in an error', function() {
+    var code = '<a href="abc" title=abc style="">';
+    var messages = HTMLHint.verify(code, ruleOptions);
     expect(messages.length).to.be(3);
     expect(messages[0].rule.id).to.be(ruldId);
     expect(messages[0].line).to.be(1);
@@ -24,8 +24,8 @@ describe(`Rules: ${ruldId}`, function() {
   });
 
   it('Attribute value no closed should not result in an error', function() {
-    const code = '<input type="button" disabled style="">';
-    const messages = HTMLHint.verify(code, ruleOptions);
+    var code = "<input type='button' disabled style=''>";
+    var messages = HTMLHint.verify(code, ruleOptions);
     expect(messages.length).to.be(0);
   });
 });

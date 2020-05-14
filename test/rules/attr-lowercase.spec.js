@@ -1,6 +1,6 @@
 const expect = require('expect.js');
 
-const HTMLHint = require('../../index').HTMLHint;
+const HTMLHint = require('../../dist/htmlhint.js').default;
 
 const ruldId = 'attr-lowercase';
 const ruleOptions = {};
@@ -43,6 +43,20 @@ describe(`Rules: ${ruldId}`, function() {
   it('Set to array list should not result in an error', function() {
     const code = '<p testBox="abc" tttAAA="ccc">';
     ruleOptions[ruldId] = ['testBox', 'tttAAA'];
+    const messages = HTMLHint.verify(code, ruleOptions);
+    expect(messages.length).to.be(0);
+  });
+
+  it('Set to array list with RegExp should not result in an error', function() {
+    const code = '<p testBox="abc" bind:tapTop="ccc">';
+    ruleOptions[ruldId] = ['testBox', /bind:.*/];
+    const messages = HTMLHint.verify(code, ruleOptions);
+    expect(messages.length).to.be(0);
+  });
+
+  it('Set to array list with regex string should not result in an error', function() {
+    const code = '<p testBox="abc" [ngFor]="ccc">';
+    ruleOptions[ruldId] = ['testBox', '/\\[.*\\]/'];
     const messages = HTMLHint.verify(code, ruleOptions);
     expect(messages.length).to.be(0);
   });
