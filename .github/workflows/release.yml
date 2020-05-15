@@ -1,26 +1,17 @@
-name: CI
+name: Release
 
 on:
   push:
     branches:
       - master
-      - develop
-      - 'feat/**'
-      - 'fix/**'
-      - 'perf/**'
-      - 'refactor/**'
-  pull_request:
-    branches:
-      - master
-      - develop
 
 jobs:
-  build:
+  release:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [10.x, 12.x, 14.x]
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        node: [12.x]
+        os: [ubuntu-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -35,8 +26,9 @@ jobs:
 
       - name: Build
         run: npm run build --if-present
-        env:
-          CI: true
 
-      - name: Run tests
-        run: npm test
+      - name: Semantic Release
+        run: npx semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
