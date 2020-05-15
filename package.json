@@ -28,8 +28,8 @@
     "travis-deploy-once": "travis-deploy-once",
     "semantic-release": "semantic-release",
     "build": "npm run build:min && npm run build:unmin",
-    "build:min": "NODE_ENV=production rollup -c",
-    "build:unmin": "NODE_ENV=production rollup -c --file dist/htmlhint.min.js"
+    "build:min": "rollup -c --environment NODE_ENV:production",
+    "build:unmin": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js"
   },
   "husky": {
     "hooks": {
