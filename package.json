@@ -24,7 +24,8 @@
   "scripts": {
     "commit": "npx git-cz",
     "prettier": "prettier --write ./**/*.{js,json,md} --ignore-path ./.prettierignore",
-    "test": "mocha -r esm",
+    "test": "mocha --recursive \"./test/**/*.spec.js\"",
+    "coverage": "nyc npm run test",
     "build": "npm run build:min && npm run build:unmin",
     "build:min": "rollup -c --environment NODE_ENV:production",
     "build:unmin": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js"
@@ -69,9 +70,9 @@
     "commitlint": "8.3.5",
     "expect.js": "0.3.1",
     "husky": "4.2.5",
-    "istanbul": "0.4.5",
     "lint-staged": "10.2.2",
     "mocha": "7.1.2",
+    "nyc": "15.0.1",
     "prettier": "2.0.5",
     "pretty-quick": "2.0.1",
     "rollup": "2.10.0",
@@ -92,5 +93,21 @@
   "files": [
     "bin",
     "dist"
-  ]
+  ],
+  "nyc": {
+    "all": true,
+    "include": [
+      "dist/htmlhint.js"
+    ],
+    "exclude": [
+      "**/*.spec.js",
+      "src/**/*.js",
+      "bin/**/*.js"
+    ],
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "sourceMap": false
+  }
 }
