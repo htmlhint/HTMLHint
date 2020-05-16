@@ -10,6 +10,7 @@ on:
       - 'feat/**'
       - 'fix/**'
       - 'perf/**'
+      - 'chore/**'
       - 'refactor/**'
   pull_request:
     branches:
@@ -46,3 +47,14 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+      - name: Run coverage
+        if: success() && matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
+        run: npm run test:coverage
+
+      - name: Upload coverage to Codecov
+        if: success() && matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
+        uses: codecov/codecov-action@v1
+        with:
+          file: ./coverage/lcov.info
+          fail_ci_if_error: true
