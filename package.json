@@ -24,7 +24,7 @@
   "scripts": {
     "commit": "npx git-cz",
     "prettier": "prettier --write ./**/*.{js,json,md} --ignore-path ./.prettierignore",
-    "test": "mocha -r esm",
+    "test": "mocha --recursive \"./test/**/*.spec.js\"",
     "build": "npm run build:min && npm run build:unmin",
     "build:min": "rollup -c --environment NODE_ENV:production",
     "build:unmin": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js"
