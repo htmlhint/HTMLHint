@@ -24,8 +24,23 @@ describe('Rules: '+ruldId, function(){
         expect(messages[2].col).to.be(4);
     });
 
+    it('Special characters: & should result in an error', function(){
+        var code = '<p>Steinway & Sons</p>';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(1);
+        expect(messages[0].rule.id).to.be(ruldId);
+        expect(messages[0].line).to.be(1);
+        expect(messages[0].col).to.be(12);
+    });
+
     it('Normal text should not result in an error', function(){
         var code = '<p>abc</p>';
+        var messages = HTMLHint.verify(code, ruleOptions);
+        expect(messages.length).to.be(0);
+    });
+
+    it('Properly formed HTML entities should not result in an error', function(){
+        var code = '<p>Steinway &amp; &gt; Sons Q&amp;A </p>';
         var messages = HTMLHint.verify(code, ruleOptions);
         expect(messages.length).to.be(0);
     });
