@@ -1,4 +1,4 @@
-HTMLHint.addRule({
+export default {
     id: 'attr-no-unnecessary-whitespace',
     description: 'No spaces between attribute names and values.',
     init: function (parser, reporter, options) {
@@ -20,4 +20,4 @@ HTMLHint.addRule({
             }
         });
     }
-});
+};

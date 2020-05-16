@@ -1,6 +1,6 @@
 var expect = require('expect.js');
 
-var HTMLHint = require('../../index').HTMLHint;
+var HTMLHint = require('../../dist/htmlhint.js').HTMLHint;
 
 var ruldId = 'attr-no-unnecessary-whitespace',
     ruleOptions = {};
