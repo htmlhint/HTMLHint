@@ -26,3 +26,4 @@ export { default as tagSelfClose } from './tag-self-close';
 export { default as tagnameLowercase } from './tagname-lowercase';
 export { default as tagnameSpecialChars } from './tagname-specialchars';
 export { default as titleRequire } from './title-require';
+export { default as tagsCheck } from './tags-check';
