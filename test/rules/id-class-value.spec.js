@@ -1,6 +1,6 @@
 var expect = require('expect.js');
 
-var HTMLHint = require('../../dist/htmlhint.js').default;
+var HTMLHint = require('../../dist/htmlhint.js').HTMLHint;
 
 var ruldId = 'id-class-value',
   ruleOptionsUnderline = {},

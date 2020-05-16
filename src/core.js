@@ -1,7 +1,7 @@
 import HTMLParser from './htmlparser';
 import Reporter from './reporter';
 import * as HTMLRules from './rules';
-class HTMLHint {
+class HTMLHintCore {
   constructor() {
     this.rules = {};
     this.defaultRuleset = {
@@ -142,8 +142,11 @@ function repeatStr(n, str) {
   return new Array(n + 1).join(str || ' ');
 }
 
-const hint = new HTMLHint();
+const HTMLHint = new HTMLHintCore();
+
 Object.keys(HTMLRules).forEach(key => {
-  hint.addRule(HTMLRules[key]);
+  HTMLHint.addRule(HTMLRules[key]);
 });
-export { hint, HTMLRules, Reporter, HTMLParser, HTMLHint };
+
+export { HTMLRules, Reporter, HTMLParser, HTMLHint };
+
