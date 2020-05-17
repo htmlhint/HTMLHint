@@ -10,4 +10,7 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: 'module',
   },
+  rules: {
+    'one-var': ['error', 'never'],
+  },
 }
