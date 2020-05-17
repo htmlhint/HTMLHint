@@ -80,17 +80,11 @@ export default {
         if (currentTagType.attrsRequired) {
           currentTagType.attrsRequired.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map((a) => {
-                return a
-              })
+              var copyOfId = id.map((a) => a)
               var realID = copyOfId.shift()
               var values = copyOfId
 
-              if (
-                attrs.some((attr) => {
-                  return attr.name === realID
-                })
-              ) {
+              if (attrs.some((attr) => attr.name === realID)) {
                 attrs.forEach((attr) => {
                   if (
                     attr.name === realID &&
@@ -121,9 +115,7 @@ export default {
                 )
               }
             } else if (
-              !attrs.some((attr) => {
-                return id.split('|').indexOf(attr.name) !== -1
-              })
+              !attrs.some((attr) => id.split('|').indexOf(attr.name) !== -1)
             ) {
               reporter.error(
                 'The <' + tagName + "> tag must have attr '" + id + "'.",
@@ -139,17 +131,11 @@ export default {
         if (currentTagType.attrsOptional) {
           currentTagType.attrsOptional.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map((a) => {
-                return a
-              })
+              var copyOfId = id.map((a) => a)
               var realID = copyOfId.shift()
               var values = copyOfId
 
-              if (
-                attrs.some((attr) => {
-                  return attr.name === realID
-                })
-              ) {
+              if (attrs.some((attr) => attr.name === realID)) {
                 attrs.forEach((attr) => {
                   if (
                     attr.name === realID &&
@@ -177,11 +163,7 @@ export default {
 
         if (currentTagType.redundantAttrs) {
           currentTagType.redundantAttrs.forEach((attrName) => {
-            if (
-              attrs.some((attr) => {
-                return attr.name === attrName
-              })
-            ) {
+            if (attrs.some((attr) => attr.name === attrName)) {
               reporter.error(
                 "The attr '" +
                   attrName +

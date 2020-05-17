@@ -11,6 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'arrow-body-style': ['error'],
     'one-var': ['error', 'never'],
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
   },
