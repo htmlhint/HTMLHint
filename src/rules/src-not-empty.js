@@ -5,10 +5,10 @@ export default {
     var self = this
 
     parser.addListener('tagstart', function (event) {
-      var tagName = event.tagName,
-        attrs = event.attrs,
-        attr,
-        col = event.col + tagName.length + 1
+      var tagName = event.tagName
+      var attrs = event.attrs
+      var attr
+      var col = event.col + tagName.length + 1
 
       for (var i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]

@@ -57,8 +57,8 @@ class HTMLHintCore {
     var parser = new HTMLParser()
     var reporter = new Reporter(html, ruleset)
 
-    var rules = this.rules,
-      rule
+    var rules = this.rules
+    var rule
 
     for (var id in ruleset) {
       rule = rules[id]

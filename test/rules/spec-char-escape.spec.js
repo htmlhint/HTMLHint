@@ -2,8 +2,8 @@ var expect = require('expect.js')
 
 var HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-var ruldId = 'spec-char-escape',
-  ruleOptions = {}
+var ruldId = 'spec-char-escape'
+var ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
