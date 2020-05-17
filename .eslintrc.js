@@ -11,6 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-var': 'error',
     'one-var': ['error', 'never'],
   },
 }
