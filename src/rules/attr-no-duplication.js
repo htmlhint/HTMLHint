@@ -3,7 +3,6 @@ export default {
   description: 'Elements cannot have duplicate attributes.',
   init: function (parser, reporter) {
     var self = this
-
     parser.addListener('tagstart', function (event) {
       var attrs = event.attrs
       var attr
@@ -11,11 +10,9 @@ export default {
       var col = event.col + event.tagName.length + 1
 
       var mapAttrName = {}
-
       for (var i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
         attrName = attr.name
-
         if (mapAttrName[attrName] === true) {
           reporter.error(
             'Duplicate of attribute name [ ' + attr.name + ' ] was found.',

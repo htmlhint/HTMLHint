@@ -3,7 +3,6 @@ export default {
   description: '<style> tags cannot be used.',
   init: function (parser, reporter) {
     var self = this
-
     parser.addListener('tagstart', function (event) {
       if (event.tagName.toLowerCase() === 'style') {
         reporter.warn(

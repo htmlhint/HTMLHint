@@ -17,7 +17,6 @@ export default {
       'alt',
       'role',
     ]
-
     for (var i = 0; i < sortOrder.length; i++) {
       orderMap[sortOrder[i]] = i
     }
@@ -25,11 +24,9 @@ export default {
     parser.addListener('tagstart', function (event) {
       var attrs = event.attrs
       var listOfAttributes = []
-
       for (var i = 0; i < attrs.length; i++) {
         listOfAttributes.push(attrs[i].name)
       }
-
       var originalAttrs = JSON.stringify(listOfAttributes)
       listOfAttributes.sort(function (a, b) {
         if (orderMap[a] == undefined && orderMap[b] == undefined) {
@@ -42,7 +39,6 @@ export default {
         }
         return orderMap[a] - orderMap[b] || a.localeCompare(b)
       })
-
       if (originalAttrs !== JSON.stringify(listOfAttributes)) {
         reporter.error(
           'Inaccurate order ' +

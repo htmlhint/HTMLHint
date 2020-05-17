@@ -3,7 +3,6 @@ export default {
   description: 'Doctype must be declared first.',
   init: function (parser, reporter) {
     var self = this
-
     var allEvent = function (event) {
       if (
         event.type === 'start' ||
@@ -24,10 +23,8 @@ export default {
           event.raw
         )
       }
-
       parser.removeListener('all', allEvent)
     }
-
     parser.addListener('all', allEvent)
   },
 }

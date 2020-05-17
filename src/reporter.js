@@ -3,7 +3,6 @@ class Reporter {
     this.html = html
     this.lines = html.split(/\r?\n/)
     var match = html.match(/\r?\n/)
-
     this.brLen = match !== null ? match[0].length : 0
     this.ruleset = ruleset
     this.messages = []
@@ -17,9 +16,7 @@ class Reporter {
     var self = this
     var lines = self.lines
     var brLen = self.brLen
-    var evidence
-    var evidenceLen
-
+    var evidence, evidenceLen
     for (var i = line - 1, lineCount = lines.length; i < lineCount; i++) {
       evidence = lines[i]
       evidenceLen = evidence.length

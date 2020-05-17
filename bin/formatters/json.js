@@ -3,5 +3,4 @@ var jsonFormatter = function (formatter) {
     console.log(JSON.stringify(event.arrAllMessages))
   })
 }
-
 module.exports = jsonFormatter

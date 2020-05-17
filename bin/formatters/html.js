@@ -13,7 +13,6 @@ var htmlFormatter = function (formatter) {
     fileContent =
       fileContent +
       '<tr><th>Number#</th><th>File Name</th><th>Line Number</th><th>Message</th></tr>'
-
     var arrAllMessages = event.arrAllMessages
     arrAllMessages.forEach(function (fileInfo) {
       var arrMessages = fileInfo.messages
@@ -31,7 +30,6 @@ var htmlFormatter = function (formatter) {
           '</td></tr>'
       })
     })
-
     fileContent = fileContent.replace('</table></body></html>')
     console.log(fileContent)
     fs.writeFileSync('report.html', fileContent)

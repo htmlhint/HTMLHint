@@ -1,21 +1,3 @@
-# [0.13.0](https://github.com/htmlhint/HTMLHint/compare/v0.12.2...v0.13.0) (2020-05-18)
-
-
-### Bug Fixes
-
-* add prettier and eslint ([#388](https://github.com/htmlhint/HTMLHint/issues/388)) ([aba3249](https://github.com/htmlhint/HTMLHint/commit/aba3249652181055f5897e0b4367b243f83ede3f))
-* add semantic release test ([#399](https://github.com/htmlhint/HTMLHint/issues/399)) ([616f9cd](https://github.com/htmlhint/HTMLHint/commit/616f9cd74a9463e6596198f867f35aab24094110))
-* ignore PULL_REQUEST_TEMPLATE.md ([30b0af2](https://github.com/htmlhint/HTMLHint/commit/30b0af2f86a4daa7ef3bd07e91e8220b7d4b75f3))
-* use yml in semantic.yml ([86f6700](https://github.com/htmlhint/HTMLHint/commit/86f67007a32f5e978921507c05a2620edc1f9afc))
-
-
-### Features
-
-* Add tags checking rule - allows specify rules for any tag and validate that ([#384](https://github.com/htmlhint/HTMLHint/issues/384)) ([475aaca](https://github.com/htmlhint/HTMLHint/commit/475aaca431fab90a0ead7b21af7a73d4f0324514))
-* added attr-no-unnecessary-whitespace rule ([#385](https://github.com/htmlhint/HTMLHint/issues/385)) ([03bfd4f](https://github.com/htmlhint/HTMLHint/commit/03bfd4f7f6b60543a4253cad74758c794fc8cd18))
-* new rule: input-requires-label - All inputs require a label ([#159](https://github.com/htmlhint/HTMLHint/issues/159)) ([5bd40fb](https://github.com/htmlhint/HTMLHint/commit/5bd40fbc06b0d178cff4b9665ca992232dcb1f43))
-* new website for htmlhint.com ([#395](https://github.com/htmlhint/HTMLHint/issues/395)) ([5d0d95f](https://github.com/htmlhint/HTMLHint/commit/5d0d95f39dddddf94a22d3c6294e4e50472fa0a0))
-
 # HTMLHint change log
 
 ## ver 0.9.14 (2016-5-2)

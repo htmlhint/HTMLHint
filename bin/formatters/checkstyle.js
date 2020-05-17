@@ -4,11 +4,9 @@ var checkstyleFormatter = function (formatter) {
   formatter.on('end', function (event) {
     var arrFiles = []
     var arrAllMessages = event.arrAllMessages
-
     arrAllMessages.forEach(function (fileInfo) {
       var arrMessages = fileInfo.messages
       var arrErrors = []
-
       arrMessages.forEach(function (message) {
         arrErrors.push({
           error: {
@@ -22,7 +20,6 @@ var checkstyleFormatter = function (formatter) {
           },
         })
       })
-
       arrFiles.push({
         file: [
           {
@@ -33,7 +30,6 @@ var checkstyleFormatter = function (formatter) {
         ].concat(arrErrors),
       })
     })
-
     var objXml = {
       checkstyle: [
         {
@@ -43,7 +39,6 @@ var checkstyleFormatter = function (formatter) {
         },
       ].concat(arrFiles),
     }
-
     console.log(
       xml(objXml, {
         declaration: true,
@@ -52,5 +47,4 @@ var checkstyleFormatter = function (formatter) {
     )
   })
 }
-
 module.exports = checkstyleFormatter

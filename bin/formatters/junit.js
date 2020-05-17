@@ -4,11 +4,9 @@ var junitFormatter = function (formatter, HTMLHint) {
   formatter.on('end', function (event) {
     var arrTestcase = []
     var arrAllMessages = event.arrAllMessages
-
     arrAllMessages.forEach(function (fileInfo) {
       var arrMessages = fileInfo.messages
       var arrLogs = HTMLHint.format(arrMessages)
-
       arrTestcase.push({
         testcase: [
           {
@@ -28,7 +26,6 @@ var junitFormatter = function (formatter, HTMLHint) {
         ],
       })
     })
-
     var objXml = {
       testsuites: [
         {
@@ -45,7 +42,6 @@ var junitFormatter = function (formatter, HTMLHint) {
         },
       ],
     }
-
     console.log(
       xml(objXml, {
         declaration: true,
@@ -54,5 +50,4 @@ var junitFormatter = function (formatter, HTMLHint) {
     )
   })
 }
-
 module.exports = junitFormatter

@@ -4,7 +4,6 @@ export default {
   init: function (parser, reporter) {
     var self = this
     var specialchars = /[^a-zA-Z0-9\-:_]/
-
     parser.addListener('tagstart,tagend', function (event) {
       var tagName = event.tagName
       if (specialchars.test(tagName)) {

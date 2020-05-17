@@ -18,7 +18,6 @@ var unixFormatter = function (formatter, HTMLHint, options) {
       )
     })
   })
-
   formatter.on('end', function (event) {
     var allHintCount = event.allHintCount
     if (allHintCount > 0) {
@@ -28,5 +27,4 @@ var unixFormatter = function (formatter, HTMLHint, options) {
     }
   })
 }
-
 module.exports = unixFormatter

@@ -3,15 +3,12 @@ export default {
   description: 'Attribute values must be in double quotes.',
   init: function (parser, reporter) {
     var self = this
-
     parser.addListener('tagstart', function (event) {
-      var attrs = event.attrs
-      var attr
-      var col = event.col + event.tagName.length + 1
-
+      var attrs = event.attrs,
+        attr,
+        col = event.col + event.tagName.length + 1
       for (var i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
-
         if (
           (attr.value !== '' && attr.quote !== '"') ||
           (attr.value === '' && attr.quote === "'")

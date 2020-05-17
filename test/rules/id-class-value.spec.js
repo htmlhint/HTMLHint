@@ -2,11 +2,11 @@ var expect = require('expect.js')
 
 var HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-var ruldId = 'id-class-value'
-var ruleOptionsUnderline = {}
-var ruleOptionsDash = {}
-var ruleOptionsHump = {}
-var ruleOptionsReg = {}
+var ruldId = 'id-class-value',
+  ruleOptionsUnderline = {},
+  ruleOptionsDash = {},
+  ruleOptionsHump = {},
+  ruleOptionsReg = {}
 
 ruleOptionsUnderline[ruldId] = 'underline'
 ruleOptionsDash[ruldId] = 'dash'
