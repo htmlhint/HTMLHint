@@ -13,5 +13,6 @@ module.exports = {
   rules: {
     'no-var': 'error',
     'one-var': ['error', 'never'],
+    'prefer-const': 'error',
   },
 }
