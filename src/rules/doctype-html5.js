@@ -17,7 +17,7 @@ export default {
       }
     }
 
-    function onTagStart() {
+    var onTagStart = () => {
       parser.removeListener('comment', onComment)
       parser.removeListener('tagstart', onTagStart)
     }

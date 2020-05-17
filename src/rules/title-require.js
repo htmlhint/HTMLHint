@@ -5,7 +5,7 @@ export default {
     var headBegin = false
     var hasTitle = false
 
-    function onTagStart(event) {
+    var onTagStart = (event) => {
       var tagName = event.tagName.toLowerCase()
       if (tagName === 'head') {
         headBegin = true
@@ -14,7 +14,7 @@ export default {
       }
     }
 
-    function onTagEnd(event) {
+    var onTagEnd = (event) => {
       var tagName = event.tagName.toLowerCase()
       if (hasTitle && tagName === 'title') {
         var lastEvent = event.lastEvent

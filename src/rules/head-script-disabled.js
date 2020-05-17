@@ -29,7 +29,7 @@ export default {
       }
     }
 
-    function onTagEnd(event) {
+    var onTagEnd = (event) => {
       if (event.tagName.toLowerCase() === 'head') {
         parser.removeListener('tagstart', onTagStart)
         parser.removeListener('tagend', onTagEnd)
