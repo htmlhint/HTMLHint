@@ -1,8 +1,9 @@
 export default {
   id: 'doctype-html5',
   description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
-  init: function(parser, reporter) {
-    var self = this;
+  init: function (parser, reporter) {
+    var self = this
+
     function onComment(event) {
       if (
         event.long === false &&
@@ -14,14 +15,16 @@ export default {
           event.col,
           self,
           event.raw
-        );
+        )
       }
     }
+
     function onTagStart() {
-      parser.removeListener('comment', onComment);
-      parser.removeListener('tagstart', onTagStart);
+      parser.removeListener('comment', onComment)
+      parser.removeListener('tagstart', onTagStart)
     }
-    parser.addListener('all', onComment);
-    parser.addListener('tagstart', onTagStart);
-  }
-};
+
+    parser.addListener('all', onComment)
+    parser.addListener('tagstart', onTagStart)
+  },
+}

@@ -1,39 +1,39 @@
-const expect = require('expect.js');
+const expect = require('expect.js')
 
-const ChildProcess = require('child_process');
-const path = require('path');
+const ChildProcess = require('child_process')
+const path = require('path')
 
-describe('Executable', function() {
-  it('should close stream before exit', function(done) {
+describe('Executable', function () {
+  it('should close stream before exit', function (done) {
     const c = ChildProcess.spawn('node', [
       path.resolve(__dirname, '../bin/htmlhint'),
       '--format',
       'json',
-      path.resolve(__dirname, './html/executable.html')
-    ]);
-    let stdoutEnd = false;
-    let processEnd = false;
-    let isDone = 0;
+      path.resolve(__dirname, './html/executable.html'),
+    ])
+    let stdoutEnd = false
+    let processEnd = false
+    let isDone = 0
 
     function checkDone() {
-      isDone++;
+      isDone++
       if (isDone == 2) {
-        done();
+        done()
       }
     }
 
     c.stdout.on('close', () => {
-      stdoutEnd = true;
-      checkDone();
-    });
+      stdoutEnd = true
+      checkDone()
+    })
 
     c.on('exit', () => {
-      processEnd = true;
-      checkDone();
-    });
+      processEnd = true
+      checkDone()
+    })
 
     c.stdout.on('data', () => {
-      expect(stdoutEnd || processEnd).to.be(false);
-    });
-  });
-});
+      expect(stdoutEnd || processEnd).to.be(false)
+    })
+  })
+})

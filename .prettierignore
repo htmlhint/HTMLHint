@@ -7,8 +7,10 @@
 /coverage
 
 # production
-/lib
+/dist
 
 # npm
 package-lock.json
 npm-debug.log*
+.nyc_output
+test/html
