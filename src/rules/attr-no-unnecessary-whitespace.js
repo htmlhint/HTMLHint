@@ -6,8 +6,8 @@ export default {
     var exceptions = Array.isArray(options) ? options : []
 
     parser.addListener('tagstart', function (event) {
-      var attrs = event.attrs,
-        col = event.col + event.tagName.length + 1
+      var attrs = event.attrs
+      var col = event.col + event.tagName.length + 1
 
       for (var i = 0; i < attrs.length; i++) {
         if (

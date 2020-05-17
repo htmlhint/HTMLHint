@@ -6,10 +6,10 @@ export default {
     var mapIdCount = {}
 
     parser.addListener('tagstart', function (event) {
-      var attrs = event.attrs,
-        attr,
-        id,
-        col = event.col + event.tagName.length + 1
+      var attrs = event.attrs
+      var attr
+      var id
+      var col = event.col + event.tagName.length + 1
 
       for (var i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]

@@ -17,7 +17,8 @@ class Reporter {
     var self = this
     var lines = self.lines
     var brLen = self.brLen
-    var evidence, evidenceLen
+    var evidence
+    var evidenceLen
 
     for (var i = line - 1, lineCount = lines.length; i < lineCount; i++) {
       evidence = lines[i]
