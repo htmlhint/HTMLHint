@@ -1,8 +1,7 @@
 export default {
   id: 'attr-no-unnecessary-whitespace',
   description: 'No spaces between attribute names and values.',
-  init: function (parser, reporter, options) {
-    var self = this
+  init(parser, reporter, options) {
     var exceptions = Array.isArray(options) ? options : []
 
     parser.addListener('tagstart', (event) => {

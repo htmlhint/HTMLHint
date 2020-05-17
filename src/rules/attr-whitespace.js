@@ -2,8 +2,7 @@ export default {
   id: 'attr-whitespace',
   description:
     'All attributes should be separated by only one space and not have leading/trailing whitespace.',
-  init: function (parser, reporter, options) {
-    var self = this
+  init(parser, reporter, options) {
     var exceptions = Array.isArray(options) ? options : []
 
     parser.addListener('tagstart', (event) => {
@@ -27,7 +26,7 @@ export default {
               ' ] must not have trailing whitespace.',
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }
@@ -39,7 +38,7 @@ export default {
               ' ] must be separated by only one space.',
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }

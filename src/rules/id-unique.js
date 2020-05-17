@@ -1,8 +1,7 @@
 export default {
   id: 'id-unique',
   description: 'The value of id attributes must be unique.',
-  init: function (parser, reporter) {
-    var self = this
+  init(parser, reporter) {
     var mapIdCount = {}
 
     parser.addListener('tagstart', (event) => {
@@ -29,7 +28,7 @@ export default {
                 'The id value [ ' + id + ' ] must be unique.',
                 event.line,
                 col + attr.index,
-                self,
+                this,
                 attr.raw
               )
             }

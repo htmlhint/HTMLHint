@@ -1,8 +1,7 @@
 export default {
   id: 'input-requires-label',
   description: 'All [ input ] tags must have a corresponding [ label ] tag. ',
-  init: function (parser, reporter) {
-    var self = this
+  init(parser, reporter) {
     var labelTags = []
     var inputTags = []
 
@@ -29,7 +28,7 @@ export default {
             'No matching [ label ] tag found.',
             inputTag.event.line,
             inputTag.col,
-            self,
+            this,
             inputTag.event.raw
           )
         }

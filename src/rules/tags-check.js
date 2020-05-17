@@ -43,9 +43,7 @@ var assign = function (target) {
 export default {
   id: 'tags-check',
   description: 'Checks html tags.',
-  init: function (parser, reporter, options) {
-    var self = this
-
+  init(parser, reporter, options) {
     if (typeof options !== 'boolean') {
       assign(tagsTypings, options)
     }
@@ -64,7 +62,7 @@ export default {
             'The <' + tagName + '> tag must be selfclosing.',
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         } else if (currentTagType.selfclosing === false && event.close) {
@@ -72,7 +70,7 @@ export default {
             'The <' + tagName + '> tag must not be selfclosing.',
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         }
@@ -100,7 +98,7 @@ export default {
                         "'.",
                       event.line,
                       col,
-                      self,
+                      this,
                       event.raw
                     )
                   }
@@ -110,7 +108,7 @@ export default {
                   'The <' + tagName + "> tag must have attr '" + realID + "'.",
                   event.line,
                   col,
-                  self,
+                  this,
                   event.raw
                 )
               }
@@ -121,7 +119,7 @@ export default {
                 'The <' + tagName + "> tag must have attr '" + id + "'.",
                 event.line,
                 col,
-                self,
+                this,
                 event.raw
               )
             }
@@ -151,7 +149,7 @@ export default {
                         "'.",
                       event.line,
                       col,
-                      self,
+                      this,
                       event.raw
                     )
                   }
@@ -172,7 +170,7 @@ export default {
                   '> and should be ommited.',
                 event.line,
                 col,
-                self,
+                this,
                 event.raw
               )
             }

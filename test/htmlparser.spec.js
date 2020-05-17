@@ -3,8 +3,7 @@ const expect = require('expect.js')
 const HTMLParser = require('../dist/htmlhint.js').HTMLParser
 
 expect.Assertion.prototype.event = function (type, attr) {
-  const self = this
-  const obj = self.obj
+  const obj = this.obj
 
   if (attr !== undefined) {
     attr.type = type
@@ -15,7 +14,7 @@ expect.Assertion.prototype.event = function (type, attr) {
       attr = type
     }
   }
-  self.assert(
+  this.assert(
     eqlEvent(obj, attr),
     () =>
       `expected "${JSON.stringify(obj)}" to event "${JSON.stringify(attr)}"`,

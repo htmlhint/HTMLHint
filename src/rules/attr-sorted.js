@@ -1,8 +1,7 @@
 export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
-  init: function (parser, reporter) {
-    var self = this
+  init(parser, reporter) {
     var orderMap = {}
     var sortOrder = [
       'class',
@@ -52,7 +51,7 @@ export default {
             ' ',
           event.line,
           event.col,
-          self
+          this
         )
       }
     })

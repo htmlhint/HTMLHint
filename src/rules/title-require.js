@@ -1,8 +1,7 @@
 export default {
   id: 'title-require',
   description: '<title> must be present in <head> tag.',
-  init: function (parser, reporter) {
-    var self = this
+  init(parser, reporter) {
     var headBegin = false
     var hasTitle = false
 
@@ -27,7 +26,7 @@ export default {
             '<title></title> must not be empty.',
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         }
@@ -37,7 +36,7 @@ export default {
             '<title> must be present in <head> tag.',
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         }

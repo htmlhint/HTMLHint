@@ -1,8 +1,7 @@
 export default {
   id: 'tag-pair',
   description: 'Tag must be paired.',
-  init: function (parser, reporter) {
-    var self = this
+  init(parser, reporter) {
     var stack = []
     var mapEmptyTags = parser.makeMap(
       'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
@@ -47,7 +46,7 @@ export default {
               '.',
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         }
@@ -57,7 +56,7 @@ export default {
           'Tag must be paired, no start tag: [ ' + event.raw + ' ]',
           event.line,
           event.col,
-          self,
+          this,
           event.raw
         )
       }
@@ -82,7 +81,7 @@ export default {
             '.',
           event.line,
           event.col,
-          self,
+          this,
           ''
         )
       }
