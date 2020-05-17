@@ -1,12 +1,12 @@
 export default {
   id: 'script-disabled',
   description: 'The <script> tag cannot be used.',
-  init: function(parser, reporter) {
-    'use strict';
+  init: function (parser, reporter) {
+    'use strict'
 
-    var self = this;
+    var self = this
 
-    parser.addListener('tagstart', function(event) {
+    parser.addListener('tagstart', function (event) {
       if (event.tagName.toLowerCase() === 'script') {
         reporter.error(
           'The <script> tag cannot be used.',
@@ -14,8 +14,8 @@ export default {
           event.col,
           self,
           event.raw
-        );
+        )
       }
-    });
-  }
-};
+    })
+  },
+}

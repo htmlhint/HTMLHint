@@ -5,6 +5,7 @@
 First, thank you for considering contributing to HTMLHint! It's people like you that make the open source community such a great community! 😊
 
 We welcome any type of contribution, not only code. You can help with
+
 - **QA**: file bug reports, the more details you can give the better (e.g. screenshots with the console open)
 - **Marketing**: writing blog posts, howto's, printing stickers, ...
 - **Community**: presenting the project at meetups, organizing a dedicated meetup for the local community, ...
@@ -12,7 +13,7 @@ We welcome any type of contribution, not only code. You can help with
 
 ## Your First Contribution
 
-Working on your first Pull Request? You can learn how from this *free* series, [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github).
+Working on your first Pull Request? You can learn how from this _free_ series, [How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github).
 
 ## Submitting code
 
