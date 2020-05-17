@@ -4,7 +4,7 @@ export default {
   init: function (parser, reporter) {
     'use strict'
 
-    let self = this
+    const self = this
 
     parser.addListener('tagstart', function (event) {
       if (event.tagName.toLowerCase() === 'script') {

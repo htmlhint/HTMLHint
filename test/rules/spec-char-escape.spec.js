@@ -1,16 +1,16 @@
-let expect = require('expect.js')
+const expect = require('expect.js')
 
-let HTMLHint = require('../../dist/htmlhint.js').HTMLHint
+const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-let ruldId = 'spec-char-escape'
-let ruleOptions = {}
+const ruldId = 'spec-char-escape'
+const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
 describe('Rules: ' + ruldId, function () {
   it('Special characters: <> should result in an error', function () {
-    let code = '<p>aaa>bbb< ccc</p>ddd\r\neee<'
-    let messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<p>aaa>bbb< ccc</p>ddd\r\neee<'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(3)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -24,8 +24,8 @@ describe('Rules: ' + ruldId, function () {
   })
 
   it('Special characters: & should result in an error', function () {
-    let code = '<p>Steinway & Sons</p>'
-    let messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<p>Steinway & Sons</p>'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -33,14 +33,14 @@ describe('Rules: ' + ruldId, function () {
   })
 
   it('Normal text should not result in an error', function () {
-    let code = '<p>abc</p>'
-    let messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<p>abc</p>'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
   it('Properly formed HTML entities should not result in an error', function () {
-    let code = '<p>Steinway &amp; &gt; Sons Q&amp;A </p>'
-    let messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<p>Steinway &amp; &gt; Sons Q&amp;A </p>'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 })

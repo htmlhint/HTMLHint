@@ -2,11 +2,11 @@ export default {
   id: 'tagname-lowercase',
   description: 'All html element names must be in lowercase.',
   init: function (parser, reporter, options) {
-    let self = this
-    let exceptions = Array.isArray(options) ? options : []
+    const self = this
+    const exceptions = Array.isArray(options) ? options : []
 
     parser.addListener('tagstart,tagend', function (event) {
-      let tagName = event.tagName
+      const tagName = event.tagName
       if (
         exceptions.indexOf(tagName) === -1 &&
         tagName !== tagName.toLowerCase()

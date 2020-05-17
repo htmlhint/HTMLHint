@@ -2,7 +2,7 @@ class Reporter {
   constructor(html, ruleset) {
     this.html = html
     this.lines = html.split(/\r?\n/)
-    let match = html.match(/\r?\n/)
+    const match = html.match(/\r?\n/)
 
     this.brLen = match !== null ? match[0].length : 0
     this.ruleset = ruleset
@@ -14,9 +14,9 @@ class Reporter {
   }
 
   report(type, message, line, col, rule, raw) {
-    let self = this
-    let lines = self.lines
-    let brLen = self.brLen
+    const self = this
+    const lines = self.lines
+    const brLen = self.brLen
     let evidence
     let evidenceLen
 

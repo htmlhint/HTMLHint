@@ -2,15 +2,15 @@ export default {
   id: 'attr-no-duplication',
   description: 'Elements cannot have duplicate attributes.',
   init: function (parser, reporter) {
-    let self = this
+    const self = this
 
     parser.addListener('tagstart', function (event) {
-      let attrs = event.attrs
+      const attrs = event.attrs
       let attr
       let attrName
-      let col = event.col + event.tagName.length + 1
+      const col = event.col + event.tagName.length + 1
 
-      let mapAttrName = {}
+      const mapAttrName = {}
 
       for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]

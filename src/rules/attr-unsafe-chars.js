@@ -2,15 +2,15 @@ export default {
   id: 'attr-unsafe-chars',
   description: 'Attribute values cannot contain unsafe chars.',
   init: function (parser, reporter) {
-    let self = this
+    const self = this
 
     parser.addListener('tagstart', function (event) {
-      let attrs = event.attrs
+      const attrs = event.attrs
       let attr
-      let col = event.col + event.tagName.length + 1
+      const col = event.col + event.tagName.length + 1
       // exclude \x09(\t), \x0a(\r), \x0d(\n)
       // eslint-disable-next-line
-      let regUnsafe = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/
+      const regUnsafe = /[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f-\u009f\u00ad\u0600-\u0604\u070f\u17b4\u17b5\u200c-\u200f\u2028-\u202f\u2060-\u206f\ufeff\ufff0-\uffff]/
       let match
 
       for (let i = 0, l = attrs.length; i < l; i++) {
@@ -18,7 +18,7 @@ export default {
         match = attr.value.match(regUnsafe)
 
         if (match !== null) {
-          let unsafeCode = escape(match[0])
+          const unsafeCode = escape(match[0])
             .replace(/%u/, '\\u')
             .replace(/%/, '\\x')
           reporter.warn(

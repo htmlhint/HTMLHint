@@ -2,14 +2,14 @@ export default {
   id: 'id-unique',
   description: 'The value of id attributes must be unique.',
   init: function (parser, reporter) {
-    let self = this
-    let mapIdCount = {}
+    const self = this
+    const mapIdCount = {}
 
     parser.addListener('tagstart', function (event) {
-      let attrs = event.attrs
+      const attrs = event.attrs
       let attr
       let id
-      let col = event.col + event.tagName.length + 1
+      const col = event.col + event.tagName.length + 1
 
       for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]

@@ -9,8 +9,8 @@ ruleOptions[ruldId] = true
 
 describe(`Rules: ${ruldId}`, function () {
   it('Special character in tag name should result in an error', function () {
-    let code = '<@ href="link"></@><$pan>aab</$pan>'
-    let messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<@ href="link"></@><$pan>aab</$pan>'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -21,8 +21,8 @@ describe(`Rules: ${ruldId}`, function () {
   })
 
   it('Tag name without special character should not result in an error', function () {
-    let code = '<a href=""></a><span>test</span>'
-    let messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<a href=""></a><span>test</span>'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 })

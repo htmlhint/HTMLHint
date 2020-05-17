@@ -7,8 +7,8 @@ class HTMLParser {
   }
 
   makeMap(str) {
-    let obj = {}
-    let items = str.split(',')
+    const obj = {}
+    const items = str.split(',')
 
     for (let i = 0; i < items.length; i++) {
       obj[items[i]] = true
@@ -18,14 +18,14 @@ class HTMLParser {
   }
 
   parse(html) {
-    let self = this
-    let mapCdataTags = self._mapCdataTags
+    const self = this
+    const mapCdataTags = self._mapCdataTags
 
     // eslint-disable-next-line
-    let regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
+    const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
     // eslint-disable-next-line
-    let regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
-    let regLine = /\r?\n/g
+    const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
+    const regLine = /\r?\n/g
 
     let match
     let matchIndex
@@ -39,7 +39,7 @@ class HTMLParser {
     let text
     let lastLineIndex = 0
     let line = 1
-    let arrBlocks = self._arrBlocks
+    const arrBlocks = self._arrBlocks
 
     self.fire('start', {
       pos: 0,
@@ -49,7 +49,7 @@ class HTMLParser {
 
     // Memory block
     function saveBlock(type, raw, pos, data) {
-      let col = pos - lastLineIndex + 1
+      const col = pos - lastLineIndex + 1
       if (data === undefined) {
         data = {}
       }
@@ -110,18 +110,18 @@ class HTMLParser {
         if ((tagName = match[4])) {
           // Label start
           arrAttrs = []
-          let attrs = match[5]
+          const attrs = match[5]
           let attrMatch
           let attrMatchCount = 0
 
           while ((attrMatch = regAttr.exec(attrs))) {
-            let name = attrMatch[1]
-            let quote = attrMatch[2]
+            const name = attrMatch[1]
+            const quote = attrMatch[2]
               ? attrMatch[2]
               : attrMatch[4]
               ? attrMatch[4]
               : ''
-            let value = attrMatch[3]
+            const value = attrMatch[3]
               ? attrMatch[3]
               : attrMatch[5]
               ? attrMatch[5]
@@ -180,8 +180,8 @@ class HTMLParser {
   }
 
   addListener(types, listener) {
-    let _listeners = this._listeners
-    let arrTypes = types.split(/[,\s]/)
+    const _listeners = this._listeners
+    const arrTypes = types.split(/[,\s]/)
     let type
 
     for (let i = 0, l = arrTypes.length; i < l; i++) {
@@ -198,10 +198,10 @@ class HTMLParser {
       data = {}
     }
     data.type = type
-    let self = this
+    const self = this
     let listeners = []
-    let listenersType = self._listeners[type]
-    let listenersAll = self._listeners['all']
+    const listenersType = self._listeners[type]
+    const listenersAll = self._listeners['all']
 
     if (listenersType !== undefined) {
       listeners = listeners.concat(listenersType)
@@ -210,7 +210,7 @@ class HTMLParser {
       listeners = listeners.concat(listenersAll)
     }
 
-    let lastEvent = self.lastEvent
+    const lastEvent = self.lastEvent
     if (lastEvent !== null) {
       delete lastEvent['lastEvent']
       data.lastEvent = lastEvent
@@ -224,7 +224,7 @@ class HTMLParser {
   }
 
   removeListener(type, listener) {
-    let listenersType = this._listeners[type]
+    const listenersType = this._listeners[type]
     if (listenersType !== undefined) {
       for (let i = 0, l = listenersType.length; i < l; i++) {
         if (listenersType[i] === listener) {
@@ -236,9 +236,9 @@ class HTMLParser {
   }
 
   fixPos(event, index) {
-    let text = event.raw.substr(0, index)
-    let arrLines = text.split(/\r?\n/)
-    let lineCount = arrLines.length - 1
+    const text = event.raw.substr(0, index)
+    const arrLines = text.split(/\r?\n/)
+    const lineCount = arrLines.length - 1
     let line = event.line
     let col
 
@@ -256,7 +256,7 @@ class HTMLParser {
   }
 
   getMapAttrs(arrAttrs) {
-    let mapAttrs = {}
+    const mapAttrs = {}
     let attr
 
     for (let i = 0, l = arrAttrs.length; i < l; i++) {

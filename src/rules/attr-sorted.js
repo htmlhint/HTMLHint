@@ -2,9 +2,9 @@ export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
   init: function (parser, reporter) {
-    let self = this
-    let orderMap = {}
-    let sortOrder = [
+    const self = this
+    const orderMap = {}
+    const sortOrder = [
       'class',
       'id',
       'name',
@@ -23,14 +23,14 @@ export default {
     }
 
     parser.addListener('tagstart', function (event) {
-      let attrs = event.attrs
-      let listOfAttributes = []
+      const attrs = event.attrs
+      const listOfAttributes = []
 
       for (let i = 0; i < attrs.length; i++) {
         listOfAttributes.push(attrs[i].name)
       }
 
-      let originalAttrs = JSON.stringify(listOfAttributes)
+      const originalAttrs = JSON.stringify(listOfAttributes)
       listOfAttributes.sort(function (a, b) {
         if (orderMap[a] == undefined && orderMap[b] == undefined) {
           return 0

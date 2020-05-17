@@ -54,13 +54,13 @@ class HTMLHintCore {
       return ''
     })
 
-    let parser = new HTMLParser()
-    let reporter = new Reporter(html, ruleset)
+    const parser = new HTMLParser()
+    const reporter = new Reporter(html, ruleset)
 
-    let rules = this.rules
+    const rules = this.rules
     let rule
 
-    for (let id in ruleset) {
+    for (const id in ruleset) {
       rule = rules[id]
       if (rule !== undefined && ruleset[id] !== false) {
         rule.init(parser, reporter, ruleset[id])
@@ -74,8 +74,8 @@ class HTMLHintCore {
 
   format(arrMessages, options) {
     options = options || {}
-    let arrLogs = []
-    let colors = {
+    const arrLogs = []
+    const colors = {
       white: '',
       grey: '',
       red: '',
@@ -89,15 +89,15 @@ class HTMLHintCore {
       colors.reset = '\x1b[39m'
     }
 
-    let indent = options.indent || 0
+    const indent = options.indent || 0
 
     arrMessages.forEach((hint) => {
-      let leftWindow = 40
-      let rightWindow = leftWindow + 20
+      const leftWindow = 40
+      const rightWindow = leftWindow + 20
       let evidence = hint.evidence
-      let line = hint.line
-      let col = hint.col
-      let evidenceCount = evidence.length
+      const line = hint.line
+      const col = hint.col
+      const evidenceCount = evidence.length
       let leftCol = col > leftWindow + 1 ? col - leftWindow : 1
       let rightCol =
         evidence.length > col + rightWindow ? col + rightWindow : evidenceCount
@@ -133,7 +133,7 @@ class HTMLHintCore {
       let pointCol = col - leftCol
       // add double byte character
       // eslint-disable-next-line
-      let match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g)
+      const match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g)
       if (match !== null) {
         pointCol += match.length
       }

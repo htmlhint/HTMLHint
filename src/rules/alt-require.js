@@ -3,11 +3,11 @@ export default {
   description:
     'The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.',
   init: function (parser, reporter) {
-    let self = this
+    const self = this
     parser.addListener('tagstart', function (event) {
-      let tagName = event.tagName.toLowerCase()
-      let mapAttrs = parser.getMapAttrs(event.attrs)
-      let col = event.col + tagName.length + 1
+      const tagName = event.tagName.toLowerCase()
+      const mapAttrs = parser.getMapAttrs(event.attrs)
+      const col = event.col + tagName.length + 1
       let selector
 
       if (tagName === 'img' && !('alt' in mapAttrs)) {

@@ -2,11 +2,11 @@ export default {
   id: 'tagname-specialchars',
   description: 'All html element names must be in lowercase.',
   init: function (parser, reporter) {
-    let self = this
-    let specialchars = /[^a-zA-Z0-9\-:_]/
+    const self = this
+    const specialchars = /[^a-zA-Z0-9\-:_]/
 
     parser.addListener('tagstart,tagend', function (event) {
-      let tagName = event.tagName
+      const tagName = event.tagName
       if (specialchars.test(tagName)) {
         reporter.error(
           'The html element name of [ ' +

@@ -3,17 +3,17 @@ export default {
   description:
     'All attributes should be separated by only one space and not have leading/trailing whitespace.',
   init: function (parser, reporter, options) {
-    let self = this
-    let exceptions = Array.isArray(options) ? options : []
+    const self = this
+    const exceptions = Array.isArray(options) ? options : []
 
     parser.addListener('tagstart', function (event) {
-      let attrs = event.attrs
+      const attrs = event.attrs
       let attr
-      let col = event.col + event.tagName.length + 1
+      const col = event.col + event.tagName.length + 1
 
       attrs.forEach(function (elem) {
         attr = elem
-        let attrName = elem.name
+        const attrName = elem.name
 
         if (exceptions.indexOf(attrName) !== -1) {
           return
