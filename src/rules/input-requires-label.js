@@ -2,14 +2,14 @@ export default {
   id: 'input-requires-label',
   description: 'All [ input ] tags must have a corresponding [ label ] tag. ',
   init: function (parser, reporter) {
-    var self = this,
-      labelTags = [],
-      inputTags = []
+    var self = this
+    var labelTags = []
+    var inputTags = []
 
     parser.addListener('tagstart', function (event) {
-      var tagName = event.tagName.toLowerCase(),
-        mapAttrs = parser.getMapAttrs(event.attrs),
-        col = event.col + tagName.length + 1
+      var tagName = event.tagName.toLowerCase()
+      var mapAttrs = parser.getMapAttrs(event.attrs)
+      var col = event.col + tagName.length + 1
 
       if (tagName === 'input') {
         inputTags.push({ event: event, col: col, id: mapAttrs['id'] })

@@ -5,10 +5,10 @@ export default {
   init: function (parser, reporter) {
     var self = this
     parser.addListener('tagstart', function (event) {
-      var tagName = event.tagName.toLowerCase(),
-        mapAttrs = parser.getMapAttrs(event.attrs),
-        col = event.col + tagName.length + 1,
-        selector
+      var tagName = event.tagName.toLowerCase()
+      var mapAttrs = parser.getMapAttrs(event.attrs)
+      var col = event.col + tagName.length + 1
+      var selector
 
       if (tagName === 'img' && !('alt' in mapAttrs)) {
         reporter.warn(
