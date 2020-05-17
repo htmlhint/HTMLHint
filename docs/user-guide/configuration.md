@@ -24,11 +24,10 @@ $ htmlhint --rules tag-pair,id-class-value=underline index.html
 
 Inline rules in `test.html`:
 
-<!-- prettier-ignore-start -->
+<!-- prettier-ignore -->
 ```html
 <!--htmlhint tag-pair,id-class-value:underline -->
 <html>
 <head>
 ...
 ```
-<!-- prettier-ignore-end -->

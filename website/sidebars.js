@@ -9,7 +9,6 @@ module.exports = {
           {
             'Individual rules': [
               'user-guide/rules/alt-require',
-              'user-guide/rules/attr-value-double-quotes',
               'user-guide/rules/attr-no-duplication',
               'user-guide/rules/attr-lowercase',
               'user-guide/rules/attr-unsafe-chars',

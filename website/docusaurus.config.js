@@ -3,14 +3,18 @@ const path = require('path')
 const remarkImages = require('remark-images')
 const rehypeTruncate = require('rehype-truncate')
 
+const PACKAGE = require('../package')
+const GITHUB_URL = `${PACKAGE.repository.url}`
+
 module.exports = {
   title: 'HTMLHint',
   tagline: 'Static code analysis tool you need for your HTML',
-  url: 'https://htmlhint.com',
+  url: PACKAGE.homepage,
   baseUrl: '/',
   favicon: 'img/favicon.ico',
   organizationName: 'HTMLHint',
-  projectName: 'HTMLHint',
+  projectName: PACKAGE.name,
+  scripts: ['https://buttons.github.io/buttons.js'],
   themeConfig: {
     googleAnalytics: { trackingID: 'UA-109578378-3' },
     hotjar: { hjid: 1812834 },
@@ -26,12 +30,11 @@ module.exports = {
           to: '/docs/user-guide/getting-started',
           position: 'left',
         },
-        {
-          label: 'Playground',
-          to: '/playground',
-          position: 'left',
-        },
-        { search: true },
+        // {
+        //   label: 'Playground',
+        //   to: '/playground',
+        //   position: 'left',
+        // },
         {
           href: 'https://github.com/HTMLHint/HTMLHint',
           label: 'GitHub',
@@ -51,7 +54,7 @@ module.exports = {
             },
             {
               label: 'Discord',
-              href: 'https://discord.gg/suKkzP',
+              href: 'https://discord.com/invite/nJ6J9CP',
             },
             {
               label: 'Twitter',
@@ -69,7 +72,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} HTMLHint. Built with Docusaurus.`,
+      copyright: `${new Date().getFullYear()} HTMLHint. Built with Docusaurus.`,
     },
   },
   plugins: [path.resolve(__dirname, './plugins/docusaurus-plugin-hotjar')],
@@ -82,7 +85,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
-          editUrl: 'https://github.com/htmlhint/edit/HTMLHint/docs/',
+          editUrl: `${GITHUB_URL}/edit/develop/docs/`,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
