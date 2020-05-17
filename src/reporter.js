@@ -3,6 +3,7 @@ class Reporter {
     this.html = html
     this.lines = html.split(/\r?\n/)
     var match = html.match(/\r?\n/)
+
     this.brLen = match !== null ? match[0].length : 0
     this.ruleset = ruleset
     this.messages = []
@@ -11,11 +12,13 @@ class Reporter {
     this.warn = this.report.bind(this, 'warning')
     this.info = this.report.bind(this, 'info')
   }
+
   report(type, message, line, col, rule, raw) {
     var self = this
     var lines = self.lines
     var brLen = self.brLen
     var evidence, evidenceLen
+
     for (var i = line - 1, lineCount = lines.length; i < lineCount; i++) {
       evidence = lines[i]
       evidenceLen = evidence.length
@@ -29,6 +32,7 @@ class Reporter {
         break
       }
     }
+
     self.messages.push({
       type: type,
       message: message,
