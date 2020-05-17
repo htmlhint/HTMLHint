@@ -12,5 +12,6 @@ module.exports = {
   },
   rules: {
     'one-var': ['error', 'never'],
+    'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
   },
 }
