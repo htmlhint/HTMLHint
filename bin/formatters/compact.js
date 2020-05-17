@@ -1,5 +1,6 @@
 var compactFormatter = function (formatter, HTMLHint, options) {
   var nocolor = options.nocolor
+
   formatter.on('file', function (event) {
     event.messages.forEach(function (message) {
       console.log(
@@ -13,6 +14,7 @@ var compactFormatter = function (formatter, HTMLHint, options) {
       )
     })
   })
+
   formatter.on('end', function (event) {
     var allHintCount = event.allHintCount
     if (allHintCount > 0) {
@@ -22,4 +24,5 @@ var compactFormatter = function (formatter, HTMLHint, options) {
     }
   })
 }
+
 module.exports = compactFormatter

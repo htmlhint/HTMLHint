@@ -13,6 +13,7 @@ export default {
 
       for (var i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
+
         if (attr.name === 'href') {
           if (
             (hrefMode === 'absolute' && /^\w+?:/.test(attr.value) === false) ||

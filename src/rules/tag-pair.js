@@ -7,6 +7,7 @@ export default {
       mapEmptyTags = parser.makeMap(
         'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
       ) //HTML 4.01 + HTML 5
+
     parser.addListener('tagstart', function (event) {
       var tagName = event.tagName.toLowerCase()
       if (mapEmptyTags[tagName] === undefined && !event.close) {
@@ -17,19 +18,23 @@ export default {
         })
       }
     })
+
     parser.addListener('tagend', function (event) {
       var tagName = event.tagName.toLowerCase()
+
       // Look up the matching start tag
       for (var pos = stack.length - 1; pos >= 0; pos--) {
         if (stack[pos].tagName === tagName) {
           break
         }
       }
+
       if (pos >= 0) {
         var arrTags = []
         for (var i = stack.length - 1; i > pos; i--) {
           arrTags.push('</' + stack[i].tagName + '>')
         }
+
         if (arrTags.length > 0) {
           var lastEvent = stack[stack.length - 1]
           reporter.error(
@@ -57,11 +62,14 @@ export default {
         )
       }
     })
+
     parser.addListener('end', function (event) {
       var arrTags = []
+
       for (var i = stack.length - 1; i >= 0; i--) {
         arrTags.push('</' + stack[i].tagName + '>')
       }
+
       if (arrTags.length > 0) {
         var lastEvent = stack[stack.length - 1]
         reporter.error(
