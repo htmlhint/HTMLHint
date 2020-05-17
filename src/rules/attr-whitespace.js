@@ -10,6 +10,7 @@ export default {
       var attrs = event.attrs,
         attr,
         col = event.col + event.tagName.length + 1
+
       attrs.forEach(function (elem) {
         attr = elem
         var attrName = elem.name

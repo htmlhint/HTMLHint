@@ -5,6 +5,7 @@ export default {
     var self = this
     var headBegin = false
     var hasTitle = false
+
     function onTagStart(event) {
       var tagName = event.tagName.toLowerCase()
       if (tagName === 'head') {
@@ -40,10 +41,12 @@ export default {
             event.raw
           )
         }
+
         parser.removeListener('tagstart', onTagStart)
         parser.removeListener('tagend', onTagEnd)
       }
     }
+
     parser.addListener('tagstart', onTagStart)
     parser.addListener('tagend', onTagEnd)
   },

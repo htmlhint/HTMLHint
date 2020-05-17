@@ -9,9 +9,11 @@ class HTMLParser {
   makeMap(str) {
     var obj = {},
       items = str.split(',')
+
     for (var i = 0; i < items.length; i++) {
       obj[items[i]] = true
     }
+
     return obj
   }
 
@@ -111,6 +113,7 @@ class HTMLParser {
           var attrs = match[5],
             attrMatch,
             attrMatchCount = 0
+
           while ((attrMatch = regAttr.exec(attrs))) {
             var name = attrMatch[1],
               quote = attrMatch[2]
@@ -125,6 +128,7 @@ class HTMLParser {
                 : attrMatch[6]
                 ? attrMatch[6]
                 : ''
+
             arrAttrs.push({
               name: name,
               value: value,
@@ -141,6 +145,7 @@ class HTMLParser {
               attrs: arrAttrs,
               close: match[6],
             })
+
             if (mapCdataTags[tagName]) {
               tagCDATA = tagName
               attrsCDATA = arrAttrs.concat()
@@ -178,6 +183,7 @@ class HTMLParser {
     var _listeners = this._listeners
     var arrTypes = types.split(/[,\s]/),
       type
+
     for (var i = 0, l = arrTypes.length; i < l; i++) {
       type = arrTypes[i]
       if (_listeners[type] === undefined) {
@@ -196,18 +202,22 @@ class HTMLParser {
       listeners = [],
       listenersType = self._listeners[type],
       listenersAll = self._listeners['all']
+
     if (listenersType !== undefined) {
       listeners = listeners.concat(listenersType)
     }
     if (listenersAll !== undefined) {
       listeners = listeners.concat(listenersAll)
     }
+
     var lastEvent = self.lastEvent
     if (lastEvent !== null) {
       delete lastEvent['lastEvent']
       data.lastEvent = lastEvent
     }
+
     self.lastEvent = data
+
     for (var i = 0, l = listeners.length; i < l; i++) {
       listeners[i].call(self, data)
     }
@@ -231,6 +241,7 @@ class HTMLParser {
       lineCount = arrLines.length - 1,
       line = event.line,
       col
+
     if (lineCount > 0) {
       line += lineCount
       col = arrLines[lineCount].length + 1
@@ -247,10 +258,12 @@ class HTMLParser {
   getMapAttrs(arrAttrs) {
     var mapAttrs = {},
       attr
+
     for (var i = 0, l = arrAttrs.length; i < l; i++) {
       attr = arrAttrs[i]
       mapAttrs[attr.name] = attr.value
     }
+
     return mapAttrs
   }
 }

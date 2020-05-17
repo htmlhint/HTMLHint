@@ -22,6 +22,7 @@ export default {
         },
       },
       rule
+
     if (typeof options === 'string') {
       rule = arrRules[options]
     } else {
@@ -31,15 +32,19 @@ export default {
     if (rule && rule.regId) {
       var regId = rule.regId,
         message = rule.message
+
       if (!(regId instanceof RegExp)) {
         regId = new RegExp(regId)
       }
+
       parser.addListener('tagstart', function (event) {
         var attrs = event.attrs,
           attr,
           col = event.col + event.tagName.length + 1
+
         for (var i = 0, l1 = attrs.length; i < l1; i++) {
           attr = attrs[i]
+
           if (attr.name.toLowerCase() === 'id') {
             if (regId.test(attr.value) === false) {
               reporter.warn(
@@ -55,6 +60,7 @@ export default {
           if (attr.name.toLowerCase() === 'class') {
             var arrClass = attr.value.split(/\s+/g),
               classValue
+
             for (var j = 0, l2 = arrClass.length; j < l2; j++) {
               classValue = arrClass[j]
               if (classValue && regId.test(classValue) === false) {

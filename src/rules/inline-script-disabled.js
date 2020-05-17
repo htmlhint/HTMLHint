@@ -3,6 +3,7 @@ export default {
   description: 'Inline script cannot be used.',
   init: function (parser, reporter) {
     var self = this
+
     parser.addListener('tagstart', function (event) {
       var attrs = event.attrs
       var attr
@@ -13,6 +14,7 @@ export default {
       for (var i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
         attrName = attr.name.toLowerCase()
+
         if (reEvent.test(attrName) === true) {
           reporter.warn(
             'Inline script [ ' + attr.raw + ' ] cannot be used.',
