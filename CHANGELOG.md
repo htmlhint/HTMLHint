@@ -1,5 +1,4 @@
-HTMLHint change log
-====================
+# HTMLHint change log
 
 ## ver 0.9.14 (2016-5-2)
 
@@ -57,7 +56,7 @@ fix:
 
 1. close issue: #79, fix exit with 0 when hint errors
 2. fix end event col
-2. attr-unsafe-chars(rule): exclude `\r\n`
+3. attr-unsafe-chars(rule): exclude `\r\n`
 
 ## ver 0.9.8 (2015-10-7)
 
@@ -129,7 +128,7 @@ add：
 
 fix：
 
-1. compatible with:
+1.  compatible with:
 
         <div class="foo"
         <div class"foo">

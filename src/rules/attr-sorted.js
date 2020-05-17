@@ -1,9 +1,9 @@
 export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
-  init: function(parser, reporter) {
-    var self = this;
-    var orderMap = {};
+  init: function (parser, reporter) {
+    var self = this
+    var orderMap = {}
     var sortOrder = [
       'class',
       'id',
@@ -15,30 +15,30 @@ export default {
       'value',
       'title',
       'alt',
-      'role'
-    ];
+      'role',
+    ]
     for (var i = 0; i < sortOrder.length; i++) {
-      orderMap[sortOrder[i]] = i;
+      orderMap[sortOrder[i]] = i
     }
 
-    parser.addListener('tagstart', function(event) {
-      var attrs = event.attrs;
-      var listOfAttributes = [];
+    parser.addListener('tagstart', function (event) {
+      var attrs = event.attrs
+      var listOfAttributes = []
       for (var i = 0; i < attrs.length; i++) {
-        listOfAttributes.push(attrs[i].name);
+        listOfAttributes.push(attrs[i].name)
       }
-      var originalAttrs = JSON.stringify(listOfAttributes);
-      listOfAttributes.sort(function(a, b) {
+      var originalAttrs = JSON.stringify(listOfAttributes)
+      listOfAttributes.sort(function (a, b) {
         if (orderMap[a] == undefined && orderMap[b] == undefined) {
-          return 0;
+          return 0
         }
         if (orderMap[a] == undefined) {
-          return 1;
+          return 1
         } else if (orderMap[b] == undefined) {
-          return -1;
+          return -1
         }
-        return orderMap[a] - orderMap[b] || a.localeCompare(b);
-      });
+        return orderMap[a] - orderMap[b] || a.localeCompare(b)
+      })
       if (originalAttrs !== JSON.stringify(listOfAttributes)) {
         reporter.error(
           'Inaccurate order ' +
@@ -49,8 +49,8 @@ export default {
           event.line,
           event.col,
           self
-        );
+        )
       }
-    });
-  }
-};
+    })
+  },
+}
