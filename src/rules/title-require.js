@@ -2,12 +2,12 @@ export default {
   id: 'title-require',
   description: '<title> must be present in <head> tag.',
   init: function (parser, reporter) {
-    var self = this
-    var headBegin = false
-    var hasTitle = false
+    let self = this
+    let headBegin = false
+    let hasTitle = false
 
     function onTagStart(event) {
-      var tagName = event.tagName.toLowerCase()
+      let tagName = event.tagName.toLowerCase()
       if (tagName === 'head') {
         headBegin = true
       } else if (tagName === 'title' && headBegin) {
@@ -16,9 +16,9 @@ export default {
     }
 
     function onTagEnd(event) {
-      var tagName = event.tagName.toLowerCase()
+      let tagName = event.tagName.toLowerCase()
       if (hasTitle && tagName === 'title') {
-        var lastEvent = event.lastEvent
+        let lastEvent = event.lastEvent
         if (
           lastEvent.type !== 'text' ||
           (lastEvent.type === 'text' && /^\s*$/.test(lastEvent.raw) === true)

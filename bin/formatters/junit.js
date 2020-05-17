@@ -1,13 +1,13 @@
-var xml = require('xml')
+let xml = require('xml')
 
-var junitFormatter = function (formatter, HTMLHint) {
+let junitFormatter = function (formatter, HTMLHint) {
   formatter.on('end', function (event) {
-    var arrTestcase = []
-    var arrAllMessages = event.arrAllMessages
+    let arrTestcase = []
+    let arrAllMessages = event.arrAllMessages
 
     arrAllMessages.forEach(function (fileInfo) {
-      var arrMessages = fileInfo.messages
-      var arrLogs = HTMLHint.format(arrMessages)
+      let arrMessages = fileInfo.messages
+      let arrLogs = HTMLHint.format(arrMessages)
 
       arrTestcase.push({
         testcase: [
@@ -29,7 +29,7 @@ var junitFormatter = function (formatter, HTMLHint) {
       })
     })
 
-    var objXml = {
+    let objXml = {
       testsuites: [
         {
           testsuite: [

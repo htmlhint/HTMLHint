@@ -1,5 +1,5 @@
-var unixFormatter = function (formatter, HTMLHint, options) {
-  var nocolor = options.nocolor
+let unixFormatter = function (formatter, HTMLHint, options) {
+  let nocolor = options.nocolor
   formatter.on('file', function (event) {
     event.messages.forEach(function (message) {
       console.log(
@@ -20,10 +20,10 @@ var unixFormatter = function (formatter, HTMLHint, options) {
   })
 
   formatter.on('end', function (event) {
-    var allHintCount = event.allHintCount
+    let allHintCount = event.allHintCount
     if (allHintCount > 0) {
       console.log('')
-      var message = '%d problems'
+      let message = '%d problems'
       console.log(nocolor ? message : message.red, event.allHintCount)
     }
   })

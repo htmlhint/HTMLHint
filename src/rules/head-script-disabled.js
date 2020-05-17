@@ -2,14 +2,14 @@ export default {
   id: 'head-script-disabled',
   description: 'The <script> tag cannot be used in a <head> tag.',
   init: function (parser, reporter) {
-    var self = this
-    var reScript = /^(text\/javascript|application\/javascript)$/i
-    var isInHead = false
+    let self = this
+    let reScript = /^(text\/javascript|application\/javascript)$/i
+    let isInHead = false
 
     function onTagStart(event) {
-      var mapAttrs = parser.getMapAttrs(event.attrs)
-      var type = mapAttrs.type
-      var tagName = event.tagName.toLowerCase()
+      let mapAttrs = parser.getMapAttrs(event.attrs)
+      let type = mapAttrs.type
+      let tagName = event.tagName.toLowerCase()
 
       if (tagName === 'head') {
         isInHead = true

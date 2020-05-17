@@ -1,12 +1,12 @@
-var expect = require('expect.js')
+let expect = require('expect.js')
 
-var HTMLHint = require('../../dist/htmlhint.js').HTMLHint
+let HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-var ruldId = 'id-class-value'
-var ruleOptionsUnderline = {}
-var ruleOptionsDash = {}
-var ruleOptionsHump = {}
-var ruleOptionsReg = {}
+let ruldId = 'id-class-value'
+let ruleOptionsUnderline = {}
+let ruleOptionsDash = {}
+let ruleOptionsHump = {}
+let ruleOptionsReg = {}
 
 ruleOptionsUnderline[ruldId] = 'underline'
 ruleOptionsDash[ruldId] = 'dash'
@@ -18,8 +18,8 @@ ruleOptionsReg[ruldId] = {
 
 describe('Rules: ' + ruldId, function () {
   it('Id and class value be not lower case and split by underline should result in an error', function () {
-    var code = '<div id="aaaBBB" class="ccc-ddd">'
-    var messages = HTMLHint.verify(code, ruleOptionsUnderline)
+    let code = '<div id="aaaBBB" class="ccc-ddd">'
+    let messages = HTMLHint.verify(code, ruleOptionsUnderline)
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be('id-class-value')
     expect(messages[0].line).to.be(1)
@@ -32,14 +32,14 @@ describe('Rules: ' + ruldId, function () {
   })
 
   it('Id and class value be lower case and split by underline should not result in an error', function () {
-    var code = '<div id="aaa_bbb" class="ccc_ddd">'
-    var messages = HTMLHint.verify(code, ruleOptionsUnderline)
+    let code = '<div id="aaa_bbb" class="ccc_ddd">'
+    let messages = HTMLHint.verify(code, ruleOptionsUnderline)
     expect(messages.length).to.be(0)
   })
 
   it('Id and class value be not lower case and split by dash should result in an error', function () {
-    var code = '<div id="aaaBBB" class="ccc_ddd">'
-    var messages = HTMLHint.verify(code, { 'id-class-value': 'dash' })
+    let code = '<div id="aaaBBB" class="ccc_ddd">'
+    let messages = HTMLHint.verify(code, { 'id-class-value': 'dash' })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be('id-class-value')
     expect(messages[0].line).to.be(1)
@@ -50,14 +50,14 @@ describe('Rules: ' + ruldId, function () {
   })
 
   it('Id and class value be lower case and split by dash should not result in an error', function () {
-    var code = '<div id="aaa-bbb" class="ccc-ddd">'
-    var messages = HTMLHint.verify(code, ruleOptionsDash)
+    let code = '<div id="aaa-bbb" class="ccc-ddd">'
+    let messages = HTMLHint.verify(code, ruleOptionsDash)
     expect(messages.length).to.be(0)
   })
 
   it('Id and class value be not meet hump style should result in an error', function () {
-    var code = '<div id="aaa_bb" class="ccc-ddd">'
-    var messages = HTMLHint.verify(code, ruleOptionsHump)
+    let code = '<div id="aaa_bb" class="ccc-ddd">'
+    let messages = HTMLHint.verify(code, ruleOptionsHump)
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be('id-class-value')
     expect(messages[0].line).to.be(1)
@@ -68,14 +68,14 @@ describe('Rules: ' + ruldId, function () {
   })
 
   it('Id and class value be meet hump style should not result in an error', function () {
-    var code = '<div id="aaaBbb" class="cccDdd">'
-    var messages = HTMLHint.verify(code, ruleOptionsHump)
+    let code = '<div id="aaaBbb" class="cccDdd">'
+    let messages = HTMLHint.verify(code, ruleOptionsHump)
     expect(messages.length).to.be(0)
   })
 
   it('Id and class value be not meet regexp should result in an error', function () {
-    var code = '<div id="aa-bb" class="ccc-ddd">'
-    var messages = HTMLHint.verify(code, ruleOptionsReg)
+    let code = '<div id="aa-bb" class="ccc-ddd">'
+    let messages = HTMLHint.verify(code, ruleOptionsReg)
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be('id-class-value')
     expect(messages[0].line).to.be(1)
@@ -86,8 +86,8 @@ describe('Rules: ' + ruldId, function () {
   })
 
   it('Id and class value be meet regexp should not result in an error', function () {
-    var code = '<div id="_aaa-bb" class="_ccc-ddd">'
-    var messages = HTMLHint.verify(code, ruleOptionsReg)
+    let code = '<div id="_aaa-bb" class="_ccc-ddd">'
+    let messages = HTMLHint.verify(code, ruleOptionsReg)
     expect(messages.length).to.be(0)
   })
 })

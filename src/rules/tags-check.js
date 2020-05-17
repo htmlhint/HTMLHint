@@ -1,4 +1,4 @@
-var tagsTypings = {
+let tagsTypings = {
   a: {
     selfclosing: false,
     attrsRequired: ['href', 'title'],
@@ -27,12 +27,12 @@ var tagsTypings = {
   },
 }
 
-var assign = function (target) {
-  var _source
+let assign = function (target) {
+  let _source
 
-  for (var i = 1; i < arguments.length; i++) {
+  for (let i = 1; i < arguments.length; i++) {
     _source = arguments[i]
-    for (var prop in _source) {
+    for (let prop in _source) {
       target[prop] = _source[prop]
     }
   }
@@ -44,20 +44,20 @@ export default {
   id: 'tags-check',
   description: 'Checks html tags.',
   init: function (parser, reporter, options) {
-    var self = this
+    let self = this
 
     if (typeof options !== 'boolean') {
       assign(tagsTypings, options)
     }
 
     parser.addListener('tagstart', function (event) {
-      var attrs = event.attrs
-      var col = event.col + event.tagName.length + 1
+      let attrs = event.attrs
+      let col = event.col + event.tagName.length + 1
 
-      var tagName = event.tagName.toLowerCase()
+      let tagName = event.tagName.toLowerCase()
 
       if (tagsTypings[tagName]) {
-        var currentTagType = tagsTypings[tagName]
+        let currentTagType = tagsTypings[tagName]
 
         if (currentTagType.selfclosing === true && !event.close) {
           reporter.warn(
@@ -80,11 +80,11 @@ export default {
         if (currentTagType.attrsRequired) {
           currentTagType.attrsRequired.forEach(function (id) {
             if (Array.isArray(id)) {
-              var copyOfId = id.map(function (a) {
+              let copyOfId = id.map(function (a) {
                 return a
               })
-              var realID = copyOfId.shift()
-              var values = copyOfId
+              let realID = copyOfId.shift()
+              let values = copyOfId
 
               if (
                 attrs.some(function (attr) {
@@ -139,11 +139,11 @@ export default {
         if (currentTagType.attrsOptional) {
           currentTagType.attrsOptional.forEach(function (id) {
             if (Array.isArray(id)) {
-              var copyOfId = id.map(function (a) {
+              let copyOfId = id.map(function (a) {
                 return a
               })
-              var realID = copyOfId.shift()
-              var values = copyOfId
+              let realID = copyOfId.shift()
+              let values = copyOfId
 
               if (
                 attrs.some(function (attr) {

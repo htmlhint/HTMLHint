@@ -2,7 +2,7 @@ export default {
   id: 'doctype-html5',
   description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
   init: function (parser, reporter) {
-    var self = this
+    let self = this
 
     function onComment(event) {
       if (

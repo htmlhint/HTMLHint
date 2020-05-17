@@ -1,12 +1,12 @@
-var defaultFormatter = function (formatter, HTMLHint, options) {
-  var nocolor = options.nocolor
+let defaultFormatter = function (formatter, HTMLHint, options) {
+  let nocolor = options.nocolor
 
   formatter.on('start', function () {
     console.log('')
   })
 
   formatter.on('config', function (event) {
-    var configPath = event.configPath
+    let configPath = event.configPath
     console.log('   Config loaded: %s', nocolor ? configPath : configPath.cyan)
     console.log('')
   })
@@ -14,7 +14,7 @@ var defaultFormatter = function (formatter, HTMLHint, options) {
   formatter.on('file', function (event) {
     console.log('   ' + event.file.white)
 
-    var arrLogs = HTMLHint.format(event.messages, {
+    let arrLogs = HTMLHint.format(event.messages, {
       colors: nocolor ? false : true,
       indent: 6,
     })
@@ -27,11 +27,11 @@ var defaultFormatter = function (formatter, HTMLHint, options) {
   })
 
   formatter.on('end', function (event) {
-    var allFileCount = event.allFileCount
-    var allHintCount = event.allHintCount
-    var allHintFileCount = event.allHintFileCount
-    var time = event.time
-    var message
+    let allFileCount = event.allFileCount
+    let allHintCount = event.allHintCount
+    let allHintFileCount = event.allHintFileCount
+    let time = event.time
+    let message
 
     if (allHintCount > 0) {
       message = 'Scanned %d files, found %d errors in %d files (%d ms)'

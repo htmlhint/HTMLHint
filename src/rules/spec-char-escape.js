@@ -2,17 +2,17 @@ export default {
   id: 'spec-char-escape',
   description: 'Special characters must be escaped.',
   init: function (parser, reporter) {
-    var self = this
+    let self = this
 
     parser.addListener('text', function (event) {
-      var raw = event.raw
+      let raw = event.raw
       // TODO: improve use-cases for &
       // eslint-disable-next-line
-      var reSpecChar = /([<>])|( \& )/g
-      var match
+      let reSpecChar = /([<>])|( \& )/g
+      let match
 
       while ((match = reSpecChar.exec(raw))) {
-        var fixedPos = parser.fixPos(event, match.index)
+        let fixedPos = parser.fixPos(event, match.index)
         reporter.error(
           'Special characters must be escaped : [ ' + match[0] + ' ].',
           fixedPos.line,

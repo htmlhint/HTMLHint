@@ -1,18 +1,18 @@
-var path = require('path')
-var events = require('events')
-var glob = require('glob')
+let path = require('path')
+let events = require('events')
+let glob = require('glob')
 path.parse = path.parse || require('path-parse')
 
-var mapFormatters
-var arrSupportedFormatters
-var HTMLHint
-var options
+let mapFormatters
+let arrSupportedFormatters
+let HTMLHint
+let options
 
 // load formatters
 mapFormatters = loadFormatters()
 arrSupportedFormatters = []
 
-for (var formatterName in mapFormatters) {
+for (let formatterName in mapFormatters) {
   if (formatterName !== 'default') {
     arrSupportedFormatters.push(formatterName)
   }
@@ -20,7 +20,7 @@ for (var formatterName in mapFormatters) {
 
 // load all formatters
 function loadFormatters() {
-  var arrFiles = glob.sync('./formatters/*.js', {
+  let arrFiles = glob.sync('./formatters/*.js', {
     cwd: __dirname,
     dot: false,
     nodir: true,
@@ -28,17 +28,17 @@ function loadFormatters() {
     silent: true,
   })
 
-  var mapFormatters = {}
+  let mapFormatters = {}
   arrFiles.forEach(function (file) {
-    var fileInfo = path.parse(file)
-    var formatterPath = path.resolve(__dirname, file)
+    let fileInfo = path.parse(file)
+    let formatterPath = path.resolve(__dirname, file)
     mapFormatters[fileInfo.name] = require(formatterPath)
   })
 
   return mapFormatters
 }
 
-var formatter = new events.EventEmitter()
+let formatter = new events.EventEmitter()
 
 formatter.getSupported = function () {
   return arrSupportedFormatters
@@ -50,7 +50,7 @@ formatter.init = function (tmpHTMLHint, tmpOptions) {
 }
 
 formatter.setFormat = function (format) {
-  var formatHandel = mapFormatters[format]
+  let formatHandel = mapFormatters[format]
 
   if (formatHandel === undefined) {
     console.log(
