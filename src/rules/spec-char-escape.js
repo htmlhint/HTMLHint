@@ -8,7 +8,7 @@ export default {
       var raw = event.raw
       // TODO: improve use-cases for &
       // eslint-disable-next-line
-        var reSpecChar = /([<>])|( \& )/g;
+      var reSpecChar = /([<>])|( \& )/g
       var match
 
       while ((match = reSpecChar.exec(raw))) {
