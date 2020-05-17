@@ -11,6 +11,7 @@ var options
 // load formatters
 mapFormatters = loadFormatters()
 arrSupportedFormatters = []
+
 for (var formatterName in mapFormatters) {
   if (formatterName !== 'default') {
     arrSupportedFormatters.push(formatterName)
@@ -26,25 +27,31 @@ function loadFormatters() {
     strict: false,
     silent: true,
   })
+
   var mapFormatters = {}
   arrFiles.forEach(function (file) {
     var fileInfo = path.parse(file)
     var formatterPath = path.resolve(__dirname, file)
     mapFormatters[fileInfo.name] = require(formatterPath)
   })
+
   return mapFormatters
 }
 
 var formatter = new events.EventEmitter()
+
 formatter.getSupported = function () {
   return arrSupportedFormatters
 }
+
 formatter.init = function (tmpHTMLHint, tmpOptions) {
   HTMLHint = tmpHTMLHint
   options = tmpOptions
 }
+
 formatter.setFormat = function (format) {
   var formatHandel = mapFormatters[format]
+
   if (formatHandel === undefined) {
     console.log(
       'No supported formatter, supported formatters: %s'.red,

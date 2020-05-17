@@ -86,6 +86,7 @@ if (arrTargets.length === 0) {
 formatter.init(HTMLHint, {
   nocolor: program.nocolor,
 })
+
 var format = program.format || 'default'
 if (format) {
   formatter.setFormat(format)
@@ -102,8 +103,10 @@ hintTargets(arrTargets, {
 function listRules() {
   var rules = HTMLHint.rules
   var rule
+
   console.log('     All rules:')
   console.log(' ==================================================')
+
   for (var id in rules) {
     rule = rules[id]
     console.log('     %s : %s', rule.id.bold, rule.description)
@@ -140,6 +143,7 @@ function hintTargets(arrTargets, options) {
       })
     })
   })
+
   async.series(arrTasks, function () {
     // end hint
     var spendTime = new Date().getTime() - startTime
@@ -207,6 +211,7 @@ function hintAllFiles(target, options, onFinised) {
   // hint queue
   var hintQueue = async.queue(function (filepath, next) {
     var startTime = new Date().getTime()
+
     if (filepath === 'stdin') {
       hintStdin(ruleset, hintNext)
     } else if (/^https?:\/\//.test(filepath)) {
@@ -215,6 +220,7 @@ function hintAllFiles(target, options, onFinised) {
       var messages = hintFile(filepath, ruleset)
       hintNext(messages)
     }
+
     function hintNext(messages) {
       var spendTime = new Date().getTime() - startTime
       var hintCount = messages.length
@@ -236,6 +242,7 @@ function hintAllFiles(target, options, onFinised) {
       setImmediate(next)
     }
   }, 10)
+
   // start hint
   var isWalkDone = false
   var isHintDone = true
@@ -243,6 +250,7 @@ function hintAllFiles(target, options, onFinised) {
     isHintDone = true
     checkAllHinted()
   }
+
   function checkAllHinted() {
     if (isWalkDone && isHintDone) {
       onFinised({
@@ -253,6 +261,7 @@ function hintAllFiles(target, options, onFinised) {
       })
     }
   }
+
   if (target === 'stdin') {
     isWalkDone = true
     hintQueue.push(target)
@@ -278,12 +287,16 @@ function hintAllFiles(target, options, onFinised) {
 function getGlobInfo(target) {
   // fix windows sep
   target = target.replace(/\\/g, '/')
+
   var globInfo = parseGlob(target)
   var base = path.resolve(globInfo.base)
+
   base += /\/$/.test(base) ? '' : '/'
+
   var pattern = globInfo.glob
   var globPath = globInfo.path
   var defaultGlob = '*.{htm,html}'
+
   if (globInfo.is.glob === true) {
     // no basename
     if (globPath.basename === '') {
@@ -300,6 +313,7 @@ function getGlobInfo(target) {
       pattern = '**/' + defaultGlob
     }
   }
+
   return {
     base: base,
     pattern: pattern,
@@ -313,15 +327,19 @@ function getConfig(configPath, base, formatter) {
     if (fs.statSync(base).isDirectory() === false) {
       base = path.dirname(base)
     }
+
     while (base) {
       var tmpConfigFile = path.resolve(base, '.htmlhintrc')
+
       if (fs.existsSync(tmpConfigFile)) {
         configPath = tmpConfigFile
         break
       }
+
       if (!base) {
         break
       }
+
       base = base.substring(0, base.lastIndexOf(path.sep))
     }
   }
@@ -329,6 +347,7 @@ function getConfig(configPath, base, formatter) {
   if (fs.existsSync(configPath)) {
     var config = fs.readFileSync(configPath, 'utf-8'),
       ruleset
+
     try {
       ruleset = JSON.parse(stripJsonComments(config))
       formatter.emit('config', {
@@ -336,6 +355,7 @@ function getConfig(configPath, base, formatter) {
         configPath: configPath,
       })
     } catch (e) {}
+
     return ruleset
   }
 }
@@ -346,11 +366,13 @@ function walkPath(globInfo, callback, onFinish) {
   var pattern = globInfo.pattern
   var ignore = globInfo.ignore
   var arrIgnores = ['**/node_modules/**']
+
   if (ignore) {
     ignore.split(',').forEach(function (pattern) {
       arrIgnores.push(pattern)
     })
   }
+
   var walk = glob(
     pattern,
     {
@@ -365,6 +387,7 @@ function walkPath(globInfo, callback, onFinish) {
       onFinish()
     }
   )
+
   walk.on('match', function (file) {
     base = base.replace(/^.\//, '')
     callback(base + file)
@@ -374,16 +397,20 @@ function walkPath(globInfo, callback, onFinish) {
 // hint file
 function hintFile(filepath, ruleset) {
   var content = ''
+
   try {
     content = fs.readFileSync(filepath, 'utf-8')
   } catch (e) {}
+
   return HTMLHint.verify(content, ruleset)
 }
 
 // hint stdin
 function hintStdin(ruleset, callback) {
   process.stdin.setEncoding('utf8')
+
   var buffers = []
+
   process.stdin.on('data', function (text) {
     buffers.push(text)
   })
