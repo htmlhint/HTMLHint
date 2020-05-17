@@ -5,7 +5,7 @@ export default {
     var self = this
     var mapIdCount = {}
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var attr
       var id

@@ -8,7 +8,7 @@ export default {
       'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
     ) //HTML 4.01 + HTML 5
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var tagName = event.tagName.toLowerCase()
       if (mapEmptyTags[tagName] === undefined && !event.close) {
         stack.push({
@@ -19,7 +19,7 @@ export default {
       }
     })
 
-    parser.addListener('tagend', function (event) {
+    parser.addListener('tagend', (event) => {
       var tagName = event.tagName.toLowerCase()
 
       // Look up the matching start tag
@@ -63,7 +63,7 @@ export default {
       }
     })
 
-    parser.addListener('end', function (event) {
+    parser.addListener('end', (event) => {
       var arrTags = []
 
       for (var i = stack.length - 1; i >= 0; i--) {

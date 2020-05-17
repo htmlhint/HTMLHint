@@ -4,7 +4,7 @@ export default {
   init: function (parser, reporter) {
     var self = this
 
-    parser.addListener('text', function (event) {
+    parser.addListener('text', (event) => {
       var raw = event.raw
       // TODO: improve use-cases for &
       // eslint-disable-next-line

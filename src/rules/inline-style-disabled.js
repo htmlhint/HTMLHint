@@ -4,7 +4,7 @@ export default {
   init: function (parser, reporter) {
     var self = this
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var attr
       var col = event.col + event.tagName.length + 1

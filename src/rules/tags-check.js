@@ -50,7 +50,7 @@ export default {
       assign(tagsTypings, options)
     }
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var col = event.col + event.tagName.length + 1
 
@@ -78,20 +78,20 @@ export default {
         }
 
         if (currentTagType.attrsRequired) {
-          currentTagType.attrsRequired.forEach(function (id) {
+          currentTagType.attrsRequired.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map(function (a) {
+              var copyOfId = id.map((a) => {
                 return a
               })
               var realID = copyOfId.shift()
               var values = copyOfId
 
               if (
-                attrs.some(function (attr) {
+                attrs.some((attr) => {
                   return attr.name === realID
                 })
               ) {
-                attrs.forEach(function (attr) {
+                attrs.forEach((attr) => {
                   if (
                     attr.name === realID &&
                     values.indexOf(attr.value) === -1
@@ -121,7 +121,7 @@ export default {
                 )
               }
             } else if (
-              !attrs.some(function (attr) {
+              !attrs.some((attr) => {
                 return id.split('|').indexOf(attr.name) !== -1
               })
             ) {
@@ -137,20 +137,20 @@ export default {
         }
 
         if (currentTagType.attrsOptional) {
-          currentTagType.attrsOptional.forEach(function (id) {
+          currentTagType.attrsOptional.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map(function (a) {
+              var copyOfId = id.map((a) => {
                 return a
               })
               var realID = copyOfId.shift()
               var values = copyOfId
 
               if (
-                attrs.some(function (attr) {
+                attrs.some((attr) => {
                   return attr.name === realID
                 })
               ) {
-                attrs.forEach(function (attr) {
+                attrs.forEach((attr) => {
                   if (
                     attr.name === realID &&
                     values.indexOf(attr.value) === -1
@@ -176,9 +176,9 @@ export default {
         }
 
         if (currentTagType.redundantAttrs) {
-          currentTagType.redundantAttrs.forEach(function (attrName) {
+          currentTagType.redundantAttrs.forEach((attrName) => {
             if (
-              attrs.some(function (attr) {
+              attrs.some((attr) => {
                 return attr.name === attrName
               })
             ) {

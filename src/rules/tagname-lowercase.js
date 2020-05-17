@@ -5,7 +5,7 @@ export default {
     var self = this
     var exceptions = Array.isArray(options) ? options : []
 
-    parser.addListener('tagstart,tagend', function (event) {
+    parser.addListener('tagstart,tagend', (event) => {
       var tagName = event.tagName
       if (
         exceptions.indexOf(tagName) === -1 &&

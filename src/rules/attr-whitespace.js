@@ -6,12 +6,12 @@ export default {
     var self = this
     var exceptions = Array.isArray(options) ? options : []
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var attr
       var col = event.col + event.tagName.length + 1
 
-      attrs.forEach(function (elem) {
+      attrs.forEach((elem) => {
         attr = elem
         var attrName = elem.name
 

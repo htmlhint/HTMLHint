@@ -4,7 +4,7 @@ export default {
     'The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.',
   init: function (parser, reporter) {
     var self = this
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var tagName = event.tagName.toLowerCase()
       var mapAttrs = parser.getMapAttrs(event.attrs)
       var col = event.col + tagName.length + 1

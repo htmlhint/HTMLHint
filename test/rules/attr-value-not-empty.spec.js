@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Attribute value have no value should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Attribute value have no value should result in an error', () => {
     const code = '<input disabled>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -18,13 +18,13 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].type).to.be('warning')
   })
 
-  it('Attribute value closed by quote but no value should not result in an error', function () {
+  it('Attribute value closed by quote but no value should not result in an error', () => {
     const code = '<input disabled="">'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Attribute value closed by quote and have value should not result in an error', function () {
+  it('Attribute value closed by quote and have value should not result in an error', () => {
     const code = '<input disabled="disabled">'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

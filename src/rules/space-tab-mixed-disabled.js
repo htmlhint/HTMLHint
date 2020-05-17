@@ -12,7 +12,7 @@ export default {
       spaceLengthRequire = match[2] && parseInt(match[2], 10)
     }
 
-    parser.addListener('text', function (event) {
+    parser.addListener('text', (event) => {
       var raw = event.raw
       var reMixed = /(^|\r?\n)([ \t]+)/g
       var match

@@ -22,7 +22,7 @@ export default {
       orderMap[sortOrder[i]] = i
     }
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var listOfAttributes = []
 
@@ -31,7 +31,7 @@ export default {
       }
 
       var originalAttrs = JSON.stringify(listOfAttributes)
-      listOfAttributes.sort(function (a, b) {
+      listOfAttributes.sort((a, b) => {
         if (orderMap[a] == undefined && orderMap[b] == undefined) {
           return 0
         }

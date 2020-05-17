@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Not all lowercase attr should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Not all lowercase attr should result in an error', () => {
     let code = '<p TEST="abc">'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -27,34 +27,34 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[1].col).to.be(13)
   })
 
-  it('Lowercase attr should not result in an error', function () {
+  it('Lowercase attr should not result in an error', () => {
     const code = '<p test="abc">'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Set is false should not result in an error', function () {
+  it('Set is false should not result in an error', () => {
     const code = '<p TEST="abc">'
     ruleOptions[ruldId] = false
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Set to array list should not result in an error', function () {
+  it('Set to array list should not result in an error', () => {
     const code = '<p testBox="abc" tttAAA="ccc">'
     ruleOptions[ruldId] = ['testBox', 'tttAAA']
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Set to array list with RegExp should not result in an error', function () {
+  it('Set to array list with RegExp should not result in an error', () => {
     const code = '<p testBox="abc" bind:tapTop="ccc">'
     ruleOptions[ruldId] = ['testBox', /bind:.*/]
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Set to array list with regex string should not result in an error', function () {
+  it('Set to array list with regex string should not result in an error', () => {
     const code = '<p testBox="abc" [ngFor]="ccc">'
     ruleOptions[ruldId] = ['testBox', '/\\[.*\\]/']
     const messages = HTMLHint.verify(code, ruleOptions)

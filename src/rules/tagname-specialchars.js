@@ -5,7 +5,7 @@ export default {
     var self = this
     var specialchars = /[^a-zA-Z0-9\-:_]/
 
-    parser.addListener('tagstart,tagend', function (event) {
+    parser.addListener('tagstart,tagend', (event) => {
       var tagName = event.tagName
       if (specialchars.test(tagName)) {
         reporter.error(

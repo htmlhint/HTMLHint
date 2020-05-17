@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Style tag should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Style tag should result in an error', () => {
     const code = '<body><style>body{}</style></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -18,7 +18,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].type).to.be('warning')
   })
 
-  it('Stylesheet link should not result in an error', function () {
+  it('Stylesheet link should not result in an error', () => {
     const code = '<body><link rel="stylesheet" href="test.css" /></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

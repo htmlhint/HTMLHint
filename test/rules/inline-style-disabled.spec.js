@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Inline style should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Inline style should result in an error', () => {
     let code = '<body><div style="color:red;"></div></body>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)

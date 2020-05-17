@@ -1,15 +1,15 @@
 var xml = require('xml')
 
 var checkstyleFormatter = function (formatter) {
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     var arrFiles = []
     var arrAllMessages = event.arrAllMessages
 
-    arrAllMessages.forEach(function (fileInfo) {
+    arrAllMessages.forEach((fileInfo) => {
       var arrMessages = fileInfo.messages
       var arrErrors = []
 
-      arrMessages.forEach(function (message) {
+      arrMessages.forEach((message) => {
         arrErrors.push({
           error: {
             _attr: {

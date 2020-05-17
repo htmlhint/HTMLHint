@@ -45,7 +45,7 @@ export default {
     var self = this
     var exceptions = Array.isArray(options) ? options : []
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var attr
       var col = event.col + event.tagName.length + 1

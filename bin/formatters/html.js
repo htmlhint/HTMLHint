@@ -1,7 +1,7 @@
 var fs = require('fs')
 
 var htmlFormatter = function (formatter) {
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     var fileContent
     fileContent = '<html>'
     fileContent =
@@ -15,9 +15,9 @@ var htmlFormatter = function (formatter) {
       '<tr><th>Number#</th><th>File Name</th><th>Line Number</th><th>Message</th></tr>'
 
     var arrAllMessages = event.arrAllMessages
-    arrAllMessages.forEach(function (fileInfo) {
+    arrAllMessages.forEach((fileInfo) => {
       var arrMessages = fileInfo.messages
-      arrMessages.forEach(function (message, i) {
+      arrMessages.forEach((message, i) => {
         fileContent =
           fileContent +
           '<tr><td>' +
