@@ -36,6 +36,7 @@ var assign = function (target) {
       target[prop] = _source[prop]
     }
   }
+
   return target
 }
 
@@ -134,6 +135,7 @@ export default {
             }
           })
         }
+
         if (currentTagType.attrsOptional) {
           currentTagType.attrsOptional.forEach(function (id) {
             if (Array.isArray(id)) {

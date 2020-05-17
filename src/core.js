@@ -1,6 +1,7 @@
 import HTMLParser from './htmlparser'
 import Reporter from './reporter'
 import * as HTMLRules from './rules'
+
 class HTMLHintCore {
   constructor() {
     this.rules = {}
@@ -17,9 +18,11 @@ class HTMLHintCore {
       'title-require': true,
     }
   }
+
   addRule(rule) {
     this.rules[rule.id] = rule
   }
+
   verify(html, ruleset) {
     if (ruleset === undefined || Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
@@ -33,6 +36,7 @@ class HTMLHintCore {
       if (ruleset === undefined) {
         ruleset = {}
       }
+
       // eslint-disable-next-line
       strRuleset.replace(/(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g, function (
         all,
@@ -46,6 +50,7 @@ class HTMLHintCore {
         }
         ruleset[key] = value === undefined ? true : value
       })
+
       return ''
     })
 
@@ -54,6 +59,7 @@ class HTMLHintCore {
 
     var rules = this.rules,
       rule
+
     for (var id in ruleset) {
       rule = rules[id]
       if (rule !== undefined && ruleset[id] !== false) {
@@ -65,6 +71,7 @@ class HTMLHintCore {
 
     return reporter.messages
   }
+
   format(arrMessages, options) {
     options = options || {}
     var arrLogs = []
@@ -74,13 +81,16 @@ class HTMLHintCore {
       red: '',
       reset: '',
     }
+
     if (options.colors) {
       colors.white = '\x1b[37m'
       colors.grey = '\x1b[90m'
       colors.red = '\x1b[31m'
       colors.reset = '\x1b[39m'
     }
+
     var indent = options.indent || 0
+
     arrMessages.forEach((hint) => {
       var leftWindow = 40
       var rightWindow = leftWindow + 20
@@ -91,10 +101,13 @@ class HTMLHintCore {
       var leftCol = col > leftWindow + 1 ? col - leftWindow : 1
       var rightCol =
         evidence.length > col + rightWindow ? col + rightWindow : evidenceCount
+
       if (col < leftWindow + 1) {
         rightCol += leftWindow - col + 1
       }
+
       evidence = evidence.replace(/\t/g, ' ').substring(leftCol - 1, rightCol)
+
       // add ...
       if (leftCol > 1) {
         evidence = '...' + evidence
@@ -103,6 +116,7 @@ class HTMLHintCore {
       if (rightCol < evidenceCount) {
         evidence += '...'
       }
+
       // show evidence
       arrLogs.push(
         colors.white +
@@ -114,6 +128,7 @@ class HTMLHintCore {
           evidence +
           colors.reset
       )
+
       // show pointer & message
       var pointCol = col - leftCol
       // add double byte character
@@ -122,6 +137,7 @@ class HTMLHintCore {
       if (match !== null) {
         pointCol += match.length
       }
+
       arrLogs.push(
         colors.white +
           repeatStr(indent) +
@@ -135,6 +151,7 @@ class HTMLHintCore {
           colors.reset
       )
     })
+
     return arrLogs
   }
 }

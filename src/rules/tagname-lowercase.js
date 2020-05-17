@@ -4,6 +4,7 @@ export default {
   init: function (parser, reporter, options) {
     var self = this
     var exceptions = Array.isArray(options) ? options : []
+
     parser.addListener('tagstart,tagend', function (event) {
       var tagName = event.tagName
       if (

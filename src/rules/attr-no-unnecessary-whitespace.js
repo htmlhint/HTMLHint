@@ -4,9 +4,11 @@ export default {
   init: function (parser, reporter, options) {
     var self = this
     var exceptions = Array.isArray(options) ? options : []
+
     parser.addListener('tagstart', function (event) {
       var attrs = event.attrs,
         col = event.col + event.tagName.length + 1
+
       for (var i = 0; i < attrs.length; i++) {
         if (
           exceptions.indexOf(attrs[i].name) === -1 &&
