@@ -14,3 +14,6 @@ package-lock.json
 npm-debug.log*
 .nyc_output
 test/html
+
+# Ignore formatting of ***x*** to **_x_**
+.github/PULL_REQUEST_TEMPLATE.md
