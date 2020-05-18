@@ -20,11 +20,11 @@ class HTMLParser {
   parse(html) {
     var mapCdataTags = this._mapCdataTags
 
-    // eslint-disable-next-line
-    var regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g,
-      // eslint-disable-next-line
-      regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
-      regLine = /\r?\n/g
+    // eslint-disable-next-line no-control-regex, no-useless-escape
+    var regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
+    // eslint-disable-next-line no-control-regex, no-useless-escape
+    var regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
+    var regLine = /\r?\n/g
 
     var match
     var matchIndex
@@ -59,7 +59,7 @@ class HTMLParser {
       arrBlocks.push(data)
       this.fire(type, data)
 
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-unused-vars
       var lineMatch
       while ((lineMatch = regLine.exec(raw))) {
         line++
