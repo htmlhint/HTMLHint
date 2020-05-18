@@ -15,6 +15,7 @@ module.exports = {
     'no-useless-concat': 'error',
     'one-var': ['error', 'never'],
     'prefer-template': 'error',
+    quotes: ['error', 'single', { avoidEscape: true }],
     'template-curly-spacing': 'error',
     'template-tag-spacing': 'error',
   },

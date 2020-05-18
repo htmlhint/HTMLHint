@@ -23,7 +23,7 @@ class HTMLParser {
 
     // eslint-disable-next-line
     var regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g,
-      // eslint-disable-next-line no-control-regex
+      // eslint-disable-next-line no-control-regex, no-useless-escape
       regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
       regLine = /\r?\n/g
 
