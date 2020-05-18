@@ -23,7 +23,7 @@ class HTMLParser {
 
     // eslint-disable-next-line
     var regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g,
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-control-regex
       regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g,
       regLine = /\r?\n/g
 
@@ -60,7 +60,7 @@ class HTMLParser {
       arrBlocks.push(data)
       self.fire(type, data)
 
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-unused-vars
       var lineMatch
       while ((lineMatch = regLine.exec(raw))) {
         line++

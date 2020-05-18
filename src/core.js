@@ -37,7 +37,7 @@ class HTMLHintCore {
         ruleset = {}
       }
 
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-useless-escape
       strRuleset.replace(/(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g, function (
         all,
         key,
@@ -127,7 +127,7 @@ class HTMLHintCore {
       // show pointer & message
       var pointCol = col - leftCol
       // add double byte character
-      //eslint-disable-next-line
+      // eslint-disable-next-line no-control-regex
       var match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g)
       if (match !== null) {
         pointCol += match.length
