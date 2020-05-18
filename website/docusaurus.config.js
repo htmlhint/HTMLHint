@@ -75,16 +75,7 @@ module.exports = {
       copyright: `${new Date().getFullYear()} HTMLHint. Built with Docusaurus.`,
     },
   },
-  plugins: [
-    '@docusaurus/plugin-google-analytics',
-    // path.resolve(__dirname, './plugins/docusaurus-plugin-hotjar'),
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        cacheTime: 600 * 1000,
-      },
-    ],
-  ],
+  plugins: [path.resolve(__dirname, './plugins/docusaurus-plugin-hotjar')],
   presets: [
     [
       '@docusaurus/preset-classic',
