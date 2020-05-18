@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "0.13.0",
+  "version": "0.0.0-semantically-released",
   "description": "The Static Code Analysis Tool for your HTML",
   "repository": {
     "type": "git",
