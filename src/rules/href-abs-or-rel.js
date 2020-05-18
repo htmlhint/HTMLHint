@@ -21,11 +21,7 @@ export default {
               /^https?:\/\//.test(attr.value) === true)
           ) {
             reporter.warn(
-              'The value of the href attribute [ ' +
-                attr.value +
-                ' ] must be ' +
-                hrefMode +
-                '.',
+              `The value of the href attribute [ ${attr.value} ] must be ${hrefMode}.`,
               event.line,
               col + attr.index,
               self,

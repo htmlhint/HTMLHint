@@ -22,9 +22,7 @@ export default {
         //Check first and last characters for spaces
         if (elem.value.trim(elem.value) !== elem.value) {
           reporter.error(
-            'The attributes of [ ' +
-              attrName +
-              ' ] must not have trailing whitespace.',
+            `The attributes of [ ${attrName} ] must not have trailing whitespace.`,
             event.line,
             col + attr.index,
             self,
@@ -34,9 +32,7 @@ export default {
 
         if (elem.value.replace(/ +(?= )/g, '') !== elem.value) {
           reporter.error(
-            'The attributes of [ ' +
-              attrName +
-              ' ] must be separated by only one space.',
+            `The attributes of [ ${attrName} ] must be separated by only one space.`,
             event.line,
             col + attr.index,
             self,

@@ -26,7 +26,7 @@ export default {
 
             if (mapIdCount[id] > 1) {
               reporter.error(
-                'The id value [ ' + id + ' ] must be unique.',
+                `The id value [ ${id} ] must be unique.`,
                 event.line,
                 col + attr.index,
                 self,

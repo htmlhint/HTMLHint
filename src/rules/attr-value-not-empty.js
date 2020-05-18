@@ -14,7 +14,7 @@ export default {
 
         if (attr.quote === '' && attr.value === '') {
           reporter.warn(
-            'The attribute [ ' + attr.name + ' ] must have a value.',
+            `The attribute [ ${attr.name} ] must have a value.`,
             event.line,
             col + attr.index,
             self,

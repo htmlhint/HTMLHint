@@ -12,7 +12,7 @@ export default {
       if (mapEmptyTags[tagName] !== undefined) {
         if (!event.close) {
           reporter.warn(
-            'The empty tag : [ ' + tagName + ' ] must be self closed.',
+            `The empty tag : [ ${tagName} ] must be self closed.`,
             event.line,
             event.col,
             self,
