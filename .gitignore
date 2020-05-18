@@ -62,3 +62,7 @@ yarn.lock
 
 test/unit/coverage
 test/e2e/reports
+
+/website/node_modules
+/website/build
+/website/.docusaurus
