@@ -21,9 +21,9 @@ class HTMLParser {
     const self = this
     const mapCdataTags = self._mapCdataTags
 
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-control-regex, no-useless-escape
     const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
-    // eslint-disable-next-line
+    // eslint-disable-next-line no-control-regex, no-useless-escape
     const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
     const regLine = /\r?\n/g
 
@@ -60,7 +60,7 @@ class HTMLParser {
       arrBlocks.push(data)
       self.fire(type, data)
 
-      // eslint-disable-next-line
+      // eslint-disable-next-line no-unused-vars
       let lineMatch
       while ((lineMatch = regLine.exec(raw))) {
         line++
