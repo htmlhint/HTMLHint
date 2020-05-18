@@ -1,0 +1,63 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+.container-narrow {
+  margin: 0 auto;
+  max-width: 990px;
+  min-width: 500px;
+}
+.container-narrow > hr {
+  margin: 20px 0;
+}
+
+.muted span{
+  font-size: 12px;
+}
+
+#editor-title{
+    padding:20px 0;
+}
+
+#editor-toolbar{
+    float:right;
+}
+
+#editor{
+    border:1px solid #ccc;
+    border-radius: 4px;
+    height:300px;
+}
+
+#stat-bar{
+    padding:10px 0;
+}
+
+#button-area{
+    float:right;
+    padding:0 10px;
+    display:none;
+}
+
+.footer{
+    text-align:center;
+}
+
+#options{
+    padding:20px;
+}
+
+#options h3{
+    font-size: 18px;
+}
+
+#options ul{
+    list-style: none;
+    margin: 0;
+}
+
+#options li div{
+    display:none;
+    padding-left:20px;
+}

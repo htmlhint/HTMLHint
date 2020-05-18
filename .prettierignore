@@ -17,3 +17,8 @@ test/html
 
 # Ignore formatting of ***x*** to **_x_**
 .github/PULL_REQUEST_TEMPLATE.md
+
+/website/playground
+/website/.docusaurus
+/website/plugins
+/website/static

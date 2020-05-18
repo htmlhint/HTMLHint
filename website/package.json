@@ -1,0 +1,45 @@
+{
+  "name": "htmlhint.com",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "docusaurus start",
+    "build": "docusaurus build"
+  },
+  "homepage": "https://htmlhint.com",
+  "dependencies": {
+    "@docusaurus/core": "^2.0.0-alpha.54",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.54",
+    "classnames": "^2.2.6",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "rehype-truncate": "1.1.0",
+    "remark-images": "2.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/htmlhint"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "husky": "4.2.5",
+    "lint-staged": "10.2.2"
+  }
+}

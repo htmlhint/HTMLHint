@@ -1,0 +1,16 @@
+{
+  "name": "@docusaurus/plugin-hotjar",
+  "version": "0.0.1-alpha",
+  "description": "Hotjar plugin for Docusaurus",
+  "main": "src/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@docusaurus/core": "^2.0.0"
+  },
+  "engines": {
+    "node": ">=8"
+  }
+}
