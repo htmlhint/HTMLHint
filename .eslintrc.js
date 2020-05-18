@@ -11,6 +11,11 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'no-template-curly-in-string': 'error',
+    'no-useless-concat': 'error',
     'one-var': ['error', 'never'],
+    'prefer-template': 'error',
+    'template-curly-spacing': 'error',
+    'template-tag-spacing': 'error',
   },
 }
