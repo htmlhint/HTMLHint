@@ -12,7 +12,7 @@ export default {
       while ((match = reSpecChar.exec(raw))) {
         var fixedPos = parser.fixPos(event, match.index)
         reporter.error(
-          'Special characters must be escaped : [ ' + match[0] + ' ].',
+          `Special characters must be escaped : [ ${match[0]} ].`,
           fixedPos.line,
           fixedPos.col,
           this,

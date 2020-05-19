@@ -15,9 +15,7 @@ export default {
           (attr.value === '' && attr.quote === '"')
         ) {
           reporter.error(
-            'The value of attribute [ ' +
-              attr.name +
-              ' ] must be in single quotes.',
+            `The value of attribute [ ${attr.name} ] must be in single quotes.`,
             event.line,
             col + attr.index,
             this,

@@ -20,7 +20,7 @@ var junitFormatter = function (formatter, HTMLHint) {
           {
             failure: {
               _attr: {
-                message: 'Found ' + arrMessages.length + ' errors',
+                message: `Found ${arrMessages.length} errors`,
               },
               _cdata: arrLogs.join('\r\n'),
             },

@@ -58,7 +58,7 @@ export default {
           attrName !== attrName.toLowerCase()
         ) {
           reporter.error(
-            'The attribute name of [ ' + attrName + ' ] must be in lowercase.',
+            `The attribute name of [ ${attrName} ] must be in lowercase.`,
             event.line,
             col + attr.index,
             this,
