@@ -1,19 +1,19 @@
 #!/usr/bin/env node
 
-const program = require('commander')
-const fs = require('fs')
-const path = require('path')
-const stripJsonComments = require('strip-json-comments')
-const async = require('async')
-const glob = require('glob')
-const parseGlob = require('parse-glob')
-const request = require('request')
+import * as program from 'commander'
+import * as fs from 'fs'
+import * as path from 'path'
+import * as stripJsonComments from 'strip-json-comments'
+import * as async from 'async'
+import * as glob from 'glob'
+import * as parseGlob from 'parse-glob'
+import * as request from 'request'
 
 const HTMLHint = require('../dist/htmlhint.js').HTMLHint
 const formatter = require('./formatter')
 const pkg = require('../package.json')
 
-require('colors')
+import 'colors'
 
 function map(val) {
   const objMap = {}

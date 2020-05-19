@@ -1,4 +1,4 @@
-const fs = require('fs')
+import * as fs from 'fs'
 
 const htmlFormatter = function (formatter) {
   formatter.on('end', (event) => {

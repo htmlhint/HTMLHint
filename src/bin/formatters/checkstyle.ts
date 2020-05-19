@@ -1,4 +1,4 @@
-const xml = require('xml')
+import * as xml from 'xml'
 
 const checkstyleFormatter = function (formatter) {
   formatter.on('end', (event) => {
