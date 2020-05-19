@@ -2,7 +2,7 @@ export default {
   id: 'doctype-first',
   description: 'Doctype must be declared first.',
   init(parser, reporter) {
-    var allEvent = (event) => {
+    const allEvent = (event) => {
       if (
         event.type === 'start' ||
         (event.type === 'text' && /^\s*$/.test(event.raw))

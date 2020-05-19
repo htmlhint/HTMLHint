@@ -1,13 +1,13 @@
-var xml = require('xml')
+const xml = require('xml')
 
-var checkstyleFormatter = function (formatter) {
+const checkstyleFormatter = function (formatter) {
   formatter.on('end', (event) => {
-    var arrFiles = []
-    var arrAllMessages = event.arrAllMessages
+    const arrFiles = []
+    const arrAllMessages = event.arrAllMessages
 
     arrAllMessages.forEach((fileInfo) => {
-      var arrMessages = fileInfo.messages
-      var arrErrors = []
+      const arrMessages = fileInfo.messages
+      const arrErrors = []
 
       arrMessages.forEach((message) => {
         arrErrors.push({
@@ -34,7 +34,7 @@ var checkstyleFormatter = function (formatter) {
       })
     })
 
-    var objXml = {
+    const objXml = {
       checkstyle: [
         {
           _attr: {

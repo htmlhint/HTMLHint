@@ -2,14 +2,14 @@ export default {
   id: 'href-abs-or-rel',
   description: 'An href attribute must be either absolute or relative.',
   init(parser, reporter, options) {
-    var hrefMode = options === 'abs' ? 'absolute' : 'relative'
+    const hrefMode = options === 'abs' ? 'absolute' : 'relative'
 
     parser.addListener('tagstart', (event) => {
-      var attrs = event.attrs
-      var attr
-      var col = event.col + event.tagName.length + 1
+      const attrs = event.attrs
+      let attr
+      const col = event.col + event.tagName.length + 1
 
-      for (var i = 0, l = attrs.length; i < l; i++) {
+      for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
 
         if (attr.name === 'href') {

@@ -3,14 +3,14 @@ export default {
   description: 'Special characters must be escaped.',
   init(parser, reporter) {
     parser.addListener('text', (event) => {
-      var raw = event.raw
+      const raw = event.raw
       // TODO: improve use-cases for &
       // eslint-disable-next-line no-useless-escape
-      var reSpecChar = /([<>])|( \& )/g
-      var match
+      const reSpecChar = /([<>])|( \& )/g
+      let match
 
       while ((match = reSpecChar.exec(raw))) {
-        var fixedPos = parser.fixPos(event, match.index)
+        const fixedPos = parser.fixPos(event, match.index)
         reporter.error(
           `Special characters must be escaped : [ ${match[0]} ].`,
           fixedPos.line,

@@ -1,4 +1,4 @@
-var tagsTypings = {
+const tagsTypings = {
   a: {
     selfclosing: false,
     attrsRequired: ['href', 'title'],
@@ -27,12 +27,12 @@ var tagsTypings = {
   },
 }
 
-var assign = function (target) {
-  var _source
+const assign = function (target) {
+  let _source
 
-  for (var i = 1; i < arguments.length; i++) {
+  for (let i = 1; i < arguments.length; i++) {
     _source = arguments[i]
-    for (var prop in _source) {
+    for (const prop in _source) {
       target[prop] = _source[prop]
     }
   }
@@ -49,13 +49,13 @@ export default {
     }
 
     parser.addListener('tagstart', (event) => {
-      var attrs = event.attrs
-      var col = event.col + event.tagName.length + 1
+      const attrs = event.attrs
+      const col = event.col + event.tagName.length + 1
 
-      var tagName = event.tagName.toLowerCase()
+      const tagName = event.tagName.toLowerCase()
 
       if (tagsTypings[tagName]) {
-        var currentTagType = tagsTypings[tagName]
+        const currentTagType = tagsTypings[tagName]
 
         if (currentTagType.selfclosing === true && !event.close) {
           reporter.warn(
@@ -78,9 +78,9 @@ export default {
         if (currentTagType.attrsRequired) {
           currentTagType.attrsRequired.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map((a) => a)
-              var realID = copyOfId.shift()
-              var values = copyOfId
+              const copyOfId = id.map((a) => a)
+              const realID = copyOfId.shift()
+              const values = copyOfId
 
               if (attrs.some((attr) => attr.name === realID)) {
                 attrs.forEach((attr) => {
@@ -125,9 +125,9 @@ export default {
         if (currentTagType.attrsOptional) {
           currentTagType.attrsOptional.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map((a) => a)
-              var realID = copyOfId.shift()
-              var values = copyOfId
+              const copyOfId = id.map((a) => a)
+              const realID = copyOfId.shift()
+              const values = copyOfId
 
               if (attrs.some((attr) => attr.name === realID)) {
                 attrs.forEach((attr) => {

@@ -3,7 +3,7 @@ export default {
   description:
     'The id and class attribute values must meet the specified rules.',
   init(parser, reporter, options) {
-    var arrRules = {
+    const arrRules = {
       underline: {
         regId: /^[a-z\d]+(_[a-z\d]+)*$/,
         message:
@@ -20,7 +20,7 @@ export default {
           'The id and class attribute values must meet the camelCase style.',
       },
     }
-    var rule
+    let rule
 
     if (typeof options === 'string') {
       rule = arrRules[options]
@@ -29,19 +29,19 @@ export default {
     }
 
     if (rule && rule.regId) {
-      var regId = rule.regId
-      var message = rule.message
+      let regId = rule.regId
+      const message = rule.message
 
       if (!(regId instanceof RegExp)) {
         regId = new RegExp(regId)
       }
 
       parser.addListener('tagstart', (event) => {
-        var attrs = event.attrs
-        var attr
-        var col = event.col + event.tagName.length + 1
+        const attrs = event.attrs
+        let attr
+        const col = event.col + event.tagName.length + 1
 
-        for (var i = 0, l1 = attrs.length; i < l1; i++) {
+        for (let i = 0, l1 = attrs.length; i < l1; i++) {
           attr = attrs[i]
 
           if (attr.name.toLowerCase() === 'id') {
@@ -57,10 +57,10 @@ export default {
           }
 
           if (attr.name.toLowerCase() === 'class') {
-            var arrClass = attr.value.split(/\s+/g)
-            var classValue
+            const arrClass = attr.value.split(/\s+/g)
+            let classValue
 
-            for (var j = 0, l2 = arrClass.length; j < l2; j++) {
+            for (let j = 0, l2 = arrClass.length; j < l2; j++) {
               classValue = arrClass[j]
               if (classValue && regId.test(classValue) === false) {
                 reporter.warn(

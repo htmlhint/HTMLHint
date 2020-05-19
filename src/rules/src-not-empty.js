@@ -3,12 +3,12 @@ export default {
   description: 'The src attribute of an img(script,link) must have a value.',
   init(parser, reporter) {
     parser.addListener('tagstart', (event) => {
-      var tagName = event.tagName
-      var attrs = event.attrs
-      var attr
-      var col = event.col + tagName.length + 1
+      const tagName = event.tagName
+      const attrs = event.attrs
+      let attr
+      const col = event.col + tagName.length + 1
 
-      for (var i = 0, l = attrs.length; i < l; i++) {
+      for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
 
         if (

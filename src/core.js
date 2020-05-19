@@ -53,13 +53,13 @@ class HTMLHintCore {
       }
     )
 
-    var parser = new HTMLParser()
-    var reporter = new Reporter(html, ruleset)
+    const parser = new HTMLParser()
+    const reporter = new Reporter(html, ruleset)
 
-    var rules = this.rules
-    var rule
+    const rules = this.rules
+    let rule
 
-    for (var id in ruleset) {
+    for (const id in ruleset) {
       rule = rules[id]
       if (rule !== undefined && ruleset[id] !== false) {
         rule.init(parser, reporter, ruleset[id])
@@ -73,8 +73,8 @@ class HTMLHintCore {
 
   format(arrMessages, options) {
     options = options || {}
-    var arrLogs = []
-    var colors = {
+    const arrLogs = []
+    const colors = {
       white: '',
       grey: '',
       red: '',
@@ -88,17 +88,17 @@ class HTMLHintCore {
       colors.reset = '\x1b[39m'
     }
 
-    var indent = options.indent || 0
+    const indent = options.indent || 0
 
     arrMessages.forEach((hint) => {
-      var leftWindow = 40
-      var rightWindow = leftWindow + 20
-      var evidence = hint.evidence
-      var line = hint.line
-      var col = hint.col
-      var evidenceCount = evidence.length
-      var leftCol = col > leftWindow + 1 ? col - leftWindow : 1
-      var rightCol =
+      const leftWindow = 40
+      const rightWindow = leftWindow + 20
+      let evidence = hint.evidence
+      const line = hint.line
+      const col = hint.col
+      const evidenceCount = evidence.length
+      let leftCol = col > leftWindow + 1 ? col - leftWindow : 1
+      let rightCol =
         evidence.length > col + rightWindow ? col + rightWindow : evidenceCount
 
       if (col < leftWindow + 1) {
@@ -124,10 +124,10 @@ class HTMLHintCore {
       )
 
       // show pointer & message
-      var pointCol = col - leftCol
+      let pointCol = col - leftCol
       // add double byte character
       // eslint-disable-next-line no-control-regex
-      var match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g)
+      const match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g)
       if (match !== null) {
         pointCol += match.length
       }

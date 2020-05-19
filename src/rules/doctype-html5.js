@@ -2,7 +2,7 @@ export default {
   id: 'doctype-html5',
   description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
   init(parser, reporter) {
-    var onComment = (event) => {
+    const onComment = (event) => {
       if (
         event.long === false &&
         event.content.toLowerCase() !== 'doctype html'
@@ -17,7 +17,7 @@ export default {
       }
     }
 
-    var onTagStart = () => {
+    const onTagStart = () => {
       parser.removeListener('comment', onComment)
       parser.removeListener('tagstart', onTagStart)
     }

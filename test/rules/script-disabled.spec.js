@@ -1,16 +1,16 @@
-var expect = require('expect.js')
+const expect = require('expect.js')
 
-var HTMLHint = require('../../dist/htmlhint.js').HTMLHint
+const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-var ruldId = 'script-disabled'
-var ruleOptions = {}
+const ruldId = 'script-disabled'
+const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
 describe(`Rules: ${ruldId}`, () => {
   it('Add external script file should result in an error', () => {
-    var code = '<body><script src="test.js"></script></body>'
-    var messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<body><script src="test.js"></script></body>'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -18,8 +18,8 @@ describe(`Rules: ${ruldId}`, () => {
     expect(messages[0].type).to.be('error')
   })
   it('Add inline script should result in an error', () => {
-    var code = '<body><script>var test = "test";</script></body>'
-    var messages = HTMLHint.verify(code, ruleOptions)
+    const code = '<body><script>var test = "test";</script></body>'
+    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)

@@ -1,4 +1,4 @@
-var jsonFormatter = function (formatter) {
+const jsonFormatter = function (formatter) {
   formatter.on('end', (event) => {
     console.log(JSON.stringify(event.arrAllMessages))
   })

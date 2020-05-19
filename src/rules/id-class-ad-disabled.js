@@ -4,12 +4,12 @@ export default {
     'The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.',
   init(parser, reporter) {
     parser.addListener('tagstart', (event) => {
-      var attrs = event.attrs
-      var attr
-      var attrName
-      var col = event.col + event.tagName.length + 1
+      const attrs = event.attrs
+      let attr
+      let attrName
+      const col = event.col + event.tagName.length + 1
 
-      for (var i = 0, l = attrs.length; i < l; i++) {
+      for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
         attrName = attr.name
 

@@ -2,13 +2,13 @@ export default {
   id: 'tag-pair',
   description: 'Tag must be paired.',
   init(parser, reporter) {
-    var stack = []
-    var mapEmptyTags = parser.makeMap(
+    const stack = []
+    const mapEmptyTags = parser.makeMap(
       'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
     ) //HTML 4.01 + HTML 5
 
     parser.addListener('tagstart', (event) => {
-      var tagName = event.tagName.toLowerCase()
+      const tagName = event.tagName.toLowerCase()
       if (mapEmptyTags[tagName] === undefined && !event.close) {
         stack.push({
           tagName: tagName,
@@ -19,23 +19,24 @@ export default {
     })
 
     parser.addListener('tagend', (event) => {
-      var tagName = event.tagName.toLowerCase()
+      const tagName = event.tagName.toLowerCase()
 
       // Look up the matching start tag
-      for (var pos = stack.length - 1; pos >= 0; pos--) {
+      let pos
+      for (pos = stack.length - 1; pos >= 0; pos--) {
         if (stack[pos].tagName === tagName) {
           break
         }
       }
 
       if (pos >= 0) {
-        var arrTags = []
-        for (var i = stack.length - 1; i > pos; i--) {
+        const arrTags = []
+        for (let i = stack.length - 1; i > pos; i--) {
           arrTags.push(`</${stack[i].tagName}>`)
         }
 
         if (arrTags.length > 0) {
-          var lastEvent = stack[stack.length - 1]
+          const lastEvent = stack[stack.length - 1]
           reporter.error(
             `Tag must be paired, missing: [ ${arrTags.join(
               ''
@@ -61,14 +62,14 @@ export default {
     })
 
     parser.addListener('end', (event) => {
-      var arrTags = []
+      const arrTags = []
 
-      for (var i = stack.length - 1; i >= 0; i--) {
+      for (let i = stack.length - 1; i >= 0; i--) {
         arrTags.push(`</${stack[i].tagName}>`)
       }
 
       if (arrTags.length > 0) {
-        var lastEvent = stack[stack.length - 1]
+        const lastEvent = stack[stack.length - 1]
         reporter.error(
           `Tag must be paired, missing: [ ${arrTags.join(
             ''

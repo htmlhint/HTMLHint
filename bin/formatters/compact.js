@@ -1,5 +1,5 @@
-var compactFormatter = function (formatter, HTMLHint, options) {
-  var nocolor = options.nocolor
+const compactFormatter = function (formatter, HTMLHint, options) {
+  const nocolor = options.nocolor
 
   formatter.on('file', (event) => {
     event.messages.forEach((message) => {
@@ -16,10 +16,10 @@ var compactFormatter = function (formatter, HTMLHint, options) {
   })
 
   formatter.on('end', (event) => {
-    var allHintCount = event.allHintCount
+    const allHintCount = event.allHintCount
     if (allHintCount > 0) {
       console.log('')
-      var message = '%d problems'
+      const message = '%d problems'
       console.log(nocolor ? message : message.red, event.allHintCount)
     }
   })
