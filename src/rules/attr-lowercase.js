@@ -41,11 +41,10 @@ function testAgainstStringOrRegExp(value, comparison) {
 export default {
   id: 'attr-lowercase',
   description: 'All attribute names must be in lowercase.',
-  init: function (parser, reporter, options) {
-    const self = this
+  init(parser, reporter, options) {
     const exceptions = Array.isArray(options) ? options : []
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
       const col = event.col + event.tagName.length + 1
@@ -62,7 +61,7 @@ export default {
             'The attribute name of [ ' + attrName + ' ] must be in lowercase.',
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }

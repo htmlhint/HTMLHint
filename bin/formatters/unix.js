@@ -1,7 +1,7 @@
 const unixFormatter = function (formatter, HTMLHint, options) {
   const nocolor = options.nocolor
-  formatter.on('file', function (event) {
-    event.messages.forEach(function (message) {
+  formatter.on('file', (event) => {
+    event.messages.forEach((message) => {
       console.log(
         [
           event.file,
@@ -19,7 +19,7 @@ const unixFormatter = function (formatter, HTMLHint, options) {
     })
   })
 
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     const allHintCount = event.allHintCount
     if (allHintCount > 0) {
       console.log('')

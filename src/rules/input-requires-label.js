@@ -1,12 +1,11 @@
 export default {
   id: 'input-requires-label',
   description: 'All [ input ] tags must have a corresponding [ label ] tag. ',
-  init: function (parser, reporter) {
-    const self = this
+  init(parser, reporter) {
     const labelTags = []
     const inputTags = []
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       const tagName = event.tagName.toLowerCase()
       const mapAttrs = parser.getMapAttrs(event.attrs)
       const col = event.col + tagName.length + 1
@@ -22,14 +21,14 @@ export default {
       }
     })
 
-    parser.addListener('end', function () {
-      inputTags.forEach(function (inputTag) {
+    parser.addListener('end', () => {
+      inputTags.forEach((inputTag) => {
         if (!hasMatchingLabelTag(inputTag)) {
           reporter.warn(
             'No matching [ label ] tag found.',
             inputTag.event.line,
             inputTag.col,
-            self,
+            this,
             inputTag.event.raw
           )
         }
@@ -38,7 +37,7 @@ export default {
 
     function hasMatchingLabelTag(inputTag) {
       let found = false
-      labelTags.forEach(function (labelTag) {
+      labelTags.forEach((labelTag) => {
         if (inputTag.id && inputTag.id === labelTag.forValue) {
           found = true
         }

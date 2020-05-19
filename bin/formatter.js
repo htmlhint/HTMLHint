@@ -27,7 +27,7 @@ function loadFormatters() {
   })
 
   const mapFormatters = {}
-  arrFiles.forEach(function (file) {
+  arrFiles.forEach((file) => {
     const fileInfo = path.parse(file)
     const formatterPath = path.resolve(__dirname, file)
     mapFormatters[fileInfo.name] = require(formatterPath)

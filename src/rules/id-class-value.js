@@ -2,8 +2,7 @@ export default {
   id: 'id-class-value',
   description:
     'The id and class attribute values must meet the specified rules.',
-  init: function (parser, reporter, options) {
-    const self = this
+  init(parser, reporter, options) {
     const arrRules = {
       underline: {
         regId: /^[a-z\d]+(_[a-z\d]+)*$/,
@@ -37,7 +36,7 @@ export default {
         regId = new RegExp(regId)
       }
 
-      parser.addListener('tagstart', function (event) {
+      parser.addListener('tagstart', (event) => {
         const attrs = event.attrs
         let attr
         const col = event.col + event.tagName.length + 1
@@ -51,7 +50,7 @@ export default {
                 message,
                 event.line,
                 col + attr.index,
-                self,
+                this,
                 attr.raw
               )
             }
@@ -68,7 +67,7 @@ export default {
                   message,
                   event.line,
                   col + attr.index,
-                  self,
+                  this,
                   classValue
                 )
               }

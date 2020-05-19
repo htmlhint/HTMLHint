@@ -1,12 +1,11 @@
 export default {
   id: 'head-script-disabled',
   description: 'The <script> tag cannot be used in a <head> tag.',
-  init: function (parser, reporter) {
-    const self = this
+  init(parser, reporter) {
     const reScript = /^(text\/javascript|application\/javascript)$/i
     let isInHead = false
 
-    function onTagStart(event) {
+    const onTagStart = (event) => {
       const mapAttrs = parser.getMapAttrs(event.attrs)
       const type = mapAttrs.type
       const tagName = event.tagName.toLowerCase()
@@ -24,13 +23,13 @@ export default {
           'The <script> tag cannot be used in a <head> tag.',
           event.line,
           event.col,
-          self,
+          this,
           event.raw
         )
       }
     }
 
-    function onTagEnd(event) {
+    const onTagEnd = (event) => {
       if (event.tagName.toLowerCase() === 'head') {
         parser.removeListener('tagstart', onTagStart)
         parser.removeListener('tagend', onTagEnd)

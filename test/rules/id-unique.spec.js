@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Id redefine should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Id redefine should result in an error', () => {
     const code = '<div id="test"></div><div id="test"></div>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -18,7 +18,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].type).to.be('error')
   })
 
-  it('Id no redefine should not result in an error', function () {
+  it('Id no redefine should not result in an error', () => {
     const code = '<div id="test1"></div><div id="test2"></div>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

@@ -18,8 +18,7 @@ class HTMLParser {
   }
 
   parse(html) {
-    const self = this
-    const mapCdataTags = self._mapCdataTags
+    const mapCdataTags = this._mapCdataTags
 
     // eslint-disable-next-line no-control-regex, no-useless-escape
     const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
@@ -39,16 +38,16 @@ class HTMLParser {
     let text
     let lastLineIndex = 0
     let line = 1
-    const arrBlocks = self._arrBlocks
+    const arrBlocks = this._arrBlocks
 
-    self.fire('start', {
+    this.fire('start', {
       pos: 0,
       line: 1,
       col: 1,
     })
 
     // Memory block
-    function saveBlock(type, raw, pos, data) {
+    const saveBlock = (type, raw, pos, data) => {
       const col = pos - lastLineIndex + 1
       if (data === undefined) {
         data = {}
@@ -58,7 +57,7 @@ class HTMLParser {
       data.line = line
       data.col = col
       arrBlocks.push(data)
-      self.fire(type, data)
+      this.fire(type, data)
 
       // eslint-disable-next-line no-unused-vars
       let lineMatch
@@ -172,7 +171,7 @@ class HTMLParser {
       saveBlock('text', text, lastIndex)
     }
 
-    self.fire('end', {
+    this.fire('end', {
       pos: lastIndex,
       line: line,
       col: html.length - lastLineIndex + 1,
@@ -198,10 +197,10 @@ class HTMLParser {
       data = {}
     }
     data.type = type
-    const self = this
+
     let listeners = []
-    const listenersType = self._listeners[type]
-    const listenersAll = self._listeners['all']
+    const listenersType = this._listeners[type]
+    const listenersAll = this._listeners['all']
 
     if (listenersType !== undefined) {
       listeners = listeners.concat(listenersType)
@@ -210,16 +209,16 @@ class HTMLParser {
       listeners = listeners.concat(listenersAll)
     }
 
-    const lastEvent = self.lastEvent
+    const lastEvent = this.lastEvent
     if (lastEvent !== null) {
       delete lastEvent['lastEvent']
       data.lastEvent = lastEvent
     }
 
-    self.lastEvent = data
+    this.lastEvent = data
 
     for (let i = 0, l = listeners.length; i < l; i++) {
-      listeners[i].call(self, data)
+      listeners[i].call(this, data)
     }
   }
 

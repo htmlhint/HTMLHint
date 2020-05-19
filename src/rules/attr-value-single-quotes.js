@@ -1,10 +1,8 @@
 export default {
   id: 'attr-value-single-quotes',
   description: 'Attribute values must be in single quotes.',
-  init: function (parser, reporter) {
-    const self = this
-
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
       const col = event.col + event.tagName.length + 1
@@ -22,7 +20,7 @@ export default {
               ' ] must be in single quotes.',
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }

@@ -1,11 +1,10 @@
 export default {
   id: 'id-unique',
   description: 'The value of id attributes must be unique.',
-  init: function (parser, reporter) {
-    const self = this
+  init(parser, reporter) {
     const mapIdCount = {}
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
       let id
@@ -29,7 +28,7 @@ export default {
                 'The id value [ ' + id + ' ] must be unique.',
                 event.line,
                 col + attr.index,
-                self,
+                this,
                 attr.raw
               )
             }

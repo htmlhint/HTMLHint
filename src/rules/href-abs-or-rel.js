@@ -1,12 +1,10 @@
 export default {
   id: 'href-abs-or-rel',
   description: 'An href attribute must be either absolute or relative.',
-  init: function (parser, reporter, options) {
-    const self = this
-
+  init(parser, reporter, options) {
     const hrefMode = options === 'abs' ? 'absolute' : 'relative'
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
       const col = event.col + event.tagName.length + 1
@@ -28,7 +26,7 @@ export default {
                 '.',
               event.line,
               col + attr.index,
-              self,
+              this,
               attr.raw
             )
           }

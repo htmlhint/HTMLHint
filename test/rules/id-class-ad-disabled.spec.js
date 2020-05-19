@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Id use ad keyword should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Id use ad keyword should result in an error', () => {
     let code = '<div id="ad">test</div>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -60,7 +60,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].col).to.be(5)
   })
 
-  it('Class use ad keyword should result in an error', function () {
+  it('Class use ad keyword should result in an error', () => {
     let code = '<div class="ad">test</div>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -111,7 +111,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].col).to.be(5)
   })
 
-  it('Id and class no ad keyword used should not result in an error', function () {
+  it('Id and class no ad keyword used should not result in an error', () => {
     let code = '<div id="ad1" class="ad2">test</div>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

@@ -1,17 +1,17 @@
 const defaultFormatter = function (formatter, HTMLHint, options) {
   const nocolor = options.nocolor
 
-  formatter.on('start', function () {
+  formatter.on('start', () => {
     console.log('')
   })
 
-  formatter.on('config', function (event) {
+  formatter.on('config', (event) => {
     const configPath = event.configPath
     console.log('   Config loaded: %s', nocolor ? configPath : configPath.cyan)
     console.log('')
   })
 
-  formatter.on('file', function (event) {
+  formatter.on('file', (event) => {
     console.log('   ' + event.file.white)
 
     const arrLogs = HTMLHint.format(event.messages, {
@@ -19,14 +19,14 @@ const defaultFormatter = function (formatter, HTMLHint, options) {
       indent: 6,
     })
 
-    arrLogs.forEach(function (str) {
+    arrLogs.forEach((str) => {
       console.log(str)
     })
 
     console.log('')
   })
 
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     const allFileCount = event.allFileCount
     const allHintCount = event.allHintCount
     const allHintFileCount = event.allHintFileCount

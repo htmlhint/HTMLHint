@@ -1,18 +1,18 @@
 const markdownFormatter = function (formatter, HTMLHint) {
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     console.log('# TOC')
 
     const arrToc = []
     const arrContents = []
     const arrAllMessages = event.arrAllMessages
 
-    arrAllMessages.forEach(function (fileInfo) {
+    arrAllMessages.forEach((fileInfo) => {
       const filePath = fileInfo.file
       const arrMessages = fileInfo.messages
       let errorCount = 0
       let warningCount = 0
 
-      arrMessages.forEach(function (message) {
+      arrMessages.forEach((message) => {
         if (message.type === 'error') {
           errorCount++
         } else {
@@ -30,7 +30,7 @@ const markdownFormatter = function (formatter, HTMLHint) {
 
       const arrLogs = HTMLHint.format(arrMessages)
       arrContents.push('')
-      arrLogs.forEach(function (log) {
+      arrLogs.forEach((log) => {
         arrContents.push('    ' + log)
       })
       arrContents.push('')

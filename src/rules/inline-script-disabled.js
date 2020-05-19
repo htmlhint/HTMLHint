@@ -1,10 +1,8 @@
 export default {
   id: 'inline-script-disabled',
   description: 'Inline script cannot be used.',
-  init: function (parser, reporter) {
-    const self = this
-
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
       const col = event.col + event.tagName.length + 1
@@ -20,7 +18,7 @@ export default {
             'Inline script [ ' + attr.raw + ' ] cannot be used.',
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         } else if (attrName === 'src' || attrName === 'href') {
@@ -29,7 +27,7 @@ export default {
               'Inline script [ ' + attr.raw + ' ] cannot be used.',
               event.line,
               col + attr.index,
-              self,
+              this,
               attr.raw
             )
           }

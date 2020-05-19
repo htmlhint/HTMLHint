@@ -1,11 +1,10 @@
 export default {
   id: 'attr-no-unnecessary-whitespace',
   description: 'No spaces between attribute names and values.',
-  init: function (parser, reporter, options) {
-    const self = this
+  init(parser, reporter, options) {
     const exceptions = Array.isArray(options) ? options : []
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       const col = event.col + event.tagName.length + 1
 
@@ -19,7 +18,7 @@ export default {
                 "' must not have spaces between the name and value.",
               event.line,
               col + attrs[i].index,
-              self,
+              this,
               attrs[i].raw
             )
           }

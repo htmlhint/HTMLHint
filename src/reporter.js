@@ -14,9 +14,8 @@ class Reporter {
   }
 
   report(type, message, line, col, rule, raw) {
-    const self = this
-    const lines = self.lines
-    const brLen = self.brLen
+    const lines = this.lines
+    const brLen = this.brLen
     let evidence
     let evidenceLen
 
@@ -34,7 +33,7 @@ class Reporter {
       }
     }
 
-    self.messages.push({
+    this.messages.push({
       type: type,
       message: message,
       raw: raw,

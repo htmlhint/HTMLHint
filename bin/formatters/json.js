@@ -1,5 +1,5 @@
 const jsonFormatter = function (formatter) {
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     console.log(JSON.stringify(event.arrAllMessages))
   })
 }

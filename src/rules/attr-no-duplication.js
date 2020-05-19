@@ -1,10 +1,8 @@
 export default {
   id: 'attr-no-duplication',
   description: 'Elements cannot have duplicate attributes.',
-  init: function (parser, reporter) {
-    const self = this
-
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
       let attrName
@@ -21,7 +19,7 @@ export default {
             'Duplicate of attribute name [ ' + attr.name + ' ] was found.',
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }
