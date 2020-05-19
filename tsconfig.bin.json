@@ -1,4 +1,7 @@
 {
+  "compilerOptions": {
+    "target": "ES2018"
+  },
   "extends": "./tsconfig.json",
   "exclude": ["src/core"]
 }
