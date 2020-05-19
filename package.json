@@ -29,8 +29,8 @@
     "build": "npm run build:min && npm run build:unmin",
     "build:min": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js",
     "build:unmin": "rollup -c",
-    "lint:fix": "eslint src/ test/ bin/ --ext .js --max-warnings 0",
-    "lint": "eslint --fix src/ test/ bin/ --ext .js --max-warnings 0"
+    "lint": "eslint src/ test/ bin/ --ext .js --max-warnings 0",
+    "lint:fix": "eslint --fix src/ test/ bin/ --ext .js --max-warnings 0"
   },
   "husky": {
     "hooks": {
