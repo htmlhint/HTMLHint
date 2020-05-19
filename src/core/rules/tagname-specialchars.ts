@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'tagname-specialchars',
   description: 'All html element names must be in lowercase.',
@@ -17,4 +19,4 @@ export default {
       }
     })
   },
-}
+} as Rule

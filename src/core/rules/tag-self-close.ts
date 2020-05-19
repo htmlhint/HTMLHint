@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'tag-self-close',
   description: 'Empty tags must be self closed.',
@@ -21,4 +23,4 @@ export default {
       }
     })
   },
-}
+} as Rule

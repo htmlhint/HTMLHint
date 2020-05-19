@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'alt-require',
   description:
@@ -34,4 +36,4 @@ export default {
       }
     })
   },
-}
+} as Rule

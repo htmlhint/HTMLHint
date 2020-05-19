@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'spec-char-escape',
   description: 'Special characters must be escaped.',
@@ -21,4 +23,4 @@ export default {
       }
     })
   },
-}
+} as Rule

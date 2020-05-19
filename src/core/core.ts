@@ -1,29 +1,33 @@
 import HTMLParser from './htmlparser'
 import Reporter from './reporter'
 import * as HTMLRules from './rules'
+import { Hint, Rule, Ruleset } from './types'
+
+export interface FormatOptions {
+  colors?: boolean
+  indent?: number
+}
 
 class HTMLHintCore {
-  constructor() {
-    this.rules = {}
-    this.defaultRuleset = {
-      'tagname-lowercase': true,
-      'attr-lowercase': true,
-      'attr-value-double-quotes': true,
-      'doctype-first': true,
-      'tag-pair': true,
-      'spec-char-escape': true,
-      'id-unique': true,
-      'src-not-empty': true,
-      'attr-no-duplication': true,
-      'title-require': true,
-    }
+  public rules: { [id: string]: Rule } = {}
+  public defaultRuleset: Ruleset = {
+    'tagname-lowercase': true,
+    'attr-lowercase': true,
+    'attr-value-double-quotes': true,
+    'doctype-first': true,
+    'tag-pair': true,
+    'spec-char-escape': true,
+    'id-unique': true,
+    'src-not-empty': true,
+    'attr-no-duplication': true,
+    'title-require': true,
   }
 
-  addRule(rule) {
+  addRule(rule: Rule) {
     this.rules[rule.id] = rule
   }
 
-  verify(html, ruleset) {
+  verify(html: string, ruleset: Ruleset) {
     if (ruleset === undefined || Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
     }
@@ -57,7 +61,7 @@ class HTMLHintCore {
     const reporter = new Reporter(html, ruleset)
 
     const rules = this.rules
-    let rule
+    let rule: Rule
 
     for (const id in ruleset) {
       rule = rules[id]
@@ -71,9 +75,8 @@ class HTMLHintCore {
     return reporter.messages
   }
 
-  format(arrMessages, options) {
-    options = options || {}
-    const arrLogs = []
+  format(arrMessages: Hint[], options: FormatOptions = {}) {
+    const arrLogs: string[] = []
     const colors = {
       white: '',
       grey: '',
@@ -146,7 +149,7 @@ class HTMLHintCore {
 }
 
 // repeat string
-function repeatStr(n, str) {
+function repeatStr(n: number, str?: string) {
   return new Array(n + 1).join(str || ' ')
 }
 

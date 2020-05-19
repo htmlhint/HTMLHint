@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
@@ -54,4 +56,4 @@ export default {
       }
     })
   },
-}
+} as Rule

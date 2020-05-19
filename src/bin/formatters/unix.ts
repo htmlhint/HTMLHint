@@ -1,4 +1,10 @@
-const unixFormatter = function (formatter, HTMLHint, options) {
+import { EventEmitter } from 'events'
+
+const unixFormatter = function (
+  formatter: EventEmitter,
+  HTMLHint,
+  options: { nocolor?: boolean }
+) {
   const nocolor = options.nocolor
   formatter.on('file', (event) => {
     event.messages.forEach((message) => {

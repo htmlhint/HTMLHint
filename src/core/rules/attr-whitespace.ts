@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'attr-whitespace',
   description:
@@ -41,4 +43,4 @@ export default {
       })
     })
   },
-}
+} as Rule

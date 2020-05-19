@@ -1,9 +1,11 @@
-const markdownFormatter = function (formatter, HTMLHint) {
+import { EventEmitter } from 'events'
+
+const markdownFormatter = function (formatter: EventEmitter, HTMLHint) {
   formatter.on('end', (event) => {
     console.log('# TOC')
 
-    const arrToc = []
-    const arrContents = []
+    const arrToc: string[] = []
+    const arrContents: string[] = []
     const arrAllMessages = event.arrAllMessages
 
     arrAllMessages.forEach((fileInfo) => {

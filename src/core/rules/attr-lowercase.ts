@@ -1,11 +1,12 @@
+import { Rule } from '../types'
+
 /**
  * testAgainstStringOrRegExp
  *
- * @param {string} value string to test
- * @param {string|RegExp} comparison raw string or regex string
- * @returns {boolean}
+ * @param value string to test
+ * @param comparison raw string or regex string
  */
-function testAgainstStringOrRegExp(value, comparison) {
+function testAgainstStringOrRegExp(value: string, comparison: string | RegExp) {
   // If it's a RegExp, test directly
   if (comparison instanceof RegExp) {
     return comparison.test(value)
@@ -68,4 +69,4 @@ export default {
       }
     })
   },
-}
+} as Rule

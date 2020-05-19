@@ -1,9 +1,9 @@
 import * as fs from 'fs'
+import { EventEmitter } from 'events'
 
-const htmlFormatter = function (formatter) {
+const htmlFormatter = function (formatter: EventEmitter) {
   formatter.on('end', (event) => {
-    let fileContent
-    fileContent = '<html>'
+    let fileContent = '<html>'
     fileContent += '<head><title>HTML Hint Violation Report</title></head>'
     fileContent += '<body>'
     fileContent += '<center><h2>Violation Report</h2></center>'

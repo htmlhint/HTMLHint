@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'script-disabled',
   description: 'The <script> tag cannot be used.',
@@ -14,4 +16,4 @@ export default {
       }
     })
   },
-}
+} as Rule

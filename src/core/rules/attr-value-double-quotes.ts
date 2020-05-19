@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'attr-value-double-quotes',
   description: 'Attribute values must be in double quotes.',
@@ -25,4 +27,4 @@ export default {
       }
     })
   },
-}
+} as Rule

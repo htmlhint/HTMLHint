@@ -1,6 +1,6 @@
-import * as path from 'path'
-import * as events from 'events'
+import { EventEmitter } from 'events'
 import * as glob from 'glob'
+import * as path from 'path'
 // @ts-expect-error
 path.parse = path.parse || require('path-parse')
 
@@ -37,7 +37,7 @@ function loadFormatters() {
   return mapFormatters
 }
 
-const formatter: any = new events.EventEmitter()
+const formatter: any = new EventEmitter()
 
 formatter.getSupported = function () {
   return arrSupportedFormatters

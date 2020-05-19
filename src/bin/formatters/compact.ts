@@ -1,4 +1,10 @@
-const compactFormatter = function (formatter, HTMLHint, options) {
+import { EventEmitter } from 'events'
+
+const compactFormatter = function (
+  formatter: EventEmitter,
+  HTMLHint,
+  options: { nocolor?: boolean }
+) {
   const nocolor = options.nocolor
 
   formatter.on('file', (event) => {

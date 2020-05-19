@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'attr-value-not-empty',
   description: 'All attributes must have values.',
@@ -22,4 +24,4 @@ export default {
       }
     })
   },
-}
+} as Rule

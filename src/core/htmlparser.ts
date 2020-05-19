@@ -1,4 +1,12 @@
+import { Hint } from './types'
+
 class HTMLParser {
+  public lastEvent: null
+
+  private _listeners: { [type: string]: any }
+  private _mapCdataTags: { [tagName: string]: boolean }
+  private _arrBlocks: any[]
+
   constructor() {
     this._listeners = {}
     this._mapCdataTags = this.makeMap('script,style')
@@ -6,8 +14,8 @@ class HTMLParser {
     this.lastEvent = null
   }
 
-  makeMap(str) {
-    const obj = {}
+  makeMap(str: string) {
+    const obj: { [key: string]: boolean } = {}
     const items = str.split(',')
 
     for (let i = 0; i < items.length; i++) {
@@ -17,7 +25,7 @@ class HTMLParser {
     return obj
   }
 
-  parse(html) {
+  parse(html: string) {
     const mapCdataTags = this._mapCdataTags
 
     // eslint-disable-next-line no-control-regex, no-useless-escape
@@ -26,16 +34,28 @@ class HTMLParser {
     const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
     const regLine = /\r?\n/g
 
-    let match
-    let matchIndex
+    let match: RegExpExecArray | null
+    let matchIndex: number
     let lastIndex = 0
-    let tagName
-    let arrAttrs
-    let tagCDATA
-    let attrsCDATA
-    let arrCDATA
+    let tagName: string
+    let arrAttrs: Array<{
+      name: string
+      value: string
+      quote: string
+      index: number
+      raw: string
+    }>
+    let tagCDATA: string | null
+    let attrsCDATA: Array<{
+      name: string
+      value: string
+      quote: string
+      index: number
+      raw: string
+    }> | null
+    let arrCDATA: string[] | null
     let lastCDATAIndex = 0
-    let text
+    let text: string
     let lastLineIndex = 0
     let line = 1
     const arrBlocks = this._arrBlocks
@@ -47,7 +67,7 @@ class HTMLParser {
     })
 
     // Memory block
-    const saveBlock = (type, raw, pos, data) => {
+    const saveBlock = (type: string, raw: string, pos: number, data?: any) => {
       const col = pos - lastLineIndex + 1
       if (data === undefined) {
         data = {}
@@ -60,7 +80,7 @@ class HTMLParser {
       this.fire(type, data)
 
       // eslint-disable-next-line no-unused-vars
-      let lineMatch
+      let lineMatch: RegExpExecArray | null
       while ((lineMatch = regLine.exec(raw))) {
         line++
         lastLineIndex = pos + regLine.lastIndex
@@ -178,7 +198,22 @@ class HTMLParser {
     })
   }
 
-  addListener(types, listener) {
+  addListener(
+    types: string,
+    listener: (event: {
+      tagName: string
+      attrs: Array<{
+        name: string
+        value: any
+        index: number
+        raw: string
+        quote: string
+      }>
+      col: number
+      line: number
+      raw: string
+    }) => void
+  ) {
     const _listeners = this._listeners
     const arrTypes = types.split(/[,\s]/)
     let type
@@ -192,13 +227,13 @@ class HTMLParser {
     }
   }
 
-  fire(type, data) {
+  fire(type: string, data: any) {
     if (data === undefined) {
       data = {}
     }
     data.type = type
 
-    let listeners = []
+    let listeners: any[] = []
     const listenersType = this._listeners[type]
     const listenersAll = this._listeners['all']
 
@@ -222,8 +257,8 @@ class HTMLParser {
     }
   }
 
-  removeListener(type, listener) {
-    const listenersType = this._listeners[type]
+  removeListener(type: string, listener: string) {
+    const listenersType: string[] | undefined = this._listeners[type]
     if (listenersType !== undefined) {
       for (let i = 0, l = listenersType.length; i < l; i++) {
         if (listenersType[i] === listener) {
@@ -234,12 +269,12 @@ class HTMLParser {
     }
   }
 
-  fixPos(event, index) {
+  fixPos(event: Hint, index: number) {
     const text = event.raw.substr(0, index)
     const arrLines = text.split(/\r?\n/)
     const lineCount = arrLines.length - 1
     let line = event.line
-    let col
+    let col: number
 
     if (lineCount > 0) {
       line += lineCount
@@ -254,8 +289,8 @@ class HTMLParser {
     }
   }
 
-  getMapAttrs(arrAttrs) {
-    const mapAttrs = {}
+  getMapAttrs(arrAttrs: Array<{ name: string; value: any }>) {
+    const mapAttrs: { [name: string]: any } = {}
     let attr
 
     for (let i = 0, l = arrAttrs.length; i < l; i++) {

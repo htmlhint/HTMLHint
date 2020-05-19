@@ -1,4 +1,10 @@
-const defaultFormatter = function (formatter, HTMLHint, options) {
+import { EventEmitter } from 'events'
+
+const defaultFormatter = function (
+  formatter: EventEmitter,
+  HTMLHint,
+  options: { nocolor?: boolean }
+) {
   const nocolor = options.nocolor
 
   formatter.on('start', () => {

@@ -1,6 +1,7 @@
 import * as xml from 'xml'
+import { EventEmitter } from 'events'
 
-const junitFormatter = function (formatter, HTMLHint) {
+const junitFormatter = function (formatter: EventEmitter, HTMLHint) {
   formatter.on('end', (event) => {
     const arrTestcase = []
     const arrAllMessages = event.arrAllMessages

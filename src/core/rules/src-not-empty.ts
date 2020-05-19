@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'src-not-empty',
   description: 'The src attribute of an img(script,link) must have a value.',
@@ -29,4 +31,4 @@ export default {
       }
     })
   },
-}
+} as Rule

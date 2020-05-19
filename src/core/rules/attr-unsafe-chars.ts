@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'attr-unsafe-chars',
   description: 'Attribute values cannot contain unsafe chars.',
@@ -30,4 +32,4 @@ export default {
       }
     })
   },
-}
+} as Rule

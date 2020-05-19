@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'head-script-disabled',
   description: 'The <script> tag cannot be used in a <head> tag.',
@@ -39,4 +41,4 @@ export default {
     parser.addListener('tagstart', onTagStart)
     parser.addListener('tagend', onTagEnd)
   },
-}
+} as Rule

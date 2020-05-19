@@ -15,8 +15,8 @@ const pkg = require('../package.json')
 
 import 'colors'
 
-function map(val) {
-  const objMap = {}
+function map(val: string) {
+  const objMap: { [name: string]: string | true } = {}
   val.split(',').forEach((item) => {
     const arrItem = item.split(/\s*=\s*/)
     objMap[arrItem[0]] = arrItem[1] ? arrItem[1] : true
@@ -133,7 +133,7 @@ function hintTargets(arrTargets, options) {
 
   const arrTasks = []
   arrTargets.forEach((target) => {
-    arrTasks.push((next) => {
+    arrTasks.push((next: () => void) => {
       hintAllFiles(target, options, (result) => {
         allFileCount += result.targetFileCount
         allHintFileCount += result.targetHintFileCount
@@ -211,7 +211,7 @@ function hintAllFiles(target, options, onFinised) {
   }
 
   // hint queue
-  const hintQueue = async.queue((filepath, next) => {
+  const hintQueue = async.queue<string>((filepath, next) => {
     const startTime = new Date().getTime()
 
     if (filepath === 'stdin') {
@@ -286,7 +286,13 @@ function hintAllFiles(target, options, onFinised) {
 }
 
 // split target to base & glob
-function getGlobInfo(target) {
+function getGlobInfo(
+  target: string
+): {
+  base: string
+  pattern: string
+  ignore?: string
+} {
   // fix windows sep
   target = target.replace(/\\/g, '/')
 
@@ -323,7 +329,11 @@ function getGlobInfo(target) {
 }
 
 // search and load config
-function getConfig(configPath, base, formatter) {
+function getConfig(
+  configPath: string | undefined,
+  base: string,
+  formatter: any
+) {
   if (configPath === undefined && fs.existsSync(base)) {
     // find default config file in parent directory
     if (fs.statSync(base).isDirectory() === false) {
@@ -365,10 +375,14 @@ function getConfig(configPath, base, formatter) {
 }
 
 // walk path
-function walkPath(globInfo, callback, onFinish) {
-  let base = globInfo.base
+function walkPath(
+  globInfo: { base: any; pattern: any; ignore: any },
+  callback: (filepath: string) => void,
+  onFinish: () => void
+) {
+  let base: string = globInfo.base
   const pattern = globInfo.pattern
-  const ignore = globInfo.ignore
+  const ignore: string | undefined = globInfo.ignore
   const arrIgnores = ['**/node_modules/**']
 
   if (ignore) {
@@ -377,7 +391,7 @@ function walkPath(globInfo, callback, onFinish) {
     })
   }
 
-  const walk = glob(
+  const walk: any = glob(
     pattern,
     {
       cwd: base,
@@ -392,14 +406,14 @@ function walkPath(globInfo, callback, onFinish) {
     }
   )
 
-  walk.on('match', (file) => {
+  walk.on('match', (file: string) => {
     base = base.replace(/^.\//, '')
     callback(base + file)
   })
 }
 
 // hint file
-function hintFile(filepath, ruleset) {
+function hintFile(filepath: string, ruleset) {
   let content = ''
 
   try {
@@ -415,7 +429,7 @@ function hintFile(filepath, ruleset) {
 function hintStdin(ruleset, callback) {
   process.stdin.setEncoding('utf8')
 
-  const buffers = []
+  const buffers: string[] = []
 
   process.stdin.on('data', (text) => {
     buffers.push(text)
@@ -429,7 +443,7 @@ function hintStdin(ruleset, callback) {
 }
 
 // hint url
-function hintUrl(url, ruleset, callback) {
+function hintUrl(url: string, ruleset, callback) {
   request.get(url, (error, response, body) => {
     if (!error && response.statusCode == 200) {
       const messages = HTMLHint.verify(body, ruleset)

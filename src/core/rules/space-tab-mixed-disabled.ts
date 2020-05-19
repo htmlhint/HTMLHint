@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'space-tab-mixed-disabled',
   description: 'Do not mix tabs and spaces for indentation.',
@@ -68,4 +70,4 @@ export default {
       }
     })
   },
-}
+} as Rule

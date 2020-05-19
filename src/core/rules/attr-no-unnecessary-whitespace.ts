@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'attr-no-unnecessary-whitespace',
   description: 'No spaces between attribute names and values.',
@@ -24,4 +26,4 @@ export default {
       }
     })
   },
-}
+} as Rule

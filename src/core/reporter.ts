@@ -1,5 +1,17 @@
+import { Hint, ReportType, Rule, Ruleset } from './types'
+
 class Reporter {
-  constructor(html, ruleset) {
+  html: string
+  lines: string[]
+  brLen: number
+  ruleset: Ruleset
+  messages: Hint[]
+
+  error: (message: any, line: number, col: number, rule: Rule, raw: any) => void
+  warn: (message: any, line: number, col: number, rule: Rule, raw: any) => void
+  info: (message: any, line: number, col: number, rule: Rule, raw: any) => void
+
+  constructor(html: string, ruleset: Ruleset) {
     this.html = html
     this.lines = html.split(/\r?\n/)
     const match = html.match(/\r?\n/)
@@ -13,11 +25,18 @@ class Reporter {
     this.info = this.report.bind(this, 'info')
   }
 
-  report(type, message, line, col, rule, raw) {
+  report(
+    type: ReportType,
+    message,
+    line: number,
+    col: number,
+    rule: Rule,
+    raw
+  ) {
     const lines = this.lines
     const brLen = this.brLen
-    let evidence
-    let evidenceLen
+    let evidence: string
+    let evidenceLen: number
 
     for (let i = line - 1, lineCount = lines.length; i < lineCount; i++) {
       evidence = lines[i]
@@ -44,7 +63,7 @@ class Reporter {
         id: rule.id,
         description: rule.description,
         link: `https://github.com/thedaviddias/HTMLHint/wiki/${rule.id}`,
-      },
+      } as Rule,
     })
   }
 }

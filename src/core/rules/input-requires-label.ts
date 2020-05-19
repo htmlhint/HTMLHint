@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'input-requires-label',
   description: 'All [ input ] tags must have a corresponding [ label ] tag. ',
@@ -45,4 +47,4 @@ export default {
       return found
     }
   },
-}
+} as Rule

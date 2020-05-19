@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'href-abs-or-rel',
   description: 'An href attribute must be either absolute or relative.',
@@ -31,4 +33,4 @@ export default {
       }
     })
   },
-}
+} as Rule

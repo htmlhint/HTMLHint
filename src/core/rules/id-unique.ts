@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'id-unique',
   description: 'The value of id attributes must be unique.',
@@ -38,4 +40,4 @@ export default {
       }
     })
   },
-}
+} as Rule

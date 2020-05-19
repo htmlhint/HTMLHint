@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'id-class-ad-disabled',
   description:
@@ -27,4 +29,4 @@ export default {
       }
     })
   },
-}
+} as Rule

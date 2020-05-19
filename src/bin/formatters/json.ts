@@ -1,4 +1,6 @@
-const jsonFormatter = function (formatter) {
+import { EventEmitter } from 'events'
+
+const jsonFormatter = function (formatter: EventEmitter) {
   formatter.on('end', (event) => {
     console.log(JSON.stringify(event.arrAllMessages))
   })

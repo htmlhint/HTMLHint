@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 const tagsTypings = {
   a: {
     selfclosing: false,
@@ -167,4 +169,4 @@ export default {
       }
     })
   },
-}
+} as Rule

@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'style-disabled',
   description: '<style> tags cannot be used.',
@@ -14,4 +16,4 @@ export default {
       }
     })
   },
-}
+} as Rule

@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'doctype-first',
   description: 'Doctype must be declared first.',
@@ -28,4 +30,4 @@ export default {
 
     parser.addListener('all', allEvent)
   },
-}
+} as Rule

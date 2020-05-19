@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'inline-style-disabled',
   description: 'Inline style cannot be used.',
@@ -22,4 +24,4 @@ export default {
       }
     })
   },
-}
+} as Rule

@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'tag-pair',
   description: 'Tag must be paired.',
@@ -84,4 +86,4 @@ export default {
       }
     })
   },
-}
+} as Rule

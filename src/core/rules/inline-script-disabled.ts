@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'inline-script-disabled',
   description: 'Inline script cannot be used.',
@@ -35,4 +37,4 @@ export default {
       }
     })
   },
-}
+} as Rule

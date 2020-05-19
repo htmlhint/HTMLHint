@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'id-class-value',
   description:
@@ -77,4 +79,4 @@ export default {
       })
     }
   },
-}
+} as Rule

@@ -1,3 +1,5 @@
+import { Rule } from '../types'
+
 export default {
   id: 'title-require',
   description: '<title> must be present in <head> tag.',
@@ -49,4 +51,4 @@ export default {
     parser.addListener('tagstart', onTagStart)
     parser.addListener('tagend', onTagEnd)
   },
-}
+} as Rule
