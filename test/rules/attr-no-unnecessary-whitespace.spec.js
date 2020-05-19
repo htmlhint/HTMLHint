@@ -24,8 +24,10 @@ describe('Rules: ' + ruldId, function () {
   })
 
   it('Attribute without spaces should not result in an error', function () {
-    var code = '<div title="a" />'
-    var messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).to.be(0)
+    var codes = ['<div title="a" />', '<div title="a = a" />']
+    for (var i = 0; i < codes.length; i++) {
+      var messages = HTMLHint.verify(codes[i], ruleOptions)
+      expect(messages.length).to.be(0)
+    }
   })
 })
