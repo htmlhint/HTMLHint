@@ -26,7 +26,7 @@
     "commit": "npx git-cz",
     "prettier": "prettier --write .",
     "test": "mocha --recursive \"./test/**/*.spec.js\"",
-    "build": "./build.sh",
+    "build": "node build.js",
     "build:rollup": "npm run build:min && npm run build:unmin",
     "build:min": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js",
     "build:unmin": "rollup -c",

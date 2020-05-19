@@ -2,7 +2,9 @@
 set -x
 
 # Cleanup
+rm -Rf ./build
 rm -Rf ./bin
+rm -Rf ./dist
 
 # Prepare
 npx tsc
