@@ -18,7 +18,7 @@ export default {
                 "' must not have spaces between the name and value.",
               event.line,
               col + attrs[i].index,
-              self,
+              this,
               attrs[i].raw
             )
           }
