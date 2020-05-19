@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Attribute value closed by double quotes should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Attribute value closed by double quotes should result in an error', () => {
     var code = '<a href="abc" title=abc style="">'
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(3)
@@ -23,7 +23,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[2].col).to.be(24)
   })
 
-  it('Attribute value no closed should not result in an error', function () {
+  it('Attribute value no closed should not result in an error', () => {
     var code = "<input type='button' disabled style=''>"
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

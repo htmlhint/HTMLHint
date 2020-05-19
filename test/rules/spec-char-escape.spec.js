@@ -7,8 +7,8 @@ var ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Special characters: <> should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Special characters: <> should result in an error', () => {
     var code = '<p>aaa>bbb< ccc</p>ddd\r\neee<'
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(3)
@@ -23,7 +23,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[2].col).to.be(4)
   })
 
-  it('Special characters: & should result in an error', function () {
+  it('Special characters: & should result in an error', () => {
     var code = '<p>Steinway & Sons</p>'
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -32,13 +32,13 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].col).to.be(12)
   })
 
-  it('Normal text should not result in an error', function () {
+  it('Normal text should not result in an error', () => {
     var code = '<p>abc</p>'
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Properly formed HTML entities should not result in an error', function () {
+  it('Properly formed HTML entities should not result in an error', () => {
     var code = '<p>Steinway &amp; &gt; Sons Q&amp;A </p>'
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

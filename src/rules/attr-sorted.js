@@ -1,8 +1,7 @@
 export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
-  init: function (parser, reporter) {
-    var self = this
+  init(parser, reporter) {
     var orderMap = {}
     var sortOrder = [
       'class',
@@ -22,7 +21,7 @@ export default {
       orderMap[sortOrder[i]] = i
     }
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var listOfAttributes = []
 
@@ -31,7 +30,7 @@ export default {
       }
 
       var originalAttrs = JSON.stringify(listOfAttributes)
-      listOfAttributes.sort(function (a, b) {
+      listOfAttributes.sort((a, b) => {
         if (orderMap[a] == undefined && orderMap[b] == undefined) {
           return 0
         }
@@ -50,7 +49,7 @@ export default {
           )} `,
           event.line,
           event.col,
-          self
+          this
         )
       }
     })

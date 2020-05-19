@@ -43,14 +43,12 @@ var assign = function (target) {
 export default {
   id: 'tags-check',
   description: 'Checks html tags.',
-  init: function (parser, reporter, options) {
-    var self = this
-
+  init(parser, reporter, options) {
     if (typeof options !== 'boolean') {
       assign(tagsTypings, options)
     }
 
-    parser.addListener('tagstart', function (event) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var col = event.col + event.tagName.length + 1
 
@@ -64,7 +62,7 @@ export default {
             `The <${tagName}> tag must be selfclosing.`,
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         } else if (currentTagType.selfclosing === false && event.close) {
@@ -72,26 +70,20 @@ export default {
             `The <${tagName}> tag must not be selfclosing.`,
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         }
 
         if (currentTagType.attrsRequired) {
-          currentTagType.attrsRequired.forEach(function (id) {
+          currentTagType.attrsRequired.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map(function (a) {
-                return a
-              })
+              var copyOfId = id.map((a) => a)
               var realID = copyOfId.shift()
               var values = copyOfId
 
-              if (
-                attrs.some(function (attr) {
-                  return attr.name === realID
-                })
-              ) {
-                attrs.forEach(function (attr) {
+              if (attrs.some((attr) => attr.name === realID)) {
+                attrs.forEach((attr) => {
                   if (
                     attr.name === realID &&
                     values.indexOf(attr.value) === -1
@@ -102,7 +94,7 @@ export default {
                       )}'.`,
                       event.line,
                       col,
-                      self,
+                      this,
                       event.raw
                     )
                   }
@@ -112,20 +104,18 @@ export default {
                   `The <${tagName}> tag must have attr '${realID}'.`,
                   event.line,
                   col,
-                  self,
+                  this,
                   event.raw
                 )
               }
             } else if (
-              !attrs.some(function (attr) {
-                return id.split('|').indexOf(attr.name) !== -1
-              })
+              !attrs.some((attr) => id.split('|').indexOf(attr.name) !== -1)
             ) {
               reporter.error(
                 `The <${tagName}> tag must have attr '${id}'.`,
                 event.line,
                 col,
-                self,
+                this,
                 event.raw
               )
             }
@@ -133,20 +123,14 @@ export default {
         }
 
         if (currentTagType.attrsOptional) {
-          currentTagType.attrsOptional.forEach(function (id) {
+          currentTagType.attrsOptional.forEach((id) => {
             if (Array.isArray(id)) {
-              var copyOfId = id.map(function (a) {
-                return a
-              })
+              var copyOfId = id.map((a) => a)
               var realID = copyOfId.shift()
               var values = copyOfId
 
-              if (
-                attrs.some(function (attr) {
-                  return attr.name === realID
-                })
-              ) {
-                attrs.forEach(function (attr) {
+              if (attrs.some((attr) => attr.name === realID)) {
+                attrs.forEach((attr) => {
                   if (
                     attr.name === realID &&
                     values.indexOf(attr.value) === -1
@@ -157,7 +141,7 @@ export default {
                       )}'.`,
                       event.line,
                       col,
-                      self,
+                      this,
                       event.raw
                     )
                   }
@@ -168,17 +152,13 @@ export default {
         }
 
         if (currentTagType.redundantAttrs) {
-          currentTagType.redundantAttrs.forEach(function (attrName) {
-            if (
-              attrs.some(function (attr) {
-                return attr.name === attrName
-              })
-            ) {
+          currentTagType.redundantAttrs.forEach((attrName) => {
+            if (attrs.some((attr) => attr.name === attrName)) {
               reporter.error(
                 `The attr '${attrName}' is redundant for <${tagName}> and should be ommited.`,
                 event.line,
                 col,
-                self,
+                this,
                 event.raw
               )
             }

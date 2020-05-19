@@ -1,10 +1,8 @@
 export default {
   id: 'attr-value-double-quotes',
   description: 'Attribute values must be in double quotes.',
-  init: function (parser, reporter) {
-    var self = this
-
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var attr
       var col = event.col + event.tagName.length + 1
@@ -20,7 +18,7 @@ export default {
             `The value of attribute [ ${attr.name} ] must be in double quotes.`,
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }

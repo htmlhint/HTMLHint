@@ -1,8 +1,7 @@
 export default {
   id: 'space-tab-mixed-disabled',
   description: 'Do not mix tabs and spaces for indentation.',
-  init: function (parser, reporter, options) {
-    var self = this
+  init(parser, reporter, options) {
     var indentMode = 'nomix'
     var spaceLengthRequire = null
 
@@ -12,7 +11,7 @@ export default {
       spaceLengthRequire = match[2] && parseInt(match[2], 10)
     }
 
-    parser.addListener('text', function (event) {
+    parser.addListener('text', (event) => {
       var raw = event.raw
       var reMixed = /(^|\r?\n)([ \t]+)/g
       var match
@@ -34,7 +33,7 @@ export default {
                 `Please use space for indentation and keep ${spaceLengthRequire} length.`,
                 fixedPos.line,
                 1,
-                self,
+                this,
                 event.raw
               )
             }
@@ -44,7 +43,7 @@ export default {
                 'Please use space for indentation.',
                 fixedPos.line,
                 1,
-                self,
+                this,
                 event.raw
               )
             }
@@ -54,7 +53,7 @@ export default {
             'Please use tab for indentation.',
             fixedPos.line,
             1,
-            self,
+            this,
             event.raw
           )
         } else if (/ +\t|\t+ /.test(whiteSpace) === true) {
@@ -62,7 +61,7 @@ export default {
             'Do not mix tabs and spaces for indentation.',
             fixedPos.line,
             1,
-            self,
+            this,
             event.raw
           )
         }

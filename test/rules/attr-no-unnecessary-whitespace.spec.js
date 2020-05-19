@@ -7,8 +7,8 @@ var ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Attribute with spaces should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Attribute with spaces should result in an error', () => {
     var codes = [
       '<div title = "a" />',
       '<div title= "a" />',
@@ -23,7 +23,7 @@ describe(`Rules: ${ruldId}`, function () {
     }
   })
 
-  it('Attribute without spaces should not result in an error', function () {
+  it('Attribute without spaces should not result in an error', () => {
     var codes = ['<div title="a" />', '<div title="a = a" />']
     for (var i = 0; i < codes.length; i++) {
       var messages = HTMLHint.verify(codes[i], ruleOptions)

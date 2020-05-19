@@ -1,10 +1,8 @@
 export default {
   id: 'spec-char-escape',
   description: 'Special characters must be escaped.',
-  init: function (parser, reporter) {
-    var self = this
-
-    parser.addListener('text', function (event) {
+  init(parser, reporter) {
+    parser.addListener('text', (event) => {
       var raw = event.raw
       // TODO: improve use-cases for &
       // eslint-disable-next-line no-useless-escape
@@ -17,7 +15,7 @@ export default {
           `Special characters must be escaped : [ ${match[0]} ].`,
           fixedPos.line,
           fixedPos.col,
-          self,
+          this,
           event.raw
         )
       }

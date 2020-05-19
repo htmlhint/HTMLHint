@@ -2,10 +2,8 @@ export default {
   id: 'id-class-ad-disabled',
   description:
     'The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.',
-  init: function (parser, reporter) {
-    var self = this
-
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var attr
       var attrName
@@ -21,7 +19,7 @@ export default {
               `The value of attribute ${attrName} cannot use the ad keyword.`,
               event.line,
               col + attr.index,
-              self,
+              this,
               attr.raw
             )
           }

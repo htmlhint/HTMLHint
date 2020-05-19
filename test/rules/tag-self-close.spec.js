@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('The empty tag no closed should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('The empty tag no closed should result in an error', () => {
     const code = '<br><img src="test.jpg">'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(2)
@@ -23,7 +23,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[1].type).to.be('warning')
   })
 
-  it('Closed empty tag should not result in an error', function () {
+  it('Closed empty tag should not result in an error', () => {
     const code = '<br /><img src="a.jpg"/>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

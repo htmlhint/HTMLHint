@@ -3,8 +3,7 @@ const expect = require('expect.js')
 const HTMLParser = require('../dist/htmlhint.js').HTMLParser
 
 expect.Assertion.prototype.event = function (type, attr) {
-  const self = this
-  const obj = self.obj
+  const obj = this.obj
 
   if (attr !== undefined) {
     attr.type = type
@@ -15,7 +14,7 @@ expect.Assertion.prototype.event = function (type, attr) {
       attr = type
     }
   }
-  self.assert(
+  this.assert(
     eqlEvent(obj, attr),
     () =>
       `expected "${JSON.stringify(obj)}" to event "${JSON.stringify(attr)}"`,
@@ -42,8 +41,8 @@ function getAllEvents(parser, arrEvents, callback) {
   })
 }
 
-describe('HTMLParser: Base parse', function () {
-  it('should parse html code1', function (done) {
+describe('HTMLParser: Base parse', () => {
+  it('should parse html code1', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     const targetEvents = [
@@ -234,8 +233,8 @@ describe('HTMLParser: Base parse', function () {
   })
 })
 
-describe('HTMLParser: Object parse', function () {
-  it('should parse doctype: HTML Strict DTD', function (done) {
+describe('HTMLParser: Object parse', () => {
+  it('should parse doctype: HTML Strict DTD', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -251,7 +250,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse doctype: HTML Transitional DTD', function (done) {
+  it('should parse doctype: HTML Transitional DTD', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -267,7 +266,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse doctype: HTML Frameset DTD', function (done) {
+  it('should parse doctype: HTML Frameset DTD', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -283,7 +282,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse doctype: XHTML 1.0 Strict', function (done) {
+  it('should parse doctype: XHTML 1.0 Strict', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -299,7 +298,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse doctype: XHTML 1.0 Transitional', function (done) {
+  it('should parse doctype: XHTML 1.0 Transitional', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -315,7 +314,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse doctype: XHTML 1.0 Frameset', function (done) {
+  it('should parse doctype: XHTML 1.0 Frameset', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -331,7 +330,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse doctype: XHTML 1.1', function (done) {
+  it('should parse doctype: XHTML 1.1', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -347,7 +346,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse doctype: html5', function (done) {
+  it('should parse doctype: html5', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -360,7 +359,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<!DOCTYPE HTML>')
   })
 
-  it('should parse start tag: <p>', function (done) {
+  it('should parse start tag: <p>', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -372,7 +371,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<p>')
   })
 
-  it('should not parse start tag: <div class"foo">', function (done) {
+  it('should not parse start tag: <div class"foo">', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -384,7 +383,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<div class"foo">')
   })
 
-  it('should not parse start tag: <div class="foo>', function (done) {
+  it('should not parse start tag: <div class="foo>', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -396,7 +395,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<div class="foo>')
   })
 
-  it('should not parse start tag: <div class=foo">', function (done) {
+  it('should not parse start tag: <div class=foo">', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -408,7 +407,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<div class=foo">')
   })
 
-  it('should not parse start tag: <div class="foo"">', function (done) {
+  it('should not parse start tag: <div class="foo"">', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -420,7 +419,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<div class="foo"">')
   })
 
-  it('should not parse start tag: <div class="foo""><span">', function (done) {
+  it('should not parse start tag: <div class="foo""><span">', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -432,7 +431,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<div class="foo""><span">')
   })
 
-  it('should not parse start tag: <div class="foo""><a><span">', function (done) {
+  it('should not parse start tag: <div class="foo""><a><span">', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -444,7 +443,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<div class="foo""><a><span">')
   })
 
-  it('should parse tag attrs', function (done) {
+  it('should parse tag attrs', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -476,7 +475,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<img width="200" height=\'300\' alt=abc a.b=ccc c*d=ddd>')
   })
 
-  it('should parse end tag', function (done) {
+  it('should parse end tag', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -488,7 +487,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('</p>')
   })
 
-  it('should parse selfclose tag', function (done) {
+  it('should parse selfclose tag', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -501,7 +500,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<br />')
   })
 
-  it('should parse text', function (done) {
+  it('should parse text', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -513,7 +512,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<span>abc</span>')
   })
 
-  it('should parse text in last', function (done) {
+  it('should parse text in last', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -525,7 +524,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<p>bbb')
   })
 
-  it('should parse comment', function (done) {
+  it('should parse comment', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -538,7 +537,7 @@ describe('HTMLParser: Object parse', function () {
     parser.parse('<!--comment\r\ntest-->')
   })
 
-  it('should parse cdata: script', function (done) {
+  it('should parse cdata: script', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -564,7 +563,7 @@ describe('HTMLParser: Object parse', function () {
     )
   })
 
-  it('should parse cdata: style', function (done) {
+  it('should parse cdata: style', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -588,7 +587,7 @@ describe('HTMLParser: Object parse', function () {
 })
 
 describe('HTMLParser: Case parse', () => {
-  it('should parse special end tag', function (done) {
+  it('should parse special end tag', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -600,7 +599,7 @@ describe('HTMLParser: Case parse', () => {
     parser.parse('</p >')
   })
 
-  it('should parse special no quotes tags', function (done) {
+  it('should parse special no quotes tags', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
@@ -615,7 +614,7 @@ describe('HTMLParser: Case parse', () => {
     parser.parse('<link rel=icon /><link rel=icon />')
   })
 
-  it('should parse special empty attr', function (done) {
+  it('should parse special empty attr', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {

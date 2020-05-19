@@ -7,14 +7,14 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('<title> be present in <head> tag should not result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('<title> be present in <head> tag should not result in an error', () => {
     const code = '<html><head><title>test</title></head><body></body></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('<title> not be present in <head> tag should result in an error', function () {
+  it('<title> not be present in <head> tag should result in an error', () => {
     let code = '<html><head></head><body></body></html>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -28,13 +28,13 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages.length).to.be(1)
   })
 
-  it('No head should not result in an error', function () {
+  it('No head should not result in an error', () => {
     const code = '<html><body></body></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('<title></title> is empty should result in an error', function () {
+  it('<title></title> is empty should result in an error', () => {
     let code = '<html><head><title></title></head><body></body></html>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)

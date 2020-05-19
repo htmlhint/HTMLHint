@@ -1,12 +1,11 @@
 export default {
   id: 'title-require',
   description: '<title> must be present in <head> tag.',
-  init: function (parser, reporter) {
-    var self = this
+  init(parser, reporter) {
     var headBegin = false
     var hasTitle = false
 
-    function onTagStart(event) {
+    var onTagStart = (event) => {
       var tagName = event.tagName.toLowerCase()
       if (tagName === 'head') {
         headBegin = true
@@ -15,7 +14,7 @@ export default {
       }
     }
 
-    function onTagEnd(event) {
+    var onTagEnd = (event) => {
       var tagName = event.tagName.toLowerCase()
       if (hasTitle && tagName === 'title') {
         var lastEvent = event.lastEvent
@@ -27,7 +26,7 @@ export default {
             '<title></title> must not be empty.',
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         }
@@ -37,7 +36,7 @@ export default {
             '<title> must be present in <head> tag.',
             event.line,
             event.col,
-            self,
+            this,
             event.raw
           )
         }

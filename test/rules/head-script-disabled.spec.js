@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('External script in head should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('External script in head should result in an error', () => {
     const code = '<head><script src="test.js"></script></head>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -18,7 +18,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].type).to.be('warning')
   })
 
-  it('Internal Script in head should result in an error', function () {
+  it('Internal Script in head should result in an error', () => {
     let code = '<head><script>alert(1);</script></head>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -34,13 +34,13 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages.length).to.be(1)
   })
 
-  it('Script in body not result in an error', function () {
+  it('Script in body not result in an error', () => {
     const code = '<head></head><body><script src="test.js"></script></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Template script in head not result in an error', function () {
+  it('Template script in head not result in an error', () => {
     let code =
       '<head><script type="text/template"><img src="test.png" /></script></head>'
     let messages = HTMLHint.verify(code, ruleOptions)
@@ -51,7 +51,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages.length).to.be(0)
   })
 
-  it('No head not result in an error', function () {
+  it('No head not result in an error', () => {
     const code = '<html><script src="test.js"></script></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

@@ -3,8 +3,8 @@ const expect = require('expect.js')
 const ChildProcess = require('child_process')
 const path = require('path')
 
-describe('Executable', function () {
-  it('should close stream before exit', function (done) {
+describe('Executable', () => {
+  it('should close stream before exit', (done) => {
     const c = ChildProcess.spawn('node', [
       path.resolve(__dirname, '../bin/htmlhint'),
       '--format',

@@ -1,10 +1,8 @@
 export default {
   id: 'attr-unsafe-chars',
   description: 'Attribute values cannot contain unsafe chars.',
-  init: function (parser, reporter) {
-    var self = this
-
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       var attrs = event.attrs
       var attr
       var col = event.col + event.tagName.length + 1
@@ -25,7 +23,7 @@ export default {
             `The value of attribute [ ${attr.name} ] cannot contain an unsafe char [ ${unsafeCode} ].`,
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }

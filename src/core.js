@@ -29,30 +29,29 @@ class HTMLHintCore {
     }
 
     // parse inline ruleset
-    html = html.replace(/^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i, function (
-      all,
-      strRuleset
-    ) {
-      if (ruleset === undefined) {
-        ruleset = {}
-      }
-
-      // eslint-disable-next-line no-useless-escape
-      strRuleset.replace(/(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g, function (
-        all,
-        key,
-        value
-      ) {
-        if (value === 'false') {
-          value = false
-        } else if (value === 'true') {
-          value = true
+    html = html.replace(
+      /^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i,
+      (all, strRuleset) => {
+        if (ruleset === undefined) {
+          ruleset = {}
         }
-        ruleset[key] = value === undefined ? true : value
-      })
 
-      return ''
-    })
+        strRuleset.replace(
+          // eslint-disable-next-line no-useless-escape
+          /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
+          (all, key, value) => {
+            if (value === 'false') {
+              value = false
+            } else if (value === 'true') {
+              value = true
+            }
+            ruleset[key] = value === undefined ? true : value
+          }
+        )
+
+        return ''
+      }
+    )
 
     var parser = new HTMLParser()
     var reporter = new Reporter(html, ruleset)

@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('The tag name not all lower case should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('The tag name not all lower case should result in an error', () => {
     const code = '<A href=""></A><SPAN>aab</spaN>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(4)
@@ -26,7 +26,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[3].col).to.be(25)
   })
 
-  it('All lower case tag name should not result in an error', function () {
+  it('All lower case tag name should not result in an error', () => {
     const code = '<a href=""></a><span>test</span>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

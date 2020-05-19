@@ -1,10 +1,8 @@
 export default {
   id: 'src-not-empty',
   description: 'The src attribute of an img(script,link) must have a value.',
-  init: function (parser, reporter) {
-    var self = this
-
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       var tagName = event.tagName
       var attrs = event.attrs
       var attr
@@ -24,7 +22,7 @@ export default {
             `The attribute [ ${attr.name} ] of the tag [ ${tagName} ] must have a value.`,
             event.line,
             col + attr.index,
-            self,
+            this,
             attr.raw
           )
         }

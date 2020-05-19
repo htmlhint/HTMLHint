@@ -14,9 +14,8 @@ class Reporter {
   }
 
   report(type, message, line, col, rule, raw) {
-    var self = this
-    var lines = self.lines
-    var brLen = self.brLen
+    var lines = this.lines
+    var brLen = this.brLen
     var evidence
     var evidenceLen
 
@@ -34,7 +33,7 @@ class Reporter {
       }
     }
 
-    self.messages.push({
+    this.messages.push({
       type: type,
       message: message,
       raw: raw,
