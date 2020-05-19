@@ -17,7 +17,7 @@ const checkstyleFormatter = function (formatter) {
               column: message.col,
               severity: message.type,
               message: message.message,
-              source: 'htmlhint.' + message.rule.id,
+              source: `htmlhint.${message.rule.id}`,
             },
           },
         })

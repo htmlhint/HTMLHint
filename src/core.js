@@ -109,7 +109,7 @@ class HTMLHintCore {
 
       // add ...
       if (leftCol > 1) {
-        evidence = '...' + evidence
+        evidence = `...${evidence}`
         leftCol -= 3
       }
       if (rightCol < evidenceCount) {
@@ -118,14 +118,9 @@ class HTMLHintCore {
 
       // show evidence
       arrLogs.push(
-        colors.white +
-          repeatStr(indent) +
-          'L' +
-          line +
-          ' |' +
-          colors.grey +
-          evidence +
-          colors.reset
+        `${colors.white + repeatStr(indent)}L${line} |${
+          colors.grey
+        }${evidence}${colors.reset}`
       )
 
       // show pointer & message
@@ -138,16 +133,11 @@ class HTMLHintCore {
       }
 
       arrLogs.push(
-        colors.white +
+        `${
+          colors.white +
           repeatStr(indent) +
-          repeatStr(String(line).length + 3 + pointCol) +
-          '^ ' +
-          colors.red +
-          hint.message +
-          ' (' +
-          hint.rule.id +
-          ')' +
-          colors.reset
+          repeatStr(String(line).length + 3 + pointCol)
+        }^ ${colors.red}${hint.message} (${hint.rule.id})${colors.reset}`
       )
     })
 

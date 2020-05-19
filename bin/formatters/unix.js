@@ -7,13 +7,7 @@ const unixFormatter = function (formatter, HTMLHint, options) {
           event.file,
           message.line,
           message.col,
-          ' ' +
-            message.message +
-            ' [' +
-            message.type +
-            '/' +
-            message.rule.id +
-            ']',
+          ` ${message.message} [${message.type}/${message.rule.id}]`,
         ].join(':')
       )
     })

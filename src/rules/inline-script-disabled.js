@@ -15,7 +15,7 @@ export default {
 
         if (reEvent.test(attrName) === true) {
           reporter.warn(
-            'Inline script [ ' + attr.raw + ' ] cannot be used.',
+            `Inline script [ ${attr.raw} ] cannot be used.`,
             event.line,
             col + attr.index,
             this,
@@ -24,7 +24,7 @@ export default {
         } else if (attrName === 'src' || attrName === 'href') {
           if (/^\s*javascript:/i.test(attr.value)) {
             reporter.warn(
-              'Inline script [ ' + attr.raw + ' ] cannot be used.',
+              `Inline script [ ${attr.raw} ] cannot be used.`,
               event.line,
               col + attr.index,
               this,

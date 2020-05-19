@@ -7,7 +7,7 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe('Rules: ' + ruldId, () => {
+describe(`Rules: ${ruldId}`, () => {
   it('Special characters: <> should result in an error', () => {
     const code = '<p>aaa>bbb< ccc</p>ddd\r\neee<'
     const messages = HTMLHint.verify(code, ruleOptions)

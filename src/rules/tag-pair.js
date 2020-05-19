@@ -32,19 +32,17 @@ export default {
       if (pos >= 0) {
         const arrTags = []
         for (let i = stack.length - 1; i > pos; i--) {
-          arrTags.push('</' + stack[i].tagName + '>')
+          arrTags.push(`</${stack[i].tagName}>`)
         }
 
         if (arrTags.length > 0) {
           const lastEvent = stack[stack.length - 1]
           reporter.error(
-            'Tag must be paired, missing: [ ' +
-              arrTags.join('') +
-              ' ], start tag match failed [ ' +
-              lastEvent.raw +
-              ' ] on line ' +
-              lastEvent.line +
-              '.',
+            `Tag must be paired, missing: [ ${arrTags.join(
+              ''
+            )} ], start tag match failed [ ${lastEvent.raw} ] on line ${
+              lastEvent.line
+            }.`,
             event.line,
             event.col,
             this,
@@ -54,7 +52,7 @@ export default {
         stack.length = pos
       } else {
         reporter.error(
-          'Tag must be paired, no start tag: [ ' + event.raw + ' ]',
+          `Tag must be paired, no start tag: [ ${event.raw} ]`,
           event.line,
           event.col,
           this,
@@ -67,19 +65,17 @@ export default {
       const arrTags = []
 
       for (let i = stack.length - 1; i >= 0; i--) {
-        arrTags.push('</' + stack[i].tagName + '>')
+        arrTags.push(`</${stack[i].tagName}>`)
       }
 
       if (arrTags.length > 0) {
         const lastEvent = stack[stack.length - 1]
         reporter.error(
-          'Tag must be paired, missing: [ ' +
-            arrTags.join('') +
-            ' ], open tag match failed [ ' +
-            lastEvent.raw +
-            ' ] on line ' +
-            lastEvent.line +
-            '.',
+          `Tag must be paired, missing: [ ${arrTags.join(
+            ''
+          )} ], open tag match failed [ ${lastEvent.raw} ] on line ${
+            lastEvent.line
+          }.`,
           event.line,
           event.col,
           this,

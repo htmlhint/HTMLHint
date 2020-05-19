@@ -7,7 +7,7 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe('Rules: ' + ruldId, () => {
+describe(`Rules: ${ruldId}`, () => {
   it('Attribute value closed by double quotes should result in an error', () => {
     const code = '<a href="abc" title=abc style="">'
     const messages = HTMLHint.verify(code, ruleOptions)

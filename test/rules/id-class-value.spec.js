@@ -16,7 +16,7 @@ ruleOptionsReg[ruldId] = {
   message: 'Id and class value must meet regexp',
 }
 
-describe('Rules: ' + ruldId, () => {
+describe(`Rules: ${ruldId}`, () => {
   it('Id and class value be not lower case and split by underline should result in an error', () => {
     const code = '<div id="aaaBBB" class="ccc-ddd">'
     const messages = HTMLHint.verify(code, ruleOptionsUnderline)

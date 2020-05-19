@@ -44,11 +44,9 @@ export default {
 
       if (originalAttrs !== JSON.stringify(listOfAttributes)) {
         reporter.error(
-          'Inaccurate order ' +
-            originalAttrs +
-            ' should be in hierarchy ' +
-            JSON.stringify(listOfAttributes) +
-            ' ',
+          `Inaccurate order ${originalAttrs} should be in hierarchy ${JSON.stringify(
+            listOfAttributes
+          )} `,
           event.line,
           event.col,
           this

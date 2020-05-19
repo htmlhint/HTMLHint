@@ -30,9 +30,7 @@ export default {
               whiteSpace.length % spaceLengthRequire !== 0
             ) {
               reporter.warn(
-                'Please use space for indentation and keep ' +
-                  spaceLengthRequire +
-                  ' length.',
+                `Please use space for indentation and keep ${spaceLengthRequire} length.`,
                 fixedPos.line,
                 1,
                 this,

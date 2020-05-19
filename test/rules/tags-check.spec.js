@@ -12,7 +12,7 @@ ruleOptions[ruldId] = {
   },
 }
 
-describe('Rules: ' + ruldId, () => {
+describe(`Rules: ${ruldId}`, () => {
   it('Tag <a> should have requered attrs [title, href]', () => {
     const code = '<a>blabla</a>'
     const messages = HTMLHint.verify(code, ruleOptions)

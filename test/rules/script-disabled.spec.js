@@ -1,9 +1,13 @@
 const expect = require('expect.js')
+
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
+
 const ruldId = 'script-disabled'
 const ruleOptions = {}
+
 ruleOptions[ruldId] = true
-describe('Rules: ' + ruldId, () => {
+
+describe(`Rules: ${ruldId}`, () => {
   it('Add external script file should result in an error', () => {
     const code = '<body><script src="test.js"></script></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
