@@ -12,7 +12,13 @@ module.exports = {
   },
   rules: {
     'arrow-body-style': ['error'],
+    'no-template-curly-in-string': 'error',
+    'no-useless-concat': 'error',
     'one-var': ['error', 'never'],
     'prefer-arrow-callback': ['error', { allowNamedFunctions: true }],
+    'prefer-template': 'error',
+    quotes: ['error', 'single', { avoidEscape: true }],
+    'template-curly-spacing': 'error',
+    'template-tag-spacing': 'error',
   },
 }

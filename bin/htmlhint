@@ -61,7 +61,7 @@ program
     'load custom rules from file or folder'
   )
   .option(
-    '-f, --format <' + arrSupportedFormatters.join('|') + '>',
+    `-f, --format <${arrSupportedFormatters.join('|')}>`,
     'output messages as custom format'
   )
   .option(
@@ -307,12 +307,12 @@ function getGlobInfo(target) {
   } else {
     // no basename
     if (globPath.basename === '') {
-      pattern += '**/' + defaultGlob
+      pattern += `**/${defaultGlob}`
     }
     // detect directory
     else if (fs.existsSync(target) && fs.statSync(target).isDirectory()) {
-      base += globPath.basename + '/'
-      pattern = '**/' + defaultGlob
+      base += `${globPath.basename}/`
+      pattern = `**/${defaultGlob}`
     }
   }
 

@@ -16,7 +16,7 @@ export default {
 
         if (mapAttrName[attrName] === true) {
           reporter.error(
-            'Duplicate of attribute name [ ' + attr.name + ' ] was found.',
+            `Duplicate of attribute name [ ${attr.name} ] was found.`,
             event.line,
             col + attr.index,
             this,

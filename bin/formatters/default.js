@@ -12,7 +12,7 @@ var defaultFormatter = function (formatter, HTMLHint, options) {
   })
 
   formatter.on('file', (event) => {
-    console.log('   ' + event.file.white)
+    console.log(`   ${event.file.white}`)
 
     var arrLogs = HTMLHint.format(event.messages, {
       colors: nocolor ? false : true,

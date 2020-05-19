@@ -13,9 +13,7 @@ export default {
           var match = /(\s*)=(\s*)/.exec(attrs[i].raw.trim())
           if (match && (match[1].length !== 0 || match[2].length !== 0)) {
             reporter.error(
-              "The attribute '" +
-                attrs[i].name +
-                "' must not have spaces between the name and value.",
+              `The attribute '${attrs[i].name}' must not have spaces between the name and value.`,
               event.line,
               col + attrs[i].index,
               this,

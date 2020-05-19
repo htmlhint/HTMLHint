@@ -7,7 +7,7 @@ var ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe('Rules: ' + ruldId, () => {
+describe(`Rules: ${ruldId}`, () => {
   it('Attribute with spaces should result in an error', () => {
     var codes = [
       '<div title = "a" />',

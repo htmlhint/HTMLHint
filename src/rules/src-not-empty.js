@@ -19,11 +19,7 @@ export default {
           attr.value === ''
         ) {
           reporter.error(
-            'The attribute [ ' +
-              attr.name +
-              ' ] of the tag [ ' +
-              tagName +
-              ' ] must have a value.',
+            `The attribute [ ${attr.name} ] of the tag [ ${tagName} ] must have a value.`,
             event.line,
             col + attr.index,
             this,

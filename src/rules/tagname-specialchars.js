@@ -8,9 +8,7 @@ export default {
       var tagName = event.tagName
       if (specialchars.test(tagName)) {
         reporter.error(
-          'The html element name of [ ' +
-            tagName +
-            ' ] contains special character.',
+          `The html element name of [ ${tagName} ] contains special character.`,
           event.line,
           event.col,
           this,
