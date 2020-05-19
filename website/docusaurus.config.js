@@ -30,11 +30,11 @@ module.exports = {
           to: '/docs/user-guide/getting-started',
           position: 'left',
         },
-        // {
-        //   label: 'Playground',
-        //   to: '/playground',
-        //   position: 'left',
-        // },
+        {
+          label: 'Playground',
+          href: 'https://htmlhint-playground.netlify.app',
+          position: 'left',
+        },
         {
           href: 'https://github.com/HTMLHint/HTMLHint',
           label: 'GitHub',
@@ -76,8 +76,7 @@ module.exports = {
     },
   },
   plugins: [
-    '@docusaurus/plugin-google-analytics',
-    // path.resolve(__dirname, './plugins/docusaurus-plugin-hotjar'),
+    path.resolve(__dirname, './plugins/docusaurus-plugin-hotjar'),
     [
       '@docusaurus/plugin-sitemap',
       {
