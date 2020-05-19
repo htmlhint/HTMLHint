@@ -248,10 +248,10 @@ function hintAllFiles(target, options, onFinised) {
   // start hint
   var isWalkDone = false
   var isHintDone = true
-  hintQueue.drain = function () {
+  hintQueue.drain(() => {
     isHintDone = true
     checkAllHinted()
-  }
+  })
 
   function checkAllHinted() {
     if (isWalkDone && isHintDone) {
