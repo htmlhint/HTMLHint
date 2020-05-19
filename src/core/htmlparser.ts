@@ -28,9 +28,9 @@ class HTMLParser {
   parse(html: string) {
     const mapCdataTags = this._mapCdataTags
 
-    // eslint-disable-next-line no-control-regex, no-useless-escape
+    // eslint-disable-next-line no-control-regex
     const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
-    // eslint-disable-next-line no-control-regex, no-useless-escape
+    // eslint-disable-next-line no-control-regex
     const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
     const regLine = /\r?\n/g
 

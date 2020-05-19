@@ -30,8 +30,8 @@
     "build:rollup": "npm run build:min && npm run build:unmin",
     "build:min": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js",
     "build:unmin": "rollup -c",
-    "lint": "eslint src/ test/ bin/ --ext .js --max-warnings 0",
-    "lint:fix": "eslint --fix src/ test/ bin/ --ext .js --max-warnings 0"
+    "lint": "eslint . --ext .js,.ts",
+    "lint:fix": "eslint --fix . --ext .js,.ts --max-warnings 0"
   },
   "husky": {
     "hooks": {
@@ -84,6 +84,8 @@
     "@types/parse-glob": "3.0.29",
     "@types/request": "2.48.5",
     "@types/xml": "1.0.4",
+    "@typescript-eslint/eslint-plugin": "2.34.0",
+    "@typescript-eslint/parser": "2.34.0",
     "commitizen": "4.1.2",
     "commitlint": "8.3.5",
     "eslint": "7.0.0",

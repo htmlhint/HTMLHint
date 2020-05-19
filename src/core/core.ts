@@ -41,7 +41,6 @@ class HTMLHintCore {
         }
 
         strRuleset.replace(
-          // eslint-disable-next-line no-useless-escape
           /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
           (all, key, value) => {
             if (value === 'false') {

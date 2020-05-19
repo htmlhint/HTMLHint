@@ -7,7 +7,6 @@ export default {
     parser.addListener('text', (event) => {
       const raw = event.raw
       // TODO: improve use-cases for &
-      // eslint-disable-next-line no-useless-escape
       const reSpecChar = /([<>])|( \& )/g
       let match
 

@@ -29,10 +29,12 @@ const tagsTypings = {
   },
 }
 
-const assign = function (target) {
+const assign = function (target: typeof tagsTypings) {
   let _source
 
   for (let i = 1; i < arguments.length; i++) {
+    // TODO: fix this prefer-rest-params after typescript migration
+    // eslint-disable-next-line prefer-rest-params
     _source = arguments[i]
     for (const prop in _source) {
       target[prop] = _source[prop]
