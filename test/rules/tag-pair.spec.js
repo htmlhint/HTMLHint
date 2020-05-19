@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('No end tag should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('No end tag should result in an error', () => {
     let code = '<ul><li></ul><span>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(2)
@@ -26,7 +26,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].col).to.be(9)
   })
 
-  it('No start tag should result in an error', function () {
+  it('No start tag should result in an error', () => {
     const code = '</div>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -35,7 +35,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].col).to.be(1)
   })
 
-  it('Tag be paired should not result in an error', function () {
+  it('Tag be paired should not result in an error', () => {
     const code = '<p>aaa</p>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

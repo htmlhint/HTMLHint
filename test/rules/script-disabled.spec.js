@@ -3,8 +3,8 @@ var HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 var ruldId = 'script-disabled'
 var ruleOptions = {}
 ruleOptions[ruldId] = true
-describe('Rules: ' + ruldId, function () {
-  it('Add external script file should result in an error', function () {
+describe('Rules: ' + ruldId, () => {
+  it('Add external script file should result in an error', () => {
     var code = '<body><script src="test.js"></script></body>'
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -13,7 +13,7 @@ describe('Rules: ' + ruldId, function () {
     expect(messages[0].col).to.be(7)
     expect(messages[0].type).to.be('error')
   })
-  it('Add inline script should result in an error', function () {
+  it('Add inline script should result in an error', () => {
     var code = '<body><script>var test = "test";</script></body>'
     var messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)

@@ -2,9 +2,8 @@ export default {
   id: 'alt-require',
   description:
     'The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.',
-  init: function (parser, reporter) {
-    var self = this
-    parser.addListener('tagstart', function (event) {
+  init(parser, reporter) {
+    parser.addListener('tagstart', (event) => {
       var tagName = event.tagName.toLowerCase()
       var mapAttrs = parser.getMapAttrs(event.attrs)
       var col = event.col + tagName.length + 1
@@ -15,7 +14,7 @@ export default {
           'An alt attribute must be present on <img> elements.',
           event.line,
           col,
-          self,
+          this,
           event.raw
         )
       } else if (
@@ -28,7 +27,7 @@ export default {
             'The alt attribute of ' + selector + ' must have a value.',
             event.line,
             col,
-            self,
+            this,
             event.raw
           )
         }

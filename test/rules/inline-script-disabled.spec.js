@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Inline on event should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Inline on event should result in an error', () => {
     const code =
       '<body><img src="test.gif" onclick="alert(1);"><img src="test.gif" onMouseDown="alert(1);"></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -20,13 +20,13 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[1].col).to.be(66)
   })
 
-  it('onttt should not result in an error', function () {
+  it('onttt should not result in an error', () => {
     const code = '<body><img src="test.gif" onttt="alert(1);"></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Javascript protocol [ javascript: ] should result in an error', function () {
+  it('Javascript protocol [ javascript: ] should result in an error', () => {
     let code =
       '<body><img src="javascript:alert(1)"><img src=" JAVASCRIPT:alert(1)"></body>'
     let messages = HTMLHint.verify(code, ruleOptions)

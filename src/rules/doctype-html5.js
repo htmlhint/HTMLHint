@@ -1,10 +1,8 @@
 export default {
   id: 'doctype-html5',
   description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
-  init: function (parser, reporter) {
-    var self = this
-
-    function onComment(event) {
+  init(parser, reporter) {
+    var onComment = (event) => {
       if (
         event.long === false &&
         event.content.toLowerCase() !== 'doctype html'
@@ -13,13 +11,13 @@ export default {
           'Invalid doctype. Use: "<!DOCTYPE html>"',
           event.line,
           event.col,
-          self,
+          this,
           event.raw
         )
       }
     }
 
-    function onTagStart() {
+    var onTagStart = () => {
       parser.removeListener('comment', onComment)
       parser.removeListener('tagstart', onTagStart)
     }

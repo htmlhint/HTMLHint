@@ -15,8 +15,8 @@ ruleSpace4Options[ruldId] = 'space4'
 ruleSpace5Options[ruldId] = 'space5'
 ruleTabOptions[ruldId] = 'tab'
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Spaces and tabs mixed in front of line should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Spaces and tabs mixed in front of line should result in an error', () => {
     // space before tab
     let code = '    	<a href="a">      bbb</a>'
     let messages = HTMLHint.verify(code, ruleMixOptions)
@@ -40,7 +40,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].col).to.be(1)
   })
 
-  it('Only spaces in front of line should not result in an error', function () {
+  it('Only spaces in front of line should not result in an error', () => {
     let code = '     <a href="a">      bbb</a>'
     let messages = HTMLHint.verify(code, ruleMixOptions)
     expect(messages.length).to.be(0)
@@ -50,13 +50,13 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages.length).to.be(0)
   })
 
-  it('Only tabs in front of line should not result in an error', function () {
+  it('Only tabs in front of line should not result in an error', () => {
     const code = '			<a href="a">      bbb</a>'
     const messages = HTMLHint.verify(code, ruleMixOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Not only space in front of line should result in an error', function () {
+  it('Not only space in front of line should result in an error', () => {
     // mixed 1
     let code = '    	<a href="a">      bbb</a>'
     let messages = HTMLHint.verify(code, ruleSpaceOptions)
@@ -73,7 +73,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages.length).to.be(1)
   })
 
-  it('Not only space and 4 length in front of line should result in an error', function () {
+  it('Not only space and 4 length in front of line should result in an error', () => {
     const code = '     <a href="a">      bbb</a>'
     const messages = HTMLHint.verify(code, ruleSpace4Options)
     expect(messages.length).to.be(1)
@@ -82,13 +82,13 @@ describe(`Rules: ${ruldId}`, function () {
     )
   })
 
-  it('Only space and 4 length in front of line should not result in an error', function () {
+  it('Only space and 4 length in front of line should not result in an error', () => {
     const code = '        <a href="a">      bbb</a>'
     const messages = HTMLHint.verify(code, ruleSpace4Options)
     expect(messages.length).to.be(0)
   })
 
-  it('Not only space and 5 length in front of line should result in an error', function () {
+  it('Not only space and 5 length in front of line should result in an error', () => {
     const code = '      <a href="a">      bbb</a>'
     const messages = HTMLHint.verify(code, ruleSpace5Options)
     expect(messages.length).to.be(1)
@@ -97,19 +97,19 @@ describe(`Rules: ${ruldId}`, function () {
     )
   })
 
-  it('Only space and 5 length in front of line should not result in an error', function () {
+  it('Only space and 5 length in front of line should not result in an error', () => {
     const code = '          <a href="a">      bbb</a>'
     const messages = HTMLHint.verify(code, ruleSpace5Options)
     expect(messages.length).to.be(0)
   })
 
-  it('Only space in front of line should not result in an error', function () {
+  it('Only space in front of line should not result in an error', () => {
     const code = '            <a href="a">      bbb</a>'
     const messages = HTMLHint.verify(code, ruleSpaceOptions)
     expect(messages.length).to.be(0)
   })
 
-  it('Not only tab in front of line should result in an error', function () {
+  it('Not only tab in front of line should result in an error', () => {
     // mixed 1
     let code = '	    <a href="a">      bbb</a>'
     let messages = HTMLHint.verify(code, ruleTabOptions)
@@ -126,7 +126,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages.length).to.be(1)
   })
 
-  it('Only tab in front of line should not result in an error', function () {
+  it('Only tab in front of line should not result in an error', () => {
     // only tab
     const code = '		<a href="a">      bbb</a>'
     const messages = HTMLHint.verify(code, ruleTabOptions)

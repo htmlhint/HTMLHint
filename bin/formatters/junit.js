@@ -1,11 +1,11 @@
 var xml = require('xml')
 
 var junitFormatter = function (formatter, HTMLHint) {
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     var arrTestcase = []
     var arrAllMessages = event.arrAllMessages
 
-    arrAllMessages.forEach(function (fileInfo) {
+    arrAllMessages.forEach((fileInfo) => {
       var arrMessages = fileInfo.messages
       var arrLogs = HTMLHint.format(arrMessages)
 

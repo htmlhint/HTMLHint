@@ -5,8 +5,8 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'href-abs-or-rel'
 const ruleOptions = {}
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Href value is not absolute with abs mode should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Href value is not absolute with abs mode should result in an error', () => {
     const code =
       '<a href="a.html">aaa</a><a href="../b.html">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = 'abs'
@@ -20,7 +20,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[1].col).to.be(27)
   })
 
-  it('Href value is absolute with abs mode should not result in an error', function () {
+  it('Href value is absolute with abs mode should not result in an error', () => {
     const code =
       '<a href="http://www.alibaba.com/">aaa</a><a href="https://www.alibaba.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = 'abs'
@@ -28,7 +28,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages.length).to.be(0)
   })
 
-  it('Href value is not relative with rel mode should result in an error', function () {
+  it('Href value is not relative with rel mode should result in an error', () => {
     const code =
       '<a href="http://www.alibaba.com/">aaa</a><a href="https://www.alibaba.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = 'rel'
@@ -42,7 +42,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[1].col).to.be(44)
   })
 
-  it('Href value is relative with rel mode should not result in an error', function () {
+  it('Href value is relative with rel mode should not result in an error', () => {
     const code =
       '<a href="a.html">aaa</a><a href="../b.html">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = 'rel'

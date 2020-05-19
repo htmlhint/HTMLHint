@@ -7,8 +7,8 @@ const ruleOptions = {}
 
 ruleOptions[ruldId] = true
 
-describe(`Rules: ${ruldId}`, function () {
-  it('Doctype not be first should result in an error', function () {
+describe(`Rules: ${ruldId}`, () => {
+  it('Doctype not be first should result in an error', () => {
     const code = '<html></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
@@ -17,7 +17,7 @@ describe(`Rules: ${ruldId}`, function () {
     expect(messages[0].col).to.be(1)
   })
 
-  it('Doctype be first should not result in an error', function () {
+  it('Doctype be first should not result in an error', () => {
     const code = '<!DOCTYPE HTML><html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

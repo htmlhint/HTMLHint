@@ -1,8 +1,8 @@
 var compactFormatter = function (formatter, HTMLHint, options) {
   var nocolor = options.nocolor
 
-  formatter.on('file', function (event) {
-    event.messages.forEach(function (message) {
+  formatter.on('file', (event) => {
+    event.messages.forEach((message) => {
       console.log(
         '%s: line %d, col %d, %s - %s (%s)',
         event.file,
@@ -15,7 +15,7 @@ var compactFormatter = function (formatter, HTMLHint, options) {
     })
   })
 
-  formatter.on('end', function (event) {
+  formatter.on('end', (event) => {
     var allHintCount = event.allHintCount
     if (allHintCount > 0) {
       console.log('')

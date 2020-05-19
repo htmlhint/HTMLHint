@@ -1,10 +1,8 @@
 export default {
   id: 'doctype-first',
   description: 'Doctype must be declared first.',
-  init: function (parser, reporter) {
-    var self = this
-
-    var allEvent = function (event) {
+  init(parser, reporter) {
+    var allEvent = (event) => {
       if (
         event.type === 'start' ||
         (event.type === 'text' && /^\s*$/.test(event.raw))
@@ -20,7 +18,7 @@ export default {
           'Doctype must be declared first.',
           event.line,
           event.col,
-          self,
+          this,
           event.raw
         )
       }
