@@ -13,4 +13,4 @@ cp -r ./build/bin/* ./bin/
 mv ./bin/htmlhint.js ./bin/htmlhint
 
 # Build core
-npm run build
+npm run build:rollup
