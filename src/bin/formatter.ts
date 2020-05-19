@@ -1,14 +1,15 @@
 import * as path from 'path'
 import * as events from 'events'
 import * as glob from 'glob'
+// @ts-expect-error
 path.parse = path.parse || require('path-parse')
 
-let HTMLHint
-let options
+let HTMLHint: any
+let options: any
 
 // load formatters
 const mapFormatters = loadFormatters()
-const arrSupportedFormatters = []
+const arrSupportedFormatters: string[] = []
 
 for (const formatterName in mapFormatters) {
   if (formatterName !== 'default') {
@@ -26,7 +27,7 @@ function loadFormatters() {
     silent: true,
   })
 
-  const mapFormatters = {}
+  const mapFormatters: { [name: string]: any } = {}
   arrFiles.forEach((file) => {
     const fileInfo = path.parse(file)
     const formatterPath = path.resolve(__dirname, file)
@@ -36,18 +37,18 @@ function loadFormatters() {
   return mapFormatters
 }
 
-const formatter = new events.EventEmitter()
+const formatter: any = new events.EventEmitter()
 
 formatter.getSupported = function () {
   return arrSupportedFormatters
 }
 
-formatter.init = function (tmpHTMLHint, tmpOptions) {
+formatter.init = function (tmpHTMLHint: any, tmpOptions: any) {
   HTMLHint = tmpHTMLHint
   options = tmpOptions
 }
 
-formatter.setFormat = function (format) {
+formatter.setFormat = function (format: string) {
   const formatHandel = mapFormatters[format]
 
   if (formatHandel === undefined) {
