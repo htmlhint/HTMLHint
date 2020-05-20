@@ -1,19 +1,22 @@
 #!/usr/bin/env node
 
-import * as program from 'commander'
-import * as fs from 'fs'
-import * as path from 'path'
-import * as stripJsonComments from 'strip-json-comments'
 import * as async from 'async'
+import 'colors'
+import * as program from 'commander'
+import { EventEmitter } from 'events'
+import * as fs from 'fs'
 import * as glob from 'glob'
 import * as parseGlob from 'parse-glob'
+import * as path from 'path'
 import * as request from 'request'
+import * as stripJsonComments from 'strip-json-comments'
+import type { HTMLHint as IHTMLHint } from '../core/core'
+import type { Formatter } from './formatter'
 
-const HTMLHint = require('../dist/htmlhint.js').HTMLHint
-const formatter = require('./formatter')
+const HTMLHint: typeof IHTMLHint = require('../dist/htmlhint.js').HTMLHint
+const formatter: Formatter = require('./formatter')
+
 const pkg = require('../package.json')
-
-import 'colors'
 
 function map(val: string) {
   const objMap: { [name: string]: string | true } = {}
@@ -113,7 +116,10 @@ function listRules() {
   }
 }
 
-function hintTargets(arrTargets, options) {
+function hintTargets(
+  arrTargets,
+  options: { formatter: EventEmitter; rulesdir?: string }
+) {
   let arrAllMessages = []
   let allFileCount = 0
   let allHintFileCount = 0
@@ -131,9 +137,9 @@ function hintTargets(arrTargets, options) {
   // start hint
   formatter.emit('start')
 
-  const arrTasks = []
+  const arrTasks: Array<(next: () => void) => void> = []
   arrTargets.forEach((target) => {
-    arrTasks.push((next: () => void) => {
+    arrTasks.push((next) => {
       hintAllFiles(target, options, (result) => {
         allFileCount += result.targetFileCount
         allHintFileCount += result.targetHintFileCount
@@ -159,7 +165,7 @@ function hintTargets(arrTargets, options) {
 }
 
 // load custom rles
-function loadCustomRules(rulesdir) {
+function loadCustomRules(rulesdir: string) {
   rulesdir = rulesdir.replace(/\\/g, '/')
   if (fs.existsSync(rulesdir)) {
     if (fs.statSync(rulesdir).isDirectory()) {
@@ -181,7 +187,7 @@ function loadCustomRules(rulesdir) {
 }
 
 // load rule
-function loadRule(filepath) {
+function loadRule(filepath: string) {
   filepath = path.resolve(filepath)
   try {
     const module = require(filepath)
@@ -192,7 +198,20 @@ function loadRule(filepath) {
 }
 
 // hint all files
-function hintAllFiles(target, options, onFinised) {
+function hintAllFiles(
+  target,
+  options: {
+    ignore
+    formatter: EventEmitter
+    ruleset
+  },
+  onFinised: (result: {
+    targetFileCount: number
+    targetHintFileCount: number
+    targetHintCount: number
+    arrTargetMessages
+  }) => void
+) {
   const globInfo = getGlobInfo(target)
   globInfo.ignore = options.ignore
 

@@ -1,10 +1,11 @@
 import { EventEmitter } from 'events'
 import * as glob from 'glob'
 import * as path from 'path'
+import type { HTMLHint as IHTMLHint } from '../core/core'
 // @ts-expect-error
 path.parse = path.parse || require('path-parse')
 
-let HTMLHint: any
+let HTMLHint: typeof IHTMLHint
 let options: any
 
 // load formatters
@@ -37,18 +38,24 @@ function loadFormatters() {
   return mapFormatters
 }
 
-const formatter: any = new EventEmitter()
+export interface Formatter extends EventEmitter {
+  getSupported(): typeof arrSupportedFormatters
+  init(tmpHTMLHint: typeof IHTMLHint, tmpOptions: { nocolor?: boolean }): void
+  setFormat(format: string): void
+}
+
+const formatter: Formatter = new EventEmitter() as Formatter
 
 formatter.getSupported = function () {
   return arrSupportedFormatters
 }
 
-formatter.init = function (tmpHTMLHint: any, tmpOptions: any) {
+formatter.init = function (tmpHTMLHint, tmpOptions) {
   HTMLHint = tmpHTMLHint
   options = tmpOptions
 }
 
-formatter.setFormat = function (format: string) {
+formatter.setFormat = function (format) {
   const formatHandel = mapFormatters[format]
 
   if (formatHandel === undefined) {
