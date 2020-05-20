@@ -1,11 +1,16 @@
+import { Block } from '../htmlparser'
 import { Rule } from '../types'
 
 export default {
   id: 'input-requires-label',
   description: 'All [ input ] tags must have a corresponding [ label ] tag. ',
   init(parser, reporter) {
-    const labelTags = []
-    const inputTags = []
+    const labelTags: Array<{
+      event: Block
+      col: number
+      forValue?: string
+    }> = []
+    const inputTags: Array<{ event: Block; col: number; id?: string }> = []
 
     parser.addListener('tagstart', (event) => {
       const tagName = event.tagName.toLowerCase()
@@ -37,7 +42,7 @@ export default {
       })
     })
 
-    function hasMatchingLabelTag(inputTag) {
+    function hasMatchingLabelTag(inputTag: { id?: string }) {
       let found = false
       labelTags.forEach((labelTag) => {
         if (inputTag.id && inputTag.id === labelTag.forValue) {

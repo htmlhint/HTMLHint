@@ -1,3 +1,4 @@
+import { Listener } from '../htmlparser'
 import { Rule } from '../types'
 
 export default {
@@ -7,7 +8,7 @@ export default {
     const reScript = /^(text\/javascript|application\/javascript)$/i
     let isInHead = false
 
-    const onTagStart = (event) => {
+    const onTagStart: Listener = (event) => {
       const mapAttrs = parser.getMapAttrs(event.attrs)
       const type = mapAttrs.type
       const tagName = event.tagName.toLowerCase()
@@ -31,7 +32,7 @@ export default {
       }
     }
 
-    const onTagEnd = (event) => {
+    const onTagEnd: Listener = (event) => {
       if (event.tagName.toLowerCase() === 'head') {
         parser.removeListener('tagstart', onTagStart)
         parser.removeListener('tagend', onTagEnd)

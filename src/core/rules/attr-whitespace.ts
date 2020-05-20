@@ -5,7 +5,9 @@ export default {
   description:
     'All attributes should be separated by only one space and not have leading/trailing whitespace.',
   init(parser, reporter, options) {
-    const exceptions = Array.isArray(options) ? options : []
+    const exceptions: Array<string | boolean> = Array.isArray(options)
+      ? options
+      : []
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
@@ -20,7 +22,8 @@ export default {
           return
         }
 
-        //Check first and last characters for spaces
+        // Check first and last characters for spaces
+        // TODO: trim() shouldn't get passed the value
         if (elem.value.trim(elem.value) !== elem.value) {
           reporter.error(
             `The attributes of [ ${attrName} ] must not have trailing whitespace.`,

@@ -1,5 +1,13 @@
 import { Hint, ReportType, Rule, Ruleset } from './types'
 
+type ReportCallback = (
+  message: string,
+  line: number,
+  col: number,
+  rule: Rule,
+  raw: string
+) => void
+
 class Reporter {
   html: string
   lines: string[]
@@ -7,9 +15,9 @@ class Reporter {
   ruleset: Ruleset
   messages: Hint[]
 
-  error: (message: any, line: number, col: number, rule: Rule, raw: any) => void
-  warn: (message: any, line: number, col: number, rule: Rule, raw: any) => void
-  info: (message: any, line: number, col: number, rule: Rule, raw: any) => void
+  error: ReportCallback
+  warn: ReportCallback
+  info: ReportCallback
 
   constructor(html: string, ruleset: Ruleset) {
     this.html = html
@@ -27,11 +35,11 @@ class Reporter {
 
   report(
     type: ReportType,
-    message,
+    message: string,
     line: number,
     col: number,
     rule: Rule,
-    raw
+    raw: string
   ) {
     const lines = this.lines
     const brLen = this.brLen

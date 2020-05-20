@@ -4,7 +4,7 @@ export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
   init(parser, reporter) {
-    const orderMap = {}
+    const orderMap: { [key: string]: number } = {}
     const sortOrder = [
       'class',
       'id',
@@ -45,6 +45,7 @@ export default {
       })
 
       if (originalAttrs !== JSON.stringify(listOfAttributes)) {
+        // TODO: This should be called with a 5th argument (raw)
         reporter.error(
           `Inaccurate order ${originalAttrs} should be in hierarchy ${JSON.stringify(
             listOfAttributes

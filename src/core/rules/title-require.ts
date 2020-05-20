@@ -1,3 +1,4 @@
+import { Block, Listener } from '../htmlparser'
 import { Rule } from '../types'
 
 export default {
@@ -7,7 +8,7 @@ export default {
     let headBegin = false
     let hasTitle = false
 
-    const onTagStart = (event) => {
+    const onTagStart: Listener = (event) => {
       const tagName = event.tagName.toLowerCase()
       if (tagName === 'head') {
         headBegin = true
@@ -16,7 +17,7 @@ export default {
       }
     }
 
-    const onTagEnd = (event) => {
+    const onTagEnd: Listener = (event) => {
       const tagName = event.tagName.toLowerCase()
       if (hasTitle && tagName === 'title') {
         const lastEvent = event.lastEvent

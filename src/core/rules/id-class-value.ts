@@ -5,7 +5,7 @@ export default {
   description:
     'The id and class attribute values must meet the specified rules.',
   init(parser, reporter, options) {
-    const arrRules = {
+    const arrRules: { [option: string]: { regId: RegExp; message: string } } = {
       underline: {
         regId: /^[a-z\d]+(_[a-z\d]+)*$/,
         message:
@@ -22,7 +22,7 @@ export default {
           'The id and class attribute values must meet the camelCase style.',
       },
     }
-    let rule
+    let rule: { regId: RegExp; message: string } | boolean
 
     if (typeof options === 'string') {
       rule = arrRules[options]
@@ -30,6 +30,7 @@ export default {
       rule = options
     }
 
+    // TODO: we should check this in another way
     if (rule && rule.regId) {
       let regId = rule.regId
       const message = rule.message

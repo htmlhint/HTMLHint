@@ -5,7 +5,7 @@ export default {
   description: 'Do not mix tabs and spaces for indentation.',
   init(parser, reporter, options) {
     let indentMode = 'nomix'
-    let spaceLengthRequire = null
+    let spaceLengthRequire: number | '' | null = null
 
     if (typeof options === 'string') {
       const match = options.match(/^([a-z]+)(\d+)?/)

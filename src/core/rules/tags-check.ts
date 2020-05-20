@@ -29,7 +29,7 @@ const tagsTypings = {
   },
 }
 
-const assign = function (target: typeof tagsTypings) {
+const assign = function (target: { [prop: string]: unknown }) {
   let _source
 
   for (let i = 1; i < arguments.length; i++) {

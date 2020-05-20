@@ -1,10 +1,11 @@
+import { Listener } from '../htmlparser'
 import { Rule } from '../types'
 
 export default {
   id: 'doctype-first',
   description: 'Doctype must be declared first.',
   init(parser, reporter) {
-    const allEvent = (event) => {
+    const allEvent: Listener = (event) => {
       if (
         event.type === 'start' ||
         (event.type === 'text' && /^\s*$/.test(event.raw))

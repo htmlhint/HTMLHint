@@ -1,10 +1,11 @@
+import { Block } from '../htmlparser'
 import { Rule } from '../types'
 
 export default {
   id: 'tag-pair',
   description: 'Tag must be paired.',
   init(parser, reporter) {
-    const stack = []
+    const stack: Array<Partial<Block>> = []
     const mapEmptyTags = parser.makeMap(
       'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
     ) //HTML 4.01 + HTML 5

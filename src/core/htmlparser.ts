@@ -1,11 +1,33 @@
-import { Hint } from './types'
+export interface Attr {
+  name: string
+  value: string
+  quote: string
+  index: number
+  raw: string
+}
+
+export interface Block {
+  tagName: string
+  attrs: Attr[]
+  type: string
+  raw: string
+  pos: number
+  line: number
+  col: number
+  content: string
+  long: boolean
+  close: string
+  lastEvent?: Partial<Block>
+}
+
+export type Listener = (event: Block) => void
 
 class HTMLParser {
-  public lastEvent: null
+  public lastEvent: Partial<Block> | null
 
-  private _listeners: { [type: string]: any }
+  private _listeners: { [type: string]: Listener[] }
   private _mapCdataTags: { [tagName: string]: boolean }
-  private _arrBlocks: any[]
+  private _arrBlocks: Array<Partial<Block>>
 
   constructor() {
     this._listeners = {}
@@ -38,21 +60,9 @@ class HTMLParser {
     let matchIndex: number
     let lastIndex = 0
     let tagName: string
-    let arrAttrs: Array<{
-      name: string
-      value: string
-      quote: string
-      index: number
-      raw: string
-    }>
+    let arrAttrs: Attr[]
     let tagCDATA: string | null
-    let attrsCDATA: Array<{
-      name: string
-      value: string
-      quote: string
-      index: number
-      raw: string
-    }> | null
+    let attrsCDATA: Attr[] | null
     let arrCDATA: string[] | null
     let lastCDATAIndex = 0
     let text: string
@@ -67,7 +77,12 @@ class HTMLParser {
     })
 
     // Memory block
-    const saveBlock = (type: string, raw: string, pos: number, data?: any) => {
+    const saveBlock = (
+      type: string,
+      raw: string,
+      pos: number,
+      data?: Partial<Block>
+    ) => {
       const col = pos - lastLineIndex + 1
       if (data === undefined) {
         data = {}
@@ -198,22 +213,7 @@ class HTMLParser {
     })
   }
 
-  addListener(
-    types: string,
-    listener: (event: {
-      tagName: string
-      attrs: Array<{
-        name: string
-        value: any
-        index: number
-        raw: string
-        quote: string
-      }>
-      col: number
-      line: number
-      raw: string
-    }) => void
-  ) {
+  addListener(types: string, listener: Listener) {
     const _listeners = this._listeners
     const arrTypes = types.split(/[,\s]/)
     let type
@@ -227,13 +227,13 @@ class HTMLParser {
     }
   }
 
-  fire(type: string, data: any) {
+  fire(type: string, data?: Partial<Block>) {
     if (data === undefined) {
       data = {}
     }
     data.type = type
 
-    let listeners: any[] = []
+    let listeners: Listener[] = []
     const listenersType = this._listeners[type]
     const listenersAll = this._listeners['all']
 
@@ -257,8 +257,8 @@ class HTMLParser {
     }
   }
 
-  removeListener(type: string, listener: string) {
-    const listenersType: string[] | undefined = this._listeners[type]
+  removeListener(type: string, listener: Listener) {
+    const listenersType: Listener[] | undefined = this._listeners[type]
     if (listenersType !== undefined) {
       for (let i = 0, l = listenersType.length; i < l; i++) {
         if (listenersType[i] === listener) {
@@ -269,7 +269,7 @@ class HTMLParser {
     }
   }
 
-  fixPos(event: Hint, index: number) {
+  fixPos(event: Block, index: number) {
     const text = event.raw.substr(0, index)
     const arrLines = text.split(/\r?\n/)
     const lineCount = arrLines.length - 1
@@ -289,9 +289,9 @@ class HTMLParser {
     }
   }
 
-  getMapAttrs(arrAttrs: Array<{ name: string; value: any }>) {
-    const mapAttrs: { [name: string]: any } = {}
-    let attr
+  getMapAttrs(arrAttrs: Attr[]) {
+    const mapAttrs: { [name: string]: string } = {}
+    let attr: Attr
 
     for (let i = 0, l = arrAttrs.length; i < l; i++) {
       attr = arrAttrs[i]
