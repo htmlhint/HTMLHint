@@ -1,7 +1,7 @@
-import { EventEmitter } from 'events'
 import * as xml from 'xml'
+import { FormatterCallback } from '../formatter'
 
-const checkstyleFormatter = function (formatter: EventEmitter) {
+const checkstyleFormatter: FormatterCallback = function (formatter) {
   formatter.on('end', (event) => {
     const arrFiles = []
     const arrAllMessages = event.arrAllMessages

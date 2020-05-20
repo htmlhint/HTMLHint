@@ -1,9 +1,9 @@
-import { EventEmitter } from 'events'
+import { FormatterCallback } from '../formatter'
 
-const unixFormatter = function (
-  formatter: EventEmitter,
+const unixFormatter: FormatterCallback = function (
+  formatter,
   HTMLHint,
-  options: { nocolor?: boolean }
+  options
 ) {
   const nocolor = options.nocolor
   formatter.on('file', (event) => {

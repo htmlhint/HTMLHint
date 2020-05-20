@@ -1,6 +1,6 @@
-import { EventEmitter } from 'events'
+import { FormatterCallback } from '../formatter'
 
-const markdownFormatter = function (formatter: EventEmitter, HTMLHint) {
+const markdownFormatter: FormatterCallback = function (formatter, HTMLHint) {
   formatter.on('end', (event) => {
     console.log('# TOC')
 

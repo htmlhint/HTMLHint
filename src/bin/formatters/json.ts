@@ -1,6 +1,6 @@
-import { EventEmitter } from 'events'
+import { FormatterCallback } from '../formatter'
 
-const jsonFormatter = function (formatter: EventEmitter) {
+const jsonFormatter: FormatterCallback = function (formatter) {
   formatter.on('end', (event) => {
     console.log(JSON.stringify(event.arrAllMessages))
   })

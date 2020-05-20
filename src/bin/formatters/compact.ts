@@ -1,9 +1,9 @@
-import { EventEmitter } from 'events'
+import { FormatterCallback } from '../formatter'
 
-const compactFormatter = function (
-  formatter: EventEmitter,
+const compactFormatter: FormatterCallback = function (
+  formatter,
   HTMLHint,
-  options: { nocolor?: boolean }
+  options
 ) {
   const nocolor = options.nocolor
 

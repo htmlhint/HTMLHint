@@ -1,7 +1,7 @@
 import * as fs from 'fs'
-import { EventEmitter } from 'events'
+import { FormatterCallback } from '../formatter'
 
-const htmlFormatter = function (formatter: EventEmitter) {
+const htmlFormatter: FormatterCallback = function (formatter) {
   formatter.on('end', (event) => {
     let fileContent = '<html>'
     fileContent += '<head><title>HTML Hint Violation Report</title></head>'

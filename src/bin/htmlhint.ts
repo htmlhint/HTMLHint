@@ -3,7 +3,6 @@
 import * as async from 'async'
 import 'colors'
 import * as program from 'commander'
-import { EventEmitter } from 'events'
 import * as fs from 'fs'
 import * as glob from 'glob'
 import * as parseGlob from 'parse-glob'
@@ -11,7 +10,8 @@ import * as path from 'path'
 import * as request from 'request'
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
-import type { Formatter } from './formatter'
+import type { Hint, Ruleset } from '../core/types'
+import { Formatter } from './formatter'
 
 const HTMLHint: typeof IHTMLHint = require('../dist/htmlhint.js').HTMLHint
 const formatter: Formatter = require('./formatter')
@@ -117,10 +117,19 @@ function listRules() {
 }
 
 function hintTargets(
-  arrTargets,
-  options: { formatter: EventEmitter; rulesdir?: string }
+  arrTargets: string[],
+  options: {
+    formatter: Formatter
+    ruleset?: Ruleset
+    rulesdir?: string
+    ignore?: string
+  }
 ) {
-  let arrAllMessages = []
+  let arrAllMessages: Array<{
+    file: string
+    messages: Hint[]
+    time: number
+  }> = []
   let allFileCount = 0
   let allHintFileCount = 0
   let allHintCount = 0
@@ -199,17 +208,21 @@ function loadRule(filepath: string) {
 
 // hint all files
 function hintAllFiles(
-  target,
+  target: string,
   options: {
-    ignore
-    formatter: EventEmitter
-    ruleset
+    ignore?: string
+    formatter: Formatter
+    ruleset?: Ruleset
   },
   onFinised: (result: {
     targetFileCount: number
     targetHintFileCount: number
     targetHintCount: number
-    arrTargetMessages
+    arrTargetMessages: Array<{
+      file: string
+      messages: Hint[]
+      time: number
+    }>
   }) => void
 ) {
   const globInfo = getGlobInfo(target)
@@ -221,7 +234,11 @@ function hintAllFiles(
   let targetFileCount = 0
   let targetHintFileCount = 0
   let targetHintCount = 0
-  const arrTargetMessages = []
+  const arrTargetMessages: Array<{
+    file: string
+    messages: Hint[]
+    time: number
+  }> = []
 
   // init ruleset
   let ruleset = options.ruleset
@@ -242,7 +259,7 @@ function hintAllFiles(
       hintNext(messages)
     }
 
-    function hintNext(messages) {
+    function hintNext(messages: Hint[]) {
       const spendTime = new Date().getTime() - startTime
       const hintCount = messages.length
       if (hintCount > 0) {
@@ -351,7 +368,7 @@ function getGlobInfo(
 function getConfig(
   configPath: string | undefined,
   base: string,
-  formatter: any
+  formatter: Formatter
 ) {
   if (configPath === undefined && fs.existsSync(base)) {
     // find default config file in parent directory
@@ -377,7 +394,7 @@ function getConfig(
 
   if (fs.existsSync(configPath)) {
     const config = fs.readFileSync(configPath, 'utf-8')
-    let ruleset
+    let ruleset: Ruleset
 
     try {
       ruleset = JSON.parse(stripJsonComments(config))
@@ -395,7 +412,7 @@ function getConfig(
 
 // walk path
 function walkPath(
-  globInfo: { base: any; pattern: any; ignore: any },
+  globInfo: { base: string; pattern: string; ignore?: string },
   callback: (filepath: string) => void,
   onFinish: () => void
 ) {
@@ -432,7 +449,7 @@ function walkPath(
 }
 
 // hint file
-function hintFile(filepath: string, ruleset) {
+function hintFile(filepath: string, ruleset?: Ruleset) {
   let content = ''
 
   try {
@@ -445,7 +462,10 @@ function hintFile(filepath: string, ruleset) {
 }
 
 // hint stdin
-function hintStdin(ruleset, callback) {
+function hintStdin(
+  ruleset: Ruleset | undefined,
+  callback: (messages: Hint[]) => void
+) {
   process.stdin.setEncoding('utf8')
 
   const buffers: string[] = []
@@ -462,7 +482,11 @@ function hintStdin(ruleset, callback) {
 }
 
 // hint url
-function hintUrl(url: string, ruleset, callback) {
+function hintUrl(
+  url: string,
+  ruleset: Ruleset | undefined,
+  callback: (messages: Hint[]) => void
+) {
   request.get(url, (error, response, body) => {
     if (!error && response.statusCode == 200) {
       const messages = HTMLHint.verify(body, ruleset)

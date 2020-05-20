@@ -27,7 +27,7 @@ class HTMLHintCore {
     this.rules[rule.id] = rule
   }
 
-  verify(html: string, ruleset: Ruleset) {
+  verify(html: string, ruleset?: Ruleset) {
     if (ruleset === undefined || Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
     }
