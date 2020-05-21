@@ -33,6 +33,10 @@ module.exports = {
     'template-tag-spacing': 'error',
 
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/no-use-before-define': 'warn', // TODO: turn this into error after typescript migration
+    '@typescript-eslint/no-use-before-define': 'off', // TODO: turn this into error after typescript migration
+
+    // TODO: remove following disabled rules and use recommended
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    '@typescript-eslint/no-unused-vars': 'off',
   },
 }
