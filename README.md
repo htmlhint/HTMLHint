@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="http://roadmap.htmlhint.io/">Roadmap</a> • <a href="https://htmlhint.com">Website</a>
+  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="https://htmlhint.com">Website</a>
 </p>
 
 ## Table of Contents
