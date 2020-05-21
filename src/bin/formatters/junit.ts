@@ -3,7 +3,8 @@ import { FormatterCallback } from '../formatter'
 
 const junitFormatter: FormatterCallback = function (formatter, HTMLHint) {
   formatter.on('end', (event) => {
-    const arrTestcase = []
+    // TODO: improve typedef
+    const arrTestcase: any[] = []
     const arrAllMessages = event.arrAllMessages
 
     arrAllMessages.forEach((fileInfo) => {

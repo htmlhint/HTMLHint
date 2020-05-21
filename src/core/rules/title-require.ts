@@ -20,7 +20,9 @@ export default {
     const onTagEnd: Listener = (event) => {
       const tagName = event.tagName.toLowerCase()
       if (hasTitle && tagName === 'title') {
-        const lastEvent = event.lastEvent
+        // TODO: fix this error
+        // @ts-expect-error
+        const lastEvent: Block = event.lastEvent
         if (
           lastEvent.type !== 'text' ||
           (lastEvent.type === 'text' && /^\s*$/.test(lastEvent.raw) === true)

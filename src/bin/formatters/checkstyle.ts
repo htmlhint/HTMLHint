@@ -3,12 +3,14 @@ import { FormatterCallback } from '../formatter'
 
 const checkstyleFormatter: FormatterCallback = function (formatter) {
   formatter.on('end', (event) => {
-    const arrFiles = []
+    // TODO: improve typedef
+    const arrFiles: any[] = []
     const arrAllMessages = event.arrAllMessages
 
     arrAllMessages.forEach((fileInfo) => {
       const arrMessages = fileInfo.messages
-      const arrErrors = []
+      // TODO: improve typedef
+      const arrErrors: any[] = []
 
       arrMessages.forEach((message) => {
         arrErrors.push({

@@ -22,6 +22,8 @@ const htmlFormatter: FormatterCallback = function (formatter) {
       })
     })
 
+    // TODO: replace with what?
+    // @ts-expect-error
     fileContent = fileContent.replace('</table></body></html>')
     console.log(fileContent)
     fs.writeFileSync('report.html', fileContent)

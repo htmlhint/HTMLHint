@@ -28,8 +28,12 @@ class Reporter {
     this.ruleset = ruleset
     this.messages = []
 
+    // TODO: we should rewrite this and simply use function members
+    // @ts-expect-error
     this.error = this.report.bind(this, 'error')
+    // @ts-expect-error
     this.warn = this.report.bind(this, 'warning')
+    // @ts-expect-error
     this.info = this.report.bind(this, 'info')
   }
 
@@ -64,6 +68,7 @@ class Reporter {
       type: type,
       message: message,
       raw: raw,
+      // @ts-expect-error
       evidence: evidence,
       line: line,
       col: col,

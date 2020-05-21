@@ -31,8 +31,11 @@ export default {
     }
 
     // TODO: we should check this in another way
+    // @ts-expect-error
     if (rule && rule.regId) {
+      // @ts-expect-error
       let regId = rule.regId
+      // @ts-expect-error
       const message = rule.message
 
       if (!(regId instanceof RegExp)) {

@@ -13,6 +13,8 @@ const defaultFormatter: FormatterCallback = function (
 
   formatter.on('config', (event) => {
     const configPath = event.configPath
+    // TODO: no: configPath is not undefined
+    // @ts-expect-error
     console.log('   Config loaded: %s', nocolor ? configPath : configPath.cyan)
     console.log('')
   })

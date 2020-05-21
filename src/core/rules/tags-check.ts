@@ -49,6 +49,8 @@ export default {
   description: 'Checks html tags.',
   init(parser, reporter, options) {
     if (typeof options !== 'boolean') {
+      // TODO: fix this error
+      // @ts-expect-error
       assign(tagsTypings, options)
     }
 
@@ -56,10 +58,12 @@ export default {
       const attrs = event.attrs
       const col = event.col + event.tagName.length + 1
 
-      const tagName = event.tagName.toLowerCase()
+      // TODO: find a better way to check this, e.g. switch-case
+      const tagName = event.tagName.toLowerCase() as keyof typeof tagsTypings
 
       if (tagsTypings[tagName]) {
-        const currentTagType = tagsTypings[tagName]
+        // TODO: improve this later
+        const currentTagType: any = tagsTypings[tagName]
 
         if (currentTagType.selfclosing === true && !event.close) {
           reporter.warn(
@@ -80,7 +84,8 @@ export default {
         }
 
         if (currentTagType.attrsRequired) {
-          currentTagType.attrsRequired.forEach((id) => {
+          // TODO: evaluate this with better typings
+          currentTagType.attrsRequired.forEach((id: string) => {
             if (Array.isArray(id)) {
               const copyOfId = id.map((a) => a)
               const realID = copyOfId.shift()
@@ -127,7 +132,8 @@ export default {
         }
 
         if (currentTagType.attrsOptional) {
-          currentTagType.attrsOptional.forEach((id) => {
+          // TODO: evaluate this with better typings
+          currentTagType.attrsOptional.forEach((id: string[]) => {
             if (Array.isArray(id)) {
               const copyOfId = id.map((a) => a)
               const realID = copyOfId.shift()
@@ -156,7 +162,8 @@ export default {
         }
 
         if (currentTagType.redundantAttrs) {
-          currentTagType.redundantAttrs.forEach((attrName) => {
+          // TODO: evaluate this with better typings
+          currentTagType.redundantAttrs.forEach((attrName: string) => {
             if (attrs.some((attr) => attr.name === attrName)) {
               reporter.error(
                 `The attr '${attrName}' is redundant for <${tagName}> and should be ommited.`,

@@ -392,7 +392,10 @@ function getConfig(
     }
   }
 
+  // TODO: can configPath be undefined here?
+  // @ts-expect-error
   if (fs.existsSync(configPath)) {
+    // @ts-expect-error
     const config = fs.readFileSync(configPath, 'utf-8')
     let ruleset: Ruleset
 
@@ -406,6 +409,8 @@ function getConfig(
       // ignore
     }
 
+    // TODO: add default assignment
+    // @ts-expect-error
     return ruleset
   }
 }

@@ -42,12 +42,16 @@ class HTMLHintCore {
 
         strRuleset.replace(
           /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
+          // TODO: this part is a bit wired
+          // @ts-expect-error
           (all, key, value) => {
             if (value === 'false') {
               value = false
             } else if (value === 'true') {
               value = true
             }
+            // TODO: ruleset cant be undefined here
+            // @ts-expect-error
             ruleset[key] = value === undefined ? true : value
           }
         )
@@ -155,6 +159,8 @@ function repeatStr(n: number, str?: string) {
 const HTMLHint = new HTMLHintCore()
 
 Object.keys(HTMLRules).forEach((key) => {
+  // TODO: need a fix
+  // @ts-expect-error
   HTMLHint.addRule(HTMLRules[key])
 })
 
