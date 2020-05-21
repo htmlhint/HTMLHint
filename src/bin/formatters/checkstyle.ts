@@ -1,16 +1,15 @@
 import * as xml from 'xml'
+import type { XmlObject } from 'xml'
 import { FormatterCallback } from '../formatter'
 
 const checkstyleFormatter: FormatterCallback = function (formatter) {
   formatter.on('end', (event) => {
-    // TODO: improve typedef
-    const arrFiles: any[] = []
+    const arrFiles: XmlObject[] = []
     const arrAllMessages = event.arrAllMessages
 
     arrAllMessages.forEach((fileInfo) => {
       const arrMessages = fileInfo.messages
-      // TODO: improve typedef
-      const arrErrors: any[] = []
+      const arrErrors: XmlObject[] = []
 
       arrMessages.forEach((message) => {
         arrErrors.push({
@@ -33,17 +32,21 @@ const checkstyleFormatter: FormatterCallback = function (formatter) {
               name: fileInfo.file,
             },
           },
+          // TODO: find out why this is not working as intended
+          // @ts-expect-error
         ].concat(arrErrors),
       })
     })
 
-    const objXml = {
+    const objXml: XmlObject = {
       checkstyle: [
         {
           _attr: {
             version: '4.3',
           },
         },
+        // TODO: find out why this is not working as intended
+        // @ts-expect-error
       ].concat(arrFiles),
     }
 

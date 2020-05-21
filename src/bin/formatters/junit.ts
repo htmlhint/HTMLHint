@@ -1,10 +1,10 @@
 import * as xml from 'xml'
+import type { XmlObject } from 'xml'
 import { FormatterCallback } from '../formatter'
 
 const junitFormatter: FormatterCallback = function (formatter, HTMLHint) {
   formatter.on('end', (event) => {
-    // TODO: improve typedef
-    const arrTestcase: any[] = []
+    const arrTestcase: XmlObject[] = []
     const arrAllMessages = event.arrAllMessages
 
     arrAllMessages.forEach((fileInfo) => {
@@ -31,7 +31,7 @@ const junitFormatter: FormatterCallback = function (formatter, HTMLHint) {
       })
     })
 
-    const objXml = {
+    const objXml: XmlObject = {
       testsuites: [
         {
           testsuite: [
@@ -43,6 +43,8 @@ const junitFormatter: FormatterCallback = function (formatter, HTMLHint) {
                 failures: arrAllMessages.length,
               },
             },
+            // TODO: find out why this is not working as intended
+            // @ts-expect-error
           ].concat(arrTestcase),
         },
       ],
