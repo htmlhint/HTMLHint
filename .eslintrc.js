@@ -17,6 +17,7 @@ module.exports = {
     ecmaVersion: 6,
     sourceType: 'module',
     project: './tsconfig.lint.json',
+    warnOnUnsupportedTypeScriptVersion: false,
   },
   plugins: ['@typescript-eslint'],
   rules: {
