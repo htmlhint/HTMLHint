@@ -1,5 +1,12 @@
 node_modules
-build
+
+# Automatically generated directories
 bin
 dist
+build
+
+# Website directory
 website
+
+# eslint cannot lint itself
+.eslintrc.js
