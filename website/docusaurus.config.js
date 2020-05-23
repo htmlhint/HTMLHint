@@ -4,7 +4,7 @@ const remarkImages = require('remark-images')
 const rehypeTruncate = require('rehype-truncate')
 
 const PACKAGE = require('../package')
-const GITHUB_URL = `${PACKAGE.repository.url}`
+const GITHUB_URL = 'https://github.com/htmlhint/HTMLHint'
 
 module.exports = {
   title: 'HTMLHint',
@@ -89,7 +89,7 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          path: `../docs`,
+          path: '../docs',
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
