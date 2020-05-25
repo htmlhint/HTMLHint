@@ -4,7 +4,7 @@
   "description": "The Static Code Analysis Tool for your HTML",
   "repository": {
     "type": "git",
-    "url": "https://github.com/htmlhint/HTMLHint"
+    "url": "git+https://github.com/htmlhint/HTMLHint.git"
   },
   "bugs": {
     "url": "https://github.com/htmlhint/HTMLHint/issues"
