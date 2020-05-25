@@ -1,17 +1,17 @@
 @echo off
 
 :: Cleanup
-if exist build rmdir build /q /s
-if exist bin rmdir bin /q /s
-if exist dist rmdir dist /q /s
+IF EXIST build ( rmdir build /q /s ) ELSE ( echo build folder not present )
+IF EXIST bin ( rmdir bin /q /s ) ELSE ( echo bin folder not present )
+IF EXIST dist ( rmdir dist /q /s ) ELSE ( echo dist folder not present )
 
 :: Prepare
-npx tsc
+call npx tsc
 
 :: Move bin
 mkdir bin
-robocopy build/bin bin /s /e
-ren "bin/htmlhint.js" "htmlhint"
+robocopy build\bin bin /s /e
+ren "bin\htmlhint.js" "htmlhint"
 
 :: Build core
 npm run build:rollup
