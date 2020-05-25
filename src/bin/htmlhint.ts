@@ -393,11 +393,9 @@ function getConfig(
   }
 
   // TODO: can configPath be undefined here?
-  // @ts-expect-error
-  if (existsSync(configPath)) {
-    // @ts-expect-error
+  if (configPath !== undefined && existsSync(configPath)) {
     const config = readFileSync(configPath, 'utf-8')
-    let ruleset: Ruleset
+    let ruleset: Ruleset = {}
 
     try {
       ruleset = JSON.parse(stripJsonComments(config))
@@ -409,8 +407,6 @@ function getConfig(
       // ignore
     }
 
-    // TODO: add default assignment
-    // @ts-expect-error
     return ruleset
   }
 }

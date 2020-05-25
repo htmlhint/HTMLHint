@@ -5,16 +5,14 @@ const defaultFormatter: FormatterCallback = function (
   HTMLHint,
   options
 ) {
-  const nocolor = options.nocolor
+  const nocolor: boolean = !!options.nocolor
 
   formatter.on('start', () => {
     console.log('')
   })
 
   formatter.on('config', (event) => {
-    const configPath = event.configPath
-    // TODO: no: configPath is not undefined
-    // @ts-expect-error
+    const configPath = event.configPath!
     console.log('   Config loaded: %s', nocolor ? configPath : configPath.cyan)
     console.log('')
   })
@@ -23,7 +21,7 @@ const defaultFormatter: FormatterCallback = function (
     console.log(`   ${event.file.white}`)
 
     const arrLogs = HTMLHint.format(event.messages, {
-      colors: nocolor ? false : true,
+      colors: !nocolor,
       indent: 6,
     })
 
