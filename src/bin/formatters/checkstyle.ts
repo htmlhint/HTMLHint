@@ -32,9 +32,8 @@ const checkstyleFormatter: FormatterCallback = function (formatter) {
               name: fileInfo.file,
             },
           },
-          // TODO: find out why this is not working as intended
-          // @ts-expect-error
-        ].concat(arrErrors),
+          ...arrErrors,
+        ],
       })
     })
 
@@ -45,9 +44,8 @@ const checkstyleFormatter: FormatterCallback = function (formatter) {
             version: '4.3',
           },
         },
-        // TODO: find out why this is not working as intended
-        // @ts-expect-error
-      ].concat(arrFiles),
+        ...arrFiles,
+      ],
     }
 
     console.log(
