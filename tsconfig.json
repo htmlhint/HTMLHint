@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "CommonJS",
+    "inlineSourceMap": true,
+    "lib": ["ES2018", "DOM"],
+    "moduleResolution": "Node",
+    "rootDir": "src",
+    "outDir": "build",
+    "strict": true,
+    "removeComments": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
+}

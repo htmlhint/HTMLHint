@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "CommonJS",
+    "inlineSourceMap": true,
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "Node",
+    "rootDirs": ["."],
+    "strict": true,
+    "removeComments": true,
+    "noEmit": true
+  },
+  "exclude": ["node_modules", "bin", "build", "dist", "website"]
+}
