@@ -8,18 +8,18 @@ type ReportCallback = (
   raw: string
 ) => void
 
-class Reporter {
-  html: string
-  lines: string[]
-  brLen: number
-  ruleset: Ruleset
-  messages: Hint[]
+export default class Reporter {
+  public html: string
+  public lines: string[]
+  public brLen: number
+  public ruleset: Ruleset
+  public messages: Hint[]
 
-  error: ReportCallback
-  warn: ReportCallback
-  info: ReportCallback
+  public error: ReportCallback
+  public warn: ReportCallback
+  public info: ReportCallback
 
-  constructor(html: string, ruleset: Ruleset) {
+  public constructor(html: string, ruleset: Ruleset) {
     this.html = html
     this.lines = html.split(/\r?\n/)
     const match = html.match(/\r?\n/)
@@ -37,7 +37,7 @@ class Reporter {
     this.info = this.report.bind(this, 'info')
   }
 
-  report(
+  public report(
     type: ReportType,
     message: string,
     line: number,
@@ -80,5 +80,3 @@ class Reporter {
     })
   }
 }
-
-export default Reporter

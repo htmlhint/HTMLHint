@@ -23,11 +23,11 @@ class HTMLHintCore {
     'title-require': true,
   }
 
-  addRule(rule: Rule) {
+  public addRule(rule: Rule) {
     this.rules[rule.id] = rule
   }
 
-  verify(html: string, ruleset?: Ruleset) {
+  public verify(html: string, ruleset?: Ruleset) {
     if (ruleset === undefined || Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
     }
@@ -78,7 +78,7 @@ class HTMLHintCore {
     return reporter.messages
   }
 
-  format(arrMessages: Hint[], options: FormatOptions = {}) {
+  public format(arrMessages: Hint[], options: FormatOptions = {}) {
     const arrLogs: string[] = []
     const colors = {
       white: '',
@@ -156,7 +156,7 @@ function repeatStr(n: number, str?: string) {
   return new Array(n + 1).join(str || ' ')
 }
 
-const HTMLHint = new HTMLHintCore()
+export const HTMLHint = new HTMLHintCore()
 
 Object.keys(HTMLRules).forEach((key) => {
   // TODO: need a fix
@@ -164,4 +164,4 @@ Object.keys(HTMLRules).forEach((key) => {
   HTMLHint.addRule(HTMLRules[key])
 })
 
-export { HTMLRules, Reporter, HTMLParser, HTMLHint }
+export { HTMLRules, Reporter, HTMLParser }

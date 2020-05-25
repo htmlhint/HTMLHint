@@ -22,21 +22,21 @@ export interface Block {
 
 export type Listener = (event: Block) => void
 
-class HTMLParser {
+export default class HTMLParser {
   public lastEvent: Partial<Block> | null
 
   private _listeners: { [type: string]: Listener[] }
   private _mapCdataTags: { [tagName: string]: boolean }
   private _arrBlocks: Array<Partial<Block>>
 
-  constructor() {
+  public constructor() {
     this._listeners = {}
     this._mapCdataTags = this.makeMap('script,style')
     this._arrBlocks = []
     this.lastEvent = null
   }
 
-  makeMap(str: string) {
+  public makeMap(str: string) {
     const obj: { [key: string]: boolean } = {}
     const items = str.split(',')
 
@@ -47,7 +47,7 @@ class HTMLParser {
     return obj
   }
 
-  parse(html: string) {
+  public parse(html: string) {
     const mapCdataTags = this._mapCdataTags
 
     // eslint-disable-next-line no-control-regex
@@ -222,7 +222,7 @@ class HTMLParser {
     })
   }
 
-  addListener(types: string, listener: Listener) {
+  public addListener(types: string, listener: Listener) {
     const _listeners = this._listeners
     const arrTypes = types.split(/[,\s]/)
     let type
@@ -236,7 +236,7 @@ class HTMLParser {
     }
   }
 
-  fire(type: string, data?: Partial<Block>) {
+  public fire(type: string, data?: Partial<Block>) {
     if (data === undefined) {
       data = {}
     }
@@ -268,7 +268,7 @@ class HTMLParser {
     }
   }
 
-  removeListener(type: string, listener: Listener) {
+  public removeListener(type: string, listener: Listener) {
     const listenersType: Listener[] | undefined = this._listeners[type]
     if (listenersType !== undefined) {
       for (let i = 0, l = listenersType.length; i < l; i++) {
@@ -280,7 +280,7 @@ class HTMLParser {
     }
   }
 
-  fixPos(event: Block, index: number) {
+  public fixPos(event: Block, index: number) {
     const text = event.raw.substr(0, index)
     const arrLines = text.split(/\r?\n/)
     const lineCount = arrLines.length - 1
@@ -300,7 +300,7 @@ class HTMLParser {
     }
   }
 
-  getMapAttrs(arrAttrs: Attr[]) {
+  public getMapAttrs(arrAttrs: Attr[]) {
     const mapAttrs: { [name: string]: string } = {}
     let attr: Attr
 
@@ -312,5 +312,3 @@ class HTMLParser {
     return mapAttrs
   }
 }
-
-export default HTMLParser
