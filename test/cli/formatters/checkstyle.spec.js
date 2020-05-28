@@ -8,7 +8,7 @@ describe('CLI', () => {
   describe('Formatter: checkstyle', () => {
     it('should have stdout output with formatter checkstyle', (done) => {
       const expected = fs
-        .readFileSync(path.resolve(__dirname, 'report.html'), 'utf8')
+        .readFileSync(path.resolve(__dirname, 'checkstyle.xml'), 'utf8')
         .replace(
           '{{path}}',
           path.resolve(__dirname, '../../html/executable.html')
