@@ -87,7 +87,7 @@ if (arrTargets.length === 0) {
 
 // init formatter
 formatter.init(HTMLHint, {
-  nocolor: program.nocolor ?? false,
+  nocolor: program.nocolor,
 })
 
 const format = program.format || 'default'
