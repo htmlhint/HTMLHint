@@ -5,7 +5,7 @@ import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 
 let HTMLHint: typeof IHTMLHint
-let options: any
+let options: { nocolor?: boolean }
 
 // load formatters
 const mapFormatters = loadFormatters()
@@ -27,7 +27,7 @@ function loadFormatters() {
     silent: true,
   })
 
-  const mapFormatters: { [name: string]: any } = {}
+  const mapFormatters: { [name: string]: FormatterCallback } = {}
   arrFiles.forEach((file) => {
     const fileInfo = parse(file)
     const formatterPath = resolve(__dirname, file)
