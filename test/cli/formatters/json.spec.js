@@ -6,7 +6,7 @@ const path = require('path')
 
 describe('CLI', () => {
   describe('Formatter: json', () => {
-    it.only('should have stdout output with formatter json', (done) => {
+    it('should have stdout output with formatter json', (done) => {
       const expected = JSON.parse(
         fs.readFileSync(path.resolve(__dirname, 'json.json'), 'utf8').replace(
           /\{\{path\}\}/g,
