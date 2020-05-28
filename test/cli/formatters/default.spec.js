@@ -5,7 +5,7 @@ const path = require('path')
 
 describe('CLI', () => {
   describe('Formatter: default', () => {
-    it.only('should have stdout output with formatter default', (done) => {
+    it('should have stdout output with formatter default', (done) => {
       ChildProcess.exec(
         [
           'node',
