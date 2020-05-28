@@ -116,9 +116,9 @@ Inline rules in `test.html`:
 
 ## 📙 Docs
 
-1. [How to use](https://github.com/htmlhint/HTMLHint/wiki/Usage)
-2. [All Rules](https://github.com/htmlhint/HTMLHint/wiki/Rules)
-3. [How to Develop](https://github.com/htmlhint/HTMLHint/wiki/Developer-guide)
+1. [How to use](https://htmlhint.com/docs/user-guide/usage/cli)
+2. [All Rules](https://htmlhint.com/docs/user-guide/list-rules)
+3. [How to Develop](CONTRIBUTING.md)
 
 ## © License
 
