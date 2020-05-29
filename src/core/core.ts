@@ -10,7 +10,7 @@ export interface FormatOptions {
 
 class HTMLHintCore {
   public rules: { [id: string]: Rule } = {}
-  public defaultRuleset: Ruleset = {
+  public readonly defaultRuleset: Ruleset = {
     'tagname-lowercase': true,
     'attr-lowercase': true,
     'attr-value-double-quotes': true,
