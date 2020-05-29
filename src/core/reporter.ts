@@ -1,23 +1,11 @@
 import { Hint, ReportType, Rule, Ruleset } from './types'
 
-type ReportCallback = (
-  message: string,
-  line: number,
-  col: number,
-  rule: Rule,
-  raw: string
-) => void
-
 export default class Reporter {
   public html: string
   public lines: string[]
   public brLen: number
   public ruleset: Ruleset
   public messages: Hint[]
-
-  public error: ReportCallback
-  public warn: ReportCallback
-  public info: ReportCallback
 
   public constructor(html: string, ruleset: Ruleset) {
     this.html = html
@@ -27,17 +15,39 @@ export default class Reporter {
     this.brLen = match !== null ? match[0].length : 0
     this.ruleset = ruleset
     this.messages = []
-
-    // TODO: we should rewrite this and simply use function members
-    // @ts-expect-error
-    this.error = this.report.bind(this, 'error')
-    // @ts-expect-error
-    this.warn = this.report.bind(this, 'warning')
-    // @ts-expect-error
-    this.info = this.report.bind(this, 'info')
   }
 
-  public report(
+  public info(
+    message: string,
+    line: number,
+    col: number,
+    rule: Rule,
+    raw: string
+  ): void {
+    this.report(ReportType.info, message, line, col, rule, raw)
+  }
+
+  public warn(
+    message: string,
+    line: number,
+    col: number,
+    rule: Rule,
+    raw: string
+  ): void {
+    this.report(ReportType.warning, message, line, col, rule, raw)
+  }
+
+  public error(
+    message: string,
+    line: number,
+    col: number,
+    rule: Rule,
+    raw: string
+  ): void {
+    this.report(ReportType.error, message, line, col, rule, raw)
+  }
+
+  private report(
     type: ReportType,
     message: string,
     line: number,
@@ -47,8 +57,8 @@ export default class Reporter {
   ) {
     const lines = this.lines
     const brLen = this.brLen
-    let evidence: string
-    let evidenceLen: number
+    let evidence = ''
+    let evidenceLen = 0
 
     for (let i = line - 1, lineCount = lines.length; i < lineCount; i++) {
       evidence = lines[i]
@@ -68,7 +78,6 @@ export default class Reporter {
       type: type,
       message: message,
       raw: raw,
-      // @ts-expect-error
       evidence: evidence,
       line: line,
       col: col,
