@@ -45,15 +45,14 @@ export default {
       })
 
       if (originalAttrs !== JSON.stringify(listOfAttributes)) {
-        // TODO: This should be called with a 5th argument (raw)
-        // @ts-expect-error
         reporter.error(
           `Inaccurate order ${originalAttrs} should be in hierarchy ${JSON.stringify(
             listOfAttributes
           )} `,
           event.line,
           event.col,
-          this
+          this,
+          event.raw
         )
       }
     })
