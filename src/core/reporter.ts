@@ -10,7 +10,7 @@ export default class Reporter {
   public constructor(html: string, ruleset: Ruleset) {
     this.html = html
     this.lines = html.split(/\r?\n/)
-    const match = html.match(/\r?\n/)
+    const match = /\r?\n/.exec(html)
 
     this.brLen = match !== null ? match[0].length : 0
     this.ruleset = ruleset

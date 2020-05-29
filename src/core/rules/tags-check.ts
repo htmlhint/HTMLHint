@@ -63,7 +63,8 @@ export default {
         }
 
         if (Array.isArray(currentTagType.attrsRequired)) {
-          const attrsRequired: string[] = currentTagType.attrsRequired
+          const attrsRequired: Array<string | string[]> =
+            currentTagType.attrsRequired
           attrsRequired.forEach((id) => {
             if (Array.isArray(id)) {
               const copyOfId = id.map((a) => a)

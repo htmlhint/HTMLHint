@@ -36,7 +36,11 @@ export default class HTMLParser {
     this.lastEvent = null
   }
 
-  public makeMap(str: string) {
+  public makeMap(
+    str: string
+  ): {
+    [key: string]: boolean
+  } {
     const obj: { [key: string]: boolean } = {}
     const items = str.split(',')
 
@@ -47,7 +51,7 @@ export default class HTMLParser {
     return obj
   }
 
-  public parse(html: string) {
+  public parse(html: string): void {
     const mapCdataTags = this._mapCdataTags
 
     // eslint-disable-next-line no-control-regex
@@ -94,7 +98,6 @@ export default class HTMLParser {
       arrBlocks.push(data)
       this.fire(type, data)
 
-      // eslint-disable-next-line no-unused-vars
       let lineMatch: RegExpExecArray | null
       while ((lineMatch = regLine.exec(raw))) {
         line++
@@ -213,7 +216,7 @@ export default class HTMLParser {
     })
   }
 
-  public addListener(types: string, listener: Listener) {
+  public addListener(types: string, listener: Listener): void {
     const _listeners = this._listeners
     const arrTypes = types.split(/[,\s]/)
     let type
@@ -227,7 +230,7 @@ export default class HTMLParser {
     }
   }
 
-  public fire(type: string, data?: Partial<Block>) {
+  public fire(type: string, data?: Partial<Block>): void {
     if (data === undefined) {
       data = {}
     }
@@ -259,7 +262,7 @@ export default class HTMLParser {
     }
   }
 
-  public removeListener(type: string, listener: Listener) {
+  public removeListener(type: string, listener: Listener): void {
     const listenersType: Listener[] | undefined = this._listeners[type]
     if (listenersType !== undefined) {
       for (let i = 0, l = listenersType.length; i < l; i++) {
@@ -271,7 +274,13 @@ export default class HTMLParser {
     }
   }
 
-  public fixPos(event: Block, index: number) {
+  public fixPos(
+    event: Block,
+    index: number
+  ): {
+    line: number
+    col: number
+  } {
     const text = event.raw.substr(0, index)
     const arrLines = text.split(/\r?\n/)
     const lineCount = arrLines.length - 1
@@ -291,7 +300,11 @@ export default class HTMLParser {
     }
   }
 
-  public getMapAttrs(arrAttrs: Attr[]) {
+  public getMapAttrs(
+    arrAttrs: Attr[]
+  ): {
+    [name: string]: string
+  } {
     const mapAttrs: { [name: string]: string } = {}
     let attr: Attr
 
