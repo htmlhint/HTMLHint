@@ -27,8 +27,8 @@ class HTMLHintCore {
     this.rules[rule.id] = rule
   }
 
-  public verify(html: string, ruleset?: Ruleset) {
-    if (ruleset === undefined || Object.keys(ruleset).length === 0) {
+  public verify(html: string, ruleset: Ruleset = this.defaultRuleset) {
+    if (Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
     }
 
@@ -36,10 +36,6 @@ class HTMLHintCore {
     html = html.replace(
       /^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i,
       (all, strRuleset) => {
-        if (ruleset === undefined) {
-          ruleset = {}
-        }
-
         strRuleset.replace(
           /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
           // TODO: this part is a bit wired
@@ -50,8 +46,6 @@ class HTMLHintCore {
             } else if (value === 'true') {
               value = true
             }
-            // TODO: ruleset cant be undefined here
-            // @ts-expect-error
             ruleset[key] = value === undefined ? true : value
           }
         )

@@ -4,11 +4,16 @@ export interface Rule {
   id: string
   description: string
   link?: string
-  init(parser: HTMLParser, reporter: Reporter, options: string | boolean): void
+  init(parser: HTMLParser, reporter: Reporter, options: unknown): void
 }
 
-// TODO: not sure about the value `boolean | string`
-export type Ruleset = { [ruleId: string]: boolean | string }
+export interface Ruleset {
+  'tags-check'?: {
+    [prop: string]: Record<string, unknown>
+  }
+  // There may be other unknown rules
+  [ruleId: string]: unknown
+}
 
 export const enum ReportType {
   error = 'error',
