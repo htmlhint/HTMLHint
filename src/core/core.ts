@@ -35,18 +35,22 @@ class HTMLHintCore {
     // parse inline ruleset
     html = html.replace(
       /^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i,
-      (all, strRuleset) => {
+      (all, strRuleset: string) => {
+        // For example:
+        // all is '<!-- htmlhint alt-require:true-->'
+        // strRuleset is 'alt-require:true'
         strRuleset.replace(
           /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
-          // TODO: this part is a bit wired
-          // @ts-expect-error
-          (all, key, value) => {
-            if (value === 'false') {
-              value = false
-            } else if (value === 'true') {
-              value = true
-            }
-            ruleset[key] = value === undefined ? true : value
+          (all, ruleId: string, value: string | undefined) => {
+            // For example:
+            // all is 'alt-require:true'
+            // ruleId is 'alt-require'
+            // value is 'true'
+
+            ruleset[ruleId] =
+              value !== undefined && value.length > 0 ? JSON.parse(value) : true
+
+            return ''
           }
         )
 
