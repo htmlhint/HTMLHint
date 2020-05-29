@@ -61,9 +61,9 @@ export default class HTMLParser {
     let lastIndex = 0
     let tagName: string
     let arrAttrs: Attr[]
-    let tagCDATA: string | null
-    let attrsCDATA: Attr[] | null
-    let arrCDATA: string[] | null
+    let tagCDATA: string | null = null
+    let attrsCDATA: Attr[] | undefined
+    let arrCDATA: string[] = []
     let lastCDATAIndex = 0
     let text: string
     let lastLineIndex = 0
@@ -107,10 +107,7 @@ export default class HTMLParser {
       if (matchIndex > lastIndex) {
         // Save the previous text or CDATA
         text = html.substring(lastIndex, matchIndex)
-        // TODO: tagCDATA and arrCDATA are used before being assigned
-        // @ts-expect-error
         if (tagCDATA) {
-          // @ts-expect-error
           arrCDATA.push(text)
         } else {
           // text
@@ -120,22 +117,18 @@ export default class HTMLParser {
       lastIndex = regTag.lastIndex
 
       if ((tagName = match[1])) {
-        // @ts-expect-error
         if (tagCDATA && tagName === tagCDATA) {
           // Output CDATA before closing the label
-          // @ts-expect-error
           text = arrCDATA.join('')
           saveBlock('cdata', text, lastCDATAIndex, {
             tagName: tagCDATA,
-            // @ts-expect-error
             attrs: attrsCDATA,
           })
           tagCDATA = null
-          attrsCDATA = null
-          arrCDATA = null
+          attrsCDATA = undefined
+          arrCDATA = []
         }
 
-        // @ts-expect-error
         if (!tagCDATA) {
           // End of label
           saveBlock('tagend', match[0], matchIndex, {
@@ -145,9 +138,7 @@ export default class HTMLParser {
         }
       }
 
-      // @ts-expect-error
       if (tagCDATA) {
-        // @ts-expect-error
         arrCDATA.push(match[0])
       } else {
         if ((tagName = match[4])) {
