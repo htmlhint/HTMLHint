@@ -27,7 +27,7 @@ export default {
     if (typeof options === 'string') {
       rule = arrRules[options]
     } else {
-      rule = options
+      rule = options as { regId: RegExp; message: string }
     }
 
     if (typeof rule === 'object' && rule.regId) {
