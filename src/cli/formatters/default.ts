@@ -5,13 +5,14 @@ const defaultFormatter: FormatterCallback = function (
   HTMLHint,
   options
 ) {
-  const nocolor: boolean = !!options.nocolor
+  const nocolor = !!options.nocolor
 
   formatter.on('start', () => {
     console.log('')
   })
 
   formatter.on('config', (event) => {
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const configPath = event.configPath!
     console.log('   Config loaded: %s', nocolor ? configPath : configPath.cyan)
     console.log('')

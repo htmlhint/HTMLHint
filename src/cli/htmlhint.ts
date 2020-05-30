@@ -112,6 +112,7 @@ function listRules() {
 
   for (const id in rules) {
     rule = rules[id]
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     console.log('     %s : %s', rule.id.bold, rule.description)
   }
 }
@@ -428,6 +429,7 @@ function walkPath(
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const walk: any = glob(
     pattern,
     {

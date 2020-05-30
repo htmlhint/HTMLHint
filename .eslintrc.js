@@ -34,6 +34,7 @@ module.exports = {
     'template-curly-spacing': 'error',
     'template-tag-spacing': 'error',
 
+    '@typescript-eslint/adjacent-overload-signatures': 'off',
     '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
