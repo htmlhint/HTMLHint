@@ -28,7 +28,7 @@
 </p>
 
 <p align="center">
-  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="http://roadmap.htmlhint.io/">Roadmap</a> • <a href="https://htmlhint.com">Website</a>
+  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="https://htmlhint.com">Website</a>
 </p>
 
 ## Table of Contents
@@ -116,9 +116,9 @@ Inline rules in `test.html`:
 
 ## 📙 Docs
 
-1. [How to use](https://github.com/htmlhint/HTMLHint/wiki/Usage)
-2. [All Rules](https://github.com/htmlhint/HTMLHint/wiki/Rules)
-3. [How to Develop](https://github.com/htmlhint/HTMLHint/wiki/Developer-guide)
+1. [How to use](https://htmlhint.com/docs/user-guide/usage/cli)
+2. [All Rules](https://htmlhint.com/docs/user-guide/list-rules)
+3. [How to Develop](CONTRIBUTING.md)
 
 ## © License
 
