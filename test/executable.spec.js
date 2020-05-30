@@ -54,7 +54,7 @@ describe('Executable', () => {
           path.resolve(__dirname, '../bin/htmlhint'),
           path.resolve(__dirname, './html/executable.html'),
           '--format',
-          'json',
+          format,
         ].join(' '),
         (error, stdout, stderr) => {
           expect(error).to.be.an('object')

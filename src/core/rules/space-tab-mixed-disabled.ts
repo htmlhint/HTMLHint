@@ -8,12 +8,11 @@ export default {
     let spaceLengthRequire: number | '' | null = null
 
     if (typeof options === 'string') {
-      const match = options.match(/^([a-z]+)(\d+)?/)
-      // TODO: add null check?
-      // @ts-expect-error
-      indentMode = match[1]
-      // @ts-expect-error
-      spaceLengthRequire = match[2] && parseInt(match[2], 10)
+      const match = /^([a-z]+)(\d+)?/.exec(options)
+      if (match) {
+        indentMode = match[1]
+        spaceLengthRequire = match[2] && parseInt(match[2], 10)
+      }
     }
 
     parser.addListener('text', (event) => {

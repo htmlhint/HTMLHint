@@ -23,9 +23,7 @@ export default {
         }
 
         // Check first and last characters for spaces
-        // TODO: trim() shouldn't get passed the value
-        // @ts-expect-error
-        if (elem.value.trim(elem.value) !== elem.value) {
+        if (elem.value.trim() !== elem.value) {
           reporter.error(
             `The attributes of [ ${attrName} ] must not have trailing whitespace.`,
             event.line,

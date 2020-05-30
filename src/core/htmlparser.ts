@@ -22,21 +22,25 @@ export interface Block {
 
 export type Listener = (event: Block) => void
 
-class HTMLParser {
+export default class HTMLParser {
   public lastEvent: Partial<Block> | null
 
   private _listeners: { [type: string]: Listener[] }
   private _mapCdataTags: { [tagName: string]: boolean }
   private _arrBlocks: Array<Partial<Block>>
 
-  constructor() {
+  public constructor() {
     this._listeners = {}
     this._mapCdataTags = this.makeMap('script,style')
     this._arrBlocks = []
     this.lastEvent = null
   }
 
-  makeMap(str: string) {
+  public makeMap(
+    str: string
+  ): {
+    [key: string]: boolean
+  } {
     const obj: { [key: string]: boolean } = {}
     const items = str.split(',')
 
@@ -47,7 +51,7 @@ class HTMLParser {
     return obj
   }
 
-  parse(html: string) {
+  public parse(html: string): void {
     const mapCdataTags = this._mapCdataTags
 
     // eslint-disable-next-line no-control-regex
@@ -61,9 +65,9 @@ class HTMLParser {
     let lastIndex = 0
     let tagName: string
     let arrAttrs: Attr[]
-    let tagCDATA: string | null
-    let attrsCDATA: Attr[] | null
-    let arrCDATA: string[] | null
+    let tagCDATA: string | null = null
+    let attrsCDATA: Attr[] | undefined
+    let arrCDATA: string[] = []
     let lastCDATAIndex = 0
     let text: string
     let lastLineIndex = 0
@@ -94,7 +98,6 @@ class HTMLParser {
       arrBlocks.push(data)
       this.fire(type, data)
 
-      // eslint-disable-next-line no-unused-vars
       let lineMatch: RegExpExecArray | null
       while ((lineMatch = regLine.exec(raw))) {
         line++
@@ -107,10 +110,7 @@ class HTMLParser {
       if (matchIndex > lastIndex) {
         // Save the previous text or CDATA
         text = html.substring(lastIndex, matchIndex)
-        // TODO: tagCDATA and arrCDATA are used before being assigned
-        // @ts-expect-error
         if (tagCDATA) {
-          // @ts-expect-error
           arrCDATA.push(text)
         } else {
           // text
@@ -120,22 +120,18 @@ class HTMLParser {
       lastIndex = regTag.lastIndex
 
       if ((tagName = match[1])) {
-        // @ts-expect-error
         if (tagCDATA && tagName === tagCDATA) {
           // Output CDATA before closing the label
-          // @ts-expect-error
           text = arrCDATA.join('')
           saveBlock('cdata', text, lastCDATAIndex, {
             tagName: tagCDATA,
-            // @ts-expect-error
             attrs: attrsCDATA,
           })
           tagCDATA = null
-          attrsCDATA = null
-          arrCDATA = null
+          attrsCDATA = undefined
+          arrCDATA = []
         }
 
-        // @ts-expect-error
         if (!tagCDATA) {
           // End of label
           saveBlock('tagend', match[0], matchIndex, {
@@ -145,9 +141,7 @@ class HTMLParser {
         }
       }
 
-      // @ts-expect-error
       if (tagCDATA) {
-        // @ts-expect-error
         arrCDATA.push(match[0])
       } else {
         if ((tagName = match[4])) {
@@ -222,7 +216,7 @@ class HTMLParser {
     })
   }
 
-  addListener(types: string, listener: Listener) {
+  public addListener(types: string, listener: Listener): void {
     const _listeners = this._listeners
     const arrTypes = types.split(/[,\s]/)
     let type
@@ -236,7 +230,7 @@ class HTMLParser {
     }
   }
 
-  fire(type: string, data?: Partial<Block>) {
+  public fire(type: string, data?: Partial<Block>): void {
     if (data === undefined) {
       data = {}
     }
@@ -268,7 +262,7 @@ class HTMLParser {
     }
   }
 
-  removeListener(type: string, listener: Listener) {
+  public removeListener(type: string, listener: Listener): void {
     const listenersType: Listener[] | undefined = this._listeners[type]
     if (listenersType !== undefined) {
       for (let i = 0, l = listenersType.length; i < l; i++) {
@@ -280,7 +274,13 @@ class HTMLParser {
     }
   }
 
-  fixPos(event: Block, index: number) {
+  public fixPos(
+    event: Block,
+    index: number
+  ): {
+    line: number
+    col: number
+  } {
     const text = event.raw.substr(0, index)
     const arrLines = text.split(/\r?\n/)
     const lineCount = arrLines.length - 1
@@ -300,7 +300,11 @@ class HTMLParser {
     }
   }
 
-  getMapAttrs(arrAttrs: Attr[]) {
+  public getMapAttrs(
+    arrAttrs: Attr[]
+  ): {
+    [name: string]: string
+  } {
     const mapAttrs: { [name: string]: string } = {}
     let attr: Attr
 
@@ -312,5 +316,3 @@ class HTMLParser {
     return mapAttrs
   }
 }
-
-export default HTMLParser

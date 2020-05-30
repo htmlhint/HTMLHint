@@ -34,18 +34,12 @@ module.exports = {
     'template-curly-spacing': 'error',
     'template-tag-spacing': 'error',
 
-    // TODO: remove following disabled rules and use recommended
     '@typescript-eslint/ban-ts-comment': 'off',
-    '@typescript-eslint/explicit-module-boundary-types': 'off',
-    '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unsafe-assignment': 'off',
     '@typescript-eslint/no-unsafe-call': 'off',
     '@typescript-eslint/no-unsafe-member-access': 'off',
-    '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
-    '@typescript-eslint/no-use-before-define': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    '@typescript-eslint/prefer-regexp-exec': 'off',
     '@typescript-eslint/restrict-template-expressions': 'off',
   },
 }

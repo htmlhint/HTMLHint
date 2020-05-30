@@ -10,7 +10,7 @@ export interface FormatOptions {
 
 class HTMLHintCore {
   public rules: { [id: string]: Rule } = {}
-  public defaultRuleset: Ruleset = {
+  public readonly defaultRuleset: Ruleset = {
     'tagname-lowercase': true,
     'attr-lowercase': true,
     'attr-value-double-quotes': true,
@@ -23,36 +23,34 @@ class HTMLHintCore {
     'title-require': true,
   }
 
-  addRule(rule: Rule) {
+  public addRule(rule: Rule) {
     this.rules[rule.id] = rule
   }
 
-  verify(html: string, ruleset?: Ruleset) {
-    if (ruleset === undefined || Object.keys(ruleset).length === 0) {
+  public verify(html: string, ruleset: Ruleset = this.defaultRuleset) {
+    if (Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
     }
 
     // parse inline ruleset
     html = html.replace(
       /^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i,
-      (all, strRuleset) => {
-        if (ruleset === undefined) {
-          ruleset = {}
-        }
-
+      (all, strRuleset: string) => {
+        // For example:
+        // all is '<!-- htmlhint alt-require:true-->'
+        // strRuleset is 'alt-require:true'
         strRuleset.replace(
           /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
-          // TODO: this part is a bit wired
-          // @ts-expect-error
-          (all, key, value) => {
-            if (value === 'false') {
-              value = false
-            } else if (value === 'true') {
-              value = true
-            }
-            // TODO: ruleset cant be undefined here
-            // @ts-expect-error
-            ruleset[key] = value === undefined ? true : value
+          (all, ruleId: string, value: string | undefined) => {
+            // For example:
+            // all is 'alt-require:true'
+            // ruleId is 'alt-require'
+            // value is 'true'
+
+            ruleset[ruleId] =
+              value !== undefined && value.length > 0 ? JSON.parse(value) : true
+
+            return ''
           }
         )
 
@@ -78,7 +76,7 @@ class HTMLHintCore {
     return reporter.messages
   }
 
-  format(arrMessages: Hint[], options: FormatOptions = {}) {
+  public format(arrMessages: Hint[], options: FormatOptions = {}) {
     const arrLogs: string[] = []
     const colors = {
       white: '',
@@ -156,7 +154,7 @@ function repeatStr(n: number, str?: string) {
   return new Array(n + 1).join(str || ' ')
 }
 
-const HTMLHint = new HTMLHintCore()
+export const HTMLHint = new HTMLHintCore()
 
 Object.keys(HTMLRules).forEach((key) => {
   // TODO: need a fix
@@ -164,4 +162,4 @@ Object.keys(HTMLRules).forEach((key) => {
   HTMLHint.addRule(HTMLRules[key])
 })
 
-export { HTMLRules, Reporter, HTMLParser, HTMLHint }
+export { HTMLRules, Reporter, HTMLParser }

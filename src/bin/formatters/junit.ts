@@ -43,9 +43,8 @@ const junitFormatter: FormatterCallback = function (formatter, HTMLHint) {
                 failures: arrAllMessages.length,
               },
             },
-            // TODO: find out why this is not working as intended
-            // @ts-expect-error
-          ].concat(arrTestcase),
+            ...arrTestcase,
+          ],
         },
       ],
     }

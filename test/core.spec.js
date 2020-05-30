@@ -24,7 +24,8 @@ describe('Core', () => {
   })
 
   it('Inline ruleset not worked should result in an error', () => {
-    let code = '<!-- htmlhint alt-require:true-->\r\n<img src="test.gif" />'
+    // With value = 'true'
+    let code = '<!-- htmlhint alt-require:true -->\r\n<img src="test.gif" />'
     let messages = HTMLHint.verify(code, {
       'alt-require': false,
     })
@@ -34,10 +35,30 @@ describe('Core', () => {
     expect(messages[0].line).to.be(2)
     expect(messages[0].col).to.be(5)
 
-    code = '<!-- htmlhint alt-require:false-->\r\n<img src="test.gif" />'
+    // Without value
+    code = '<!-- htmlhint alt-require -->\r\n<img src="test.gif" />'
+    messages = HTMLHint.verify(code, {
+      'alt-require': false,
+    })
+
+    expect(messages.length).to.be(1)
+    expect(messages[0].rule.id).to.be('alt-require')
+    expect(messages[0].line).to.be(2)
+    expect(messages[0].col).to.be(5)
+
+    // With value = 'false'
+    code = '<!-- htmlhint alt-require:false -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
       'alt-require': true,
     })
+    expect(messages.length).to.be(0)
+
+    // Without rule
+    code = '<!-- htmlhint -->\r\n<img src="test.gif" />'
+    messages = HTMLHint.verify(code, {
+      'alt-require': false,
+    })
+
     expect(messages.length).to.be(0)
   })
 

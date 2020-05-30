@@ -1,3 +1,4 @@
+import * as colors from 'colors'
 import { FormatterCallback } from '../formatter'
 
 const compactFormatter: FormatterCallback = function (
@@ -6,6 +7,10 @@ const compactFormatter: FormatterCallback = function (
   options
 ) {
   const nocolor = options.nocolor
+
+  if (nocolor !== false) {
+    colors.enable()
+  }
 
   formatter.on('file', (event) => {
     event.messages.forEach((message) => {

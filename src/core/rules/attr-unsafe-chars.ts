@@ -15,7 +15,7 @@ export default {
 
       for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
-        match = attr.value.match(regUnsafe)
+        match = regUnsafe.exec(attr.value)
 
         if (match !== null) {
           const unsafeCode = escape(match[0])

@@ -1,13 +1,11 @@
 import { EventEmitter } from 'events'
-import * as glob from 'glob'
-import * as path from 'path'
+import { sync as globSync } from 'glob'
+import { parse, resolve } from 'path'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
-// @ts-expect-error
-path.parse = path.parse || require('path-parse')
 
 let HTMLHint: typeof IHTMLHint
-let options: any
+let options: { nocolor?: boolean }
 
 // load formatters
 const mapFormatters = loadFormatters()
@@ -21,7 +19,7 @@ for (const formatterName in mapFormatters) {
 
 // load all formatters
 function loadFormatters() {
-  const arrFiles = glob.sync('./formatters/*.js', {
+  const arrFiles = globSync('./formatters/*.js', {
     cwd: __dirname,
     dot: false,
     nodir: true,
@@ -29,10 +27,10 @@ function loadFormatters() {
     silent: true,
   })
 
-  const mapFormatters: { [name: string]: any } = {}
+  const mapFormatters: { [name: string]: FormatterCallback } = {}
   arrFiles.forEach((file) => {
-    const fileInfo = path.parse(file)
-    const formatterPath = path.resolve(__dirname, file)
+    const fileInfo = parse(file)
+    const formatterPath = resolve(__dirname, file)
     mapFormatters[fileInfo.name] = require(formatterPath)
   })
 

@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
-import * as async from 'async'
+import { queue as asyncQueue, series as asyncSeries } from 'async'
 import 'colors'
 import * as program from 'commander'
-import * as fs from 'fs'
+import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
 import * as parseGlob from 'parse-glob'
-import * as path from 'path'
+import { dirname, resolve, sep } from 'path'
 import * as request from 'request'
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
@@ -159,7 +159,7 @@ function hintTargets(
     })
   })
 
-  async.series(arrTasks, () => {
+  asyncSeries(arrTasks, () => {
     // end hint
     const spendTime = new Date().getTime() - startTime
     formatter.emit('end', {
@@ -176,8 +176,8 @@ function hintTargets(
 // load custom rles
 function loadCustomRules(rulesdir: string) {
   rulesdir = rulesdir.replace(/\\/g, '/')
-  if (fs.existsSync(rulesdir)) {
-    if (fs.statSync(rulesdir).isDirectory()) {
+  if (existsSync(rulesdir)) {
+    if (statSync(rulesdir).isDirectory()) {
       rulesdir += /\/$/.test(rulesdir) ? '' : '/'
       rulesdir += '**/*.js'
       const arrFiles = glob.sync(rulesdir, {
@@ -197,7 +197,7 @@ function loadCustomRules(rulesdir: string) {
 
 // load rule
 function loadRule(filepath: string) {
-  filepath = path.resolve(filepath)
+  filepath = resolve(filepath)
   try {
     const module = require(filepath)
     module(HTMLHint)
@@ -247,7 +247,7 @@ function hintAllFiles(
   }
 
   // hint queue
-  const hintQueue = async.queue<string>((filepath, next) => {
+  const hintQueue = asyncQueue<string>((filepath, next) => {
     const startTime = new Date().getTime()
 
     if (filepath === 'stdin') {
@@ -333,7 +333,7 @@ function getGlobInfo(
   target = target.replace(/\\/g, '/')
 
   const globInfo = parseGlob(target)
-  let base = path.resolve(globInfo.base)
+  let base = resolve(globInfo.base)
 
   base += /\/$/.test(base) ? '' : '/'
 
@@ -352,7 +352,7 @@ function getGlobInfo(
       pattern += `**/${defaultGlob}`
     }
     // detect directory
-    else if (fs.existsSync(target) && fs.statSync(target).isDirectory()) {
+    else if (existsSync(target) && statSync(target).isDirectory()) {
       base += `${globPath.basename}/`
       pattern = `**/${defaultGlob}`
     }
@@ -370,16 +370,16 @@ function getConfig(
   base: string,
   formatter: Formatter
 ) {
-  if (configPath === undefined && fs.existsSync(base)) {
+  if (configPath === undefined && existsSync(base)) {
     // find default config file in parent directory
-    if (fs.statSync(base).isDirectory() === false) {
-      base = path.dirname(base)
+    if (statSync(base).isDirectory() === false) {
+      base = dirname(base)
     }
 
     while (base) {
-      const tmpConfigFile = path.resolve(base, '.htmlhintrc')
+      const tmpConfigFile = resolve(base, '.htmlhintrc')
 
-      if (fs.existsSync(tmpConfigFile)) {
+      if (existsSync(tmpConfigFile)) {
         configPath = tmpConfigFile
         break
       }
@@ -388,16 +388,14 @@ function getConfig(
         break
       }
 
-      base = base.substring(0, base.lastIndexOf(path.sep))
+      base = base.substring(0, base.lastIndexOf(sep))
     }
   }
 
   // TODO: can configPath be undefined here?
-  // @ts-expect-error
-  if (fs.existsSync(configPath)) {
-    // @ts-expect-error
-    const config = fs.readFileSync(configPath, 'utf-8')
-    let ruleset: Ruleset
+  if (configPath !== undefined && existsSync(configPath)) {
+    const config = readFileSync(configPath, 'utf-8')
+    let ruleset: Ruleset = {}
 
     try {
       ruleset = JSON.parse(stripJsonComments(config))
@@ -409,8 +407,6 @@ function getConfig(
       // ignore
     }
 
-    // TODO: add default assignment
-    // @ts-expect-error
     return ruleset
   }
 }
@@ -458,7 +454,7 @@ function hintFile(filepath: string, ruleset?: Ruleset) {
   let content = ''
 
   try {
-    content = fs.readFileSync(filepath, 'utf-8')
+    content = readFileSync(filepath, 'utf-8')
   } catch (e) {
     // ignore
   }

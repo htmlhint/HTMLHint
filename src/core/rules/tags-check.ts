@@ -1,6 +1,6 @@
 import { Rule } from '../types'
 
-const tagsTypings = {
+let tagsTypings: Record<string, Record<string, unknown>> = {
   a: {
     selfclosing: false,
     attrsRequired: ['href', 'title'],
@@ -29,41 +29,20 @@ const tagsTypings = {
   },
 }
 
-const assign = function (target: { [prop: string]: unknown }) {
-  let _source
-
-  for (let i = 1; i < arguments.length; i++) {
-    // TODO: fix this prefer-rest-params after typescript migration
-    // eslint-disable-next-line prefer-rest-params
-    _source = arguments[i]
-    for (const prop in _source) {
-      target[prop] = _source[prop]
-    }
-  }
-
-  return target
-}
-
 export default {
   id: 'tags-check',
   description: 'Checks html tags.',
-  init(parser, reporter, options) {
-    if (typeof options !== 'boolean') {
-      // TODO: fix this error
-      // @ts-expect-error
-      assign(tagsTypings, options)
-    }
+  init(parser, reporter, options: Record<string, Record<string, unknown>>) {
+    tagsTypings = { ...tagsTypings, ...options }
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       const col = event.col + event.tagName.length + 1
 
-      // TODO: find a better way to check this, e.g. switch-case
-      const tagName = event.tagName.toLowerCase() as keyof typeof tagsTypings
+      const tagName = event.tagName.toLowerCase()
 
       if (tagsTypings[tagName]) {
-        // TODO: improve this later
-        const currentTagType: any = tagsTypings[tagName]
+        const currentTagType = tagsTypings[tagName]
 
         if (currentTagType.selfclosing === true && !event.close) {
           reporter.warn(
@@ -83,9 +62,10 @@ export default {
           )
         }
 
-        if (currentTagType.attrsRequired) {
-          // TODO: evaluate this with better typings
-          currentTagType.attrsRequired.forEach((id: string) => {
+        if (Array.isArray(currentTagType.attrsRequired)) {
+          const attrsRequired: Array<string | string[]> =
+            currentTagType.attrsRequired
+          attrsRequired.forEach((id) => {
             if (Array.isArray(id)) {
               const copyOfId = id.map((a) => a)
               const realID = copyOfId.shift()
@@ -131,9 +111,9 @@ export default {
           })
         }
 
-        if (currentTagType.attrsOptional) {
-          // TODO: evaluate this with better typings
-          currentTagType.attrsOptional.forEach((id: string[]) => {
+        if (Array.isArray(currentTagType.attrsOptional)) {
+          const attrsOptional: string[][] = currentTagType.attrsOptional
+          attrsOptional.forEach((id) => {
             if (Array.isArray(id)) {
               const copyOfId = id.map((a) => a)
               const realID = copyOfId.shift()
@@ -161,9 +141,9 @@ export default {
           })
         }
 
-        if (currentTagType.redundantAttrs) {
-          // TODO: evaluate this with better typings
-          currentTagType.redundantAttrs.forEach((attrName: string) => {
+        if (Array.isArray(currentTagType.redundantAttrs)) {
+          const redundantAttrs: string[] = currentTagType.redundantAttrs
+          redundantAttrs.forEach((attrName) => {
             if (attrs.some((attr) => attr.name === attrName)) {
               reporter.error(
                 `The attr '${attrName}' is redundant for <${tagName}> and should be ommited.`,
