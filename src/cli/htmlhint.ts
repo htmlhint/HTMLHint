@@ -13,10 +13,10 @@ import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 import { Formatter } from './formatter'
 
-const HTMLHint: typeof IHTMLHint = require('../dist/htmlhint.js').HTMLHint
+const HTMLHint: typeof IHTMLHint = require('../htmlhint.js').HTMLHint
 const formatter: Formatter = require('./formatter')
 
-const pkg = require('../package.json')
+const pkg = require('../../package.json')
 
 function map(val: string) {
   const objMap: { [name: string]: string | true } = {}

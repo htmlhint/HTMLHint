@@ -66,9 +66,3 @@ test/e2e/reports
 /website/node_modules
 /website/build
 /website/.docusaurus
-
-# Build folder
-build
-
-# Bin folder
-bin

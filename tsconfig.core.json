@@ -1,4 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "exclude": ["src/bin"]
+  "exclude": ["src/cli"]
 }

@@ -6,7 +6,7 @@
     "lib": ["ES2018", "DOM"],
     "moduleResolution": "Node",
     "rootDir": "src",
-    "outDir": "build",
+    "outDir": "dist",
     "strict": true,
     "removeComments": true
   },
