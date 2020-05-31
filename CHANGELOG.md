@@ -1,3 +1,10 @@
+## [0.13.1-beta.2](https://github.com/htmlhint/HTMLHint/compare/v0.13.1-beta.1...v0.13.1-beta.2) (2020-05-31)
+
+
+### Bug Fixes
+
+* remove unused dependency esm ([#430](https://github.com/htmlhint/HTMLHint/issues/430)) ([7e8429d](https://github.com/htmlhint/HTMLHint/commit/7e8429dc8d57f6cbf891570d644f72729644826d))
+
 ## [0.13.1-beta.1](https://github.com/htmlhint/HTMLHint/compare/v0.13.0...v0.13.1-beta.1) (2020-05-30)
 
 
