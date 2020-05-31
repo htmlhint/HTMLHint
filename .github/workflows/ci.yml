@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - master
-      - develop
       - beta
-      - 'chore/**'
       - 'feat/**'
       - 'fix/**'
       - 'perf/**'
@@ -15,7 +13,6 @@ on:
   pull_request:
     branches:
       - master
-      - develop
       - beta
 
 jobs:

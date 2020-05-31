@@ -1,3 +1,18 @@
+## [0.13.1](https://github.com/htmlhint/HTMLHint/compare/v0.13.0...v0.13.1) (2020-05-31)
+
+
+### Bug Fixes
+
+* add missing branches to action release ([#425](https://github.com/htmlhint/HTMLHint/issues/425)) ([62c2f3c](https://github.com/htmlhint/HTMLHint/commit/62c2f3c4dbc31235f644da42b1eeccd8d73c83aa))
+* add missing plugins for docusaurus ([#402](https://github.com/htmlhint/HTMLHint/issues/402)) ([d9ef347](https://github.com/htmlhint/HTMLHint/commit/d9ef3476bfb935314a38dabfbd5ad055deec7b6a))
+* correctly call hint queue drain ([#409](https://github.com/htmlhint/HTMLHint/issues/409)) ([7b63cb2](https://github.com/htmlhint/HTMLHint/commit/7b63cb282dc41c8757913d92aefc11ddcaab6039))
+* dupplicate ga ([#407](https://github.com/htmlhint/HTMLHint/issues/407)) ([506f25a](https://github.com/htmlhint/HTMLHint/commit/506f25a31d52b66ef58a12eb258bed3bf517146b))
+* eslint fix ([820ff8f](https://github.com/htmlhint/HTMLHint/commit/820ff8fe4714bc3ba47565eb58d87910d60934e8))
+* fix url repo pkg ([#413](https://github.com/htmlhint/HTMLHint/issues/413)) ([b7f5786](https://github.com/htmlhint/HTMLHint/commit/b7f5786a803fb2a31c5819b70b608b133f2e1e51))
+* github token ([18441f6](https://github.com/htmlhint/HTMLHint/commit/18441f6c54fe540ac86cdedbc61846a2662d78c8))
+* remove unused dependency esm ([#430](https://github.com/htmlhint/HTMLHint/issues/430)) ([7e8429d](https://github.com/htmlhint/HTMLHint/commit/7e8429dc8d57f6cbf891570d644f72729644826d))
+* **attr-no-unnecessary-whitespace:** fix when equals symbol in value ([#405](https://github.com/htmlhint/HTMLHint/issues/405)) ([fe4f3c6](https://github.com/htmlhint/HTMLHint/commit/fe4f3c6732d76ec78a19e97d2640e63be3dd6735))
+
 ## [0.13.1-beta.2](https://github.com/htmlhint/HTMLHint/compare/v0.13.1-beta.1...v0.13.1-beta.2) (2020-05-31)
 
 
