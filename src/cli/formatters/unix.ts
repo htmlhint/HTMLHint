@@ -8,6 +8,9 @@ const unixFormatter: FormatterCallback = function (
 ) {
   const nocolor = options.nocolor
 
+  const chalkInstance =
+    nocolor !== false ? new chalk.Instance({ level: 1 }) : chalk
+
   formatter.on('file', (event) => {
     event.messages.forEach((message) => {
       console.log(
@@ -26,7 +29,10 @@ const unixFormatter: FormatterCallback = function (
     if (allHintCount > 0) {
       console.log('')
       const message = '%d problems'
-      console.log(nocolor ? message : chalk.red(message), event.allHintCount)
+      console.log(
+        nocolor ? message : chalkInstance.red(message),
+        event.allHintCount
+      )
     }
   })
 }
