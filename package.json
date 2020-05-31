@@ -58,6 +58,7 @@
   },
   "dependencies": {
     "async": "3.2.0",
+    "chalk": "4.0.0",
     "commander": "5.1.0",
     "esm": "3.2.25",
     "glob": "7.1.6",
