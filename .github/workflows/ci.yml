@@ -49,11 +49,11 @@ jobs:
         run: npm test
 
       - name: Run coverage
-        if: success() && matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
         run: npm run test:coverage
 
       - name: Upload coverage to Codecov
-        if: success() && matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
+        if: matrix.os == 'ubuntu-latest' && matrix.node == '12.x'
         uses: codecov/codecov-action@v1
         with:
           file: ./coverage/lcov.info
