@@ -1,0 +1,6 @@
+coverage:
+  status:
+    project:
+      default:
+        target: auto # this is default
+        if_not_found: success # no commit found? still set a success
