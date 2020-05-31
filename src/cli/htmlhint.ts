@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { queue as asyncQueue, series as asyncSeries } from 'async'
-import 'colors'
+import * as chalk from 'chalk'
 import * as program from 'commander'
 import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
@@ -112,8 +112,7 @@ function listRules() {
 
   for (const id in rules) {
     rule = rules[id]
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    console.log('     %s : %s', rule.id.bold, rule.description)
+    console.log('     %s : %s', chalk.bold(rule.id), rule.description)
   }
 }
 
