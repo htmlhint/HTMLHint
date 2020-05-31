@@ -60,7 +60,6 @@
     "async": "3.2.0",
     "colors": "1.4.0",
     "commander": "5.1.0",
-    "esm": "3.2.25",
     "glob": "7.1.6",
     "parse-glob": "3.0.4",
     "request": "2.88.2",
