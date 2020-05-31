@@ -7,15 +7,18 @@ const path = require('path')
 describe('CLI', () => {
   describe('Formatter: json', () => {
     it('should have stdout output with formatter json', (done) => {
-      const expected = JSON.parse(
-        fs.readFileSync(path.resolve(__dirname, 'json.json'), 'utf8').replace(
+      const expectedFileContent = fs
+        .readFileSync(path.resolve(__dirname, 'json.json'), 'utf8')
+        .replace(
           /\{\{path\}\}/g,
           path
             .resolve(__dirname, '../../html/executable.html')
+            .replace(/\\/g, '\\\\')
             // TODO: we need to fix windows backslash
-            .replace('html\\executable.html', 'html/executable.html')
+            .replace('html\\\\executable.html', 'html/executable.html')
         )
-      )
+
+      const expected = JSON.parse(expectedFileContent)
 
       ChildProcess.exec(
         [
@@ -30,10 +33,20 @@ describe('CLI', () => {
           expect(error.code).to.be.equal(1)
 
           expect(stdout).not.to.be.equal('')
+
           const jsonStdout = JSON.parse(stdout)
           expect(jsonStdout[0]).to.be.an('object')
           expect(jsonStdout[0].file).to.contain('executable.html')
-          expect(jsonStdout[0].messages).to.be.eql(expected[0].messages)
+
+          const stdoutMessages = jsonStdout[0].messages
+
+          expect(stdoutMessages).to.be.an(Array)
+          expect(stdoutMessages.length).to.be.equal(expected[0].messages.length)
+
+          for (let i = 0; i < stdoutMessages.length; i++) {
+            expect(stdoutMessages[i]).to.be.eql(expected[0].messages[i])
+          }
+
           expect(jsonStdout[0].time).to.be.a('number')
 
           expect(stderr).to.be.equal('')
