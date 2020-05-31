@@ -1,4 +1,4 @@
-import * as colors from 'colors'
+import * as chalk from 'chalk'
 import { FormatterCallback } from '../formatter'
 
 const unixFormatter: FormatterCallback = function (
@@ -7,10 +7,6 @@ const unixFormatter: FormatterCallback = function (
   options
 ) {
   const nocolor = options.nocolor
-
-  if (nocolor !== false) {
-    colors.enable()
-  }
 
   formatter.on('file', (event) => {
     event.messages.forEach((message) => {
@@ -30,7 +26,7 @@ const unixFormatter: FormatterCallback = function (
     if (allHintCount > 0) {
       console.log('')
       const message = '%d problems'
-      console.log(nocolor ? message : message.red, event.allHintCount)
+      console.log(nocolor ? message : chalk.red(message), event.allHintCount)
     }
   })
 }

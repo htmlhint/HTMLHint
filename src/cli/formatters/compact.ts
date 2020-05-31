@@ -1,4 +1,4 @@
-import * as colors from 'colors'
+import * as chalk from 'chalk'
 import { FormatterCallback } from '../formatter'
 
 const compactFormatter: FormatterCallback = function (
@@ -7,10 +7,6 @@ const compactFormatter: FormatterCallback = function (
   options
 ) {
   const nocolor = options.nocolor
-
-  if (nocolor !== false) {
-    colors.enable()
-  }
 
   formatter.on('file', (event) => {
     event.messages.forEach((message) => {
@@ -31,7 +27,7 @@ const compactFormatter: FormatterCallback = function (
     if (allHintCount > 0) {
       console.log('')
       const message = '%d problems'
-      console.log(nocolor ? message : message.red, event.allHintCount)
+      console.log(nocolor ? message : chalk.red(message), event.allHintCount)
     }
   })
 }
