@@ -1,3 +1,10 @@
+# [0.14.0](https://github.com/htmlhint/HTMLHint/compare/v0.13.1...v0.14.0) (2020-05-31)
+
+
+### Features
+
+* use chalk instead of colors ([#433](https://github.com/htmlhint/HTMLHint/issues/433)) ([372dd60](https://github.com/htmlhint/HTMLHint/commit/372dd605e1e4655a5ff4821fcfad9fef9edfb523))
+
 ## [0.13.1](https://github.com/htmlhint/HTMLHint/compare/v0.13.0...v0.13.1) (2020-05-31)
 
 
