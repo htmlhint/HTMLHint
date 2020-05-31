@@ -1,3 +1,4 @@
+import * as chalk from 'chalk'
 import { EventEmitter } from 'events'
 import { sync as globSync } from 'glob'
 import { parse, resolve } from 'path'
@@ -94,7 +95,7 @@ formatter.setFormat = function (format) {
 
   if (formatHandel === undefined) {
     console.log(
-      'No supported formatter, supported formatters: %s'.red,
+      chalk.red('No supported formatter, supported formatters: %s'),
       arrSupportedFormatters.join(', ')
     )
     process.exit(1)
