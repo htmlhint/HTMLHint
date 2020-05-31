@@ -92,7 +92,7 @@
     "pretty-quick": "2.0.1",
     "rollup": "2.12.0",
     "rollup-plugin-babel": "4.4.0",
-    "rollup-plugin-terser": "5.3.0",
+    "rollup-plugin-terser": "6.1.0",
     "semantic-release": "17.0.8"
   },
   "release": {
