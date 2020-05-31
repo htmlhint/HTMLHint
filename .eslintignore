@@ -3,7 +3,6 @@ node_modules
 # Automatically generated directories
 bin
 dist
-build
 
 # Website directory
 website

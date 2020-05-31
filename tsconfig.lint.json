@@ -10,5 +10,5 @@
     "removeComments": true,
     "noEmit": true
   },
-  "exclude": ["node_modules", "bin", "build", "dist", "website"]
+  "exclude": ["node_modules", "bin", "dist", "website"]
 }

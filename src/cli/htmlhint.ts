@@ -13,10 +13,10 @@ import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 import { Formatter } from './formatter'
 
-const HTMLHint: typeof IHTMLHint = require('../dist/htmlhint.js').HTMLHint
+const HTMLHint: typeof IHTMLHint = require('../htmlhint.js').HTMLHint
 const formatter: Formatter = require('./formatter')
 
-const pkg = require('../package.json')
+const pkg = require('../../package.json')
 
 function map(val: string) {
   const objMap: { [name: string]: string | true } = {}
@@ -112,6 +112,7 @@ function listRules() {
 
   for (const id in rules) {
     rule = rules[id]
+    // eslint-disable-next-line @typescript-eslint/unbound-method
     console.log('     %s : %s', rule.id.bold, rule.description)
   }
 }
@@ -428,6 +429,7 @@ function walkPath(
     })
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const walk: any = glob(
     pattern,
     {

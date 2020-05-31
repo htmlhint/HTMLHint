@@ -21,7 +21,7 @@
     "htmlhint": "./bin/htmlhint"
   },
   "main": "dist/htmlhint.js",
-  "module": "src/core.js",
+  "module": "dist/core/core.js",
   "scripts": {
     "commit": "npx git-cz",
     "prettier": "prettier --write .",

@@ -3,7 +3,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import { terser } from 'rollup-plugin-terser'
 
 const config = {
-  input: './build/core/core.js',
+  input: './dist/core/core.js',
   output: {
     file: 'dist/htmlhint.js',
     format: 'umd',
