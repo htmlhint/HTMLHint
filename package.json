@@ -124,7 +124,7 @@
     ],
     "exclude": [
       "**/*.spec.js",
-      "src/**/*.js",
+      "src/**/*.ts",
       "bin/htmlhint"
     ],
     "reporter": [
