@@ -45,9 +45,9 @@ describe('CLI', () => {
           }
 
           expect(stderr).to.be.equal('')
-          done()
         }
       )
+      done()
     })
   })
 })

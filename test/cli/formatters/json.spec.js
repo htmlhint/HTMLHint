@@ -50,9 +50,9 @@ describe('CLI', () => {
           expect(jsonStdout[0].time).to.be.a('number')
 
           expect(stderr).to.be.equal('')
-          done()
         }
       )
+      done()
     })
   })
 })

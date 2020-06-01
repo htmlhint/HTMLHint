@@ -23,9 +23,9 @@ describe('CLI', () => {
           expect(stdout).to.contain('1 files, found 92 errors in 1 files (')
 
           expect(stderr).to.be.equal('')
-          done()
         }
       )
+      done()
     })
   })
 })
