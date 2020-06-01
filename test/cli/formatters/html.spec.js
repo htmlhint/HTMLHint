@@ -9,13 +9,7 @@ describe('CLI', () => {
     it('should have stdout output with formatter html', (done) => {
       const expected = fs
         .readFileSync(path.resolve(__dirname, 'html.html'), 'utf8')
-        .replace(
-          /\{\{path\}\}/g,
-          path
-            .resolve(__dirname, 'example.html')
-            // TODO: we need to fix windows backslash
-            .replace('\\example', '/example')
-        )
+        .replace(/\{\{path\}\}/g, path.resolve(__dirname, 'example.html'))
 
       const expectedParts = expected.split('\n')
 
