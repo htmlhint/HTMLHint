@@ -116,21 +116,5 @@
   "files": [
     "bin",
     "dist"
-  ],
-  "nyc": {
-    "all": true,
-    "include": [
-      "dist/htmlhint.js"
-    ],
-    "exclude": [
-      "**/*.spec.js",
-      "src/**/*.ts",
-      "bin/htmlhint"
-    ],
-    "reporter": [
-      "text",
-      "lcov"
-    ],
-    "sourceMap": false
-  }
+  ]
 }
