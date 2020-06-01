@@ -11,11 +11,7 @@ describe('CLI', () => {
         .readFileSync(path.resolve(__dirname, 'json.json'), 'utf8')
         .replace(
           /\{\{path\}\}/g,
-          path
-            .resolve(__dirname, '../../html/executable.html')
-            .replace(/\\/g, '\\\\')
-            // TODO: we need to fix windows backslash
-            .replace('html\\\\executable.html', 'html/executable.html')
+          path.resolve(__dirname, 'example.html').replace(/\\/g, '\\\\')
         )
 
       const expected = JSON.parse(expectedFileContent)
@@ -24,7 +20,7 @@ describe('CLI', () => {
         [
           'node',
           path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
+          path.resolve(__dirname, 'example.html'),
           '--format',
           'json',
         ].join(' '),
@@ -36,7 +32,7 @@ describe('CLI', () => {
 
           const jsonStdout = JSON.parse(stdout)
           expect(jsonStdout[0]).to.be.an('object')
-          expect(jsonStdout[0].file).to.contain('executable.html')
+          expect(jsonStdout[0].file).to.contain('example.html')
 
           const stdoutMessages = jsonStdout[0].messages
 

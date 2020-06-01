@@ -11,10 +11,11 @@ describe('CLI', () => {
         .readFileSync(path.resolve(__dirname, 'checkstyle.xml'), 'utf8')
         .replace(
           '{{path}}',
-          path.resolve(__dirname, '../../html/executable.html')
+          path
+            .resolve(__dirname, 'example.html')
+            // TODO: we need to fix windows backslash
+            .replace('\\example', '/example')
         )
-        // TODO: we need to fix windows backslash
-        .replace('html\\executable.html', 'html/executable.html')
 
       const expectedParts = expected.split('\n')
 
@@ -22,7 +23,7 @@ describe('CLI', () => {
         [
           'node',
           path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
+          path.resolve(__dirname, 'example.html'),
           '--format',
           'checkstyle',
         ].join(' '),
