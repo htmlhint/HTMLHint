@@ -1,7 +1,7 @@
 import * as chalk from 'chalk'
 import { FormatterCallback } from '../formatter'
 
-const compactFormatter: FormatterCallback = function (
+export const compactFormatter: FormatterCallback = function (
   formatter,
   HTMLHint,
   options
@@ -37,5 +37,3 @@ const compactFormatter: FormatterCallback = function (
     }
   })
 }
-
-module.exports = compactFormatter

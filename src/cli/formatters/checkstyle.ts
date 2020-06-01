@@ -2,7 +2,7 @@ import * as xml from 'xml'
 import type { XmlObject } from 'xml'
 import { FormatterCallback } from '../formatter'
 
-const checkstyleFormatter: FormatterCallback = function (formatter) {
+export const checkstyleFormatter: FormatterCallback = function (formatter) {
   formatter.on('end', (event) => {
     const arrFiles: XmlObject[] = []
     const arrAllMessages = event.arrAllMessages
@@ -56,5 +56,3 @@ const checkstyleFormatter: FormatterCallback = function (formatter) {
     )
   })
 }
-
-module.exports = checkstyleFormatter

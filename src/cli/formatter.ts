@@ -32,7 +32,9 @@ function loadFormatters() {
   arrFiles.forEach((file) => {
     const fileInfo = parse(file)
     const formatterPath = resolve(__dirname, file)
-    mapFormatters[fileInfo.name] = require(formatterPath)
+    mapFormatters[fileInfo.name] = require(formatterPath)[
+      `${fileInfo.name}Formatter`
+    ]
   })
 
   return mapFormatters
@@ -110,4 +112,4 @@ export type FormatterCallback = (
   options: { nocolor?: boolean }
 ) => void
 
-module.exports = formatter
+export { formatter }

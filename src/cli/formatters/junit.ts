@@ -2,7 +2,10 @@ import * as xml from 'xml'
 import type { XmlObject } from 'xml'
 import { FormatterCallback } from '../formatter'
 
-const junitFormatter: FormatterCallback = function (formatter, HTMLHint) {
+export const junitFormatter: FormatterCallback = function (
+  formatter,
+  HTMLHint
+) {
   formatter.on('end', (event) => {
     const arrTestcase: XmlObject[] = []
     const arrAllMessages = event.arrAllMessages
@@ -57,5 +60,3 @@ const junitFormatter: FormatterCallback = function (formatter, HTMLHint) {
     )
   })
 }
-
-module.exports = junitFormatter

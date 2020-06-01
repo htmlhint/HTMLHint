@@ -1,6 +1,9 @@
 import { FormatterCallback } from '../formatter'
 
-const markdownFormatter: FormatterCallback = function (formatter, HTMLHint) {
+export const markdownFormatter: FormatterCallback = function (
+  formatter,
+  HTMLHint
+) {
   formatter.on('end', (event) => {
     console.log('# TOC')
 
@@ -40,5 +43,3 @@ const markdownFormatter: FormatterCallback = function (formatter, HTMLHint) {
     console.log(arrContents.join('\r\n'))
   })
 }
-
-module.exports = markdownFormatter

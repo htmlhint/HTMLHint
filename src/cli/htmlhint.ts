@@ -12,10 +12,9 @@ import * as request from 'request'
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
-import { Formatter } from './formatter'
+import { Formatter, formatter } from './formatter'
 
 const HTMLHint: typeof IHTMLHint = require('../htmlhint.js').HTMLHint
-const formatter: Formatter = require('./formatter')
 
 const pkg = require('../../package.json')
 
