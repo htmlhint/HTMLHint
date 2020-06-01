@@ -11,7 +11,7 @@ describe('CLI', () => {
         [
           'node',
           path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
+          path.resolve(__dirname, 'example.html'),
           '--format',
           'junit',
         ].join(' '),
@@ -20,7 +20,7 @@ describe('CLI', () => {
           expect(error.code).to.be.equal(1)
 
           expect(stdout).to.contain('<?xml version="1.0" encoding="UTF-8"?>')
-          expect(stdout).to.contain('Found 92 errors')
+          expect(stdout).to.contain('Found 20 errors')
           expect(stdout).to.contain(
             '^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
           )

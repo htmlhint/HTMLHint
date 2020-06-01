@@ -10,7 +10,7 @@ describe('CLI', () => {
         [
           'node',
           path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
+          path.resolve(__dirname, 'example.html'),
           '--format',
           'markdown',
         ].join(' '),
@@ -19,8 +19,8 @@ describe('CLI', () => {
           expect(error.code).to.be.equal(1)
 
           expect(stdout).to.contain('# TOC')
-          expect(stdout).to.contain('Found 92 errors, 0 warnings')
-          expect(stdout).to.contain('executable.html')
+          expect(stdout).to.contain('Found 20 errors, 0 warnings')
+          expect(stdout).to.contain('example.html')
           expect(stdout).to.contain(
             '^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
           )

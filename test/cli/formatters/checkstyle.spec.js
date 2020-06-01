@@ -9,12 +9,7 @@ describe('CLI', () => {
     it('should have stdout output with formatter checkstyle', (done) => {
       const expected = fs
         .readFileSync(path.resolve(__dirname, 'checkstyle.xml'), 'utf8')
-        .replace(
-          '{{path}}',
-          path.resolve(__dirname, '../../html/executable.html')
-        )
-        // TODO: we need to fix windows backslash
-        .replace('html\\executable.html', 'html/executable.html')
+        .replace('{{path}}', path.resolve(__dirname, 'example.html'))
 
       const expectedParts = expected.split('\n')
 
@@ -22,7 +17,7 @@ describe('CLI', () => {
         [
           'node',
           path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
+          path.resolve(__dirname, 'example.html'),
           '--format',
           'checkstyle',
         ].join(' '),
