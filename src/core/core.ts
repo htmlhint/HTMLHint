@@ -66,7 +66,11 @@ class HTMLHintCore {
 
     for (const id in ruleset) {
       rule = rules[id]
-      if (rule !== undefined && ruleset[id] !== false) {
+      if (
+        rule !== undefined &&
+        (ruleset[id] !== 'off' ||
+          (Array.isArray(ruleset[id]) && ruleset[id] !== 'off'))
+      ) {
         rule.init(parser, reporter, ruleset[id])
       }
     }
