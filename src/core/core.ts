@@ -1,7 +1,7 @@
 import HTMLParser from './htmlparser'
-import Reporter from './reporter'
+import Reporter, { ReportMessageCallback } from './reporter'
 import * as HTMLRules from './rules'
-import { Hint, Rule, Ruleset } from './types'
+import { Hint, Rule, Ruleset, RuleSeverity } from './types'
 
 export interface FormatOptions {
   colors?: boolean
@@ -66,12 +66,14 @@ class HTMLHintCore {
 
     for (const id in ruleset) {
       rule = rules[id]
-      if (
-        rule !== undefined &&
-        (ruleset[id] !== 'off' ||
-          (Array.isArray(ruleset[id]) && ruleset[id] !== 'off'))
-      ) {
-        rule.init(parser, reporter, ruleset[id])
+      const ruleConfig = ruleset[id]
+      const ruleSeverity: RuleSeverity = Array.isArray(ruleConfig)
+        ? ruleConfig[0]
+        : ruleConfig
+      if (rule !== undefined && ruleSeverity !== 'off') {
+        const reportMessageCallback: ReportMessageCallback =
+          reporter[ruleSeverity]
+        rule.init(parser, reportMessageCallback, ruleConfig)
       }
     }
 

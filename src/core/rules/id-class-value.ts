@@ -4,7 +4,7 @@ export default {
   id: 'id-class-value',
   description:
     'The id and class attribute values must meet the specified rules.',
-  init(parser, reporter, options) {
+  init(parser, reportMessageCallback, options) {
     const arrRules: { [option: string]: { regId: RegExp; message: string } } = {
       underline: {
         regId: /^[a-z\d]+(_[a-z\d]+)*$/,
@@ -48,7 +48,7 @@ export default {
 
           if (attr.name.toLowerCase() === 'id') {
             if (regId.test(attr.value) === false) {
-              reporter.warn(
+              reportMessageCallback(
                 message,
                 event.line,
                 col + attr.index,
@@ -65,7 +65,7 @@ export default {
             for (let j = 0, l2 = arrClass.length; j < l2; j++) {
               classValue = arrClass[j]
               if (classValue && regId.test(classValue) === false) {
-                reporter.warn(
+                reportMessageCallback(
                   message,
                   event.line,
                   col + attr.index,

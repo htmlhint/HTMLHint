@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'space-tab-mixed-disabled',
   description: 'Do not mix tabs and spaces for indentation.',
-  init(parser, reporter, options) {
+  init(parser, reportMessageCallback, options) {
     let indentMode = 'nomix'
     let spaceLengthRequire: number | '' | null = null
 
@@ -33,7 +33,7 @@ export default {
               /^ +$/.test(whiteSpace) === false ||
               whiteSpace.length % spaceLengthRequire !== 0
             ) {
-              reporter.warn(
+              reportMessageCallback(
                 `Please use space for indentation and keep ${spaceLengthRequire} length.`,
                 fixedPos.line,
                 1,
@@ -43,7 +43,7 @@ export default {
             }
           } else {
             if (/^ +$/.test(whiteSpace) === false) {
-              reporter.warn(
+              reportMessageCallback(
                 'Please use space for indentation.',
                 fixedPos.line,
                 1,
@@ -53,7 +53,7 @@ export default {
             }
           }
         } else if (indentMode === 'tab' && /^\t+$/.test(whiteSpace) === false) {
-          reporter.warn(
+          reportMessageCallback(
             'Please use tab for indentation.',
             fixedPos.line,
             1,
@@ -61,7 +61,7 @@ export default {
             event.raw
           )
         } else if (/ +\t|\t+ /.test(whiteSpace) === true) {
-          reporter.warn(
+          reportMessageCallback(
             'Do not mix tabs and spaces for indentation.',
             fixedPos.line,
             1,

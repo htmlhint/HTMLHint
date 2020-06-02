@@ -1,10 +1,15 @@
-import { HTMLParser, Reporter } from './core'
+import { HTMLParser } from './core'
+import { ReportMessageCallback } from './reporter'
 
 export interface Rule {
   id: string
   description: string
   link?: string
-  init(parser: HTMLParser, reporter: Reporter, options: unknown): void
+  init(
+    parser: HTMLParser,
+    reportMessageCallback: ReportMessageCallback,
+    options: unknown
+  ): void
 }
 
 export type RuleSeverity = 'off' | 'warn' | 'error'

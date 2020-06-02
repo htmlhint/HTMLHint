@@ -4,7 +4,7 @@ export default {
   id: 'attr-whitespace',
   description:
     'All attributes should be separated by only one space and not have leading/trailing whitespace.',
-  init(parser, reporter, options) {
+  init(parser, reportMessageCallback, options) {
     const exceptions: Array<string | boolean> = Array.isArray(options)
       ? options
       : []
@@ -24,7 +24,7 @@ export default {
 
         // Check first and last characters for spaces
         if (elem.value.trim() !== elem.value) {
-          reporter.error(
+          reportMessageCallback(
             `The attributes of [ ${attrName} ] must not have trailing whitespace.`,
             event.line,
             col + attr.index,
@@ -34,7 +34,7 @@ export default {
         }
 
         if (elem.value.replace(/ +(?= )/g, '') !== elem.value) {
-          reporter.error(
+          reportMessageCallback(
             `The attributes of [ ${attrName} ] must be separated by only one space.`,
             event.line,
             col + attr.index,

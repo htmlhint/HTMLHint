@@ -4,7 +4,7 @@ import { Rule } from '../types'
 export default {
   id: 'title-require',
   description: '<title> must be present in <head> tag.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     let headBegin = false
     let hasTitle = false
 
@@ -27,7 +27,7 @@ export default {
           lastEvent.type !== 'text' ||
           (lastEvent.type === 'text' && /^\s*$/.test(lastEvent.raw) === true)
         ) {
-          reporter.error(
+          reportMessageCallback(
             '<title></title> must not be empty.',
             event.line,
             event.col,
@@ -37,7 +37,7 @@ export default {
         }
       } else if (tagName === 'head') {
         if (hasTitle === false) {
-          reporter.error(
+          reportMessageCallback(
             '<title> must be present in <head> tag.',
             event.line,
             event.col,
