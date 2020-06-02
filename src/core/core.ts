@@ -1,7 +1,7 @@
 import HTMLParser from './htmlparser'
 import Reporter, { ReportMessageCallback } from './reporter'
 import * as HTMLRules from './rules'
-import { Hint, Rule, Ruleset, RuleSeverity } from './types'
+import { Hint, isRuleSeverity, Rule, Ruleset, RuleSeverity } from './types'
 
 export interface FormatOptions {
   colors?: boolean
@@ -37,18 +37,17 @@ class HTMLHintCore {
       /^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i,
       (all, strRuleset: string) => {
         // For example:
-        // all is '<!-- htmlhint alt-require:true-->'
-        // strRuleset is 'alt-require:true'
+        // all is '<!-- htmlhint alt-require:warn-->'
+        // strRuleset is 'alt-require:warn'
         strRuleset.replace(
           /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
           (all, ruleId: string, value: string | undefined) => {
             // For example:
-            // all is 'alt-require:true'
+            // all is 'alt-require:warn'
             // ruleId is 'alt-require'
-            // value is 'true'
+            // value is 'warn'
 
-            ruleset[ruleId] =
-              value !== undefined && value.length > 0 ? JSON.parse(value) : true
+            ruleset[ruleId] = isRuleSeverity(value) ? value : 'error'
 
             return ''
           }

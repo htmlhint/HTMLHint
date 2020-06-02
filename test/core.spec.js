@@ -24,8 +24,8 @@ describe('Core', () => {
   })
 
   it('Inline ruleset not worked should result in an error', () => {
-    // With value = 'true'
-    let code = '<!-- htmlhint alt-require:true -->\r\n<img src="test.gif" />'
+    // With value = 'error'
+    let code = '<!-- htmlhint alt-require:error -->\r\n<img src="test.gif" />'
     let messages = HTMLHint.verify(code, {
       'alt-require': 'off',
     })
@@ -46,8 +46,8 @@ describe('Core', () => {
     expect(messages[0].line).to.be(2)
     expect(messages[0].col).to.be(5)
 
-    // With value = 'false'
-    code = '<!-- htmlhint alt-require:false -->\r\n<img src="test.gif" />'
+    // With value = 'off'
+    code = '<!-- htmlhint alt-require:off -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
       'alt-require': 'error',
     })

@@ -13,6 +13,21 @@ export interface Rule {
 }
 
 export type RuleSeverity = 'off' | 'warn' | 'error'
+
+export function isRuleSeverity(value: unknown): value is RuleSeverity {
+  if (typeof value !== 'string') {
+    return false
+  }
+  switch (value) {
+    case 'off':
+    case 'warn':
+    case 'error':
+      return true
+    default:
+      return false
+  }
+}
+
 export type RuleConfig<Options = Record<string, unknown>> =
   | RuleSeverity
   | [RuleSeverity, Options | undefined]
