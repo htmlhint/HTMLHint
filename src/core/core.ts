@@ -11,16 +11,16 @@ export interface FormatOptions {
 class HTMLHintCore {
   public rules: { [id: string]: Rule } = {}
   public readonly defaultRuleset: Ruleset = {
-    'tagname-lowercase': true,
-    'attr-lowercase': true,
-    'attr-value-double-quotes': true,
-    'doctype-first': true,
-    'tag-pair': true,
-    'spec-char-escape': true,
-    'id-unique': true,
-    'src-not-empty': true,
-    'attr-no-duplication': true,
-    'title-require': true,
+    'tagname-lowercase': 'error',
+    'attr-lowercase': 'error',
+    'attr-value-double-quotes': 'error',
+    'doctype-first': 'error',
+    'tag-pair': 'error',
+    'spec-char-escape': 'error',
+    'id-unique': 'error',
+    'src-not-empty': 'error',
+    'attr-no-duplication': 'error',
+    'title-require': 'error',
   }
 
   public addRule(rule: Rule) {
