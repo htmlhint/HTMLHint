@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'attr-lowercase'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'error'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Not all lowercase attr should result in an error', () => {
@@ -35,28 +35,28 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('Set is false should not result in an error', () => {
     const code = '<p TEST="abc">'
-    ruleOptions[ruldId] = false
+    ruleOptions[ruldId] = 'off'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
   it('Set to array list should not result in an error', () => {
     const code = '<p testBox="abc" tttAAA="ccc">'
-    ruleOptions[ruldId] = ['testBox', 'tttAAA']
+    ruleOptions[ruldId] = ['error', { exceptions: ['testBox', 'tttAAA'] }]
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
   it('Set to array list with RegExp should not result in an error', () => {
     const code = '<p testBox="abc" bind:tapTop="ccc">'
-    ruleOptions[ruldId] = ['testBox', /bind:.*/]
+    ruleOptions[ruldId] = ['error', { exceptions: ['testBox', /bind:.*/] }]
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
 
   it('Set to array list with regex string should not result in an error', () => {
     const code = '<p testBox="abc" [ngFor]="ccc">'
-    ruleOptions[ruldId] = ['testBox', '/\\[.*\\]/']
+    ruleOptions[ruldId] = ['error', { exceptions: ['testBox', '/\\[.*\\]/'] }]
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })

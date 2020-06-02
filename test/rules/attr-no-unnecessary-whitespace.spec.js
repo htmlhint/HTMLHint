@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'attr-no-unnecessary-whitespace'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'error'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Attribute with spaces should result in an error', () => {

@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'tag-pair'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'error'
 
 describe(`Rules: ${ruldId}`, () => {
   it('No end tag should result in an error', () => {

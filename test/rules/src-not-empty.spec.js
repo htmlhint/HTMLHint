@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'src-not-empty'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'error'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Src be emtpy should result in an error', () => {

@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'attr-value-single-quotes'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'error'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Attribute value closed by double quotes should result in an error', () => {

@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'alt-require'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'warn'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Img tag have empty alt attribute should not result in an error', () => {
