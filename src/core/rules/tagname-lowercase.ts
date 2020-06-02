@@ -3,10 +3,8 @@ import { Rule } from '../types'
 export default {
   id: 'tagname-lowercase',
   description: 'All html element names must be in lowercase.',
-  init(parser, reportMessageCallback, options) {
-    const exceptions: Array<string | boolean> = Array.isArray(options)
-      ? options
-      : []
+  init(parser, reportMessageCallback, options?: { exceptions: string[] }) {
+    const exceptions: string[] = options?.exceptions ?? []
 
     parser.addListener('tagstart,tagend', (event) => {
       const tagName = event.tagName

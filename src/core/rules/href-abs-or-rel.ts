@@ -3,8 +3,12 @@ import { Rule } from '../types'
 export default {
   id: 'href-abs-or-rel',
   description: 'An href attribute must be either absolute or relative.',
-  init(parser, reportMessageCallback, options) {
-    const hrefMode = options === 'abs' ? 'absolute' : 'relative'
+  init(
+    parser,
+    reportMessageCallback,
+    options?: { mode: 'absolute' | 'relative' }
+  ) {
+    const hrefMode = options?.mode ?? 'absolute'
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs

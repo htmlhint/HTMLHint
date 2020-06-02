@@ -3,15 +3,19 @@ import { Rule } from '../types'
 export default {
   id: 'space-tab-mixed-disabled',
   description: 'Do not mix tabs and spaces for indentation.',
-  init(parser, reportMessageCallback, options) {
-    let indentMode = 'nomix'
-    let spaceLengthRequire: number | '' | null = null
+  init(
+    parser,
+    reportMessageCallback,
+    options?: { mode: 'tab' } | { mode: 'space'; size?: number } | undefined
+  ) {
+    const indentMode: 'tab' | 'space' | 'nomix' = options?.mode ?? 'nomix'
+    const defaultSize = 4
+    let spaceLengthRequire: number | null =
+      options?.mode === 'space' ? options?.size ?? defaultSize : null
 
-    if (typeof options === 'string') {
-      const match = /^([a-z]+)(\d+)?/.exec(options)
-      if (match) {
-        indentMode = match[1]
-        spaceLengthRequire = match[2] && parseInt(match[2], 10)
+    if (typeof spaceLengthRequire === 'number') {
+      if (spaceLengthRequire <= 0 || spaceLengthRequire > 8) {
+        spaceLengthRequire = defaultSize
       }
     }
 

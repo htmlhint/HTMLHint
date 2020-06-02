@@ -4,8 +4,14 @@ export default {
   id: 'id-class-value',
   description:
     'The id and class attribute values must meet the specified rules.',
-  init(parser, reportMessageCallback, options) {
-    const arrRules: { [option: string]: { regId: RegExp; message: string } } = {
+  init(
+    parser,
+    reportMessageCallback,
+    options?:
+      | { mode: 'underline' | 'dash' | 'hump' }
+      | { regId: RegExp; message: string }
+  ) {
+    const arrRules = {
       underline: {
         regId: /^[a-z\d]+(_[a-z\d]+)*$/,
         message:
@@ -21,13 +27,16 @@ export default {
         message:
           'The id and class attribute values must meet the camelCase style.',
       },
-    }
-    let rule: { regId: RegExp; message: string } | boolean
+    } as const
 
-    if (typeof options === 'string') {
-      rule = arrRules[options]
-    } else {
-      rule = options as { regId: RegExp; message: string }
+    let rule: { regId: RegExp; message: string } = arrRules.dash
+
+    if (typeof options === 'object') {
+      if ('mode' in options) {
+        rule = arrRules[options.mode]
+      } else {
+        rule = options
+      }
     }
 
     if (typeof rule === 'object' && rule.regId) {

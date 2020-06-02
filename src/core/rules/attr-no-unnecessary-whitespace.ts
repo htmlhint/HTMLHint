@@ -3,8 +3,8 @@ import { Rule } from '../types'
 export default {
   id: 'attr-no-unnecessary-whitespace',
   description: 'No spaces between attribute names and values.',
-  init(parser, reportMessageCallback, options) {
-    const exceptions: string[] = Array.isArray(options) ? options : []
+  init(parser, reportMessageCallback, options?: { exceptions: string[] }) {
+    const exceptions: string[] = options?.exceptions ?? []
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs

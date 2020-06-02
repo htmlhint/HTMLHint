@@ -4,10 +4,8 @@ export default {
   id: 'attr-whitespace',
   description:
     'All attributes should be separated by only one space and not have leading/trailing whitespace.',
-  init(parser, reportMessageCallback, options) {
-    const exceptions: Array<string | boolean> = Array.isArray(options)
-      ? options
-      : []
+  init(parser, reportMessageCallback, options?: { exceptions: string[] }) {
+    const exceptions: string[] = options?.exceptions ?? []
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs

@@ -73,7 +73,11 @@ class HTMLHintCore {
       if (rule !== undefined && ruleSeverity !== 'off') {
         const reportMessageCallback: ReportMessageCallback =
           reporter[ruleSeverity]
-        rule.init(parser, reportMessageCallback, ruleConfig)
+        rule.init(
+          parser,
+          reportMessageCallback,
+          Array.isArray(ruleConfig) ? ruleConfig[1] : undefined
+        )
       }
     }
 

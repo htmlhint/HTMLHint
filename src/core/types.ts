@@ -21,21 +21,21 @@ export interface BaseRuleset {
   'alt-require'?: RuleConfig<never>
   'attr-lowercase'?: RuleConfig<{ exceptions: Array<string | RegExp> }>
   'attr-no-duplication'?: RuleConfig<never>
-  'attr-no-unnecessary-whitespace'?: RuleConfig<never>
+  'attr-no-unnecessary-whitespace'?: RuleConfig<{ exceptions: string[] }>
   'attr-sorted'?: RuleConfig<never>
   'attr-unsafe-chars'?: RuleConfig<never>
   'attr-value-double-quotes'?: RuleConfig<never>
   'attr-value-not-empty'?: RuleConfig<never>
   'attr-value-single-quotes'?: RuleConfig<never>
-  'attr-whitespace'?: RuleConfig<never>
+  'attr-whitespace'?: RuleConfig<{ exceptions: string[] }>
   'doctype-first'?: RuleConfig<never>
   'doctype-html5'?: RuleConfig<never>
   'head-script-disabled'?: RuleConfig<never>
   'href-abs-or-rel'?: RuleConfig<{ mode: 'absolute' | 'relative' }>
   'id-class-ad-disabled'?: RuleConfig<never>
-  'id-class-value'?: RuleConfig<{
-    mode: 'underline' | 'dash' | 'hump' | { regId: RegExp; message: string }
-  }>
+  'id-class-value'?: RuleConfig<
+    { mode: 'underline' | 'dash' | 'hump' } | { regId: RegExp; message: string }
+  >
   'id-unique'?: RuleConfig<never>
   'inline-script-disabled'?: RuleConfig<never>
   'inline-style-disabled'?: RuleConfig<never>
@@ -49,7 +49,7 @@ export interface BaseRuleset {
   'style-disabled'?: RuleConfig<never>
   'tag-pair'?: RuleConfig<never>
   'tag-self-close'?: RuleConfig<never>
-  'tagname-lowercase'?: RuleConfig<never>
+  'tagname-lowercase'?: RuleConfig<{ exceptions: string[] }>
   'tagname-specialchars'?: RuleConfig<never>
   'tags-check'?: RuleConfig<{
     [tagName: string]: {
