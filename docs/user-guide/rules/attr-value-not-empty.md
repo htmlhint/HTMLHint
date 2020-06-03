@@ -5,23 +5,47 @@ title: attr-value-not-empty
 
 Attribute must set value.
 
-Level: `warning`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "attr-value-not-empty": "off",
+  "attr-value-not-empty": "warn",
+  "attr-value-not-empty": "error",
+  "attr-value-not-empty": ["off"],
+  "attr-value-not-empty": ["warn"],
+  "attr-value-not-empty": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "attr-lowercase": "off" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
 ```html
 <input type="button" disabled="disabled" />
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <input type="button" disabled />
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use attributes that doesn't need a value.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.
