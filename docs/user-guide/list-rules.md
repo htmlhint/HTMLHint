@@ -17,15 +17,15 @@ title: List of rules
 
 - [`attr-lowercase`](/docs/user-guide/rules/attr-lowercase): All attribute names must be in lowercase.
 - [`attr-no-duplication`](/docs/user-guide/rules/attr-no-duplication): Elements cannot have duplicate attributes.
-- [`attr-no-unnecessary-whitespace`](/docs/user-guide/rules/attr-no-unnecessary-whitespace.md): No spaces between attribute names and values.
+- [`attr-no-unnecessary-whitespace`](/docs/user-guide/rules/attr-no-unnecessary-whitespace): No spaces between attribute names and values.
 - [`attr-unsafe-chars`](/docs/user-guide/rules/attr-unsafe-chars): Attribute values cannot contain unsafe chars.
 - [`attr-value-double-quotes`](/docs/user-guide/rules/attr-value-double-quotes): Attribute values must be in double quotes.
-- [`attr-value-not-empty`](/docs/user-guide/rules/attr-not-empty): All attributes must have values.
+- [`attr-value-not-empty`](/docs/user-guide/rules/attr-value-not-empty): All attributes must have values.
 - [`alt-require`](/docs/user-guide/rules/alt-require): The alt attribute of an element must be present and alt attribute of area[href] and input[type=image] must have a value.
 
 ### Tags
 
-- [`tags-check`](/docs/user-guide/rules/tags-check.md): Allowing specify rules for any tag and validate that
+- [`tags-check`](/docs/user-guide/rules/tags-check): Allowing specify rules for any tag and validate that
 - [`tag-pair`](/docs/user-guide/rules/tag-pair): Tag must be paired.
 - [`tag-self-close`](/docs/user-guide/rules/tag-self-close): Empty tags must be self closed.
 - [`tagname-lowercase`](/docs/user-guide/rules/tagname-lowercase): All html element names must be in lowercase.
