@@ -30,14 +30,12 @@ The same attribute can't be specified twice.
 
 Examples of **correct** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <img src="a.png" />
 ```
 
 Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <img src="a.png" src="b.png" />
 ```

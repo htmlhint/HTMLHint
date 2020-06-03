@@ -36,14 +36,12 @@ This rule has an object option:
 
 Examples of **correct** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <img src="test.png" alt="test" />
 ```
 
 Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <img src="test.png" alt="test" />
 ```

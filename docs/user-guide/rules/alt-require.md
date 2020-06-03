@@ -34,7 +34,6 @@ keywords:
 
 Examples of **correct** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <img src="test.png" alt="test" />
 <input type="image" alt="test" />
@@ -43,7 +42,6 @@ Examples of **correct** code for this rule:
 
 Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <img src="test.png" />
 <input type="image" />

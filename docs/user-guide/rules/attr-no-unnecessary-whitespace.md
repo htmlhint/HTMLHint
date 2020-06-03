@@ -36,7 +36,6 @@ This rule has an object option:
 
 Examples of **correct** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <div title="a"></div>
 ```
