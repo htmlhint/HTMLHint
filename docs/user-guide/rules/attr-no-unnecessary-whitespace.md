@@ -5,21 +5,43 @@ title: attr-no-unnecessary-whitespace
 
 No spaces between attribute names and values.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "attr-no-unnecessary-whitespace": "off",
+  "attr-no-unnecessary-whitespace": "warn",
+  "attr-no-unnecessary-whitespace": "error",
+  "attr-no-unnecessary-whitespace": ["off"],
+  "attr-no-unnecessary-whitespace": ["warn", { "exceptions": ["test"] }],
+  "attr-no-unnecessary-whitespace": ["error", { "exceptions": ["test"] }]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "attr-no-unnecessary-whitespace": "error" }
+```
+
+## Options
+
+This rule has an object option:
+
+- `"exceptions": ['test']` ignore some attribute names.
+
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
 <div title="a"></div>
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
@@ -27,3 +49,13 @@ The following pattern is considered violation:
 <div title= "a"></div>
 <div title ="a"></div>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use spaces between attribute names and values.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.13.0`.
