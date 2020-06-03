@@ -5,24 +5,55 @@ title: attr-lowercase
 
 Attribute name must be lowercase.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "attr-lowercase": "off",
+  "attr-lowercase": "warn",
+  "attr-lowercase": "error",
+  "attr-lowercase": ["off"],
+  "attr-lowercase": ["warn", { "exceptions": ["viewBox", "test"] }],
+  "attr-lowercase": ["error", { "exceptions": ["viewBox", "test"] }]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
-3. ['viewBox', 'test']: Ignore some attr name
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "attr-lowercase": "error" }
+```
+
+## Options
+
+This rule has an object option:
+
+- `"exceptions": ["viewBox", "test"]` ignore attributes `viewBox` and `test`.
+
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
 <img src="test.png" alt="test" />
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
 <img src="test.png" alt="test" />
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use `camelCase` attributes.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.

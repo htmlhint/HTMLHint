@@ -39,7 +39,7 @@ Examples of **correct** code for this rule:
 <img src="test.png" alt="test" />
 <input type="image" alt="test" />
 <area shape="circle" coords="180,139,14" href="test.html" alt="test" />
-````
+```
 
 Examples of **incorrect** code for this rule:
 
@@ -54,7 +54,7 @@ Examples of **incorrect** code for this rule:
 
 ## When Not To Use It
 
-If your project will not use `alt` on images
+If your project will not use `alt` on images.
 
 ## Version
 
