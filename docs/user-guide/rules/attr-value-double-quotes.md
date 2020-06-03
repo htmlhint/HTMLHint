@@ -5,23 +5,48 @@ title: attr-value-double-quotes
 
 Attribute value must closed by double quotes.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "attr-value-double-quotes": "off",
+  "attr-value-double-quotes": "warn",
+  "attr-value-double-quotes": "error",
+  "attr-value-double-quotes": ["off"],
+  "attr-value-double-quotes": ["warn"],
+  "attr-value-double-quotes": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "attr-value-double-quotes": "error" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
 ```html
 <a href="" title="abc"></a>
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
-<a href="" title="abc"></a>
+<a href='' title='abc'></a>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use single quotes for attribute values.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.
