@@ -1,22 +1,52 @@
 ---
 id: doctype-html5
-title: Doctype HTML5
+title: doctype-html5
 ---
-
-Rule ID: `doctype-html5`
 
 Doctype must be html5.
 
-Level: `warning`
+```json
+{
+  "doctype-html5": "off",
+  "doctype-html5": "warn",
+  "doctype-html5": "error",
+  "doctype-html5": ["off"],
+  "doctype-html5": ["warn"],
+  "doctype-html5": ["error"]
+}
+```
 
-## Config value
+## Default
 
-1. true: enable rule
-2. false: disable rule
+```json
+{ "doctype-html5": "off" }
+```
 
-The following pattern are **not** considered violations:
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
-<!DOCTYPE HTML><html>
+<!DOCTYPE html>
+<html></html>
 ```
+
+Examples of **incorrect** code for this rule:
+
+```html
+<!DOCTYPE hmtl>
+<html></html>
+```
+
+---
+
+## When Not To Use It
+
+If your project will use `html4` or `xhtml`.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.
