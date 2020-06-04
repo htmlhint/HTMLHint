@@ -3,33 +3,56 @@ id: doctype-first
 title: doctype-first
 ---
 
-Doctype must be first.
+Doctype must be declared first.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "doctype-first": "off",
+  "doctype-first": "warn",
+  "doctype-first": "error",
+  "doctype-first": ["off"],
+  "doctype-first": ["warn"],
+  "doctype-first": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "doctype-first": "error" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
 ```html
 <!DOCTYPE html>
 <html></html>
 ```
 
-<!-- prettier-ignore -->
+Examples of **incorrect** code for this rule:
+
 ```html
 <!DOCTYPE html>
 <html></html>
 ```
 
-The following pattern is considered violation:
-
-<!-- prettier-ignore -->
 ```html
 <!--comment--><!DOCTYPE html>
 <html></html>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use a framework.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.
