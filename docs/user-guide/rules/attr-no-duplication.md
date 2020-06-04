@@ -3,7 +3,7 @@ id: attr-no-duplication
 title: attr-no-duplication
 ---
 
-The same attribute can't be specified twice.
+Elements cannot have duplicate attributes.
 
 ## Possible Configuration Values
 

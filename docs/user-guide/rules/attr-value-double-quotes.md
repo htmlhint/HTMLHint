@@ -3,7 +3,7 @@ id: attr-value-double-quotes
 title: attr-value-double-quotes
 ---
 
-Attribute value must closed by double quotes.
+Attribute values must be in double quotes.
 
 ## Possible Configuration Values
 

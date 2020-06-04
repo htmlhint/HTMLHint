@@ -3,7 +3,7 @@ id: attr-lowercase
 title: attr-lowercase
 ---
 
-Attribute name must be lowercase.
+All attribute names must be in lowercase.
 
 ## Possible Configuration Values
 

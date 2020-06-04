@@ -3,7 +3,7 @@ id: attr-sorted
 title: attr-sorted
 ---
 
-Attributes must be sorted.
+Attribute tags must be in proper order.
 
 ## Possible Configuration Values
 

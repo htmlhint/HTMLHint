@@ -3,7 +3,7 @@ id: attr-value-not-empty
 title: attr-value-not-empty
 ---
 
-Attribute must set value.
+All attributes must have values.
 
 ## Possible Configuration Values
 

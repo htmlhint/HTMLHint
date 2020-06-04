@@ -7,7 +7,7 @@ keywords:
   - accessiblity
 ---
 
-`alt` of `img` must be present and `alt` of `area[href]` and `input[type=image]` must be set value.
+The `alt` attribute of an `<img>` element must be present and `alt` attribute of `area[href]` and `input[type=image]` must have a value.
 
 ## Possible Configuration Values
 
