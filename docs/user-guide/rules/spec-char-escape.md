@@ -5,23 +5,47 @@ title: spec-char-escape
 
 Special characters must be escaped.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "spec-char-escape": "off",
+  "spec-char-escape": "warn",
+  "spec-char-escape": "error",
+  "spec-char-escape": ["off"],
+  "spec-char-escape": ["warn"],
+  "spec-char-escape": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "spec-char-escape": "error" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
 ```html
 <span>aaa&gt;bbb&lt;ccc</span>
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <span>aaa>bbb<ccc</span>
 ```
+
+---
+
+## When Not To Use It
+
+Always use this rule.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.
