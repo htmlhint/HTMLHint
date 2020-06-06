@@ -13,22 +13,22 @@ All attributes should be separated by only one space and not have leading/traili
   "attr-whitespace": "warn",
   "attr-whitespace": "error",
   "attr-whitespace": ["off"],
-  "attr-whitespace": ["warn", { "exceptions": ["???", "???"] }],
-  "attr-whitespace": ["error", { "exceptions": ["???", "???"] }]
+  "attr-whitespace": ["warn", { "exceptions": ["test"] }],
+  "attr-whitespace": ["error", { "exceptions": ["test"] }]
 }
 ```
 
 ## Default
 
 ```json
-{ "attr-whitespace": "off" }
+{ "attr-whitespace": ["off", { "exceptions": [] }] }
 ```
 
 ## Options
 
 This rule has an object option:
 
-- `"exceptions": ["???", "???"]` ignore attributes `???` and `???`.
+- `"exceptions": ["test"]` ignore attribute `test`.
 
 ---
 
@@ -37,20 +37,24 @@ This rule has an object option:
 Examples of **correct** code for this rule:
 
 ```html
-???
+<p test="test test1"></p>
+<p test="testtest1"></p>
+<p test="test test1"></p>
 ```
 
 Examples of **incorrect** code for this rule:
 
 ```html
-???
+<p test="test  test1"></p>
+<p test=" testtest1 "></p>
+<p test=" test  test1 "></p>
 ```
 
 ---
 
 ## When Not To Use It
 
-If your project ???.
+If your project will use attributes with multiple whitespaces.
 
 ## Version
 
