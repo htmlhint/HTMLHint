@@ -31,13 +31,13 @@ All html element names must be in lowercase.
 Examples of **correct** code for this rule:
 
 ```html
-<div></div>
+<a href=""></a><span>test</span>
 ```
 
 Examples of **incorrect** code for this rule:
 
 ```html
-<di§v></di§v>
+<@ href="link"></@><$pan>aab</$pan>
 ```
 
 ---
