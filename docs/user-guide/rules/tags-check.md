@@ -105,7 +105,7 @@ Examples of **incorrect** code for this rule:
 
 ## When Not To Use It
 
-???.
+If your project doesn't need custom checks for tags.
 
 ## Version
 
