@@ -28,7 +28,6 @@ Doctype must be html5.
 
 Examples of **correct** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <!DOCTYPE html>
 <html></html>
@@ -37,7 +36,7 @@ Examples of **correct** code for this rule:
 Examples of **incorrect** code for this rule:
 
 ```html
-<!DOCTYPE hmtl>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "https://www.w3.org/TR/html4/strict.dtd">
 <html></html>
 ```
 

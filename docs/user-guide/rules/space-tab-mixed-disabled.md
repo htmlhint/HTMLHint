@@ -32,7 +32,7 @@ This rule has an object option:
 
 - `"mode": "tab"` use tabs as indentation.
 - `"mode": "space"` use spaces as indentation.
-- `"size": 0-8` count of spaces.
+  - `"size": 0-8` count of spaces.
 
 ---
 
