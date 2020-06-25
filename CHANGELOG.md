@@ -1,3 +1,7 @@
+# [1.0.0-beta.2](https://github.com/htmlhint/HTMLHint/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2020-06-25)
+
+* try to set version manually
+
 ## [0.14.1](https://github.com/htmlhint/HTMLHint/compare/v0.14.0...v0.14.1) (2020-06-25)
 
 
