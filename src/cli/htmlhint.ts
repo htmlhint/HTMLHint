@@ -6,6 +6,7 @@ import * as program from 'commander'
 import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
 import { IGlob } from 'glob'
+import { type as osType } from 'os'
 import * as parseGlob from 'parse-glob'
 import { dirname, resolve, sep } from 'path'
 import * as request from 'request'
@@ -18,6 +19,8 @@ const HTMLHint: typeof IHTMLHint = require('../htmlhint.js').HTMLHint
 const formatter: Formatter = require('./formatter')
 
 const pkg = require('../../package.json')
+
+const OS_TYPE = osType()
 
 function map(val: string) {
   const objMap: { [name: string]: string | true } = {}
@@ -446,6 +449,11 @@ function walkPath(
 
   walk.on('match', (file: string) => {
     base = base.replace(/^.\//, '')
+
+    if (OS_TYPE === 'Windows_NT') {
+      base = base.replace(/\//g, '\\')
+    }
+
     callback(base + file)
   })
 }

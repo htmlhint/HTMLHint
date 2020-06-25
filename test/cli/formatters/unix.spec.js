@@ -11,10 +11,7 @@ describe('CLI', () => {
         .readFileSync(path.resolve(__dirname, 'unix.txt'), 'utf8')
         .replace(
           /\{\{path\}\}/g,
-          path
-            .resolve(__dirname, '../../html/executable.html')
-            // TODO: we need to fix windows backslash
-            .replace('html\\executable.html', 'html/executable.html')
+          path.resolve(__dirname, '../../html/executable.html')
         )
         .replace(/\\u001b/g, '\u001b')
 
