@@ -26,6 +26,18 @@
 
 * windows path separator ([#443](https://github.com/htmlhint/HTMLHint/issues/443)) ([8048600](https://github.com/htmlhint/HTMLHint/commit/8048600e5b1568d4a4b469e822bd72a94502b242))
 
+# [1.0.0-beta.1](https://github.com/htmlhint/HTMLHint/compare/v0.15.0-beta.1...v1.0.0-beta.1) (2020-06-25)
+
+
+### Continuous Integration
+
+* trigger major bump ([63f0a7a](https://github.com/htmlhint/HTMLHint/commit/63f0a7adb12401c6b64eb32f7dfaf9ed35aa8250))
+
+
+### BREAKING CHANGES
+
+* Rules have a new structure
+
 # [0.15.0-beta.1](https://github.com/htmlhint/HTMLHint/compare/v0.14.0...v0.15.0-beta.1) (2020-06-25)
 
 
