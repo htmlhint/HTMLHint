@@ -32,7 +32,11 @@ let tagsTypings: Record<string, Record<string, unknown>> = {
 export default {
   id: 'tags-check',
   description: 'Checks html tags.',
-  init(parser, reporter, options: Record<string, Record<string, unknown>>) {
+  init(
+    parser,
+    reportMessageCallback,
+    options: Record<string, Record<string, unknown>>
+  ) {
     tagsTypings = { ...tagsTypings, ...options }
 
     parser.addListener('tagstart', (event) => {
@@ -45,7 +49,7 @@ export default {
         const currentTagType = tagsTypings[tagName]
 
         if (currentTagType.selfclosing === true && !event.close) {
-          reporter.warn(
+          reportMessageCallback(
             `The <${tagName}> tag must be selfclosing.`,
             event.line,
             event.col,
@@ -53,7 +57,7 @@ export default {
             event.raw
           )
         } else if (currentTagType.selfclosing === false && event.close) {
-          reporter.warn(
+          reportMessageCallback(
             `The <${tagName}> tag must not be selfclosing.`,
             event.line,
             event.col,
@@ -77,7 +81,7 @@ export default {
                     attr.name === realID &&
                     values.indexOf(attr.value) === -1
                   ) {
-                    reporter.error(
+                    reportMessageCallback(
                       `The <${tagName}> tag must have attr '${realID}' with one value of '${values.join(
                         "' or '"
                       )}'.`,
@@ -89,7 +93,7 @@ export default {
                   }
                 })
               } else {
-                reporter.error(
+                reportMessageCallback(
                   `The <${tagName}> tag must have attr '${realID}'.`,
                   event.line,
                   col,
@@ -100,7 +104,7 @@ export default {
             } else if (
               !attrs.some((attr) => id.split('|').indexOf(attr.name) !== -1)
             ) {
-              reporter.error(
+              reportMessageCallback(
                 `The <${tagName}> tag must have attr '${id}'.`,
                 event.line,
                 col,
@@ -125,7 +129,7 @@ export default {
                     attr.name === realID &&
                     values.indexOf(attr.value) === -1
                   ) {
-                    reporter.error(
+                    reportMessageCallback(
                       `The <${tagName}> tag must have optional attr '${realID}' with one value of '${values.join(
                         "' or '"
                       )}'.`,
@@ -145,7 +149,7 @@ export default {
           const redundantAttrs: string[] = currentTagType.redundantAttrs
           redundantAttrs.forEach((attrName) => {
             if (attrs.some((attr) => attr.name === attrName)) {
-              reporter.error(
+              reportMessageCallback(
                 `The attr '${attrName}' is redundant for <${tagName}> and should be ommited.`,
                 event.line,
                 col,

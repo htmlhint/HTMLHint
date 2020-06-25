@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'src-not-empty',
   description: 'The src attribute of an img(script,link) must have a value.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       const tagName = event.tagName
       const attrs = event.attrs
@@ -20,7 +20,7 @@ export default {
             (tagName === 'object' && attr.name === 'data')) &&
           attr.value === ''
         ) {
-          reporter.error(
+          reportMessageCallback(
             `The attribute [ ${attr.name} ] of the tag [ ${tagName} ] must have a value.`,
             event.line,
             col + attr.index,

@@ -5,12 +5,15 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'tags-check'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = {
-  sometag: {
-    selfclosing: true,
-    attrsRequired: [['attrname', 'attrvalue']],
+ruleOptions[ruldId] = [
+  'error',
+  {
+    sometag: {
+      selfclosing: true,
+      attrsRequired: [['attrname', 'attrvalue']],
+    },
   },
-}
+]
 
 describe(`Rules: ${ruldId}`, () => {
   it('Tag <a> should have requered attrs [title, href]', () => {

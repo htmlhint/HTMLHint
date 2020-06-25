@@ -4,7 +4,7 @@ import { Rule } from '../types'
 export default {
   id: 'tag-pair',
   description: 'Tag must be paired.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     const stack: Array<Partial<Block>> = []
     const mapEmptyTags = parser.makeMap(
       'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
@@ -40,7 +40,7 @@ export default {
 
         if (arrTags.length > 0) {
           const lastEvent = stack[stack.length - 1]
-          reporter.error(
+          reportMessageCallback(
             `Tag must be paired, missing: [ ${arrTags.join(
               ''
             )} ], start tag match failed [ ${lastEvent.raw} ] on line ${
@@ -54,7 +54,7 @@ export default {
         }
         stack.length = pos
       } else {
-        reporter.error(
+        reportMessageCallback(
           `Tag must be paired, no start tag: [ ${event.raw} ]`,
           event.line,
           event.col,
@@ -73,7 +73,7 @@ export default {
 
       if (arrTags.length > 0) {
         const lastEvent = stack[stack.length - 1]
-        reporter.error(
+        reportMessageCallback(
           `Tag must be paired, missing: [ ${arrTags.join(
             ''
           )} ], open tag match failed [ ${lastEvent.raw} ] on line ${

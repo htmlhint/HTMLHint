@@ -3,8 +3,8 @@ import { Rule } from '../types'
 export default {
   id: 'attr-no-unnecessary-whitespace',
   description: 'No spaces between attribute names and values.',
-  init(parser, reporter, options) {
-    const exceptions: string[] = Array.isArray(options) ? options : []
+  init(parser, reportMessageCallback, options?: { exceptions: string[] }) {
+    const exceptions: string[] = options?.exceptions ?? []
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
@@ -14,7 +14,7 @@ export default {
         if (exceptions.indexOf(attrs[i].name) === -1) {
           const match = /(\s*)=(\s*)/.exec(attrs[i].raw.trim())
           if (match && (match[1].length !== 0 || match[2].length !== 0)) {
-            reporter.error(
+            reportMessageCallback(
               `The attribute '${attrs[i].name}' must not have spaces between the name and value.`,
               event.line,
               col + attrs[i].index,

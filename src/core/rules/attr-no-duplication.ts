@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'attr-no-duplication',
   description: 'Elements cannot have duplicate attributes.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
@@ -17,7 +17,7 @@ export default {
         attrName = attr.name
 
         if (mapAttrName[attrName] === true) {
-          reporter.error(
+          reportMessageCallback(
             `Duplicate of attribute name [ ${attr.name} ] was found.`,
             event.line,
             col + attr.index,

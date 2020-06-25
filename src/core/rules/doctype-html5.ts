@@ -4,13 +4,13 @@ import { Rule } from '../types'
 export default {
   id: 'doctype-html5',
   description: 'Invalid doctype. Use: "<!DOCTYPE html>"',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     const onComment: Listener = (event) => {
       if (
         event.long === false &&
         event.content.toLowerCase() !== 'doctype html'
       ) {
-        reporter.warn(
+        reportMessageCallback(
           'Invalid doctype. Use: "<!DOCTYPE html>"',
           event.line,
           event.col,
