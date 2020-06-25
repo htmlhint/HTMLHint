@@ -1,5 +1,13 @@
 import { Hint, ReportType, Rule, Ruleset } from './types'
 
+export type ReportMessageCallback = (
+  message: string,
+  line: number,
+  col: number,
+  rule: Rule,
+  raw: string
+) => void
+
 export default class Reporter {
   public html: string
   public lines: string[]

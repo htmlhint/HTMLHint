@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruleId = 'attr-sorted'
 const ruleOptions = {}
 
-ruleOptions[ruleId] = true
+ruleOptions[ruleId] = 'error'
 
 describe(`Rules: ${ruleId}`, () => {
   it('Attribute unsorted tags must result in an error', () => {

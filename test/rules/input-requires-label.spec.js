@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruleId = 'input-requires-label'
 const ruleOptions = {}
 
-ruleOptions[ruleId] = true
+ruleOptions[ruleId] = 'warn'
 
 describe(`Rules: ${ruleId}`, () => {
   describe('Successful cases', () => {

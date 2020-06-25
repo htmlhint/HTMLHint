@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'attr-value-double-quotes',
   description: 'Attribute values must be in double quotes.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
@@ -16,7 +16,7 @@ export default {
           (attr.value !== '' && attr.quote !== '"') ||
           (attr.value === '' && attr.quote === "'")
         ) {
-          reporter.error(
+          reportMessageCallback(
             `The value of attribute [ ${attr.name} ] must be in double quotes.`,
             event.line,
             col + attr.index,

@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'attr-sorted',
   description: 'Attribute tags must be in proper order.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     const orderMap: { [key: string]: number } = {}
     const sortOrder = [
       'class',
@@ -45,7 +45,7 @@ export default {
       })
 
       if (originalAttrs !== JSON.stringify(listOfAttributes)) {
-        reporter.error(
+        reportMessageCallback(
           `Inaccurate order ${originalAttrs} should be in hierarchy ${JSON.stringify(
             listOfAttributes
           )} `,

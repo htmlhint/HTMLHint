@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'attr-unsafe-chars',
   description: 'Attribute values cannot contain unsafe chars.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
@@ -21,7 +21,7 @@ export default {
           const unsafeCode = escape(match[0])
             .replace(/%u/, '\\u')
             .replace(/%/, '\\x')
-          reporter.warn(
+          reportMessageCallback(
             `The value of attribute [ ${attr.name} ] cannot contain an unsafe char [ ${unsafeCode} ].`,
             event.line,
             col + attr.index,
