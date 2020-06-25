@@ -1,3 +1,10 @@
+## [0.14.1](https://github.com/htmlhint/HTMLHint/compare/v0.14.0...v0.14.1) (2020-06-25)
+
+
+### Bug Fixes
+
+* windows path separator ([#443](https://github.com/htmlhint/HTMLHint/issues/443)) ([8048600](https://github.com/htmlhint/HTMLHint/commit/8048600e5b1568d4a4b469e822bd72a94502b242))
+
 # [0.14.0](https://github.com/htmlhint/HTMLHint/compare/v0.13.1...v0.14.0) (2020-05-31)
 
 
