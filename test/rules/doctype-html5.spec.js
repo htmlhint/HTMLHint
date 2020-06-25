@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'doctype-html5'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'warn'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Doctype not html5 should result in an error', () => {

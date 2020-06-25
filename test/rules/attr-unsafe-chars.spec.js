@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'attr-unsafe-chars'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'warn'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Attribute value have unsafe chars should result in an error', () => {

@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'inline-style-disabled',
   description: 'Inline style cannot be used.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
@@ -13,7 +13,7 @@ export default {
         attr = attrs[i]
 
         if (attr.name.toLowerCase() === 'style') {
-          reporter.warn(
+          reportMessageCallback(
             `Inline style [ ${attr.raw} ] cannot be used.`,
             event.line,
             col + attr.index,

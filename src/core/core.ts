@@ -1,7 +1,7 @@
 import HTMLParser from './htmlparser'
-import Reporter from './reporter'
+import Reporter, { ReportMessageCallback } from './reporter'
 import * as HTMLRules from './rules'
-import { Hint, Rule, Ruleset } from './types'
+import { Hint, isRuleSeverity, Rule, Ruleset, RuleSeverity } from './types'
 
 export interface FormatOptions {
   colors?: boolean
@@ -11,16 +11,16 @@ export interface FormatOptions {
 class HTMLHintCore {
   public rules: { [id: string]: Rule } = {}
   public readonly defaultRuleset: Ruleset = {
-    'tagname-lowercase': true,
-    'attr-lowercase': true,
-    'attr-value-double-quotes': true,
-    'doctype-first': true,
-    'tag-pair': true,
-    'spec-char-escape': true,
-    'id-unique': true,
-    'src-not-empty': true,
-    'attr-no-duplication': true,
-    'title-require': true,
+    'tagname-lowercase': 'error',
+    'attr-lowercase': 'error',
+    'attr-value-double-quotes': 'error',
+    'doctype-first': 'error',
+    'tag-pair': 'error',
+    'spec-char-escape': 'error',
+    'id-unique': 'error',
+    'src-not-empty': 'error',
+    'attr-no-duplication': 'error',
+    'title-require': 'error',
   }
 
   public addRule(rule: Rule) {
@@ -37,18 +37,17 @@ class HTMLHintCore {
       /^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i,
       (all, strRuleset: string) => {
         // For example:
-        // all is '<!-- htmlhint alt-require:true-->'
-        // strRuleset is 'alt-require:true'
+        // all is '<!-- htmlhint alt-require:warn-->'
+        // strRuleset is 'alt-require:warn'
         strRuleset.replace(
           /(?:^|,)\s*([^:,]+)\s*(?:\:\s*([^,\s]+))?/g,
           (all, ruleId: string, value: string | undefined) => {
             // For example:
-            // all is 'alt-require:true'
+            // all is 'alt-require:warn'
             // ruleId is 'alt-require'
-            // value is 'true'
+            // value is 'warn'
 
-            ruleset[ruleId] =
-              value !== undefined && value.length > 0 ? JSON.parse(value) : true
+            ruleset[ruleId] = isRuleSeverity(value) ? value : 'error'
 
             return ''
           }
@@ -66,8 +65,19 @@ class HTMLHintCore {
 
     for (const id in ruleset) {
       rule = rules[id]
-      if (rule !== undefined && ruleset[id] !== false) {
-        rule.init(parser, reporter, ruleset[id])
+      const ruleConfig = ruleset[id]
+      const ruleSeverity: RuleSeverity = Array.isArray(ruleConfig)
+        ? ruleConfig[0]
+        : ruleConfig
+      if (rule !== undefined && ruleSeverity !== 'off') {
+        const reportMessageCallback: ReportMessageCallback = reporter[
+          ruleSeverity
+        ].bind(reporter)
+        rule.init(
+          parser,
+          reportMessageCallback,
+          Array.isArray(ruleConfig) ? ruleConfig[1] : undefined
+        )
       }
     }
 

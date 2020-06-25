@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'id-unique',
   description: 'The value of id attributes must be unique.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     const mapIdCount: { [id: string]: number } = {}
 
     parser.addListener('tagstart', (event) => {
@@ -26,7 +26,7 @@ export default {
             }
 
             if (mapIdCount[id] > 1) {
-              reporter.error(
+              reportMessageCallback(
                 `The id value [ ${id} ] must be unique.`,
                 event.line,
                 col + attr.index,

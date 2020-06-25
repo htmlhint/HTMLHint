@@ -5,7 +5,7 @@ const HTMLHint = require('../dist/htmlhint.js').HTMLHint
 describe('Core', () => {
   it('Set false to rule no effected should result in an error', () => {
     const code = '<img src="test.gif" />'
-    const messages = HTMLHint.verify(code, { 'alt-require': false })
+    const messages = HTMLHint.verify(code, { 'alt-require': 'off' })
     expect(messages.length).to.be(0)
   })
 
@@ -24,10 +24,10 @@ describe('Core', () => {
   })
 
   it('Inline ruleset not worked should result in an error', () => {
-    // With value = 'true'
-    let code = '<!-- htmlhint alt-require:true -->\r\n<img src="test.gif" />'
+    // With value = 'error'
+    let code = '<!-- htmlhint alt-require:error -->\r\n<img src="test.gif" />'
     let messages = HTMLHint.verify(code, {
-      'alt-require': false,
+      'alt-require': 'off',
     })
 
     expect(messages.length).to.be(1)
@@ -38,7 +38,7 @@ describe('Core', () => {
     // Without value
     code = '<!-- htmlhint alt-require -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
-      'alt-require': false,
+      'alt-require': 'off',
     })
 
     expect(messages.length).to.be(1)
@@ -46,17 +46,17 @@ describe('Core', () => {
     expect(messages[0].line).to.be(2)
     expect(messages[0].col).to.be(5)
 
-    // With value = 'false'
-    code = '<!-- htmlhint alt-require:false -->\r\n<img src="test.gif" />'
+    // With value = 'off'
+    code = '<!-- htmlhint alt-require:off -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
-      'alt-require': true,
+      'alt-require': 'error',
     })
     expect(messages.length).to.be(0)
 
     // Without rule
     code = '<!-- htmlhint -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
-      'alt-require': false,
+      'alt-require': 'off',
     })
 
     expect(messages.length).to.be(0)
@@ -66,8 +66,8 @@ describe('Core', () => {
     const code =
       'tttttttttttttttttttttttttttttttttttt<div>中文<img src="test.gif" />tttttttttttttttttttttttttttttttttttttttttttttt'
     const messages = HTMLHint.verify(code, {
-      'tag-pair': true,
-      'alt-require': true,
+      'tag-pair': 'error',
+      'alt-require': 'error',
     })
     let arrLogs = HTMLHint.format(messages)
     expect(arrLogs.length).to.be(4)
