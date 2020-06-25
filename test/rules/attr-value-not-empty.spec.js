@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'attr-value-not-empty'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'warn'
 
 describe(`Rules: ${ruldId}`, () => {
   it('Attribute value have no value should result in an error', () => {

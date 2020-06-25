@@ -1,4 +1,4 @@
-import { Rule } from '../types'
+import { Rule, RuleConfig } from '../types'
 
 /**
  * testAgainstStringOrRegExp
@@ -42,8 +42,12 @@ function testAgainstStringOrRegExp(value: string, comparison: string | RegExp) {
 export default {
   id: 'attr-lowercase',
   description: 'All attribute names must be in lowercase.',
-  init(parser, reporter, options) {
-    const exceptions = Array.isArray(options) ? options : []
+  init(
+    parser,
+    reportMessageCallback,
+    options?: { exceptions: Array<string | RegExp> }
+  ) {
+    const exceptions = options?.exceptions ?? []
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
@@ -58,7 +62,7 @@ export default {
           !exceptions.find((exp) => testAgainstStringOrRegExp(attrName, exp)) &&
           attrName !== attrName.toLowerCase()
         ) {
-          reporter.error(
+          reportMessageCallback(
             `The attribute name of [ ${attrName} ] must be in lowercase.`,
             event.line,
             col + attr.index,

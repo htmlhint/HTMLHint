@@ -4,7 +4,7 @@ import { Rule } from '../types'
 export default {
   id: 'head-script-disabled',
   description: 'The <script> tag cannot be used in a <head> tag.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     const reScript = /^(text\/javascript|application\/javascript)$/i
     let isInHead = false
 
@@ -22,7 +22,7 @@ export default {
         tagName === 'script' &&
         (!type || reScript.test(type) === true)
       ) {
-        reporter.warn(
+        reportMessageCallback(
           'The <script> tag cannot be used in a <head> tag.',
           event.line,
           event.col,

@@ -5,7 +5,7 @@ const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 const ruldId = 'tag-self-close'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruldId] = 'warn'
 
 describe(`Rules: ${ruldId}`, () => {
   it('The empty tag no closed should result in an error', () => {

@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'attr-value-not-empty',
   description: 'All attributes must have values.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
@@ -13,7 +13,7 @@ export default {
         attr = attrs[i]
 
         if (attr.quote === '' && attr.value === '') {
-          reporter.warn(
+          reportMessageCallback(
             `The attribute [ ${attr.name} ] must have a value.`,
             event.line,
             col + attr.index,
