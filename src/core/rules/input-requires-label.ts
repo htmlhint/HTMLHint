@@ -4,7 +4,7 @@ import { Rule } from '../types'
 export default {
   id: 'input-requires-label',
   description: 'All [ input ] tags must have a corresponding [ label ] tag. ',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     const labelTags: Array<{
       event: Block
       col: number
@@ -31,7 +31,7 @@ export default {
     parser.addListener('end', () => {
       inputTags.forEach((inputTag) => {
         if (!hasMatchingLabelTag(inputTag)) {
-          reporter.warn(
+          reportMessageCallback(
             'No matching [ label ] tag found.',
             inputTag.event.line,
             inputTag.col,

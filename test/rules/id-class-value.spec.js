@@ -8,13 +8,16 @@ const ruleOptionsDash = {}
 const ruleOptionsHump = {}
 const ruleOptionsReg = {}
 
-ruleOptionsUnderline[ruldId] = 'underline'
-ruleOptionsDash[ruldId] = 'dash'
-ruleOptionsHump[ruldId] = 'hump'
-ruleOptionsReg[ruldId] = {
-  regId: /^_[a-z\d]+(-[a-z\d]+)*$/,
-  message: 'Id and class value must meet regexp',
-}
+ruleOptionsUnderline[ruldId] = ['warn', { mode: 'underline' }]
+ruleOptionsDash[ruldId] = ['error', { mdoe: 'dash' }]
+ruleOptionsHump[ruldId] = ['error', { mode: 'hump' }]
+ruleOptionsReg[ruldId] = [
+  'error',
+  {
+    regId: /^_[a-z\d]+(-[a-z\d]+)*$/,
+    message: 'Id and class value must meet regexp',
+  },
+]
 
 describe(`Rules: ${ruldId}`, () => {
   it('Id and class value be not lower case and split by underline should result in an error', () => {
@@ -39,7 +42,9 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('Id and class value be not lower case and split by dash should result in an error', () => {
     const code = '<div id="aaaBBB" class="ccc_ddd">'
-    const messages = HTMLHint.verify(code, { 'id-class-value': 'dash' })
+    const messages = HTMLHint.verify(code, {
+      'id-class-value': ['error', 'dash'],
+    })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be('id-class-value')
     expect(messages[0].line).to.be(1)

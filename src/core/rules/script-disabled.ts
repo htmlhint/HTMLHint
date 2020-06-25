@@ -3,10 +3,10 @@ import { Rule } from '../types'
 export default {
   id: 'script-disabled',
   description: 'The <script> tag cannot be used.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       if (event.tagName.toLowerCase() === 'script') {
-        reporter.error(
+        reportMessageCallback(
           'The <script> tag cannot be used.',
           event.line,
           event.col,

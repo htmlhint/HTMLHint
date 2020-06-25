@@ -3,7 +3,7 @@ import { Rule } from '../types'
 export default {
   id: 'inline-script-disabled',
   description: 'Inline script cannot be used.',
-  init(parser, reporter) {
+  init(parser, reportMessageCallback) {
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs
       let attr
@@ -16,7 +16,7 @@ export default {
         attrName = attr.name.toLowerCase()
 
         if (reEvent.test(attrName) === true) {
-          reporter.warn(
+          reportMessageCallback(
             `Inline script [ ${attr.raw} ] cannot be used.`,
             event.line,
             col + attr.index,
@@ -25,7 +25,7 @@ export default {
           )
         } else if (attrName === 'src' || attrName === 'href') {
           if (/^\s*javascript:/i.test(attr.value)) {
-            reporter.warn(
+            reportMessageCallback(
               `Inline script [ ${attr.raw} ] cannot be used.`,
               event.line,
               col + attr.index,

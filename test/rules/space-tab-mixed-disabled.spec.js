@@ -9,11 +9,11 @@ const ruleSpace4Options = {}
 const ruleSpace5Options = {}
 const ruleTabOptions = {}
 
-ruleMixOptions[ruldId] = true
-ruleSpaceOptions[ruldId] = 'space'
-ruleSpace4Options[ruldId] = 'space4'
-ruleSpace5Options[ruldId] = 'space5'
-ruleTabOptions[ruldId] = 'tab'
+ruleMixOptions[ruldId] = 'error'
+ruleSpaceOptions[ruldId] = ['error', { mode: 'space' }]
+ruleSpace4Options[ruldId] = ['error', { mode: 'space', size: 4 }]
+ruleSpace5Options[ruldId] = ['error', { mode: 'space', size: 5 }]
+ruleTabOptions[ruldId] = ['error', { mode: 'tab' }]
 
 describe(`Rules: ${ruldId}`, () => {
   it('Spaces and tabs mixed in front of line should result in an error', () => {
