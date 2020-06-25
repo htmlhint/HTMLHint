@@ -21,6 +21,29 @@
 
 * Rules have a new structure
 
+# [1.0.0-beta.1](https://github.com/htmlhint/HTMLHint/compare/v0.14.1...v1.0.0-beta.1) (2020-06-25)
+
+
+### Bug Fixes
+
+* fix circular beta release ([dbc5efc](https://github.com/htmlhint/HTMLHint/commit/dbc5efc45513b23886e9fe25809dd1d16961d81c))
+* remove duplicate changelog ([#474](https://github.com/htmlhint/HTMLHint/issues/474)) ([cfb015b](https://github.com/htmlhint/HTMLHint/commit/cfb015bbc2f50bc75e5938efd4802db3e1fe1aa3))
+
+
+### Continuous Integration
+
+* trigger major bump ([f6de930](https://github.com/htmlhint/HTMLHint/commit/f6de930990ccd3d798cce3d09c401f986c6f57ef))
+
+
+### Features
+
+* new configuration structure ([#445](https://github.com/htmlhint/HTMLHint/issues/445)) ([ae99648](https://github.com/htmlhint/HTMLHint/commit/ae9964861b18904d3f4ab05fc22efe969bfed114))
+
+
+### BREAKING CHANGES
+
+* Rules have a new structure
+
 # [1.0.0-beta.2](https://github.com/htmlhint/HTMLHint/compare/v1.0.0-beta.1...v1.0.0-beta.2) (2020-06-25)
 
 * try to set version manually
