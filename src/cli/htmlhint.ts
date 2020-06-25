@@ -5,6 +5,7 @@ import * as chalk from 'chalk'
 import * as program from 'commander'
 import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
+import { IGlob } from 'glob'
 import * as parseGlob from 'parse-glob'
 import { dirname, resolve, sep } from 'path'
 import * as request from 'request'
@@ -428,8 +429,7 @@ function walkPath(
     })
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const walk: any = glob(
+  const walk: IGlob = glob(
     pattern,
     {
       cwd: base,
