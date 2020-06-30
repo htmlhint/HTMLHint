@@ -3,18 +3,32 @@ id: src-not-empty
 title: src-not-empty
 ---
 
-Src of img(script, link) must set value.
+The `src` attribute of an `img`, `script` or `link` must have a value.
 
-Emtpy of src will visit current page twice.
+## Possible Configuration Values
 
-Level: `error`
+```json
+{
+  "src-not-empty": "off",
+  "src-not-empty": "warn",
+  "src-not-empty": "error",
+  "src-not-empty": ["off"],
+  "src-not-empty": ["warn"],
+  "src-not-empty": ["error"]
+}
+```
 
-## Config value
+## Default
 
-1. true: enable rule
-2. false: disable rule
+```json
+{ "src-not-empty": "error" }
+```
 
-The following pattern are **not** considered violations:
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
@@ -27,7 +41,7 @@ The following pattern are **not** considered violations:
 <object data="test.swf">
 ```
 
-The following patterns are considered violations:
+Examples of **incorrect** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
@@ -45,3 +59,13 @@ The following patterns are considered violations:
 <object data="">
 <object data>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use tags without `src`.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.4`.

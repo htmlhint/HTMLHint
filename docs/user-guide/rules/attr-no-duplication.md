@@ -3,25 +3,49 @@ id: attr-no-duplication
 title: attr-no-duplication
 ---
 
-The same attribute can't be specified twice.
+Elements cannot have duplicate attributes.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "attr-no-duplication": "off",
+  "attr-no-duplication": "warn",
+  "attr-no-duplication": "error",
+  "attr-no-duplication": ["off"],
+  "attr-no-duplication": ["warn"],
+  "attr-no-duplication": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "attr-no-duplication": "error" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
 ```html
 <img src="a.png" />
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <img src="a.png" src="b.png" />
 ```
+
+---
+
+## When Not To Use It
+
+You always want to use this rule.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.6`.
