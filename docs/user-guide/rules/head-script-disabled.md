@@ -3,29 +3,53 @@ id: head-script-disabled
 title: head-script-disabled
 ---
 
-The script tag can not be used in head.
+The `<script>` tag cannot be used in a `<head>` tag.
 
-Level: `warning`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "head-script-disabled": "off",
+  "head-script-disabled": "warn",
+  "head-script-disabled": "error",
+  "head-script-disabled": ["off"],
+  "head-script-disabled": ["warn"],
+  "head-script-disabled": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "head-script-disabled": "off" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
 ```html
 <body>
   <script src="test.js"></script>
 </body>
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <head>
   <script src="test.js"></script>
 </head>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use `script` tags in `head`.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.

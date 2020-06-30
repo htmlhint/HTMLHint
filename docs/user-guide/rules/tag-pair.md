@@ -5,24 +5,51 @@ title: tag-pair
 
 Tag must be paired.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
-
-1. true: enable rule
-2. false: disable rule
-
-The following pattern are **not** considered violations:
-
-<!-- prettier-ignore -->
-```html
-<ul><li></li></ul>
+```json
+{
+  "tag-pair": "off",
+  "tag-pair": "warn",
+  "tag-pair": "error",
+  "tag-pair": ["off"],
+  "tag-pair": ["warn"],
+  "tag-pair": ["error"]
+}
 ```
 
-The following pattern is considered violation:
+## Default
+
+```json
+{ "tag-pair": "error" }
+```
+
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
+```html
+<ul>
+  <li></li>
+</ul>
+```
+
+Examples of **incorrect** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
 <ul><li></ul>
 <ul></li></ul>
 ```
+
+---
+
+## When Not To Use It
+
+Always use this rule.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.

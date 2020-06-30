@@ -3,21 +3,61 @@ id: href-abs-or-rel
 title: href-abs-or-rel
 ---
 
-Href must be absolute or relative.
+An href attribute must be either absolute or relative.
 
-Level: `warning`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "href-abs-or-rel": "off",
+  "href-abs-or-rel": "warn",
+  "href-abs-or-rel": "error",
+  "href-abs-or-rel": ["off"],
+  "href-abs-or-rel": ["warn", { "mode": "absolute" }],
+  "href-abs-or-rel": ["warn", { "mode": "relative" }],
+  "href-abs-or-rel": ["error", { "mode": "absolute" }],
+  "href-abs-or-rel": ["error", { "mode": "relative" }]
+}
+```
 
-1. abs: absolute mode
-2. rel: relative mode
-3. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "attr-lowercase": ["off", { "mode": "absolute" }] }
+```
+
+## Options
+
+This rule has an object option:
+
+- `"mode": "absolute"` (default) only allow absolut urls.
+- `"mode": "relative"` only allow relative urls.
+
+---
+
+## Examples
+
+Examples of **correct** code for mode `absolut`:
+
+```html
+<a href="http://www.alibaba.com/">test1</a>
+<a href="https://www.alipay.com/">test2</a>
+```
+
+Examples of **correct** code for mode `relative`:
 
 <!-- prettier-ignore -->
 ```html
-abs: <a href="http://www.alibaba.com/">test1</a> <a href="https://www.alipay.com/">test2</a>
-rel: <a href="test.html">test1</a> <a href="../test.html">test2</a>
-
+<a href="test.html">test1</a>
+<a href="../test.html">test2</a>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use both `relative` and `absolute`.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.6`.

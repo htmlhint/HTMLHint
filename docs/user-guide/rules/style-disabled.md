@@ -3,19 +3,48 @@ id: style-disabled
 title: style-disabled
 ---
 
-Style tag can not be use.
+`<style>` tags cannot be used.
 
-Level: `warning`
+## Possible Configuration Values
 
-## Config value
-
-1. true: enable rule
-2. false: disable rule
-
-The following pattern are considered violations:
-
-<!-- prettier-ignore -->
-```html
-<head><style type="text/css"></style></head>
-<body><style type="text/css"></style></body>
+```json
+{
+  "style-disabled": "off",
+  "style-disabled": "warn",
+  "style-disabled": "error",
+  "style-disabled": ["off"],
+  "style-disabled": ["warn"],
+  "style-disabled": ["error"]
+}
 ```
+
+## Default
+
+```json
+{ "style-disabled": "off" }
+```
+
+---
+
+## Examples
+
+Examples of **incorrect** code for this rule:
+
+```html
+<head>
+  <style type="text/css"></style>
+</head>
+<body>
+  <style type="text/css"></style>
+</body>
+```
+
+---
+
+## When Not To Use It
+
+If your project will use `style` tags.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.

@@ -3,25 +3,51 @@ id: id-unique
 title: id-unique
 ---
 
-ID attributes must be unique in the document.
+The value of id attributes must be unique.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
-
-1. true: enable rule
-2. false: disable rule
-
-The following pattern are **not** considered violations:
-
-<!-- prettier-ignore -->
-```html
-<div id="id1"></div><div id="id2"></div>
+```json
+{
+  "id-unique": "off",
+  "id-unique": "warn",
+  "id-unique": "error",
+  "id-unique": ["off"],
+  "id-unique": ["warn"],
+  "id-unique": ["error"]
+}
 ```
 
-The following pattern is considered violation:
+## Default
 
-<!-- prettier-ignore -->
-```html
-<div id="id1"></div><div id="id1"></div>
+```json
+{ "id-unique": "error" }
 ```
+
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
+```html
+<div id="id1"></div>
+<div id="id2"></div>
+```
+
+Examples of **incorrect** code for this rule:
+
+```html
+<div id="id1"></div>
+<div id="id1"></div>
+```
+
+---
+
+## When Not To Use It
+
+If your project will use the same `id` multiple times.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.2`.
