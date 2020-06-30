@@ -10,7 +10,7 @@ describe(`Rules: ${ruldId}`, () => {
     const code =
       '<a href="a.html">aaa</a><a href="../b.html">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = ['error', { mode: 'absolute' }]
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -24,7 +24,7 @@ describe(`Rules: ${ruldId}`, () => {
     const code =
       '<a href="http://www.alibaba.com/">aaa</a><a href="https://www.alibaba.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = ['error', { mode: 'absolute' }]
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 
@@ -32,7 +32,7 @@ describe(`Rules: ${ruldId}`, () => {
     const code =
       '<a href="http://www.alibaba.com/">aaa</a><a href="https://www.alibaba.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = ['error', { mode: 'relative' }]
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -46,7 +46,7 @@ describe(`Rules: ${ruldId}`, () => {
     const code =
       '<a href="a.html">aaa</a><a href="../b.html">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruldId] = ['error', { mode: 'relative' }]
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 })

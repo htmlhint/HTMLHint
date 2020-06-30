@@ -10,7 +10,7 @@ ruleOptions[ruldId] = 'error'
 describe(`Rules: ${ruldId}`, () => {
   it('Attribute value closed by double quotes should result in an error', () => {
     const code = '<a href="abc" title=abc style="">'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(3)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -25,7 +25,7 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('Attribute value no closed should not result in an error', () => {
     const code = "<input type='button' disabled style=''>"
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 })

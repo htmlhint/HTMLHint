@@ -10,7 +10,7 @@ ruleOptions[ruldId] = 'error'
 describe(`Rules: ${ruldId}`, () => {
   it('The tag name not all lower case should result in an error', () => {
     const code = '<A href=""></A><SPAN>aab</spaN>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(4)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -28,7 +28,7 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('All lower case tag name should not result in an error', () => {
     const code = '<a href=""></a><span>test</span>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 })
