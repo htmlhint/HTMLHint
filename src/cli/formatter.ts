@@ -5,8 +5,11 @@ import { parse, resolve } from 'path'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 
-let HTMLHint: typeof IHTMLHint
-let options: { nocolor?: boolean }
+export type FormatterCallback = (
+  formatter: Formatter,
+  HTMLHint: typeof IHTMLHint,
+  options: { nocolor?: boolean }
+) => void
 
 // load formatters
 const mapFormatters = loadFormatters()
@@ -66,53 +69,64 @@ export interface FormatterEndEvent {
   time: number
 }
 
-export interface Formatter extends EventEmitter {
-  getSupported(): typeof arrSupportedFormatters
-  init(tmpHTMLHint: typeof IHTMLHint, tmpOptions: { nocolor?: boolean }): void
-  setFormat(format: string): void
+export class Formatter extends EventEmitter {
+  private HTMLHint!: typeof IHTMLHint
+  private options!: { nocolor?: boolean }
 
-  emit(event: 'start'): boolean
-  on(event: 'start', listener: () => void): this
+  public getSupported(): string[] {
+    return arrSupportedFormatters
+  }
 
-  emit(event: 'file', arg: FormatterFileEvent): boolean
-  on(event: 'file', listener: (event: FormatterFileEvent) => void): this
+  public init(
+    tmpHTMLHint: typeof IHTMLHint,
+    tmpOptions: { nocolor?: boolean }
+  ): void {
+    this.HTMLHint = tmpHTMLHint
+    this.options = tmpOptions
+  }
 
-  emit(event: 'config', arg: FormatterConfigEvent): boolean
-  on(event: 'config', listener: (event: FormatterConfigEvent) => void): this
+  public setFormat(format: string): void {
+    const formatHandel = mapFormatters[format]
 
-  emit(event: 'end', arg: FormatterEndEvent): boolean
-  on(event: 'end', listener: (event: FormatterEndEvent) => void): this
-}
+    if (formatHandel === undefined) {
+      console.log(
+        chalk.red('No supported formatter, supported formatters: %s'),
+        arrSupportedFormatters.join(', ')
+      )
+      process.exit(1)
+    } else {
+      formatHandel(formatter, this.HTMLHint, this.options)
+    }
+  }
 
-const formatter: Formatter = new EventEmitter() as Formatter
+  public emit(event: 'start'): boolean
+  public emit(event: 'file', arg: FormatterFileEvent): boolean
+  public emit(event: 'config', arg: FormatterConfigEvent): boolean
+  public emit(event: 'end', arg: FormatterEndEvent): boolean
+  public emit(
+    event: string,
+    arg?: FormatterFileEvent | FormatterConfigEvent | FormatterEndEvent
+  ): boolean {
+    return super.emit(event, arg)
+  }
 
-formatter.getSupported = function () {
-  return arrSupportedFormatters
-}
-
-formatter.init = function (tmpHTMLHint, tmpOptions) {
-  HTMLHint = tmpHTMLHint
-  options = tmpOptions
-}
-
-formatter.setFormat = function (format) {
-  const formatHandel = mapFormatters[format]
-
-  if (formatHandel === undefined) {
-    console.log(
-      chalk.red('No supported formatter, supported formatters: %s'),
-      arrSupportedFormatters.join(', ')
-    )
-    process.exit(1)
-  } else {
-    formatHandel(formatter, HTMLHint, options)
+  public on(event: 'start', listener: () => void): this
+  public on(event: 'file', listener: (event: FormatterFileEvent) => void): this
+  public on(
+    event: 'config',
+    listener: (event: FormatterConfigEvent) => void
+  ): this
+  public on(event: 'end', listener: (event: FormatterEndEvent) => void): this
+  public on(
+    event: string,
+    listener:
+      | (() => void)
+      | ((event: FormatterFileEvent) => void)
+      | ((event: FormatterConfigEvent) => void)
+      | ((event: FormatterEndEvent) => void)
+  ): this {
+    return super.on(event, listener)
   }
 }
 
-export type FormatterCallback = (
-  formatter: Formatter,
-  HTMLHint: typeof IHTMLHint,
-  options: { nocolor?: boolean }
-) => void
-
-export { formatter }
+export const formatter: Formatter = new Formatter()
