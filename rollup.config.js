@@ -8,7 +8,6 @@ const config = {
     file: 'dist/htmlhint.js',
     format: 'umd',
     name: 'HTMLHint',
-    exports: 'named',
   },
   plugins: [commonjs(), resolve()],
 }
