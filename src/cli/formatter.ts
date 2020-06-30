@@ -28,16 +28,19 @@ function loadFormatters() {
     silent: true,
   })
 
-  const mapFormatters: { [name: string]: FormatterCallback } = {}
-  arrFiles.forEach((file) => {
+  return arrFiles.reduce<{ [name: string]: FormatterCallback }>((map, file) => {
     const fileInfo = parse(file)
     const formatterPath = resolve(__dirname, file)
-    mapFormatters[fileInfo.name] = require(formatterPath)[
-      `${fileInfo.name}Formatter`
-    ]
-  })
-
-  return mapFormatters
+    const formatterModule:
+      | { [name: string]: FormatterCallback | undefined }
+      | undefined = require(formatterPath)
+    const formatterName = `${fileInfo.name}Formatter`
+    const formatterFn = formatterModule?.[formatterName]
+    if (formatterFn) {
+      map[fileInfo.name] = formatterFn
+    }
+    return map
+  }, {})
 }
 
 export interface FormatterFileEvent {
