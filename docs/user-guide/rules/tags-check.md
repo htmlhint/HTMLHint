@@ -3,9 +3,85 @@ id: tags-check
 title: tags-check
 ---
 
-Allowing specify rules for any tag and validate that
+Checks html tags.
 
-The following pattern are **not** considered violations:
+## Possible Configuration Values
+
+```json
+{
+  "tags-check": "off",
+  "tags-check": "warn",
+  "tags-check": "error",
+  "tags-check": ["off"],
+  "tags-check": [
+    "warn",
+    {
+      "img": {
+        "selfclosing": true,
+        "attrsRequired": ["src", "alt", "title"]
+      }
+    }
+  ],
+  "tags-check": [
+    "error",
+    {
+      "a": {
+        "selfclosing": false,
+        "attrsRequired": ["href", "title"],
+        "redundantAttrs": ["alt"]
+      }
+    }
+  ]
+}
+```
+
+## Default
+
+```json
+{
+  "tags-check": [
+    "off",
+    {
+      "a": {
+        "selfclosing": false,
+        "attrsRequired": ["href", "title"],
+        "redundantAttrs": ["alt"]
+      },
+      "div": {
+        "selfclosing": false
+      },
+      "main": {
+        "selfclosing": false,
+        "redundantAttrs": ["role"]
+      },
+      "nav": {
+        "selfclosing": false,
+        "redundantAttrs": ["role"]
+      },
+      "script": {
+        "attrsOptional": [
+          ["async", "async"],
+          ["defer", "defer"]
+        ]
+      },
+      "img": {
+        "selfclosing": true,
+        "attrsRequired": ["src", "alt", "title"]
+      }
+    }
+  ]
+}
+```
+
+## Options
+
+This rule has an object option.
+
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
@@ -15,7 +91,7 @@ The following pattern are **not** considered violations:
 <img src="bbb" title="aaa" alt="asd" />
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
@@ -24,3 +100,13 @@ The following pattern is considered violation:
 <a href="bbb" title="aaa" />
 <img src="bbb" title="aaa" alt="asd"></img>
 ```
+
+---
+
+## When Not To Use It
+
+If your project doesn't need custom checks for tags.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.11.0`.

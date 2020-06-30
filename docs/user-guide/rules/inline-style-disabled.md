@@ -3,18 +3,43 @@ id: inline-style-disabled
 title: inline-style-disabled
 ---
 
-Inline style cannot be use.
+Inline style cannot be used.
 
-Level: `warning`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "inline-style-disabled": "off",
+  "inline-style-disabled": "warn",
+  "inline-style-disabled": "error",
+  "inline-style-disabled": ["off"],
+  "inline-style-disabled": ["warn"],
+  "inline-style-disabled": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are considered violations:
+```json
+{ "inline-style-disabled": "error" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **incorrect** code for this rule:
+
 ```html
 <div style="color:red"></div>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use inline styles.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.10`.
