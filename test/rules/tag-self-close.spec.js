@@ -10,7 +10,7 @@ ruleOptions[ruldId] = 'warn'
 describe(`Rules: ${ruldId}`, () => {
   it('The empty tag no closed should result in an error', () => {
     const code = '<br><img src="test.jpg">'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -25,7 +25,7 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('Closed empty tag should not result in an error', () => {
     const code = '<br /><img src="a.jpg"/>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 })

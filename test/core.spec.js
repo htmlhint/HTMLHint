@@ -5,7 +5,7 @@ const HTMLHint = require('../dist/htmlhint.js').HTMLHint
 describe('Core', () => {
   it('Set false to rule no effected should result in an error', () => {
     const code = '<img src="test.gif" />'
-    const messages = HTMLHint.verify(code, { 'alt-require': 'off' })
+    const messages = HTMLHint.verify(code, { rules: { 'alt-require': 'off' } })
     expect(messages.length).to.be(0)
   })
 
@@ -27,7 +27,9 @@ describe('Core', () => {
     // With value = 'error'
     let code = '<!-- htmlhint alt-require:error -->\r\n<img src="test.gif" />'
     let messages = HTMLHint.verify(code, {
-      'alt-require': 'off',
+      rules: {
+        'alt-require': 'off',
+      },
     })
 
     expect(messages.length).to.be(1)
@@ -38,7 +40,9 @@ describe('Core', () => {
     // Without value
     code = '<!-- htmlhint alt-require -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
-      'alt-require': 'off',
+      rules: {
+        'alt-require': 'off',
+      },
     })
 
     expect(messages.length).to.be(1)
@@ -49,14 +53,18 @@ describe('Core', () => {
     // With value = 'off'
     code = '<!-- htmlhint alt-require:off -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
-      'alt-require': 'error',
+      rules: {
+        'alt-require': 'error',
+      },
     })
     expect(messages.length).to.be(0)
 
     // Without rule
     code = '<!-- htmlhint -->\r\n<img src="test.gif" />'
     messages = HTMLHint.verify(code, {
-      'alt-require': 'off',
+      rules: {
+        'alt-require': 'off',
+      },
     })
 
     expect(messages.length).to.be(0)
@@ -66,8 +74,10 @@ describe('Core', () => {
     const code =
       'tttttttttttttttttttttttttttttttttttt<div>中文<img src="test.gif" />tttttttttttttttttttttttttttttttttttttttttttttt'
     const messages = HTMLHint.verify(code, {
-      'tag-pair': 'error',
-      'alt-require': 'error',
+      rules: {
+        'tag-pair': 'error',
+        'alt-require': 'error',
+      },
     })
     let arrLogs = HTMLHint.format(messages)
     expect(arrLogs.length).to.be(4)

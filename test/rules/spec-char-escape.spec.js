@@ -10,7 +10,7 @@ ruleOptions[ruldId] = 'error'
 describe(`Rules: ${ruldId}`, () => {
   it('Special characters: <> should result in an error', () => {
     const code = '<p>aaa>bbb< ccc</p>ddd\r\neee<'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(3)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -25,7 +25,7 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('Special characters: & should result in an error', () => {
     const code = '<p>Steinway & Sons</p>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(1)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -34,13 +34,13 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('Normal text should not result in an error', () => {
     const code = '<p>abc</p>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 
   it('Properly formed HTML entities should not result in an error', () => {
     const code = '<p>Steinway &amp; &gt; Sons Q&amp;A </p>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 })
