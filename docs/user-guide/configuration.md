@@ -3,31 +3,31 @@ id: configuration
 title: Configuration
 ---
 
-Search `.htmlhintrc` file in current directory and all parent directories:
+By default, htmlhint looks for a `.htmlhintrc` file in the current directory and all parent directories, and applies its rules when parsing a file:
 
 ```sh
-$ htmlhint
-$ htmlhint test.html
+$ htmlhint index.html
 ```
 
-Custom config file:
+To provide a custom configuration file to the command, use the `--config` option:
 
 ```sh
-$ htmlhint --config htmlhint.conf test.html
+$ htmlhint --config htmlhint.conf index.html
 ```
 
-Custom rules:
+Custom rules can also be specified individually, via the `--rules` option:
 
 ```sh
 $ htmlhint --rules tag-pair,id-class-value=underline index.html
 ```
 
-Inline rules in `test.html`:
+Finally, rules can be specified inline directly in the HTML document:
 
 <!-- prettier-ignore -->
 ```html
-<!--htmlhint tag-pair,id-class-value:underline -->
+<!-- htmlhint tag-pair,id-class-value:underline -->
 <html>
-<head>
-...
+  <head>...</head>
+  <body>...</body>
+</html>
 ```
