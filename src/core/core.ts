@@ -1,7 +1,14 @@
 import HTMLParser from './htmlparser'
 import Reporter, { ReportMessageCallback } from './reporter'
 import * as HTMLRules from './rules'
-import { Hint, isRuleSeverity, Rule, Ruleset, RuleSeverity } from './types'
+import {
+  Configuration,
+  Hint,
+  isRuleSeverity,
+  Rule,
+  Ruleset,
+  RuleSeverity,
+} from './types'
 
 export interface FormatOptions {
   colors?: boolean
@@ -27,7 +34,11 @@ class HTMLHintCore {
     this.rules[rule.id] = rule
   }
 
-  public verify(html: string, ruleset: Ruleset = this.defaultRuleset) {
+  public verify(
+    html: string,
+    config: Configuration = { rules: this.defaultRuleset }
+  ) {
+    let ruleset = config.rules ?? this.defaultRuleset
     if (Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
     }

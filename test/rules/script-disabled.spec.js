@@ -10,7 +10,7 @@ ruleOptions[ruldId] = 'error'
 describe(`Rules: ${ruldId}`, () => {
   it('Add external script file should result in an error', () => {
     const code = '<body><script src="test.js"></script></body>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(1)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -19,7 +19,7 @@ describe(`Rules: ${ruldId}`, () => {
   })
   it('Add inline script should result in an error', () => {
     const code = '<body><script>var test = "test";</script></body>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(1)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)

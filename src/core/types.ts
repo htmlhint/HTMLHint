@@ -1,6 +1,10 @@
 import { HTMLParser } from './core'
 import { ReportMessageCallback } from './reporter'
 
+export interface Configuration {
+  rules?: Ruleset
+}
+
 export interface Rule {
   id: string
   description: string

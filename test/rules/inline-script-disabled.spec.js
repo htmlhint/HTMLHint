@@ -11,7 +11,7 @@ describe(`Rules: ${ruldId}`, () => {
   it('Inline on event should result in an error', () => {
     const code =
       '<body><img src="test.gif" onclick="alert(1);"><img src="test.gif" onMouseDown="alert(1);"></body>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -22,14 +22,14 @@ describe(`Rules: ${ruldId}`, () => {
 
   it('onttt should not result in an error', () => {
     const code = '<body><img src="test.gif" onttt="alert(1);"></body>'
-    const messages = HTMLHint.verify(code, ruleOptions)
+    const messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(0)
   })
 
   it('Javascript protocol [ javascript: ] should result in an error', () => {
     let code =
       '<body><img src="javascript:alert(1)"><img src=" JAVASCRIPT:alert(1)"></body>'
-    let messages = HTMLHint.verify(code, ruleOptions)
+    let messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)
@@ -39,7 +39,7 @@ describe(`Rules: ${ruldId}`, () => {
 
     code =
       '<body><a href="javascript:alert(1)">test1</a><a href=" JAVASCRIPT:alert(2)">test2</a></body>'
-    messages = HTMLHint.verify(code, ruleOptions)
+    messages = HTMLHint.verify(code, { rules: ruleOptions })
     expect(messages.length).to.be(2)
     expect(messages[0].rule.id).to.be(ruldId)
     expect(messages[0].line).to.be(1)

@@ -465,7 +465,7 @@ function hintFile(filepath: string, ruleset?: Ruleset) {
     // ignore
   }
 
-  return HTMLHint.verify(content, ruleset)
+  return HTMLHint.verify(content, { rules: ruleset })
 }
 
 // hint stdin
@@ -483,7 +483,7 @@ function hintStdin(
 
   process.stdin.on('end', () => {
     const content = buffers.join('')
-    const messages = HTMLHint.verify(content, ruleset)
+    const messages = HTMLHint.verify(content, { rules: ruleset })
     callback(messages)
   })
 }
@@ -496,7 +496,7 @@ function hintUrl(
 ) {
   request.get(url, (error, response, body) => {
     if (!error && response.statusCode == 200) {
-      const messages = HTMLHint.verify(body, ruleset)
+      const messages = HTMLHint.verify(body, { rules: ruleset })
       callback(messages)
     } else {
       callback([])
