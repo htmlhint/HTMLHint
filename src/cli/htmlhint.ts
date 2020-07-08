@@ -11,7 +11,7 @@ import { dirname, resolve, sep } from 'path'
 import * as request from 'request'
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
-import type { Hint, Ruleset } from '../core/types'
+import type { Configuration, Hint } from '../core/types'
 import { Formatter } from './formatter'
 
 const HTMLHint: typeof IHTMLHint = require('../htmlhint.js').HTMLHint
@@ -96,9 +96,11 @@ if (format) {
   formatter.setFormat(format)
 }
 
+// TODO: parse and validate `program.rules`
+
 hintTargets(arrTargets, {
   rulesdir: program.rulesdir,
-  ruleset: program.rules,
+  config: program.rules ? { rules: program.rules } : undefined,
   formatter: formatter,
   ignore: program.ignore,
 })
@@ -121,7 +123,7 @@ function hintTargets(
   arrTargets: string[],
   options: {
     formatter: Formatter
-    ruleset?: Ruleset
+    config?: Configuration
     rulesdir?: string
     ignore?: string
   }
@@ -213,7 +215,7 @@ function hintAllFiles(
   options: {
     ignore?: string
     formatter: Formatter
-    ruleset?: Ruleset
+    config?: Configuration
   },
   onFinised: (result: {
     targetFileCount: number
@@ -241,10 +243,10 @@ function hintAllFiles(
     time: number
   }> = []
 
-  // init ruleset
-  let ruleset = options.ruleset
-  if (ruleset === undefined) {
-    ruleset = getConfig(program.config, globInfo.base, formatter)
+  // init config
+  let config = options.config
+  if (config === undefined) {
+    config = getConfig(program.config, globInfo.base, formatter)
   }
 
   // hint queue
@@ -252,11 +254,11 @@ function hintAllFiles(
     const startTime = new Date().getTime()
 
     if (filepath === 'stdin') {
-      hintStdin(ruleset, hintNext)
+      hintStdin(config, hintNext)
     } else if (/^https?:\/\//.test(filepath)) {
-      hintUrl(filepath, ruleset, hintNext)
+      hintUrl(filepath, config, hintNext)
     } else {
-      const messages = hintFile(filepath, ruleset)
+      const messages = hintFile(filepath, config)
       hintNext(messages)
     }
 
@@ -370,7 +372,7 @@ function getConfig(
   configPath: string | undefined,
   base: string,
   formatter: Formatter
-) {
+): Configuration | undefined {
   if (configPath === undefined && existsSync(base)) {
     // find default config file in parent directory
     if (statSync(base).isDirectory() === false) {
@@ -378,6 +380,7 @@ function getConfig(
     }
 
     while (base) {
+      // TODO: load via cosmiconfig (https://github.com/htmlhint/HTMLHint/issues/126)
       const tmpConfigFile = resolve(base, '.htmlhintrc')
 
       if (existsSync(tmpConfigFile)) {
@@ -395,20 +398,22 @@ function getConfig(
 
   // TODO: can configPath be undefined here?
   if (configPath !== undefined && existsSync(configPath)) {
-    const config = readFileSync(configPath, 'utf-8')
-    let ruleset: Ruleset = {}
+    const configContent = readFileSync(configPath, 'utf-8')
+    let config: Configuration | undefined
 
     try {
-      ruleset = JSON.parse(stripJsonComments(config))
+      config = JSON.parse(stripJsonComments(configContent))
       formatter.emit('config', {
-        ruleset: ruleset,
-        configPath: configPath,
+        configPath,
+        config,
       })
     } catch (e) {
       // ignore
     }
 
-    return ruleset
+    // TODO: validate config
+
+    return config
   }
 }
 
@@ -456,7 +461,7 @@ function walkPath(
 }
 
 // hint file
-function hintFile(filepath: string, ruleset?: Ruleset) {
+function hintFile(filepath: string, config?: Configuration) {
   let content = ''
 
   try {
@@ -465,12 +470,12 @@ function hintFile(filepath: string, ruleset?: Ruleset) {
     // ignore
   }
 
-  return HTMLHint.verify(content, { rules: ruleset })
+  return HTMLHint.verify(content, config)
 }
 
 // hint stdin
 function hintStdin(
-  ruleset: Ruleset | undefined,
+  config: Configuration | undefined,
   callback: (messages: Hint[]) => void
 ) {
   process.stdin.setEncoding('utf8')
@@ -483,7 +488,7 @@ function hintStdin(
 
   process.stdin.on('end', () => {
     const content = buffers.join('')
-    const messages = HTMLHint.verify(content, { rules: ruleset })
+    const messages = HTMLHint.verify(content, config)
     callback(messages)
   })
 }
@@ -491,12 +496,12 @@ function hintStdin(
 // hint url
 function hintUrl(
   url: string,
-  ruleset: Ruleset | undefined,
+  config: Configuration | undefined,
   callback: (messages: Hint[]) => void
 ) {
   request.get(url, (error, response, body) => {
     if (!error && response.statusCode == 200) {
-      const messages = HTMLHint.verify(body, { rules: ruleset })
+      const messages = HTMLHint.verify(body, config)
       callback(messages)
     } else {
       callback([])

@@ -15,9 +15,14 @@ export interface FormatOptions {
   indent?: number
 }
 
-class HTMLHintCore {
-  public rules: { [id: string]: Rule } = {}
-  public readonly defaultRuleset: Ruleset = {
+const HTMLHINT_RECOMMENDED = 'htmlhint:recommended'
+const HTMLHINT_LEGACY = 'htmlhint:legacy'
+
+const DEFAULT_RULESETS: Record<string, Ruleset> = {
+  [HTMLHINT_RECOMMENDED]: {
+    // TODO: Define recommended rules
+  },
+  [HTMLHINT_LEGACY]: {
     'tagname-lowercase': 'error',
     'attr-lowercase': 'error',
     'attr-value-double-quotes': 'error',
@@ -28,7 +33,11 @@ class HTMLHintCore {
     'src-not-empty': 'error',
     'attr-no-duplication': 'error',
     'title-require': 'error',
-  }
+  },
+}
+
+class HTMLHintCore {
+  public rules: { [id: string]: Rule } = {}
 
   public addRule(rule: Rule) {
     this.rules[rule.id] = rule
@@ -36,11 +45,25 @@ class HTMLHintCore {
 
   public verify(
     html: string,
-    config: Configuration = { rules: this.defaultRuleset }
+    config: Configuration = { extends: [HTMLHINT_LEGACY] }
   ) {
-    let ruleset = config.rules ?? this.defaultRuleset
+    let ruleset: Ruleset = {}
+
+    // Iterate through extensions and merge rulesets into ruleset
+    for (const extend of config.extends ?? []) {
+      if (typeof extend === 'string') {
+        const extendRuleset = DEFAULT_RULESETS[extend] ?? {}
+        ruleset = { ...ruleset, ...extendRuleset }
+      }
+    }
+
+    // Apply self-configured rules
+    ruleset = { ...ruleset, ...(config.rules ?? {}) }
+
+    // If no rules have been configured, return immediately
     if (Object.keys(ruleset).length === 0) {
-      ruleset = this.defaultRuleset
+      // console.log('Please configure some HTMLHint rules')
+      return []
     }
 
     // parse inline ruleset

@@ -3,7 +3,7 @@ import { EventEmitter } from 'events'
 import { sync as globSync } from 'glob'
 import { parse, resolve } from 'path'
 import type { HTMLHint as IHTMLHint } from '../core/core'
-import type { Hint, Ruleset } from '../core/types'
+import type { Configuration, Hint } from '../core/types'
 
 let HTMLHint: typeof IHTMLHint
 let options: { nocolor?: boolean }
@@ -45,7 +45,7 @@ export interface FormatterFileEvent {
 }
 
 export interface FormatterConfigEvent {
-  ruleset: Ruleset
+  config?: Configuration
   configPath?: string
 }
 
