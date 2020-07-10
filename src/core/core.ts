@@ -20,7 +20,21 @@ const HTMLHINT_LEGACY = 'htmlhint:legacy'
 
 const DEFAULT_RULESETS: Record<string, Ruleset> = {
   [HTMLHINT_RECOMMENDED]: {
-    // TODO: Define recommended rules
+    'alt-require': 'warn',
+    'attr-lowercase': 'warn',
+    'attr-no-duplication': 'error',
+    'attr-no-unnecessary-whitespace': 'warn',
+    'attr-unsafe-chars': 'warn',
+    'attr-value-double-quotes': 'warn',
+    'id-class-ad-disabled': 'warn',
+    'id-unique': 'error',
+    'space-tab-mixed-disabled': 'warn',
+    'spec-char-escape': 'warn',
+    'src-not-empty': 'error',
+    'tag-pair': 'warn',
+    'tagname-lowercase': 'warn',
+    'tagname-specialchars': 'error',
+    'title-require': 'warn',
   },
   [HTMLHINT_LEGACY]: {
     'attr-lowercase': 'error',
