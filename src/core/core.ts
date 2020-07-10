@@ -1,3 +1,4 @@
+import { isConfiguration } from './configuration'
 import HTMLParser from './htmlparser'
 import Reporter, { ReportMessageCallback } from './reporter'
 import * as HTMLRules from './rules'
@@ -59,9 +60,18 @@ class HTMLHintCore {
 
   public verify(
     html: string,
-    config: Configuration = { extends: [HTMLHINT_LEGACY] }
+    config: Configuration = { extends: [HTMLHINT_RECOMMENDED] }
   ) {
+    if (!isConfiguration(config)) {
+      throw new Error('The HTMLHint configuration is invalid')
+    }
+
     let ruleset: Ruleset = {}
+
+    // If an empty configuration is passed, use the recommended ruleset
+    if (config.extends === undefined && config.rules === undefined) {
+      config.extends = [HTMLHINT_RECOMMENDED]
+    }
 
     // Iterate through extensions and merge rulesets into ruleset
     for (const extend of config.extends ?? []) {

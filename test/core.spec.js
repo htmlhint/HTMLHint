@@ -1,21 +1,47 @@
 const expect = require('expect.js')
 
+/** @type import('../src/core/core').HTMLHint */
 const HTMLHint = require('../dist/htmlhint.js').HTMLHint
 
 describe('Core', () => {
   describe('Defaults', () => {
-    it('Not load default ruleset when use undefined ruleset should result in an error', () => {
+    it('Should use the recommended ruleset, if configuration is not defined', () => {
       const code =
         '<P ATTR=\'1\' id="a">><div id="a"><img src="" a="1" a="2"/></div>'
       const messages = HTMLHint.verify(code)
       expect(messages.length).to.be(9)
     })
 
-    it('Not load default ruleset when use empty ruleset should result in an error', () => {
+    it('Should use the recommended ruleset, if empty configuration is passed', () => {
       const code =
         '<P ATTR=\'1\' id="a">><div id="a"><img src="" a="1" a="2"/></div>'
       const messages = HTMLHint.verify(code, {})
       expect(messages.length).to.be(9)
+    })
+
+    it('Should use the legacy ruleset, if it is passed', () => {
+      const code =
+        '<P ATTR=\'1\' id="a">><div id="a"><img src="" a="1" a="2"/></div>'
+      const messages = HTMLHint.verify(code, {
+        extends: ['htmlhint:legacy'],
+      })
+      expect(messages.length).to.be(9)
+    })
+
+    it('Should use the recommended ruleset, if it is passed', () => {
+      const code =
+        '<P ATTR=\'1\' id="a">><div id="a"><img src="" a="1" a="2"/></div>'
+      const messages = HTMLHint.verify(code, {
+        extends: ['htmlhint:recommended'],
+      })
+      expect(messages.length).to.be(9)
+    })
+
+    it('Should use no ruleset, if extends is not defined and empty ruleset is passed', () => {
+      const code =
+        '<P ATTR=\'1\' id="a">><div id="a"><img src="" a="1" a="2"/></div>'
+      const messages = HTMLHint.verify(code, { rules: {} })
+      expect(messages.length).to.be(0)
     })
   })
 
