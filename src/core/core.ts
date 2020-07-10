@@ -23,15 +23,15 @@ const DEFAULT_RULESETS: Record<string, Ruleset> = {
     // TODO: Define recommended rules
   },
   [HTMLHINT_LEGACY]: {
-    'tagname-lowercase': 'error',
     'attr-lowercase': 'error',
+    'attr-no-duplication': 'error',
     'attr-value-double-quotes': 'error',
     'doctype-first': 'error',
-    'tag-pair': 'error',
-    'spec-char-escape': 'error',
     'id-unique': 'error',
+    'spec-char-escape': 'error',
     'src-not-empty': 'error',
-    'attr-no-duplication': 'error',
+    'tag-pair': 'error',
+    'tagname-lowercase': 'error',
     'title-require': 'error',
   },
 }
