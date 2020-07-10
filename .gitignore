@@ -56,13 +56,11 @@ node_modules
 # Babel-compiled files
 lib
 
-# Ignore package manager lock files
-package-lock.json
-yarn.lock
-
+# Test releated files
 test/unit/coverage
 test/e2e/reports
 
+# Website/Docs releated files
 /website/node_modules
 /website/build
 /website/.docusaurus
