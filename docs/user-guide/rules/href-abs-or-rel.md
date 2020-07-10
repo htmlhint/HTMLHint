@@ -23,7 +23,7 @@ An href attribute must be either absolute or relative.
 ## Default
 
 ```json
-{ "attr-lowercase": ["off", { "mode": "absolute" }] }
+{ "href-abs-or-rel": ["off", { "mode": "absolute" }] }
 ```
 
 ## Options
