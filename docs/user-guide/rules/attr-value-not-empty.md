@@ -21,7 +21,7 @@ All attributes must have values.
 ## Default
 
 ```json
-{ "attr-lowercase": "off" }
+{ "attr-value-not-empty": "off" }
 ```
 
 ---
