@@ -4,32 +4,6 @@
     "messages": [
       {
         "type": "error",
-        "message": "The value of attribute [ bad ] must be in double quotes.",
-        "raw": " bad=''",
-        "evidence": "  <div bad='' bad=''></div>",
-        "line": 8,
-        "col": 7,
-        "rule": {
-          "id": "attr-value-double-quotes",
-          "description": "Attribute values must be in double quotes.",
-          "link": "https://github.com/thedaviddias/HTMLHint/wiki/attr-value-double-quotes"
-        }
-      },
-      {
-        "type": "error",
-        "message": "The value of attribute [ bad ] must be in double quotes.",
-        "raw": " bad=''",
-        "evidence": "  <div bad='' bad=''></div>",
-        "line": 8,
-        "col": 14,
-        "rule": {
-          "id": "attr-value-double-quotes",
-          "description": "Attribute values must be in double quotes.",
-          "link": "https://github.com/thedaviddias/HTMLHint/wiki/attr-value-double-quotes"
-        }
-      },
-      {
-        "type": "error",
         "message": "Duplicate of attribute name [ bad ] was found.",
         "raw": " bad=''",
         "evidence": "  <div bad='' bad=''></div>",
@@ -42,11 +16,11 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "The value of attribute [ bad ] must be in double quotes.",
         "raw": " bad=''",
         "evidence": "  <div bad='' bad=''></div>",
-        "line": 9,
+        "line": 8,
         "col": 7,
         "rule": {
           "id": "attr-value-double-quotes",
@@ -55,11 +29,11 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "The value of attribute [ bad ] must be in double quotes.",
         "raw": " bad=''",
         "evidence": "  <div bad='' bad=''></div>",
-        "line": 9,
+        "line": 8,
         "col": 14,
         "rule": {
           "id": "attr-value-double-quotes",
@@ -81,7 +55,33 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
+        "message": "The value of attribute [ bad ] must be in double quotes.",
+        "raw": " bad=''",
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 9,
+        "col": 7,
+        "rule": {
+          "id": "attr-value-double-quotes",
+          "description": "Attribute values must be in double quotes.",
+          "link": "https://github.com/thedaviddias/HTMLHint/wiki/attr-value-double-quotes"
+        }
+      },
+      {
+        "type": "warning",
+        "message": "The value of attribute [ bad ] must be in double quotes.",
+        "raw": " bad=''",
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 9,
+        "col": 14,
+        "rule": {
+          "id": "attr-value-double-quotes",
+          "description": "Attribute values must be in double quotes.",
+          "link": "https://github.com/thedaviddias/HTMLHint/wiki/attr-value-double-quotes"
+        }
+      },
+      {
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </input> ]",
         "raw": "</input>",
         "evidence": "  <input type=\"text\"></input>",
@@ -94,7 +94,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Special characters must be escaped : [ < ].",
         "raw": "\n  <div class\"foo\">\n\n          ",
         "evidence": "  <div class\"foo\">",
@@ -107,7 +107,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Special characters must be escaped : [ > ].",
         "raw": "\n  <div class\"foo\">\n\n          ",
         "evidence": "  <div class\"foo\">",
@@ -120,7 +120,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </div> ]",
         "raw": "</div>",
         "evidence": "          </div>",
@@ -133,7 +133,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </div> ]",
         "raw": "</div>",
         "evidence": "        </div>",
@@ -146,7 +146,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </hello> ]",
         "raw": "</hello>",
         "evidence": "      </hello>",
@@ -159,7 +159,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </test> ]",
         "raw": "</test>",
         "evidence": "    </test>",
@@ -172,7 +172,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </div> ]",
         "raw": "</div>",
         "evidence": "  </div>",
@@ -185,7 +185,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "The value of attribute [ class ] must be in double quotes.",
         "raw": " class=''",
         "evidence": "          <div class='' what='' something=''></div>",
@@ -198,7 +198,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "The value of attribute [ what ] must be in double quotes.",
         "raw": " what=''",
         "evidence": "          <div class='' what='' something=''></div>",
@@ -211,7 +211,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "The value of attribute [ something ] must be in double quotes.",
         "raw": " something=''",
         "evidence": "          <div class='' what='' something=''></div>",
@@ -224,7 +224,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </div> ]",
         "raw": "</div>",
         "evidence": "  </div>",
@@ -237,7 +237,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </bad> ]",
         "raw": "</bad>",
         "evidence": "</bad>",
@@ -250,7 +250,7 @@
         }
       },
       {
-        "type": "error",
+        "type": "warning",
         "message": "Tag must be paired, no start tag: [ </bad> ]",
         "raw": "</bad>",
         "evidence": "</bad>",
@@ -263,6 +263,6 @@
         }
       }
     ],
-    "time": 2
+    "time": 17
   }
 ]

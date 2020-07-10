@@ -5,7 +5,7 @@ const path = require('path')
 
 describe('CLI', () => {
   describe('Formatter: markdown', () => {
-    it('should have stdout output with formatter markdown', (done) => {
+    it('Should have stdout output with formatter markdown', (done) => {
       ChildProcess.exec(
         [
           'node',
@@ -19,7 +19,7 @@ describe('CLI', () => {
           expect(error.code).to.be.equal(1)
 
           expect(stdout).to.contain('# TOC')
-          expect(stdout).to.contain('Found 20 errors, 0 warnings')
+          expect(stdout).to.contain('Found 2 errors, 18 warnings')
           expect(stdout).to.contain('example.html')
           expect(stdout).to.contain(
             '^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)'

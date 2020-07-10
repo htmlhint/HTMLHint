@@ -6,7 +6,7 @@ const path = require('path')
 
 describe('CLI', () => {
   describe('Formatter: html', () => {
-    it('should have stdout output with formatter html', (done) => {
+    it('Should have stdout output with formatter html', (done) => {
       const expected = fs
         .readFileSync(path.resolve(__dirname, 'html.html'), 'utf8')
         .replace(/\{\{path\}\}/g, path.resolve(__dirname, 'example.html'))

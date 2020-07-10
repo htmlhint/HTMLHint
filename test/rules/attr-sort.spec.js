@@ -1,5 +1,6 @@
 const expect = require('expect.js')
 
+/** @type import('../../src/core/core').HTMLHint */
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
 const ruleId = 'attr-sorted'

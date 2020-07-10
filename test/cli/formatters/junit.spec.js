@@ -6,7 +6,7 @@ const path = require('path')
 
 describe('CLI', () => {
   describe('Formatter: junit', () => {
-    it('should have stdout output with formatter junit', (done) => {
+    it('Should have stdout output with formatter junit', (done) => {
       ChildProcess.exec(
         [
           'node',
