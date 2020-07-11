@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "title": "Schema for .htmlhintrc",
+  "type": "object",
+  "$defs": {},
+  "properties": {
+    "extends": {
+      "description": "Extensions",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["htmlhint:recommended", "htmlhint:legacy"]
+      }
+    },
+    "rules": {
+      "description": "Rules",
+      "type": "object",
+      "properties": {
+        "alt-require": {
+          "description": "The 'alt' attribute of an '&lt;img&gt;' element must be present and 'alt' attribute of 'area[href]' and 'input[type=image]' must have a value.",
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["error", "warn", "off"]
+            },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string",
+                  "enum": ["error", "warn", "off"]
+                }
+              ],
+              "additionalItems": false
+            }
+          ]
+        }
+      }
+    }
+  }
+}
