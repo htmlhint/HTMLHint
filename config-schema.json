@@ -2,10 +2,28 @@
   "$schema": "https://json-schema.org/draft/2019-09/schema",
   "title": "Schema for .htmlhintrc",
   "type": "object",
-  "$defs": {},
+  "$defs": {
+    "severity": {
+      "title": "Severity",
+      "type": "string",
+      "enum": ["error", "warn", "off"]
+    },
+    "rule-without-option": {
+      "oneOf": [
+        { "$ref": "#/$defs/severity" },
+        {
+          "type": "array",
+          "items": [{ "$ref": "#/$defs/severity" }],
+          "minItems": 1,
+          "maxItems": 1,
+          "additionalItems": false
+        }
+      ]
+    }
+  },
   "properties": {
     "extends": {
-      "description": "Extensions",
+      "title": "Extensions",
       "type": "array",
       "items": {
         "type": "string",
@@ -13,41 +31,24 @@
       }
     },
     "rules": {
-      "description": "Rules",
+      "title": "Rules",
       "type": "object",
       "properties": {
         "alt-require": {
+          "title": "Rule: alt-require",
           "description": "The 'alt' attribute of an '&lt;img&gt;' element must be present and 'alt' attribute of 'area[href]' and 'input[type=image]' must have a value.",
-          "oneOf": [
-            {
-              "type": "string",
-              "enum": ["error", "warn", "off"]
-            },
-            {
-              "type": "array",
-              "items": [
-                {
-                  "type": "string",
-                  "enum": ["error", "warn", "off"]
-                }
-              ],
-              "minItems": 1,
-              "maxItems": 2,
-              "additionalItems": false
-            }
-          ]
+          "$ref": "#/$defs/rule-without-option"
         },
         "attr-lowercase": {
+          "title": "Rule: attr-lowercase",
           "description": "All attribute names must be in lowercase.",
           "oneOf": [
-            {
-              "type": "string",
-              "enum": ["error", "warn", "off"]
-            },
+            { "$ref": "#/$defs/severity" },
             {
               "type": "array",
               "items": [
                 {
+                  "title": "Severity",
                   "type": "string",
                   "enum": ["off"]
                 }
@@ -60,10 +61,12 @@
               "type": "array",
               "items": [
                 {
+                  "title": "Severity",
                   "type": "string",
                   "enum": ["error", "warn"]
                 },
                 {
+                  "title": "Options",
                   "type": "object",
                   "properties": {
                     "exceptions": {
@@ -79,6 +82,42 @@
             }
           ]
         }
+      },
+      "additionalProperties": {
+        "title": "Custom Rule",
+        "oneOf": [
+          { "$ref": "#/$defs/severity" },
+          {
+            "type": "array",
+            "items": [
+              {
+                "title": "Severity",
+                "type": "string",
+                "enum": ["off"]
+              }
+            ],
+            "minItems": 1,
+            "maxItems": 1,
+            "additionalItems": false
+          },
+          {
+            "type": "array",
+            "items": [
+              {
+                "title": "Severity",
+                "type": "string",
+                "enum": ["error", "warn"]
+              },
+              {
+                "title": "Options",
+                "type": "object"
+              }
+            ],
+            "minItems": 1,
+            "maxItems": 2,
+            "additionalItems": false
+          }
+        ]
       }
     }
   }
