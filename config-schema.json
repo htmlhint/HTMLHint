@@ -81,6 +81,31 @@
               "additionalItems": false
             }
           ]
+        },
+        "attr-no-duplication": {
+          "title": "Rule: attr-no-duplication",
+          "description": "Elements cannot have duplicate attributes.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "attr-sorted": {
+          "title": "Rule: attr-sorted",
+          "description": "Attribute tags must be in proper order.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "attr-unsafe-chars": {
+          "title": "Rule: attr-unsafe-chars",
+          "description": "Attribute values cannot contain unsafe chars.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "attr-value-double-quotes": {
+          "title": "Rule: attr-value-double-quotes",
+          "description": "Attribute values must be in double quotes.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "attr-value-not-empty": {
+          "title": "Rule: attr-value-not-empty",
+          "description": "All attributes must have values.",
+          "$ref": "#/$defs/rule-without-option"
         }
       },
       "additionalProperties": {
