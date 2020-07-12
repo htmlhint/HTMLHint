@@ -3,10 +3,35 @@
   "title": "Schema for .htmlhintrc",
   "type": "object",
   "$defs": {
+    "error-severity": {
+      "title": "Severity: Error",
+      "description": "Hints for this rule will be shown as error",
+      "const": "error"
+    },
+    "warning-severity": {
+      "title": "Severity: Warning",
+      "description": "Hints for this rule will be shown as warning",
+      "const": "warn"
+    },
+    "off-severity": {
+      "title": "Severity: Off",
+      "description": "Hints for this rule will not be shown",
+      "const": "off"
+    },
+    "off-severity-array": {
+      "type": "array",
+      "items": [{ "$ref": "#/$defs/off-severity" }],
+      "minItems": 1,
+      "maxItems": 1,
+      "additionalItems": false
+    },
     "severity": {
       "title": "Severity",
-      "type": "string",
-      "enum": ["error", "warn", "off"]
+      "oneOf": [
+        { "$ref": "#/$defs/error-severity" },
+        { "$ref": "#/$defs/warning-severity" },
+        { "$ref": "#/$defs/off-severity" }
+      ]
     },
     "rule-without-option": {
       "oneOf": [
@@ -44,26 +69,15 @@
           "description": "All attribute names must be in lowercase.",
           "oneOf": [
             { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
             {
               "type": "array",
               "items": [
                 {
-                  "title": "Severity",
-                  "type": "string",
-                  "enum": ["off"]
-                }
-              ],
-              "minItems": 1,
-              "maxItems": 1,
-              "additionalItems": false
-            },
-            {
-              "type": "array",
-              "items": [
-                {
-                  "title": "Severity",
-                  "type": "string",
-                  "enum": ["error", "warn"]
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
                 },
                 {
                   "title": "Options",
@@ -112,26 +126,15 @@
         "title": "Custom Rule",
         "oneOf": [
           { "$ref": "#/$defs/severity" },
+          { "$ref": "#/$defs/off-severity-array" },
           {
             "type": "array",
             "items": [
               {
-                "title": "Severity",
-                "type": "string",
-                "enum": ["off"]
-              }
-            ],
-            "minItems": 1,
-            "maxItems": 1,
-            "additionalItems": false
-          },
-          {
-            "type": "array",
-            "items": [
-              {
-                "title": "Severity",
-                "type": "string",
-                "enum": ["error", "warn"]
+                "oneOf": [
+                  { "$ref": "#/$defs/error-severity" },
+                  { "$ref": "#/$defs/warning-severity" }
+                ]
               },
               {
                 "title": "Options",
