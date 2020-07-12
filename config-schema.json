@@ -31,6 +31,50 @@
                   "enum": ["error", "warn", "off"]
                 }
               ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
+        },
+        "attr-lowercase": {
+          "description": "All attribute names must be in lowercase.",
+          "oneOf": [
+            {
+              "type": "string",
+              "enum": ["error", "warn", "off"]
+            },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string",
+                  "enum": ["off"]
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 1,
+              "additionalItems": false
+            },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string",
+                  "enum": ["error", "warn"]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "exceptions": {
+                      "type": "array",
+                      "items": "string"
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
               "additionalItems": false
             }
           ]
