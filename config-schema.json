@@ -200,12 +200,12 @@
         },
         "doctype-html5": {
           "title": "Rule: doctype-html5",
-          "description": "Invalid doctype. Use: '<!DOCTYPE html>'",
+          "description": "Invalid doctype. Use: ''&lt;!DOCTYPE html'&gt;'",
           "$ref": "#/$defs/rule-without-option"
         },
         "head-script-disabled": {
           "title": "Rule: head-script-disabled",
-          "description": "The <script> tag cannot be used in a <head> tag.",
+          "description": "The '&lt;script'&gt; tag cannot be used in a '&lt;head'&gt; tag.",
           "$ref": "#/$defs/rule-without-option"
         },
         "href-abs-or-rel": {
@@ -328,7 +328,7 @@
         },
         "script-disabled": {
           "title": "Rule: script-disabled",
-          "description": "The <script> tag cannot be used in a <head> tag.",
+          "description": "The '&lt;script'&gt; tag cannot be used in a '&lt;head'&gt; tag.",
           "$ref": "#/$defs/rule-without-option"
         },
         "space-tab-mixed-disabled": {
@@ -396,7 +396,7 @@
         },
         "style-disabled": {
           "title": "Rule: style-disabled",
-          "description": "<style> tags cannot be used.",
+          "description": "'&lt;style'&gt; tags cannot be used.",
           "$ref": "#/$defs/rule-without-option"
         },
         "tag-pair": {
@@ -516,7 +516,7 @@
         },
         "title-require": {
           "title": "Rule: title-require",
-          "description": "<title> must be present in <head> tag.",
+          "description": "'&lt;title'&gt; must be present in '&lt;head'&gt; tag.",
           "$ref": "#/$defs/rule-without-option"
         }
       },
