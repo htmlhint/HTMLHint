@@ -101,6 +101,10 @@
           "description": "Elements cannot have duplicate attributes.",
           "$ref": "#/$defs/rule-without-option"
         },
+        "attr-no-unnecessary-whitespace": {
+          "title": "Rule: attr-no-unnecessary-whitespace",
+          "description": "No spaces between attribute names and values."
+        },
         "attr-sorted": {
           "title": "Rule: attr-sorted",
           "description": "Attribute tags must be in proper order.",
@@ -119,6 +123,115 @@
         "attr-value-not-empty": {
           "title": "Rule: attr-value-not-empty",
           "description": "All attributes must have values.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "attr-value-single-quotes": {
+          "title": "Rule: attr-value-single-quotes",
+          "description": "Attribute values must be in single quotes.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "attr-whitespace": {
+          "title": "Rule: attr-whitespace",
+          "description": "All attributes should be separated by only one space and not have leading/trailing whitespace."
+        },
+        "doctype-first": {
+          "title": "Rule: doctype-first",
+          "description": "Doctype must be declared first.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "doctype-html5": {
+          "title": "Rule: doctype-html5",
+          "description": "Invalid doctype. Use: '<!DOCTYPE html>'",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "head-script-disabled": {
+          "title": "Rule: head-script-disabled",
+          "description": "The <script> tag cannot be used in a <head> tag.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "href-abs-or-rel": {
+          "title": "Rule: href-abs-or-rel",
+          "description": "An href attribute must be either absolute or relative."
+        },
+        "id-class-ad-disabled": {
+          "title": "Rule: id-class-ad-disabled",
+          "description": "The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "id-class-value": {
+          "title": "Rule: id-class-value",
+          "description": "The id and class attribute values must meet the specified rules."
+        },
+        "id-unique": {
+          "title": "Rule: id-unique",
+          "description": "The value of id attributes must be unique.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "inline-script-disabled": {
+          "title": "Rule: inline-script-disabled",
+          "description": "Inline script cannot be used.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "inline-style-disabled": {
+          "title": "Rule: inline-style-disabled",
+          "description": "Inline style cannot be used.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "input-requires-label": {
+          "title": "Rule: input-requires-label",
+          "description": "All [ input ] tags must have a corresponding [ label ] tag.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "script-disabled": {
+          "title": "Rule: script-disabled",
+          "description": "The <script> tag cannot be used in a <head> tag.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "space-tab-mixed-disabled": {
+          "title": "Rule: space-tab-mixed-disabled",
+          "description": "Do not mix tabs and spaces for indentation."
+        },
+        "spec-char-escape": {
+          "title": "Rule: spec-char-escape",
+          "description": "Special characters must be escaped.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "src-not-empty": {
+          "title": "Rule: src-not-empty",
+          "description": "The src attribute of an img, script or link must have a value.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "style-disabled": {
+          "title": "Rule: style-disabled",
+          "description": "<style> tags cannot be used.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "tag-pair": {
+          "title": "Rule: tag-pair",
+          "description": "Tag must be paired.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "tag-self-close": {
+          "title": "Rule: tag-self-close",
+          "description": "Empty tags must be self closed.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "tagname-lowercase": {
+          "title": "Rule: tagname-lowercase",
+          "description": "All html element names must be in lowercase."
+        },
+        "tagname-specialchars": {
+          "title": "Rule: tagname-specialchars",
+          "description": "All html element names must be in lowercase.",
+          "$ref": "#/$defs/rule-without-option"
+        },
+        "tags-check": {
+          "title": "Rule: tags-check",
+          "description": "Checks html tags."
+        },
+        "title-require": {
+          "title": "Rule: title-require",
+          "description": "<title> must be present in <head> tag.",
           "$ref": "#/$defs/rule-without-option"
         }
       },
