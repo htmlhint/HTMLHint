@@ -84,6 +84,7 @@
                   "type": "object",
                   "properties": {
                     "exceptions": {
+                      "title": "Option: exceptions",
                       "type": "array",
                       "items": "string"
                     }
@@ -121,6 +122,7 @@
                   "type": "object",
                   "properties": {
                     "exceptions": {
+                      "title": "Option: exceptions",
                       "type": "array",
                       "items": "string"
                     }
@@ -178,6 +180,7 @@
                   "type": "object",
                   "properties": {
                     "exceptions": {
+                      "title": "Option: exceptions",
                       "type": "array",
                       "items": "string"
                     }
@@ -225,7 +228,19 @@
                   "type": "object",
                   "properties": {
                     "mode": {
-                      "enum": ["absolute", "relative"]
+                      "title": "Option: mode",
+                      "oneOf": [
+                        {
+                          "title": "Option: mode absolute",
+                          "description": "The value of the href attribute must be absolute.",
+                          "const": "absolute"
+                        },
+                        {
+                          "title": "Option: mode relative",
+                          "description": "The value of the href attribute must be relative.",
+                          "const": "relative"
+                        }
+                      ]
                     }
                   }
                 }
@@ -259,17 +274,30 @@
                 {
                   "title": "Options",
                   "type": "object",
-                  "properties": {
-                    "mode": {
-                      "enum": ["underline", "dash", "hump"]
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "title": "Option: mode",
+                          "enum": ["underline", "dash", "hump"]
+                        }
+                      },
+                      "additionalProperties": false
                     },
-                    "regId": {
-                      "type": "string"
-                    },
-                    "message": {
-                      "type": "string"
+                    {
+                      "properties": {
+                        "regId": {
+                          "title": "Option: regId",
+                          "type": "string"
+                        },
+                        "message": {
+                          "title": "Option: message",
+                          "type": "string"
+                        }
+                      },
+                      "additionalProperties": false
                     }
-                  }
+                  ]
                 }
               ],
               "minItems": 1,
@@ -321,14 +349,33 @@
                 {
                   "title": "Options",
                   "type": "object",
-                  "properties": {
-                    "mode": {
-                      "enum": ["tab", "space"]
+                  "oneOf": [
+                    {
+                      "properties": {
+                        "mode": {
+                          "title": "Option: mode",
+                          "description": "Use tab for indentation.",
+                          "const": "tab"
+                        }
+                      }
                     },
-                    "size": {
-                      "type": "number"
+                    {
+                      "properties": {
+                        "mode": {
+                          "title": "Option: mode",
+                          "description": "Use space for indentation.",
+                          "const": "space"
+                        },
+                        "size": {
+                          "title": "Option: size",
+                          "type": "integer",
+                          "exclusiveMinimum": 0,
+                          "maximum": 8,
+                          "default": 4
+                        }
+                      }
                     }
-                  }
+                  ]
                 }
               ],
               "minItems": 1,
@@ -382,6 +429,7 @@
                   "type": "object",
                   "properties": {
                     "exceptions": {
+                      "title": "Option: exceptions",
                       "type": "array",
                       "items": "string"
                     }
