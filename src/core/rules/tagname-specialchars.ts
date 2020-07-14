@@ -2,7 +2,7 @@ import { Rule } from '../types'
 
 export default {
   id: 'tagname-specialchars',
-  description: 'All html element names must be in lowercase.',
+  description: 'All html element names must not contain specialchars.',
   init(parser, reportMessageCallback) {
     const specialchars = /[^a-zA-Z0-9\-:_]/
 

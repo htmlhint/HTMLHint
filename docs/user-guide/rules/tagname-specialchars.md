@@ -3,7 +3,7 @@ id: tagname-specialchars
 title: tagname-specialchars
 ---
 
-All html element names must be in lowercase.
+All html element names must not contain specialchars.
 
 ## Possible Configuration Values
 

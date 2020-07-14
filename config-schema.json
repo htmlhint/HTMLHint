@@ -444,7 +444,7 @@
         },
         "tagname-specialchars": {
           "title": "Rule: tagname-specialchars",
-          "description": "All html element names must be in lowercase.",
+          "description": "All html element names must not contain specialchars.",
           "$ref": "#/$defs/rule-without-option"
         },
         "tags-check": {
