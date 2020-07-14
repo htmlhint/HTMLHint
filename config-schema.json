@@ -103,7 +103,35 @@
         },
         "attr-no-unnecessary-whitespace": {
           "title": "Rule: attr-no-unnecessary-whitespace",
-          "description": "No spaces between attribute names and values."
+          "description": "No spaces between attribute names and values.",
+          "oneOf": [
+            { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
+                },
+                {
+                  "title": "Options",
+                  "type": "object",
+                  "properties": {
+                    "exceptions": {
+                      "type": "array",
+                      "items": "string"
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
         },
         "attr-sorted": {
           "title": "Rule: attr-sorted",
@@ -132,7 +160,35 @@
         },
         "attr-whitespace": {
           "title": "Rule: attr-whitespace",
-          "description": "All attributes should be separated by only one space and not have leading/trailing whitespace."
+          "description": "All attributes should be separated by only one space and not have leading/trailing whitespace.",
+          "oneOf": [
+            { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
+                },
+                {
+                  "title": "Options",
+                  "type": "object",
+                  "properties": {
+                    "exceptions": {
+                      "type": "array",
+                      "items": "string"
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
         },
         "doctype-first": {
           "title": "Rule: doctype-first",
@@ -151,7 +207,34 @@
         },
         "href-abs-or-rel": {
           "title": "Rule: href-abs-or-rel",
-          "description": "An href attribute must be either absolute or relative."
+          "description": "An href attribute must be either absolute or relative.",
+          "oneOf": [
+            { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
+                },
+                {
+                  "title": "Options",
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "enum": ["absolute", "relative"]
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
         },
         "id-class-ad-disabled": {
           "title": "Rule: id-class-ad-disabled",
@@ -160,7 +243,40 @@
         },
         "id-class-value": {
           "title": "Rule: id-class-value",
-          "description": "The id and class attribute values must meet the specified rules."
+          "description": "The id and class attribute values must meet the specified rules.",
+          "oneOf": [
+            { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
+                },
+                {
+                  "title": "Options",
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "enum": ["underline", "dash", "hump"]
+                    },
+                    "regId": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
         },
         "id-unique": {
           "title": "Rule: id-unique",
@@ -189,7 +305,37 @@
         },
         "space-tab-mixed-disabled": {
           "title": "Rule: space-tab-mixed-disabled",
-          "description": "Do not mix tabs and spaces for indentation."
+          "description": "Do not mix tabs and spaces for indentation.",
+          "oneOf": [
+            { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
+                },
+                {
+                  "title": "Options",
+                  "type": "object",
+                  "properties": {
+                    "mode": {
+                      "enum": ["tab", "space"]
+                    },
+                    "size": {
+                      "type": "number"
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
         },
         "spec-char-escape": {
           "title": "Rule: spec-char-escape",
@@ -218,7 +364,35 @@
         },
         "tagname-lowercase": {
           "title": "Rule: tagname-lowercase",
-          "description": "All html element names must be in lowercase."
+          "description": "All html element names must be in lowercase.",
+          "oneOf": [
+            { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
+                },
+                {
+                  "title": "Options",
+                  "type": "object",
+                  "properties": {
+                    "exceptions": {
+                      "type": "array",
+                      "items": "string"
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
         },
         "tagname-specialchars": {
           "title": "Rule: tagname-specialchars",
@@ -227,7 +401,70 @@
         },
         "tags-check": {
           "title": "Rule: tags-check",
-          "description": "Checks html tags."
+          "description": "Checks html tags.",
+          "oneOf": [
+            { "$ref": "#/$defs/severity" },
+            { "$ref": "#/$defs/off-severity-array" },
+            {
+              "type": "array",
+              "items": [
+                {
+                  "oneOf": [
+                    { "$ref": "#/$defs/error-severity" },
+                    { "$ref": "#/$defs/warning-severity" }
+                  ]
+                },
+                {
+                  "title": "Options",
+                  "type": "object",
+                  "additionalProperties": {
+                    "title": "HTML tag",
+                    "type": "object",
+                    "properties": {
+                      "selfclosing": {
+                        "title": "Option: selfclosing",
+                        "description": "The tag must be selfclosing.",
+                        "type": "boolean"
+                      },
+                      "redundantAttrs": {
+                        "title": "Option: redundantAttrs",
+                        "description": "The attr is redundant for tag and should be ommited.",
+                        "type": "array",
+                        "items": {
+                          "title": "HTML attribute",
+                          "type": "string"
+                        }
+                      },
+                      "attrsRequired": {
+                        "title": "Option: attrsRequired",
+                        "description": "The tag must have attr with one value of given values.",
+                        "type": "array",
+                        "items": {
+                          "title": "HTML attribute",
+                          "type": "string"
+                        }
+                      },
+                      "attrsOptional": {
+                        "title": "Option: attrsOptional",
+                        "description": "The tag must have optional attr with one value of given values.",
+                        "type": "array",
+                        "items": {
+                          "type": "array",
+                          "items": {
+                            "title": "HTML attribute",
+                            "type": "string"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              ],
+              "minItems": 1,
+              "maxItems": 2,
+              "additionalItems": false
+            }
+          ]
         },
         "title-require": {
           "title": "Rule: title-require",
