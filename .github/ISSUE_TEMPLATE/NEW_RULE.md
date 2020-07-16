@@ -1,6 +1,6 @@
 ---
 name: "\U0001F680 New rule proposal"
-about: Propose a new rule to be added to ESLint
+about: Propose a new rule to be added to HTMLHint
 title: ''
 labels: triage, feature request
 assignees: ''
