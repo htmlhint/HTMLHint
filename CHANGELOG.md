@@ -1,3 +1,10 @@
+## [0.14.2](https://github.com/htmlhint/HTMLHint/compare/v0.14.1...v0.14.2) (2020-11-11)
+
+
+### Bug Fixes
+
+* Link to configuration.md from options page ([#563](https://github.com/htmlhint/HTMLHint/issues/563)) ([9cb0a9c](https://github.com/htmlhint/HTMLHint/commit/9cb0a9c9fcafea4a8c4cd704c66e1faff92ecd7a))
+
 ## [0.14.1](https://github.com/htmlhint/HTMLHint/compare/v0.14.0...v0.14.1) (2020-06-25)
 
 
