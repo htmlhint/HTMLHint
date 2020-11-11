@@ -93,7 +93,7 @@ module.exports = {
           sidebarPath: require.resolve('./sidebars.js'),
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
-          editUrl: `${GITHUB_URL}/edit/develop/docs/`,
+          editUrl: `${GITHUB_URL}/edit/master/docs/`,
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
