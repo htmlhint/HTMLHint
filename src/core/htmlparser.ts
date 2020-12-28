@@ -59,7 +59,7 @@ export default class HTMLParser {
     // eslint-disable-next-line no-control-regex
     const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
     const regLine = /\r?\n/g
-    const regTemplate = /(\{\%|\{\{).+?(\%\}|\}\})/g
+    const regTemplate = /\s(\{\%|\{\{).+?(\%\}|\}\})/g
 
     let match: RegExpExecArray | null
     let matchIndex: number
