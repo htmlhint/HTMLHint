@@ -148,11 +148,11 @@ export default class HTMLParser {
         if ((tagName = match[4])) {
           // Label start
           arrAttrs = []
-          const attrs = match[5]
+          const attrs = match[5].replace(regTemplate,'')
           let attrMatch
           let attrMatchCount = 0
 
-          while ((attrMatch = regAttr.exec(attrs.replace(regTemplate,'')))) {
+          while ((attrMatch = regAttr.exec(attrs))) {
             const name = attrMatch[1]
             const quote = attrMatch[2]
               ? attrMatch[2]
