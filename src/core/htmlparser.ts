@@ -148,7 +148,7 @@ export default class HTMLParser {
         if ((tagName = match[4])) {
           // Label start
           arrAttrs = []
-          const attrs = match[5].replace(regTemplate,'')
+          const attrs = match[5].replace(regTemplate, '')
           let attrMatch
           let attrMatchCount = 0
 
