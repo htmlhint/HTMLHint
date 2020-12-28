@@ -59,6 +59,7 @@ export default class HTMLParser {
     // eslint-disable-next-line no-control-regex
     const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
     const regLine = /\r?\n/g
+    const regTemplate = /(\{\%|\{\{).+?(\%\}|\}\})/g
 
     let match: RegExpExecArray | null
     let matchIndex: number
@@ -151,7 +152,7 @@ export default class HTMLParser {
           let attrMatch
           let attrMatchCount = 0
 
-          while ((attrMatch = regAttr.exec(attrs))) {
+          while ((attrMatch = regAttr.exec(attrs.replace(regTemplate,'')))) {
             const name = attrMatch[1]
             const quote = attrMatch[2]
               ? attrMatch[2]
