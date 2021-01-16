@@ -23,5 +23,5 @@ The following pattern is considered violation:
 
 <!-- prettier-ignore -->
 ```html
-<a href="" title="abc"></a>
+<a href='' title='abc'></a>
 ```
