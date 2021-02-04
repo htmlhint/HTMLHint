@@ -10,3 +10,4 @@ Task runner integrations built and maintained by HTMLHint organization and the c
 - [gulp-htmlhint-inline](https://github.com/htmlhint/gulp-htmlhint-inline) - Gulp plugin for linting inline html.
 - [htmlhint-loader](https://github.com/htmlhint/htmlhint-loader) - webpack loader for HTMLHint.
 - [super-linter](https://github.com/github/super-linter) - GitHub action - a combination of linters, including HTMLHint.
+- [mega-linter](https://nvuillam.github.io/mega-linter/) - Aggregates 70+ linters for CI or local run, [including HTMLHint](https://nvuillam.github.io/mega-linter/descriptors/html_htmlhint/)
