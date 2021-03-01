@@ -11,7 +11,7 @@ title: List of rules
 - [`doctype-html5`](/docs/user-guide/rules/doctype-html5): Invalid doctype.
 - [`head-script-disabled`](/docs/user-guide/rules/head-script-disabled): The `<script>` tag cannot be used in a tag.
 - [`style-disabled`](/docs/user-guide/rules/style-disabled): `<style>` tags cannot be used.
-- [`title-require`](/docs/user-guide/rules/title-require): `<title>` must be present in tag.
+- [`title-require`](/docs/user-guide/rules/title-require): `<title>` must be present in `<head>` tag.
 
 ### Attributes
 
