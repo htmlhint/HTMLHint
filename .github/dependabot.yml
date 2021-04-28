@@ -1,0 +1,52 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 10
+  reviewers:
+  - thedaviddias
+  ignore:
+  - dependency-name: rollup
+    versions:
+    - 2.38.0
+    - 2.38.3
+    - 2.38.5
+    - 2.39.0
+    - 2.40.0
+    - 2.41.2
+    - 2.42.2
+    - 2.43.1
+    - 2.44.0
+    - 2.45.1
+  - dependency-name: eslint
+    versions:
+    - 7.18.0
+    - 7.19.0
+    - 7.20.0
+    - 7.21.0
+    - 7.22.0
+    - 7.23.0
+    - 7.24.0
+  - dependency-name: mocha
+    versions:
+    - 8.2.1
+    - 8.3.0
+    - 8.3.1
+  - dependency-name: "@rollup/plugin-node-resolve"
+    versions:
+    - 11.1.0
+    - 11.1.1
+    - 11.2.0
+  - dependency-name: commander
+    versions:
+    - 7.0.0
+    - 7.1.0
+  - dependency-name: lint-staged
+    versions:
+    - 10.5.3
+    - 10.5.4
+  - dependency-name: "@semantic-release/npm"
+    versions:
+    - 7.0.10
