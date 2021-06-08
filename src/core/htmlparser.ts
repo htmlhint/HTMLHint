@@ -80,6 +80,18 @@ export default class HTMLParser {
       col: 1,
     })
 
+    // Do not ignore validation inside <script type="ng/template"> template
+    const isMapCdataTagsRequired = () => {
+      const attrType = arrAttrs.find((attr) => attr.name === 'type') || {
+        value: '',
+      }
+
+      return (
+        mapCdataTags[tagName] &&
+        attrType.value.indexOf('text/ng-template') === -1
+      )
+    }
+
     // Memory block
     const saveBlock = (
       type: string,
@@ -183,7 +195,7 @@ export default class HTMLParser {
               close: match[6],
             })
 
-            if (mapCdataTags[tagName]) {
+            if (isMapCdataTagsRequired()) {
               tagCDATA = tagName
               attrsCDATA = arrAttrs.concat()
               arrCDATA = []
