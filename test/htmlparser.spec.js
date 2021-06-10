@@ -614,6 +614,30 @@ describe('HTMLParser: Case parse', () => {
     parser.parse('<link rel=icon /><link rel=icon />')
   })
 
+  it('should parse special tag inside script template', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).to.event('tagstart', {
+        tagName: 'script',
+      })
+
+      const mapAttrs = parser.getMapAttrs(arrEvents[1].attrs)
+      expect(mapAttrs.type).to.be('text/ng-template')
+
+      expect(arrEvents[2]).to.event('tagstart', {
+        tagName: 'div',
+      })
+
+      expect(arrEvents[3]).to.event('tagend', {
+        tagName: 'script',
+      })
+
+      done()
+    })
+    parser.parse('<script type="text/ng-template"><div></script>')
+  })
+
   it('should parse special empty attr', (done) => {
     const parser = new HTMLParser()
     const arrEvents = []
