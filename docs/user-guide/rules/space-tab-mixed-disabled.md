@@ -1,20 +1,30 @@
 ---
 id: space-tab-mixed-disabled
-title: space-tab-mixed-disabled
+title: space-tab-mixed-disabled # consider renaming to blankspace
 ---
 
-Spaces and tabs can not mixed in front of line.
+Blank-space (space and tab) characters should not be mixed in the beginning of any line.
 
 Level: `warning`
 
-## Config value
+## Config values
 
-1. space: space mode (only space for indentation)
-2. space4: space mode and require length
-3. tab: tab mode (only tab for indentation)
+1. space: space mode (only spaces are valid for indentation)
+2. space4: space mode and require 4 space characters
+3. tab: tab mode (only tab characters are valid for indentation)
 4. false: disable rule
 
-The following pattern are **not** considered violations:
+### Example
+
+```json
+{
+  ...
+  "space-tab-mixed-disabled": space4
+  ...
+}
+```
+
+The following patterns are **not** considered rule violations:
 
 <!-- prettier-ignore -->
 ```html
@@ -22,7 +32,7 @@ The following pattern are **not** considered violations:
 ········<img src="space.png" />
 ```
 
-The following pattern is considered violation:
+The following pattern is considered a rule violation:
 
 <!-- prettier-ignore -->
 ```html

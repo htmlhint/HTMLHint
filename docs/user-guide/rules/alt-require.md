@@ -4,10 +4,10 @@ title: alt-require
 keywords:
   - alt
   - image
-  - accessiblity
+  - accessibility
 ---
 
-Alt of img must be present and alt of area[href] and input[type=image] must be set value.
+Alt of `img` must be present and alt of area[href] and input[type=image] must be set with a value.
 
 Level: warning
 
@@ -16,7 +16,7 @@ Level: warning
 1. true: enable rule
 2. false: disable rule
 
-The following pattern are **not** considered violations:
+The following pattern are **not** considered rule violations:
 
 <!-- prettier-ignore -->
 ```html
@@ -25,7 +25,7 @@ The following pattern are **not** considered violations:
 <area shape="circle" coords="180,139,14" href="test.html" alt="test" />
 ```
 
-The following pattern is considered violation:
+The following pattern is considered a rule violation:
 
 <!-- prettier-ignore -->
 ```html
