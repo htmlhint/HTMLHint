@@ -1,3 +1,10 @@
+# [0.15.0](https://github.com/htmlhint/HTMLHint/compare/v0.14.2...v0.15.0) (2021-06-10)
+
+
+### Features
+
+* **rules:** add html-lang-require rule ([#632](https://github.com/htmlhint/HTMLHint/issues/632)) ([51471a9](https://github.com/htmlhint/HTMLHint/commit/51471a99d2e946c124222f6a74fa3fbd1876ac69))
+
 ## [0.14.2](https://github.com/htmlhint/HTMLHint/compare/v0.14.1...v0.14.2) (2020-11-11)
 
 
