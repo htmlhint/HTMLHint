@@ -1,3 +1,10 @@
+## [0.15.1](https://github.com/htmlhint/HTMLHint/compare/v0.15.0...v0.15.1) (2021-06-11)
+
+
+### Bug Fixes
+
+* Unexpected behavior of the html lang require rule ([#655](https://github.com/htmlhint/HTMLHint/issues/655)) ([068645e](https://github.com/htmlhint/HTMLHint/commit/068645e9111f42adfa0fae0e32e236d88052541c))
+
 # [0.15.0](https://github.com/htmlhint/HTMLHint/compare/v0.14.2...v0.15.0) (2021-06-10)
 
 
