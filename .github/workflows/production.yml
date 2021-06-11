@@ -59,16 +59,18 @@ jobs:
           file: ./coverage/lcov.info
 
   release:
+    if:
+      ${{ github.repository == 'htmlhint/HTMLHint' &&
+      contains('refs/heads/master,refs/heads/beta,refs/heads/next,refs/heads/alpha',
+      github.ref) && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     needs: build
     steps:
       - name: ⬇️ Checkout repo
         uses: actions/checkout@v2
 
-      - name: ⎔ Setup node ${{ matrix.node }}
+      - name: ⎔ Setup node
         uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node }}
 
       - name: 📥 Download deps
         uses: bahmutov/npm-install@v1
