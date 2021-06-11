@@ -8,6 +8,11 @@ const ruleOptions = {}
 ruleOptions[ruldId] = true
 
 describe(`Rules: ${ruldId}`, () => {
+  it('All the rest(non HTML) tags should not result in an error', () => {
+    const code = '<html lang="en-EN"><body><p></p></body></html>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).to.be(0)
+  })
   it('HTML tag have no a lang attribute should result in an error', () => {
     const code = '<html></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
