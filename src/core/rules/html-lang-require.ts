@@ -22,7 +22,6 @@ const langtag =
   `(-${privateUse})?` +
   ')'
 const languageTag = `(${grandfathered}|${langtag}|${privateUse2})`
-const LANG_VALIDITY_PATTERN = new RegExp(languageTag, 'g')
 
 export default {
   id: 'html-lang-require',
@@ -33,33 +32,36 @@ export default {
       const tagName = event.tagName.toLowerCase()
       const mapAttrs = parser.getMapAttrs(event.attrs)
       const col = event.col + tagName.length + 1
+      const langValidityPattern = new RegExp(languageTag, 'g')
 
-      if (tagName === 'html' && 'lang' in mapAttrs) {
-        if (!mapAttrs['lang']) {
+      if (tagName === 'html') {
+        if ('lang' in mapAttrs) {
+          if (!mapAttrs['lang']) {
+            reporter.warn(
+              'The lang attribute of <html> element must have a value.',
+              event.line,
+              col,
+              this,
+              event.raw
+            )
+          } else if (!langValidityPattern.test(mapAttrs['lang'])) {
+            reporter.warn(
+              'The lang attribute value of <html> element must be a valid BCP47.',
+              event.line,
+              col,
+              this,
+              event.raw
+            )
+          }
+        } else {
           reporter.warn(
-            'The lang attribute of <html> element must have a value.',
-            event.line,
-            col,
-            this,
-            event.raw
-          )
-        } else if (!LANG_VALIDITY_PATTERN.test(mapAttrs['lang'])) {
-          reporter.warn(
-            'The lang attribute value of <html> element must be a valid BCP47.',
+            'An lang attribute must be present on <html> elements.',
             event.line,
             col,
             this,
             event.raw
           )
         }
-      } else {
-        reporter.warn(
-          'An lang attribute must be present on <html> elements.',
-          event.line,
-          col,
-          this,
-          event.raw
-        )
       }
     })
   },
