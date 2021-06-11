@@ -1,0 +1,74 @@
+---
+# Default GitHub labels
+- color: c13253
+  name: bug
+  description: Functionality that does not work as intended/expected
+- color: 18377f
+  name: documentation
+  description:
+- color: 0366d6
+  name: dependencies
+  description: Pull requests that update a dependency file
+- color: cccccc
+  name: duplicate
+  description: This issue or pull request already exists
+- color: d29a5a
+  name: test
+  description:
+- color: d23a4a
+  name: automation
+  description: Changes done to the .github folder
+- color: blocked
+  name: ed848a
+  description: The issue is blocked by another issue that has to be resolved first
+- color: ffffff
+  name: bot:stale
+  description: Issue marked as stale because there was no activity
+- color: fca979
+  name: cli
+  description: Relates to HTMLHint's command-line interface
+- color: fef2c0
+  name: configuration
+  description: Relates to HTMLHint's configuration (schema)
+- color: 8e4dc6
+  name: core
+  description: Relates to HTMLHint's core APIs and features
+- color: cccccc
+  name: duplicate
+  description: This issue or pull request already exists
+- color: 84b6eb
+  name: enhancement
+  description: Functionality that enhances existing features
+- color: 8fe57b
+  name: feature request
+  description: Functionality that introduces a new feature
+- color: bbf796
+  name: good first issue
+  description: Good for newcomers
+- color: f9bbc0
+  name: help wanted
+  description: We are looking for community help
+- color: e6e6e6
+  name: invalid
+  description: The issue is not a valid bug/feature request
+- color: 000000
+  name: keep-unstale
+  description: The issue will not be marked as stale by the stale-bot
+- color: fffb38
+  name: PR needed
+  description:
+- color: ededed
+  name: released on @beta
+  description: The issue was released on the beta branch
+- color: fbca04
+  name: rule
+  description: Relates to HTMLHint's core rules
+- color: f98022
+  name: spam
+  description:
+- color: f9e3bd
+  name: triage
+  description: An HTMLHint team member will look at this issue
+- color: ffffff
+  name: wontfix
+  description: The issue is expected and will not be fixed
