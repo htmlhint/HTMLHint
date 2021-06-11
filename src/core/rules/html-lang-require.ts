@@ -22,7 +22,6 @@ const langtag =
   `(-${privateUse})?` +
   ')'
 const languageTag = `(${grandfathered}|${langtag}|${privateUse2})`
-const LANG_VALIDITY_PATTERN = new RegExp(languageTag, 'g')
 
 export default {
   id: 'html-lang-require',
@@ -33,6 +32,7 @@ export default {
       const tagName = event.tagName.toLowerCase()
       const mapAttrs = parser.getMapAttrs(event.attrs)
       const col = event.col + tagName.length + 1
+      const langValidityPattern = new RegExp(languageTag, 'g')
 
       if (tagName === 'html') {
         if ('lang' in mapAttrs) {
@@ -44,7 +44,7 @@ export default {
               this,
               event.raw
             )
-          } else if (!LANG_VALIDITY_PATTERN.test(mapAttrs['lang'])) {
+          } else if (!langValidityPattern.test(mapAttrs['lang'])) {
             reporter.warn(
               'The lang attribute value of <html> element must be a valid BCP47.',
               event.line,

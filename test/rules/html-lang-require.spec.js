@@ -28,8 +28,13 @@ describe(`Rules: ${ruldId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
   })
-  it('HTML tag have an non emtpy and valid lang attribute should not result in an error', () => {
+  it('HTML tag have an non emtpy and valid(en-EN) lang attribute should not result in an error', () => {
     const code = '<html lang="en-EN"></html>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).to.be(0)
+  })
+  it('HTML tag have an non emtpy and valid(en) lang attribute should not result in an error', () => {
+    const code = '<html lang="en"></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
