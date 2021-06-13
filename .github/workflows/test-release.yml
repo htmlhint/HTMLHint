@@ -3,32 +3,57 @@ name: Test Release
 on:
   pull_request:
     branches:
+      - '+([0-9])?(.{+([0-9]),x}).x'
+      - main
       - master
+      - alpha
+      - beta
+      - next
+      - next-major
+    types: [opened, synchronize, reopened]
 
 jobs:
-  release:
+  test-release:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [12.x]
+        node: [14]
         os: [ubuntu-latest]
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node }}
+      - name: ⎔ Setup node
         uses: actions/setup-node@v1
+
+      - name: 📥 Download deps
+        uses: bahmutov/npm-install@v1
         with:
-          node-version: ${{ matrix.node }}
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Build
-        run: npm run build --if-present
-
-      - name: Semantic Release
-        run: npx semantic-release --dry-run
+          useLockFile: false
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HUSKY_SKIP_INSTALL: true
+
+      - name: 🏗 Build
+        run: npm run build
+
+      - name: 🚢 Release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          dry_run: true
+          semantic_version: 17
+          extra_plugins: |
+            @semantic-release/changelog@3.0.0
+            @semantic-release/git@9.0.0
+          branches: |
+            [
+              'master',
+              'next',
+              'next-major',
+              {name: 'beta', prerelease: true},
+              {name: 'alpha', prerelease: true}
+            ]
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
