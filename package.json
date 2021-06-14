@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "0.15.1",
+  "version": "0.15.0-beta.1",
   "description": "The Static Code Analysis Tool for your HTML",
   "repository": {
     "type": "git",
@@ -108,8 +108,8 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/changelog",
-      "@semantic-release/changelog",
       "@semantic-release/npm",
+      "@semantic-release/github",
       "@semantic-release/git"
     ]
   },
