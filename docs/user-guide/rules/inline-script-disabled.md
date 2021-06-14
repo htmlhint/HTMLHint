@@ -3,20 +3,45 @@ id: inline-script-disabled
 title: inline-script-disabled
 ---
 
-Inline script cannot be use.
+Inline script cannot be used.
 
-Level: `warning`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "inline-script-disabled": "off",
+  "inline-script-disabled": "warn",
+  "inline-script-disabled": "error",
+  "inline-script-disabled": ["off"],
+  "inline-script-disabled": ["warn"],
+  "inline-script-disabled": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are considered violations:
+```json
+{ "inline-script-disabled": "off" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **incorrect** code for this rule:
+
 ```html
-<img src="test.gif" onclick="alert(1);">
-<img src="javascript:alert(1)">
+<img src="test.gif" onclick="alert(1);" />
+<img src="javascript:alert(1)" />
 <a href="javascript:alert(1)">test1</a>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use inline scripts.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.10`.

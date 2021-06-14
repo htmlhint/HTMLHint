@@ -30,7 +30,6 @@ title: List of rules
 - [`tag-pair`](/docs/user-guide/rules/tag-pair): Tag must be paired.
 - [`tag-self-close`](/docs/user-guide/rules/tag-self-close): Empty tags must be self closed.
 - [`tagname-lowercase`](/docs/user-guide/rules/tagname-lowercase): All html element names must be in lowercase.
-- [`empty-tag-not-self-closed`](/docs/user-guide/rules/empty-tag-not-self-closed): The empty tag should not be closed by self.
 - [`src-not-empty`](/docs/user-guide/rules/src-not-empty): The src attribute of an img(script,link) must have a value.
 - [`href-abs-or-rel`](/docs/user-guide/rules/href-abs-or-rel): An href attribute must be either absolute or relative.
 

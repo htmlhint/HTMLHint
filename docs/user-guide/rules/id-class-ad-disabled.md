@@ -3,26 +3,50 @@ id: id-class-ad-disabled
 title: id-class-ad-disabled
 ---
 
-Id and class can not use ad keyword, it will blocked by adblock software.
+The `id` and `class` attributes cannot use the "ad" keyword, it will be blocked by adblock software.
 
-Level: `warning`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "id-class-ad-disabled": "off",
+  "id-class-ad-disabled": "warn",
+  "id-class-ad-disabled": "error",
+  "id-class-ad-disabled": ["off"],
+  "id-class-ad-disabled": ["warn"],
+  "id-class-ad-disabled": ["error"]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "id-class-ad-disabled": "off" }
+```
 
-<!-- prettier-ignore -->
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
+
 ```html
 <div id="adcontainer"></div>
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
-<!-- prettier-ignore -->
 ```html
 <div id="ad-container"></div>
 <div id="ad_container"></div>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will use ads.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.6`.

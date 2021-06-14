@@ -3,26 +3,57 @@ id: tagname-lowercase
 title: tagname-lowercase
 ---
 
-Tagname must be lowercase.
+All html element names must be in lowercase.
 
-Level: `error`
+## Possible Configuration Values
 
-## Config value
+```json
+{
+  "tagname-lowercase": "off",
+  "tagname-lowercase": "warn",
+  "tagname-lowercase": "error",
+  "tagname-lowercase": ["off"],
+  "tagname-lowercase": ["warn", { "exceptions": ["clipPath", "test"] }],
+  "tagname-lowercase": ["error", { "exceptions": ["clipPath", "test"] }]
+}
+```
 
-1. true: enable rule
-2. false: disable rule
-3. ['clipPath', 'test']: Ignore some tagname name
+## Default
 
-The following pattern are **not** considered violations:
+```json
+{ "tagname-lowercase": "error" }
+```
+
+## Options
+
+This rule has an object option:
+
+- `"exceptions": ["clipPath", "test"]` ignore tagnames `clipPath` and `test`.
+
+---
+
+## Examples
+
+Examples of **correct** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
 <span><div>
 ```
 
-The following pattern is considered violation:
+Examples of **incorrect** code for this rule:
 
 <!-- prettier-ignore -->
 ```html
 <SPAN><BR>
 ```
+
+---
+
+## When Not To Use It
+
+If your project will not use lower case tagnames.
+
+## Version
+
+This rule was introduced in HTMLHint `v0.9.1`.
