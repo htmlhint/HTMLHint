@@ -484,7 +484,7 @@
 	            const originalAttrs = JSON.stringify(listOfAttributes);
 	            listOfAttributes.sort((a, b) => {
 	                if (orderMap[a] == undefined && orderMap[b] == undefined) {
-	                    return 0;
+	                    return a.localeCompare(b);
 	                }
 	                if (orderMap[a] == undefined) {
 	                    return 1;
