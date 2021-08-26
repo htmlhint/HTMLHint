@@ -5,7 +5,7 @@ title: Doctype HTML5
 
 Rule ID: `doctype-html5`
 
-Doctype must be html5.
+Doctype must be HTML5.
 
 Level: `warning`
 
