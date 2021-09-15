@@ -8,7 +8,7 @@ import * as glob from 'glob'
 import { IGlob } from 'glob'
 import * as parseGlob from 'parse-glob'
 import { dirname, resolve, sep } from 'path'
-import * as request from 'request'
+import fetch from 'node-fetch'
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
@@ -494,12 +494,15 @@ function hintUrl(
   ruleset: Ruleset | undefined,
   callback: (messages: Hint[]) => void
 ) {
-  request.get(url, (error, response, body) => {
-    if (!error && response.statusCode == 200) {
-      const messages = HTMLHint.verify(body, ruleset)
-      callback(messages)
+  const errorFn = () => callback([])
+  fetch(url).then((response) => {
+    if (response.ok) {
+      response.text().then((body) => {
+        const messages = HTMLHint.verify(body, ruleset)
+        callback(messages)
+      }, errorFn)
     } else {
-      callback([])
+      errorFn()
     }
-  })
+  }, errorFn)
 }
