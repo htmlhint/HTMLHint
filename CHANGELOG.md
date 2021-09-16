@@ -1,3 +1,17 @@
+## [0.15.2](https://github.com/htmlhint/HTMLHint/compare/v0.15.1...v0.15.2) (2021-09-16)
+
+
+### Bug Fixes
+
+* **htmlhint.ts:** replace deprecated request module with what-wg fetch ([#670](https://github.com/htmlhint/HTMLHint/issues/670)) ([250169d](https://github.com/htmlhint/HTMLHint/commit/250169d9e9ab347e512739d113db2b2da703876c))
+
+## [0.15.2](https://github.com/htmlhint/HTMLHint/compare/v0.15.1...v0.15.2) (2021-09-16)
+
+
+### Bug Fixes
+
+* **htmlhint.ts:** replace deprecated request module with what-wg fetch ([#670](https://github.com/htmlhint/HTMLHint/issues/670)) ([250169d](https://github.com/htmlhint/HTMLHint/commit/250169d9e9ab347e512739d113db2b2da703876c))
+
 ## [0.15.1](https://github.com/htmlhint/HTMLHint/compare/v0.15.0...v0.15.1) (2021-06-11)
 
 
