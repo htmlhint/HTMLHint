@@ -85,7 +85,7 @@
     "@types/parse-glob": "3.0.29",
     "@types/xml": "1.0.5",
     "@typescript-eslint/eslint-plugin": "3.6.0",
-    "@typescript-eslint/parser": "3.6.0",
+    "@typescript-eslint/parser": "3.10.1",
     "commitizen": "^4.2.4",
     "commitlint": "^13.1.0",
     "eslint": "^7.4.0",
