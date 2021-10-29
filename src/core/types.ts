@@ -20,6 +20,7 @@ export interface Ruleset {
   'attr-whitespace'?: boolean
   'doctype-first'?: boolean
   'doctype-html5'?: boolean
+  'empty-tag-not-self-closed'?: boolean
   'head-script-disabled'?: boolean
   'href-abs-or-rel'?: 'abs' | 'rel'
   'id-class-ad-disabled'?: boolean
