@@ -1,3 +1,17 @@
+# [0.16.0](https://github.com/htmlhint/HTMLHint/compare/v0.15.2...v0.16.0) (2021-10-29)
+
+
+### Features
+
+* **rules:** add empty-tag-not-self-closed rule ([#696](https://github.com/htmlhint/HTMLHint/issues/696)) ([ec171ac](https://github.com/htmlhint/HTMLHint/commit/ec171ac847b98f495006845836d17f1d19d79b06)), closes [#311](https://github.com/htmlhint/HTMLHint/issues/311)
+
+# [0.16.0](https://github.com/htmlhint/HTMLHint/compare/v0.15.2...v0.16.0) (2021-10-29)
+
+
+### Features
+
+* **rules:** add empty-tag-not-self-closed rule ([#696](https://github.com/htmlhint/HTMLHint/issues/696)) ([ec171ac](https://github.com/htmlhint/HTMLHint/commit/ec171ac847b98f495006845836d17f1d19d79b06)), closes [#311](https://github.com/htmlhint/HTMLHint/issues/311)
+
 ## [0.15.2](https://github.com/htmlhint/HTMLHint/compare/v0.15.1...v0.15.2) (2021-09-16)
 
 
