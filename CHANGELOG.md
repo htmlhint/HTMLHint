@@ -1,18 +1,10 @@
 ## [0.16.1](https://github.com/htmlhint/HTMLHint/compare/v0.16.0...v0.16.1) (2021-11-12)
 
-
 ### Bug Fixes
 
 * tagname-specialchars description ([#714](https://github.com/htmlhint/HTMLHint/issues/714)) ([4d702d8](https://github.com/htmlhint/HTMLHint/commit/4d702d8dfac3431fb71516b1ea3eb97950b63835))
 
-## [0.16.1](https://github.com/htmlhint/HTMLHint/compare/v0.16.0...v0.16.1) (2021-11-12)
-
-
-### Bug Fixes
-
-* tagname-specialchars description ([#714](https://github.com/htmlhint/HTMLHint/issues/714)) ([4d702d8](https://github.com/htmlhint/HTMLHint/commit/4d702d8dfac3431fb71516b1ea3eb97950b63835))
-
-# [0.16.0](https://github.com/htmlhint/HTMLHint/compare/v0.15.2...v0.16.0) (2021-10-29)
+## [0.16.0](https://github.com/htmlhint/HTMLHint/compare/v0.15.2...v0.16.0) (2021-10-29)
 
 ### Features
 
