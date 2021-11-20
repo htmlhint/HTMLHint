@@ -25,7 +25,7 @@ export default {
         // Check first and last characters for spaces
         if (elem.value.trim() !== elem.value) {
           reporter.error(
-            `The attributes of [ ${attrName} ] must not have trailing whitespace.`,
+            `The attributes of [ ${attrName} ] must not have leading or trailing whitespace.`,
             event.line,
             col + attr.index,
             this,
