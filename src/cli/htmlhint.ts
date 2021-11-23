@@ -174,7 +174,7 @@ function hintTargets(
   })
 }
 
-// load custom rles
+// load custom rules
 function loadCustomRules(rulesdir: string) {
   rulesdir = rulesdir.replace(/\\/g, '/')
   if (existsSync(rulesdir)) {
@@ -215,7 +215,7 @@ function hintAllFiles(
     formatter: Formatter
     ruleset?: Ruleset
   },
-  onFinised: (result: {
+  onFinished: (result: {
     targetFileCount: number
     targetHintFileCount: number
     targetHintCount: number
@@ -292,7 +292,7 @@ function hintAllFiles(
 
   function checkAllHinted() {
     if (isWalkDone && isHintDone) {
-      onFinised({
+      onFinished({
         targetFileCount: targetFileCount,
         targetHintFileCount: targetHintFileCount,
         targetHintCount: targetHintCount,

@@ -2,60 +2,60 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'id-class-ad-disabled'
+const ruleId = 'id-class-ad-disabled'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('Id use ad keyword should result in an error', () => {
     let code = '<div id="ad">test</div>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
     expect(messages[0].type).to.be('warning')
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div id="ad-222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div id="ad_222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div id="111-ad">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div id="111_ad">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div id="111-ad-222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div id="111_ad_222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
   })
@@ -64,49 +64,49 @@ describe(`Rules: ${ruldId}`, () => {
     let code = '<div class="ad">test</div>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div class="ad-222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div class="ad_222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div class="111-ad">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div class="111_ad">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div class="111-ad-222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
 
     code = '<div class="111_ad_222">test</div>'
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(5)
   })

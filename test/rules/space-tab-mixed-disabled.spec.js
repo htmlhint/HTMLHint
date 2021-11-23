@@ -2,40 +2,40 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'space-tab-mixed-disabled'
+const ruleId = 'space-tab-mixed-disabled'
 const ruleMixOptions = {}
 const ruleSpaceOptions = {}
 const ruleSpace4Options = {}
 const ruleSpace5Options = {}
 const ruleTabOptions = {}
 
-ruleMixOptions[ruldId] = true
-ruleSpaceOptions[ruldId] = 'space'
-ruleSpace4Options[ruldId] = 'space4'
-ruleSpace5Options[ruldId] = 'space5'
-ruleTabOptions[ruldId] = 'tab'
+ruleMixOptions[ruleId] = true
+ruleSpaceOptions[ruleId] = 'space'
+ruleSpace4Options[ruleId] = 'space4'
+ruleSpace5Options[ruleId] = 'space5'
+ruleTabOptions[ruleId] = 'tab'
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('Spaces and tabs mixed in front of line should result in an error', () => {
     // space before tab
     let code = '    	<a href="a">      bbb</a>'
     let messages = HTMLHint.verify(code, ruleMixOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(1)
     // tab before space
     code = '		 <a href="a">      bbb</a>'
     messages = HTMLHint.verify(code, ruleMixOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(1)
     // multi line
     code = '<div>\r\n	 <a href="a">      bbb</a>'
     messages = HTMLHint.verify(code, ruleMixOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(2)
     expect(messages[0].col).to.be(1)
   })

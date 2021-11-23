@@ -2,18 +2,18 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'attr-unsafe-chars'
+const ruleId = 'attr-unsafe-chars'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('Attribute value have unsafe chars should result in an error', () => {
     const code =
       '<a href="https://vimeo.com/album/1951235/video/56931059‎">Sud Web 2012</a>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(3)
     expect(messages[0].type).to.be('warning')

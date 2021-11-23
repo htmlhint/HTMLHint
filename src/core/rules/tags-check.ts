@@ -146,7 +146,7 @@ export default {
           redundantAttrs.forEach((attrName) => {
             if (attrs.some((attr) => attr.name === attrName)) {
               reporter.error(
-                `The attr '${attrName}' is redundant for <${tagName}> and should be ommited.`,
+                `The attr '${attrName}' is redundant for <${tagName}> and should be omitted.`,
                 event.line,
                 col,
                 this,

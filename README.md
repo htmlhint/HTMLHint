@@ -18,7 +18,7 @@
   <a href="https://www.npmjs.com/package/htmlhint">
     <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="NPM count">
   </a>
-  <img src="https://badgen.net/badge/license/MIT/green" alt="MIT Licence" />
+  <img src="https://badgen.net/badge/license/MIT/green" alt="MIT License" />
   <a href="https://discord.gg/nJ6J9CP">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
   </a>

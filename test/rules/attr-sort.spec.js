@@ -9,7 +9,7 @@ ruleOptions[ruleId] = true
 
 describe(`Rules: ${ruleId}`, () => {
   it('Attribute unsorted tags must result in an error', () => {
-    const code = '<div id="test" class="class" title="tite"></div>'
+    const code = '<div id="test" class="class" title="title"></div>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
 

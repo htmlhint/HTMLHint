@@ -2,13 +2,13 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'src-not-empty'
+const ruleId = 'src-not-empty'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
-  it('Src be emtpy should result in an error', () => {
+describe(`Rules: ${ruleId}`, () => {
+  it('Src be empty should result in an error', () => {
     const code =
       '<img src="" /><img src /><script src=""></script><script src></script><link href="" type="text/css" /><link href type="text/css" /><embed src=""><embed src><bgsound src="" /><bgsound src /><iframe src=""><iframe src><object data=""><object data>'
     const messages = HTMLHint.verify(code, ruleOptions)
