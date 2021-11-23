@@ -2,12 +2,12 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'title-require'
+const ruleId = 'title-require'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('<title> be present in <head> tag should not result in an error', () => {
     const code = '<html><head><title>test</title></head><body></body></html>'
     const messages = HTMLHint.verify(code, ruleOptions)

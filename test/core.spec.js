@@ -62,7 +62,7 @@ describe('Core', () => {
     expect(messages.length).to.be(0)
   })
 
-  it('Show formated result should not result in an error', () => {
+  it('Show formatted result should not result in an error', () => {
     const code =
       'tttttttttttttttttttttttttttttttttttt<div>中文<img src="test.gif" />tttttttttttttttttttttttttttttttttttttttttttttt'
     const messages = HTMLHint.verify(code, {

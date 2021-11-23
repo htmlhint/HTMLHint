@@ -2,12 +2,12 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'html-lang-require'
+const ruleId = 'html-lang-require'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('All the rest(non HTML) tags should not result in an error', () => {
     const code = '<html lang="en-EN"><body><p></p></body></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -28,12 +28,12 @@ describe(`Rules: ${ruldId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
   })
-  it('HTML tag have an non emtpy and valid(en-EN) lang attribute should not result in an error', () => {
+  it('HTML tag have an non empty and valid(en-EN) lang attribute should not result in an error', () => {
     const code = '<html lang="en-EN"></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)
   })
-  it('HTML tag have an non emtpy and valid(en) lang attribute should not result in an error', () => {
+  it('HTML tag have an non empty and valid(en) lang attribute should not result in an error', () => {
     const code = '<html lang="en"></html>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(0)

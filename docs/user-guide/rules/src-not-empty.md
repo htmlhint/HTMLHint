@@ -5,7 +5,7 @@ title: src-not-empty
 
 Src of img(script, link) must set value.
 
-Emtpy of src will visit current page twice.
+Empty of src will visit current page twice.
 
 Level: `error`
 

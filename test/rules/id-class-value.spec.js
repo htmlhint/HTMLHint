@@ -2,21 +2,21 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'id-class-value'
+const ruleId = 'id-class-value'
 const ruleOptionsUnderline = {}
 const ruleOptionsDash = {}
 const ruleOptionsHump = {}
 const ruleOptionsReg = {}
 
-ruleOptionsUnderline[ruldId] = 'underline'
-ruleOptionsDash[ruldId] = 'dash'
-ruleOptionsHump[ruldId] = 'hump'
-ruleOptionsReg[ruldId] = {
+ruleOptionsUnderline[ruleId] = 'underline'
+ruleOptionsDash[ruleId] = 'dash'
+ruleOptionsHump[ruleId] = 'hump'
+ruleOptionsReg[ruleId] = {
   regId: /^_[a-z\d]+(-[a-z\d]+)*$/,
   message: 'Id and class value must meet regexp',
 }
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('Id and class value be not lower case and split by underline should result in an error', () => {
     const code = '<div id="aaaBBB" class="ccc-ddd">'
     const messages = HTMLHint.verify(code, ruleOptionsUnderline)

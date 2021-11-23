@@ -2,17 +2,17 @@ const expect = require('expect.js')
 
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'head-script-disabled'
+const ruleId = 'head-script-disabled'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('External script in head should result in an error', () => {
     const code = '<head><script src="test.js"></script></head>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(7)
     expect(messages[0].type).to.be('warning')
@@ -22,7 +22,7 @@ describe(`Rules: ${ruldId}`, () => {
     let code = '<head><script>alert(1);</script></head>'
     let messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
+    expect(messages[0].rule.id).to.be(ruleId)
     expect(messages[0].line).to.be(1)
     expect(messages[0].col).to.be(7)
     code = '<head><script type="text/javascript">console.log(1)</script></head>'
