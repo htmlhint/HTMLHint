@@ -30,8 +30,8 @@
     "build:rollup": "npm run build:min && npm run build:unmin",
     "build:min": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js",
     "build:unmin": "rollup -c",
-    "lint": "eslint . --ext .js,.ts --max-warnings 0",
-    "lint:fix": "eslint --fix . --ext .js,.ts --max-warnings 0",
+    "lint": "prettier -c . && eslint . --ext .js,.ts --max-warnings 0",
+    "lint:fix": "npm run prettier && npm run lint -- --fix",
     "test:coverage": "nyc npm run test"
   },
   "husky": {

@@ -9,4 +9,4 @@ jobs:
     steps:
       - uses: actions/labeler@v3.0.2
         with:
-          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+          repo-token: '${{ secrets.GITHUB_TOKEN }}'
