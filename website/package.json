@@ -13,7 +13,7 @@
     "@docusaurus/plugin-sitemap": "2.0.0-alpha.37",
     "@docusaurus/preset-classic": "^2.0.0-alpha.54",
     "classnames": "^2.2.6",
-    "react": "^16.8.4",
+    "react": "^16.14.0",
     "react-dom": "^16.8.4",
     "rehype-truncate": "1.1.0",
     "remark-images": "2.0.0"
