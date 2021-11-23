@@ -4,6 +4,14 @@ updates:
     directory: "/"
     schedule:
       interval: weekly
+  - package-ecosystem: npm
+    directory: "/website"
+    schedule:
+      interval: weekly
+  - package-ecosystem: npm
+    directory: "/website/plugins/docusaurus-plugin-hotjar"
+    schedule:
+      interval: weekly
     versioning-strategy: increase
   - package-ecosystem: github-actions
     directory: "/"
