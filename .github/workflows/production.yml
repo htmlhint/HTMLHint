@@ -63,8 +63,7 @@ jobs:
           file: ./coverage/lcov.info
 
   release:
-    if:
-      ${{ github.repository == 'htmlhint/HTMLHint' &&
+    if: ${{ github.repository == 'htmlhint/HTMLHint' &&
       contains('refs/heads/master,refs/heads/beta,refs/heads/next,refs/heads/alpha',
       github.ref) && github.event_name == 'push' }}
     runs-on: ubuntu-latest
