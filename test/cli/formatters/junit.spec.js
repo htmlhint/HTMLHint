@@ -1,7 +1,6 @@
 const expect = require('expect.js')
 
 const ChildProcess = require('child_process')
-const fs = require('fs')
 const path = require('path')
 
 describe('CLI', () => {
