@@ -1,3 +1,17 @@
+## [0.16.2](https://github.com/htmlhint/HTMLHint/compare/v0.16.1...v0.16.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* clenaup non-functional typos ([#727](https://github.com/htmlhint/HTMLHint/issues/727)) ([98e45b9](https://github.com/htmlhint/HTMLHint/commit/98e45b9b2e1d7a4b0576d1944b1769c21b52b11e))
+
+## [0.16.2](https://github.com/htmlhint/HTMLHint/compare/v0.16.1...v0.16.2) (2021-11-23)
+
+
+### Bug Fixes
+
+* clenaup non-functional typos ([#727](https://github.com/htmlhint/HTMLHint/issues/727)) ([98e45b9](https://github.com/htmlhint/HTMLHint/commit/98e45b9b2e1d7a4b0576d1944b1769c21b52b11e))
+
 ## [0.16.1](https://github.com/htmlhint/HTMLHint/compare/v0.16.0...v0.16.1) (2021-11-12)
 
 ### Bug Fixes
