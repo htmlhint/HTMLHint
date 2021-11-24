@@ -74,9 +74,10 @@ jobs:
         run: npm run test:coverage
 
       - name: ⬆️ Upload coverage to Codecov
-        uses: codecov/codecov-action@v2.1.0
+        uses: codecov/codecov-action@v2
         with:
-          file: ./coverage/lcov.info
+          files: ./coverage/coverage-final.json
+          name: codecov-prod
 
   release:
     if: ${{ github.repository == 'htmlhint/HTMLHint' &&

@@ -67,8 +67,7 @@
       "dist/htmlhint.js"
     ],
     "reporter": [
-      "text",
-      "lcov"
+      "json"
     ],
     "sourceMap": false
   },
