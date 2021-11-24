@@ -1,3 +1,10 @@
+## [0.16.3](https://github.com/htmlhint/HTMLHint/compare/v0.16.2...v0.16.3) (2021-11-24)
+
+
+### Reverts
+
+* Revert "chore(deps-dev): upgrade strip-json-comments (#763)" (#767) ([6c2f0cc](https://github.com/htmlhint/HTMLHint/commit/6c2f0cc088e6b154d85e3fbe7046fbcb65d89a96)), closes [#763](https://github.com/htmlhint/HTMLHint/issues/763) [#767](https://github.com/htmlhint/HTMLHint/issues/767)
+
 ## [0.16.2](https://github.com/htmlhint/HTMLHint/compare/v0.16.1...v0.16.2) (2021-11-23)
 
 
