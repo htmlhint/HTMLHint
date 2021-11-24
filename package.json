@@ -77,7 +77,7 @@
     "commander": "5.1.0",
     "glob": "^7.2.0",
     "node-fetch": "^2.6.2",
-    "parse-glob": "3.0.4",
+    "parse-glob": "^2.0.1",
     "strip-json-comments": "3.1.0",
     "xml": "1.0.1"
   },
