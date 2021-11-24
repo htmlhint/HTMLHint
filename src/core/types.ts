@@ -2,6 +2,7 @@ import { HTMLParser } from './core'
 import { ReportMessageCallback } from './reporter'
 
 export interface Configuration {
+  extends?: string[]
   rules?: Ruleset
 }
 

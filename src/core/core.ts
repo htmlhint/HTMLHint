@@ -1,3 +1,4 @@
+import { isConfiguration } from './configuration'
 import HTMLParser from './htmlparser'
 import Reporter, { ReportMessageCallback } from './reporter'
 import * as HTMLRules from './rules'
@@ -15,20 +16,43 @@ export interface FormatOptions {
   indent?: number
 }
 
-class HTMLHintCore {
-  public rules: { [id: string]: Rule } = {}
-  public readonly defaultRuleset: Ruleset = {
-    'tagname-lowercase': 'error',
+const HTMLHINT_RECOMMENDED = 'htmlhint:recommended'
+const HTMLHINT_LEGACY = 'htmlhint:legacy'
+
+const DEFAULT_RULESETS: Record<string, Ruleset> = {
+  [HTMLHINT_RECOMMENDED]: {
+    'alt-require': 'warn',
+    'attr-lowercase': 'warn',
+    'attr-no-duplication': 'error',
+    'attr-no-unnecessary-whitespace': 'warn',
+    'attr-unsafe-chars': 'warn',
+    'attr-value-double-quotes': 'warn',
+    'id-class-ad-disabled': 'warn',
+    'id-unique': 'error',
+    'space-tab-mixed-disabled': 'warn',
+    'spec-char-escape': 'warn',
+    'src-not-empty': 'error',
+    'tag-pair': 'warn',
+    'tagname-lowercase': 'warn',
+    'tagname-specialchars': 'error',
+    'title-require': 'warn',
+  },
+  [HTMLHINT_LEGACY]: {
     'attr-lowercase': 'error',
+    'attr-no-duplication': 'error',
     'attr-value-double-quotes': 'error',
     'doctype-first': 'error',
-    'tag-pair': 'error',
-    'spec-char-escape': 'error',
     'id-unique': 'error',
+    'spec-char-escape': 'error',
     'src-not-empty': 'error',
-    'attr-no-duplication': 'error',
+    'tag-pair': 'error',
+    'tagname-lowercase': 'error',
     'title-require': 'error',
-  }
+  },
+}
+
+class HTMLHintCore {
+  public rules: { [id: string]: Rule } = {}
 
   public addRule(rule: Rule) {
     this.rules[rule.id] = rule
@@ -36,11 +60,34 @@ class HTMLHintCore {
 
   public verify(
     html: string,
-    config: Configuration = { rules: this.defaultRuleset }
+    config: Configuration = { extends: [HTMLHINT_RECOMMENDED] }
   ) {
-    let ruleset = config.rules ?? this.defaultRuleset
+    if (!isConfiguration(config)) {
+      throw new Error('The HTMLHint configuration is invalid')
+    }
+
+    let ruleset: Ruleset = {}
+
+    // If an empty configuration is passed, use the recommended ruleset
+    if (config.extends === undefined && config.rules === undefined) {
+      config.extends = [HTMLHINT_RECOMMENDED]
+    }
+
+    // Iterate through extensions and merge rulesets into ruleset
+    for (const extend of config.extends ?? []) {
+      if (typeof extend === 'string') {
+        const extendRuleset = DEFAULT_RULESETS[extend] ?? {}
+        ruleset = { ...ruleset, ...extendRuleset }
+      }
+    }
+
+    // Apply self-configured rules
+    ruleset = { ...ruleset, ...(config.rules ?? {}) }
+
+    // If no rules have been configured, return immediately
     if (Object.keys(ruleset).length === 0) {
-      ruleset = this.defaultRuleset
+      // console.log('Please configure some HTMLHint rules')
+      return []
     }
 
     // parse inline ruleset

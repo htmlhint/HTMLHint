@@ -59,6 +59,7 @@ lib
 # Test releated files
 test/unit/coverage
 test/e2e/reports
+report.html
 
 # Website/Docs releated files
 /website/node_modules

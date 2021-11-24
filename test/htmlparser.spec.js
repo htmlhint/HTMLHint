@@ -1,5 +1,6 @@
 const expect = require('expect.js')
 
+/** @type import('../src/core/core').HTMLParser */
 const HTMLParser = require('../dist/htmlhint.js').HTMLParser
 
 expect.Assertion.prototype.event = function (type, attr) {
