@@ -303,16 +303,16 @@ function hintAllFiles(
 
   if (target === 'stdin') {
     isWalkDone = true
-    hintQueue.push(target)
+    void hintQueue.push(target)
   } else if (/^https?:\/\//.test(target)) {
     isWalkDone = true
-    hintQueue.push(target)
+    void hintQueue.push(target)
   } else {
     walkPath(
       globInfo,
       (filepath) => {
         isHintDone = false
-        hintQueue.push(filepath)
+        void hintQueue.push(filepath)
       },
       () => {
         isWalkDone = true
