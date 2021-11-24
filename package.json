@@ -104,16 +104,6 @@
     "semantic-release": "^17.4.7",
     "typescript": "3.9.6"
   },
-  "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      "@semantic-release/git"
-    ]
-  },
   "files": [
     "bin",
     "dist"
