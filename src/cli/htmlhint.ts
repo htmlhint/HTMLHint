@@ -323,9 +323,7 @@ function hintAllFiles(
 }
 
 // split target to base & glob
-function getGlobInfo(
-  target: string
-): {
+function getGlobInfo(target: string): {
   base: string
   pattern: string
   ignore?: string

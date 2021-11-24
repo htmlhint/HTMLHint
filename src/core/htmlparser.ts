@@ -36,9 +36,7 @@ export default class HTMLParser {
     this.lastEvent = null
   }
 
-  public makeMap(
-    str: string
-  ): {
+  public makeMap(str: string): {
     [key: string]: boolean
   } {
     const obj: { [key: string]: boolean } = {}
@@ -54,10 +52,12 @@ export default class HTMLParser {
   public parse(html: string): void {
     const mapCdataTags = this._mapCdataTags
 
-    // eslint-disable-next-line no-control-regex
-    const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
-    // eslint-disable-next-line no-control-regex
-    const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
+    const regTag =
+      // eslint-disable-next-line no-control-regex
+      /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
+    const regAttr =
+      // eslint-disable-next-line no-control-regex
+      /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
     const regLine = /\r?\n/g
 
     let match: RegExpExecArray | null
@@ -312,9 +312,7 @@ export default class HTMLParser {
     }
   }
 
-  public getMapAttrs(
-    arrAttrs: Attr[]
-  ): {
+  public getMapAttrs(arrAttrs: Attr[]): {
     [name: string]: string
   } {
     const mapAttrs: { [name: string]: string } = {}
