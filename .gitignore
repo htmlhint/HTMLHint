@@ -64,3 +64,6 @@ test/e2e/reports
 /website/node_modules
 /website/build
 /website/.docusaurus
+
+# HTML formatter output
+report.html
