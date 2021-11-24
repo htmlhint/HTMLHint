@@ -110,8 +110,7 @@ export default class HTMLParser {
       arrBlocks.push(data)
       this.fire(type, data)
 
-      let lineMatch: RegExpExecArray | null
-      while ((lineMatch = regLine.exec(raw))) {
+      while (regLine.exec(raw)) {
         line++
         lastLineIndex = pos + regLine.lastIndex
       }
