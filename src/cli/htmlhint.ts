@@ -2,7 +2,7 @@
 
 import { queue as asyncQueue, series as asyncSeries } from 'async'
 import * as chalk from 'chalk'
-import * as program from 'commander'
+import { Command } from 'commander'
 import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
 import { IGlob } from 'glob'
@@ -27,6 +27,8 @@ function map(val: string) {
   })
   return objMap
 }
+
+const program = new Command()
 
 program.on('--help', () => {
   console.log('  Examples:')
@@ -76,7 +78,9 @@ program
   .option('--warn', 'Warn only, exit with 0')
   .parse(process.argv)
 
-if (program.list) {
+const cliOptions = program.opts()
+
+if (cliOptions.list) {
   listRules()
   process.exit(0)
 }
@@ -88,19 +92,19 @@ if (arrTargets.length === 0) {
 
 // init formatter
 formatter.init(HTMLHint, {
-  nocolor: program.nocolor,
+  nocolor: cliOptions.nocolor,
 })
 
-const format = program.format || 'default'
+const format = cliOptions.format || 'default'
 if (format) {
   formatter.setFormat(format)
 }
 
 hintTargets(arrTargets, {
-  rulesdir: program.rulesdir,
-  ruleset: program.rules,
+  rulesdir: cliOptions.rulesdir,
+  ruleset: cliOptions.rules,
   formatter: formatter,
-  ignore: program.ignore,
+  ignore: cliOptions.ignore,
 })
 
 // list all rules
@@ -170,7 +174,7 @@ function hintTargets(
       allHintCount: allHintCount,
       time: spendTime,
     })
-    process.exit(!program.warn && allHintCount > 0 ? 1 : 0)
+    process.exit(!cliOptions.warn && allHintCount > 0 ? 1 : 0)
   })
 }
 
@@ -244,7 +248,7 @@ function hintAllFiles(
   // init ruleset
   let ruleset = options.ruleset
   if (ruleset === undefined) {
-    ruleset = getConfig(program.config, globInfo.base, formatter)
+    ruleset = getConfig(cliOptions.config, globInfo.base, formatter)
   }
 
   // hint queue
