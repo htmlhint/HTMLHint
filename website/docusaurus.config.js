@@ -1,93 +1,29 @@
-const path = require('path')
+// @ts-check
+// Note: type annotations allow type checking and IDEs autocompletion
 
-const remarkImages = require('remark-images')
-const rehypeTruncate = require('rehype-truncate')
+const lightCodeTheme = require('prism-react-renderer/themes/github')
+const darkCodeTheme = require('prism-react-renderer/themes/dracula')
 
-const PACKAGE = require('../package')
+const PACKAGE = require('../package.json')
 const GITHUB_URL = 'https://github.com/htmlhint/HTMLHint'
 
-module.exports = {
+/** @type {import('@docusaurus/types').Config} */
+const config = {
   title: 'HTMLHint',
   tagline: 'Static code analysis tool you need for your HTML',
   url: PACKAGE.homepage,
   baseUrl: '/',
+  onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'HTMLHint',
   projectName: PACKAGE.name,
   scripts: ['https://buttons.github.io/buttons.js'],
-  themeConfig: {
-    googleAnalytics: { trackingID: 'UA-109578378-3' },
-    hotjar: { hjid: 1812834 },
-    navbar: {
-      title: 'HTMLHint',
-      logo: {
-        alt: 'HTMLHint Logo',
-        src: 'img/htmlhint.png',
-      },
-      links: [
-        {
-          label: 'Docs',
-          to: '/docs/user-guide/getting-started',
-          position: 'left',
-        },
-        {
-          label: 'Playground',
-          href: 'https://htmlhint-playground.netlify.app',
-          position: 'left',
-        },
-        {
-          href: 'https://github.com/HTMLHint/HTMLHint',
-          label: 'GitHub',
-          position: 'left',
-        },
-      ],
-    },
-    footer: {
-      style: 'dark',
-      links: [
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/htmlhint',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discord.com/invite/nJ6J9CP',
-            },
-            {
-              label: 'Twitter',
-              href: 'https://twitter.com/HTMLHint',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'HTMLHint organization',
-              href: 'https://github.com/HTMLHint',
-            },
-          ],
-        },
-      ],
-      copyright: `${new Date().getFullYear()} HTMLHint. Built with Docusaurus.`,
-    },
-  },
-  plugins: [
-    path.resolve(__dirname, './plugins/docusaurus-plugin-hotjar'),
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        cacheTime: 600 * 1000,
-      },
-    ],
-  ],
   presets: [
     [
       '@docusaurus/preset-classic',
-      {
+      /** @type {import('@docusaurus/preset-classic').Options} */
+      ({
         docs: {
           path: '../docs',
           sidebarPath: require.resolve('./sidebars.js'),
@@ -98,9 +34,85 @@ module.exports = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
-        remarkPlugins: [remarkImages],
-        rehypePlugins: [rehypeTruncate],
+      }),
+    ],
+  ],
+  plugins: [
+    '@docusaurus/plugin-google-analytics',
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        changefreq: 'weekly',
+        priority: 0.5,
       },
     ],
   ],
+  themeConfig:
+    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+    ({
+      googleAnalytics: { trackingID: 'UA-109578378-3' },
+      navbar: {
+        title: 'HTMLHint',
+        logo: {
+          alt: 'HTMLHint Logo',
+          src: 'img/htmlhint.png',
+        },
+        items: [
+          {
+            type: 'doc',
+            docId: 'user-guide/getting-started',
+            position: 'left',
+            label: 'Docs',
+          },
+          {
+            label: 'Playground',
+            href: 'https://htmlhint-playground.netlify.app',
+            position: 'left',
+          },
+          {
+            href: 'https://github.com/HTMLHint/HTMLHint',
+            label: 'GitHub',
+            position: 'left',
+          },
+        ],
+      },
+      footer: {
+        style: 'dark',
+        links: [
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'Stack Overflow',
+                href: 'https://stackoverflow.com/questions/tagged/htmlhint',
+              },
+              {
+                label: 'Discord',
+                href: 'https://discord.com/invite/nJ6J9CP',
+              },
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/HTMLHint',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'HTMLHint organization',
+                href: 'https://github.com/HTMLHint',
+              },
+            ],
+          },
+        ],
+        copyright: `${new Date().getFullYear()} HTMLHint. Built with Docusaurus.`,
+      },
+      prism: {
+        theme: lightCodeTheme,
+        darkTheme: darkCodeTheme,
+      },
+    }),
 }
+
+module.exports = config
