@@ -18,11 +18,6 @@
     "rehype-truncate": "1.1.0",
     "remark-images": "2.0.0"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "browserslist": {
     "production": [
       ">0.2%",
@@ -39,9 +34,5 @@
     "type": "opencollective",
     "url": "https://opencollective.com/htmlhint"
   },
-  "license": "MIT",
-  "devDependencies": {
-    "husky": "4.2.5",
-    "lint-staged": "10.2.2"
-  }
+  "license": "MIT"
 }
