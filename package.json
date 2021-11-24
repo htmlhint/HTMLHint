@@ -27,10 +27,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "node build.js",
+    "build": "npm run clean && tsc && npm run build:rollup",
     "build:min": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js",
     "build:rollup": "npm run build:min && npm run build:unmin",
     "build:unmin": "rollup -c",
+    "clean": "rimraf dist",
     "commit": "npx git-cz",
     "lint": "prettier -c . && eslint . --ext .js,.ts --max-warnings 0",
     "lint:fix": "npm run prettier && npm run lint -- --fix",
@@ -110,6 +111,7 @@
     "mocha": "^9.1.3",
     "nyc": "15.1.0",
     "prettier": "^2.4.1",
+    "rimraf": "^3.0.2",
     "rollup": "^2.60.1",
     "rollup-plugin-terser": "^7.0.2",
     "semantic-release": "^18.0.0",
