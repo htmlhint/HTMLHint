@@ -67,15 +67,13 @@ export interface Formatter extends EventEmitter {
   setFormat(format: string): void
 
   emit(event: 'start'): boolean
-  on(event: 'start', listener: () => void): this
-
   emit(event: 'file', arg: FormatterFileEvent): boolean
-  on(event: 'file', listener: (event: FormatterFileEvent) => void): this
-
   emit(event: 'config', arg: FormatterConfigEvent): boolean
-  on(event: 'config', listener: (event: FormatterConfigEvent) => void): this
-
   emit(event: 'end', arg: FormatterEndEvent): boolean
+
+  on(event: 'start', listener: () => void): this
+  on(event: 'file', listener: (event: FormatterFileEvent) => void): this
+  on(event: 'config', listener: (event: FormatterConfigEvent) => void): this
   on(event: 'end', listener: (event: FormatterEndEvent) => void): this
 }
 
