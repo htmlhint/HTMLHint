@@ -14,8 +14,7 @@ const types = [
   },
   {
     value: 'style',
-    name:
-      'style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
+    name: 'style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)',
   },
   {
     value: 'refactor',
@@ -31,8 +30,7 @@ const types = [
   },
   {
     value: 'chore',
-    name:
-      'chore: Changes to the build process or auxiliary tools and libraries such as documentation generation',
+    name: 'chore: Changes to the build process or auxiliary tools and libraries such as documentation generation',
   },
   {
     value: 'revert',
