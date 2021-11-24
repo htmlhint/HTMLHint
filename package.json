@@ -58,7 +58,6 @@
     }
   },
   "dependencies": {
-    "@types/node-fetch": "^2.5.12",
     "async": "3.2.2",
     "chalk": "4.1.0",
     "commander": "5.1.0",
