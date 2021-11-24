@@ -2,13 +2,6 @@
   "name": "htmlhint",
   "version": "0.16.2",
   "description": "The Static Code Analysis Tool for your HTML",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/htmlhint/HTMLHint.git"
-  },
-  "bugs": {
-    "url": "https://github.com/htmlhint/HTMLHint/issues"
-  },
   "keywords": [
     "html",
     "hint",
@@ -16,23 +9,34 @@
     "javascript"
   ],
   "homepage": "https://htmlhint.com",
+  "bugs": {
+    "url": "https://github.com/htmlhint/HTMLHint/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/htmlhint/HTMLHint.git"
+  },
   "license": "MIT",
+  "main": "dist/htmlhint.js",
+  "module": "dist/core/core.js",
   "bin": {
     "htmlhint": "./bin/htmlhint"
   },
-  "main": "dist/htmlhint.js",
-  "module": "dist/core/core.js",
+  "files": [
+    "bin",
+    "dist"
+  ],
   "scripts": {
-    "commit": "npx git-cz",
-    "prettier": "prettier --write .",
-    "test": "mocha --recursive \"./test/**/*.spec.js\"",
     "build": "node build.js",
-    "build:rollup": "npm run build:min && npm run build:unmin",
     "build:min": "rollup -c --environment NODE_ENV:production --file dist/htmlhint.min.js",
+    "build:rollup": "npm run build:min && npm run build:unmin",
     "build:unmin": "rollup -c",
+    "commit": "npx git-cz",
     "lint": "prettier -c . && eslint . --ext .js,.ts --max-warnings 0",
     "lint:fix": "npm run prettier && npm run lint -- --fix",
     "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "test": "mocha --recursive \"./test/**/*.spec.js\"",
     "test:coverage": "nyc npm run test"
   },
   "lint-staged": {
@@ -51,6 +55,22 @@
     "cz-customizable": {
       "config": "commitizen.config.js"
     }
+  },
+  "nyc": {
+    "all": true,
+    "exclude": [
+      "**/*.spec.js",
+      "src/**/*.ts",
+      "bin/htmlhint"
+    ],
+    "include": [
+      "dist/htmlhint.js"
+    ],
+    "reporter": [
+      "text",
+      "lcov"
+    ],
+    "sourceMap": false
   },
   "dependencies": {
     "async": "3.2.2",
@@ -97,25 +117,5 @@
     "rollup-plugin-terser": "6.1.0",
     "semantic-release": "^17.4.7",
     "typescript": "3.9.6"
-  },
-  "files": [
-    "bin",
-    "dist"
-  ],
-  "nyc": {
-    "all": true,
-    "include": [
-      "dist/htmlhint.js"
-    ],
-    "exclude": [
-      "**/*.spec.js",
-      "src/**/*.ts",
-      "bin/htmlhint"
-    ],
-    "reporter": [
-      "text",
-      "lcov"
-    ],
-    "sourceMap": false
   }
 }
