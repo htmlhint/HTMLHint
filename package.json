@@ -68,7 +68,7 @@
     "xml": "1.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^13.1.0",
+    "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@rollup/plugin-commonjs": "13.0.0",
     "@rollup/plugin-node-resolve": "8.1.0",
