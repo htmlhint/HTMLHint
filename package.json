@@ -102,7 +102,7 @@
     "@typescript-eslint/parser": "3.10.1",
     "commitizen": "^4.2.4",
     "commitlint": "^13.1.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.3.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.4.1",
     "expect.js": "0.3.1",
