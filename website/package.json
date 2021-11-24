@@ -16,7 +16,7 @@
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "rehype-truncate": "1.1.0",
-    "remark-images": "2.0.0"
+    "remark-images": "3.1.0"
   },
   "browserslist": {
     "production": [
