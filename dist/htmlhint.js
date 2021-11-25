@@ -72,7 +72,7 @@
 	            data.col = col;
 	            arrBlocks.push(data);
 	            _this.fire(type, data);
-	            while ((regLine.exec(raw))) {
+	            while (regLine.exec(raw)) {
 	                line++;
 	                lastLineIndex = pos + regLine.lastIndex;
 	            }
