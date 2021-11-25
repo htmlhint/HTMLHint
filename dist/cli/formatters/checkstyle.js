@@ -1,10 +1,12 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var xml = require("xml");
@@ -23,29 +25,29 @@ var checkstyleFormatter = function (formatter) {
                             column: message.col,
                             severity: message.type,
                             message: message.message,
-                            source: "htmlhint." + message.rule.id,
+                            source: "htmlhint.".concat(message.rule.id),
                         },
                     },
                 });
             });
             arrFiles.push({
-                file: __spreadArrays([
+                file: __spreadArray([
                     {
                         _attr: {
                             name: fileInfo.file,
                         },
                     }
-                ], arrErrors),
+                ], arrErrors, true),
             });
         });
         var objXml = {
-            checkstyle: __spreadArrays([
+            checkstyle: __spreadArray([
                 {
                     _attr: {
                         version: '4.3',
                     },
                 }
-            ], arrFiles),
+            ], arrFiles, true),
         };
         console.log(xml(objXml, {
             declaration: true,
@@ -54,4 +56,4 @@ var checkstyleFormatter = function (formatter) {
     });
 };
 module.exports = checkstyleFormatter;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2hlY2tzdHlsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jbGkvZm9ybWF0dGVycy9jaGVja3N0eWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUFBLHlCQUEwQjtBQUkxQixJQUFNLG1CQUFtQixHQUFzQixVQUFVLFNBQVM7SUFDaEUsU0FBUyxDQUFDLEVBQUUsQ0FBQyxLQUFLLEVBQUUsVUFBQyxLQUFLO1FBQ3hCLElBQU0sUUFBUSxHQUFnQixFQUFFLENBQUE7UUFDaEMsSUFBTSxjQUFjLEdBQUcsS0FBSyxDQUFDLGNBQWMsQ0FBQTtRQUUzQyxjQUFjLENBQUMsT0FBTyxDQUFDLFVBQUMsUUFBUTtZQUM5QixJQUFNLFdBQVcsR0FBRyxRQUFRLENBQUMsUUFBUSxDQUFBO1lBQ3JDLElBQU0sU0FBUyxHQUFnQixFQUFFLENBQUE7WUFFakMsV0FBVyxDQUFDLE9BQU8sQ0FBQyxVQUFDLE9BQU87Z0JBQzFCLFNBQVMsQ0FBQyxJQUFJLENBQUM7b0JBQ2IsS0FBSyxFQUFFO3dCQUNMLEtBQUssRUFBRTs0QkFDTCxJQUFJLEVBQUUsT0FBTyxDQUFDLElBQUk7NEJBQ2xCLE1BQU0sRUFBRSxPQUFPLENBQUMsR0FBRzs0QkFDbkIsUUFBUSxFQUFFLE9BQU8sQ0FBQyxJQUFJOzRCQUN0QixPQUFPLEVBQUUsT0FBTyxDQUFDLE9BQU87NEJBQ3hCLE1BQU0sRUFBRSxjQUFZLE9BQU8sQ0FBQyxJQUFJLENBQUMsRUFBSTt5QkFDdEM7cUJBQ0Y7aUJBQ0YsQ0FBQyxDQUFBO1lBQ0osQ0FBQyxDQUFDLENBQUE7WUFFRixRQUFRLENBQUMsSUFBSSxDQUFDO2dCQUNaLElBQUk7b0JBQ0Y7d0JBQ0UsS0FBSyxFQUFFOzRCQUNMLElBQUksRUFBRSxRQUFRLENBQUMsSUFBSTt5QkFDcEI7cUJBQ0Y7bUJBQ0UsU0FBUyxDQUNiO2FBQ0YsQ0FBQyxDQUFBO1FBQ0osQ0FBQyxDQUFDLENBQUE7UUFFRixJQUFNLE1BQU0sR0FBYztZQUN4QixVQUFVO2dCQUNSO29CQUNFLEtBQUssRUFBRTt3QkFDTCxPQUFPLEVBQUUsS0FBSztxQkFDZjtpQkFDRjtlQUNFLFFBQVEsQ0FDWjtTQUNGLENBQUE7UUFFRCxPQUFPLENBQUMsR0FBRyxDQUNULEdBQUcsQ0FBQyxNQUFNLEVBQUU7WUFDVixXQUFXLEVBQUUsSUFBSTtZQUNqQixNQUFNLEVBQUUsTUFBTTtTQUNmLENBQUMsQ0FDSCxDQUFBO0lBQ0gsQ0FBQyxDQUFDLENBQUE7QUFDSixDQUFDLENBQUE7QUFFRCxNQUFNLENBQUMsT0FBTyxHQUFHLG1CQUFtQixDQUFBIn0=
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2hlY2tzdHlsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jbGkvZm9ybWF0dGVycy9jaGVja3N0eWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEseUJBQTBCO0FBSTFCLElBQU0sbUJBQW1CLEdBQXNCLFVBQVUsU0FBUztJQUNoRSxTQUFTLENBQUMsRUFBRSxDQUFDLEtBQUssRUFBRSxVQUFDLEtBQUs7UUFDeEIsSUFBTSxRQUFRLEdBQWdCLEVBQUUsQ0FBQTtRQUNoQyxJQUFNLGNBQWMsR0FBRyxLQUFLLENBQUMsY0FBYyxDQUFBO1FBRTNDLGNBQWMsQ0FBQyxPQUFPLENBQUMsVUFBQyxRQUFRO1lBQzlCLElBQU0sV0FBVyxHQUFHLFFBQVEsQ0FBQyxRQUFRLENBQUE7WUFDckMsSUFBTSxTQUFTLEdBQWdCLEVBQUUsQ0FBQTtZQUVqQyxXQUFXLENBQUMsT0FBTyxDQUFDLFVBQUMsT0FBTztnQkFDMUIsU0FBUyxDQUFDLElBQUksQ0FBQztvQkFDYixLQUFLLEVBQUU7d0JBQ0wsS0FBSyxFQUFFOzRCQUNMLElBQUksRUFBRSxPQUFPLENBQUMsSUFBSTs0QkFDbEIsTUFBTSxFQUFFLE9BQU8sQ0FBQyxHQUFHOzRCQUNuQixRQUFRLEVBQUUsT0FBTyxDQUFDLElBQUk7NEJBQ3RCLE9BQU8sRUFBRSxPQUFPLENBQUMsT0FBTzs0QkFDeEIsTUFBTSxFQUFFLG1CQUFZLE9BQU8sQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFFO3lCQUN0QztxQkFDRjtpQkFDRixDQUFDLENBQUE7WUFDSixDQUFDLENBQUMsQ0FBQTtZQUVGLFFBQVEsQ0FBQyxJQUFJLENBQUM7Z0JBQ1osSUFBSTtvQkFDRjt3QkFDRSxLQUFLLEVBQUU7NEJBQ0wsSUFBSSxFQUFFLFFBQVEsQ0FBQyxJQUFJO3lCQUNwQjtxQkFDRjttQkFDRSxTQUFTLE9BQ2I7YUFDRixDQUFDLENBQUE7UUFDSixDQUFDLENBQUMsQ0FBQTtRQUVGLElBQU0sTUFBTSxHQUFjO1lBQ3hCLFVBQVU7Z0JBQ1I7b0JBQ0UsS0FBSyxFQUFFO3dCQUNMLE9BQU8sRUFBRSxLQUFLO3FCQUNmO2lCQUNGO2VBQ0UsUUFBUSxPQUNaO1NBQ0YsQ0FBQTtRQUVELE9BQU8sQ0FBQyxHQUFHLENBQ1QsR0FBRyxDQUFDLE1BQU0sRUFBRTtZQUNWLFdBQVcsRUFBRSxJQUFJO1lBQ2pCLE1BQU0sRUFBRSxNQUFNO1NBQ2YsQ0FBQyxDQUNILENBQUE7SUFDSCxDQUFDLENBQUMsQ0FBQTtBQUNKLENBQUMsQ0FBQTtBQUVELE1BQU0sQ0FBQyxPQUFPLEdBQUcsbUJBQW1CLENBQUEifQ==

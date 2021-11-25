@@ -302,7 +302,7 @@
 	            rule: {
 	                id: rule.id,
 	                description: rule.description,
-	                link: "https://github.com/thedaviddias/HTMLHint/wiki/" + rule.id,
+	                link: "https://github.com/thedaviddias/HTMLHint/wiki/".concat(rule.id),
 	            },
 	        });
 	    };
@@ -332,7 +332,7 @@
 	                (tagName === 'input' && mapAttrs['type'] === 'image')) {
 	                if (!('alt' in mapAttrs) || mapAttrs['alt'] === '') {
 	                    selector = tagName === 'area' ? 'area[href]' : 'input[type=image]';
-	                    reporter.warn("The alt attribute of " + selector + " must have a value.", event.line, col, _this, event.raw);
+	                    reporter.warn("The alt attribute of ".concat(selector, " must have a value."), event.line, col, _this, event.raw);
 	                }
 	            }
 	        });
@@ -378,7 +378,7 @@
 	                var attrName = attr.name;
 	                if (!exceptions.find(function (exp) { return testAgainstStringOrRegExp(attrName, exp); }) &&
 	                    attrName !== attrName.toLowerCase()) {
-	                    reporter.error("The attribute name of [ " + attrName + " ] must be in lowercase.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.error("The attribute name of [ ".concat(attrName, " ] must be in lowercase."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            };
 	            for (var i = 0, l = attrs.length; i < l; i++) {
@@ -433,7 +433,7 @@
 	                return orderMap[a] - orderMap[b] || a.localeCompare(b);
 	            });
 	            if (originalAttrs !== JSON.stringify(listOfAttributes)) {
-	                reporter.error("Inaccurate order " + originalAttrs + " should be in hierarchy " + JSON.stringify(listOfAttributes) + " ", event.line, event.col, _this, event.raw);
+	                reporter.error("Inaccurate order ".concat(originalAttrs, " should be in hierarchy ").concat(JSON.stringify(listOfAttributes), " "), event.line, event.col, _this, event.raw);
 	            }
 	        });
 	    },
@@ -457,7 +457,7 @@
 	                attr = attrs[i];
 	                attrName = attr.name;
 	                if (mapAttrName[attrName] === true) {
-	                    reporter.error("Duplicate of attribute name [ " + attr.name + " ] was found.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.error("Duplicate of attribute name [ ".concat(attr.name, " ] was found."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	                mapAttrName[attrName] = true;
 	            }
@@ -486,7 +486,7 @@
 	                    var unsafeCode = escape(match[0])
 	                        .replace(/%u/, '\\u')
 	                        .replace(/%/, '\\x');
-	                    reporter.warn("The value of attribute [ " + attr.name + " ] cannot contain an unsafe char [ " + unsafeCode + " ].", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.warn("The value of attribute [ ".concat(attr.name, " ] cannot contain an unsafe char [ ").concat(unsafeCode, " ]."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            }
 	        });
@@ -509,7 +509,7 @@
 	                attr = attrs[i];
 	                if ((attr.value !== '' && attr.quote !== '"') ||
 	                    (attr.value === '' && attr.quote === "'")) {
-	                    reporter.error("The value of attribute [ " + attr.name + " ] must be in double quotes.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.error("The value of attribute [ ".concat(attr.name, " ] must be in double quotes."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            }
 	        });
@@ -531,7 +531,7 @@
 	            for (var i = 0, l = attrs.length; i < l; i++) {
 	                attr = attrs[i];
 	                if (attr.quote === '' && attr.value === '') {
-	                    reporter.warn("The attribute [ " + attr.name + " ] must have a value.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.warn("The attribute [ ".concat(attr.name, " ] must have a value."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            }
 	        });
@@ -554,7 +554,7 @@
 	                attr = attrs[i];
 	                if ((attr.value !== '' && attr.quote !== "'") ||
 	                    (attr.value === '' && attr.quote === '"')) {
-	                    reporter.error("The value of attribute [ " + attr.name + " ] must be in single quotes.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.error("The value of attribute [ ".concat(attr.name, " ] must be in single quotes."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            }
 	        });
@@ -583,10 +583,10 @@
 	                    return;
 	                }
 	                if (elem.value.trim() !== elem.value) {
-	                    reporter.error("The attributes of [ " + attrName + " ] must not have trailing whitespace.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.error("The attributes of [ ".concat(attrName, " ] must not have trailing whitespace."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	                if (elem.value.replace(/ +(?= )/g, '') !== elem.value) {
-	                    reporter.error("The attributes of [ " + attrName + " ] must be separated by only one space.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.error("The attributes of [ ".concat(attrName, " ] must be separated by only one space."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            });
 	        });
@@ -692,7 +692,7 @@
 	                    if ((hrefMode === 'absolute' && /^\w+?:/.test(attr.value) === false) ||
 	                        (hrefMode === 'relative' &&
 	                            /^https?:\/\//.test(attr.value) === true)) {
-	                        reporter.warn("The value of the href attribute [ " + attr.value + " ] must be " + hrefMode + ".", event.line, col + attr.index, _this, attr.raw);
+	                        reporter.warn("The value of the href attribute [ ".concat(attr.value, " ] must be ").concat(hrefMode, "."), event.line, col + attr.index, _this, attr.raw);
 	                    }
 	                    break;
 	                }
@@ -706,23 +706,23 @@
 	Object.defineProperty(htmlLangRequire, "__esModule", { value: true });
 	var regular = '(art-lojban|cel-gaulish|no-bok|no-nyn|zh-guoyu|zh-hakka|zh-min|zh-min-nan|zh-xiang)';
 	var irregular = '(en-GB-oed|i-ami|i-bnn|i-default|i-enochian|i-hak|i-klingon|i-lux|i-mingo|i-navajo|i-pwn|i-tao|i-tay|i-tsu|sgn-BE-FR|sgn-BE-NL|sgn-CH-DE)';
-	var grandfathered = "(?<grandfathered>" + irregular + "|" + regular + ")";
+	var grandfathered = "(?<grandfathered>".concat(irregular, "|").concat(regular, ")");
 	var privateUse = '(?<privateUse>x(-[A-Za-z0-9]{1,8})+)';
 	var privateUse2 = '(?<privateUse2>x(-[A-Za-z0-9]{1,8})+)';
 	var singleton = '[0-9A-WY-Za-wy-z]';
-	var extension = "(?<extension>" + singleton + "(-[A-Za-z0-9]{2,8})+)";
+	var extension = "(?<extension>".concat(singleton, "(-[A-Za-z0-9]{2,8})+)");
 	var variant = '(?<variant>[A-Za-z0-9]{5,8}|[0-9][A-Za-z0-9]{3})';
 	var region = '(?<region>[A-Za-z]{2}|[0-9]{3})';
 	var script = '(?<script>[A-Za-z]{4})';
 	var extlang = '(?<extlang>[A-Za-z]{3}(-[A-Za-z]{3}){0,2})';
-	var language = "(?<language>([A-Za-z]{2,3}(-" + extlang + ")?)|[A-Za-z]{4}|[A-Za-z]{5,8})";
-	var langtag = "(" + language + "(-" + script + ")?" +
-	    ("(-" + region + ")?") +
-	    ("(-" + variant + ")*") +
-	    ("(-" + extension + ")*") +
-	    ("(-" + privateUse + ")?") +
+	var language = "(?<language>([A-Za-z]{2,3}(-".concat(extlang, ")?)|[A-Za-z]{4}|[A-Za-z]{5,8})");
+	var langtag = "(".concat(language, "(-").concat(script, ")?") +
+	    "(-".concat(region, ")?") +
+	    "(-".concat(variant, ")*") +
+	    "(-".concat(extension, ")*") +
+	    "(-".concat(privateUse, ")?") +
 	    ')';
-	var languageTag = "(" + grandfathered + "|" + langtag + "|" + privateUse2 + ")";
+	var languageTag = "(".concat(grandfathered, "|").concat(langtag, "|").concat(privateUse2, ")");
 	htmlLangRequire.default = {
 	    id: 'html-lang-require',
 	    description: 'The lang attribute of an <html> element must be present and should be valid.',
@@ -768,7 +768,7 @@
 	                attrName = attr.name;
 	                if (/^(id|class)$/i.test(attrName)) {
 	                    if (/(^|[-_])ad([-_]|$)/i.test(attr.value)) {
-	                        reporter.warn("The value of attribute " + attrName + " cannot use the ad keyword.", event.line, col + attr.index, _this, attr.raw);
+	                        reporter.warn("The value of attribute ".concat(attrName, " cannot use the ad keyword."), event.line, col + attr.index, _this, attr.raw);
 	                    }
 	                }
 	            }
@@ -864,7 +864,7 @@
 	                            mapIdCount[id]++;
 	                        }
 	                        if (mapIdCount[id] > 1) {
-	                            reporter.error("The id value [ " + id + " ] must be unique.", event.line, col + attr.index, _this, attr.raw);
+	                            reporter.error("The id value [ ".concat(id, " ] must be unique."), event.line, col + attr.index, _this, attr.raw);
 	                        }
 	                    }
 	                    break;
@@ -892,11 +892,11 @@
 	                attr = attrs[i];
 	                attrName = attr.name.toLowerCase();
 	                if (reEvent.test(attrName) === true) {
-	                    reporter.warn("Inline script [ " + attr.raw + " ] cannot be used.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.warn("Inline script [ ".concat(attr.raw, " ] cannot be used."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	                else if (attrName === 'src' || attrName === 'href') {
 	                    if (/^\s*javascript:/i.test(attr.value)) {
-	                        reporter.warn("Inline script [ " + attr.raw + " ] cannot be used.", event.line, col + attr.index, _this, attr.raw);
+	                        reporter.warn("Inline script [ ".concat(attr.raw, " ] cannot be used."), event.line, col + attr.index, _this, attr.raw);
 	                    }
 	                }
 	            }
@@ -919,7 +919,7 @@
 	            for (var i = 0, l = attrs.length; i < l; i++) {
 	                attr = attrs[i];
 	                if (attr.name.toLowerCase() === 'style') {
-	                    reporter.warn("Inline style [ " + attr.raw + " ] cannot be used.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.warn("Inline style [ ".concat(attr.raw, " ] cannot be used."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            }
 	        });
@@ -1015,7 +1015,7 @@
 	                    if (spaceLengthRequire) {
 	                        if (/^ +$/.test(whiteSpace) === false ||
 	                            whiteSpace.length % spaceLengthRequire !== 0) {
-	                            reporter.warn("Please use space for indentation and keep " + spaceLengthRequire + " length.", fixedPos.line, 1, _this, event.raw);
+	                            reporter.warn("Please use space for indentation and keep ".concat(spaceLengthRequire, " length."), fixedPos.line, 1, _this, event.raw);
 	                        }
 	                    }
 	                    else {
@@ -1049,7 +1049,7 @@
 	            var match;
 	            while ((match = reSpecChar.exec(raw))) {
 	                var fixedPos = parser.fixPos(event, match.index);
-	                reporter.error("Special characters must be escaped : [ " + match[0] + " ].", fixedPos.line, fixedPos.col, _this, event.raw);
+	                reporter.error("Special characters must be escaped : [ ".concat(match[0], " ]."), fixedPos.line, fixedPos.col, _this, event.raw);
 	            }
 	        });
 	    },
@@ -1075,7 +1075,7 @@
 	                    (tagName === 'link' && attr.name === 'href') ||
 	                    (tagName === 'object' && attr.name === 'data')) &&
 	                    attr.value === '') {
-	                    reporter.error("The attribute [ " + attr.name + " ] of the tag [ " + tagName + " ] must have a value.", event.line, col + attr.index, _this, attr.raw);
+	                    reporter.error("The attribute [ ".concat(attr.name, " ] of the tag [ ").concat(tagName, " ] must have a value."), event.line, col + attr.index, _this, attr.raw);
 	                }
 	            }
 	        });
@@ -1129,26 +1129,26 @@
 	            if (pos >= 0) {
 	                var arrTags = [];
 	                for (var i = stack.length - 1; i > pos; i--) {
-	                    arrTags.push("</" + stack[i].tagName + ">");
+	                    arrTags.push("</".concat(stack[i].tagName, ">"));
 	                }
 	                if (arrTags.length > 0) {
 	                    var lastEvent = stack[stack.length - 1];
-	                    reporter.error("Tag must be paired, missing: [ " + arrTags.join('') + " ], start tag match failed [ " + lastEvent.raw + " ] on line " + lastEvent.line + ".", event.line, event.col, _this, event.raw);
+	                    reporter.error("Tag must be paired, missing: [ ".concat(arrTags.join(''), " ], start tag match failed [ ").concat(lastEvent.raw, " ] on line ").concat(lastEvent.line, "."), event.line, event.col, _this, event.raw);
 	                }
 	                stack.length = pos;
 	            }
 	            else {
-	                reporter.error("Tag must be paired, no start tag: [ " + event.raw + " ]", event.line, event.col, _this, event.raw);
+	                reporter.error("Tag must be paired, no start tag: [ ".concat(event.raw, " ]"), event.line, event.col, _this, event.raw);
 	            }
 	        });
 	        parser.addListener('end', function (event) {
 	            var arrTags = [];
 	            for (var i = stack.length - 1; i >= 0; i--) {
-	                arrTags.push("</" + stack[i].tagName + ">");
+	                arrTags.push("</".concat(stack[i].tagName, ">"));
 	            }
 	            if (arrTags.length > 0) {
 	                var lastEvent = stack[stack.length - 1];
-	                reporter.error("Tag must be paired, missing: [ " + arrTags.join('') + " ], open tag match failed [ " + lastEvent.raw + " ] on line " + lastEvent.line + ".", event.line, event.col, _this, '');
+	                reporter.error("Tag must be paired, missing: [ ".concat(arrTags.join(''), " ], open tag match failed [ ").concat(lastEvent.raw, " ] on line ").concat(lastEvent.line, "."), event.line, event.col, _this, '');
 	            }
 	        });
 	    },
@@ -1167,7 +1167,7 @@
 	            var tagName = event.tagName.toLowerCase();
 	            if (mapEmptyTags[tagName] !== undefined) {
 	                if (!event.close) {
-	                    reporter.warn("The empty tag : [ " + tagName + " ] must be self closed.", event.line, event.col, _this, event.raw);
+	                    reporter.warn("The empty tag : [ ".concat(tagName, " ] must be self closed."), event.line, event.col, _this, event.raw);
 	                }
 	            }
 	        });
@@ -1187,7 +1187,7 @@
 	            var tagName = event.tagName.toLowerCase();
 	            if (mapEmptyTags[tagName] !== undefined) {
 	                if (event.close) {
-	                    reporter.error("The empty tag : [ " + tagName + " ] must not use self closed syntax.", event.line, event.col, _this, event.raw);
+	                    reporter.error("The empty tag : [ ".concat(tagName, " ] must not use self closed syntax."), event.line, event.col, _this, event.raw);
 	                }
 	            }
 	        });
@@ -1209,7 +1209,7 @@
 	            var tagName = event.tagName;
 	            if (exceptions.indexOf(tagName) === -1 &&
 	                tagName !== tagName.toLowerCase()) {
-	                reporter.error("The html element name of [ " + tagName + " ] must be in lowercase.", event.line, event.col, _this, event.raw);
+	                reporter.error("The html element name of [ ".concat(tagName, " ] must be in lowercase."), event.line, event.col, _this, event.raw);
 	            }
 	        });
 	    },
@@ -1227,7 +1227,7 @@
 	        parser.addListener('tagstart,tagend', function (event) {
 	            var tagName = event.tagName;
 	            if (specialchars.test(tagName)) {
-	                reporter.error("The html element name of [ " + tagName + " ] contains special character.", event.line, event.col, _this, event.raw);
+	                reporter.error("The html element name of [ ".concat(tagName, " ] contains special character."), event.line, event.col, _this, event.raw);
 	            }
 	        });
 	    },
@@ -1329,10 +1329,10 @@
 	            if (tagsTypings[tagName]) {
 	                var currentTagType = tagsTypings[tagName];
 	                if (currentTagType.selfclosing === true && !event.close) {
-	                    reporter.warn("The <" + tagName + "> tag must be selfclosing.", event.line, event.col, _this, event.raw);
+	                    reporter.warn("The <".concat(tagName, "> tag must be selfclosing."), event.line, event.col, _this, event.raw);
 	                }
 	                else if (currentTagType.selfclosing === false && event.close) {
-	                    reporter.warn("The <" + tagName + "> tag must not be selfclosing.", event.line, event.col, _this, event.raw);
+	                    reporter.warn("The <".concat(tagName, "> tag must not be selfclosing."), event.line, event.col, _this, event.raw);
 	                }
 	                if (Array.isArray(currentTagType.attrsRequired)) {
 	                    var attrsRequired = currentTagType.attrsRequired;
@@ -1345,16 +1345,16 @@
 	                                attrs.forEach(function (attr) {
 	                                    if (attr.name === realID_1 &&
 	                                        values_1.indexOf(attr.value) === -1) {
-	                                        reporter.error("The <" + tagName + "> tag must have attr '" + realID_1 + "' with one value of '" + values_1.join("' or '") + "'.", event.line, col, _this, event.raw);
+	                                        reporter.error("The <".concat(tagName, "> tag must have attr '").concat(realID_1, "' with one value of '").concat(values_1.join("' or '"), "'."), event.line, col, _this, event.raw);
 	                                    }
 	                                });
 	                            }
 	                            else {
-	                                reporter.error("The <" + tagName + "> tag must have attr '" + realID_1 + "'.", event.line, col, _this, event.raw);
+	                                reporter.error("The <".concat(tagName, "> tag must have attr '").concat(realID_1, "'."), event.line, col, _this, event.raw);
 	                            }
 	                        }
 	                        else if (!attrs.some(function (attr) { return id.split('|').indexOf(attr.name) !== -1; })) {
-	                            reporter.error("The <" + tagName + "> tag must have attr '" + id + "'.", event.line, col, _this, event.raw);
+	                            reporter.error("The <".concat(tagName, "> tag must have attr '").concat(id, "'."), event.line, col, _this, event.raw);
 	                        }
 	                    });
 	                }
@@ -1369,7 +1369,7 @@
 	                                attrs.forEach(function (attr) {
 	                                    if (attr.name === realID_2 &&
 	                                        values_2.indexOf(attr.value) === -1) {
-	                                        reporter.error("The <" + tagName + "> tag must have optional attr '" + realID_2 + "' with one value of '" + values_2.join("' or '") + "'.", event.line, col, _this, event.raw);
+	                                        reporter.error("The <".concat(tagName, "> tag must have optional attr '").concat(realID_2, "' with one value of '").concat(values_2.join("' or '"), "'."), event.line, col, _this, event.raw);
 	                                    }
 	                                });
 	                            }
@@ -1380,7 +1380,7 @@
 	                    var redundantAttrs = currentTagType.redundantAttrs;
 	                    redundantAttrs.forEach(function (attrName) {
 	                        if (attrs.some(function (attr) { return attr.name === attrName; })) {
-	                            reporter.error("The attr '" + attrName + "' is redundant for <" + tagName + "> and should be omitted.", event.line, col, _this, event.raw);
+	                            reporter.error("The attr '".concat(attrName, "' is redundant for <").concat(tagName, "> and should be omitted."), event.line, col, _this, event.raw);
 	                        }
 	                    });
 	                }
@@ -1405,7 +1405,7 @@
 	                if (exceptions.indexOf(attrs[i].name) === -1) {
 	                    var match = /(\s*)=(\s*)/.exec(attrs[i].raw.trim());
 	                    if (match && (match[1].length !== 0 || match[2].length !== 0)) {
-	                        reporter.error("The attribute '" + attrs[i].name + "' must not have spaces between the name and value.", event.line, col + attrs[i].index, _this, attrs[i].raw);
+	                        reporter.error("The attribute '".concat(attrs[i].name, "' must not have spaces between the name and value."), event.line, col + attrs[i].index, _this, attrs[i].raw);
 	                    }
 	                }
 	            }
@@ -1415,6 +1415,7 @@
 
 	(function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.attrNoUnnecessaryWhitespace = exports.tagsCheck = exports.titleRequire = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.emptyTagNotSelfClosed = exports.tagSelfClose = exports.tagPair = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClsasAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrNoDuplication = exports.attrSort = exports.attrLowercase = exports.altRequire = void 0;
 	var alt_require_1 = altRequire;
 	Object.defineProperty(exports, "altRequire", { enumerable: true, get: function () { return alt_require_1.default; } });
 	var attr_lowercase_1 = attrLowercase;
@@ -1568,21 +1569,21 @@
 	            }
 	            evidence = evidence.replace(/\t/g, ' ').substring(leftCol - 1, rightCol);
 	            if (leftCol > 1) {
-	                evidence = "..." + evidence;
+	                evidence = "...".concat(evidence);
 	                leftCol -= 3;
 	            }
 	            if (rightCol < evidenceCount) {
 	                evidence += '...';
 	            }
-	            arrLogs.push(colors.white + repeatStr(indent) + "L" + line + " |" + colors.grey + evidence + colors.reset);
+	            arrLogs.push("".concat(colors.white + repeatStr(indent), "L").concat(line, " |").concat(colors.grey).concat(evidence).concat(colors.reset));
 	            var pointCol = col - leftCol;
 	            var match = evidence.substring(0, pointCol).match(/[^\u0000-\u00ff]/g);
 	            if (match !== null) {
 	                pointCol += match.length;
 	            }
-	            arrLogs.push(colors.white +
+	            arrLogs.push("".concat(colors.white +
 	                repeatStr(indent) +
-	                repeatStr(String(line).length + 3 + pointCol) + "^ " + colors.red + hint.message + " (" + hint.rule.id + ")" + colors.reset);
+	                repeatStr(String(line).length + 3 + pointCol), "^ ").concat(colors.red).concat(hint.message, " (").concat(hint.rule.id, ")").concat(colors.reset));
 	        });
 	        return arrLogs;
 	    };
