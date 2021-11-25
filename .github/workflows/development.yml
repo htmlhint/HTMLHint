@@ -71,6 +71,9 @@ jobs:
         env:
           CI: true
 
+      - name: Ensure no git changes
+        run: git diff --exit-code
+
       - name: Run coverage
         run: npm run test:coverage
 
