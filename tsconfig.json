@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES5",
+    "target": "ES6",
     "module": "CommonJS",
     "inlineSourceMap": true,
     "lib": ["ES2018", "DOM"],
