@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "0.16.3",
+  "version": "1.0.0",
   "description": "The Static Code Analysis Tool for your HTML",
   "keywords": [
     "html",

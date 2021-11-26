@@ -1,3 +1,16 @@
+# [1.0.0](https://github.com/htmlhint/HTMLHint/compare/v0.16.3...v1.0.0) (2021-11-26)
+
+
+### Features
+
+* set minimum support to es6 ([ed5f895](https://github.com/htmlhint/HTMLHint/commit/ed5f89546340df17890e88a9a1df78edb4568cb1))
+* upgrade to Typescript 4 ([472722b](https://github.com/htmlhint/HTMLHint/commit/472722b2c8d61d46576741d388a222c55fe92ea6))
+
+
+### BREAKING CHANGES
+
+* IE11 and older browsers will no longer be supported
+
 ## [0.16.3](https://github.com/htmlhint/HTMLHint/compare/v0.16.2...v0.16.3) (2021-11-24)
 
 
