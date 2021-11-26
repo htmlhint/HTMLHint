@@ -1,23 +1,14 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-var xml = require("xml");
-var checkstyleFormatter = function (formatter) {
-    formatter.on('end', function (event) {
-        var arrFiles = [];
-        var arrAllMessages = event.arrAllMessages;
-        arrAllMessages.forEach(function (fileInfo) {
-            var arrMessages = fileInfo.messages;
-            var arrErrors = [];
-            arrMessages.forEach(function (message) {
+const xml = require("xml");
+const checkstyleFormatter = function (formatter) {
+    formatter.on('end', (event) => {
+        const arrFiles = [];
+        const arrAllMessages = event.arrAllMessages;
+        arrAllMessages.forEach((fileInfo) => {
+            const arrMessages = fileInfo.messages;
+            const arrErrors = [];
+            arrMessages.forEach((message) => {
                 arrErrors.push({
                     error: {
                         _attr: {
@@ -25,29 +16,31 @@ var checkstyleFormatter = function (formatter) {
                             column: message.col,
                             severity: message.type,
                             message: message.message,
-                            source: "htmlhint.".concat(message.rule.id),
+                            source: `htmlhint.${message.rule.id}`,
                         },
                     },
                 });
             });
             arrFiles.push({
-                file: __spreadArray([
+                file: [
                     {
                         _attr: {
                             name: fileInfo.file,
                         },
-                    }
-                ], arrErrors, true),
+                    },
+                    ...arrErrors,
+                ],
             });
         });
-        var objXml = {
-            checkstyle: __spreadArray([
+        const objXml = {
+            checkstyle: [
                 {
                     _attr: {
                         version: '4.3',
                     },
-                }
-            ], arrFiles, true),
+                },
+                ...arrFiles,
+            ],
         };
         console.log(xml(objXml, {
             declaration: true,
@@ -56,4 +49,4 @@ var checkstyleFormatter = function (formatter) {
     });
 };
 module.exports = checkstyleFormatter;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2hlY2tzdHlsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jbGkvZm9ybWF0dGVycy9jaGVja3N0eWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7O0FBQUEseUJBQTBCO0FBSTFCLElBQU0sbUJBQW1CLEdBQXNCLFVBQVUsU0FBUztJQUNoRSxTQUFTLENBQUMsRUFBRSxDQUFDLEtBQUssRUFBRSxVQUFDLEtBQUs7UUFDeEIsSUFBTSxRQUFRLEdBQWdCLEVBQUUsQ0FBQTtRQUNoQyxJQUFNLGNBQWMsR0FBRyxLQUFLLENBQUMsY0FBYyxDQUFBO1FBRTNDLGNBQWMsQ0FBQyxPQUFPLENBQUMsVUFBQyxRQUFRO1lBQzlCLElBQU0sV0FBVyxHQUFHLFFBQVEsQ0FBQyxRQUFRLENBQUE7WUFDckMsSUFBTSxTQUFTLEdBQWdCLEVBQUUsQ0FBQTtZQUVqQyxXQUFXLENBQUMsT0FBTyxDQUFDLFVBQUMsT0FBTztnQkFDMUIsU0FBUyxDQUFDLElBQUksQ0FBQztvQkFDYixLQUFLLEVBQUU7d0JBQ0wsS0FBSyxFQUFFOzRCQUNMLElBQUksRUFBRSxPQUFPLENBQUMsSUFBSTs0QkFDbEIsTUFBTSxFQUFFLE9BQU8sQ0FBQyxHQUFHOzRCQUNuQixRQUFRLEVBQUUsT0FBTyxDQUFDLElBQUk7NEJBQ3RCLE9BQU8sRUFBRSxPQUFPLENBQUMsT0FBTzs0QkFDeEIsTUFBTSxFQUFFLG1CQUFZLE9BQU8sQ0FBQyxJQUFJLENBQUMsRUFBRSxDQUFFO3lCQUN0QztxQkFDRjtpQkFDRixDQUFDLENBQUE7WUFDSixDQUFDLENBQUMsQ0FBQTtZQUVGLFFBQVEsQ0FBQyxJQUFJLENBQUM7Z0JBQ1osSUFBSTtvQkFDRjt3QkFDRSxLQUFLLEVBQUU7NEJBQ0wsSUFBSSxFQUFFLFFBQVEsQ0FBQyxJQUFJO3lCQUNwQjtxQkFDRjttQkFDRSxTQUFTLE9BQ2I7YUFDRixDQUFDLENBQUE7UUFDSixDQUFDLENBQUMsQ0FBQTtRQUVGLElBQU0sTUFBTSxHQUFjO1lBQ3hCLFVBQVU7Z0JBQ1I7b0JBQ0UsS0FBSyxFQUFFO3dCQUNMLE9BQU8sRUFBRSxLQUFLO3FCQUNmO2lCQUNGO2VBQ0UsUUFBUSxPQUNaO1NBQ0YsQ0FBQTtRQUVELE9BQU8sQ0FBQyxHQUFHLENBQ1QsR0FBRyxDQUFDLE1BQU0sRUFBRTtZQUNWLFdBQVcsRUFBRSxJQUFJO1lBQ2pCLE1BQU0sRUFBRSxNQUFNO1NBQ2YsQ0FBQyxDQUNILENBQUE7SUFDSCxDQUFDLENBQUMsQ0FBQTtBQUNKLENBQUMsQ0FBQTtBQUVELE1BQU0sQ0FBQyxPQUFPLEdBQUcsbUJBQW1CLENBQUEifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY2hlY2tzdHlsZS5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9jbGkvZm9ybWF0dGVycy9jaGVja3N0eWxlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUEsMkJBQTBCO0FBSTFCLE1BQU0sbUJBQW1CLEdBQXNCLFVBQVUsU0FBUztJQUNoRSxTQUFTLENBQUMsRUFBRSxDQUFDLEtBQUssRUFBRSxDQUFDLEtBQUssRUFBRSxFQUFFO1FBQzVCLE1BQU0sUUFBUSxHQUFnQixFQUFFLENBQUE7UUFDaEMsTUFBTSxjQUFjLEdBQUcsS0FBSyxDQUFDLGNBQWMsQ0FBQTtRQUUzQyxjQUFjLENBQUMsT0FBTyxDQUFDLENBQUMsUUFBUSxFQUFFLEVBQUU7WUFDbEMsTUFBTSxXQUFXLEdBQUcsUUFBUSxDQUFDLFFBQVEsQ0FBQTtZQUNyQyxNQUFNLFNBQVMsR0FBZ0IsRUFBRSxDQUFBO1lBRWpDLFdBQVcsQ0FBQyxPQUFPLENBQUMsQ0FBQyxPQUFPLEVBQUUsRUFBRTtnQkFDOUIsU0FBUyxDQUFDLElBQUksQ0FBQztvQkFDYixLQUFLLEVBQUU7d0JBQ0wsS0FBSyxFQUFFOzRCQUNMLElBQUksRUFBRSxPQUFPLENBQUMsSUFBSTs0QkFDbEIsTUFBTSxFQUFFLE9BQU8sQ0FBQyxHQUFHOzRCQUNuQixRQUFRLEVBQUUsT0FBTyxDQUFDLElBQUk7NEJBQ3RCLE9BQU8sRUFBRSxPQUFPLENBQUMsT0FBTzs0QkFDeEIsTUFBTSxFQUFFLFlBQVksT0FBTyxDQUFDLElBQUksQ0FBQyxFQUFFLEVBQUU7eUJBQ3RDO3FCQUNGO2lCQUNGLENBQUMsQ0FBQTtZQUNKLENBQUMsQ0FBQyxDQUFBO1lBRUYsUUFBUSxDQUFDLElBQUksQ0FBQztnQkFDWixJQUFJLEVBQUU7b0JBQ0o7d0JBQ0UsS0FBSyxFQUFFOzRCQUNMLElBQUksRUFBRSxRQUFRLENBQUMsSUFBSTt5QkFDcEI7cUJBQ0Y7b0JBQ0QsR0FBRyxTQUFTO2lCQUNiO2FBQ0YsQ0FBQyxDQUFBO1FBQ0osQ0FBQyxDQUFDLENBQUE7UUFFRixNQUFNLE1BQU0sR0FBYztZQUN4QixVQUFVLEVBQUU7Z0JBQ1Y7b0JBQ0UsS0FBSyxFQUFFO3dCQUNMLE9BQU8sRUFBRSxLQUFLO3FCQUNmO2lCQUNGO2dCQUNELEdBQUcsUUFBUTthQUNaO1NBQ0YsQ0FBQTtRQUVELE9BQU8sQ0FBQyxHQUFHLENBQ1QsR0FBRyxDQUFDLE1BQU0sRUFBRTtZQUNWLFdBQVcsRUFBRSxJQUFJO1lBQ2pCLE1BQU0sRUFBRSxNQUFNO1NBQ2YsQ0FBQyxDQUNILENBQUE7SUFDSCxDQUFDLENBQUMsQ0FBQTtBQUNKLENBQUMsQ0FBQTtBQUVELE1BQU0sQ0FBQyxPQUFPLEdBQUcsbUJBQW1CLENBQUEifQ==
