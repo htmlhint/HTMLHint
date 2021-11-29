@@ -1,10 +1,9 @@
 # Docs
 
 - User guide
-  - [Getting started](user-guide/getting-started.md)
+  - [Getting started](user-guide/getting-started.mdx)
   - [Configuration](user-guide/configuration.md)
   - Rules
-    - [About](user-guide/rules/about.md)
     - [List](user-guide/list-rules.md)
   - Usage
     - [CLI](user-guide/usage/cli.md)

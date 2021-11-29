@@ -1,0 +1,36 @@
+name: Website
+
+on:
+  pull_request:
+    paths:
+      - website/**
+      - .github/workflows/website.yml
+  push:
+    branches-ignore:
+      - dependabot/**
+    paths:
+      - website/**
+      - .github/workflows/website.yml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: 📥 Download deps
+        run: |
+          cd website
+          npm ci
+
+      - name: Run build
+        run: |
+          cd website
+          npm run build
