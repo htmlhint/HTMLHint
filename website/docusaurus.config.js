@@ -37,16 +37,6 @@ const config = {
       }),
     ],
   ],
-  plugins: [
-    '@docusaurus/plugin-google-analytics',
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        changefreq: 'weekly',
-        priority: 0.5,
-      },
-    ],
-  ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
