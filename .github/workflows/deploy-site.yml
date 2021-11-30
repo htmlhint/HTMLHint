@@ -1,0 +1,42 @@
+name: GitHub Pages deploy
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'website/**'
+      - 'docs/**'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
+        with:
+          cache: npm
+          cache-dependency-path: website/package-lock.json
+
+      - name: 📥 Download deps
+        run: |
+          cd website
+          npm ci
+
+      - name: Run build
+        run: |
+          cd website
+          npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: Cecilapp/GitHub-Pages-deploy@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          build_dir: website/build
+          branch: gh-pages
+          cname: htmlhint.com
+          jekyll: no
