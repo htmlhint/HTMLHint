@@ -1,5 +1,3 @@
-const expect = require('expect.js')
-
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
 const ruleId = 'attr-sorted'
@@ -13,9 +11,9 @@ describe(`Rules: ${ruleId}`, () => {
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
-    expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruleId)
-    expect(messages[0].message).to.contain('["id","class","title"]')
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["id","class","title"]')
   })
 
   it('Attribute unsorted tags that are unrecognizable should not throw error', () => {
@@ -23,7 +21,7 @@ describe(`Rules: ${ruleId}`, () => {
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
-    expect(messages.length).to.be(0)
+    expect(messages.length).toBe(0)
   })
 
   it('Attribute unsorted of tags of various types should throw error', () => {
@@ -31,8 +29,8 @@ describe(`Rules: ${ruleId}`, () => {
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
-    expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruleId)
-    expect(messages[0].message).to.contain('["type","img","id","font"]')
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["type","img","id","font"]')
   })
 })
