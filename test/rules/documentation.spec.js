@@ -1,4 +1,3 @@
-const expect = require('expect.js')
 const fs = require('fs')
 const path = require('path')
 
@@ -24,10 +23,10 @@ describe('Rules documentation', () => {
 
   rules.forEach((rule) => {
     it(`${rule} should have a documentation page`, () => {
-      expect(docs).to.contain(rule)
+      expect(docs).toContain(rule)
     })
     it(`${rule} should be on the list-rules.md`, () => {
-      expect(rulesListPage).to.contain(rule)
+      expect(rulesListPage).toContain(rule)
     })
   })
 })

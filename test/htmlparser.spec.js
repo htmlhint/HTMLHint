@@ -1,36 +1,36 @@
-const expect = require('expect.js')
-
 const HTMLParser = require('../dist/htmlhint.js').HTMLParser
 
-expect.Assertion.prototype.event = function (type, attr) {
-  const obj = this.obj
-
-  if (attr !== undefined) {
-    attr.type = type
-  } else {
-    if (typeof attr === 'string') {
-      attr = { type: type }
+expect.extend({
+  toEvent(received, type, attr) {
+    if (attr !== undefined) {
+      attr.type = type
     } else {
-      attr = type
+      if (typeof attr === 'string') {
+        attr = { type: type }
+      } else {
+        attr = type
+      }
     }
-  }
-  this.assert(
-    eqlEvent(obj, attr),
-    () =>
-      `expected "${JSON.stringify(obj)}" to event "${JSON.stringify(attr)}"`,
-    () =>
-      `expected "${JSON.stringify(obj)}" not to event "${JSON.stringify(attr)}"`
-  )
-}
-
-function eqlEvent(event, attr) {
-  for (const name in attr) {
-    if (name !== 'attrs' && event[name] !== attr[name]) {
-      return false
+    for (const name in attr) {
+      if (name !== 'attrs' && received[name] !== attr[name]) {
+        return {
+          pass: false,
+          message: () =>
+            `expected "${JSON.stringify(
+              received
+            )}" not to event "${JSON.stringify(attr)}"`,
+        }
+      }
     }
-  }
-  return true
-}
+    return {
+      pass: true,
+      message: () =>
+        `expected "${JSON.stringify(received)}" to event "${JSON.stringify(
+          attr
+        )}"`,
+    }
+  },
+})
 
 function getAllEvents(parser, arrEvents, callback) {
   parser.addListener('all', (e) => {
@@ -223,7 +223,7 @@ describe('HTMLParser: Base parse', () => {
     ]
     getAllEvents(parser, arrEvents, () => {
       arrEvents.forEach((event, i) => {
-        expect(event).to.event(targetEvents[i])
+        expect(event).toEvent(targetEvents[i])
       })
       done()
     })
@@ -238,7 +238,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content:
           'DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"',
         long: false,
@@ -254,7 +254,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content:
           'DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"',
         long: false,
@@ -270,7 +270,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content:
           'DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd"',
         long: false,
@@ -286,7 +286,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content:
           'DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"',
         long: false,
@@ -302,7 +302,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content:
           'DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"',
         long: false,
@@ -318,7 +318,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content:
           'DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"',
         long: false,
@@ -334,7 +334,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content:
           'DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"',
         long: false,
@@ -350,7 +350,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content: 'DOCTYPE HTML',
         long: false,
       })
@@ -363,7 +363,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'p',
       })
       done()
@@ -375,7 +375,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('text', {
+      expect(arrEvents[1]).toEvent('text', {
         raw: '<div class"foo">',
       })
       done()
@@ -387,7 +387,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('text', {
+      expect(arrEvents[1]).toEvent('text', {
         raw: '<div class="foo>',
       })
       done()
@@ -399,7 +399,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('text', {
+      expect(arrEvents[1]).toEvent('text', {
         raw: '<div class=foo">',
       })
       done()
@@ -411,7 +411,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('text', {
+      expect(arrEvents[1]).toEvent('text', {
         raw: '<div class="foo"">',
       })
       done()
@@ -423,7 +423,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('text', {
+      expect(arrEvents[1]).toEvent('text', {
         raw: '<div class="foo""><span">',
       })
       done()
@@ -435,7 +435,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('text', {
+      expect(arrEvents[1]).toEvent('text', {
         raw: '<div class="foo"">',
       })
       done()
@@ -447,29 +447,29 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'img',
       })
       const attrWidth = arrEvents[1].attrs[0]
-      expect(attrWidth.name).to.be('width')
-      expect(attrWidth.value).to.be('200')
-      expect(attrWidth.quote).to.be('"')
+      expect(attrWidth.name).toBe('width')
+      expect(attrWidth.value).toBe('200')
+      expect(attrWidth.quote).toBe('"')
       const attrHeight = arrEvents[1].attrs[1]
-      expect(attrHeight.name).to.be('height')
-      expect(attrHeight.value).to.be('300')
-      expect(attrHeight.quote).to.be("'")
+      expect(attrHeight.name).toBe('height')
+      expect(attrHeight.value).toBe('300')
+      expect(attrHeight.quote).toBe("'")
       const attrAlt = arrEvents[1].attrs[2]
-      expect(attrAlt.name).to.be('alt')
-      expect(attrAlt.value).to.be('abc')
-      expect(attrAlt.quote).to.be('')
+      expect(attrAlt.name).toBe('alt')
+      expect(attrAlt.value).toBe('abc')
+      expect(attrAlt.quote).toBe('')
       const attrAB = arrEvents[1].attrs[3]
-      expect(attrAB.name).to.be('a.b')
-      expect(attrAB.value).to.be('ccc')
-      expect(attrAB.quote).to.be('')
+      expect(attrAB.name).toBe('a.b')
+      expect(attrAB.value).toBe('ccc')
+      expect(attrAB.quote).toBe('')
       const attrCD = arrEvents[1].attrs[4]
-      expect(attrCD.name).to.be('c*d')
-      expect(attrCD.value).to.be('ddd')
-      expect(attrCD.quote).to.be('')
+      expect(attrCD.name).toBe('c*d')
+      expect(attrCD.value).toBe('ddd')
+      expect(attrCD.quote).toBe('')
       done()
     })
     parser.parse('<img width="200" height=\'300\' alt=abc a.b=ccc c*d=ddd>')
@@ -479,7 +479,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagend', {
+      expect(arrEvents[1]).toEvent('tagend', {
         tagName: 'p',
       })
       done()
@@ -491,7 +491,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'br',
         close: '/',
       })
@@ -504,7 +504,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[2]).to.event('text', {
+      expect(arrEvents[2]).toEvent('text', {
         raw: 'abc',
       })
       done()
@@ -516,7 +516,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[2]).to.event('text', {
+      expect(arrEvents[2]).toEvent('text', {
         raw: 'bbb',
       })
       done()
@@ -528,7 +528,7 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('comment', {
+      expect(arrEvents[1]).toEvent('comment', {
         content: 'comment\r\ntest',
         long: true,
       })
@@ -542,18 +542,18 @@ describe('HTMLParser: Object parse', () => {
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
       let mapAttrs
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'script',
       })
       mapAttrs = parser.getMapAttrs(arrEvents[1].attrs)
-      expect(mapAttrs.type).to.be('text/javascript')
-      expect(arrEvents[2]).to.event('cdata', {
+      expect(mapAttrs.type).toBe('text/javascript')
+      expect(arrEvents[2]).toEvent('cdata', {
         tagName: 'script',
         raw: 'alert(1);\r\nalert("</html>");',
       })
       mapAttrs = parser.getMapAttrs(arrEvents[2].attrs)
-      expect(mapAttrs.type).to.be('text/javascript')
-      expect(arrEvents[3]).to.event('tagend', {
+      expect(mapAttrs.type).toBe('text/javascript')
+      expect(arrEvents[3]).toEvent('tagend', {
         tagName: 'script',
       })
       done()
@@ -567,15 +567,15 @@ describe('HTMLParser: Object parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'style',
         type: 'text/css',
       })
-      expect(arrEvents[2]).to.event('cdata', {
+      expect(arrEvents[2]).toEvent('cdata', {
         tagName: 'style',
         raw: 'body{font-size:12px;\r\nbackground-color:green;}',
       })
-      expect(arrEvents[3]).to.event('tagend', {
+      expect(arrEvents[3]).toEvent('tagend', {
         tagName: 'style',
       })
       done()
@@ -591,7 +591,7 @@ describe('HTMLParser: Case parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagend', {
+      expect(arrEvents[1]).toEvent('tagend', {
         tagName: 'p',
       })
       done()
@@ -603,10 +603,10 @@ describe('HTMLParser: Case parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'link',
       })
-      expect(arrEvents[2]).to.event('tagstart', {
+      expect(arrEvents[2]).toEvent('tagstart', {
         tagName: 'link',
       })
       done()
@@ -618,18 +618,18 @@ describe('HTMLParser: Case parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'script',
       })
 
       const mapAttrs = parser.getMapAttrs(arrEvents[1].attrs)
-      expect(mapAttrs.type).to.be('text/ng-template')
+      expect(mapAttrs.type).toBe('text/ng-template')
 
-      expect(arrEvents[2]).to.event('tagstart', {
+      expect(arrEvents[2]).toEvent('tagstart', {
         tagName: 'div',
       })
 
-      expect(arrEvents[3]).to.event('tagend', {
+      expect(arrEvents[3]).toEvent('tagend', {
         tagName: 'script',
       })
 
@@ -642,14 +642,14 @@ describe('HTMLParser: Case parse', () => {
     const parser = new HTMLParser()
     const arrEvents = []
     getAllEvents(parser, arrEvents, () => {
-      expect(arrEvents[1]).to.event('tagstart', {
+      expect(arrEvents[1]).toEvent('tagstart', {
         tagName: 'img',
         close: '',
       })
       const attrs = arrEvents[1].attrs
-      expect(attrs.length).to.be(2)
-      expect(attrs[1].name).to.be('alt')
-      expect(attrs[1].value).to.be('/')
+      expect(attrs.length).toBe(2)
+      expect(attrs[1].name).toBe('alt')
+      expect(attrs[1].value).toBe('/')
       done()
     })
     parser.parse('<img src="aaa" alt= />')
