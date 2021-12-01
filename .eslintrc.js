@@ -50,7 +50,7 @@ module.exports = {
     {
       files: ['**/*.spec.js'],
       env: {
-        mocha: true,
+        jest: true,
       },
     },
   ],

@@ -1,5 +1,3 @@
-const expect = require('expect.js')
-
 const ChildProcess = require('child_process')
 const path = require('path')
 
@@ -13,16 +11,16 @@ describe('CLI', () => {
           path.resolve(__dirname, '../../html/executable.html'),
         ].join(' '),
         (error, stdout, stderr) => {
-          expect(error).to.be.an('object')
-          expect(error.code).to.be.equal(1)
+          expect(typeof error).toBe('object')
+          expect(error.code).toBe(1)
 
-          expect(stdout).to.contain(
+          expect(stdout).toContain(
             'Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
           )
-          expect(stdout).to.contain('\u001b[31m')
-          expect(stdout).to.contain('1 files, found 92 errors in 1 files (')
+          expect(stdout).toContain('\u001b[31m')
+          expect(stdout).toContain('1 files, found 92 errors in 1 files (')
 
-          expect(stderr).to.be.equal('')
+          expect(stderr).toBe('')
           done()
         }
       )

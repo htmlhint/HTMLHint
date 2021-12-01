@@ -1,5 +1,3 @@
-const expect = require('expect.js')
-
 const ChildProcess = require('child_process')
 const path = require('path')
 
@@ -33,7 +31,7 @@ describe('Executable', () => {
     })
 
     c.stdout.on('data', () => {
-      expect(stdoutEnd || processEnd).to.be(false)
+      expect(stdoutEnd || processEnd).toBe(false)
     })
   })
 
@@ -57,10 +55,10 @@ describe('Executable', () => {
           format,
         ].join(' '),
         (error, stdout, stderr) => {
-          expect(error).to.be.an('object')
-          expect(error.code).to.be.equal(1)
-          expect(stdout).not.to.be.equal('')
-          expect(stderr).to.be.equal('')
+          expect(typeof error).toBe('object')
+          expect(error.code).toBe(1)
+          expect(stdout).not.toBe('')
+          expect(stderr).toBe('')
           done()
         }
       )
