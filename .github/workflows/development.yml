@@ -35,7 +35,7 @@ jobs:
   build:
     # ignore all-contributors PRs
     if: ${{ !contains(github.head_ref, 'all-contributors') }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: lint
     strategy:
       matrix:
@@ -44,7 +44,7 @@ jobs:
           - 14
           - 16
           - 17
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - name: 🛑 Cancel Previous Runs
