@@ -23,6 +23,7 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
         with:
+          node-version: 14
           cache: npm
 
       - name: 📥 Download deps
@@ -39,8 +40,8 @@ jobs:
           dry_run: true
           semantic_version: 17
           extra_plugins: |
-            @semantic-release/changelog@3.0.0
-            @semantic-release/git@9.0.0
+            @semantic-release/changelog@6
+            @semantic-release/git@10
           branches: |
             [
               'master',
