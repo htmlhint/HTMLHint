@@ -38,6 +38,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     needs: lint
     strategy:
+      fail-fast: false
       matrix:
         node:
           - 12
