@@ -1,4 +1,4 @@
-const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
+const HTMLHint = require('../../src/core/core').HTMLHint
 
 const ruleId = 'attr-whitespace'
 const ruleOptions = {}

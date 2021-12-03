@@ -57,7 +57,10 @@
     }
   },
   "dependencies": {
+    "@babel/core": "^7.16.0",
+    "@babel/preset-env": "^7.16.4",
     "async": "3.2.2",
+    "babel-jest": "^27.4.2",
     "chalk": "^4.1.2",
     "commander": "^8.3.0",
     "glob": "^7.2.0",
@@ -89,6 +92,8 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.60.1",
     "rollup-plugin-terser": "^7.0.2",
+    "semantic-release": "^18.0.0",
+    "ts-jest": "^27.0.7",
     "typescript": "^4.5.2"
   }
 }

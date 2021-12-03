@@ -1,4 +1,4 @@
-const HTMLHint = require('../dist/htmlhint.js').HTMLHint
+const HTMLHint = require('../src/core/core').HTMLHint
 
 describe('Core', () => {
   it('Set false to rule no effected should result in an error', () => {

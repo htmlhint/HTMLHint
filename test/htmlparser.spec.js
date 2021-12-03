@@ -1,4 +1,4 @@
-const HTMLParser = require('../dist/htmlhint.js').HTMLParser
+const HTMLParser = require('../src/core/core').HTMLParser
 
 expect.extend({
   toEvent(received, type, attr) {
