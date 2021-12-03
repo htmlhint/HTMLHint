@@ -37,8 +37,8 @@
     "lint:fix": "npm run prettier && npm run lint -- --fix",
     "prepare": "husky install",
     "prettier": "prettier --write .",
-    "test": "mocha --recursive \"./test/**/*.spec.js\"",
-    "test:coverage": "nyc npm run test"
+    "test": "mocha",
+    "test:coverage": "nyc mocha"
   },
   "lint-staged": {
     "*": [
@@ -56,21 +56,6 @@
       "config": "commitizen.config.js"
     }
   },
-  "nyc": {
-    "all": true,
-    "exclude": [
-      "**/*.spec.js",
-      "src/**/*.ts",
-      "bin/htmlhint"
-    ],
-    "include": [
-      "dist/htmlhint.js"
-    ],
-    "reporter": [
-      "json"
-    ],
-    "sourceMap": false
-  },
   "dependencies": {
     "async": "3.2.2",
     "chalk": "^4.1.2",
@@ -84,6 +69,7 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@istanbuljs/nyc-config-typescript": "^1.0.2",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@semantic-release/changelog": "^6.0.1",
@@ -114,6 +100,8 @@
     "rollup": "^2.60.1",
     "rollup-plugin-terser": "^7.0.2",
     "semantic-release": "^18.0.0",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   }
 }
