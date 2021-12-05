@@ -188,6 +188,5 @@ exports[`CLI Formatter: default should have stdout output with formatter default
 [37m      L97 |[90m</bad>[39m
 [37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
 
-[31mScanned 1 files, found 92 errors in 1 files ((99 ms))[39m
-"
+[31mScanned 1 files, found 92 errors in 1 files ((99 ms))[39m"
 `;

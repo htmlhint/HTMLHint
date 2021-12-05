@@ -47,6 +47,5 @@ L27 |</bad>
      ^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)]]></failure>
         </testcase>
     </testsuite>
-</testsuites>
-"
+</testsuites>"
 `;

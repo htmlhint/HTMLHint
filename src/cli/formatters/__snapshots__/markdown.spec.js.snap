@@ -49,6 +49,5 @@ Found 20 errors, 0 warnings
          ^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)
     L27 |</bad>
          ^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)
-
 "
 `;

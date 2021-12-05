@@ -1,4 +1,5 @@
 const ChildProcess = require('child_process')
+const run = require('../../test/test-utils').run
 const path = require('path')
 
 describe('Executable', () => {
@@ -45,23 +46,16 @@ describe('Executable', () => {
     'markdown',
     'unix',
   ]) {
-    it(`should have stdout output with formatter ${format}`, (done) => {
-      ChildProcess.exec(
-        [
-          'node',
-          path.resolve(__dirname, '../../bin/htmlhint'),
-          path.resolve(__dirname, '__fixtures__', 'executable.html'),
-          '--format',
-          format,
-        ].join(' '),
-        (error, stdout, stderr) => {
-          expect(typeof error).toBe('object')
-          expect(error.code).toBe(1)
-          expect(stdout).not.toBe('')
-          expect(stderr).toBe('')
-          done()
-        }
-      )
+    it(`should have stdout output with formatter ${format}`, async () => {
+      const { exitCode, stdout, stderr } = await run(__dirname, [
+        path.resolve(__dirname, '__fixtures__', 'executable.html'),
+        '--format',
+        format,
+      ])
+
+      expect(exitCode).toBe(1)
+      expect(stdout).not.toBe('')
+      expect(stderr).toBe('')
     })
   }
 })

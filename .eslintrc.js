@@ -48,9 +48,12 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.spec.js'],
+      files: ['test/**', '**/*.spec.js'],
       env: {
         jest: true,
+      },
+      parserOptions: {
+        ecmaVersion: 2021,
       },
     },
   ],

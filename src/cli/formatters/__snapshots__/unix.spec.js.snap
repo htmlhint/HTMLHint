@@ -94,6 +94,5 @@ exports[`CLI Formatter: unix should have stdout output with formatter unix 1`] =
 <PROJECT_ROOT>/src/cli/__fixtures__/executable.html:96:1: Tag must be paired, no start tag: [ </bad> ] [error/tag-pair]
 <PROJECT_ROOT>/src/cli/__fixtures__/executable.html:97:1: Tag must be paired, no start tag: [ </bad> ] [error/tag-pair]
 
-[31m92 problems[39m
-"
+[31m92 problems[39m"
 `;

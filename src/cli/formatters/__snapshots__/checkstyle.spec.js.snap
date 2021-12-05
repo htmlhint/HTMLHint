@@ -25,6 +25,5 @@ exports[`CLI Formatter: checkstyle should have stdout output with formatter chec
         <error line=\\"26\\" column=\\"1\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/bad&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
         <error line=\\"27\\" column=\\"1\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/bad&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
     </file>
-</checkstyle>
-"
+</checkstyle>"
 `;

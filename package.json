@@ -85,6 +85,7 @@
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "execa": "^5.1.1",
     "husky": "^7.0.4",
     "jest": "^27.4.3",
     "jest-serializer-path": "^0.1.15",
