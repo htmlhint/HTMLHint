@@ -36,26 +36,21 @@ describe('Executable', () => {
     })
   })
 
-  for (const format of [
-    'checkstyle',
-    'compact',
-    'default',
-    'html',
-    'json',
-    'junit',
-    'markdown',
-    'unix',
-  ]) {
-    it(`should have stdout output with formatter ${format}`, async () => {
-      const { exitCode, stdout, stderr } = await run(__dirname, [
-        path.resolve(__dirname, '__fixtures__', 'executable.html'),
-        '--format',
-        format,
-      ])
+  it(`should print help with --help`, async () => {
+    const { exitCode, stdout, stderr } = await run(__dirname, ['--help'])
 
-      expect(exitCode).toBe(1)
-      expect(stdout).not.toBe('')
-      expect(stderr).toBe('')
-    })
-  }
+    expect(exitCode).toBe(0)
+    expect(stdout).toMatchSnapshot('stdout')
+
+    expect(stderr).toMatchSnapshot('stderr')
+  })
+
+  it(`should print help with -h`, async () => {
+    const { exitCode, stdout, stderr } = await run(__dirname, ['-h'])
+
+    expect(exitCode).toBe(0)
+    expect(stdout).toMatchSnapshot('stdout')
+
+    expect(stderr).toMatchSnapshot('stderr')
+  })
 })
