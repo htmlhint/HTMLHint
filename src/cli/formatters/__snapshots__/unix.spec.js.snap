@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CLI Formatter: unix should have stdout output with formatter unix 1`] = `
+exports[`CLI Formatter: unix should have stdout output with formatter unix: stderr 1`] = `""`;
+
+exports[`CLI Formatter: unix should have stdout output with formatter unix: stdout 1`] = `
 "<PROJECT_ROOT>/src/cli/__fixtures__/executable.html:8:7: The value of attribute [ bad ] must be in double quotes. [error/attr-value-double-quotes]
 <PROJECT_ROOT>/src/cli/__fixtures__/executable.html:8:14: The value of attribute [ bad ] must be in double quotes. [error/attr-value-double-quotes]
 <PROJECT_ROOT>/src/cli/__fixtures__/executable.html:8:14: Duplicate of attribute name [ bad ] was found. [error/attr-no-duplication]

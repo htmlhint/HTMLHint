@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CLI Formatter: junit should have stdout output with formatter junit 1`] = `
+exports[`CLI Formatter: junit should have stdout output with formatter junit: stderr 1`] = `""`;
+
+exports[`CLI Formatter: junit should have stdout output with formatter junit: stdout 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <testsuites>
     <testsuite name=\\"HTMLHint Tests\\" time=\\"0.999\\" tests=\\"1\\" failures=\\"1\\">

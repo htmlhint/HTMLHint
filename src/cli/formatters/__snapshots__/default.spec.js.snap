@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CLI Formatter: default should have stdout output with formatter default 1`] = `
+exports[`CLI Formatter: default should have stdout output with formatter default: stderr 1`] = `""`;
+
+exports[`CLI Formatter: default should have stdout output with formatter default: stdout 1`] = `
 "
    [37m<PROJECT_ROOT>/src/cli/__fixtures__/executable.html[39m
 [37m      L8 |[90m  <div bad='' bad=''></div>[39m

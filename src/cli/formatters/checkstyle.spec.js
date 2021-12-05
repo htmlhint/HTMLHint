@@ -15,9 +15,9 @@ describe('CLI', () => {
 
       expect(exitCode).toBe(1)
 
-      expect(stdout).toMatchSnapshot()
+      expect(stdout).toMatchSnapshot('stdout')
 
-      expect(stderr).toBe('')
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })

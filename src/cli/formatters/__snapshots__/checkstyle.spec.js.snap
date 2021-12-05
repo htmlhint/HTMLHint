@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CLI Formatter: checkstyle should have stdout output with formatter checkstyle 1`] = `
+exports[`CLI Formatter: checkstyle should have stdout output with formatter checkstyle: stderr 1`] = `""`;
+
+exports[`CLI Formatter: checkstyle should have stdout output with formatter checkstyle: stdout 1`] = `
 "<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
 <checkstyle version=\\"4.3\\">
     <file name=\\"<PROJECT_ROOT>/src/cli/formatters/__fixtures__/example.html\\">

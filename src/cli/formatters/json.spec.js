@@ -17,9 +17,9 @@ describe('CLI', () => {
 
       expect(
         JSON.parse(stdout.replace(/"time":\d+/, '"time":99'))
-      ).toMatchSnapshot()
+      ).toMatchSnapshot('stdout')
 
-      expect(stderr).toBe('')
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })

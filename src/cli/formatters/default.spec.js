@@ -13,9 +13,9 @@ describe('CLI', () => {
 
       expect(exitCode).toBe(1)
 
-      expect(stdout.replace(/(\d+ ms)/, '(99 ms)')).toMatchSnapshot()
+      expect(stdout.replace(/(\d+ ms)/, '(99 ms)')).toMatchSnapshot('stdout')
 
-      expect(stderr).toBe('')
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })

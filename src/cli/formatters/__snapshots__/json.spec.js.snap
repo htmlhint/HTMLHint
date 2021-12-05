@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CLI Formatter: json should have stdout output with formatter json 1`] = `
+exports[`CLI Formatter: json should have stdout output with formatter json: stderr 1`] = `""`;
+
+exports[`CLI Formatter: json should have stdout output with formatter json: stdout 1`] = `
 Array [
   Object {
     "file": "<PROJECT_ROOT>/src/cli/formatters/__fixtures__/example.html",

@@ -1,6 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CLI Formatter: markdown should have stdout output with formatter markdown 1`] = `
+exports[`CLI Formatter: markdown should have stdout output with formatter markdown: stderr 1`] = `""`;
+
+exports[`CLI Formatter: markdown should have stdout output with formatter markdown: stdout 1`] = `
 "# TOC
    - [<PROJECT_ROOT>/src/cli/formatters/__fixtures__/example.html](#<PROJECT_ROOT>/src/cli/formatters/__fixtures__/example.html)
 

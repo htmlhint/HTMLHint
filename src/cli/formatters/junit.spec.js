@@ -16,9 +16,9 @@ describe('CLI', () => {
 
       expect(
         stdout.replace(/time="\d+\.\d+"/g, 'time="0.999"')
-      ).toMatchSnapshot()
+      ).toMatchSnapshot('stdout')
 
-      expect(stderr).toBe('')
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })
