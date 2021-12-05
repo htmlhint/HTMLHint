@@ -19,7 +19,9 @@ describe('CLI', () => {
           expect(typeof error).toBe('object')
           expect(error.code).toBe(1)
 
-          expect(stdout.replace(/"time":\d+/, '"time":99')).toMatchSnapshot()
+          expect(
+            JSON.parse(stdout.replace(/"time":\d+/, '"time":99'))
+          ).toMatchSnapshot()
 
           expect(stderr).toBe('')
           done()
