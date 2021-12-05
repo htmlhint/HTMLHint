@@ -53,4 +53,22 @@ describe('Executable', () => {
 
     expect(stderr).toMatchSnapshot('stderr')
   })
+
+  it(`should print rules with --list`, async () => {
+    const { exitCode, stdout, stderr } = await run(__dirname, ['--list'])
+
+    expect(exitCode).toBe(0)
+    expect(stdout).toMatchSnapshot('stdout')
+
+    expect(stderr).toMatchSnapshot('stderr')
+  })
+
+  it(`should print rules with -l`, async () => {
+    const { exitCode, stdout, stderr } = await run(__dirname, ['-l'])
+
+    expect(exitCode).toBe(0)
+    expect(stdout).toMatchSnapshot('stdout')
+
+    expect(stderr).toMatchSnapshot('stderr')
+  })
 })

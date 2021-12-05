@@ -65,3 +65,83 @@ Options:
     htmlhint --rulesdir ./rules/
 "
 `;
+
+exports[`Executable should print rules with --list: stderr 1`] = `""`;
+
+exports[`Executable should print rules with --list: stdout 1`] = `
+"     All rules:
+ ==================================================
+     [1malt-require[22m : The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.
+     [1mattr-lowercase[22m : All attribute names must be in lowercase.
+     [1mattr-sorted[22m : Attribute tags must be in proper order.
+     [1mattr-no-duplication[22m : Elements cannot have duplicate attributes.
+     [1mattr-unsafe-chars[22m : Attribute values cannot contain unsafe chars.
+     [1mattr-value-double-quotes[22m : Attribute values must be in double quotes.
+     [1mattr-value-not-empty[22m : All attributes must have values.
+     [1mattr-value-single-quotes[22m : Attribute values must be in single quotes.
+     [1mattr-whitespace[22m : All attributes should be separated by only one space and not have leading/trailing whitespace.
+     [1mdoctype-first[22m : Doctype must be declared first.
+     [1mdoctype-html5[22m : Invalid doctype. Use: \\"<!DOCTYPE html>\\"
+     [1mhead-script-disabled[22m : The <script> tag cannot be used in a <head> tag.
+     [1mhref-abs-or-rel[22m : An href attribute must be either absolute or relative.
+     [1mhtml-lang-require[22m : The lang attribute of an <html> element must be present and should be valid.
+     [1mid-class-ad-disabled[22m : The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.
+     [1mid-class-value[22m : The id and class attribute values must meet the specified rules.
+     [1mid-unique[22m : The value of id attributes must be unique.
+     [1minline-script-disabled[22m : Inline script cannot be used.
+     [1minline-style-disabled[22m : Inline style cannot be used.
+     [1minput-requires-label[22m : All [ input ] tags must have a corresponding [ label ] tag. 
+     [1mscript-disabled[22m : The <script> tag cannot be used.
+     [1mspace-tab-mixed-disabled[22m : Do not mix tabs and spaces for indentation.
+     [1mspec-char-escape[22m : Special characters must be escaped.
+     [1msrc-not-empty[22m : The src attribute of an img(script,link) must have a value.
+     [1mstyle-disabled[22m : <style> tags cannot be used.
+     [1mtag-pair[22m : Tag must be paired.
+     [1mtag-self-close[22m : Empty tags must be self closed.
+     [1mempty-tag-not-self-closed[22m : Empty tags must not use self closed syntax.
+     [1mtagname-lowercase[22m : All html element names must be in lowercase.
+     [1mtagname-specialchars[22m : All special characters must be escaped.
+     [1mtitle-require[22m : <title> must be present in <head> tag.
+     [1mtags-check[22m : Checks html tags.
+     [1mattr-no-unnecessary-whitespace[22m : No spaces between attribute names and values."
+`;
+
+exports[`Executable should print rules with -l: stderr 1`] = `""`;
+
+exports[`Executable should print rules with -l: stdout 1`] = `
+"     All rules:
+ ==================================================
+     [1malt-require[22m : The alt attribute of an <img> element must be present and alt attribute of area[href] and input[type=image] must have a value.
+     [1mattr-lowercase[22m : All attribute names must be in lowercase.
+     [1mattr-sorted[22m : Attribute tags must be in proper order.
+     [1mattr-no-duplication[22m : Elements cannot have duplicate attributes.
+     [1mattr-unsafe-chars[22m : Attribute values cannot contain unsafe chars.
+     [1mattr-value-double-quotes[22m : Attribute values must be in double quotes.
+     [1mattr-value-not-empty[22m : All attributes must have values.
+     [1mattr-value-single-quotes[22m : Attribute values must be in single quotes.
+     [1mattr-whitespace[22m : All attributes should be separated by only one space and not have leading/trailing whitespace.
+     [1mdoctype-first[22m : Doctype must be declared first.
+     [1mdoctype-html5[22m : Invalid doctype. Use: \\"<!DOCTYPE html>\\"
+     [1mhead-script-disabled[22m : The <script> tag cannot be used in a <head> tag.
+     [1mhref-abs-or-rel[22m : An href attribute must be either absolute or relative.
+     [1mhtml-lang-require[22m : The lang attribute of an <html> element must be present and should be valid.
+     [1mid-class-ad-disabled[22m : The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.
+     [1mid-class-value[22m : The id and class attribute values must meet the specified rules.
+     [1mid-unique[22m : The value of id attributes must be unique.
+     [1minline-script-disabled[22m : Inline script cannot be used.
+     [1minline-style-disabled[22m : Inline style cannot be used.
+     [1minput-requires-label[22m : All [ input ] tags must have a corresponding [ label ] tag. 
+     [1mscript-disabled[22m : The <script> tag cannot be used.
+     [1mspace-tab-mixed-disabled[22m : Do not mix tabs and spaces for indentation.
+     [1mspec-char-escape[22m : Special characters must be escaped.
+     [1msrc-not-empty[22m : The src attribute of an img(script,link) must have a value.
+     [1mstyle-disabled[22m : <style> tags cannot be used.
+     [1mtag-pair[22m : Tag must be paired.
+     [1mtag-self-close[22m : Empty tags must be self closed.
+     [1mempty-tag-not-self-closed[22m : Empty tags must not use self closed syntax.
+     [1mtagname-lowercase[22m : All html element names must be in lowercase.
+     [1mtagname-specialchars[22m : All special characters must be escaped.
+     [1mtitle-require[22m : <title> must be present in <head> tag.
+     [1mtags-check[22m : Checks html tags.
+     [1mattr-no-unnecessary-whitespace[22m : No spaces between attribute names and values."
+`;
