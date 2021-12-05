@@ -8,17 +8,19 @@ describe('CLI', () => {
         [
           'node',
           path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
+          path.resolve(
+            __dirname,
+            '..',
+            '..',
+            '__fixtures__',
+            'executable.html'
+          ),
         ].join(' '),
         (error, stdout, stderr) => {
           expect(typeof error).toBe('object')
           expect(error.code).toBe(1)
 
-          expect(stdout).toContain(
-            'Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
-          )
-          expect(stdout).toContain('\u001b[31m')
-          expect(stdout).toContain('1 files, found 92 errors in 1 files (')
+          expect(stdout.replace(/(\d+ ms)/, '(99 ms)')).toMatchSnapshot()
 
           expect(stderr).toBe('')
           done()

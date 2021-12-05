@@ -87,6 +87,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^7.0.4",
     "jest": "^27.4.3",
+    "jest-serializer-path": "^0.1.15",
     "lint-staged": "^12.1.2",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",

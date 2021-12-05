@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CLI Formatter: checkstyle should have stdout output with formatter checkstyle 1`] = `
+"<?xml version=\\"1.0\\" encoding=\\"UTF-8\\"?>
+<checkstyle version=\\"4.3\\">
+    <file name=\\"<PROJECT_ROOT>/test/cli/formatters/__fixtures__/example.html\\">
+        <error line=\\"8\\" column=\\"7\\" severity=\\"error\\" message=\\"The value of attribute [ bad ] must be in double quotes.\\" source=\\"htmlhint.attr-value-double-quotes\\"/>
+        <error line=\\"8\\" column=\\"14\\" severity=\\"error\\" message=\\"The value of attribute [ bad ] must be in double quotes.\\" source=\\"htmlhint.attr-value-double-quotes\\"/>
+        <error line=\\"8\\" column=\\"14\\" severity=\\"error\\" message=\\"Duplicate of attribute name [ bad ] was found.\\" source=\\"htmlhint.attr-no-duplication\\"/>
+        <error line=\\"9\\" column=\\"7\\" severity=\\"error\\" message=\\"The value of attribute [ bad ] must be in double quotes.\\" source=\\"htmlhint.attr-value-double-quotes\\"/>
+        <error line=\\"9\\" column=\\"14\\" severity=\\"error\\" message=\\"The value of attribute [ bad ] must be in double quotes.\\" source=\\"htmlhint.attr-value-double-quotes\\"/>
+        <error line=\\"9\\" column=\\"14\\" severity=\\"error\\" message=\\"Duplicate of attribute name [ bad ] was found.\\" source=\\"htmlhint.attr-no-duplication\\"/>
+        <error line=\\"10\\" column=\\"22\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/input&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"11\\" column=\\"3\\" severity=\\"error\\" message=\\"Special characters must be escaped : [ &lt; ].\\" source=\\"htmlhint.spec-char-escape\\"/>
+        <error line=\\"11\\" column=\\"18\\" severity=\\"error\\" message=\\"Special characters must be escaped : [ &gt; ].\\" source=\\"htmlhint.spec-char-escape\\"/>
+        <error line=\\"13\\" column=\\"11\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/div&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"14\\" column=\\"9\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/div&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"15\\" column=\\"7\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/hello&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"16\\" column=\\"5\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/test&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"17\\" column=\\"3\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/div&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"21\\" column=\\"15\\" severity=\\"error\\" message=\\"The value of attribute [ class ] must be in double quotes.\\" source=\\"htmlhint.attr-value-double-quotes\\"/>
+        <error line=\\"21\\" column=\\"24\\" severity=\\"error\\" message=\\"The value of attribute [ what ] must be in double quotes.\\" source=\\"htmlhint.attr-value-double-quotes\\"/>
+        <error line=\\"21\\" column=\\"32\\" severity=\\"error\\" message=\\"The value of attribute [ something ] must be in double quotes.\\" source=\\"htmlhint.attr-value-double-quotes\\"/>
+        <error line=\\"25\\" column=\\"3\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/div&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"26\\" column=\\"1\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/bad&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+        <error line=\\"27\\" column=\\"1\\" severity=\\"error\\" message=\\"Tag must be paired, no start tag: [ &lt;/bad&gt; ]\\" source=\\"htmlhint.tag-pair\\"/>
+    </file>
+</checkstyle>
+"
+`;

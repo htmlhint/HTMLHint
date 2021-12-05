@@ -7,7 +7,7 @@ describe('Executable', () => {
       path.resolve(__dirname, '../bin/htmlhint'),
       '--format',
       'json',
-      path.resolve(__dirname, './html/executable.html'),
+      path.resolve(__dirname, '__fixtures__', 'executable.html'),
     ])
     let stdoutEnd = false
     let processEnd = false
@@ -50,7 +50,7 @@ describe('Executable', () => {
         [
           'node',
           path.resolve(__dirname, '../bin/htmlhint'),
-          path.resolve(__dirname, './html/executable.html'),
+          path.resolve(__dirname, '__fixtures__', 'executable.html'),
           '--format',
           format,
         ].join(' '),

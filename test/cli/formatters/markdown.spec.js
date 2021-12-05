@@ -8,7 +8,7 @@ describe('CLI', () => {
         [
           'node',
           path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, 'example.html'),
+          path.resolve(__dirname, '__fixtures__', 'example.html'),
           '--format',
           'markdown',
         ].join(' '),
@@ -16,12 +16,7 @@ describe('CLI', () => {
           expect(typeof error).toBe('object')
           expect(error.code).toBe(1)
 
-          expect(stdout).toContain('# TOC')
-          expect(stdout).toContain('Found 20 errors, 0 warnings')
-          expect(stdout).toContain('example.html')
-          expect(stdout).toContain(
-            '^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
-          )
+          expect(stdout).toMatchSnapshot()
 
           expect(stderr).toBe('')
           done()
