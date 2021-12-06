@@ -10,7 +10,10 @@ on:
       - beta
       - next
       - next-major
-    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - 'website/**'
+      - '**/*.md'
+      - '**/*.mdx'
 
 jobs:
   test-release:
