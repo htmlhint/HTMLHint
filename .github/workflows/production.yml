@@ -10,6 +10,10 @@ on:
       - next
       - next-major
       - '!all-contributors/**'
+    paths-ignore:
+      - 'website/**'
+      - '**/*.md'
+      - '**/*.mdx'
 
 jobs:
   lint:
