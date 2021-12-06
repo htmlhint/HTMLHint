@@ -65,7 +65,20 @@ jobs:
       - name: Ensure no git changes
         run: git diff --exit-code
 
+      - name: Run tests
+        if: matrix.node != '12' && matrix.os != 'ubuntu-latest'
+        run: npm run test
+
+      - name: Run tests
+        if: matrix.node != '12' && matrix.os != 'ubuntu-latest'
+        uses: nick-invision/retry@v2
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: npm run test
+
       - name: Run coverage
+        if: matrix.node == '12' && matrix.os == 'ubuntu-latest'
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 20
@@ -73,6 +86,7 @@ jobs:
           command: npm run test:coverage
 
       - name: ⬆️ Upload coverage to Codecov
+        if: matrix.node == '12' && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v2
         with:
           files: ./coverage/coverage-final.json
