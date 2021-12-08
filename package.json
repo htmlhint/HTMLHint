@@ -86,12 +86,6 @@
     "@commitlint/config-conventional": "^15.0.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
-    "@semantic-release/changelog": "^6.0.1",
-    "@semantic-release/commit-analyzer": "^9.0.2",
-    "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^8.0.2",
-    "@semantic-release/npm": "^8.0.3",
-    "@semantic-release/release-notes-generator": "^10.0.2",
     "@types/async": "^3.2.10",
     "@types/glob": "^7.2.0",
     "@types/node-fetch": "^2.5.12",
@@ -113,7 +107,6 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.60.1",
     "rollup-plugin-terser": "^7.0.2",
-    "semantic-release": "^18.0.0",
     "typescript": "^4.5.2"
   }
 }

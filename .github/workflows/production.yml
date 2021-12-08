@@ -100,7 +100,6 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: 14
           cache: npm
 
       - name: 📥 Download deps
@@ -114,10 +113,9 @@ jobs:
       - name: 🚢 Release
         uses: cycjimmy/semantic-release-action@v2
         with:
-          semantic_version: 17
           extra_plugins: |
-            @semantic-release/changelog@6
-            @semantic-release/git@10
+            @semantic-release/changelog
+            @semantic-release/git
           branches: |
             [
               'master',
