@@ -30,8 +30,6 @@ jobs:
 
       - name: 📥 Download deps
         run: npm ci
-        env:
-          HUSKY_SKIP_INSTALL: true
 
       - name: 🏗 Build
         run: npm run build
