@@ -29,8 +29,6 @@ jobs:
 
       - name: 📥 Download deps
         run: npm ci
-        env:
-          HUSKY_SKIP_INSTALL: true
 
       - name: 🧪 Run lint
         run: npm run lint
@@ -67,13 +65,9 @@ jobs:
 
       - name: 📥 Download deps
         run: npm ci
-        env:
-          HUSKY_SKIP_INSTALL: true
 
       - name: 🏗 Build
         run: npm run build
-        env:
-          CI: true
 
       - name: Ensure no git changes
         run: git diff --exit-code
