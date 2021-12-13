@@ -22,9 +22,6 @@
   <a href="https://discord.gg/nJ6J9CP">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
   </a>
-  <a href="http://roadmap.htmlhint.io/roadmap">
-    <img src="https://img.shields.io/badge/check-our%20roadmap-EE503E.svg" alt="Chat">
-  </a>
 </p>
 
 <p align="center">
