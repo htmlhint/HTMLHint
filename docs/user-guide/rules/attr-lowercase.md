@@ -11,14 +11,14 @@ Level: `error`
 
 1. true: enable rule
 2. false: disable rule
-3. ['viewBox', 'Test']: enable rule except for the given attribute names
+3. ['fooBar', 'Test']: enable rule except for the given attribute names. All SVG camelCase properties are included, for example `viewBox`
 
 ### Example
 
 ```json
 {
   ...
-  "attr-lowercase": ['viewBox']
+  "attr-lowercase": ['fooBar']
   ...
 }
 ```
@@ -28,6 +28,9 @@ The following pattern is **not** considered a rule violation:
 <!-- prettier-ignore -->
 ```html
 <img src="test.png" alt="test" />
+
+<!-- known SVG attributes are ignored -->
+<svg width="200" height="200" viewBox="0 0 200 200" />
 ```
 
 The following pattern is considered a rule violation:
