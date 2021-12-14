@@ -30,7 +30,7 @@ export function parseGlob(target: string): {
     path: {
       basename: target
         .substring(Math.max(lastSlashIndex, 0))
-        .replace(/^\//, ''),
+        .replace(/^[/\\]/, ''),
     },
   }
 }
