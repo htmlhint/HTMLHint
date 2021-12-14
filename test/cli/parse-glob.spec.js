@@ -11,6 +11,9 @@ const testGlobs = [
   'abc/[a-z].js',
   'abc/{a,b}.js',
   'abc/def/**/(ghi|jkl)*.{js,html}',
+  'abc/def/ghi.js',
+  'abc.js',
+  '/abc/def.js',
 ]
 
 describe('parseGlob', () => {

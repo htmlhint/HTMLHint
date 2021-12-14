@@ -10,36 +10,27 @@ export function parseGlob(target: string): {
     basename: string
   }
 } {
-  const valid = isGlob(target)
+  const recursiveTokenIndex = Math.max(
+    target.indexOf('**/'),
+    target.indexOf('**\\')
+  )
+  const lastSlashIndex = Math.max(
+    target.lastIndexOf('/'),
+    target.lastIndexOf('\\')
+  )
+  const baseGlobSepIndex =
+    recursiveTokenIndex >= 0 ? recursiveTokenIndex : Math.max(lastSlashIndex, 0)
 
-  const result = {
-    base: '',
-    glob: '',
+  return {
+    base: target.substring(0, baseGlobSepIndex).replace(/[/\\]$/, '') || '.',
+    glob: target.substring(baseGlobSepIndex).replace(/^[/\\]/, ''),
     is: {
-      glob: valid,
+      glob: isGlob(target),
     },
     path: {
-      basename: '',
+      basename: target
+        .substring(Math.max(lastSlashIndex, 0))
+        .replace(/^\//, ''),
     },
   }
-
-  if (valid) {
-    const recursiveTokenIndex = target.indexOf('**/')
-    const lastSlashIndex = target.lastIndexOf('/')
-    const baseGlobSepIndex =
-      recursiveTokenIndex >= 0
-        ? recursiveTokenIndex
-        : Math.max(lastSlashIndex, 0)
-
-    result.base =
-      target.substring(0, baseGlobSepIndex).replace(/\/$/, '') || '.'
-
-    result.glob = target.substring(baseGlobSepIndex).replace(/^\//, '')
-
-    result.path.basename = target
-      .substring(Math.max(lastSlashIndex, 0))
-      .replace(/^\//, '')
-  }
-
-  return result
 }
