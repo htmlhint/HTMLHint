@@ -31,3 +31,6 @@ CHANGELOG.md
 
 # Report created by test
 report.html
+
+# malformed test files
+test/config/bad.json

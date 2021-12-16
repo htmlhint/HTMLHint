@@ -67,3 +67,39 @@ describe('Executable', () => {
     })
   }
 })
+
+describe('Configfiles', () => {
+  it('Malformed config should error', (done) => {
+    ChildProcess.exec(
+      [
+        'node',
+        path.resolve(__dirname, '../../bin/htmlhint'),
+        path.resolve(__dirname, 'example.html'),
+        '--config',
+        'config/bad.json',
+      ].join(' '),
+      (error, stdout, stderr) => {
+        expect(error).to.be.an('object')
+        expect(error.code).to.be.equal(2)
+      }
+    )
+    done()
+  })
+
+  it('Good config should load and show enabled error', (done) => {
+    ChildProcess.exec(
+      [
+        'node',
+        path.resolve(__dirname, '../../bin/htmlhint'),
+        path.resolve(__dirname, 'example.html'),
+        '--config',
+        'config/good.json',
+      ].join(' '),
+      (error, stdout, stderr) => {
+        expect(error).to.be.an('object')
+        expect(error.code).to.be.equal(2)
+      }
+    )
+    done()
+  })
+})
