@@ -9,8 +9,10 @@ title: List of rules
 
 - [`doctype-first`](/docs/user-guide/rules/doctype-first): Doctype must be declared first.
 - [`doctype-html5`](/docs/user-guide/rules/doctype-html5): Invalid doctype.
+- [`html-lang-require`](/docs/user-guide/rules/html-lang-require): The HTML lang attribute is required.
 - [`head-script-disabled`](/docs/user-guide/rules/head-script-disabled): The `<script>` tag cannot be used in a tag.
 - [`style-disabled`](/docs/user-guide/rules/style-disabled): `<style>` tags cannot be used.
+- [`script-disabled`](/docs/user-guide/rules/script-disabled): `<script>` tags cannot be used.
 - [`title-require`](/docs/user-guide/rules/title-require): `<title>` must be present in `<head>` tag.
 
 ### Attributes
@@ -20,7 +22,10 @@ title: List of rules
 - [`attr-no-unnecessary-whitespace`](/docs/user-guide/rules/attr-no-unnecessary-whitespace): No spaces between attribute names and values.
 - [`attr-unsafe-chars`](/docs/user-guide/rules/attr-unsafe-chars): Attribute values cannot contain unsafe chars.
 - [`attr-value-double-quotes`](/docs/user-guide/rules/attr-value-double-quotes): Attribute values must be in double quotes.
+- [`attr-value-single-quotes`](/docs/user-guide/rules/attr-value-single-quotes): Attribute values must be in single quotes.
 - [`attr-value-not-empty`](/docs/user-guide/rules/attr-value-not-empty): All attributes must have values.
+- [`attr-sorted`](/docs/user-guide/rules/attr-sorted): All recognized attributes must be alphabetically sorted.
+- [`attr-whitespace`](/docs/user-guide/rules/attr-whitespace): Attribute value should not have any leading, trailing spaces or double spaces.
 - [`alt-require`](/docs/user-guide/rules/alt-require): The alt attribute of an element must be present and alt attribute of area[href] and input[type=image] must have a value.
 - [`input-requires-label`](/docs/user-guide/rules/input-requires-label): All [ input ] tags must have a corresponding [ label ] tag.
 
@@ -30,6 +35,7 @@ title: List of rules
 - [`tag-pair`](/docs/user-guide/rules/tag-pair): Tag must be paired.
 - [`tag-self-close`](/docs/user-guide/rules/tag-self-close): Empty tags must be self closed.
 - [`tagname-lowercase`](/docs/user-guide/rules/tagname-lowercase): All html element names must be in lowercase.
+- [`tagname-specialchars`](/docs/user-guide/rules/tagname-specialchars): Special character in tag name should result in an error.
 - [`empty-tag-not-self-closed`](/docs/user-guide/rules/empty-tag-not-self-closed): The empty tag should not be closed by self.
 - [`src-not-empty`](/docs/user-guide/rules/src-not-empty): The src attribute of an img(script,link) must have a value.
 - [`href-abs-or-rel`](/docs/user-guide/rules/href-abs-or-rel): An href attribute must be either absolute or relative.
