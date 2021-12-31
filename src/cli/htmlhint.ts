@@ -3,13 +3,13 @@
 import { queue as asyncQueue, series as asyncSeries } from 'async'
 import * as chalk from 'chalk'
 import { Command } from 'commander'
+import { cosmiconfigSync } from 'cosmiconfig'
 import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
 import { IGlob } from 'glob'
 import * as parseGlob from 'parse-glob'
-import { dirname, resolve, sep } from 'path'
+import { resolve, sep } from 'path'
 import fetch from 'node-fetch'
-import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 import { Formatter } from './formatter'
@@ -248,7 +248,44 @@ function hintAllFiles(
   // init ruleset
   let ruleset = options.ruleset
   if (ruleset === undefined) {
-    ruleset = getConfig(cliOptions.config, globInfo.base, formatter)
+    let result
+    const explorerSync = cosmiconfigSync('htmlhint')
+    explorerSync.clearCaches() //debugging
+
+    try {
+      let configPath = cliOptions.config
+
+      // load config if directly passed
+      if (configPath) {
+        result = explorerSync.load(configPath)
+
+        if (result == null) {
+          console.error(`Could not resolve config file at ${configPath}`)
+          process.exit(2)
+        } else if (result.isEmpty) {
+          console.error('Config file is empty')
+          process.exit(2)
+        }
+        ruleset = result.config as Ruleset
+      } else {
+        result = explorerSync.search(globInfo.base)
+        if (result == null || result.isEmpty) {
+          ruleset = {} as Ruleset
+          configPath = ''
+        } else {
+          ruleset = result.config as Ruleset
+          configPath = result.filepath
+        }
+      }
+
+      formatter.emit('config', {
+        ruleset: ruleset,
+        configPath: configPath,
+      })
+    } catch (err) {
+      console.log(err)
+      process.exit(2)
+    }
   }
 
   // hint queue
@@ -364,53 +401,6 @@ function getGlobInfo(target: string): {
   return {
     base: base,
     pattern: pattern,
-  }
-}
-
-// search and load config
-function getConfig(
-  configPath: string | undefined,
-  base: string,
-  formatter: Formatter
-) {
-  if (configPath === undefined && existsSync(base)) {
-    // find default config file in parent directory
-    if (statSync(base).isDirectory() === false) {
-      base = dirname(base)
-    }
-
-    while (base) {
-      const tmpConfigFile = resolve(base, '.htmlhintrc')
-
-      if (existsSync(tmpConfigFile)) {
-        configPath = tmpConfigFile
-        break
-      }
-
-      if (!base) {
-        break
-      }
-
-      base = base.substring(0, base.lastIndexOf(sep))
-    }
-  }
-
-  // TODO: can configPath be undefined here?
-  if (configPath !== undefined && existsSync(configPath)) {
-    const config = readFileSync(configPath, 'utf-8')
-    let ruleset: Ruleset = {}
-
-    try {
-      ruleset = JSON.parse(stripJsonComments(config))
-      formatter.emit('config', {
-        ruleset: ruleset,
-        configPath: configPath,
-      })
-    } catch (e) {
-      // ignore
-    }
-
-    return ruleset
   }
 }
 
