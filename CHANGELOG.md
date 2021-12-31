@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/htmlhint/HTMLHint/compare/v1.0.0...v1.1.0) (2021-12-31)
+
+
+### Features
+
+* **attr-lowercase:** ignore camelCase SVG attributes ([aa16722](https://github.com/htmlhint/HTMLHint/commit/aa167227ac153987e7dcc2ff728c6c3372cd9037))
+
 # [1.0.0](https://github.com/htmlhint/HTMLHint/compare/v0.16.3...v1.0.0) (2021-11-26)
 
 
