@@ -18,6 +18,7 @@
   },
   "license": "MIT",
   "main": "dist/htmlhint.js",
+  "types": "dist/core/core.d.ts",
   "module": "dist/core/core.js",
   "bin": {
     "htmlhint": "./bin/htmlhint"

@@ -162,4 +162,4 @@ Object.keys(HTMLRules).forEach((key) => {
   HTMLHint.addRule(HTMLRules[key])
 })
 
-export { HTMLRules, Reporter, HTMLParser }
+export { HTMLRules, Reporter, HTMLParser, Hint, Rule, Ruleset }
