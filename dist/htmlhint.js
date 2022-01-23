@@ -298,7 +298,7 @@
 	            rule: {
 	                id: rule.id,
 	                description: rule.description,
-	                link: `https://github.com/thedaviddias/HTMLHint/wiki/${rule.id}`,
+	                link: `https://htmlhint.com/docs/user-guide/rules/${rule.id}`,
 	            },
 	        });
 	    }
