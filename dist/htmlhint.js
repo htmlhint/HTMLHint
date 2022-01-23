@@ -639,7 +639,7 @@
 	                    return;
 	                }
 	                if (elem.value.trim() !== elem.value) {
-	                    reporter.error(`The attributes of [ ${attrName} ] must not have trailing whitespace.`, event.line, col + attr.index, this, attr.raw);
+	                    reporter.error(`The attributes of [ ${attrName} ] must not have leading or trailing whitespace.`, event.line, col + attr.index, this, attr.raw);
 	                }
 	                if (elem.value.replace(/ +(?= )/g, '') !== elem.value) {
 	                    reporter.error(`The attributes of [ ${attrName} ] must be separated by only one space.`, event.line, col + attr.index, this, attr.raw);
