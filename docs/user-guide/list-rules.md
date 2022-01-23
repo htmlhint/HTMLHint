@@ -23,6 +23,7 @@ title: List of rules
 - [`attr-unsafe-chars`](/docs/user-guide/rules/attr-unsafe-chars): Attribute values cannot contain unsafe chars.
 - [`attr-value-double-quotes`](/docs/user-guide/rules/attr-value-double-quotes): Attribute values must be in double quotes.
 - [`attr-value-not-empty`](/docs/user-guide/rules/attr-value-not-empty): All attributes must have values.
+- [`attr-whitespace`](/docs/user-guide/rules/attr-whitespace): No leading or trailing spaces in attribute values.
 - [`alt-require`](/docs/user-guide/rules/alt-require): The alt attribute of an element must be present and alt attribute of area[href] and input[type=image] must have a value.
 - [`input-requires-label`](/docs/user-guide/rules/input-requires-label): All [ input ] tags must have a corresponding [ label ] tag.
 
