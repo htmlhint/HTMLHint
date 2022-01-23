@@ -1,3 +1,10 @@
+## [1.1.1](https://github.com/htmlhint/HTMLHint/compare/v1.1.0...v1.1.1) (2022-01-23)
+
+
+### Bug Fixes
+
+* correct links to rule docs ([6a95ae6](https://github.com/htmlhint/HTMLHint/commit/6a95ae6e14a8f5ace86a7114285daef24d9d42cf)), closes [#867](https://github.com/htmlhint/HTMLHint/issues/867)
+
 # [1.1.0](https://github.com/htmlhint/HTMLHint/compare/v1.0.0...v1.1.0) (2021-12-31)
 
 
