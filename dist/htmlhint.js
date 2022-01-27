@@ -986,7 +986,9 @@
 	            const mapAttrs = parser.getMapAttrs(event.attrs);
 	            const col = event.col + tagName.length + 1;
 	            if (tagName === 'input') {
-	                inputTags.push({ event: event, col: col, id: mapAttrs['id'] });
+	                if (mapAttrs['type'] !== 'hidden') {
+	                    inputTags.push({ event: event, col: col, id: mapAttrs['id'] });
+	                }
 	            }
 	            if (tagName === 'label') {
 	                if ('for' in mapAttrs && mapAttrs['for'] !== '') {
