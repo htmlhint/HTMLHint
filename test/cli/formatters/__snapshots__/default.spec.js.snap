@@ -1,0 +1,194 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CLI Formatter: default should have stdout output with formatter default: stderr 1`] = `""`;
+
+exports[`CLI Formatter: default should have stdout output with formatter default: stdout 1`] = `
+"
+   [37m<PROJECT_ROOT>/test/cli/__fixtures__/executable.html[39m
+[37m      L8 |[90m  <div bad='' bad=''></div>[39m
+[37m                ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L8 |[90m  <div bad='' bad=''></div>[39m
+[37m                       ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L8 |[90m  <div bad='' bad=''></div>[39m
+[37m                       ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L9 |[90m  <div bad='' bad=''></div>[39m
+[37m                ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L9 |[90m  <div bad='' bad=''></div>[39m
+[37m                       ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L9 |[90m  <div bad='' bad=''></div>[39m
+[37m                       ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L10 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L10 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L10 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L11 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L11 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L11 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L12 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L12 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L12 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L13 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L13 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L13 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L14 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L14 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L14 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L15 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L15 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L15 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L16 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L16 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L16 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L17 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L17 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L17 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L18 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L18 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L18 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L19 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L19 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L19 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L20 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L20 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L20 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L21 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L21 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L21 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L22 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L22 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L22 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L23 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L23 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L23 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L24 |[90m  <div bad='' bad=''></div>[39m
+[37m                 ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L24 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mThe value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L24 |[90m  <div bad='' bad=''></div>[39m
+[37m                        ^ [31mDuplicate of attribute name [ bad ] was found. (attr-no-duplication)[39m
+[37m      L25 |[90m  <input type=\\"text\\"></input>[39m
+[37m                                ^ [31mTag must be paired, no start tag: [ </input> ] (tag-pair)[39m
+[37m      L26 |[90m  <div class\\"foo\\">[39m
+[37m             ^ [31mSpecial characters must be escaped : [ < ]. (spec-char-escape)[39m
+[37m      L26 |[90m  <div class\\"foo\\">[39m
+[37m                            ^ [31mSpecial characters must be escaped : [ > ]. (spec-char-escape)[39m
+[37m      L28 |[90m          </div>[39m
+[37m                     ^ [31mTag must be paired, no start tag: [ </div> ] (tag-pair)[39m
+[37m      L29 |[90m        </div>[39m
+[37m                   ^ [31mTag must be paired, no start tag: [ </div> ] (tag-pair)[39m
+[37m      L30 |[90m      </hello>[39m
+[37m                 ^ [31mTag must be paired, no start tag: [ </hello> ] (tag-pair)[39m
+[37m      L31 |[90m    </test>[39m
+[37m               ^ [31mTag must be paired, no start tag: [ </test> ] (tag-pair)[39m
+[37m      L32 |[90m  </div>[39m
+[37m             ^ [31mTag must be paired, no start tag: [ </div> ] (tag-pair)[39m
+[37m      L38 |[90m              <div class='' what='' something=''></div>[39m
+[37m                             ^ [31mThe value of attribute [ class ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L38 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                      ^ [31mThe value of attribute [ what ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L38 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                              ^ [31mThe value of attribute [ something ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L44 |[90m  </div>[39m
+[37m             ^ [31mTag must be paired, no start tag: [ </div> ] (tag-pair)[39m
+[37m      L50 |[90m              <div class='' what='' something=''></div>[39m
+[37m                             ^ [31mThe value of attribute [ class ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L50 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                      ^ [31mThe value of attribute [ what ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L50 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                              ^ [31mThe value of attribute [ something ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L56 |[90m  </div>[39m
+[37m             ^ [31mTag must be paired, no start tag: [ </div> ] (tag-pair)[39m
+[37m      L62 |[90m              <div class='' what='' something=''></div>[39m
+[37m                             ^ [31mThe value of attribute [ class ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L62 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                      ^ [31mThe value of attribute [ what ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L62 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                              ^ [31mThe value of attribute [ something ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L68 |[90m  </div>[39m
+[37m             ^ [31mTag must be paired, no start tag: [ </div> ] (tag-pair)[39m
+[37m      L74 |[90m              <div class='' what='' something=''></div>[39m
+[37m                             ^ [31mThe value of attribute [ class ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L74 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                      ^ [31mThe value of attribute [ what ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L74 |[90m              <div class='' what='' something=''></div>[39m
+[37m                                              ^ [31mThe value of attribute [ something ] must be in double quotes. (attr-value-double-quotes)[39m
+[37m      L80 |[90m  </div>[39m
+[37m             ^ [31mTag must be paired, no start tag: [ </div> ] (tag-pair)[39m
+[37m      L81 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L82 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L83 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L84 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L85 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L86 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L87 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L88 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L89 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L90 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L91 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L92 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L93 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L94 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L95 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L96 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+[37m      L97 |[90m</bad>[39m
+[37m           ^ [31mTag must be paired, no start tag: [ </bad> ] (tag-pair)[39m
+
+[31mScanned 1 files, found 92 errors in 1 files ((99 ms))[39m"
+`;

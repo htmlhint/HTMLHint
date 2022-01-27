@@ -1,0 +1,280 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CLI Formatter: json should have stdout output with formatter json: stderr 1`] = `""`;
+
+exports[`CLI Formatter: json should have stdout output with formatter json: stdout 1`] = `
+Array [
+  Object {
+    "file": "<PROJECT_ROOT>/test/cli/formatters/__fixtures__/example.html",
+    "messages": Array [
+      Object {
+        "col": 7,
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 8,
+        "message": "The value of attribute [ bad ] must be in double quotes.",
+        "raw": " bad=''",
+        "rule": Object {
+          "description": "Attribute values must be in double quotes.",
+          "id": "attr-value-double-quotes",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 14,
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 8,
+        "message": "The value of attribute [ bad ] must be in double quotes.",
+        "raw": " bad=''",
+        "rule": Object {
+          "description": "Attribute values must be in double quotes.",
+          "id": "attr-value-double-quotes",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 14,
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 8,
+        "message": "Duplicate of attribute name [ bad ] was found.",
+        "raw": " bad=''",
+        "rule": Object {
+          "description": "Elements cannot have duplicate attributes.",
+          "id": "attr-no-duplication",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-no-duplication",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 7,
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 9,
+        "message": "The value of attribute [ bad ] must be in double quotes.",
+        "raw": " bad=''",
+        "rule": Object {
+          "description": "Attribute values must be in double quotes.",
+          "id": "attr-value-double-quotes",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 14,
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 9,
+        "message": "The value of attribute [ bad ] must be in double quotes.",
+        "raw": " bad=''",
+        "rule": Object {
+          "description": "Attribute values must be in double quotes.",
+          "id": "attr-value-double-quotes",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 14,
+        "evidence": "  <div bad='' bad=''></div>",
+        "line": 9,
+        "message": "Duplicate of attribute name [ bad ] was found.",
+        "raw": " bad=''",
+        "rule": Object {
+          "description": "Elements cannot have duplicate attributes.",
+          "id": "attr-no-duplication",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-no-duplication",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 22,
+        "evidence": "  <input type=\\"text\\"></input>",
+        "line": 10,
+        "message": "Tag must be paired, no start tag: [ </input> ]",
+        "raw": "</input>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 3,
+        "evidence": "  <div class\\"foo\\">",
+        "line": 11,
+        "message": "Special characters must be escaped : [ < ].",
+        "raw": "
+  <div class\\"foo\\">
+
+          ",
+        "rule": Object {
+          "description": "Special characters must be escaped.",
+          "id": "spec-char-escape",
+          "link": "https://htmlhint.com/docs/user-guide/rules/spec-char-escape",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 18,
+        "evidence": "  <div class\\"foo\\">",
+        "line": 11,
+        "message": "Special characters must be escaped : [ > ].",
+        "raw": "
+  <div class\\"foo\\">
+
+          ",
+        "rule": Object {
+          "description": "Special characters must be escaped.",
+          "id": "spec-char-escape",
+          "link": "https://htmlhint.com/docs/user-guide/rules/spec-char-escape",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 11,
+        "evidence": "          </div>",
+        "line": 13,
+        "message": "Tag must be paired, no start tag: [ </div> ]",
+        "raw": "</div>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 9,
+        "evidence": "        </div>",
+        "line": 14,
+        "message": "Tag must be paired, no start tag: [ </div> ]",
+        "raw": "</div>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 7,
+        "evidence": "      </hello>",
+        "line": 15,
+        "message": "Tag must be paired, no start tag: [ </hello> ]",
+        "raw": "</hello>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 5,
+        "evidence": "    </test>",
+        "line": 16,
+        "message": "Tag must be paired, no start tag: [ </test> ]",
+        "raw": "</test>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 3,
+        "evidence": "  </div>",
+        "line": 17,
+        "message": "Tag must be paired, no start tag: [ </div> ]",
+        "raw": "</div>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 15,
+        "evidence": "          <div class='' what='' something=''></div>",
+        "line": 21,
+        "message": "The value of attribute [ class ] must be in double quotes.",
+        "raw": " class=''",
+        "rule": Object {
+          "description": "Attribute values must be in double quotes.",
+          "id": "attr-value-double-quotes",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 24,
+        "evidence": "          <div class='' what='' something=''></div>",
+        "line": 21,
+        "message": "The value of attribute [ what ] must be in double quotes.",
+        "raw": " what=''",
+        "rule": Object {
+          "description": "Attribute values must be in double quotes.",
+          "id": "attr-value-double-quotes",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 32,
+        "evidence": "          <div class='' what='' something=''></div>",
+        "line": 21,
+        "message": "The value of attribute [ something ] must be in double quotes.",
+        "raw": " something=''",
+        "rule": Object {
+          "description": "Attribute values must be in double quotes.",
+          "id": "attr-value-double-quotes",
+          "link": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 3,
+        "evidence": "  </div>",
+        "line": 25,
+        "message": "Tag must be paired, no start tag: [ </div> ]",
+        "raw": "</div>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 1,
+        "evidence": "</bad>",
+        "line": 26,
+        "message": "Tag must be paired, no start tag: [ </bad> ]",
+        "raw": "</bad>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+      Object {
+        "col": 1,
+        "evidence": "</bad>",
+        "line": 27,
+        "message": "Tag must be paired, no start tag: [ </bad> ]",
+        "raw": "</bad>",
+        "rule": Object {
+          "description": "Tag must be paired.",
+          "id": "tag-pair",
+          "link": "https://htmlhint.com/docs/user-guide/rules/tag-pair",
+        },
+        "type": "error",
+      },
+    ],
+    "time": 99,
+  },
+]
+`;

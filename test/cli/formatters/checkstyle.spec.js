@@ -1,45 +1,23 @@
-const ChildProcess = require('child_process')
-const fs = require('fs')
+const run = require('../../../test/test-utils').run
 const path = require('path')
+const serializer = require('jest-serializer-path')
+
+expect.addSnapshotSerializer(serializer)
 
 describe('CLI', () => {
   describe('Formatter: checkstyle', () => {
-    it('should have stdout output with formatter checkstyle', (done) => {
-      const expected = fs
-        .readFileSync(path.resolve(__dirname, 'checkstyle.xml'), 'utf8')
-        .replace('{{path}}', path.resolve(__dirname, 'example.html'))
+    it('should have stdout output with formatter checkstyle', async () => {
+      const { exitCode, stdout, stderr } = await run(__dirname, [
+        path.resolve(__dirname, '__fixtures__', 'example.html'),
+        '--format',
+        'checkstyle',
+      ])
 
-      const expectedParts = expected.split('\n')
+      expect(exitCode).toBe(1)
 
-      ChildProcess.exec(
-        [
-          'node',
-          path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, 'example.html'),
-          '--format',
-          'checkstyle',
-        ].join(' '),
-        (error, stdout, stderr) => {
-          expect(typeof error).toBe('object')
-          expect(error.code).toBe(1)
+      expect(stdout).toMatchSnapshot('stdout')
 
-          expect(stdout).not.toBe('')
-
-          const stdoutParts = stdout.split('\n')
-
-          expect(stdoutParts.length).toBe(expectedParts.length)
-
-          for (let i = 0; i < stdoutParts.length; i++) {
-            const lineIndicator = `[L${i + 1}]: `
-            expect(`${lineIndicator}${stdoutParts[i]}`).toBe(
-              `${lineIndicator}${expectedParts[i]}`
-            )
-          }
-
-          expect(stderr).toBe('')
-          done()
-        }
-      )
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })

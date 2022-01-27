@@ -1,29 +1,21 @@
-const ChildProcess = require('child_process')
+const run = require('../../../test/test-utils').run
 const path = require('path')
+const serializer = require('jest-serializer-path')
+
+expect.addSnapshotSerializer(serializer)
 
 describe('CLI', () => {
   describe('Formatter: default', () => {
-    it('should have stdout output with formatter default', (done) => {
-      ChildProcess.exec(
-        [
-          'node',
-          path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
-        ].join(' '),
-        (error, stdout, stderr) => {
-          expect(typeof error).toBe('object')
-          expect(error.code).toBe(1)
+    it('should have stdout output with formatter default', async () => {
+      const { exitCode, stdout, stderr } = await run(__dirname, [
+        path.resolve(__dirname, '..', '__fixtures__', 'executable.html'),
+      ])
 
-          expect(stdout).toContain(
-            'Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
-          )
-          expect(stdout).toContain('\u001b[31m')
-          expect(stdout).toContain('1 files, found 92 errors in 1 files (')
+      expect(exitCode).toBe(1)
 
-          expect(stderr).toBe('')
-          done()
-        }
-      )
+      expect(stdout.replace(/(\d+ ms)/, '(99 ms)')).toMatchSnapshot('stdout')
+
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })

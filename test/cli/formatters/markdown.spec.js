@@ -1,32 +1,22 @@
-const ChildProcess = require('child_process')
+const run = require('../../../test/test-utils').run
 const path = require('path')
+const serializer = require('jest-serializer-path')
+
+expect.addSnapshotSerializer(serializer)
 
 describe('CLI', () => {
   describe('Formatter: markdown', () => {
-    it('should have stdout output with formatter markdown', (done) => {
-      ChildProcess.exec(
-        [
-          'node',
-          path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, 'example.html'),
-          '--format',
-          'markdown',
-        ].join(' '),
-        (error, stdout, stderr) => {
-          expect(typeof error).toBe('object')
-          expect(error.code).toBe(1)
+    it('should have stdout output with formatter markdown', async () => {
+      const { exitCode, stdout, stderr } = await run(__dirname, [
+        path.resolve(__dirname, '__fixtures__', 'example.html'),
+        '--format',
+        'markdown',
+      ])
+      expect(exitCode).toBe(1)
 
-          expect(stdout).toContain('# TOC')
-          expect(stdout).toContain('Found 20 errors, 0 warnings')
-          expect(stdout).toContain('example.html')
-          expect(stdout).toContain(
-            '^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
-          )
+      expect(stdout).toMatchSnapshot('stdout')
 
-          expect(stderr).toBe('')
-          done()
-        }
-      )
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })

@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-done-callback */
 const HTMLParser = require('../dist/htmlhint.js').HTMLParser
 
 expect.extend({

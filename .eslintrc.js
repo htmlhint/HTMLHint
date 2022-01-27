@@ -48,9 +48,13 @@ module.exports = {
       },
     },
     {
-      files: ['**/*.spec.js'],
+      files: ['test/**/*.js'],
+      extends: ['eslint:recommended', 'plugin:jest/recommended', 'prettier'],
       env: {
-        jest: true,
+        'jest/globals': true,
+      },
+      parserOptions: {
+        ecmaVersion: 2021,
       },
     },
   ],

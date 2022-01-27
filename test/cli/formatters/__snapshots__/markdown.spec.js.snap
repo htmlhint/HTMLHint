@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CLI Formatter: markdown should have stdout output with formatter markdown: stderr 1`] = `""`;
+
+exports[`CLI Formatter: markdown should have stdout output with formatter markdown: stdout 1`] = `
+"# TOC
+   - [<PROJECT_ROOT>/test/cli/formatters/__fixtures__/example.html](#<PROJECT_ROOT>/test/cli/formatters/__fixtures__/example.html)
+
+<a name=\\"<PROJECT_ROOT>/test/cli/formatters/__fixtures__/example.html\\" />
+# <PROJECT_ROOT>/test/cli/formatters/__fixtures__/example.html
+
+Found 20 errors, 0 warnings
+
+    L8 |  <div bad='' bad=''></div>
+              ^ The value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)
+    L8 |  <div bad='' bad=''></div>
+                     ^ The value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)
+    L8 |  <div bad='' bad=''></div>
+                     ^ Duplicate of attribute name [ bad ] was found. (attr-no-duplication)
+    L9 |  <div bad='' bad=''></div>
+              ^ The value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)
+    L9 |  <div bad='' bad=''></div>
+                     ^ The value of attribute [ bad ] must be in double quotes. (attr-value-double-quotes)
+    L9 |  <div bad='' bad=''></div>
+                     ^ Duplicate of attribute name [ bad ] was found. (attr-no-duplication)
+    L10 |  <input type=\\"text\\"></input>
+                              ^ Tag must be paired, no start tag: [ </input> ] (tag-pair)
+    L11 |  <div class\\"foo\\">
+           ^ Special characters must be escaped : [ < ]. (spec-char-escape)
+    L11 |  <div class\\"foo\\">
+                          ^ Special characters must be escaped : [ > ]. (spec-char-escape)
+    L13 |          </div>
+                   ^ Tag must be paired, no start tag: [ </div> ] (tag-pair)
+    L14 |        </div>
+                 ^ Tag must be paired, no start tag: [ </div> ] (tag-pair)
+    L15 |      </hello>
+               ^ Tag must be paired, no start tag: [ </hello> ] (tag-pair)
+    L16 |    </test>
+             ^ Tag must be paired, no start tag: [ </test> ] (tag-pair)
+    L17 |  </div>
+           ^ Tag must be paired, no start tag: [ </div> ] (tag-pair)
+    L21 |          <div class='' what='' something=''></div>
+                       ^ The value of attribute [ class ] must be in double quotes. (attr-value-double-quotes)
+    L21 |          <div class='' what='' something=''></div>
+                                ^ The value of attribute [ what ] must be in double quotes. (attr-value-double-quotes)
+    L21 |          <div class='' what='' something=''></div>
+                                        ^ The value of attribute [ something ] must be in double quotes. (attr-value-double-quotes)
+    L25 |  </div>
+           ^ Tag must be paired, no start tag: [ </div> ] (tag-pair)
+    L26 |</bad>
+         ^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)
+    L27 |</bad>
+         ^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)
+"
+`;

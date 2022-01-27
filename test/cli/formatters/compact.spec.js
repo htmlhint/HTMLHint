@@ -1,49 +1,22 @@
-const ChildProcess = require('child_process')
-const fs = require('fs')
+const run = require('../../../test/test-utils').run
 const path = require('path')
+const serializer = require('jest-serializer-path')
+
+expect.addSnapshotSerializer(serializer)
 
 describe('CLI', () => {
   describe('Formatter: compact', () => {
-    it('should have stdout output with formatter compact', (done) => {
-      const expected = fs
-        .readFileSync(path.resolve(__dirname, 'compact.txt'), 'utf8')
-        .replace(
-          /\{\{path\}\}/g,
-          path.resolve(__dirname, '../../html/executable.html')
-        )
-        .replace(/\\u001b/g, '\u001b')
+    it('should have stdout output with formatter compact', async () => {
+      const { exitCode, stdout, stderr } = await run(__dirname, [
+        path.resolve(__dirname, '..', '__fixtures__', 'executable.html'),
+        '--format',
+        'compact',
+      ])
+      expect(exitCode).toBe(1)
 
-      const expectedParts = expected.split('\n')
+      expect(stdout).toMatchSnapshot('stdout')
 
-      ChildProcess.exec(
-        [
-          'node',
-          path.resolve(__dirname, '../../../bin/htmlhint'),
-          path.resolve(__dirname, '../../html/executable.html'),
-          '--format',
-          'compact',
-        ].join(' '),
-        (error, stdout, stderr) => {
-          expect(typeof error).toBe('object')
-          expect(error.code).toBe(1)
-
-          expect(stdout).not.toBe('')
-
-          const stdoutParts = stdout.split('\n')
-
-          expect(stdoutParts.length).toBe(expectedParts.length)
-
-          for (let i = 0; i < stdoutParts.length; i++) {
-            const lineIndicator = `[L${i + 1}]: `
-            expect(`${lineIndicator}${stdoutParts[i]}`).toBe(
-              `${lineIndicator}${expectedParts[i]}`
-            )
-          }
-
-          expect(stderr).toBe('')
-          done()
-        }
-      )
+      expect(stderr).toMatchSnapshot('stderr')
     })
   })
 })
