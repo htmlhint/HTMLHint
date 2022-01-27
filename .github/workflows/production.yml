@@ -72,6 +72,8 @@ jobs:
           timeout_minutes: 20
           max_attempts: 3
           command: npm run test
+        env:
+          FORCE_COLOR: 2
 
       - name: Run coverage
         if: matrix.node == '12' && matrix.os == 'ubuntu-latest'
@@ -80,6 +82,8 @@ jobs:
           timeout_minutes: 20
           max_attempts: 3
           command: npm run test:coverage
+        env:
+          FORCE_COLOR: 2
 
       - name: ⬆️ Upload coverage to Codecov
         if: matrix.node == '12' && matrix.os == 'ubuntu-latest'
