@@ -28,6 +28,18 @@ describe(`Rules: ${ruleId}`, () => {
       const messages = HTMLHint.verify(code, ruleOptions)
       expect(messages.length).to.be(0)
     })
+
+    it('Hidden input tag with matching label before should result in no error', () => {
+      const code = '<label for="some-id"/><input id="some-id" type="hidden" />'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).to.be(0)
+    })
+
+    it('Hidden input tag with matching label after should result in no error', () => {
+      const code = '<input id="some-id" type="hidden" /><label for="some-id"/>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).to.be(0)
+    })
   })
 
   describe('Error cases', () => {
