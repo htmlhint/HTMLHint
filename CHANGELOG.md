@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/htmlhint/HTMLHint/compare/v1.1.1...v1.1.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* ignore hidden input without label ([cab2907](https://github.com/htmlhint/HTMLHint/commit/cab2907170c130286d8d99bc56ddf401cc9b6c1d)), closes [#866](https://github.com/htmlhint/HTMLHint/issues/866)
+
 ## [1.1.1](https://github.com/htmlhint/HTMLHint/compare/v1.1.0...v1.1.1) (2022-01-23)
 
 
