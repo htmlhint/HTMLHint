@@ -36,9 +36,7 @@ export default class HTMLParser {
     this.lastEvent = null
   }
 
-  public makeMap(
-    str: string
-  ): {
+  public makeMap(str: string): {
     [key: string]: boolean
   } {
     const obj: { [key: string]: boolean } = {}
@@ -54,10 +52,12 @@ export default class HTMLParser {
   public parse(html: string): void {
     const mapCdataTags = this._mapCdataTags
 
-    // eslint-disable-next-line no-control-regex
-    const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
-    // eslint-disable-next-line no-control-regex
-    const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
+    const regTag =
+      // eslint-disable-next-line no-control-regex
+      /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
+    const regAttr =
+      // eslint-disable-next-line no-control-regex
+      /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
     const regLine = /\r?\n/g
 
     let match: RegExpExecArray | null
@@ -80,6 +80,18 @@ export default class HTMLParser {
       col: 1,
     })
 
+    // Do not ignore validation inside <script type="ng/template"> template
+    const isMapCdataTagsRequired = () => {
+      const attrType = arrAttrs.find((attr) => attr.name === 'type') || {
+        value: '',
+      }
+
+      return (
+        mapCdataTags[tagName] &&
+        attrType.value.indexOf('text/ng-template') === -1
+      )
+    }
+
     // Memory block
     const saveBlock = (
       type: string,
@@ -98,8 +110,7 @@ export default class HTMLParser {
       arrBlocks.push(data)
       this.fire(type, data)
 
-      let lineMatch: RegExpExecArray | null
-      while ((lineMatch = regLine.exec(raw))) {
+      while (regLine.exec(raw)) {
         line++
         lastLineIndex = pos + regLine.lastIndex
       }
@@ -183,7 +194,7 @@ export default class HTMLParser {
               close: match[6],
             })
 
-            if (mapCdataTags[tagName]) {
+            if (isMapCdataTagsRequired()) {
               tagCDATA = tagName
               attrsCDATA = arrAttrs.concat()
               arrCDATA = []
@@ -300,9 +311,7 @@ export default class HTMLParser {
     }
   }
 
-  public getMapAttrs(
-    arrAttrs: Attr[]
-  ): {
+  public getMapAttrs(arrAttrs: Attr[]): {
     [name: string]: string
   } {
     const mapAttrs: { [name: string]: string } = {}

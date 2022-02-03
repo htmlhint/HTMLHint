@@ -1,13 +1,11 @@
-const expect = require('expect.js')
-
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'attr-no-unnecessary-whitespace'
+const ruleId = 'attr-no-unnecessary-whitespace'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('Attribute with spaces should result in an error', () => {
     const codes = [
       '<div title = "a" />',
@@ -16,10 +14,10 @@ describe(`Rules: ${ruldId}`, () => {
     ]
     for (let i = 0; i < codes.length; i++) {
       const messages = HTMLHint.verify(codes[i], ruleOptions)
-      expect(messages.length).to.be(1)
-      expect(messages[0].rule.id).to.be(ruldId)
-      expect(messages[0].line).to.be(1)
-      expect(messages[0].col).to.be(5)
+      expect(messages.length).toBe(1)
+      expect(messages[0].rule.id).toBe(ruleId)
+      expect(messages[0].line).toBe(1)
+      expect(messages[0].col).toBe(5)
     }
   })
 
@@ -27,7 +25,7 @@ describe(`Rules: ${ruldId}`, () => {
     const codes = ['<div title="a" />', '<div title="a = a" />']
     for (let i = 0; i < codes.length; i++) {
       const messages = HTMLHint.verify(codes[i], ruleOptions)
-      expect(messages.length).to.be(0)
+      expect(messages.length).toBe(0)
     }
   })
 })

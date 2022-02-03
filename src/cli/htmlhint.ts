@@ -2,13 +2,13 @@
 
 import { queue as asyncQueue, series as asyncSeries } from 'async'
 import * as chalk from 'chalk'
-import * as program from 'commander'
+import { Command } from 'commander'
 import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
 import { IGlob } from 'glob'
 import * as parseGlob from 'parse-glob'
 import { dirname, resolve, sep } from 'path'
-import * as request from 'request'
+import fetch from 'node-fetch'
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
@@ -27,6 +27,8 @@ function map(val: string) {
   })
   return objMap
 }
+
+const program = new Command()
 
 program.on('--help', () => {
   console.log('  Examples:')
@@ -76,7 +78,9 @@ program
   .option('--warn', 'Warn only, exit with 0')
   .parse(process.argv)
 
-if (program.list) {
+const cliOptions = program.opts()
+
+if (cliOptions.list) {
   listRules()
   process.exit(0)
 }
@@ -88,19 +92,19 @@ if (arrTargets.length === 0) {
 
 // init formatter
 formatter.init(HTMLHint, {
-  nocolor: program.nocolor,
+  nocolor: cliOptions.nocolor,
 })
 
-const format = program.format || 'default'
+const format = cliOptions.format || 'default'
 if (format) {
   formatter.setFormat(format)
 }
 
 hintTargets(arrTargets, {
-  rulesdir: program.rulesdir,
-  ruleset: program.rules,
+  rulesdir: cliOptions.rulesdir,
+  ruleset: cliOptions.rules,
   formatter: formatter,
-  ignore: program.ignore,
+  ignore: cliOptions.ignore,
 })
 
 // list all rules
@@ -170,11 +174,11 @@ function hintTargets(
       allHintCount: allHintCount,
       time: spendTime,
     })
-    process.exit(!program.warn && allHintCount > 0 ? 1 : 0)
+    process.exit(!cliOptions.warn && allHintCount > 0 ? 1 : 0)
   })
 }
 
-// load custom rles
+// load custom rules
 function loadCustomRules(rulesdir: string) {
   rulesdir = rulesdir.replace(/\\/g, '/')
   if (existsSync(rulesdir)) {
@@ -215,7 +219,7 @@ function hintAllFiles(
     formatter: Formatter
     ruleset?: Ruleset
   },
-  onFinised: (result: {
+  onFinished: (result: {
     targetFileCount: number
     targetHintFileCount: number
     targetHintCount: number
@@ -244,7 +248,7 @@ function hintAllFiles(
   // init ruleset
   let ruleset = options.ruleset
   if (ruleset === undefined) {
-    ruleset = getConfig(program.config, globInfo.base, formatter)
+    ruleset = getConfig(cliOptions.config, globInfo.base, formatter)
   }
 
   // hint queue
@@ -292,7 +296,7 @@ function hintAllFiles(
 
   function checkAllHinted() {
     if (isWalkDone && isHintDone) {
-      onFinised({
+      onFinished({
         targetFileCount: targetFileCount,
         targetHintFileCount: targetHintFileCount,
         targetHintCount: targetHintCount,
@@ -303,16 +307,16 @@ function hintAllFiles(
 
   if (target === 'stdin') {
     isWalkDone = true
-    hintQueue.push(target)
+    void hintQueue.push(target)
   } else if (/^https?:\/\//.test(target)) {
     isWalkDone = true
-    hintQueue.push(target)
+    void hintQueue.push(target)
   } else {
     walkPath(
       globInfo,
       (filepath) => {
         isHintDone = false
-        hintQueue.push(filepath)
+        void hintQueue.push(filepath)
       },
       () => {
         isWalkDone = true
@@ -323,9 +327,7 @@ function hintAllFiles(
 }
 
 // split target to base & glob
-function getGlobInfo(
-  target: string
-): {
+function getGlobInfo(target: string): {
   base: string
   pattern: string
   ignore?: string
@@ -494,12 +496,15 @@ function hintUrl(
   ruleset: Ruleset | undefined,
   callback: (messages: Hint[]) => void
 ) {
-  request.get(url, (error, response, body) => {
-    if (!error && response.statusCode == 200) {
-      const messages = HTMLHint.verify(body, ruleset)
-      callback(messages)
+  const errorFn = () => callback([])
+  fetch(url).then((response) => {
+    if (response.ok) {
+      response.text().then((body) => {
+        const messages = HTMLHint.verify(body, ruleset)
+        callback(messages)
+      }, errorFn)
     } else {
-      callback([])
+      errorFn()
     }
-  })
+  }, errorFn)
 }

@@ -1,5 +1,3 @@
-const expect = require('expect.js')
-
 const ChildProcess = require('child_process')
 const fs = require('fs')
 const path = require('path')
@@ -25,27 +23,27 @@ describe('CLI', () => {
           'json',
         ].join(' '),
         (error, stdout, stderr) => {
-          expect(error).to.be.an('object')
-          expect(error.code).to.be.equal(1)
+          expect(typeof error).toBe('object')
+          expect(error.code).toBe(1)
 
-          expect(stdout).not.to.be.equal('')
+          expect(stdout).not.toBe('')
 
           const jsonStdout = JSON.parse(stdout)
-          expect(jsonStdout[0]).to.be.an('object')
-          expect(jsonStdout[0].file).to.contain('example.html')
+          expect(typeof jsonStdout[0]).toBe('object')
+          expect(jsonStdout[0].file).toContain('example.html')
 
           const stdoutMessages = jsonStdout[0].messages
 
-          expect(stdoutMessages).to.be.an(Array)
-          expect(stdoutMessages.length).to.be.equal(expected[0].messages.length)
+          expect(stdoutMessages).toBeInstanceOf(Array)
+          expect(stdoutMessages.length).toBe(expected[0].messages.length)
 
           for (let i = 0; i < stdoutMessages.length; i++) {
-            expect(stdoutMessages[i]).to.be.eql(expected[0].messages[i])
+            expect(stdoutMessages[i]).toEqual(expected[0].messages[i])
           }
 
-          expect(jsonStdout[0].time).to.be.a('number')
+          expect(typeof jsonStdout[0].time).toBe('number')
 
-          expect(stderr).to.be.equal('')
+          expect(stderr).toBe('')
           done()
         }
       )

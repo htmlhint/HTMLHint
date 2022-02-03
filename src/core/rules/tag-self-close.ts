@@ -5,7 +5,7 @@ export default {
   description: 'Empty tags must be self closed.',
   init(parser, reporter) {
     const mapEmptyTags = parser.makeMap(
-      'area,base,basefont,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
+      'area,base,basefont,bgsound,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr'
     ) //HTML 4.01 + HTML 5
 
     parser.addListener('tagstart', (event) => {

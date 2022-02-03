@@ -3,32 +3,52 @@ name: Test Release
 on:
   pull_request:
     branches:
+      - '+([0-9])?(.{+([0-9]),x}).x'
+      - main
       - master
+      - alpha
+      - beta
+      - next
+      - next-major
+    paths-ignore:
+      - 'website/**'
+      - '**/*.md'
+      - '**/*.mdx'
 
 jobs:
-  release:
+  test-release:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [12.x]
-        os: [ubuntu-latest]
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v1
+      - name: ⬇️ Checkout repo
+        uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v2
         with:
-          node-version: ${{ matrix.node }}
+          cache: npm
 
-      - name: Install dependencies
+      - name: 📥 Download deps
         run: npm ci
 
-      - name: Build
-        run: npm run build --if-present
+      - name: 🏗 Build
+        run: npm run build
 
-      - name: Semantic Release
-        run: npx semantic-release --dry-run
+      - name: 🚢 Release
+        uses: cycjimmy/semantic-release-action@v2
+        with:
+          dry_run: true
+          extra_plugins: |
+            @semantic-release/changelog
+            @semantic-release/git
+          branches: |
+            [
+              'master',
+              'next',
+              'next-major',
+              {name: 'beta', prerelease: true},
+              {name: 'alpha', prerelease: true}
+            ]
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

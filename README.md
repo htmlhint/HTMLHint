@@ -18,17 +18,14 @@
   <a href="https://www.npmjs.com/package/htmlhint">
     <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="NPM count">
   </a>
-  <img src="https://badgen.net/badge/license/MIT/green" alt="MIT Licence" />
+  <img src="https://badgen.net/badge/license/MIT/green" alt="MIT License" />
   <a href="https://discord.gg/nJ6J9CP">
     <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
-  </a>
-  <a href="http://roadmap.htmlhint.io/roadmap">
-    <img src="https://img.shields.io/badge/check-our%20roadmap-EE503E.svg" alt="Chat">
   </a>
 </p>
 
 <p align="center">
-  <a href="#installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="https://htmlhint.com">Website</a>
+  <a href="#-installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="https://htmlhint.com">Website</a>
 </p>
 
 ## Table of Contents

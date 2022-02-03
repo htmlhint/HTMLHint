@@ -4,7 +4,7 @@ title: input-requires-label
 keywords:
   - input
   - label
-  - accessiblity
+  - accessibility
 ---
 
 All [ input ] tags must have a corresponding [ label ] tag.

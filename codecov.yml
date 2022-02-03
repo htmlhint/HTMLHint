@@ -1,6 +1,16 @@
+codecov:
+  require_ci_to_pass: true
+
 coverage:
-  status:
-    project:
-      default:
-        target: auto # this is default
-        if_not_found: success # no commit found? still set a success
+  precision: 2
+  round: down
+  range: '70...100'
+
+parsers:
+  javascript:
+    enable_partials: yes
+
+comment:
+  layout: 'reach,diff,flags,files,footer'
+  behavior: default
+  require_changes: false

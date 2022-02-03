@@ -1,26 +1,24 @@
-const expect = require('expect.js')
-
 const HTMLHint = require('../../dist/htmlhint.js').HTMLHint
 
-const ruldId = 'style-disabled'
+const ruleId = 'style-disabled'
 const ruleOptions = {}
 
-ruleOptions[ruldId] = true
+ruleOptions[ruleId] = true
 
-describe(`Rules: ${ruldId}`, () => {
+describe(`Rules: ${ruleId}`, () => {
   it('Style tag should result in an error', () => {
     const code = '<body><style>body{}</style></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruldId)
-    expect(messages[0].line).to.be(1)
-    expect(messages[0].col).to.be(7)
-    expect(messages[0].type).to.be('warning')
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].line).toBe(1)
+    expect(messages[0].col).toBe(7)
+    expect(messages[0].type).toBe('warning')
   })
 
   it('Stylesheet link should not result in an error', () => {
     const code = '<body><link rel="stylesheet" href="test.css" /></body>'
     const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).to.be(0)
+    expect(messages.length).toBe(0)
   })
 })

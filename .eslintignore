@@ -6,6 +6,3 @@ dist
 
 # Website directory
 website
-
-# eslint cannot lint itself
-.eslintrc.js
