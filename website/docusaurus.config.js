@@ -34,13 +34,13 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        googleAnalytics: { trackingID: 'UA-109578378-3' },
       }),
     ],
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      googleAnalytics: { trackingID: 'UA-109578378-3' },
       navbar: {
         title: 'HTMLHint',
         logo: {
