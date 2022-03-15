@@ -1,4 +1,3 @@
-const expect = require('expect.js')
 const { parseGlob } = require('../../dist/cli/parse-glob.js')
 const parseGlobPkg = require('parse-glob')
 
@@ -21,10 +20,10 @@ describe('parseGlob', () => {
     for (const glob of testGlobs) {
       const result = parseGlob(glob)
       const pkgResult = parseGlobPkg(glob)
-      expect(result.base).to.equal(pkgResult.base)
-      expect(result.glob).to.equal(pkgResult.glob)
-      expect(result.is.glob).to.equal(pkgResult.is.glob)
-      expect(result.path.basename).to.equal(pkgResult.path.basename)
+      expect(result.base).toEqual(pkgResult.base)
+      expect(result.glob).toEqual(pkgResult.glob)
+      expect(result.is.glob).toEqual(pkgResult.is.glob)
+      expect(result.path.basename).toEqual(pkgResult.path.basename)
     }
   })
 })
