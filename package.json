@@ -59,7 +59,7 @@
   "dependencies": {
     "async": "3.2.3",
     "chalk": "^4.1.2",
-    "commander": "^8.3.0",
+    "commander": "^9.1.0",
     "glob": "^7.2.0",
     "is-glob": "^4.0.3",
     "node-fetch": "^2.6.2",
