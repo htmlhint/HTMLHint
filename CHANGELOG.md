@@ -1,3 +1,10 @@
+## [1.1.3](https://github.com/htmlhint/HTMLHint/compare/v1.1.2...v1.1.3) (2022-03-28)
+
+
+### Bug Fixes
+
+* replace parse-glob ([#927](https://github.com/htmlhint/HTMLHint/issues/927)) ([a990a17](https://github.com/htmlhint/HTMLHint/commit/a990a17a1177858433117065be62fa93f627e661))
+
 ## [1.1.2](https://github.com/htmlhint/HTMLHint/compare/v1.1.1...v1.1.2) (2022-01-27)
 
 
