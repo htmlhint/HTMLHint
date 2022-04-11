@@ -83,7 +83,7 @@ jobs:
 
       - name: ⬆️ Upload coverage to Codecov
         if: matrix.node == '12' && matrix.os == 'ubuntu-latest'
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v3
         with:
           files: ./coverage/coverage-final.json
           name: codecov-dev
