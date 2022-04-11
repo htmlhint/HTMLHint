@@ -1,3 +1,10 @@
+## [1.1.4](https://github.com/htmlhint/HTMLHint/compare/v1.1.3...v1.1.4) (2022-04-11)
+
+
+### Bug Fixes
+
+* duplicate text ([#981](https://github.com/htmlhint/HTMLHint/issues/981)) ([9c76af7](https://github.com/htmlhint/HTMLHint/commit/9c76af70923341e4f5412df4ae3d8e44f97d7ee0))
+
 ## [1.1.3](https://github.com/htmlhint/HTMLHint/compare/v1.1.2...v1.1.3) (2022-03-28)
 
 
