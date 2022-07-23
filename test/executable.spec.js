@@ -35,3 +35,37 @@ describe('Executable', () => {
     })
   })
 })
+
+describe('Config', () => {
+  it('should not display warning log message when it can parse config file', (done) => {
+    ChildProcess.exec(
+      [
+        'node',
+        path.resolve(__dirname, '../bin/htmlhint'),
+        path.resolve(__dirname, './html/executable.html'),
+        '--config',
+        path.resolve(__dirname, './conf/valid-json.conf'),
+      ].join(' '),
+      (error, stdout) => {
+        expect(stdout).toContain('Config loaded:')
+        done()
+      }
+    )
+  })
+
+  it('should display warning log message when it can not parse config file', (done) => {
+    ChildProcess.exec(
+      [
+        'node',
+        path.resolve(__dirname, '../bin/htmlhint'),
+        path.resolve(__dirname, './html/executable.html'),
+        '--config',
+        path.resolve(__dirname, './conf/invalid-json.conf'),
+      ].join(' '),
+      (error, stdout) => {
+        expect(stdout).toContain('Config could not be parsed:')
+        done()
+      }
+    )
+  })
+})
