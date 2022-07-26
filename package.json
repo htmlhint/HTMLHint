@@ -84,7 +84,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "husky": "^8.0.1",
     "jest": "^28.0.3",
-    "lint-staged": "^12.1.2",
+    "lint-staged": "^13.0.3",
     "parse-glob": "3.0.4",
     "prettier": "^2.4.1",
     "rimraf": "^3.0.2",
