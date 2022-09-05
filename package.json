@@ -72,7 +72,7 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@types/async": "^3.2.10",
-    "@types/glob": "^7.2.0",
+    "@types/glob": "^8.0.0",
     "@types/is-glob": "4.0.2",
     "@types/node-fetch": "^2.5.12",
     "@types/xml": "^1.0.6",
