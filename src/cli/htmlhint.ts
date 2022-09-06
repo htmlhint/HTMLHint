@@ -407,7 +407,8 @@ function getConfig(
         configPath: configPath,
       })
     } catch (e) {
-      // ignore
+      console.log('   Config could not be parsed: %s', chalk.yellow(configPath))
+      console.log('')
     }
 
     return ruleset
