@@ -16,7 +16,7 @@
     <img src="https://codecov.io/gh/htmlhint/HTMLHint/branch/master/graph/badge.svg" alt="Codecov">
   </a>
   <a href="https://www.npmjs.com/package/htmlhint">
-    <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="NPM count">
+    <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="npm count">
   </a>
   <img src="https://badgen.net/badge/license/MIT/green" alt="MIT License" />
   <a href="https://discord.gg/nJ6J9CP">
@@ -39,13 +39,11 @@
 
 ## 📟 Installation and Usage
 
-Prerequisites: Node.js (>=6.14), npm version 3+.
-
 There are two ways to install HTMLHint: globally and locally.
 
 ### Local Installation and Usage
 
-In case you want to include HTMLHint as part of your project, you can install it locally using NPM:
+In case you want to include HTMLHint as part of your project, you can install it locally using npm:
 
 ```
 $ npm install htmlhint --save-dev
@@ -60,7 +58,7 @@ $ ./node_modules/.bin/htmlhint www/**/*.html
 
 ### Global Installation and Usage
 
-If you want to make HTMLHint available to tools that run across all of your projects, you can install HTMLHint globally using NPM:
+If you want to make HTMLHint available to tools that run across all of your projects, you can install HTMLHint globally using npm:
 
 ```
 $ npm install htmlhint -g
@@ -73,7 +71,7 @@ $ htmlhint www/index.html
 $ htmlhint www/**/*.html
 ```
 
-You can even launch HTMLHint to analyse an URL:
+You can even launch HTMLHint to analyze an URL:
 
 ```
 $ htmlhint https://htmlhint.com/
@@ -104,7 +102,7 @@ $ htmlhint --rules tag-pair,id-class-value=underline index.html
 
 Inline rules in `test.html`:
 
-```
+```html
 <!--htmlhint tag-pair,id-class-value:underline -->
 <html>
 <head>
