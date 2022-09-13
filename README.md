@@ -105,8 +105,10 @@ Inline rules in `test.html`:
 ```html
 <!--htmlhint tag-pair,id-class-value:underline -->
 <html>
-<head>
-...
+  <head>
+    ...
+  </head>
+</html>
 ```
 
 ## 📙 Docs
