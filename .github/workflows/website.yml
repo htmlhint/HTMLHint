@@ -15,6 +15,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.14]
     steps:
       - name: ⬇️ Checkout
         uses: actions/checkout@v3
