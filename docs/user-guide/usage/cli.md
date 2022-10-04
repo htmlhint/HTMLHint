@@ -1,9 +1,9 @@
 ---
 id: cli
-title: Command Line Interface (CLI)
+title: Command-Line Interface (CLI)
 ---
 
-You can use HTMLHint on the command line. For example:
+You can use HTMLHint on the command-line. For example:
 
 ```shell
 npx htmlhint index.html
