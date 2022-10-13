@@ -33,4 +33,4 @@ Options are:
 
 CLI flags: `--ignore, -i`
 
-A list of patterns of files or folders to ignore. For example, `--ignore="**/folder/**,**/folder_two/**"
+A list of patterns of files or folders to ignore. For example, `--ignore="**/folder/**,**/folder_two/**"`
