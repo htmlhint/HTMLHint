@@ -25,5 +25,5 @@ The following pattern is considered violation:
 ```html
 <div title=" a"></div>
 <div title="a "></div>
-<div title =" a "></div>
+<div title=" a "></div>
 ```
