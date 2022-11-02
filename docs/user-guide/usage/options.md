@@ -28,6 +28,7 @@ Options are:
 - `html`
 - `junit`
 - `markdown`
+- `sarif`
 
 ## `ignore`
 
