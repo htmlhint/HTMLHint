@@ -3,21 +3,17 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 99
+      interval: monthly
   - package-ecosystem: npm
     directory: '/website'
     schedule:
-      interval: weekly
-    open-pull-requests-limit: 99
+      interval: monthly
   - package-ecosystem: npm
     directory: '/website/plugins/docusaurus-plugin-hotjar'
     schedule:
-      interval: weekly
+      interval: monthly
     versioning-strategy: increase
-    open-pull-requests-limit: 99
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
       interval: weekly
-    open-pull-requests-limit: 99
