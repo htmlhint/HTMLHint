@@ -37,7 +37,7 @@ jobs:
         node:
           - 14
           - 16
-          - 17
+          - 18
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:

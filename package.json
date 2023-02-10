@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git+https://github.com/htmlhint/HTMLHint.git"
   },
+  "engines": {
+    "node": ">=14"
+  },
   "license": "MIT",
   "main": "dist/htmlhint.js",
   "module": "dist/core/core.js",
