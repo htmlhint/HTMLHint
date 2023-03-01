@@ -87,7 +87,7 @@
     "lint-staged": "^13.0.3",
     "parse-glob": "3.0.4",
     "prettier": "^2.4.1",
-    "rimraf": "^3.0.2",
+    "rimraf": "^4.1.2",
     "rollup": "^2.60.1",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.5.2"
