@@ -48,8 +48,8 @@ title: List of rules
 
 ### Inline
 
-- [`inline-script-disabled`](/docs/user-guide/rules/inline-script-disabled): Inline script cannot be use.
-- [`inline-style-disabled`](/docs/user-guide/rules/inline-style-disabled): Inline style cannot be use.
+- [`inline-script-disabled`](/docs/user-guide/rules/inline-script-disabled): Inline script cannot be used.
+- [`inline-style-disabled`](/docs/user-guide/rules/inline-style-disabled): Inline style cannot be used.
 
 ### Formatting
 
