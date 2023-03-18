@@ -37,7 +37,7 @@ jobs:
         node:
           - 14
           - 16
-          - 17
+          - 18
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
@@ -109,7 +109,7 @@ jobs:
         run: npm run build
 
       - name: 🚢 Release
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v3
         with:
           extra_plugins: |
             @semantic-release/changelog
