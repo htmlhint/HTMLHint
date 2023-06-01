@@ -19,7 +19,7 @@
     "@docusaurus/plugin-sitemap": "^2.4.1",
     "@docusaurus/preset-classic": "^2.4.0",
     "@mdx-js/react": "^1.6.21",
-    "@svgr/webpack": "^7.0.0",
+    "@svgr/webpack": "^8.0.1",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
     "file-loader": "^6.2.0",
