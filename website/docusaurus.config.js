@@ -77,10 +77,6 @@ const config = {
                 href: 'https://stackoverflow.com/questions/tagged/htmlhint',
               },
               {
-                label: 'Discord',
-                href: 'https://discord.com/invite/nJ6J9CP',
-              },
-              {
                 label: 'Twitter',
                 href: 'https://twitter.com/HTMLHint',
               },
