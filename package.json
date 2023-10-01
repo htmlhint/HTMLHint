@@ -86,7 +86,7 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
-    "jest": "^29.0.2",
+    "jest": "^29.7.0",
     "lint-staged": "^13.2.2",
     "parse-glob": "3.0.4",
     "prettier": "^2.8.8",
