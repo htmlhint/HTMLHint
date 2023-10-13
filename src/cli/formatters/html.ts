@@ -1,7 +1,7 @@
 import { writeFileSync } from 'fs'
 import { FormatterCallback } from '../formatter'
 
-const htmlFormatter: FormatterCallback = function (formatter) {
+const htmlFormatter: FormatterCallback = function htmlFormatter(formatter) {
   formatter.on('end', (event) => {
     let fileContent = '<html>'
     fileContent += '<head><title>HTML Hint Violation Report</title></head>'
@@ -29,4 +29,4 @@ const htmlFormatter: FormatterCallback = function (formatter) {
   })
 }
 
-module.exports = htmlFormatter
+export default htmlFormatter

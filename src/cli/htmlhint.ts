@@ -10,12 +10,9 @@ import { parseGlob } from './parse-glob'
 import { dirname, resolve, sep } from 'path'
 import fetch from 'node-fetch'
 import * as stripJsonComments from 'strip-json-comments'
-import type { HTMLHint as IHTMLHint } from '../core/core'
+import { HTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
-import { Formatter } from './formatter'
-
-const HTMLHint: typeof IHTMLHint = require('../htmlhint.js').HTMLHint
-const formatter: Formatter = require('./formatter')
+import { formatter, type Formatter } from './formatter'
 
 const pkg = require('../../package.json')
 

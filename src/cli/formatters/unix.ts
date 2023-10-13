@@ -1,7 +1,7 @@
 import * as chalk from 'chalk'
 import { FormatterCallback } from '../formatter'
 
-const unixFormatter: FormatterCallback = function (
+const unixFormatter: FormatterCallback = function unixFormatter(
   formatter,
   HTMLHint,
   options
@@ -37,4 +37,4 @@ const unixFormatter: FormatterCallback = function (
   })
 }
 
-module.exports = unixFormatter
+export default unixFormatter
