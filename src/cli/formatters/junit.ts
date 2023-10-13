@@ -1,4 +1,4 @@
-import * as xml from 'xml'
+import xml from 'xml'
 import type { XmlObject } from 'xml'
 import { FormatterCallback } from '../formatter'
 

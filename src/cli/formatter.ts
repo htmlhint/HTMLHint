@@ -1,4 +1,4 @@
-import * as chalk from 'chalk'
+import chalk from 'chalk'
 import { EventEmitter } from 'events'
 import { sync as globSync } from 'glob'
 import { parse, resolve } from 'path'

@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
 import { queue as asyncQueue, series as asyncSeries } from 'async'
-import * as chalk from 'chalk'
+import chalk from 'chalk'
 import { Command } from 'commander'
 import { existsSync, readFileSync, statSync } from 'fs'
-import * as glob from 'glob'
+import { glob } from 'glob'
 import { IGlob } from 'glob'
 import { parseGlob } from './parse-glob'
 import { dirname, resolve, sep } from 'path'
 import fetch from 'node-fetch'
-import * as stripJsonComments from 'strip-json-comments'
+import stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 import { Formatter } from './formatter'

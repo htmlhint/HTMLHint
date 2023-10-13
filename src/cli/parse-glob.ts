@@ -1,4 +1,4 @@
-import * as isGlob from 'is-glob'
+import isGlob from 'is-glob'
 
 export function parseGlob(target: string): {
   base: string

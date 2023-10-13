@@ -4,6 +4,8 @@
 	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.HTMLHint = factory());
 })(this, (function () { 'use strict';
 
+	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
 	function getDefaultExportFromCjs (x) {
 		return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 	}
@@ -1345,7 +1347,7 @@
 	    id: 'tags-check',
 	    description: 'Checks html tags.',
 	    init(parser, reporter, options) {
-	        tagsTypings = Object.assign(Object.assign({}, tagsTypings), options);
+	        tagsTypings = { ...tagsTypings, ...options };
 	        parser.addListener('tagstart', (event) => {
 	            const attrs = event.attrs;
 	            const col = event.col + event.tagName.length + 1;
@@ -1437,85 +1439,114 @@
 	};
 
 	(function (exports) {
+	var __importDefault = (commonjsGlobal && commonjsGlobal.__importDefault) || function (mod) {
+	    return (mod && mod.__esModule) ? mod : { "default": mod };
+	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.attrNoUnnecessaryWhitespace = exports.tagsCheck = exports.titleRequire = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.emptyTagNotSelfClosed = exports.tagSelfClose = exports.tagPair = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClsasAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrNoDuplication = exports.attrSort = exports.attrLowercase = exports.altRequire = void 0;
 	var alt_require_1 = altRequire;
-	Object.defineProperty(exports, "altRequire", { enumerable: true, get: function () { return alt_require_1.default; } });
+	Object.defineProperty(exports, "altRequire", { enumerable: true, get: function () { return __importDefault(alt_require_1).default; } });
 	var attr_lowercase_1 = attrLowercase;
-	Object.defineProperty(exports, "attrLowercase", { enumerable: true, get: function () { return attr_lowercase_1.default; } });
+	Object.defineProperty(exports, "attrLowercase", { enumerable: true, get: function () { return __importDefault(attr_lowercase_1).default; } });
 	var attr_sorted_1 = attrSorted;
-	Object.defineProperty(exports, "attrSort", { enumerable: true, get: function () { return attr_sorted_1.default; } });
+	Object.defineProperty(exports, "attrSort", { enumerable: true, get: function () { return __importDefault(attr_sorted_1).default; } });
 	var attr_no_duplication_1 = attrNoDuplication;
-	Object.defineProperty(exports, "attrNoDuplication", { enumerable: true, get: function () { return attr_no_duplication_1.default; } });
+	Object.defineProperty(exports, "attrNoDuplication", { enumerable: true, get: function () { return __importDefault(attr_no_duplication_1).default; } });
 	var attr_unsafe_chars_1 = attrUnsafeChars;
-	Object.defineProperty(exports, "attrUnsafeChars", { enumerable: true, get: function () { return attr_unsafe_chars_1.default; } });
+	Object.defineProperty(exports, "attrUnsafeChars", { enumerable: true, get: function () { return __importDefault(attr_unsafe_chars_1).default; } });
 	var attr_value_double_quotes_1 = attrValueDoubleQuotes;
-	Object.defineProperty(exports, "attrValueDoubleQuotes", { enumerable: true, get: function () { return attr_value_double_quotes_1.default; } });
+	Object.defineProperty(exports, "attrValueDoubleQuotes", { enumerable: true, get: function () { return __importDefault(attr_value_double_quotes_1).default; } });
 	var attr_value_not_empty_1 = attrValueNotEmpty;
-	Object.defineProperty(exports, "attrValueNotEmpty", { enumerable: true, get: function () { return attr_value_not_empty_1.default; } });
+	Object.defineProperty(exports, "attrValueNotEmpty", { enumerable: true, get: function () { return __importDefault(attr_value_not_empty_1).default; } });
 	var attr_value_single_quotes_1 = attrValueSingleQuotes;
-	Object.defineProperty(exports, "attrValueSingleQuotes", { enumerable: true, get: function () { return attr_value_single_quotes_1.default; } });
+	Object.defineProperty(exports, "attrValueSingleQuotes", { enumerable: true, get: function () { return __importDefault(attr_value_single_quotes_1).default; } });
 	var attr_whitespace_1 = attrWhitespace;
-	Object.defineProperty(exports, "attrWhitespace", { enumerable: true, get: function () { return attr_whitespace_1.default; } });
+	Object.defineProperty(exports, "attrWhitespace", { enumerable: true, get: function () { return __importDefault(attr_whitespace_1).default; } });
 	var doctype_first_1 = doctypeFirst;
-	Object.defineProperty(exports, "doctypeFirst", { enumerable: true, get: function () { return doctype_first_1.default; } });
+	Object.defineProperty(exports, "doctypeFirst", { enumerable: true, get: function () { return __importDefault(doctype_first_1).default; } });
 	var doctype_html5_1 = doctypeHtml5;
-	Object.defineProperty(exports, "doctypeHTML5", { enumerable: true, get: function () { return doctype_html5_1.default; } });
+	Object.defineProperty(exports, "doctypeHTML5", { enumerable: true, get: function () { return __importDefault(doctype_html5_1).default; } });
 	var head_script_disabled_1 = headScriptDisabled;
-	Object.defineProperty(exports, "headScriptDisabled", { enumerable: true, get: function () { return head_script_disabled_1.default; } });
+	Object.defineProperty(exports, "headScriptDisabled", { enumerable: true, get: function () { return __importDefault(head_script_disabled_1).default; } });
 	var href_abs_or_rel_1 = hrefAbsOrRel;
-	Object.defineProperty(exports, "hrefAbsOrRel", { enumerable: true, get: function () { return href_abs_or_rel_1.default; } });
+	Object.defineProperty(exports, "hrefAbsOrRel", { enumerable: true, get: function () { return __importDefault(href_abs_or_rel_1).default; } });
 	var html_lang_require_1 = htmlLangRequire;
-	Object.defineProperty(exports, "htmlLangRequire", { enumerable: true, get: function () { return html_lang_require_1.default; } });
+	Object.defineProperty(exports, "htmlLangRequire", { enumerable: true, get: function () { return __importDefault(html_lang_require_1).default; } });
 	var id_class_ad_disabled_1 = idClassAdDisabled;
-	Object.defineProperty(exports, "idClsasAdDisabled", { enumerable: true, get: function () { return id_class_ad_disabled_1.default; } });
+	Object.defineProperty(exports, "idClsasAdDisabled", { enumerable: true, get: function () { return __importDefault(id_class_ad_disabled_1).default; } });
 	var id_class_value_1 = idClassValue;
-	Object.defineProperty(exports, "idClassValue", { enumerable: true, get: function () { return id_class_value_1.default; } });
+	Object.defineProperty(exports, "idClassValue", { enumerable: true, get: function () { return __importDefault(id_class_value_1).default; } });
 	var id_unique_1 = idUnique;
-	Object.defineProperty(exports, "idUnique", { enumerable: true, get: function () { return id_unique_1.default; } });
+	Object.defineProperty(exports, "idUnique", { enumerable: true, get: function () { return __importDefault(id_unique_1).default; } });
 	var inline_script_disabled_1 = inlineScriptDisabled;
-	Object.defineProperty(exports, "inlineScriptDisabled", { enumerable: true, get: function () { return inline_script_disabled_1.default; } });
+	Object.defineProperty(exports, "inlineScriptDisabled", { enumerable: true, get: function () { return __importDefault(inline_script_disabled_1).default; } });
 	var inline_style_disabled_1 = inlineStyleDisabled;
-	Object.defineProperty(exports, "inlineStyleDisabled", { enumerable: true, get: function () { return inline_style_disabled_1.default; } });
+	Object.defineProperty(exports, "inlineStyleDisabled", { enumerable: true, get: function () { return __importDefault(inline_style_disabled_1).default; } });
 	var input_requires_label_1 = inputRequiresLabel;
-	Object.defineProperty(exports, "inputRequiresLabel", { enumerable: true, get: function () { return input_requires_label_1.default; } });
+	Object.defineProperty(exports, "inputRequiresLabel", { enumerable: true, get: function () { return __importDefault(input_requires_label_1).default; } });
 	var script_disabled_1 = scriptDisabled;
-	Object.defineProperty(exports, "scriptDisabled", { enumerable: true, get: function () { return script_disabled_1.default; } });
+	Object.defineProperty(exports, "scriptDisabled", { enumerable: true, get: function () { return __importDefault(script_disabled_1).default; } });
 	var space_tab_mixed_disabled_1 = spaceTabMixedDisabled;
-	Object.defineProperty(exports, "spaceTabMixedDisabled", { enumerable: true, get: function () { return space_tab_mixed_disabled_1.default; } });
+	Object.defineProperty(exports, "spaceTabMixedDisabled", { enumerable: true, get: function () { return __importDefault(space_tab_mixed_disabled_1).default; } });
 	var spec_char_escape_1 = specCharEscape;
-	Object.defineProperty(exports, "specCharEscape", { enumerable: true, get: function () { return spec_char_escape_1.default; } });
+	Object.defineProperty(exports, "specCharEscape", { enumerable: true, get: function () { return __importDefault(spec_char_escape_1).default; } });
 	var src_not_empty_1 = srcNotEmpty;
-	Object.defineProperty(exports, "srcNotEmpty", { enumerable: true, get: function () { return src_not_empty_1.default; } });
+	Object.defineProperty(exports, "srcNotEmpty", { enumerable: true, get: function () { return __importDefault(src_not_empty_1).default; } });
 	var style_disabled_1 = styleDisabled;
-	Object.defineProperty(exports, "styleDisabled", { enumerable: true, get: function () { return style_disabled_1.default; } });
+	Object.defineProperty(exports, "styleDisabled", { enumerable: true, get: function () { return __importDefault(style_disabled_1).default; } });
 	var tag_pair_1 = tagPair;
-	Object.defineProperty(exports, "tagPair", { enumerable: true, get: function () { return tag_pair_1.default; } });
+	Object.defineProperty(exports, "tagPair", { enumerable: true, get: function () { return __importDefault(tag_pair_1).default; } });
 	var tag_self_close_1 = tagSelfClose;
-	Object.defineProperty(exports, "tagSelfClose", { enumerable: true, get: function () { return tag_self_close_1.default; } });
+	Object.defineProperty(exports, "tagSelfClose", { enumerable: true, get: function () { return __importDefault(tag_self_close_1).default; } });
 	var empty_tag_not_self_closed_1 = emptyTagNotSelfClosed;
-	Object.defineProperty(exports, "emptyTagNotSelfClosed", { enumerable: true, get: function () { return empty_tag_not_self_closed_1.default; } });
+	Object.defineProperty(exports, "emptyTagNotSelfClosed", { enumerable: true, get: function () { return __importDefault(empty_tag_not_self_closed_1).default; } });
 	var tagname_lowercase_1 = tagnameLowercase;
-	Object.defineProperty(exports, "tagnameLowercase", { enumerable: true, get: function () { return tagname_lowercase_1.default; } });
+	Object.defineProperty(exports, "tagnameLowercase", { enumerable: true, get: function () { return __importDefault(tagname_lowercase_1).default; } });
 	var tagname_specialchars_1 = tagnameSpecialchars;
-	Object.defineProperty(exports, "tagnameSpecialChars", { enumerable: true, get: function () { return tagname_specialchars_1.default; } });
+	Object.defineProperty(exports, "tagnameSpecialChars", { enumerable: true, get: function () { return __importDefault(tagname_specialchars_1).default; } });
 	var title_require_1 = titleRequire;
-	Object.defineProperty(exports, "titleRequire", { enumerable: true, get: function () { return title_require_1.default; } });
+	Object.defineProperty(exports, "titleRequire", { enumerable: true, get: function () { return __importDefault(title_require_1).default; } });
 	var tags_check_1 = tagsCheck;
-	Object.defineProperty(exports, "tagsCheck", { enumerable: true, get: function () { return tags_check_1.default; } });
+	Object.defineProperty(exports, "tagsCheck", { enumerable: true, get: function () { return __importDefault(tags_check_1).default; } });
 	var attr_no_unnecessary_whitespace_1 = attrNoUnnecessaryWhitespace;
-	Object.defineProperty(exports, "attrNoUnnecessaryWhitespace", { enumerable: true, get: function () { return attr_no_unnecessary_whitespace_1.default; } });
+	Object.defineProperty(exports, "attrNoUnnecessaryWhitespace", { enumerable: true, get: function () { return __importDefault(attr_no_unnecessary_whitespace_1).default; } });
 
 	}(rules));
 
 	(function (exports) {
+	var __createBinding = (commonjsGlobal && commonjsGlobal.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    var desc = Object.getOwnPropertyDescriptor(m, k);
+	    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+	      desc = { enumerable: true, get: function() { return m[k]; } };
+	    }
+	    Object.defineProperty(o, k2, desc);
+	}) : (function(o, m, k, k2) {
+	    if (k2 === undefined) k2 = k;
+	    o[k2] = m[k];
+	}));
+	var __setModuleDefault = (commonjsGlobal && commonjsGlobal.__setModuleDefault) || (Object.create ? (function(o, v) {
+	    Object.defineProperty(o, "default", { enumerable: true, value: v });
+	}) : function(o, v) {
+	    o["default"] = v;
+	});
+	var __importStar = (commonjsGlobal && commonjsGlobal.__importStar) || function (mod) {
+	    if (mod && mod.__esModule) return mod;
+	    var result = {};
+	    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+	    __setModuleDefault(result, mod);
+	    return result;
+	};
+	var __importDefault = (commonjsGlobal && commonjsGlobal.__importDefault) || function (mod) {
+	    return (mod && mod.__esModule) ? mod : { "default": mod };
+	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.HTMLParser = exports.Reporter = exports.HTMLRules = exports.HTMLHint = void 0;
-	const htmlparser_1 = htmlparser;
+	const htmlparser_1 = __importDefault(htmlparser);
 	exports.HTMLParser = htmlparser_1.default;
-	const reporter_1 = reporter;
+	const reporter_1 = __importDefault(reporter);
 	exports.Reporter = reporter_1.default;
-	const HTMLRules = rules;
+	const HTMLRules = __importStar(rules);
 	exports.HTMLRules = HTMLRules;
 	class HTMLHintCore {
 	    constructor() {
