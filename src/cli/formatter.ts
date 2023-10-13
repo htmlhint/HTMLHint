@@ -1,7 +1,7 @@
 import * as chalk from 'chalk'
 import { EventEmitter } from 'events'
-import { sync as globSync } from 'glob'
-import { parse, resolve } from 'path'
+import { readdirSync } from 'fs'
+import { join, parse, resolve } from 'path'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 
@@ -20,13 +20,11 @@ for (const formatterName in mapFormatters) {
 
 // load all formatters
 function loadFormatters() {
-  const arrFiles = globSync('./formatters/*.js', {
-    cwd: __dirname,
-    dot: false,
-    nodir: true,
-    strict: false,
-    silent: true,
+  const arrFiles = readdirSync(join(__dirname, './formatters'), {
+    withFileTypes: true,
   })
+    .filter((entry) => !entry.isDirectory() && entry.name.endsWith('.js'))
+    .map((entry) => join('./formatters', entry.name))
 
   const mapFormatters: { [name: string]: FormatterCallback } = {}
   arrFiles.forEach((file) => {
