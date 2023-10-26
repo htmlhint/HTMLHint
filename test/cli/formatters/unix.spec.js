@@ -26,6 +26,7 @@ describe('CLI', () => {
         (error, stdout, stderr) => {
           expect(typeof error).toBe('object')
           expect(error.code).toBe(1)
+
           expect(stdout).not.toBe('')
 
           const stdoutParts = stdout.split('\n')
