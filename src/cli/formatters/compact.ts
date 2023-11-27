@@ -38,4 +38,4 @@ const compactFormatter: FormatterCallback = function compactFormatter(
   })
 }
 
-export default compactFormatter
+export = compactFormatter

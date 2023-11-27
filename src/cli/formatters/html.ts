@@ -29,4 +29,4 @@ const htmlFormatter: FormatterCallback = function htmlFormatter(formatter) {
   })
 }
 
-export default htmlFormatter
+export = htmlFormatter

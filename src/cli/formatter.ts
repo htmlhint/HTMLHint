@@ -32,7 +32,7 @@ function loadFormatters() {
   arrFiles.forEach((file) => {
     const fileInfo = parse(file)
     const formatterPath = resolve(__dirname, file)
-    mapFormatters[fileInfo.name] = require(formatterPath).default
+    mapFormatters[fileInfo.name] = require(formatterPath)
   })
 
   return mapFormatters
@@ -77,7 +77,8 @@ export interface Formatter extends EventEmitter {
   on(event: 'end', listener: (event: FormatterEndEvent) => void): this
 }
 
-export const formatter: Formatter = new EventEmitter() as Formatter
+const formatter: Formatter = new EventEmitter() as Formatter
+module.exports = formatter
 
 formatter.getSupported = function () {
   return arrSupportedFormatters

@@ -59,4 +59,4 @@ const checkstyleFormatter: FormatterCallback = function checkstyleFormatter(
   })
 }
 
-export default checkstyleFormatter
+export = checkstyleFormatter

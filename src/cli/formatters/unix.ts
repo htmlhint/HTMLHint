@@ -37,4 +37,4 @@ const unixFormatter: FormatterCallback = function unixFormatter(
   })
 }
 
-export default unixFormatter
+export = unixFormatter

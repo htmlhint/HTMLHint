@@ -6,4 +6,4 @@ const jsonFormatter: FormatterCallback = function jsonFormatter(formatter) {
   })
 }
 
-export default jsonFormatter
+export = jsonFormatter

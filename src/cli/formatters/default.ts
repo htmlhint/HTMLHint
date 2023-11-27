@@ -60,4 +60,4 @@ const defaultFormatter: FormatterCallback = function defaultFormatter(
   })
 }
 
-export default defaultFormatter
+export = defaultFormatter

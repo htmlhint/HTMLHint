@@ -44,4 +44,4 @@ const markdownFormatter: FormatterCallback = function markdownFormatter(
   })
 }
 
-export default markdownFormatter
+export = markdownFormatter

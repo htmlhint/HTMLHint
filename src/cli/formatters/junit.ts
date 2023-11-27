@@ -61,4 +61,4 @@ const junitFormatter: FormatterCallback = function junitFormatter(
   })
 }
 
-export default junitFormatter
+export = junitFormatter
