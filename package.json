@@ -73,7 +73,7 @@
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
     "@rollup/plugin-commonjs": "^21.0.1",
-    "@rollup/plugin-node-resolve": "^15.0.2",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/async": "^3.2.19",
     "@types/glob": "^8.0.0",
     "@types/is-glob": "4.0.2",
