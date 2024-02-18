@@ -7,7 +7,7 @@ export default {
     parser.addListener('text', (event) => {
       const raw = event.raw
       // TODO: improve use-cases for &
-      const reSpecChar = /([<>])|( \& )/g
+      const reSpecChar = /([<>])/g
       let match
 
       while ((match = reSpecChar.exec(raw))) {
