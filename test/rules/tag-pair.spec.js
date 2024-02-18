@@ -12,7 +12,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages.length).toBe(2)
     expect(messages[0].rule.id).toBe(ruleId)
     expect(messages[0].line).toBe(1)
-    expect(messages[0].col).toBe(9)
+    expect(messages[0].col).toBe(5)
     expect(messages[1].rule.id).toBe(ruleId)
     expect(messages[1].line).toBe(1)
     expect(messages[1].col).toBe(20)
