@@ -6,7 +6,6 @@ export default {
   init(parser, reporter) {
     parser.addListener('text', (event) => {
       const raw = event.raw
-      // TODO: improve use-cases for &
       const reSpecChar = /([<>])/g
       let match
 
