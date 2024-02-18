@@ -24,6 +24,17 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].col).toBe(9)
   })
 
+  it('No end tag should result in an error with correct line number and column of the start tag.', () => {
+    const code = '<div>\r\n  <h1>\r\n    <p>aaa</p>\r\n</div>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].line).toBe(2)
+    expect(messages[0].line).not.toBe(4)
+    expect(messages[0].col).toBe(3)
+    expect(messages[0].col).not.toBe(1)
+  })
+
   it('No start tag should result in an error', () => {
     const code = '</div>'
     const messages = HTMLHint.verify(code, ruleOptions)
