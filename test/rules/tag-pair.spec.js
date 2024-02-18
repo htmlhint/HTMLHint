@@ -29,10 +29,10 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(1)
     expect(messages[0].rule.id).toBe(ruleId)
-    expect(messages[0].line).toBe(2)
     expect(messages[0].line).not.toBe(4)
-    expect(messages[0].col).toBe(3)
     expect(messages[0].col).not.toBe(1)
+    expect(messages[0].line).toBe(2)
+    expect(messages[0].col).toBe(3)
   })
 
   it('No start tag should result in an error', () => {
