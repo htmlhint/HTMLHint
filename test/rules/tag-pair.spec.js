@@ -24,7 +24,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].col).toBe(9)
   })
 
-  it('No end tag should result in an error with correct line number and column of the start tag.', () => {
+  it('No end tag should result in an error with correct line number and column of the start tag', () => {
     const code = '<div>\r\n  <h1>\r\n    <p>aaa</p>\r\n</div>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(1)
