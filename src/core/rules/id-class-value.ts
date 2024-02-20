@@ -17,7 +17,7 @@ export default {
           'The id and class attribute values must be in lowercase and split by a dash.',
       },
       hump: {
-        regId: /^[a-z][a-zA-Z\d]*(?:[A-Z][a-zA-Z\d]*)*$/,
+        regId: /^[a-z](?=[a-zA-Z\d]*$)(?:[a-zA-Z\d]*(?:[A-Z][a-zA-Z\d]*)*)?$/,
         message:
           'The id and class attribute values must meet the camelCase style.',
       },
