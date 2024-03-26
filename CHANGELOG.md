@@ -1,3 +1,7 @@
+### Features
+
+* add support format: sarif ([#1045](https://github.com/htmlhint/HTMLHint/issues/1045))
+
 ## [1.1.4](https://github.com/htmlhint/HTMLHint/compare/v1.1.3...v1.1.4) (2022-04-11)
 
 
