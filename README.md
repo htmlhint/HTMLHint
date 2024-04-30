@@ -53,6 +53,13 @@ $ ./node_modules/.bin/htmlhint www/index.html
 $ ./node_modules/.bin/htmlhint www/**/*.html
 ```
 
+Or, you can use HTMLHint linter programatically, like this:
+```
+import { HTMLHint } from 'htmlhint';
+const htmlVerificationHints = HTMLHint.verify(localHtmlContent);
+console.log('htmlVerificationHints', htmlVerificationHints); // this logs a list of `Hint`s which contain information on all linting errors
+```
+
 ### Global Installation and Usage
 
 If you want to make HTMLHint available to tools that run across all of your projects, you can install HTMLHint globally using npm:
