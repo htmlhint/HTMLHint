@@ -17,7 +17,7 @@ The following pattern are **not** considered violations:
 
 <!-- prettier-ignore -->
 ```html
-abs: <a href="http://www.alibaba.com/">test1</a> <a href="https://www.alipay.com/">test2</a>
+abs: <a href="https://www.htmlhint.com/">test1</a> <a href="https://www.github.com/">test2</a>
 rel: <a href="test.html">test1</a> <a href="../test.html">test2</a>
 
 ```

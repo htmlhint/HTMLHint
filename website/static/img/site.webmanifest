@@ -1,6 +1,6 @@
 {
-    "name": "",
-    "short_name": "",
+    "name": "HTMLHint",
+    "short_name": "HTMLHint",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",

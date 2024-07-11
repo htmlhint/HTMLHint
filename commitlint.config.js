@@ -9,7 +9,7 @@ module.exports = {
   extends: ['@commitlint/config-conventional'],
   parserPreset: './parser-preset',
 
-  // Add your own rules. See http://marionebl.github.io/commitlint
+  // Add your own rules. See https://marionebl.github.io/commitlint
   rules: {
     // Apply valid scopes and types
     'scope-enum': [scopeValidationLevel, 'always', validScopes],
