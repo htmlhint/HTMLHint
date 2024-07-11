@@ -1,6 +1,6 @@
 ---
 id: doctype-html5
-title: Doctype HTML5
+title: doctype-html5
 ---
 
 Rule ID: `doctype-html5`
@@ -19,4 +19,11 @@ The following pattern are **not** considered violations:
 <!-- prettier-ignore -->
 ```html
 <!DOCTYPE HTML><html>
+```
+
+The following pattern is considered a violation:
+
+<!-- prettier-ignore -->
+```html
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><html>
 ```
