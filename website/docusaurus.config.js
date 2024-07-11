@@ -77,8 +77,8 @@ const config = {
                 href: 'https://stackoverflow.com/questions/tagged/htmlhint',
               },
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/HTMLHint',
+                label: 'X (Twitter)',
+                href: 'https://x.com/HTMLHint',
               },
             ],
           },
