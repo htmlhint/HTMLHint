@@ -50,8 +50,6 @@
     "Yanis"
   ],
   "language": "en,en-US",
-  "ignorePaths": [
-    ".cspell.json"
-  ],
+  "ignorePaths": [".cspell.json"],
   "useGitignore": true
 }
