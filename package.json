@@ -60,7 +60,7 @@
     }
   },
   "dependencies": {
-    "async": "3.2.4",
+    "async": "3.2.6",
     "chalk": "^4.1.2",
     "commander": "^9.1.0",
     "glob": "^8.0.3",
@@ -74,7 +74,7 @@
     "@commitlint/config-conventional": "^17.0.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^15.0.2",
-    "@types/async": "^3.2.19",
+    "@types/async": "^3.2.24",
     "@types/glob": "^8.0.0",
     "@types/is-glob": "4.0.2",
     "@types/node-fetch": "^2.5.12",
