@@ -18,7 +18,7 @@
     "@docusaurus/core": "^2.4.3",
     "@docusaurus/plugin-sitemap": "^2.4.1",
     "@docusaurus/preset-classic": "^2.4.3",
-    "@mdx-js/react": "^1.6.21",
+    "@mdx-js/react": "^3.1.0",
     "@svgr/webpack": "^7.0.0",
     "classnames": "^2.3.2",
     "clsx": "^1.2.1",
