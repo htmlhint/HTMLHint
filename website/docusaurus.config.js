@@ -18,7 +18,18 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'HTMLHint',
   projectName: PACKAGE.name,
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    {
+      src: 'https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js',
+      defer: true,
+      'data-domain': 'htmlhint.com',
+    },
+    {
+      src: 'data:text/javascript,window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }',
+      defer: true,
+    },
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
