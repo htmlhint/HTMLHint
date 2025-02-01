@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "^2.4.3",
-    "@docusaurus/plugin-sitemap": "^2.4.1",
+    "@docusaurus/plugin-sitemap": "^3.7.0",
     "@docusaurus/preset-classic": "^2.4.3",
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^7.0.0",
