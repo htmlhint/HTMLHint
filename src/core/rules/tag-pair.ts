@@ -16,6 +16,7 @@ export default {
         stack.push({
           tagName: tagName,
           line: event.line,
+          col: event.col,
           raw: event.raw,
         })
       }
@@ -46,8 +47,8 @@ export default {
             )} ], start tag match failed [ ${lastEvent.raw} ] on line ${
               lastEvent.line
             }.`,
-            event.line,
-            event.col,
+            lastEvent.line || event.line,
+            lastEvent.col || event.col,
             this,
             event.raw
           )
