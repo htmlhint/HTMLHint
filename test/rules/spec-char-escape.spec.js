@@ -21,13 +21,10 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[2].col).toBe(4)
   })
 
-  it('Special characters: & should result in an error', () => {
-    const code = '<p>Steinway & Sons</p>'
+  it('Special characters: normal & should not result in an error', () => {
+    const code = '<p>Steinway & Sons Q&A</p>'
     const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(1)
-    expect(messages[0].rule.id).toBe(ruleId)
-    expect(messages[0].line).toBe(1)
-    expect(messages[0].col).toBe(12)
+    expect(messages.length).toBe(0)
   })
 
   it('Normal text should not result in an error', () => {
