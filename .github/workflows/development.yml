@@ -67,7 +67,7 @@ jobs:
 
       - name: Run tests
         if: matrix.node != '18' || matrix.os != 'ubuntu-latest'
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@v3
         with:
           timeout_minutes: 20
           max_attempts: 3
@@ -75,7 +75,7 @@ jobs:
 
       - name: Run coverage
         if: matrix.node == '18' && matrix.os == 'ubuntu-latest'
-        uses: nick-invision/retry@v2
+        uses: nick-invision/retry@v3
         with:
           timeout_minutes: 20
           max_attempts: 3
