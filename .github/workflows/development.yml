@@ -87,3 +87,4 @@ jobs:
         with:
           files: ./coverage/coverage-final.json
           name: codecov-dev
+          token: ${{ secrets.CODECOV_TOKEN }}
