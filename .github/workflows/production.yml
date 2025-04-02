@@ -87,6 +87,7 @@ jobs:
         with:
           files: ./coverage/coverage-final.json
           name: codecov-prod
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   release:
     if: ${{ github.repository == 'htmlhint/HTMLHint' &&
