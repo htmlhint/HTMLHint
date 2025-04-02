@@ -35,7 +35,7 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - .nvmrc
+          - 18
           - 20
           - 22
           - 23
@@ -66,7 +66,7 @@ jobs:
         run: git diff --exit-code
 
       - name: Run tests
-        if: matrix.node != '.nvmrc' || matrix.os != 'ubuntu-latest'
+        if: matrix.node != '18' || matrix.os != 'ubuntu-latest'
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 20
@@ -74,7 +74,7 @@ jobs:
           command: npm run test
 
       - name: Run coverage
-        if: matrix.node == '.nvmrc' && matrix.os == 'ubuntu-latest'
+        if: matrix.node == '18' && matrix.os == 'ubuntu-latest'
         uses: nick-invision/retry@v2
         with:
           timeout_minutes: 20
@@ -82,7 +82,7 @@ jobs:
           command: npm run test:coverage
 
       - name: ⬆️ Upload coverage to Codecov
-        if: matrix.node == '.nvmrc' && matrix.os == 'ubuntu-latest'
+        if: matrix.node == '18' && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v3
         with:
           files: ./coverage/coverage-final.json
