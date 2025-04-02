@@ -46,9 +46,9 @@
     "url": "https://opencollective.com/htmlhint"
   },
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "volta": {
-    "node": "16.20.2"
+    "node": "18.20.8"
   }
 }
