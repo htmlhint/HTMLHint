@@ -19,9 +19,6 @@
     <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="npm count">
   </a>
   <img src="https://badgen.net/badge/license/MIT/green" alt="MIT License" />
-  <a href="https://discord.gg/nJ6J9CP">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
-  </a>
 </p>
 
 <p align="center">
@@ -54,6 +51,13 @@ After that, You can run HTMLHint on any file or directory like this:
 ```
 $ ./node_modules/.bin/htmlhint www/index.html
 $ ./node_modules/.bin/htmlhint www/**/*.html
+```
+
+Or, you can use HTMLHint linter programatically, like this:
+```
+import { HTMLHint } from 'htmlhint';
+const htmlVerificationHints = HTMLHint.verify(localHtmlContent);
+console.log('htmlVerificationHints', htmlVerificationHints); // this logs a list of `Hint`s which contain information on all linting errors
 ```
 
 ### Global Installation and Usage

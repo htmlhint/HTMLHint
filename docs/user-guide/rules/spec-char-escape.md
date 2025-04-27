@@ -12,11 +12,13 @@ Level: `error`
 1. true: enable rule
 2. false: disable rule
 
-The following pattern are **not** considered violations:
+The following patterns are **not** considered violations:
 
 <!-- prettier-ignore -->
 ```html
 <span>aaa&gt;bbb&lt;ccc</span>
+<span>Steinway &amp; Sons, Q&amp;A</span>
+<span>Steinway & Sons, Q&A</span>
 ```
 
 The following pattern is considered violation:

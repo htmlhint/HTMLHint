@@ -37,7 +37,7 @@ lib-cov
 .nyc_output
 coverage
 
-# Compiled binary addons (http://nodejs.org/api/addons.html)
+# Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
 # Dependency directory

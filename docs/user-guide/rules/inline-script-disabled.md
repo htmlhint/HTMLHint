@@ -3,7 +3,7 @@ id: inline-script-disabled
 title: inline-script-disabled
 ---
 
-Inline script cannot be use.
+Inline script cannot be used.
 
 Level: `warning`
 

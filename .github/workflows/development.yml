@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: ⎔ Setup node ${{ matrix.node }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           cache: npm
 
@@ -35,22 +35,23 @@ jobs:
       fail-fast: false
       matrix:
         node:
-          - 14
-          - 16
-          - 17
+          - 18
+          - 20
+          - 22
+          - 23
         os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⬇️ Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: ⎔ Setup node ${{ matrix.node }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: npm
@@ -65,24 +66,25 @@ jobs:
         run: git diff --exit-code
 
       - name: Run tests
-        if: matrix.node != '16' || matrix.os != 'ubuntu-latest'
-        uses: nick-invision/retry@v2
+        if: matrix.node != '18' || matrix.os != 'ubuntu-latest'
+        uses: nick-invision/retry@v3
         with:
           timeout_minutes: 20
           max_attempts: 3
           command: npm run test
 
       - name: Run coverage
-        if: matrix.node == '16' && matrix.os == 'ubuntu-latest'
-        uses: nick-invision/retry@v2
+        if: matrix.node == '18' && matrix.os == 'ubuntu-latest'
+        uses: nick-invision/retry@v3
         with:
           timeout_minutes: 20
           max_attempts: 3
           command: npm run test:coverage
 
       - name: ⬆️ Upload coverage to Codecov
-        if: matrix.node == '16' && matrix.os == 'ubuntu-latest'
-        uses: codecov/codecov-action@v3
+        if: matrix.node == '18' && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v5
         with:
           files: ./coverage/coverage-final.json
           name: codecov-dev
+          token: ${{ secrets.CODECOV_TOKEN }}
