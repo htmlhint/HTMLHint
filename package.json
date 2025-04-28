@@ -16,9 +16,6 @@
     "type": "git",
     "url": "git+https://github.com/htmlhint/HTMLHint.git"
   },
-  "engines": {
-    "node": ">=18"
-  },
   "license": "MIT",
   "main": "dist/htmlhint.js",
   "module": "dist/core/core.js",
@@ -82,17 +79,23 @@
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.59.1",
     "commitizen": "^4.2.4",
-    "eslint": "^8.57.0",
+    "eslint": "8.57.1",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
     "husky": "^8.0.3",
     "jest": "^29.0.2",
     "lint-staged": "^13.2.2",
     "parse-glob": "3.0.4",
-    "prettier": "^2.8.8",
+    "prettier": "2.8.8",
     "rimraf": "^3.0.2",
     "rollup": "^2.60.1",
     "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.5.2"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "volta": {
+    "node": "18.20.8"
   }
 }
