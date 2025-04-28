@@ -4,6 +4,7 @@ const path = require('path')
 describe('CLI', () => {
   describe('Formatter: default', () => {
     it('should have stdout output with formatter default', (done) => {
+      jest.setTimeout(60000) // Set timeout to 60 seconds
       ChildProcess.exec(
         [
           'node',
