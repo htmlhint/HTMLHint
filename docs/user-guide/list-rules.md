@@ -25,6 +25,7 @@ title: List of rules
 - [`attr-value-single-quotes`](/docs/user-guide/rules/attr-value-single-quotes): Attribute values must be in single quotes.
 - [`attr-value-not-empty`](/docs/user-guide/rules/attr-value-not-empty): All attributes must have values.
 - [`attr-sorted`](/docs/user-guide/rules/attr-sorted): Attributes should be sorted in order.
+- [`attr-space-between`](/docs/user-guide/rules/attr-space-between): Attributes must have spaces between them.
 - [`attr-whitespace`](/docs/user-guide/rules/attr-whitespace): No leading or trailing spaces in attribute values.
 - [`alt-require`](/docs/user-guide/rules/alt-require): The alt attribute of an element must be present and alt attribute of area[href] and input[type=image] must have a value.
 - [`input-requires-label`](/docs/user-guide/rules/input-requires-label): All [ input ] tags must have a corresponding [ label ] tag.

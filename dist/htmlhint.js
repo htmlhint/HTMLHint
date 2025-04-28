@@ -30,7 +30,7 @@
 	    }
 	    parse(html) {
 	        const mapCdataTags = this._mapCdataTags;
-	        const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s+[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g;
+	        const regTag = /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:\s*[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g;
 	        const regAttr = /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g;
 	        const regLine = /\r?\n/g;
 	        let match;
@@ -451,6 +451,54 @@
 	    },
 	};
 
+	var attrNoDuplication = {};
+
+	Object.defineProperty(attrNoDuplication, "__esModule", { value: true });
+	attrNoDuplication.default = {
+	    id: 'attr-no-duplication',
+	    description: 'Elements cannot have duplicate attributes.',
+	    init(parser, reporter) {
+	        parser.addListener('tagstart', (event) => {
+	            const attrs = event.attrs;
+	            let attr;
+	            let attrName;
+	            const col = event.col + event.tagName.length + 1;
+	            const mapAttrName = {};
+	            for (let i = 0, l = attrs.length; i < l; i++) {
+	                attr = attrs[i];
+	                attrName = attr.name;
+	                if (mapAttrName[attrName] === true) {
+	                    reporter.error(`Duplicate of attribute name [ ${attr.name} ] was found.`, event.line, col + attr.index, this, attr.raw);
+	                }
+	                mapAttrName[attrName] = true;
+	            }
+	        });
+	    },
+	};
+
+	var attrNoUnnecessaryWhitespace = {};
+
+	Object.defineProperty(attrNoUnnecessaryWhitespace, "__esModule", { value: true });
+	attrNoUnnecessaryWhitespace.default = {
+	    id: 'attr-no-unnecessary-whitespace',
+	    description: 'No spaces between attribute names and values.',
+	    init(parser, reporter, options) {
+	        const exceptions = Array.isArray(options) ? options : [];
+	        parser.addListener('tagstart', (event) => {
+	            const attrs = event.attrs;
+	            const col = event.col + event.tagName.length + 1;
+	            for (let i = 0; i < attrs.length; i++) {
+	                if (exceptions.indexOf(attrs[i].name) === -1) {
+	                    const match = /(\s*)=(\s*)/.exec(attrs[i].raw.trim());
+	                    if (match && (match[1].length !== 0 || match[2].length !== 0)) {
+	                        reporter.error(`The attribute '${attrs[i].name}' must not have spaces between the name and value.`, event.line, col + attrs[i].index, this, attrs[i].raw);
+	                    }
+	                }
+	            }
+	        });
+	    },
+	};
+
 	var attrSorted = {};
 
 	Object.defineProperty(attrSorted, "__esModule", { value: true });
@@ -501,26 +549,19 @@
 	    },
 	};
 
-	var attrNoDuplication = {};
+	var attrSpaceBetween = {};
 
-	Object.defineProperty(attrNoDuplication, "__esModule", { value: true });
-	attrNoDuplication.default = {
-	    id: 'attr-no-duplication',
-	    description: 'Elements cannot have duplicate attributes.',
+	Object.defineProperty(attrSpaceBetween, "__esModule", { value: true });
+	attrSpaceBetween.default = {
+	    id: 'attr-space-between',
+	    description: 'Attribute must have spaces between.',
 	    init(parser, reporter) {
 	        parser.addListener('tagstart', (event) => {
-	            const attrs = event.attrs;
-	            let attr;
-	            let attrName;
-	            const col = event.col + event.tagName.length + 1;
-	            const mapAttrName = {};
-	            for (let i = 0, l = attrs.length; i < l; i++) {
-	                attr = attrs[i];
-	                attrName = attr.name;
-	                if (mapAttrName[attrName] === true) {
-	                    reporter.error(`Duplicate of attribute name [ ${attr.name} ] was found.`, event.line, col + attr.index, this, attr.raw);
+	            for (const { index, name, raw } of event.attrs) {
+	                const col = event.col + event.tagName.length + 1;
+	                if (!raw.match(/^\s/)) {
+	                    reporter.error(`Attribute "${name}" must be separated with a space`, event.line, col + index, this, event.raw);
 	                }
-	                mapAttrName[attrName] = true;
 	            }
 	        });
 	    },
@@ -690,6 +731,25 @@
 	        };
 	        parser.addListener('all', onComment);
 	        parser.addListener('tagstart', onTagStart);
+	    },
+	};
+
+	var emptyTagNotSelfClosed = {};
+
+	Object.defineProperty(emptyTagNotSelfClosed, "__esModule", { value: true });
+	emptyTagNotSelfClosed.default = {
+	    id: 'empty-tag-not-self-closed',
+	    description: 'Empty tags must not use self closed syntax.',
+	    init(parser, reporter) {
+	        const mapEmptyTags = parser.makeMap('area,base,basefont,bgsound,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr');
+	        parser.addListener('tagstart', (event) => {
+	            const tagName = event.tagName.toLowerCase();
+	            if (mapEmptyTags[tagName] !== undefined) {
+	                if (event.close) {
+	                    reporter.error(`The empty tag : [ ${tagName} ] must not use self closed syntax.`, event.line, event.col, this, event.raw);
+	                }
+	            }
+	        });
 	    },
 	};
 
@@ -1214,25 +1274,6 @@
 	    },
 	};
 
-	var emptyTagNotSelfClosed = {};
-
-	Object.defineProperty(emptyTagNotSelfClosed, "__esModule", { value: true });
-	emptyTagNotSelfClosed.default = {
-	    id: 'empty-tag-not-self-closed',
-	    description: 'Empty tags must not use self closed syntax.',
-	    init(parser, reporter) {
-	        const mapEmptyTags = parser.makeMap('area,base,basefont,bgsound,br,col,frame,hr,img,input,isindex,link,meta,param,embed,track,command,source,keygen,wbr');
-	        parser.addListener('tagstart', (event) => {
-	            const tagName = event.tagName.toLowerCase();
-	            if (mapEmptyTags[tagName] !== undefined) {
-	                if (event.close) {
-	                    reporter.error(`The empty tag : [ ${tagName} ] must not use self closed syntax.`, event.line, event.col, this, event.raw);
-	                }
-	            }
-	        });
-	    },
-	};
-
 	var tagnameLowercase = {};
 
 	Object.defineProperty(tagnameLowercase, "__esModule", { value: true });
@@ -1267,46 +1308,6 @@
 	                reporter.error(`The html element name of [ ${tagName} ] contains special character.`, event.line, event.col, this, event.raw);
 	            }
 	        });
-	    },
-	};
-
-	var titleRequire = {};
-
-	Object.defineProperty(titleRequire, "__esModule", { value: true });
-	titleRequire.default = {
-	    id: 'title-require',
-	    description: '<title> must be present in <head> tag.',
-	    init(parser, reporter) {
-	        let headBegin = false;
-	        let hasTitle = false;
-	        const onTagStart = (event) => {
-	            const tagName = event.tagName.toLowerCase();
-	            if (tagName === 'head') {
-	                headBegin = true;
-	            }
-	            else if (tagName === 'title' && headBegin) {
-	                hasTitle = true;
-	            }
-	        };
-	        const onTagEnd = (event) => {
-	            const tagName = event.tagName.toLowerCase();
-	            if (hasTitle && tagName === 'title') {
-	                const lastEvent = event.lastEvent;
-	                if (lastEvent.type !== 'text' ||
-	                    (lastEvent.type === 'text' && /^\s*$/.test(lastEvent.raw) === true)) {
-	                    reporter.error('<title></title> must not be empty.', event.line, event.col, this, event.raw);
-	                }
-	            }
-	            else if (tagName === 'head') {
-	                if (hasTitle === false) {
-	                    reporter.error('<title> must be present in <head> tag.', event.line, event.col, this, event.raw);
-	                }
-	                parser.removeListener('tagstart', onTagStart);
-	                parser.removeListener('tagend', onTagEnd);
-	            }
-	        };
-	        parser.addListener('tagstart', onTagStart);
-	        parser.addListener('tagend', onTagEnd);
 	    },
 	};
 
@@ -1413,40 +1414,61 @@
 	    },
 	};
 
-	var attrNoUnnecessaryWhitespace = {};
+	var titleRequire = {};
 
-	Object.defineProperty(attrNoUnnecessaryWhitespace, "__esModule", { value: true });
-	attrNoUnnecessaryWhitespace.default = {
-	    id: 'attr-no-unnecessary-whitespace',
-	    description: 'No spaces between attribute names and values.',
-	    init(parser, reporter, options) {
-	        const exceptions = Array.isArray(options) ? options : [];
-	        parser.addListener('tagstart', (event) => {
-	            const attrs = event.attrs;
-	            const col = event.col + event.tagName.length + 1;
-	            for (let i = 0; i < attrs.length; i++) {
-	                if (exceptions.indexOf(attrs[i].name) === -1) {
-	                    const match = /(\s*)=(\s*)/.exec(attrs[i].raw.trim());
-	                    if (match && (match[1].length !== 0 || match[2].length !== 0)) {
-	                        reporter.error(`The attribute '${attrs[i].name}' must not have spaces between the name and value.`, event.line, col + attrs[i].index, this, attrs[i].raw);
-	                    }
+	Object.defineProperty(titleRequire, "__esModule", { value: true });
+	titleRequire.default = {
+	    id: 'title-require',
+	    description: '<title> must be present in <head> tag.',
+	    init(parser, reporter) {
+	        let headBegin = false;
+	        let hasTitle = false;
+	        const onTagStart = (event) => {
+	            const tagName = event.tagName.toLowerCase();
+	            if (tagName === 'head') {
+	                headBegin = true;
+	            }
+	            else if (tagName === 'title' && headBegin) {
+	                hasTitle = true;
+	            }
+	        };
+	        const onTagEnd = (event) => {
+	            const tagName = event.tagName.toLowerCase();
+	            if (hasTitle && tagName === 'title') {
+	                const lastEvent = event.lastEvent;
+	                if (lastEvent.type !== 'text' ||
+	                    (lastEvent.type === 'text' && /^\s*$/.test(lastEvent.raw) === true)) {
+	                    reporter.error('<title></title> must not be empty.', event.line, event.col, this, event.raw);
 	                }
 	            }
-	        });
+	            else if (tagName === 'head') {
+	                if (hasTitle === false) {
+	                    reporter.error('<title> must be present in <head> tag.', event.line, event.col, this, event.raw);
+	                }
+	                parser.removeListener('tagstart', onTagStart);
+	                parser.removeListener('tagend', onTagEnd);
+	            }
+	        };
+	        parser.addListener('tagstart', onTagStart);
+	        parser.addListener('tagend', onTagEnd);
 	    },
 	};
 
 	(function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.attrNoUnnecessaryWhitespace = exports.tagsCheck = exports.titleRequire = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.emptyTagNotSelfClosed = exports.tagSelfClose = exports.tagPair = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClsasAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrNoDuplication = exports.attrSort = exports.attrLowercase = exports.altRequire = void 0;
+	exports.titleRequire = exports.tagsCheck = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.tagSelfClose = exports.tagPair = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClsasAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.emptyTagNotSelfClosed = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrSpaceBetween = exports.attrSort = exports.attrNoUnnecessaryWhitespace = exports.attrNoDuplication = exports.attrLowercase = exports.altRequire = void 0;
 	var alt_require_1 = altRequire;
 	Object.defineProperty(exports, "altRequire", { enumerable: true, get: function () { return alt_require_1.default; } });
 	var attr_lowercase_1 = attrLowercase;
 	Object.defineProperty(exports, "attrLowercase", { enumerable: true, get: function () { return attr_lowercase_1.default; } });
-	var attr_sorted_1 = attrSorted;
-	Object.defineProperty(exports, "attrSort", { enumerable: true, get: function () { return attr_sorted_1.default; } });
 	var attr_no_duplication_1 = attrNoDuplication;
 	Object.defineProperty(exports, "attrNoDuplication", { enumerable: true, get: function () { return attr_no_duplication_1.default; } });
+	var attr_no_unnecessary_whitespace_1 = attrNoUnnecessaryWhitespace;
+	Object.defineProperty(exports, "attrNoUnnecessaryWhitespace", { enumerable: true, get: function () { return attr_no_unnecessary_whitespace_1.default; } });
+	var attr_sorted_1 = attrSorted;
+	Object.defineProperty(exports, "attrSort", { enumerable: true, get: function () { return attr_sorted_1.default; } });
+	var attr_space_between_1 = attrSpaceBetween;
+	Object.defineProperty(exports, "attrSpaceBetween", { enumerable: true, get: function () { return attr_space_between_1.default; } });
 	var attr_unsafe_chars_1 = attrUnsafeChars;
 	Object.defineProperty(exports, "attrUnsafeChars", { enumerable: true, get: function () { return attr_unsafe_chars_1.default; } });
 	var attr_value_double_quotes_1 = attrValueDoubleQuotes;
@@ -1461,6 +1483,8 @@
 	Object.defineProperty(exports, "doctypeFirst", { enumerable: true, get: function () { return doctype_first_1.default; } });
 	var doctype_html5_1 = doctypeHtml5;
 	Object.defineProperty(exports, "doctypeHTML5", { enumerable: true, get: function () { return doctype_html5_1.default; } });
+	var empty_tag_not_self_closed_1 = emptyTagNotSelfClosed;
+	Object.defineProperty(exports, "emptyTagNotSelfClosed", { enumerable: true, get: function () { return empty_tag_not_self_closed_1.default; } });
 	var head_script_disabled_1 = headScriptDisabled;
 	Object.defineProperty(exports, "headScriptDisabled", { enumerable: true, get: function () { return head_script_disabled_1.default; } });
 	var href_abs_or_rel_1 = hrefAbsOrRel;
@@ -1493,18 +1517,14 @@
 	Object.defineProperty(exports, "tagPair", { enumerable: true, get: function () { return tag_pair_1.default; } });
 	var tag_self_close_1 = tagSelfClose;
 	Object.defineProperty(exports, "tagSelfClose", { enumerable: true, get: function () { return tag_self_close_1.default; } });
-	var empty_tag_not_self_closed_1 = emptyTagNotSelfClosed;
-	Object.defineProperty(exports, "emptyTagNotSelfClosed", { enumerable: true, get: function () { return empty_tag_not_self_closed_1.default; } });
 	var tagname_lowercase_1 = tagnameLowercase;
 	Object.defineProperty(exports, "tagnameLowercase", { enumerable: true, get: function () { return tagname_lowercase_1.default; } });
 	var tagname_specialchars_1 = tagnameSpecialchars;
 	Object.defineProperty(exports, "tagnameSpecialChars", { enumerable: true, get: function () { return tagname_specialchars_1.default; } });
-	var title_require_1 = titleRequire;
-	Object.defineProperty(exports, "titleRequire", { enumerable: true, get: function () { return title_require_1.default; } });
 	var tags_check_1 = tagsCheck;
 	Object.defineProperty(exports, "tagsCheck", { enumerable: true, get: function () { return tags_check_1.default; } });
-	var attr_no_unnecessary_whitespace_1 = attrNoUnnecessaryWhitespace;
-	Object.defineProperty(exports, "attrNoUnnecessaryWhitespace", { enumerable: true, get: function () { return attr_no_unnecessary_whitespace_1.default; } });
+	var title_require_1 = titleRequire;
+	Object.defineProperty(exports, "titleRequire", { enumerable: true, get: function () { return title_require_1.default; } });
 
 	}(rules));
 
