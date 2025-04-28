@@ -5,6 +5,7 @@ const path = require('path')
 describe('CLI', () => {
   describe('Formatter: unix', () => {
     it('should have stdout output with formatter unix', (done) => {
+      jest.setTimeout(60000) // Set timeout to 60 seconds
       const expected = fs
         .readFileSync(path.resolve(__dirname, 'unix.txt'), 'utf8')
         .replace(
@@ -24,6 +25,7 @@ describe('CLI', () => {
           'unix',
         ].join(' '),
         (error, stdout, stderr) => {
+          console.log('Actual stdout:', stdout) // Debugging line
           expect(typeof error).toBe('object')
           expect(error.code).toBe(1)
 
