@@ -93,9 +93,9 @@
     "typescript": "^4.5.2"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "volta": {
-    "node": "18.20.8"
+    "node": "20.19.1"
   }
 }
