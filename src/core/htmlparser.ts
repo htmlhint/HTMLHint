@@ -167,15 +167,15 @@ export default class HTMLParser {
             const quote = attrMatch[2]
               ? attrMatch[2]
               : attrMatch[4]
-              ? attrMatch[4]
-              : ''
+                ? attrMatch[4]
+                : ''
             const value = attrMatch[3]
               ? attrMatch[3]
               : attrMatch[5]
-              ? attrMatch[5]
-              : attrMatch[6]
-              ? attrMatch[6]
-              : ''
+                ? attrMatch[5]
+                : attrMatch[6]
+                  ? attrMatch[6]
+                  : ''
 
             arrAttrs.push({
               name: name,
