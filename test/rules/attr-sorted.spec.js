@@ -29,9 +29,9 @@ describe(`Rules: ${ruleId}`, () => {
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
-    expect(messages.length).to.be(1)
-    expect(messages[0].rule.id).to.be(ruleId)
-    expect(messages[0].message).to.contain('["img","meta","font"]')
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["img","meta","font"]')
   })
 
   it('Attribute unsorted of tags of various types should throw error', () => {
