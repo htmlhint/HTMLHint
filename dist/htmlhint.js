@@ -1155,6 +1155,7 @@
 	                stack.push({
 	                    tagName: tagName,
 	                    line: event.line,
+	                    col: event.col,
 	                    raw: event.raw,
 	                });
 	            }
@@ -1174,7 +1175,7 @@
 	                }
 	                if (arrTags.length > 0) {
 	                    const lastEvent = stack[stack.length - 1];
-	                    reporter.error(`Tag must be paired, missing: [ ${arrTags.join('')} ], start tag match failed [ ${lastEvent.raw} ] on line ${lastEvent.line}.`, event.line, event.col, this, event.raw);
+	                    reporter.error(`Tag must be paired, missing: [ ${arrTags.join('')} ], start tag match failed [ ${lastEvent.raw} ] on line ${lastEvent.line}.`, lastEvent.line || event.line, lastEvent.col || event.col, this, event.raw);
 	                }
 	                stack.length = pos;
 	            }
