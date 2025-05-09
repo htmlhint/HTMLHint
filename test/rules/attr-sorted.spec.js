@@ -16,12 +16,22 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].message).toContain('["id","class","title"]')
   })
 
-  it('Attribute unsorted tags that are unrecognizable should not throw error', () => {
-    const code = '<div img="image" meta="meta" font="font"></div>'
+  it('Attribute sorted tags that are unrecognizable should not throw error', () => {
+    const code = '<div font="font" img="image" meta="meta"></div>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
     expect(messages.length).toBe(0)
+  })
+
+  it('Attribute unsorted tags that are unrecognizable should throw error', () => {
+    const code = '<div img="image" meta="meta" font="font"></div>'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["img","meta","font"]')
   })
 
   it('Attribute unsorted of tags of various types should throw error', () => {
