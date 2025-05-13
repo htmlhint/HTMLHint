@@ -1439,7 +1439,7 @@
 
 	(function (exports) {
 	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.attrNoUnnecessaryWhitespace = exports.tagsCheck = exports.titleRequire = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.emptyTagNotSelfClosed = exports.tagSelfClose = exports.tagPair = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClsasAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrNoDuplication = exports.attrSort = exports.attrLowercase = exports.altRequire = void 0;
+	exports.attrNoUnnecessaryWhitespace = exports.tagsCheck = exports.titleRequire = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.emptyTagNotSelfClosed = exports.tagSelfClose = exports.tagPair = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClassAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrNoDuplication = exports.attrSort = exports.attrLowercase = exports.altRequire = void 0;
 	var alt_require_1 = altRequire;
 	Object.defineProperty(exports, "altRequire", { enumerable: true, get: function () { return alt_require_1.default; } });
 	var attr_lowercase_1 = attrLowercase;
@@ -1469,7 +1469,7 @@
 	var html_lang_require_1 = htmlLangRequire;
 	Object.defineProperty(exports, "htmlLangRequire", { enumerable: true, get: function () { return html_lang_require_1.default; } });
 	var id_class_ad_disabled_1 = idClassAdDisabled;
-	Object.defineProperty(exports, "idClsasAdDisabled", { enumerable: true, get: function () { return id_class_ad_disabled_1.default; } });
+	Object.defineProperty(exports, "idClassAdDisabled", { enumerable: true, get: function () { return id_class_ad_disabled_1.default; } });
 	var id_class_value_1 = idClassValue;
 	Object.defineProperty(exports, "idClassValue", { enumerable: true, get: function () { return id_class_value_1.default; } });
 	var id_unique_1 = idUnique;
