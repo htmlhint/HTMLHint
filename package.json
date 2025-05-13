@@ -16,6 +16,10 @@
     "type": "git",
     "url": "git+https://github.com/htmlhint/HTMLHint.git"
   },
+  "funding": {
+    "type": "Open Collective",
+    "url": "https://opencollective.com/htmlhint"
+  },
   "license": "MIT",
   "main": "dist/htmlhint.js",
   "module": "dist/core/core.js",
