@@ -5,82 +5,88 @@ on:
     branches:
       - main
       - master
-      - alpha
-      - beta
-      - next
-      - next-major
-      - '!all-contributors/**'
+    paths-ignore:
+      - 'website/**'
+      - '**/*.md'
+      - '**/*.mdx'
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
       - name: ⬇️ Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: ⎔ Setup node ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           cache: npm
 
       - name: 📥 Download deps
         run: npm ci
-        env:
-          HUSKY_SKIP_INSTALL: true
 
       - name: 🧪 Run lint
         run: npm run lint
 
   build:
-    # ignore all-contributors PRs
-    if: ${{ !contains(github.head_ref, 'all-contributors') }}
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     needs: lint
     strategy:
+      fail-fast: false
       matrix:
         node:
-          - 12
-          - 14
-          - 16
-          - 17
-        os: [ubuntu-latest, macOS-latest, windows-latest]
+          - 20
+          - 22
+          - 24
+        os: [ubuntu-latest, windows-latest]
 
     steps:
       - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.12.1
         with:
           access_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: ⬇️ Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: ⎔ Setup node ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           cache: npm
 
       - name: 📥 Download deps
         run: npm ci
-        env:
-          HUSKY_SKIP_INSTALL: true
 
       - name: 🏗 Build
         run: npm run build
-        env:
-          CI: true
 
       - name: Ensure no git changes
         run: git diff --exit-code
 
+      - name: Run tests
+        if: matrix.os != 'ubuntu-latest'
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: npm run test
+
       - name: Run coverage
-        run: npm run test:coverage
+        if: matrix.node == '20' && matrix.os == 'ubuntu-latest'
+        uses: nick-invision/retry@v3
+        with:
+          timeout_minutes: 20
+          max_attempts: 3
+          command: npm run test:coverage
 
       - name: ⬆️ Upload coverage to Codecov
-        uses: codecov/codecov-action@v2
+        if: matrix.node == '20' && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v5
         with:
           files: ./coverage/coverage-final.json
           name: codecov-prod
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   release:
     if: ${{ github.repository == 'htmlhint/HTMLHint' &&
@@ -90,28 +96,25 @@ jobs:
     needs: build
     steps:
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: ⎔ Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           cache: npm
 
       - name: 📥 Download deps
         run: npm ci
-        env:
-          HUSKY_SKIP_INSTALL: true
 
       - name: 🏗 Build
         run: npm run build
 
       - name: 🚢 Release
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v4
         with:
-          semantic_version: 17
           extra_plugins: |
-            @semantic-release/changelog@3.0.0
-            @semantic-release/git@9.0.0
+            @semantic-release/changelog
+            @semantic-release/git
           branches: |
             [
               'master',

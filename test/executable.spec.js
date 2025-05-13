@@ -1,5 +1,3 @@
-const expect = require('expect.js')
-
 const ChildProcess = require('child_process')
 const path = require('path')
 
@@ -33,37 +31,41 @@ describe('Executable', () => {
     })
 
     c.stdout.on('data', () => {
-      expect(stdoutEnd || processEnd).to.be(false)
+      expect(stdoutEnd || processEnd).toBe(false)
     })
   })
+})
 
-  for (const format of [
-    'checkstyle',
-    'compact',
-    'default',
-    'html',
-    'json',
-    'junit',
-    'markdown',
-    'unix',
-  ]) {
-    it(`should have stdout output with formatter ${format}`, (done) => {
-      ChildProcess.exec(
-        [
-          'node',
-          path.resolve(__dirname, '../bin/htmlhint'),
-          path.resolve(__dirname, './html/executable.html'),
-          '--format',
-          format,
-        ].join(' '),
-        (error, stdout, stderr) => {
-          expect(error).to.be.an('object')
-          expect(error.code).to.be.equal(1)
-          expect(stdout).not.to.be.equal('')
-          expect(stderr).to.be.equal('')
-          done()
-        }
-      )
-    })
-  }
+describe('Config', () => {
+  it('should not display warning log message when it can parse config file', (done) => {
+    ChildProcess.exec(
+      [
+        'node',
+        path.resolve(__dirname, '../bin/htmlhint'),
+        path.resolve(__dirname, './html/executable.html'),
+        '--config',
+        path.resolve(__dirname, './conf/valid-json.conf'),
+      ].join(' '),
+      (error, stdout) => {
+        expect(stdout).toContain('Config loaded:')
+        done()
+      }
+    )
+  })
+
+  it('should display warning log message when it can not parse config file', (done) => {
+    ChildProcess.exec(
+      [
+        'node',
+        path.resolve(__dirname, '../bin/htmlhint'),
+        path.resolve(__dirname, './html/executable.html'),
+        '--config',
+        path.resolve(__dirname, './conf/invalid-json.conf'),
+      ].join(' '),
+      (error, stdout) => {
+        expect(stdout).toContain('Config could not be parsed:')
+        done()
+      }
+    )
+  })
 })

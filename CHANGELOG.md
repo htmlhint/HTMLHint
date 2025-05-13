@@ -1,3 +1,38 @@
+## [1.1.4](https://github.com/htmlhint/HTMLHint/compare/v1.1.3...v1.1.4) (2022-04-11)
+
+
+### Bug Fixes
+
+* duplicate text ([#981](https://github.com/htmlhint/HTMLHint/issues/981)) ([9c76af7](https://github.com/htmlhint/HTMLHint/commit/9c76af70923341e4f5412df4ae3d8e44f97d7ee0))
+
+## [1.1.3](https://github.com/htmlhint/HTMLHint/compare/v1.1.2...v1.1.3) (2022-03-28)
+
+
+### Bug Fixes
+
+* replace parse-glob ([#927](https://github.com/htmlhint/HTMLHint/issues/927)) ([a990a17](https://github.com/htmlhint/HTMLHint/commit/a990a17a1177858433117065be62fa93f627e661))
+
+## [1.1.2](https://github.com/htmlhint/HTMLHint/compare/v1.1.1...v1.1.2) (2022-01-27)
+
+
+### Bug Fixes
+
+* ignore hidden input without label ([cab2907](https://github.com/htmlhint/HTMLHint/commit/cab2907170c130286d8d99bc56ddf401cc9b6c1d)), closes [#866](https://github.com/htmlhint/HTMLHint/issues/866)
+
+## [1.1.1](https://github.com/htmlhint/HTMLHint/compare/v1.1.0...v1.1.1) (2022-01-23)
+
+
+### Bug Fixes
+
+* correct links to rule docs ([6a95ae6](https://github.com/htmlhint/HTMLHint/commit/6a95ae6e14a8f5ace86a7114285daef24d9d42cf)), closes [#867](https://github.com/htmlhint/HTMLHint/issues/867)
+
+# [1.1.0](https://github.com/htmlhint/HTMLHint/compare/v1.0.0...v1.1.0) (2021-12-31)
+
+
+### Features
+
+* **attr-lowercase:** ignore camelCase SVG attributes ([aa16722](https://github.com/htmlhint/HTMLHint/commit/aa167227ac153987e7dcc2ff728c6c3372cd9037))
+
 # [1.0.0](https://github.com/htmlhint/HTMLHint/compare/v0.16.3...v1.0.0) (2021-11-26)
 
 
@@ -23,14 +58,14 @@
 
 ### Bug Fixes
 
-* clenaup non-functional typos ([#727](https://github.com/htmlhint/HTMLHint/issues/727)) ([98e45b9](https://github.com/htmlhint/HTMLHint/commit/98e45b9b2e1d7a4b0576d1944b1769c21b52b11e))
+* cleanup non-functional typos ([#727](https://github.com/htmlhint/HTMLHint/issues/727)) ([98e45b9](https://github.com/htmlhint/HTMLHint/commit/98e45b9b2e1d7a4b0576d1944b1769c21b52b11e))
 
 ## [0.16.2](https://github.com/htmlhint/HTMLHint/compare/v0.16.1...v0.16.2) (2021-11-23)
 
 
 ### Bug Fixes
 
-* clenaup non-functional typos ([#727](https://github.com/htmlhint/HTMLHint/issues/727)) ([98e45b9](https://github.com/htmlhint/HTMLHint/commit/98e45b9b2e1d7a4b0576d1944b1769c21b52b11e))
+* cleanup non-functional typos ([#727](https://github.com/htmlhint/HTMLHint/issues/727)) ([98e45b9](https://github.com/htmlhint/HTMLHint/commit/98e45b9b2e1d7a4b0576d1944b1769c21b52b11e))
 
 ## [0.16.1](https://github.com/htmlhint/HTMLHint/compare/v0.16.0...v0.16.1) (2021-11-12)
 
@@ -87,7 +122,7 @@
 * add missing branches to action release ([#425](https://github.com/htmlhint/HTMLHint/issues/425)) ([62c2f3c](https://github.com/htmlhint/HTMLHint/commit/62c2f3c4dbc31235f644da42b1eeccd8d73c83aa))
 * add missing plugins for docusaurus ([#402](https://github.com/htmlhint/HTMLHint/issues/402)) ([d9ef347](https://github.com/htmlhint/HTMLHint/commit/d9ef3476bfb935314a38dabfbd5ad055deec7b6a))
 * correctly call hint queue drain ([#409](https://github.com/htmlhint/HTMLHint/issues/409)) ([7b63cb2](https://github.com/htmlhint/HTMLHint/commit/7b63cb282dc41c8757913d92aefc11ddcaab6039))
-* dupplicate ga ([#407](https://github.com/htmlhint/HTMLHint/issues/407)) ([506f25a](https://github.com/htmlhint/HTMLHint/commit/506f25a31d52b66ef58a12eb258bed3bf517146b))
+* duplicate ga ([#407](https://github.com/htmlhint/HTMLHint/issues/407)) ([506f25a](https://github.com/htmlhint/HTMLHint/commit/506f25a31d52b66ef58a12eb258bed3bf517146b))
 * eslint fix ([820ff8f](https://github.com/htmlhint/HTMLHint/commit/820ff8fe4714bc3ba47565eb58d87910d60934e8))
 * fix url repo pkg ([#413](https://github.com/htmlhint/HTMLHint/issues/413)) ([b7f5786](https://github.com/htmlhint/HTMLHint/commit/b7f5786a803fb2a31c5819b70b608b133f2e1e51))
 * github token ([18441f6](https://github.com/htmlhint/HTMLHint/commit/18441f6c54fe540ac86cdedbc61846a2662d78c8))
@@ -109,7 +144,7 @@
 * add missing branches to action release ([#425](https://github.com/htmlhint/HTMLHint/issues/425)) ([62c2f3c](https://github.com/htmlhint/HTMLHint/commit/62c2f3c4dbc31235f644da42b1eeccd8d73c83aa))
 * add missing plugins for docusaurus ([#402](https://github.com/htmlhint/HTMLHint/issues/402)) ([d9ef347](https://github.com/htmlhint/HTMLHint/commit/d9ef3476bfb935314a38dabfbd5ad055deec7b6a))
 * correctly call hint queue drain ([#409](https://github.com/htmlhint/HTMLHint/issues/409)) ([7b63cb2](https://github.com/htmlhint/HTMLHint/commit/7b63cb282dc41c8757913d92aefc11ddcaab6039))
-* dupplicate ga ([#407](https://github.com/htmlhint/HTMLHint/issues/407)) ([506f25a](https://github.com/htmlhint/HTMLHint/commit/506f25a31d52b66ef58a12eb258bed3bf517146b))
+* duplicate ga ([#407](https://github.com/htmlhint/HTMLHint/issues/407)) ([506f25a](https://github.com/htmlhint/HTMLHint/commit/506f25a31d52b66ef58a12eb258bed3bf517146b))
 * eslint fix ([820ff8f](https://github.com/htmlhint/HTMLHint/commit/820ff8fe4714bc3ba47565eb58d87910d60934e8))
 * fix url repo pkg ([#413](https://github.com/htmlhint/HTMLHint/issues/413)) ([b7f5786](https://github.com/htmlhint/HTMLHint/commit/b7f5786a803fb2a31c5819b70b608b133f2e1e51))
 * **attr-no-unnecessary-whitespace:** fix when equals symbol in value ([#405](https://github.com/htmlhint/HTMLHint/issues/405)) ([fe4f3c6](https://github.com/htmlhint/HTMLHint/commit/fe4f3c6732d76ec78a19e97d2640e63be3dd6735))
@@ -206,7 +241,7 @@ fix:
 
 1. Fix issue: #77 `<link rel=icon><link rel=icon>`
 2. Made the descriptions and error messages of rules more clear to people
-3. head-script-disabled(fule): No head not result error
+3. head-script-disabled(rule): No head not result error
 
 ## 0.9.7 (2015-3-8)
 

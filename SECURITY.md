@@ -1,6 +1,6 @@
 # Security Notice
 
-This document outlines general security procedures and policies for the GoTrustify infrastructure
+This document outlines general security procedures and policies for HTMLHint
 
 ## Reporting a vulnerability
 

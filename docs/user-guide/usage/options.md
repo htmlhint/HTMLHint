@@ -7,7 +7,7 @@ title: Options
 
 CLI flag: `--config`
 
-Path to a JSON, YAML, or JS file that contains your [configuration object](../configuration.md).
+Path to a JSON file that contains your [configuration object](../configuration.md).
 
 Use this option if you don't want HTMLHint to search for a configuration file.
 
@@ -33,4 +33,4 @@ Options are:
 
 CLI flags: `--ignore, -i`
 
-A path to a file containing patterns describing files to ignore. The path can be absolute or relative to `process.cwd()`.
+A list of patterns of files or folders to ignore. For example, `--ignore="**/folder/**,**/folder_two/**"`

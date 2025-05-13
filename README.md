@@ -16,15 +16,9 @@
     <img src="https://codecov.io/gh/htmlhint/HTMLHint/branch/master/graph/badge.svg" alt="Codecov">
   </a>
   <a href="https://www.npmjs.com/package/htmlhint">
-    <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="NPM count">
+    <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="npm count">
   </a>
   <img src="https://badgen.net/badge/license/MIT/green" alt="MIT License" />
-  <a href="https://discord.gg/nJ6J9CP">
-    <img src="https://img.shields.io/badge/chat-on%20discord-7289da.svg" alt="Chat">
-  </a>
-  <a href="http://roadmap.htmlhint.io/roadmap">
-    <img src="https://img.shields.io/badge/check-our%20roadmap-EE503E.svg" alt="Chat">
-  </a>
 </p>
 
 <p align="center">
@@ -42,43 +36,49 @@
 
 ## 📟 Installation and Usage
 
-Prerequisites: Node.js (>=6.14), npm version 3+.
-
 There are two ways to install HTMLHint: globally and locally.
 
 ### Local Installation and Usage
 
-In case you want to include HTMLHint as part of your project, you can install it locally using NPM:
+In case you want to include HTMLHint as part of your project, you can install it locally using npm:
 
-```
+```bash
 $ npm install htmlhint --save-dev
 ```
 
 After that, You can run HTMLHint on any file or directory like this:
 
-```
+```bash
 $ ./node_modules/.bin/htmlhint www/index.html
 $ ./node_modules/.bin/htmlhint www/**/*.html
 ```
 
+Or, you can use HTMLHint linter programmatically, like this:
+
+```js
+import { HTMLHint } from 'htmlhint'
+const htmlVerificationHints = HTMLHint.verify(localHtmlContent)
+console.log('htmlVerificationHints', htmlVerificationHints) // this logs a list of `Hint`s which contain information on all linting errors
+```
+
 ### Global Installation and Usage
 
-If you want to make HTMLHint available to tools that run across all of your projects, you can install HTMLHint globally using NPM:
+If you want to make HTMLHint available to tools that run across all of your projects, you can install HTMLHint globally using npm:
 
-```
+```bash
 $ npm install htmlhint -g
 ```
 
 After that, you can run HTMLHint on any file like this:
 
-```
+```bash
 $ htmlhint www/index.html
 $ htmlhint www/**/*.html
 ```
 
-You can even launch HTMLHint to analyse an URL:
+You can even launch HTMLHint to analyze an URL:
 
-```
+```bash
 $ htmlhint https://htmlhint.com/
 ```
 
@@ -88,30 +88,32 @@ $ htmlhint https://htmlhint.com/
 
 Search `.htmlhintrc` file in current directory and all parent directories:
 
-```
+```bash
 $ htmlhint
 $ htmlhint test.html
 ```
 
 Custom config file:
 
-```
+```bash
 $ htmlhint --config htmlhint.conf test.html
 ```
 
 Custom rules:
 
-```
+```bash
 $ htmlhint --rules tag-pair,id-class-value=underline index.html
 ```
 
 Inline rules in `test.html`:
 
-```
+```html
 <!--htmlhint tag-pair,id-class-value:underline -->
 <html>
-<head>
-...
+  <head>
+    ...
+  </head>
+</html>
 ```
 
 ## 📙 Docs

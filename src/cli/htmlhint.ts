@@ -6,7 +6,7 @@ import { Command } from 'commander'
 import { existsSync, readFileSync, statSync } from 'fs'
 import * as glob from 'glob'
 import { IGlob } from 'glob'
-import * as parseGlob from 'parse-glob'
+import { parseGlob } from './parse-glob'
 import { dirname, resolve, sep } from 'path'
 import fetch from 'node-fetch'
 import * as stripJsonComments from 'strip-json-comments'
@@ -407,7 +407,8 @@ function getConfig(
         configPath: configPath,
       })
     } catch (e) {
-      // ignore
+      console.log('   Config could not be parsed: %s', chalk.yellow(configPath))
+      console.log('')
     }
 
     return ruleset

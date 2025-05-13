@@ -3,7 +3,7 @@ id: configuration
 title: Configuration
 ---
 
-By default, htmlhint looks for a `.htmlhintrc` file in the current directory and all parent directories, and applies its rules when parsing a file:
+By default, HTMLHint looks for a `.htmlhintrc` file in the current directory and all parent directories, and applies its rules when parsing a file:
 
 ```sh
 $ htmlhint index.html

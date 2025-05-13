@@ -298,7 +298,7 @@
 	            rule: {
 	                id: rule.id,
 	                description: rule.description,
-	                link: `https://github.com/thedaviddias/HTMLHint/wiki/${rule.id}`,
+	                link: `https://htmlhint.com/docs/user-guide/rules/${rule.id}`,
 	            },
 	        });
 	    }
@@ -336,6 +336,79 @@
 	var attrLowercase = {};
 
 	Object.defineProperty(attrLowercase, "__esModule", { value: true });
+	const svgIgnores = [
+	    'allowReorder',
+	    'attributeName',
+	    'attributeType',
+	    'autoReverse',
+	    'baseFrequency',
+	    'baseProfile',
+	    'calcMode',
+	    'clipPath',
+	    'clipPathUnits',
+	    'contentScriptType',
+	    'contentStyleType',
+	    'diffuseConstant',
+	    'edgeMode',
+	    'externalResourcesRequired',
+	    'filterRes',
+	    'filterUnits',
+	    'glyphRef',
+	    'gradientTransform',
+	    'gradientUnits',
+	    'kernelMatrix',
+	    'kernelUnitLength',
+	    'keyPoints',
+	    'keySplines',
+	    'keyTimes',
+	    'lengthAdjust',
+	    'limitingConeAngle',
+	    'markerHeight',
+	    'markerUnits',
+	    'markerWidth',
+	    'maskContentUnits',
+	    'maskUnits',
+	    'numOctaves',
+	    'onBlur',
+	    'onChange',
+	    'onClick',
+	    'onFocus',
+	    'onKeyUp',
+	    'onLoad',
+	    'pathLength',
+	    'patternContentUnits',
+	    'patternTransform',
+	    'patternUnits',
+	    'pointsAtX',
+	    'pointsAtY',
+	    'pointsAtZ',
+	    'preserveAlpha',
+	    'preserveAspectRatio',
+	    'primitiveUnits',
+	    'refX',
+	    'refY',
+	    'repeatCount',
+	    'repeatDur',
+	    'requiredExtensions',
+	    'requiredFeatures',
+	    'specularConstant',
+	    'specularExponent',
+	    'spreadMethod',
+	    'startOffset',
+	    'stdDeviation',
+	    'stitchTiles',
+	    'surfaceScale',
+	    'systemLanguage',
+	    'tableValues',
+	    'targetX',
+	    'targetY',
+	    'textLength',
+	    'viewBox',
+	    'viewTarget',
+	    'xChannelSelector',
+	    'yChannelSelector',
+	    'zoomAndPan',
+	];
 	function testAgainstStringOrRegExp(value, comparison) {
 	    if (comparison instanceof RegExp) {
 	        return comparison.test(value)
@@ -361,7 +434,7 @@
 	    id: 'attr-lowercase',
 	    description: 'All attribute names must be in lowercase.',
 	    init(parser, reporter, options) {
-	        const exceptions = Array.isArray(options) ? options : [];
+	        const exceptions = (Array.isArray(options) ? options : []).concat(svgIgnores);
 	        parser.addListener('tagstart', (event) => {
 	            const attrs = event.attrs;
 	            let attr;
@@ -411,7 +484,7 @@
 	            const originalAttrs = JSON.stringify(listOfAttributes);
 	            listOfAttributes.sort((a, b) => {
 	                if (orderMap[a] == undefined && orderMap[b] == undefined) {
-	                    return 0;
+	                    return a.localeCompare(b);
 	                }
 	                if (orderMap[a] == undefined) {
 	                    return 1;
@@ -566,7 +639,7 @@
 	                    return;
 	                }
 	                if (elem.value.trim() !== elem.value) {
-	                    reporter.error(`The attributes of [ ${attrName} ] must not have trailing whitespace.`, event.line, col + attr.index, this, attr.raw);
+	                    reporter.error(`The attributes of [ ${attrName} ] must not have leading or trailing whitespace.`, event.line, col + attr.index, this, attr.raw);
 	                }
 	                if (elem.value.replace(/ +(?= )/g, '') !== elem.value) {
 	                    reporter.error(`The attributes of [ ${attrName} ] must be separated by only one space.`, event.line, col + attr.index, this, attr.raw);
@@ -913,7 +986,9 @@
 	            const mapAttrs = parser.getMapAttrs(event.attrs);
 	            const col = event.col + tagName.length + 1;
 	            if (tagName === 'input') {
-	                inputTags.push({ event: event, col: col, id: mapAttrs['id'] });
+	                if (mapAttrs['type'] !== 'hidden') {
+	                    inputTags.push({ event: event, col: col, id: mapAttrs['id'] });
+	                }
 	            }
 	            if (tagName === 'label') {
 	                if ('for' in mapAttrs && mapAttrs['for'] !== '') {
@@ -1014,7 +1089,7 @@
 	    init(parser, reporter) {
 	        parser.addListener('text', (event) => {
 	            const raw = event.raw;
-	            const reSpecChar = /([<>])|( \& )/g;
+	            const reSpecChar = /([<>])/g;
 	            let match;
 	            while ((match = reSpecChar.exec(raw))) {
 	                const fixedPos = parser.fixPos(event, match.index);
@@ -1080,6 +1155,7 @@
 	                stack.push({
 	                    tagName: tagName,
 	                    line: event.line,
+	                    col: event.col,
 	                    raw: event.raw,
 	                });
 	            }
@@ -1099,7 +1175,7 @@
 	                }
 	                if (arrTags.length > 0) {
 	                    const lastEvent = stack[stack.length - 1];
-	                    reporter.error(`Tag must be paired, missing: [ ${arrTags.join('')} ], start tag match failed [ ${lastEvent.raw} ] on line ${lastEvent.line}.`, event.line, event.col, this, event.raw);
+	                    reporter.error(`Tag must be paired, missing: [ ${arrTags.join('')} ], start tag match failed [ ${lastEvent.raw} ] on line ${lastEvent.line}.`, lastEvent.line || event.line, lastEvent.col || event.col, this, event.raw);
 	                }
 	                stack.length = pos;
 	            }

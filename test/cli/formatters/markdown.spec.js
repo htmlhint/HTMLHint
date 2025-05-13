@@ -1,5 +1,3 @@
-const expect = require('expect.js')
-
 const ChildProcess = require('child_process')
 const path = require('path')
 
@@ -15,17 +13,17 @@ describe('CLI', () => {
           'markdown',
         ].join(' '),
         (error, stdout, stderr) => {
-          expect(error).to.be.an('object')
-          expect(error.code).to.be.equal(1)
+          expect(typeof error).toBe('object')
+          expect(error.code).toBe(1)
 
-          expect(stdout).to.contain('# TOC')
-          expect(stdout).to.contain('Found 20 errors, 0 warnings')
-          expect(stdout).to.contain('example.html')
-          expect(stdout).to.contain(
+          expect(stdout).toContain('# TOC')
+          expect(stdout).toContain('Found 20 errors, 0 warnings')
+          expect(stdout).toContain('example.html')
+          expect(stdout).toContain(
             '^ Tag must be paired, no start tag: [ </bad> ] (tag-pair)'
           )
 
-          expect(stderr).to.be.equal('')
+          expect(stderr).toBe('')
           done()
         }
       )

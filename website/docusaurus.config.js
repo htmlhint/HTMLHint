@@ -18,7 +18,18 @@ const config = {
   favicon: 'img/favicon.ico',
   organizationName: 'HTMLHint',
   projectName: PACKAGE.name,
-  scripts: ['https://buttons.github.io/buttons.js'],
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    {
+      src: 'https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js',
+      defer: true,
+      'data-domain': 'htmlhint.com',
+    },
+    {
+      src: 'data:text/javascript,window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }',
+      defer: true,
+    },
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -34,23 +45,13 @@ const config = {
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        googleAnalytics: { trackingID: 'UA-109578378-3' },
       }),
-    ],
-  ],
-  plugins: [
-    '@docusaurus/plugin-google-analytics',
-    [
-      '@docusaurus/plugin-sitemap',
-      {
-        changefreq: 'weekly',
-        priority: 0.5,
-      },
     ],
   ],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      googleAnalytics: { trackingID: 'UA-109578378-3' },
       navbar: {
         title: 'HTMLHint',
         logo: {
@@ -87,12 +88,8 @@ const config = {
                 href: 'https://stackoverflow.com/questions/tagged/htmlhint',
               },
               {
-                label: 'Discord',
-                href: 'https://discord.com/invite/nJ6J9CP',
-              },
-              {
-                label: 'Twitter',
-                href: 'https://twitter.com/HTMLHint',
+                label: 'X (Twitter)',
+                href: 'https://x.com/HTMLHint',
               },
             ],
           },

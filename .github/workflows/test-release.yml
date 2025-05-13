@@ -10,7 +10,10 @@ on:
       - beta
       - next
       - next-major
-    types: [opened, synchronize, reopened]
+    paths-ignore:
+      - 'website/**'
+      - '**/*.md'
+      - '**/*.mdx'
 
 jobs:
   test-release:
@@ -18,29 +21,26 @@ jobs:
 
     steps:
       - name: ⬇️ Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: ⎔ Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           cache: npm
 
       - name: 📥 Download deps
         run: npm ci
-        env:
-          HUSKY_SKIP_INSTALL: true
 
       - name: 🏗 Build
         run: npm run build
 
       - name: 🚢 Release
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v4
         with:
           dry_run: true
-          semantic_version: 17
           extra_plugins: |
-            @semantic-release/changelog@3.0.0
-            @semantic-release/git@9.0.0
+            @semantic-release/changelog
+            @semantic-release/git
           branches: |
             [
               'master',
