@@ -26,11 +26,6 @@ updates:
         update-types:
           - 'minor'
           - 'patch'
-  - package-ecosystem: npm
-    directory: '/website/plugins/docusaurus-plugin-hotjar'
-    schedule:
-      interval: monthly
-    versioning-strategy: increase
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
