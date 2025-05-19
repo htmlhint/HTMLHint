@@ -5,4 +5,4 @@ bin
 dist
 
 # Website directory
-website
+website/src/
