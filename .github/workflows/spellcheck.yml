@@ -1,9 +1,9 @@
 name: 'Check spelling'
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 permissions:
   contents: read
@@ -19,4 +19,4 @@ jobs:
           check_dot_files: false
           incremental_files_only: true
           inline: warning
-          strict: false
+          suggestions: true

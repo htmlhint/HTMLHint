@@ -26,7 +26,7 @@ title: List of rules
 - [`attr-value-not-empty`](/docs/user-guide/rules/attr-value-not-empty): All attributes must have values.
 - [`attr-sorted`](/docs/user-guide/rules/attr-sorted): Attributes should be sorted in order.
 - [`attr-whitespace`](/docs/user-guide/rules/attr-whitespace): No leading or trailing spaces in attribute values.
-- [`alt-require`](/docs/user-guide/rules/alt-require): The alt attribute of an element must be present and alt attribute of area[href] and input[type=image] must have a value.
+- [`alt-require`](/docs/user-guide/rules/alt-require): The alt attribute of an img element must be present and alt attribute of area[href] and input[type=image] must have a value.
 - [`input-requires-label`](/docs/user-guide/rules/input-requires-label): All [ input ] tags must have a corresponding [ label ] tag.
 
 ### Tags
@@ -34,7 +34,7 @@ title: List of rules
 - [`tags-check`](/docs/user-guide/rules/tags-check): Allowing specify rules for any tag and validate that
 - [`tag-pair`](/docs/user-guide/rules/tag-pair): Tag must be paired.
 - [`tag-self-close`](/docs/user-guide/rules/tag-self-close): Empty tags must be self closed.
-- [`tagname-lowercase`](/docs/user-guide/rules/tagname-lowercase): All html element names must be in lowercase.
+- [`tagname-lowercase`](/docs/user-guide/rules/tagname-lowercase): All HTML element names must be in lowercase.
 - [`tagname-specialchars`](/docs/user-guide/rules/tagname-specialchars): Tag names can only contain letters, numbers, "-", ":" or "\_".
 - [`empty-tag-not-self-closed`](/docs/user-guide/rules/empty-tag-not-self-closed): The empty tag should not be closed by self.
 - [`src-not-empty`](/docs/user-guide/rules/src-not-empty): The src attribute of an img(script,link) must have a value.
