@@ -42,6 +42,7 @@ jobs:
           VALIDATE_CHECKOV: false
           VALIDATE_CSS: false
           VALIDATE_EDITORCONFIG: false
+          VALIDATE_GIT_COMMITLINT: false
           VALIDATE_HTML: false
           VALIDATE_HTML_PRETTIER: false
           VALIDATE_JAVASCRIPT_ES: false
