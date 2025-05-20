@@ -12,12 +12,20 @@ describe('Rules documentation', () => {
 
   let docs = fs
     .readdirSync(
-      path.join(__dirname, '..', '..', 'docs', 'user-guide', 'rules')
+      path.join(__dirname, '..', '..', 'website', 'docs', 'user-guide', 'rules')
     )
     .map((doc) => doc.replace('.md', ''))
 
   const rulesListPage = fs.readFileSync(
-    path.join(__dirname, '..', '..', 'docs', 'user-guide', 'list-rules.md'),
+    path.join(
+      __dirname,
+      '..',
+      '..',
+      'website',
+      'docs',
+      'user-guide',
+      'list-rules.md'
+    ),
     'utf-8'
   )
 
