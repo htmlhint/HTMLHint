@@ -31,7 +31,7 @@ jobs:
       - name: Super-linter
         uses: super-linter/super-linter/slim@v7
         env:
-          DEFAULT_BRANCH: master
+          DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           IGNORE_GITIGNORED_FILES: true
           LINTER_RULES_PATH: /

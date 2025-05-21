@@ -3,7 +3,6 @@ name: Development workflow
 on:
   pull_request:
     branches:
-      - master
       - main
     paths-ignore:
       - 'website/**'
