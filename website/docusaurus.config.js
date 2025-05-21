@@ -38,7 +38,7 @@ const config = {
         docs: {
           path: 'docs',
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: `${GITHUB_URL}/edit/master/website/`,
+          editUrl: `${GITHUB_URL}/edit/main/website/`,
           showLastUpdateAuthor: true,
           showLastUpdateTime: true,
         },
