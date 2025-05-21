@@ -73,7 +73,7 @@
   "devDependencies": {
     "@commitlint/cli": "^17.0.1",
     "@commitlint/config-conventional": "^17.0.0",
-    "@rollup/plugin-commonjs": "22.0.2",
+    "@rollup/plugin-commonjs": "21.1.0",
     "@rollup/plugin-node-resolve": "15.3.1",
     "@types/async": "^3.2.24",
     "@types/glob": "^8.1.0",
