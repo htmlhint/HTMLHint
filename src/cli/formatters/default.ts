@@ -13,7 +13,6 @@ const defaultFormatter: FormatterCallback = function (
   })
 
   formatter.on('config', (event) => {
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const configPath = event.configPath!
     console.log(
       '   Config loaded: %s',
