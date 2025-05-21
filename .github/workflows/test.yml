@@ -16,7 +16,7 @@ jobs:
       - name: ⬇️ Checkout
         uses: actions/checkout@v4
 
-      - name: ⎔ Setup node ${{ matrix.node }}
+      - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
           cache: npm
