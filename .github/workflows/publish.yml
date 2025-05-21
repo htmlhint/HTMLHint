@@ -1,0 +1,37 @@
+name: Development workflow
+
+on:
+  release:
+    types:
+      - published
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ⬇️ Checkout
+        uses: actions/checkout@v4
+
+      - name: ⎔ Setup node
+        uses: actions/setup-node@v4
+        with:
+          cache: npm
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: 📥 Download deps
+        run: npm ci
+
+      - name: 🧪 Run lint
+        run: npm run lint
+
+      - name: 🏗 Build
+        run: npm run build
+
+      - name: Ensure no git changes
+        run: git diff --exit-code
+
+      - name: Publish to npm
+        run: npm publish --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

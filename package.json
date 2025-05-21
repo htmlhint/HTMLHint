@@ -6,6 +6,7 @@
     "html",
     "hint",
     "analysis",
+    "lint",
     "javascript"
   ],
   "homepage": "https://htmlhint.com",
@@ -36,29 +37,11 @@
     "build:rollup": "npm run build:min && npm run build:unmin",
     "build:unmin": "rollup -c",
     "clean": "rimraf dist",
-    "commit": "npx git-cz",
     "lint": "eslint . --max-warnings 0 && prettier -c .",
     "lint:fix": "eslint . --fix && npm run prettier",
-    "prepare": "husky install",
     "prettier": "prettier --write .",
     "test": "jest",
     "test:coverage": "jest --coverage"
-  },
-  "lint-staged": {
-    "*": [
-      "prettier --ignore-unknown --write"
-    ],
-    ".js": [
-      "eslint --fix"
-    ]
-  },
-  "config": {
-    "commitizen": {
-      "path": "cz-conventional-changelog"
-    },
-    "cz-customizable": {
-      "config": "commitizen.config.js"
-    }
   },
   "dependencies": {
     "async": "3.2.6",
@@ -71,8 +54,6 @@
     "xml": "1.0.1"
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.0.1",
-    "@commitlint/config-conventional": "^17.0.0",
     "@rollup/plugin-commonjs": "21.1.0",
     "@rollup/plugin-node-resolve": "15.3.1",
     "@types/async": "^3.2.24",
@@ -82,13 +63,10 @@
     "@types/xml": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
-    "commitizen": "^4.3.1",
     "eslint": "8.57.1",
     "eslint-config-prettier": "^10.1.5",
     "eslint-plugin-prettier": "^5.4.0",
-    "husky": "^8.0.3",
     "jest": "^29.7.0",
-    "lint-staged": "^13.2.2",
     "parse-glob": "3.0.4",
     "prettier": "3.5.3",
     "rimraf": "4.4.1",
