@@ -1,5 +1,3 @@
-***Short description of what this resolves:***
+## Short description of what this resolves
 
-
-***Proposed changes:***
-
+## Proposed changes
