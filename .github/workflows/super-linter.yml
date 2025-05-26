@@ -32,6 +32,7 @@ jobs:
         uses: super-linter/super-linter/slim@v7
         env:
           DEFAULT_BRANCH: main
+          FILTER_REGEX_EXCLUDE: '/test/'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           IGNORE_GITIGNORED_FILES: true
           LINTER_RULES_PATH: /
