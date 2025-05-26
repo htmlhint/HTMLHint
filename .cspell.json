@@ -2,6 +2,7 @@
   "version": "0.2",
   "words": [
     "adcontainer",
+    "astrojs",
     "atitle",
     "attrname",
     "attrvalue",
@@ -14,9 +15,12 @@
     "CODEOWNERS",
     "codeql",
     "commitlint",
+    "Cpath",
     "csslint",
+    "Csvg",
     "enochian",
     "esbenp",
+    "evenodd",
     "extlang",
     "guoyu",
     "hjid",
@@ -35,6 +39,7 @@
     "nomix",
     "onttt",
     "opencollective",
+    "Rehype",
     "ruleid",
     "rulesdir",
     "ruleset",
@@ -51,10 +56,16 @@
     "testtitle",
     "uffff",
     "unmin",
+    "withastro",
     "xiang",
     "Yanis"
   ],
+  "allowCompoundWords": true,
   "language": "en,en-US",
-  "ignorePaths": [".cspell.json"],
+  "ignorePaths": [
+    "*.mjs",
+    ".cspell.json",
+    "data-store.json"
+  ],
   "useGitignore": true
 }
