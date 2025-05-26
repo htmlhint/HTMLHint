@@ -5,7 +5,7 @@
 /build
 
 # Generated files
-.docusaurus
+.astro
 .cache-loader
 
 # Misc

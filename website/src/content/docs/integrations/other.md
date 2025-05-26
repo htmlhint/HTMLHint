@@ -1,6 +1,8 @@
 ---
 id: other
 title: Other integrations
+sidebar:
+  order: 3
 ---
 
 Other integrations built and maintained by the HTMLHint organization and some by the community.

@@ -12,7 +12,16 @@ describe('Rules documentation', () => {
 
   let docs = fs
     .readdirSync(
-      path.join(__dirname, '..', '..', 'website', 'docs', 'user-guide', 'rules')
+      path.join(
+        __dirname,
+        '..',
+        '..',
+        'website',
+        'src',
+        'content',
+        'docs',
+        'rules'
+      )
     )
     .map((doc) => doc.replace('.md', ''))
 
@@ -22,8 +31,9 @@ describe('Rules documentation', () => {
       '..',
       '..',
       'website',
+      'src',
+      'content',
       'docs',
-      'user-guide',
       'list-rules.md'
     ),
     'utf-8'
@@ -33,7 +43,7 @@ describe('Rules documentation', () => {
     it(`${rule} should have a documentation page`, () => {
       expect(docs).toContain(rule)
     })
-    it(`${rule} should be on the list-rules.md`, () => {
+    it(`${rule} should be on the index.mdx`, () => {
       expect(rulesListPage).toContain(rule)
     })
   })
