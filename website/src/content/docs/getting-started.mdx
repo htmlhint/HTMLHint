@@ -1,0 +1,30 @@
+---
+title: Getting Started
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+1\. Use npm or yarn to install HTMLHint:
+
+<Tabs>
+  <TabItem label="npm">
+`npm install --save-dev htmlhint`
+  </TabItem>
+  <TabItem label="yarn">
+`yarn add --dev htmlhint`
+  </TabItem>
+</Tabs>
+
+2\. Create a `.htmlhintrc` configuration file in the root of your project:
+
+```json
+{
+  "attr-value-not-empty": false
+}
+```
+
+3\. Run HTMLHint on, for example, all the HTML files in your project:
+
+```shell
+npx htmlhint "**/*.html"
+```

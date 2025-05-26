@@ -1,0 +1,41 @@
+---
+title: Welcome to HTMLHint
+description: The web's most popular Static code analysis tool you need for your HTML
+hero:
+  tagline: The web's most popular Static code analysis tool you need for your HTML
+  image:
+    file: ../../assets/img/htmlhint.png
+  actions:
+    - text: Get Started
+      link: /getting-started/
+      icon: right-arrow
+    - text: Check out the rules
+      link: /rules/
+      variant: minimal
+banner:
+  content: |
+    v1.2.0 is now available! Check the <a href="/changelog/">changelog</a> to see what's new.
+tableOfContents: false
+lastUpdated: false
+editUrl: false
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components'
+
+<CardGrid>
+  <Card title="Configure the rules" icon="setting">
+    You can enable or disable [any of the rules](/rules/) and have them
+    customized to fit your needs. Check out the guide to learn how to set up
+    HTMLHint in your project.
+  </Card>
+  <Card title="VS Code Extension" icon="star">
+    Download the HTMLHint extension for Visual Studio Code to get real-time
+    feedback on your HTML code.
+    <div class="mt-1">
+      - [Visual Studio Code
+      Marketplace](https://marketplace.visualstudio.com/items?itemName=HTMLHint.vscode-htmlhint)
+      - [Open VSX
+      Registry](https://open-vsx.org/extension/HTMLHint/vscode-htmlhint)
+    </div>
+  </Card>
+</CardGrid>
