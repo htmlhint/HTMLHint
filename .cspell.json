@@ -57,6 +57,7 @@
     "testtitle",
     "ufeff",
     "uffff",
+    "ufff",
     "unmin",
     "withastro",
     "xiang",
@@ -64,10 +65,6 @@
   ],
   "allowCompoundWords": true,
   "language": "en,en-US",
-  "ignorePaths": [
-    "*.mjs",
-    ".cspell.json",
-    "data-store.json"
-  ],
+  "ignorePaths": ["*.mjs", ".cspell.json", "data-store.json"],
   "useGitignore": true
 }

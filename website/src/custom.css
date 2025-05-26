@@ -26,7 +26,7 @@ main h2 em {
 
 .content-panel .sl-container .hero img {
   background-color: #ef503f;
-  border-radius: 50% !important;
+  border-radius: 50%;
   aspect-ratio: 1 / 1;
 }
 
