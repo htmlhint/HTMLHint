@@ -7,6 +7,7 @@ export default defineConfig({
   site: 'https://htmlhint.com/',
   base: '/',
   compressHTML: true,
+  outDir: './build',
   trailingSlash: 'always',
   integrations: [
     starlight({
@@ -57,6 +58,21 @@ export default defineConfig({
           attrs: {
             rel: 'manifest',
             href: '/site.webmanifest',
+          },
+        },
+        {
+          tag: 'script',
+          attrs: {
+            src: 'https://plausible.io/js/script.hash.outbound-links.pageview-props.tagged-events.js',
+            defer: true,
+            'data-domain': 'htmlhint.com',
+          },
+        },
+        {
+          tag: 'script',
+          attrs: {
+            src: 'data:text/javascript,window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }',
+            defer: true,
           },
         },
       ],
