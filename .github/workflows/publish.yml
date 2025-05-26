@@ -1,4 +1,4 @@
-name: Development workflow
+name: Publish package to npmjs
 
 on:
   release:
@@ -16,7 +16,6 @@ jobs:
       - name: ⎔ Setup node
         uses: actions/setup-node@v4
         with:
-          cache: npm
           registry-url: 'https://registry.npmjs.org'
 
       - name: 📥 Download deps
@@ -34,4 +33,5 @@ jobs:
       - name: Publish to npm
         run: npm publish --access public
         env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

@@ -25,7 +25,7 @@
   "main": "dist/htmlhint.js",
   "module": "dist/core/core.js",
   "bin": {
-    "htmlhint": "./bin/htmlhint"
+    "htmlhint": "bin/htmlhint"
   },
   "files": [
     "bin",
