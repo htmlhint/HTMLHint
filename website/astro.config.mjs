@@ -36,6 +36,11 @@ export default defineConfig({
           label: 'Open Collective',
           href: 'https://opencollective.com/htmlhint',
         },
+        {
+          icon: 'stackOverflow',
+          label: 'stackOverflow',
+          href: 'https://stackoverflow.com/questions/tagged/htmlhint',
+        },
       ],
       head: [
         {

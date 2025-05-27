@@ -45,14 +45,14 @@ There are two ways to install HTMLHint: globally and locally.
 In case you want to include HTMLHint as part of your project, you can install it locally using npm:
 
 ```bash
-$ npm install htmlhint --save-dev
+npm install htmlhint --save-dev
 ```
 
 After that, You can run HTMLHint on any file or directory like this:
 
 ```bash
-$ ./node_modules/.bin/htmlhint www/index.html
-$ ./node_modules/.bin/htmlhint www/**/*.html
+./node_modules/.bin/htmlhint www/index.html
+./node_modules/.bin/htmlhint www/**/*.html
 ```
 
 Or, you can use HTMLHint linter programmatically, like this:
@@ -68,20 +68,20 @@ console.log('htmlVerificationHints', htmlVerificationHints) // this logs a list 
 If you want to make HTMLHint available to tools that run across all of your projects, you can install HTMLHint globally using npm:
 
 ```bash
-$ npm install htmlhint -g
+npm install htmlhint -g
 ```
 
 After that, you can run HTMLHint on any file like this:
 
 ```bash
-$ htmlhint www/index.html
-$ htmlhint www/**/*.html
+htmlhint www/index.html
+htmlhint www/**/*.html
 ```
 
 You can even launch HTMLHint to analyze an URL:
 
 ```bash
-$ htmlhint https://htmlhint.com/
+htmlhint https://htmlhint.com/
 ```
 
 ## 📃 Example output
@@ -91,20 +91,20 @@ $ htmlhint https://htmlhint.com/
 Search `.htmlhintrc` file in current directory and all parent directories:
 
 ```bash
-$ htmlhint
-$ htmlhint test.html
+htmlhint
+htmlhint test.html
 ```
 
 Custom config file:
 
 ```bash
-$ htmlhint --config htmlhint.conf test.html
+htmlhint --config htmlhint.conf test.html
 ```
 
 Custom rules:
 
 ```bash
-$ htmlhint --rules tag-pair,id-class-value=underline index.html
+htmlhint --rules tag-pair,id-class-value=underline index.html
 ```
 
 Inline rules in `test.html`:
@@ -123,6 +123,7 @@ Inline rules in `test.html`:
 1. [How to use](https://htmlhint.com/docs/user-guide/usage/cli)
 2. [All Rules](https://htmlhint.com/docs/user-guide/list-rules)
 3. [How to Develop](CONTRIBUTING.md)
+4. [Changelog](CHANGELOG.md)
 
 ## © License
 
@@ -131,16 +132,16 @@ Inline rules in `test.html`:
 ## 💪🏻 Contributors
 
 This project exists thanks to all these people. [Contribute](CONTRIBUTING.md).
-<a href="https://github.com/htmlhint/HTMLHint/graphs/contributors"><img src="https://opencollective.com/htmlhint/contributors.svg?width=890" /></a>
+<a href="https://github.com/htmlhint/HTMLHint/graphs/contributors"><img src="https://opencollective.com/htmlhint/contributors.svg?width=890" alt="HTMLHint Contributors" /></a>
 
 ## 🏅 Backers
 
 Thank you to all our backers! [Become a backer](https://opencollective.com/htmlhint#backer).
 
-<a href="https://opencollective.com/htmlhint#backers" target="_blank"><img src="https://opencollective.com/htmlhint/backers.svg?width=890"></a>
+<a href="https://opencollective.com/htmlhint#backers" target="_blank"><img src="https://opencollective.com/htmlhint/backers.svg?width=890" alt="Backers"></a>
 
 ## 🎖 Sponsors
 
 Support this project by becoming a sponsor. Your logo will show up here with a link to your website. [Become a sponsor](https://opencollective.com/htmlhint#sponsor).
 
-<a href="https://opencollective.com/htmlhint/sponsor/0/website" target="_blank"><img src="https://opencollective.com/htmlhint/sponsor/0/avatar.svg"></a>
+<a href="https://opencollective.com/htmlhint/sponsor/0/website" target="_blank"><img src="https://opencollective.com/htmlhint/sponsor/0/avatar.svg" alt="Sponsor"></a>
