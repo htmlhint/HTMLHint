@@ -43,4 +43,18 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].rule.id).toBe(ruleId)
     expect(messages[0].message).toContain('["type","img","id","font"]')
   })
+
+  it('link tag with rel before href should not throw error', () => {
+    const code = '<link rel="stylesheet" href="https://example.com/style.css">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('link tag with href before rel should throw error', () => {
+    const code = '<link href="https://example.com/style.css" rel="stylesheet">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["href","rel"]')
+  })
 })
