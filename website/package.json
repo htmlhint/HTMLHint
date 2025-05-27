@@ -1,8 +1,8 @@
 {
   "name": "htmlhint.com",
   "version": "0.0.0",
-  "description": "The HTMLHint website - built with Astro Starlight",
   "private": true,
+  "description": "The HTMLHint website - built with Astro Starlight",
   "homepage": "https://htmlhint.com",
   "funding": {
     "type": "opencollective",
@@ -10,11 +10,11 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
+    "astro": "astro",
     "build": "astro build",
+    "dev": "astro dev",
     "preview": "astro preview",
-    "astro": "astro"
+    "start": "astro dev"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.34.3",

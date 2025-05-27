@@ -16,7 +16,7 @@ export default defineConfig({
       defaultLocale: 'en-US',
       customCss: ['/src/custom.css'],
       editLink: {
-        baseUrl: 'https://github.com/htmlhint/htmlhint/edit/main/website/docs/',
+        baseUrl: 'https://github.com/htmlhint/htmlhint/edit/main/website/',
       },
       lastUpdated: true,
       pagination: false,
