@@ -12,6 +12,7 @@ export default {
       'src',
       'for',
       'type',
+      'rel',
       'href',
       'value',
       'title',
