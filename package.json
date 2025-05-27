@@ -39,6 +39,7 @@
     "clean": "rimraf dist",
     "lint": "eslint . --max-warnings 0 && prettier -c .",
     "lint:fix": "eslint . --fix && npm run prettier",
+    "lint:markdown": "npx markdownlint-cli **/*.md",
     "prettier": "prettier --write .",
     "test": "jest",
     "test:coverage": "jest --coverage"
