@@ -58,3 +58,7 @@ main h2 em {
 {
   display: none;
 }
+
+.tablist-wrapper {
+  overflow-y: hidden;
+}
