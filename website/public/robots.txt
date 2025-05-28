@@ -1,0 +1,4 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://htmlhint.com/sitemap.xml

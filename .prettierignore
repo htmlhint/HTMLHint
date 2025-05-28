@@ -19,9 +19,6 @@ npm-debug.log*
 
 /website/playground
 /website/build
-/website/.docusaurus
-/website/plugins
-/website/static
 
 /test/**/*.html
 /test/**/*.xml
@@ -32,5 +29,7 @@ CHANGELOG.md
 # Report created by test
 report.html
 
+# Miscellaneous
 CODEOWNERS
 *.mdx
+*.txt
