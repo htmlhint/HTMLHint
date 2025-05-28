@@ -80,6 +80,20 @@ export default defineConfig({
             defer: true,
           },
         },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'google-site-verification',
+            content: 'SZqy8VdlOvKGm1TpPUAhIe6F1dHhhEmaFC2nmbv9-Tw',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'msvalidate.01',
+            content: 'FE5F7C37D3394A82C074EB2713834A35',
+          },
+        },
       ],
       sidebar: [
         {
