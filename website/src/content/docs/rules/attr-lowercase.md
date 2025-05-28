@@ -1,6 +1,7 @@
 ---
 id: attr-lowercase
 title: attr-lowercase
+description: Enforces all attribute names in HTML to be lowercase for consistency and standards compliance.
 ---
 
 Attribute name must be lowercase.

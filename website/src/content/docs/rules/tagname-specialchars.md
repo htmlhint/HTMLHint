@@ -1,6 +1,7 @@
 ---
 id: tagname-specialchars
 title: tagname-specialchars
+description: Ensures HTML tag names only contain allowed characters such as letters, numbers, hyphens, colons, or underscores.
 ---
 
 Tagname must not contain any characters beside letters, numbers, "-", ":" or "\_".

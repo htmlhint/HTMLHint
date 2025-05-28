@@ -1,6 +1,7 @@
 ---
 id: tag-pair
 title: tag-pair
+description: Ensures that all HTML tags are properly paired with corresponding opening and closing tags.
 ---
 
 Tag must be paired.

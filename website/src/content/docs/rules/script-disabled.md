@@ -1,6 +1,7 @@
 ---
 id: script-disabled
 title: script-disabled
+description: Disallows the use of <script> tags in HTML documents for security and maintainability.
 ---
 
 The script tag can not be used anywhere in the document.

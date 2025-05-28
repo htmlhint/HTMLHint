@@ -1,6 +1,7 @@
 ---
 id: task-runner
 title: Task runners
+description: Task runner integrations built and maintained by HTMLHint organization and the community.
 sidebar:
   order: 1
 ---

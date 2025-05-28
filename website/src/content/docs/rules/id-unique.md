@@ -1,6 +1,7 @@
 ---
 id: id-unique
 title: id-unique
+description: Ensures all id attributes in an HTML document are unique to prevent conflicts and unexpected behavior.
 ---
 
 ID attributes must be unique in the document.

@@ -1,6 +1,7 @@
 ---
 id: attr-sorted
 title: attr-sorted
+description: Enforces a specific order for attributes in HTML elements to improve readability and consistency.
 ---
 
 Attributes should be sorted in the following order:

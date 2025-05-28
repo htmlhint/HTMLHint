@@ -1,6 +1,7 @@
 ---
 id: inline-style-disabled
 title: inline-style-disabled
+description: Disallows the use of inline style attributes to promote separation of content and presentation.
 ---
 
 Inline style cannot be use.

@@ -1,6 +1,7 @@
 ---
 id: configuration
 title: Configuration
+description: How to configure HTMLHint using a configuration file, command line options, or inline comments.
 ---
 
 By default, HTMLHint looks for a `.htmlhintrc` file in the current directory and all parent directories, and applies its rules when parsing a file:

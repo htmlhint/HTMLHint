@@ -1,6 +1,7 @@
 ---
 id: attr-no-unnecessary-whitespace
 title: attr-no-unnecessary-whitespace
+description: Disallows unnecessary spaces between attribute names and values in HTML elements.
 ---
 
 No spaces between attribute names and values.

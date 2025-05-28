@@ -1,6 +1,7 @@
 ---
 id: id-class-value
 title: id-class-value
+description: Enforces specific naming conventions for id and class attribute values in HTML elements.
 ---
 
 Id and class value must meet some rules: underline, dash, hump.

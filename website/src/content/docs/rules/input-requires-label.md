@@ -1,6 +1,7 @@
 ---
 id: input-requires-label
 title: input-requires-label
+description: Requires every <input> element to have an associated <label> for accessibility compliance.
 keywords:
   - input
   - label

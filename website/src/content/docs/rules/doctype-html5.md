@@ -1,6 +1,7 @@
 ---
 id: doctype-html5
 title: doctype-html5
+description: Requires the use of the HTML5 doctype declaration for modern web standards compliance.
 ---
 
 Rule ID: `doctype-html5`

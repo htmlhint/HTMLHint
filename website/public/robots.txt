@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://htmlhint.com/sitemap.xml
+Sitemap: https://htmlhint.com/sitemap-0.xml

@@ -1,6 +1,7 @@
 ---
 id: attr-no-duplication
 title: attr-no-duplication
+description: Prevents duplicate attributes in a single HTML element to ensure valid and clean markup.
 ---
 
 The same attribute can't be specified twice.

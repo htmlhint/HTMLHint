@@ -1,6 +1,7 @@
 ---
 id: style-disabled
 title: style-disabled
+description: Disallows the use of <style> tags in HTML to enforce separation of content and presentation.
 ---
 
 Style tag can not be use.

@@ -1,6 +1,7 @@
 ---
 id: list-rules
 title: List of rules
+description: A complete list of all the rules for HTMLHint
 ---
 
 ## Possible errors

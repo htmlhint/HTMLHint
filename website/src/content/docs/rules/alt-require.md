@@ -1,6 +1,7 @@
 ---
 id: alt-require
 title: alt-require
+description: Requires alt attributes on images and relevant elements to improve accessibility and SEO.
 keywords:
   - alt
   - image

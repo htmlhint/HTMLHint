@@ -1,6 +1,7 @@
 ---
 id: attr-value-not-empty
 title: attr-value-not-empty
+description: Ensures all attributes have non-empty values to prevent invalid or ambiguous HTML.
 ---
 
 Attribute must set value.

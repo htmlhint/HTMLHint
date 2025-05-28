@@ -1,6 +1,7 @@
 ---
 id: attr-unsafe-chars
 title: attr-unsafe-chars
+description: Disallows unsafe characters in attribute values to prevent rendering and security issues.
 ---
 
 Attribute value cannot use unsafe chars.

@@ -1,6 +1,7 @@
 ---
 id: empty-tag-not-self-closed
 title: empty-tag-not-self-closed
+description: Ensures empty HTML tags are not self-closed, following HTML standards for void elements.
 ---
 
 The empty tag should not be closed by self.

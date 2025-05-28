@@ -1,6 +1,7 @@
 ---
 id: attr-value-double-quotes
 title: attr-value-double-quotes
+description: Requires attribute values in HTML to be enclosed in double quotes for consistency and standards compliance.
 ---
 
 Attribute value must closed by double quotes.
