@@ -14,7 +14,9 @@
     "build": "astro build",
     "dev": "astro dev",
     "preview": "astro preview",
-    "start": "astro dev"
+    "start": "astro dev",
+    "htmlhint": "npx htmlhint .",
+    "pa11y-ci": "npx pa11y-ci https://htmlhint.com/"
   },
   "dependencies": {
     "@astrojs/starlight": "^0.34.3",
