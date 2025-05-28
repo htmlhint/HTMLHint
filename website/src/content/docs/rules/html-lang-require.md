@@ -1,6 +1,7 @@
 ---
 id: html-lang-require
 title: html-lang-require
+description: Requires the lang attribute on the <html> element to ensure proper language declaration for accessibility and SEO.
 keywords:
   - i18n
 ---

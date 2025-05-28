@@ -1,6 +1,7 @@
 ---
 id: attr-value-single-quotes
 title: attr-value-single-quotes
+description: Requires attribute values in HTML to be enclosed in single quotes for consistency.
 ---
 
 Attribute value must closed by single quotes.

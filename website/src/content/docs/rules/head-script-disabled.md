@@ -1,6 +1,7 @@
 ---
 id: head-script-disabled
 title: head-script-disabled
+description: Disallows the use of <script> tags within the <head> section of HTML documents.
 ---
 
 The script tag can not be used in head.

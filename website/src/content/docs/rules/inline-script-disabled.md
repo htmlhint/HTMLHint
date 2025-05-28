@@ -1,6 +1,7 @@
 ---
 id: inline-script-disabled
 title: inline-script-disabled
+description: Disallows the use of inline JavaScript in HTML elements for improved security and maintainability.
 ---
 
 Inline script cannot be used.

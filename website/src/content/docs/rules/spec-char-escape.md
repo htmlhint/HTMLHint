@@ -1,6 +1,7 @@
 ---
 id: spec-char-escape
 title: spec-char-escape
+description: Requires special characters in HTML to be properly escaped to prevent rendering issues.
 ---
 
 Special characters must be escaped.

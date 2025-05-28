@@ -1,6 +1,7 @@
 ---
 id: tagname-lowercase
 title: tagname-lowercase
+description: Enforces all HTML tag names to be lowercase for consistency and standards compliance.
 ---
 
 Tagname must be lowercase.

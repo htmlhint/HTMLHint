@@ -1,6 +1,7 @@
 ---
 id: doctype-first
 title: doctype-first
+description: Ensures the doctype declaration appears as the first element in HTML documents.
 ---
 
 Doctype must be first.

@@ -1,6 +1,7 @@
 ---
 id: href-abs-or-rel
 title: href-abs-or-rel
+description: Enforces href attributes to be either absolute or relative URLs as specified in the configuration.
 ---
 
 Href must be absolute or relative.

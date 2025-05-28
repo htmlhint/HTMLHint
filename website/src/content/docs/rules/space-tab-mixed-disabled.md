@@ -1,6 +1,7 @@
 ---
 id: space-tab-mixed-disabled
-title: space-tab-mixed-disabled # consider renaming to blankspace
+title: space-tab-mixed-disabled
+description: Prevents mixing spaces and tabs for indentation at the beginning of lines to ensure consistent formatting.
 ---
 
 Blank-space (space and tab) characters should not be mixed in the beginning of any line.

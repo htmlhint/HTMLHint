@@ -1,6 +1,7 @@
 ---
 id: attr-whitespace
 title: attr-whitespace
+description: Disallows leading or trailing spaces inside attribute values to ensure clean and valid HTML.
 ---
 
 No leading or trailing spaces inside attribute values.

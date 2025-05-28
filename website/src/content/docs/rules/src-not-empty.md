@@ -1,6 +1,7 @@
 ---
 id: src-not-empty
 title: src-not-empty
+description: Requires the src attribute of img, script, and link elements to have a non-empty value.
 ---
 
 Src of img(script, link) must set value.

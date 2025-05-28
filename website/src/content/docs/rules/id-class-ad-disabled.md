@@ -1,6 +1,7 @@
 ---
 id: id-class-ad-disabled
 title: id-class-ad-disabled
+description: Prevents the use of 'ad' in id or class attributes to avoid issues with ad blockers.
 ---
 
 Id and class can not use ad keyword, it will blocked by adblock software.

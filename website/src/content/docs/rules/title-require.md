@@ -1,6 +1,7 @@
 ---
 id: title-require
 title: title-require
+description: Ensures every HTML document includes a <title> tag within the <head> for accessibility and SEO.
 ---
 
 `<title>` must be present in `<head>` tag.

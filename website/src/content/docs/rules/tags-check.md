@@ -1,6 +1,7 @@
 ---
 id: tags-check
 title: tags-check
+description: Checks for correct usage of self-closing tags and required or excluded tags in HTML elements.
 ---
 
 Check if particular tags are self-closing or must include or exclude particular tags.
