@@ -23,7 +23,7 @@ describe('Rules documentation', () => {
         'rules'
       )
     )
-    .map((doc) => doc.replace('.md', ''))
+    .map((doc) => doc.replace('.mdx', ''))
 
   const rulesListPage = fs.readFileSync(
     path.join(

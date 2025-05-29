@@ -10,5 +10,11 @@
   },
   "eslint.validate": ["javascript", "typescript"],
   "files.insertFinalNewline": true,
-  "files.trimTrailingWhitespace": true
+  "files.trimTrailingWhitespace": true,
+  "json.schemas": [
+    {
+      "fileMatch": ["/.htmlhintrc"],
+      "url": "https://json.schemastore.org/htmlhint.json"
+    }
+  ]
 }
