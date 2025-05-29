@@ -1,0 +1,28 @@
+---
+id: attr-value-not-empty
+title: attr-value-not-empty
+description: Ensures all attributes have non-empty values to prevent invalid or ambiguous HTML.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+Attribute must set value.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<input type="button" disabled="disabled" />
+```
+
+
+### The following pattern is considered a rule violation:
+
+```html
+<input type="button" disabled />
+```

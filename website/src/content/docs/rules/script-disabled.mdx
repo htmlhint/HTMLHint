@@ -1,0 +1,37 @@
+---
+id: script-disabled
+title: script-disabled
+description: Disallows the use of <script> tags in HTML documents for security and maintainability.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+The script tag can not be used anywhere in the document.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following patterns are **not** considered rule violations
+
+```html
+<body>
+</body>
+```
+
+### The following patterns are considered violations
+
+```html
+<head>
+  <script src="test.js"></script>
+</head>
+```
+
+```html
+<body>
+  <script src="test.js"></script>
+</body>
+```

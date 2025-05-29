@@ -1,0 +1,30 @@
+---
+id: attr-whitespace
+title: attr-whitespace
+description: Disallows leading or trailing spaces inside attribute values to ensure clean and valid HTML.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+No leading or trailing spaces inside attribute values.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<div title="a"></div>
+```
+
+### The following pattern is considered a rule violation:
+
+```html
+<div title=" a"></div>
+<div title="a "></div>
+<div title=" a "></div>
+```

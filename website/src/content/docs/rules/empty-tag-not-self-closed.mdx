@@ -1,0 +1,29 @@
+---
+id: empty-tag-not-self-closed
+title: empty-tag-not-self-closed
+description: Ensures empty HTML tags are not self-closed, following HTML standards for void elements.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+The empty tag should not be closed by self.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<br>
+```
+
+
+### The following pattern is considered a rule violation:
+
+```html
+<br />
+```

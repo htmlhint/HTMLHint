@@ -1,0 +1,37 @@
+---
+id: input-requires-label
+title: input-requires-label
+description: Requires every <input> element to have an associated <label> for accessibility compliance.
+keywords:
+  - input
+  - label
+  - accessibility
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+All [ input ] tags must have a corresponding [ label ] tag.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<input type="password">
+<input id="some-id" type="password" /> <label for="some-other-id"/>
+<input id="some-id" type="password" /> <label for=""/>
+<input type="password" /> <label for="something"/>
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<label for="some-id"/><input id="some-id" type="password" />
+<input id="some-id" type="password" /> <label for="some-id"/>
+```

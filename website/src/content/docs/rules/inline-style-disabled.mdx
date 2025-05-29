@@ -1,0 +1,23 @@
+---
+id: inline-style-disabled
+title: inline-style-disabled
+description: Disallows the use of inline style attributes to promote separation of content and presentation.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Inline style cannot be use.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following pattern is considered a rule violation:
+
+```html
+<div style="color:red"></div>
+```

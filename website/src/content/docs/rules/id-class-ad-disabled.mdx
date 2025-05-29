@@ -1,0 +1,30 @@
+---
+id: id-class-ad-disabled
+title: id-class-ad-disabled
+description: Prevents the use of 'ad' in id or class attributes to avoid issues with ad blockers.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+Id and class can not use ad keyword, it will blocked by adblock software.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<div id="adcontainer"></div>
+```
+
+
+### The following pattern is considered a rule violation:
+
+```html
+<div id="ad-container"></div>
+<div id="ad_container"></div>
+```

@@ -1,0 +1,36 @@
+---
+id: doctype-first
+title: doctype-first
+description: Ensures the doctype declaration appears as the first element in HTML documents.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+Doctype must be first.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<!DOCTYPE html>
+<html></html>
+```
+
+```html
+<!DOCTYPE html>
+<html></html>
+```
+
+
+### The following pattern is considered a rule violation:
+
+```html
+<!--comment--><!DOCTYPE html>
+<html></html>
+```

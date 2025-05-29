@@ -1,0 +1,53 @@
+---
+id: tags-check
+title: tags-check
+description: Checks for correct usage of self-closing tags and required or excluded tags in HTML elements.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Check if particular tags are self-closing or must include or exclude particular tags.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+3. `{}:` configuration object, mapping values of tags to their respective configuration. Tags configuration can have properties of:
+
+`selfclosing`
+
+If an element is or is not self-closing, when it otherwise should be.
+
+Level: `warn`
+
+`attrsRequired`
+
+If an element is missing an attribute that should exist.
+
+Level: <Badge text="Error" variant="danger" />
+
+`redundantAttrs`
+
+If an element has an attribute that is not necessary.
+
+Level: <Badge text="Error" variant="danger" />
+
+`attrsOptional`
+
+If an element has an attribute that is not included in the allowable set.
+
+Level: <Badge text="Error" variant="danger" />
+
+### Example
+
+```json
+{
+  ...
+  "tags-check": {
+    "a": {
+      "selfclosing": true,
+      "attrsRequired": ["href", "title"],
+      "redundantAttrs": ["alt"],
+```

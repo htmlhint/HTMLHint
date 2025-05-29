@@ -20,6 +20,7 @@ export default defineConfig({
       },
       lastUpdated: true,
       pagination: false,
+      tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
       social: [
         {
           icon: 'github',
@@ -92,6 +93,13 @@ export default defineConfig({
           attrs: {
             name: 'msvalidate.01',
             content: 'FE5F7C37D3394A82C074EB2713834A35',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'color-scheme',
+            content: 'light dark',
           },
         },
       ],

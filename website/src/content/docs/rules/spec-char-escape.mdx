@@ -1,0 +1,30 @@
+---
+id: spec-char-escape
+title: spec-char-escape
+description: Requires special characters in HTML to be properly escaped to prevent rendering issues.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Special characters must be escaped.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following patterns are **not** considered violations:
+
+```html
+<span>aaa&gt;bbb&lt;ccc</span>
+<span>Steinway &amp; Sons, Q&amp;A</span>
+<span>Steinway & Sons, Q&A</span>
+```
+
+### The following pattern is considered a rule violation:
+
+```html
+<span>aaa>bbb<ccc</span>
+```

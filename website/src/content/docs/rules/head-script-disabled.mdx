@@ -1,0 +1,33 @@
+---
+id: head-script-disabled
+title: head-script-disabled
+description: Disallows the use of <script> tags within the <head> section of HTML documents.
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+The script tag can not be used in head.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<body>
+  <script src="test.js"></script>
+</body>
+```
+
+### The following pattern is considered a rule violation:
+
+```html
+<head>
+  <script src="test.js"></script>
+</head>
+```

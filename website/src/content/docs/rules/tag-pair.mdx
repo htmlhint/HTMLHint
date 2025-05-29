@@ -1,0 +1,31 @@
+---
+id: tag-pair
+title: tag-pair
+description: Ensures that all HTML tags are properly paired with corresponding opening and closing tags.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Tag must be paired.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<ul><li></li></ul>
+```
+
+
+### The following pattern is considered a rule violation:
+
+```html
+<ul><li></ul>
+<ul></li></ul>
+```
