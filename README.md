@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://htmlhint.com"><img src="https://raw.githubusercontent.com/htmlhint/HTMLHint/main/website/static/img/htmlhint.png" alt="Logo HTMLHint" width="170"></a>
+  <a href="https://htmlhint.com"><img src="https://raw.githubusercontent.com/htmlhint/HTMLHint/main/website/src/assets/img/htmlhint.png" alt="Logo HTMLHint" width="170"></a>
   <br>
   HTMLHint
   <br>
@@ -19,12 +19,12 @@
     <img src="https://img.shields.io/npm/dm/htmlhint.svg" alt="npm count">
   </a>
   <a href="https://github.com/htmlhint/HTMLHint/blob/main/LICENSE.md">
-    <img src="https://badgen.net/badge/license/MIT/green" alt="MIT License" />
+    <img src="https://img.shields.io/github/license/htmlhint/HTMLHint" alt="MIT License" />
   </a>
 </p>
 
 <p align="center">
-  <a href="#-installation-and-usage">How To Use</a> • <a href="#contributing">Contributing</a> • <a href="https://htmlhint.com">Website</a>
+  <a href="#-installation-and-usage">How To Use</a> • <a href="CONTRIBUTING.md">Contributing</a> • <a href="https://htmlhint.com">Website</a>
 </p>
 
 ## Table of Contents
@@ -120,10 +120,10 @@ Inline rules in `test.html`:
 
 ## 📙 Docs
 
-1. [How to use](https://htmlhint.com/docs/user-guide/usage/cli)
-2. [All Rules](https://htmlhint.com/docs/user-guide/list-rules)
-3. [How to Develop](CONTRIBUTING.md)
-4. [Changelog](CHANGELOG.md)
+1. [How to use](https://htmlhint.com/getting-started/)
+2. [All Rules](https://htmlhint.com/rules/)
+3. [Changelog](https://htmlhint.com/changelog/)
+4. [How to Develop](CONTRIBUTING.md)
 
 ## © License
 

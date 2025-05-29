@@ -21,7 +21,7 @@
   "inline-style-disabled": false,
   "input-requires-label": false,
   "script-disabled": false,
-  "space-tab-mixed-disabled": true,
+  "space-tab-mixed-disabled": false,
   "spec-char-escape": false,
   "src-not-empty": true,
   "style-disabled": false,
