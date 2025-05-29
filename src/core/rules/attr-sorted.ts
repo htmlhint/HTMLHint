@@ -34,15 +34,37 @@ export default {
 
       const originalAttrs = JSON.stringify(listOfAttributes)
       listOfAttributes.sort((a, b) => {
-        if (orderMap[a] == undefined && orderMap[b] == undefined) {
-          return a.localeCompare(b)
-        }
-        if (orderMap[a] == undefined) {
-          return 1
-        } else if (orderMap[b] == undefined) {
+        // Sort a defined attribute.
+        if (orderMap[a] !== undefined) {
+          // With another defined attribute.
+          if (orderMap[b] !== undefined) {
+            return orderMap[a] - orderMap[b]
+          }
+          // With a data-* attribute or a lambda attribute.
           return -1
         }
-        return orderMap[a] - orderMap[b] || a.localeCompare(b)
+
+        // Sort a data-* attribute.
+        if (a.startsWith('data-')) {
+          // With another data-* attribute.
+          if (b.startsWith('data-')) {
+            return a.localeCompare(b)
+          }
+          // With a defined attribute or a lambda attribute.
+          return 1
+        }
+
+        // Sort a lambda attribute.
+        // With a defined attribute.
+        if (orderMap[b] !== undefined) {
+          return 1
+        }
+        // With a data-* attribute.
+        if (b.startsWith('data-')) {
+          return -1
+        }
+        // With another lambda attribute.
+        return a.localeCompare(b)
       })
 
       if (originalAttrs !== JSON.stringify(listOfAttributes)) {
