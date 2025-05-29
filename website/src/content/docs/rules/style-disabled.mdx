@@ -1,0 +1,24 @@
+---
+id: style-disabled
+title: style-disabled
+description: Disallows the use of <style> tags in HTML to enforce separation of content and presentation.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Style tag can not be use.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are considered violations
+
+```html
+<head><style type="text/css"></style></head>
+<body><style type="text/css"></style></body>
+```

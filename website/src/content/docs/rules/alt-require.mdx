@@ -1,0 +1,37 @@
+---
+id: alt-require
+title: alt-require
+description: Requires alt attributes on images and relevant elements to improve accessibility and SEO.
+keywords:
+  - alt
+  - image
+  - accessibility
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+
+Alt of `img` must be present and alt of `area[href]` and `input[type=image]` must be set with a value.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<img src="test.png" alt="test" />
+<input type="image" alt="test" />
+<area shape="circle" coords="180,139,14" href="test.html" alt="test" />
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<img src="test.png" />
+<input type="image" />
+<area shape="circle" coords="180,139,14" href="test.html" />
+```

@@ -1,0 +1,41 @@
+---
+id: html-lang-require
+title: html-lang-require
+description: Requires the lang attribute on the <html> element to ensure proper language declaration for accessibility and SEO.
+keywords:
+  - i18n
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+The lang attribute of an `<html>` element must be present and should be valid.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following pattern is **not** considered rule violations:
+
+```html
+<html lang="en"></html>
+```
+
+### The following patterns are considered a rule violations:
+
+```html
+<!-- missing lang tag -->
+<html></html>
+```
+
+```html
+<!-- empty lang tag -->
+<html lang=""></html>
+```
+
+```html
+<!-- invalid BCP 47 lang value -->
+<html lang="-"></html>
+```

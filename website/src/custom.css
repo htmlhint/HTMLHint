@@ -62,3 +62,38 @@ main h2 em {
 .tablist-wrapper {
   overflow-y: hidden;
 }
+
+.float-start {
+  float: left !important;
+}
+
+.me-1 {
+  margin-right: 0.25rem !important;
+}
+
+.sl-markdown-content h3 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.sl-heading-wrapper.level-h3 a {
+  display: none;
+}
+
+h3[id^='the-following-pattern']::before {
+  content: '';
+  width: 1rem;
+  height: 1rem;
+  margin-right: 8px;
+  background-image: url('/img/no.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  display: inline-block;
+}
+
+h3[id^='the-following-pattern-is-not']::before,
+h3[id^='the-following-patterns-are-not']::before {
+  background-image: url('/img/yes.svg');
+  background-size: 140%;
+}

@@ -1,0 +1,29 @@
+---
+id: attr-no-unnecessary-whitespace
+title: attr-no-unnecessary-whitespace
+description: Disallows unnecessary spaces between attribute names and values in HTML elements.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+No spaces between attribute names and values.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<div title="a"></div>
+```
+
+### The following pattern is considered a rule violation:
+
+```html
+<div title = "a"></div>
+<div title= "a"></div>
+<div title ="a"></div>
+```

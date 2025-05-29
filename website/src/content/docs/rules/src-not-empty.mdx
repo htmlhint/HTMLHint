@@ -1,0 +1,50 @@
+---
+id: src-not-empty
+title: src-not-empty
+description: Requires the src attribute of img, script, and link elements to have a non-empty value.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Src of img(script, link) must set value.
+
+Empty of src will visit current page twice.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<img src="test.png" />
+<script src="test.js"></script>
+<link href="test.css" type="text/css" />
+<embed src="test.swf">
+<bgsound src="test.mid" />
+<iframe src="test.html">
+<object data="test.swf">
+```
+
+
+### The following patterns are considered violations:
+
+```html
+<img src />
+<script src=""></script>
+<script src></script>
+<link href="" type="text/css" />
+<link href type="text/css" />
+<embed src="">
+<embed src>
+<bgsound src="" />
+<bgsound src />
+<iframe src="">
+<iframe src>
+<object data="">
+<object data>
+```

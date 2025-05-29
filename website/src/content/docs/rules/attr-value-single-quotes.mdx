@@ -1,0 +1,29 @@
+---
+id: attr-value-single-quotes
+title: attr-value-single-quotes
+description: Requires attribute values in HTML to be enclosed in single quotes for consistency.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Attribute value must closed by single quotes.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<a href='' title='abc'></a>
+```
+
+### The following pattern is considered a rule violation:
+
+```html
+<a href="" title="abc"></a>
+```

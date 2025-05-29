@@ -1,0 +1,31 @@
+---
+id: tagname-lowercase
+title: tagname-lowercase
+description: Enforces all HTML tag names to be lowercase for consistency and standards compliance.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+
+Tagname must be lowercase.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+3. ['clipPath', 'test']: Ignore some tagname name
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<span><div>
+```
+
+
+### The following pattern is considered a rule violation:
+
+```html
+<SPAN><BR>
+```
