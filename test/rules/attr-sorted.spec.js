@@ -42,7 +42,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages.length).toBe(0)
   })
 
-  it('Unsorted lambda attributes should throw error', () => {
+  it('Unsorted regular attributes should throw error', () => {
     const code = '<button disabled dir="rtl">Click</button>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -52,7 +52,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].message).toContain('["dir","disabled"]')
   })
 
-  it('Sorted lambda attributes should not throw error', () => {
+  it('Sorted regular attributes should not throw error', () => {
     const code = '<button dir="rtl" disabled>Click</button>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -78,7 +78,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages.length).toBe(0)
   })
 
-  it('Unsorted defined and lambda attributes should throw error', () => {
+  it('Unsorted defined and regular attributes should throw error', () => {
     const code = '<input required value="foo" />'
 
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -88,7 +88,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].message).toContain('["value","required"]')
   })
 
-  it('Sorted defined and lambda attributes should not throw error', () => {
+  it('Sorted defined and regular attributes should not throw error', () => {
     const code = '<input value="foo" required />'
 
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -96,7 +96,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages.length).toBe(0)
   })
 
-  it('Unsorted data-* and lambda attributes should throw error', () => {
+  it('Unsorted data-* and regular attributes should throw error', () => {
     const code = '<section data-prop="abc" lang="en" />'
 
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -106,7 +106,7 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].message).toContain('["lang","data-prop"]')
   })
 
-  it('Sorted data-* and lambda attributes should not throw error', () => {
+  it('Sorted data-* and regular attributes should not throw error', () => {
     const code = '<section lang="en" data-prop="abc" />'
 
     const messages = HTMLHint.verify(code, ruleOptions)

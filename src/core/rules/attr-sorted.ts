@@ -40,7 +40,7 @@ export default {
           if (orderMap[b] !== undefined) {
             return orderMap[a] - orderMap[b]
           }
-          // With a data-* attribute or a lambda attribute.
+          // With a data-* attribute or a regular attribute.
           return -1
         }
 
@@ -50,11 +50,11 @@ export default {
           if (b.startsWith('data-')) {
             return a.localeCompare(b)
           }
-          // With a defined attribute or a lambda attribute.
+          // With a defined attribute or a regular attribute.
           return 1
         }
 
-        // Sort a lambda attribute.
+        // Sort a regular attribute.
         // With a defined attribute.
         if (orderMap[b] !== undefined) {
           return 1
@@ -63,7 +63,7 @@ export default {
         if (b.startsWith('data-')) {
           return -1
         }
-        // With another lambda attribute.
+        // With another regular attribute.
         return a.localeCompare(b)
       })
 
