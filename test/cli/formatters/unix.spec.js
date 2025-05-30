@@ -25,7 +25,6 @@ describe('CLI', () => {
           'unix',
         ].join(' '),
         (error, stdout, stderr) => {
-          console.log('Actual stdout:', stdout) // Debugging line
           expect(typeof error).toBe('object')
           expect(error.code).toBe(1)
 
