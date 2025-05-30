@@ -13,3 +13,25 @@
   for = "/*.ico"
   [headers.values]
     Cache-Control = "public, s-max-age=1604800, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, s-max-age=1604800, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, s-max-age=1604800, immutable"
+
+[[redirects]]
+  from = "/docs/user-guide/list-rules"
+  to = "/list-rules"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/user-guide/usage/cli"
+  to = "/usage/cli"
+  status = 301
+  force = true
