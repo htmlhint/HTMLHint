@@ -13,7 +13,7 @@ Use `npx htmlhint --help` to print the CLI documentation.
 
 ## Options
 
-In addition to the [standard options](/usage/options), the CLI accepts:
+In addition to the [standard options](/usage/options/), the CLI accepts:
 
 ### `--color, --no-color`
 
@@ -31,6 +31,6 @@ Set all of the rules available
 
 Load custom rules from file or folder
 
-### `--version, -v`
+### `--version, -V`
 
 Show the currently installed version of HTMLHint.
