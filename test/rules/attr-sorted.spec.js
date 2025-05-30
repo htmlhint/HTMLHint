@@ -6,7 +6,7 @@ const ruleOptions = {}
 ruleOptions[ruleId] = true
 
 describe(`Rules: ${ruleId}`, () => {
-  it('Attribute unsorted tags must result in an error', () => {
+  it('Unsorted defined attributes should throw error', () => {
     const code = '<div id="test" class="class" title="title"></div>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -16,45 +16,101 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].message).toContain('["id","class","title"]')
   })
 
-  it('Attribute sorted tags that are unrecognizable should not throw error', () => {
-    const code = '<div font="font" img="image" meta="meta"></div>'
+  it('Sorted defined attributes should not throw error', () => {
+    const code = '<div class="class" id="test" title="title"></div>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
     expect(messages.length).toBe(0)
   })
 
-  it('Attribute unsorted tags that are unrecognizable should throw error', () => {
-    const code = '<div img="image" meta="meta" font="font"></div>'
+  it('Unsorted data-* attributes should throw error', () => {
+    const code = '<main data-b="foo" data-a="bar"></main>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
     expect(messages.length).toBe(1)
     expect(messages[0].rule.id).toBe(ruleId)
-    expect(messages[0].message).toContain('["img","meta","font"]')
+    expect(messages[0].message).toContain('["data-a","data-b"]')
   })
 
-  it('Attribute unsorted of tags of various types should throw error', () => {
-    const code = '<div type="type" img="image" id="id" font="font"></div>'
+  it('Sorted data-* attributes should not throw error', () => {
+    const code = '<main data-a="bar" data-b="foo"></main>'
 
     const messages = HTMLHint.verify(code, ruleOptions)
 
-    expect(messages.length).toBe(1)
-    expect(messages[0].rule.id).toBe(ruleId)
-    expect(messages[0].message).toContain('["type","img","id","font"]')
-  })
-
-  it('link tag with rel before href should not throw error', () => {
-    const code = '<link rel="stylesheet" href="https://example.com/style.css">'
-    const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
 
-  it('link tag with href before rel should throw error', () => {
-    const code = '<link href="https://example.com/style.css" rel="stylesheet">'
+  it('Unsorted regular attributes should throw error', () => {
+    const code = '<button disabled dir="rtl">Click</button>'
+
     const messages = HTMLHint.verify(code, ruleOptions)
+
     expect(messages.length).toBe(1)
     expect(messages[0].rule.id).toBe(ruleId)
-    expect(messages[0].message).toContain('["href","rel"]')
+    expect(messages[0].message).toContain('["dir","disabled"]')
+  })
+
+  it('Sorted regular attributes should not throw error', () => {
+    const code = '<button dir="rtl" disabled>Click</button>'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(0)
+  })
+
+  it('Unsorted defined and data-* attributes should throw error', () => {
+    const code = '<img data-focal="80" src="IMG.jpg" />'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["src","data-focal"]')
+  })
+
+  it('Sorted defined and data-* attributes should not throw error', () => {
+    const code = '<img src="IMG.jpg" data-focal="80" />'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(0)
+  })
+
+  it('Unsorted defined and regular attributes should throw error', () => {
+    const code = '<input required value="foo" />'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["value","required"]')
+  })
+
+  it('Sorted defined and regular attributes should not throw error', () => {
+    const code = '<input value="foo" required />'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(0)
+  })
+
+  it('Unsorted data-* and regular attributes should throw error', () => {
+    const code = '<section data-prop="abc" lang="en" />'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toContain('["lang","data-prop"]')
+  })
+
+  it('Sorted data-* and regular attributes should not throw error', () => {
+    const code = '<section lang="en" data-prop="abc" />'
+
+    const messages = HTMLHint.verify(code, ruleOptions)
+
+    expect(messages.length).toBe(0)
   })
 })

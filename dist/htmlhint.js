@@ -484,16 +484,25 @@
 	            }
 	            const originalAttrs = JSON.stringify(listOfAttributes);
 	            listOfAttributes.sort((a, b) => {
-	                if (orderMap[a] == undefined && orderMap[b] == undefined) {
-	                    return a.localeCompare(b);
-	                }
-	                if (orderMap[a] == undefined) {
-	                    return 1;
-	                }
-	                else if (orderMap[b] == undefined) {
+	                if (orderMap[a] !== undefined) {
+	                    if (orderMap[b] !== undefined) {
+	                        return orderMap[a] - orderMap[b];
+	                    }
 	                    return -1;
 	                }
-	                return orderMap[a] - orderMap[b] || a.localeCompare(b);
+	                if (a.startsWith('data-')) {
+	                    if (b.startsWith('data-')) {
+	                        return a.localeCompare(b);
+	                    }
+	                    return 1;
+	                }
+	                if (orderMap[b] !== undefined) {
+	                    return 1;
+	                }
+	                if (b.startsWith('data-')) {
+	                    return -1;
+	                }
+	                return a.localeCompare(b);
 	            });
 	            if (originalAttrs !== JSON.stringify(listOfAttributes)) {
 	                reporter.error(`Inaccurate order ${originalAttrs} should be in hierarchy ${JSON.stringify(listOfAttributes)} `, event.line, event.col, this, event.raw);
