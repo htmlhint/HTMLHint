@@ -7,7 +7,7 @@ title: Options
 
 CLI flag: `--config`
 
-Path to a JSON file that contains your [configuration object](../configuration.md).
+Path to a JSON file that contains your [configuration object](/configuration/).
 
 Use this option if you don't want HTMLHint to search for a configuration file.
 
