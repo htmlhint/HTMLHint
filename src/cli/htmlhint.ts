@@ -38,7 +38,7 @@ program.on('--help', () => {
   console.log('    htmlhint www/test.html')
   console.log('    htmlhint www/**/*.xhtml')
   console.log('    htmlhint www/**/*.{htm,html}')
-  console.log('    htmlhint https://example.com/')
+  console.log('    htmlhint https://www.example.com/')
   console.log('    cat test.html | htmlhint stdin')
   console.log('    htmlhint --list')
   console.log(
