@@ -38,7 +38,7 @@ program.on('--help', () => {
   console.log('    htmlhint www/test.html')
   console.log('    htmlhint www/**/*.xhtml')
   console.log('    htmlhint www/**/*.{htm,html}')
-  console.log('    htmlhint http://www.alibaba.com/')
+  console.log('    htmlhint https://example.com/')
   console.log('    cat test.html | htmlhint stdin')
   console.log('    htmlhint --list')
   console.log(
@@ -110,13 +110,13 @@ hintTargets(arrTargets, {
 // list all rules
 function listRules() {
   const rules = HTMLHint.rules
-  let rule
+  const ruleIds = Object.keys(rules).sort() // Sort rule IDs alphabetically
 
   console.log('     All rules:')
   console.log(' ==================================================')
 
-  for (const id in rules) {
-    rule = rules[id]
+  for (const id of ruleIds) {
+    const rule = rules[id]
     console.log('     %s : %s', chalk.bold(rule.id), rule.description)
   }
 }

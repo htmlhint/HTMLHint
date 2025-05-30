@@ -20,7 +20,7 @@ describe(`Rules: ${ruleId}`, () => {
 
   it('Href value is absolute with abs mode should not result in an error', () => {
     const code =
-      '<a href="http://www.alibaba.com/">aaa</a><a href="https://www.alibaba.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
+      '<a href="https://example.com/">aaa</a><a href="https://example.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruleId] = 'abs'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
@@ -28,7 +28,7 @@ describe(`Rules: ${ruleId}`, () => {
 
   it('Href value is not relative with rel mode should result in an error', () => {
     const code =
-      '<a href="http://www.alibaba.com/">aaa</a><a href="https://www.alibaba.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
+      '<a href="https://example.com/">aaa</a><a href="https://example.com/">bbb</a><a href="tel:12345678">ccc</a><a href="javascript:void()">ddd</a>'
     ruleOptions[ruleId] = 'rel'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(2)

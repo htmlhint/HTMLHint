@@ -7,3 +7,4 @@
 - Use ESLint to check for JavaScript errors.
 - Rollup is used for building the project.
 - Node v20 is used for development.
+- Core code is in TypeScript v4.
