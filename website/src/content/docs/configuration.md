@@ -32,3 +32,62 @@ Finally, rules can be specified inline directly in the HTML document:
   <body>...</body>
 </html>
 ```
+
+## Example configuration file
+
+An example configuration file (with all rules disabled):
+
+```json
+{
+  "rules": {
+    "alt-require": false,
+    "attr-lowercase": false,
+    "attr-no-duplication": false,
+    "attr-no-unnecessary-whitespace": false,
+    "attr-sorted": false,
+    "attr-unsafe-chars": false,
+    "attr-value-double-quotes": false,
+    "attr-value-not-empty": false,
+    "attr-value-single-quotes": false,
+    "attr-whitespace": false,
+    "doctype-first": false,
+    "doctype-html5": false,
+    "empty-tag-not-self-closed": false,
+    "head-script-disabled": false,
+    "href-abs-or-rel": false,
+    "html-lang-require": false,
+    "id-class-ad-disabled": false,
+    "id-class-value": false,
+    "id-unique": false,
+    "inline-script-disabled": false,
+    "inline-style-disabled": false,
+    "input-requires-label": false,
+    "script-disabled": false,
+    "space-tab-mixed-disabled": false,
+    "spec-char-escape": false,
+    "src-not-empty": false,
+    "style-disabled": false,
+    "tag-pair": false,
+    "tag-self-close": false,
+    "tagname-lowercase": false,
+    "tagname-specialchars": false,
+    "tags-check": false,
+    "title-require": false
+  }
+}
+```
+
+## VS Code Configuration
+
+Tip: to have your configuration file recognized by editors with JSON schema support, you can add the following to VS Code settings (`.vscode/settings.json`). This will enable autocompletion and validation for the `.htmlhintrc` file.
+
+```json
+{
+  "json.schemas": [
+    {
+      "fileMatch": ["/.htmlhintrc"],
+      "url": "https://json.schemastore.org/htmlhint.json"
+    }
+  ]
+}
+```
