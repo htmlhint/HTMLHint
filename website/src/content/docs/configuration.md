@@ -79,7 +79,7 @@ An example configuration file (with all rules disabled):
 
 ## VS Code Configuration
 
-Tip: to have your configuration file recognized by editors with JSON schema support, you can add the following to VS Code settings (`.vscode/settings.json`). This will enable autocompletion and validation for the `.htmlhintrc` file.
+To have your configuration file recognized by editors with JSON schema support, you can add the following to VS Code settings (`.vscode/settings.json`). This will enable autocompletion and validation for the `.htmlhintrc` file.
 
 ```json
 {
@@ -91,3 +91,5 @@ Tip: to have your configuration file recognized by editors with JSON schema supp
   ]
 }
 ```
+
+Note: if you have the [VS Code extension](/vs-code-extension/) installed, it will automatically recognize the `.htmlhintrc` file without needing to add this configuration.

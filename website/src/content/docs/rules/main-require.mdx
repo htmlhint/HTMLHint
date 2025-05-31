@@ -1,0 +1,39 @@
+---
+id: main-require
+title: main-require
+description: Ensures that an HTML document contains a `<main>` element within the `<body>` tag for proper document structure and accessibility.
+sidebar:
+  hidden: true
+  badge: New
+---
+import { Badge } from '@astrojs/starlight/components';
+
+A `<main>` element is required within the `<body>` tag of HTML documents. This rule ensures that the document has a clear and accessible structure, which is important for both users and screen readers.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<html><body><main>Content</main></body></html>
+```
+
+```html
+<html><body><header>Header</header><main>Content</main><footer>Footer</footer></body></html>
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<html><body><p>No main tag</p></body></html>
+```
+
+```html
+<html><body><header>Header</header><footer>Footer</footer></body></html>
+```

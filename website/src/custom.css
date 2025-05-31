@@ -101,3 +101,7 @@ h3[id^='the-following-patterns-are-not']::before {
 .top-level li a span.sl-badge {
   opacity: 0.5;
 }
+
+img[src='/img/htmlhint-vscode-extension.png'] {
+  background-color: #000;
+}

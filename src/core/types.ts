@@ -33,6 +33,7 @@ export interface Ruleset {
   'inline-script-disabled'?: boolean
   'inline-style-disabled'?: boolean
   'input-requires-label'?: boolean
+  'main-require'?: boolean
   'script-disabled'?: boolean
   'space-tab-mixed-disabled'?:
     | boolean
