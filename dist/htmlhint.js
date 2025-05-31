@@ -1,3 +1,10 @@
+/*!
+ * HTMLHint v1.2.0
+ * https://htmlhint.com
+ * Built on: 2025-05-31
+ * Copyright (c) 2025 HTMLHint
+ * Licensed under MIT License
+ */
 (function (global, factory) {
 	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
 	typeof define === 'function' && define.amd ? define(factory) :
