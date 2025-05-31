@@ -1329,6 +1329,58 @@
 		return inputRequiresLabel;
 	}
 
+	var mainRequire = {};
+
+	var hasRequiredMainRequire;
+
+	function requireMainRequire () {
+		if (hasRequiredMainRequire) return mainRequire;
+		hasRequiredMainRequire = 1;
+		Object.defineProperty(mainRequire, "__esModule", { value: true });
+		mainRequire.default = {
+		    id: 'main-require',
+		    description: '<main> must be present in <body> tag.',
+		    init(parser, reporter) {
+		        let bodyDepth = 0;
+		        let hasMainInBody = false;
+		        let bodyTagEvent = null;
+		        const onTagStart = (event) => {
+		            const tagName = event.tagName.toLowerCase();
+		            if (tagName === 'body') {
+		                bodyDepth++;
+		                if (bodyDepth === 1) {
+		                    hasMainInBody = false;
+		                    bodyTagEvent = event;
+		                }
+		            }
+		            else if (tagName === 'main' && bodyDepth > 0) {
+		                hasMainInBody = true;
+		            }
+		        };
+		        const onTagEnd = (event) => {
+		            const tagName = event.tagName.toLowerCase();
+		            if (tagName === 'body') {
+		                if (bodyDepth === 1 && !hasMainInBody && bodyTagEvent) {
+		                    reporter.warn('<main> must be present in <body> tag.', bodyTagEvent.line, bodyTagEvent.col, this, bodyTagEvent.raw);
+		                }
+		                bodyDepth--;
+		                if (bodyDepth < 0)
+		                    bodyDepth = 0;
+		            }
+		        };
+		        parser.addListener('tagstart', onTagStart);
+		        parser.addListener('tagend', onTagEnd);
+		        parser.addListener('end', () => {
+		            if (bodyDepth > 0 && !hasMainInBody && bodyTagEvent) {
+		                reporter.warn('<main> must be present in <body> tag.', bodyTagEvent.line, bodyTagEvent.col, this, bodyTagEvent.raw);
+		            }
+		        });
+		    },
+		};
+		
+		return mainRequire;
+	}
+
 	var scriptDisabled = {};
 
 	var hasRequiredScriptDisabled;
@@ -1804,7 +1856,7 @@
 		hasRequiredRules = 1;
 		(function (exports) {
 			Object.defineProperty(exports, "__esModule", { value: true });
-			exports.titleRequire = exports.tagSelfClose = exports.tagsCheck = exports.tagPair = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClassAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.h1Require = exports.emptyTagNotSelfClosed = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrSort = exports.attrNoUnnecessaryWhitespace = exports.attrNoDuplication = exports.attrLowercase = exports.altRequire = void 0;
+			exports.titleRequire = exports.tagSelfClose = exports.tagsCheck = exports.tagPair = exports.tagnameSpecialChars = exports.tagnameLowercase = exports.styleDisabled = exports.srcNotEmpty = exports.specCharEscape = exports.spaceTabMixedDisabled = exports.scriptDisabled = exports.mainRequire = exports.inputRequiresLabel = exports.inlineStyleDisabled = exports.inlineScriptDisabled = exports.idUnique = exports.idClassValue = exports.idClassAdDisabled = exports.htmlLangRequire = exports.hrefAbsOrRel = exports.headScriptDisabled = exports.h1Require = exports.emptyTagNotSelfClosed = exports.doctypeHTML5 = exports.doctypeFirst = exports.attrWhitespace = exports.attrValueSingleQuotes = exports.attrValueNotEmpty = exports.attrValueDoubleQuotes = exports.attrUnsafeChars = exports.attrSort = exports.attrNoUnnecessaryWhitespace = exports.attrNoDuplication = exports.attrLowercase = exports.altRequire = void 0;
 			var alt_require_1 = requireAltRequire();
 			Object.defineProperty(exports, "altRequire", { enumerable: true, get: function () { return alt_require_1.default; } });
 			var attr_lowercase_1 = requireAttrLowercase();
@@ -1851,6 +1903,8 @@
 			Object.defineProperty(exports, "inlineStyleDisabled", { enumerable: true, get: function () { return inline_style_disabled_1.default; } });
 			var input_requires_label_1 = requireInputRequiresLabel();
 			Object.defineProperty(exports, "inputRequiresLabel", { enumerable: true, get: function () { return input_requires_label_1.default; } });
+			var main_require_1 = requireMainRequire();
+			Object.defineProperty(exports, "mainRequire", { enumerable: true, get: function () { return main_require_1.default; } });
 			var script_disabled_1 = requireScriptDisabled();
 			Object.defineProperty(exports, "scriptDisabled", { enumerable: true, get: function () { return script_disabled_1.default; } });
 			var space_tab_mixed_disabled_1 = requireSpaceTabMixedDisabled();
