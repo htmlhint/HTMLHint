@@ -33,9 +33,9 @@
   ],
   "scripts": {
     "build": "npm run clean && tsc && npm run build:rollup",
-    "build:min": "rollup -c --strictDeprecations --environment NODE_ENV:production --file dist/htmlhint.min.js",
+    "build:min": "rollup -c --bundleConfigAsCjs --environment NODE_ENV:production",
     "build:rollup": "npm run build:min && npm run build:unmin",
-    "build:unmin": "rollup -c",
+    "build:unmin": "rollup -c --bundleConfigAsCjs",
     "clean": "rimraf dist",
     "lint": "eslint . --max-warnings 0 && prettier -c .",
     "lint:fix": "eslint . --fix && npm run prettier",
@@ -55,8 +55,9 @@
     "xml": "1.0.1"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "21.1.0",
-    "@rollup/plugin-node-resolve": "15.3.1",
+    "@rollup/plugin-commonjs": "28.0.3",
+    "@rollup/plugin-node-resolve": "16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "@types/async": "^3.2.24",
     "@types/glob": "^8.1.0",
     "@types/is-glob": "4.0.4",
@@ -71,8 +72,7 @@
     "parse-glob": "3.0.4",
     "prettier": "3.5.3",
     "rimraf": "6.0.1",
-    "rollup": "2.79.2",
-    "rollup-plugin-terser": "^7.0.2",
+    "rollup": "4.41.1",
     "typescript": "4.9.5"
   },
   "engines": {

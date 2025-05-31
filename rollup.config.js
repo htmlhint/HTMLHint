@@ -1,19 +1,20 @@
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
-import { terser } from 'rollup-plugin-terser'
+import terser from '@rollup/plugin-terser'
 
-const config = {
+export default {
   input: './dist/core/core.js',
   output: {
-    file: 'dist/htmlhint.js',
+    file:
+      process.env.NODE_ENV === 'production'
+        ? 'dist/htmlhint.min.js'
+        : 'dist/htmlhint.js',
     format: 'umd',
     name: 'HTMLHint',
   },
-  plugins: [commonjs(), resolve()],
+  plugins: [
+    commonjs(),
+    resolve(),
+    ...(process.env.NODE_ENV === 'production' ? [terser()] : []),
+  ],
 }
-
-if (process.env.NODE_ENV === 'production') {
-  config.plugins.push(terser())
-}
-
-export default config
