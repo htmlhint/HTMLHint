@@ -97,3 +97,7 @@ h3[id^='the-following-patterns-are-not']::before {
   background-image: url('/img/yes.svg');
   background-size: 140%;
 }
+
+.top-level li a span.sl-badge {
+  opacity: 0.5;
+}
