@@ -38,6 +38,7 @@ description: A complete list of all the rules for HTMLHint
 - [`empty-tag-not-self-closed`](/docs/user-guide/rules/empty-tag-not-self-closed): The empty tag should not be closed by self.
 - [`src-not-empty`](/docs/user-guide/rules/src-not-empty): The src attribute of an img(script,link) must have a value.
 - [`href-abs-or-rel`](/docs/user-guide/rules/href-abs-or-rel): An href attribute must be either absolute or relative.
+- [`h1-require`](/docs/user-guide/rules/h1-require): A document must have at least one `<h1>` element.
 
 ## Id
 

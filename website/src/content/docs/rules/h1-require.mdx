@@ -1,0 +1,36 @@
+---
+id: h1-require
+title: h1-require
+description: Ensures that an HTML document contains at least one `<h1>` element for proper document structure and accessibility.
+---
+import { Badge } from '@astrojs/starlight/components';
+
+A H1 heading element is required in HTML documents. The heading can not be empty. This rule ensures that the document has a clear and accessible structure, which is important for both users and search engines.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<html><body><h1>Title</h1></body></html>
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<html><body><p>No heading</p></body></html>
+```
+
+```html
+<html><body><h1></h1></body></html>
+```
+
+```html
+<html><body><h1>   </h1></body></html>
+```

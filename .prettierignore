@@ -17,9 +17,6 @@ npm-debug.log*
 # Ignore formatting of ***x*** to **_x_**
 .github/PULL_REQUEST_TEMPLATE.md
 
-/website/playground
-/website/build
-
 /test/**/*.html
 /test/**/*.xml
 
@@ -33,3 +30,9 @@ report.html
 CODEOWNERS
 *.mdx
 *.txt
+
+## Website
+/website/.astro
+/website/dist
+/website/build
+/website/public
