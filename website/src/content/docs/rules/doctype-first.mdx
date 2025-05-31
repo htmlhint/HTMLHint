@@ -1,11 +1,11 @@
 ---
 id: doctype-first
 title: doctype-first
-description: Ensures the doctype declaration appears as the first element in HTML documents.
+description: Ensures the doctype declaration appears before any non-comment content in HTML documents.
 ---
 import { Badge } from '@astrojs/starlight/components';
 
-Doctype must be first.
+Doctype must be declared before any non-comment content. Comments and whitespace are allowed before the DOCTYPE declaration.
 
 Level: <Badge text="Error" variant="danger" />
 
@@ -23,14 +23,19 @@ Level: <Badge text="Error" variant="danger" />
 ```
 
 ```html
+<!-- Comment before doctype -->
 <!DOCTYPE html>
 <html></html>
 ```
 
-
-### The following pattern is considered a rule violation:
+### The following patterns are considered rule violations:
 
 ```html
-<!--comment--><!DOCTYPE html>
+<html></html>
+```
+
+```html
+<div>Content before doctype</div>
+<!DOCTYPE html>
 <html></html>
 ```
