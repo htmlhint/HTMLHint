@@ -795,17 +795,30 @@
 		Object.defineProperty(doctypeFirst, "__esModule", { value: true });
 		doctypeFirst.default = {
 		    id: 'doctype-first',
-		    description: 'Doctype must be declared first.',
+		    description: 'Doctype must be declared first (comments and whitespace allowed before DOCTYPE).',
 		    init(parser, reporter) {
+		        let doctypeFound = false;
+		        let nonCommentContentBeforeDoctype = false;
 		        const allEvent = (event) => {
 		            if (event.type === 'start' ||
 		                (event.type === 'text' && /^\s*$/.test(event.raw))) {
 		                return;
 		            }
-		            if ((event.type !== 'comment' && event.long === false) ||
-		                /^DOCTYPE\s+/i.test(event.content) === false) {
-		                reporter.error('Doctype must be declared first.', event.line, event.col, this, event.raw);
+		            if (doctypeFound) {
+		                return;
 		            }
+		            if (event.type === 'comment' && event.long === false && /^DOCTYPE\s+/i.test(event.content)) {
+		                doctypeFound = true;
+		                if (nonCommentContentBeforeDoctype) {
+		                    reporter.error('Doctype must be declared before any non-comment content.', event.line, event.col, this, event.raw);
+		                }
+		                return;
+		            }
+		            if (event.type === 'comment') {
+		                return;
+		            }
+		            nonCommentContentBeforeDoctype = true;
+		            reporter.error('Doctype must be declared before any non-comment content.', event.line, event.col, this, event.raw);
 		            parser.removeListener('all', allEvent);
 		        };
 		        parser.addListener('all', allEvent);
