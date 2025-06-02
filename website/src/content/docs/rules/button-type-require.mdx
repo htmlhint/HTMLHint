@@ -1,0 +1,46 @@
+---
+id: button-type-require
+title: button-type-require
+description: Requires button elements to have a valid type attribute for better browser compatibility and user experience.
+sidebar:
+  hidden: true
+  badge: New
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+The type attribute of a `<button>` element must be present with a valid value: "button", "submit", or "reset".
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<button type="button">Click me</button>
+<button type="submit">Submit form</button>
+<button type="reset">Reset form</button>
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<button>No type specified</button>
+<button type="invalid">Invalid type</button>
+```
+
+## Why this rule is important
+
+HTML buttons default to `type="submit"` when used within a form if no type is specified, which can lead to unexpected form submissions. Explicitly setting the type attribute makes the button's behavior predictable and clear to both developers and users.
+
+The HTML specification requires that button elements have one of three valid types:
+
+- `button`: A generic button with no default behavior
+- `submit`: Submits the form data to the server (default)
+- `reset`: Resets all form controls to their initial values
+
+This rule helps ensure that buttons have explicit, valid types for better browser compatibility and user experience.

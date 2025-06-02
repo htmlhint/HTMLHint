@@ -1,6 +1,7 @@
 export { default as altRequire } from './alt-require'
 export { default as attrLowercase } from './attr-lowercase'
 export { default as attrNoDuplication } from './attr-no-duplication'
+export { default as buttonTypeRequire } from './button-type-require'
 export { default as attrNoUnnecessaryWhitespace } from './attr-no-unnecessary-whitespace'
 export { default as attrSort } from './attr-sorted'
 export { default as attrUnsafeChars } from './attr-unsafe-chars'

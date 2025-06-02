@@ -27,6 +27,7 @@ description: A complete list of all the rules for HTMLHint
 - [`attr-sorted`](/docs/user-guide/rules/attr-sorted): Attributes should be sorted in order.
 - [`attr-whitespace`](/docs/user-guide/rules/attr-whitespace): No leading or trailing spaces in attribute values.
 - [`alt-require`](/docs/user-guide/rules/alt-require): The alt attribute of an img element must be present and alt attribute of area[href] and input[type=image] must have a value.
+- [`button-type-require`](/docs/user-guide/rules/button-type-require): The type attribute of a button element must be present with a valid value: "button", "submit", or "reset".
 - [`input-requires-label`](/docs/user-guide/rules/input-requires-label): All [ input ] tags must have a corresponding [ label ] tag.
 
 ## Tags
