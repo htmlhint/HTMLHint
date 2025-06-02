@@ -13,6 +13,7 @@ description: A complete list of all the rules for HTMLHint
 - [`style-disabled`](/docs/user-guide/rules/style-disabled): `<style>` tags cannot be used.
 - [`script-disabled`](/docs/user-guide/rules/script-disabled): `<script>` tags cannot be used.
 - [`title-require`](/docs/user-guide/rules/title-require): `<title>` must be present in `<head>` tag.
+- [`meta-description-require`](/docs/user-guide/rules/meta-description-require): `<meta name="description">` with non-blank content must be present in `<head>` tag.
 
 ## Attributes
 

@@ -1,0 +1,40 @@
+---
+id: meta-description-require
+title: meta-description-require
+description: Ensures every HTML document includes a non-blank meta description tag within the head element for better SEO.
+sidebar:
+  hidden: true
+  badge: New
+---
+import { Badge } from '@astrojs/starlight/components';
+
+A `<meta name="description">` with non-blank content must be present in `<head>` tag.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following patterns are **not** considered rule violations:
+
+```html
+<html><head><meta name="description" content="A description of the page"></head></html>
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<!-- Missing meta description -->
+<html><head></head></html>
+
+<!-- Empty meta description content -->
+<html><head><meta name="description" content=""></head></html>
+
+<!-- Whitespace-only meta description content -->
+<html><head><meta name="description" content=" "></head></html>
+
+<!-- Meta description outside head tag -->
+<html><meta name="description" content="A description"><head></head></html>
+```
