@@ -17,3 +17,4 @@
 - Rules in the rules directory should always be documented in the website/src/content/docs/rules directory.
 - Rules in src/core/core.ts should be listed alphabetically.
 - Use the provided code snippets as examples for rule documentation.
+- Newly added rules pages for the website should have the frontmatter: sidebar: hidden: true badge: New
