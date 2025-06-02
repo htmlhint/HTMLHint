@@ -14,3 +14,6 @@
 - All user-facing messages and documentation should use clear, concise US English.
 - Keep dependencies up to date and avoid unnecessary packages.
 - All website content should be placed in the website directory and follow Astro Starlight conventions.
+- Rules in the rules directory should always be documented in the website/src/content/docs/rules directory.
+- Rules in src/core/core.ts should be listed alphabetically.
+- Use the provided code snippets as examples for rule documentation.
