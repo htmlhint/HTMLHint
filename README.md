@@ -24,7 +24,7 @@
 </p>
 
 <p align="center">
-  <a href="#-installation-and-usage">How To Use</a> • <a href="CONTRIBUTING.md">Contributing</a> • <a href="https://htmlhint.com">Website</a>
+  <a href="#-installation-and-usage">How To Use</a> • <a href="/.github/CONTRIBUTING.md">Contributing</a> • <a href="https://htmlhint.com">Website</a>
 </p>
 
 ## Table of Contents
@@ -123,7 +123,7 @@ Inline rules in `test.html`:
 1. [How to use](https://htmlhint.com/getting-started/)
 2. [All Rules](https://htmlhint.com/rules/)
 3. [Changelog](https://htmlhint.com/changelog/)
-4. [How to Develop](CONTRIBUTING.md)
+4. [How to Develop](/.github/CONTRIBUTING.md)
 
 ## © License
 
@@ -131,7 +131,7 @@ Inline rules in `test.html`:
 
 ## 💪🏻 Contributors
 
-This project exists thanks to all these people. [Contribute](CONTRIBUTING.md).
+This project exists thanks to all these people. [Contribute](/.github/CONTRIBUTING.md).
 <a href="https://github.com/htmlhint/HTMLHint/graphs/contributors"><img src="https://opencollective.com/htmlhint/contributors.svg?width=890" alt="HTMLHint Contributors" /></a>
 
 ## 🏅 Backers
