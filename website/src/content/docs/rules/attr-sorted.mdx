@@ -3,6 +3,7 @@ id: attr-sorted
 title: attr-sorted
 description: Enforces a specific order for attributes in HTML elements to improve readability and consistency.
 ---
+
 import { Badge } from '@astrojs/starlight/components';
 
 Attributes should be sorted in the following order:
@@ -26,14 +27,11 @@ Level: <Badge text="Error" variant="danger" />
 1. true: enable rule
 2. false: disable rule
 
-
 ### The following patterns are **not** considered rule violations:
 
 ```html
 <div img="image" meta="meta" font="font"></div>
 ```
-
-
 
 ### The following pattern is considered a rule violation:
 

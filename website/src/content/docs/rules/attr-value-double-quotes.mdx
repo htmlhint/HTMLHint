@@ -3,6 +3,7 @@ id: attr-value-double-quotes
 title: attr-value-double-quotes
 description: Requires attribute values in HTML to be enclosed in double quotes for consistency and standards compliance.
 ---
+
 import { Badge } from '@astrojs/starlight/components';
 
 Attribute value must closed by double quotes.
@@ -14,13 +15,11 @@ Level: <Badge text="Error" variant="danger" />
 1. true: enable rule
 2. false: disable rule
 
-
 ### The following patterns are **not** considered rule violations:
 
 ```html
 <a href="" title="abc"></a>
 ```
-
 
 ### The following pattern is considered a rule violation:
 

@@ -3,8 +3,8 @@ id: src-not-empty
 title: src-not-empty
 description: Requires the src attribute of img, script, and link elements to have a non-empty value.
 ---
-import { Badge } from '@astrojs/starlight/components';
 
+import { Badge } from '@astrojs/starlight/components';
 
 Src of img(script, link) must set value.
 
@@ -17,7 +17,6 @@ Level: <Badge text="Error" variant="danger" />
 1. true: enable rule
 2. false: disable rule
 
-
 ### The following patterns are **not** considered rule violations:
 
 ```html
@@ -29,7 +28,6 @@ Level: <Badge text="Error" variant="danger" />
 <iframe src="test.html">
 <object data="test.swf">
 ```
-
 
 ### The following patterns are considered violations:
 

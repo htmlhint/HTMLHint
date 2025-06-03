@@ -3,6 +3,7 @@ id: attr-unsafe-chars
 title: attr-unsafe-chars
 description: Disallows unsafe characters in attribute values to prevent rendering and security issues.
 ---
+
 import { Badge } from '@astrojs/starlight/components';
 
 Attribute value cannot use unsafe chars.
@@ -16,7 +17,6 @@ Level: <Badge text="Warning" variant="caution" />
 1. true: enable rule
 2. false: disable rule
 
-
 ### The following patterns are **not** considered rule violations:
 
 ```html
@@ -24,7 +24,6 @@ Level: <Badge text="Warning" variant="caution" />
   <a href="https://vimeo.com/album/1951235/video/56931059">Sud Web 2012</a>
 </li>
 ```
-
 
 ### The following pattern is considered a rule violation:
 

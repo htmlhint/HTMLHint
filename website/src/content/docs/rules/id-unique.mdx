@@ -3,8 +3,8 @@ id: id-unique
 title: id-unique
 description: Ensures all id attributes in an HTML document are unique to prevent conflicts and unexpected behavior.
 ---
-import { Badge } from '@astrojs/starlight/components';
 
+import { Badge } from '@astrojs/starlight/components'
 
 ID attributes must be unique in the document.
 
@@ -15,13 +15,11 @@ Level: <Badge text="Error" variant="danger" />
 1. true: enable rule
 2. false: disable rule
 
-
 ### The following patterns are **not** considered rule violations:
 
 ```html
 <div id="id1"></div><div id="id2"></div>
 ```
-
 
 ### The following pattern is considered a rule violation:
 
