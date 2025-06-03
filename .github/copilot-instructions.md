@@ -18,3 +18,4 @@
 - Rules in src/core/core.ts should be listed alphabetically.
 - Use the provided code snippets as examples for rule documentation.
 - Newly added rules pages for the website should have the frontmatter: sidebar: hidden: true badge: New
+- Always run `npm run build` before running tests or committing changes.
