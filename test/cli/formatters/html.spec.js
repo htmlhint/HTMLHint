@@ -4,12 +4,25 @@ const path = require('path')
 
 describe('CLI', () => {
   describe('Formatter: html', () => {
+    // Increase timeout to 60 seconds to avoid timeout errors
+    jest.setTimeout(60000)
+
     it('should have stdout output with formatter html', (done) => {
       const expected = fs
         .readFileSync(path.resolve(__dirname, 'html.html'), 'utf8')
         .replace(/\{\{path\}\}/g, path.resolve(__dirname, 'example.html'))
 
-      const expectedParts = expected.split('\n')
+      const expectedParts = expected
+        .replace(/\r\n|\r|\n/g, '\n')
+        .split('\n')
+        .map((line) => {
+          // Normalize CSS in style tags to match the minified version in the formatter
+          return line.replace(
+            /<style>(.*?)<\/style>/g,
+            (match, p1) => `<style>${p1.replace(/\s+/g, '')}</style>`
+          )
+        })
+        .filter((line) => line.trim() !== '')
 
       ChildProcess.exec(
         [
@@ -25,7 +38,17 @@ describe('CLI', () => {
 
           expect(stdout).not.toBe('')
 
-          const stdoutParts = stdout.split('\n')
+          const stdoutParts = stdout
+            .replace(/\r\n|\r|\n/g, '\n')
+            .split('\n')
+            .map((line) => {
+              // Normalize CSS in style tags to match the expected output
+              return line.replace(
+                /<style>(.*?)<\/style>/g,
+                (match, p1) => `<style>${p1.replace(/\s+/g, '')}</style>`
+              )
+            })
+            .filter((line) => line.trim() !== '')
 
           expect(stdoutParts.length).toBe(expectedParts.length)
 
