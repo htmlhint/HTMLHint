@@ -16,6 +16,7 @@
     "preview": "astro preview",
     "start": "astro dev",
     "htmlhint": "npx htmlhint .",
+    "htmlhint-report": "npx htmlhint . --format html",
     "pa11y-ci": "npx pa11y-ci https://htmlhint.com/"
   },
   "dependencies": {
