@@ -62,7 +62,6 @@ test/e2e/reports
 # Website/Docs releated files
 /website/node_modules
 /website/build
-/website/.docusaurus
 
 # HTML formatter output
 report.html

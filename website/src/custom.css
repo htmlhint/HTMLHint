@@ -105,3 +105,16 @@ h3[id^='the-following-patterns-are-not']::before {
 img[src='/img/htmlhint-vscode-extension.png'] {
   background-color: #000;
 }
+
+.level-h3:has(h3[id^='the-following-patterns-are-not']) ~ .expressive-code pre {
+  border-left: 4px solid green !important;
+}
+
+.level-h3:has(h3[id^='the-following-pattern-is-considered'])
+  ~ .expressive-code
+  pre,
+.level-h3:has(h3[id^='the-following-patterns-are-considered'])
+  ~ .expressive-code
+  pre {
+  border-left: 4px solid red !important;
+}
