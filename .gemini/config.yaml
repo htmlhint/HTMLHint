@@ -1,3 +1,4 @@
+# https://developers.google.com/gemini-code-assist/docs/customize-gemini-behavior-github
 have_fun: false
 code_review:
   disable: false
