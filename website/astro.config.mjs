@@ -113,14 +113,14 @@ export default defineConfig({
           link: '/configuration/',
         },
         {
-          label: 'Rules',
-          collapsed: true,
-          autogenerate: { directory: 'rules' },
-        },
-        {
           label: 'Usage',
           collapsed: true,
           autogenerate: { directory: 'usage' },
+        },
+        {
+          label: 'Rules',
+          collapsed: true,
+          autogenerate: { directory: 'rules' },
         },
         {
           label: 'VS Code Extension',
