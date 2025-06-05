@@ -21,13 +21,14 @@ Specify the formatter to format your results.
 
 Options are:
 
-- `compact`
-- `json` (default for Node API)
-- `unix`
 - `checkstyle`
+- `compact`
 - `html`
+- `json` (default for Node API)
 - `junit`
 - `markdown`
+- `sarif`
+- `unix`
 
 ## `ignore`
 

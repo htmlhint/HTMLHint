@@ -47,6 +47,7 @@
     "ruleid",
     "rulesdir",
     "ruleset",
+    "sarif",
     "selfclosing",
     "sometag",
     "specialchars",

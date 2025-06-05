@@ -84,7 +84,7 @@ export default class Reporter {
       rule: {
         id: rule.id,
         description: rule.description,
-        link: `https://htmlhint.com/docs/user-guide/rules/${rule.id}`,
+        link: `https://htmlhint.com/rules/${rule.id}`,
       } as Rule,
     })
   }
