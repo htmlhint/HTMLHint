@@ -7,6 +7,7 @@ import {
 } from 'node-sarif-builder'
 import * as path from 'path'
 import { Result } from 'sarif'
+import { ReportType } from '../../core/types'
 
 const pkg = require('../../../package.json')
 
@@ -49,8 +50,7 @@ const sarifFormatter: FormatterCallback = function (formatter) {
         const ruleId = message.rule.id
         const sarifResultInit = {
           level:
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-enum-comparison
-            message.type === 'info'
+            message.type === ReportType.info
               ? 'note'
               : (message.type.toString() as Result.level),
           messageText: message.message,

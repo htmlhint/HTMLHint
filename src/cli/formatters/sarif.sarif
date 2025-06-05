@@ -12,28 +12,28 @@
               "shortDescription": {
                 "text": "Attribute values must be in double quotes."
               },
-              "helpUri": "https://htmlhint.com/docs/user-guide/rules/attr-value-double-quotes"
+              "helpUri": "https://htmlhint.com/rules/attr-value-double-quotes"
             },
             {
               "id": "attr-no-duplication",
               "shortDescription": {
                 "text": "Elements cannot have duplicate attributes."
               },
-              "helpUri": "https://htmlhint.com/docs/user-guide/rules/attr-no-duplication"
+              "helpUri": "https://htmlhint.com/rules/attr-no-duplication"
             },
             {
               "id": "tag-pair",
               "shortDescription": {
                 "text": "Tag must be paired."
               },
-              "helpUri": "https://htmlhint.com/docs/user-guide/rules/tag-pair"
+              "helpUri": "https://htmlhint.com/rules/tag-pair"
             },
             {
               "id": "spec-char-escape",
               "shortDescription": {
                 "text": "Special characters must be escaped."
               },
-              "helpUri": "https://htmlhint.com/docs/user-guide/rules/spec-char-escape"
+              "helpUri": "https://htmlhint.com/rules/spec-char-escape"
             }
           ],
           "version": "1.1.4",
