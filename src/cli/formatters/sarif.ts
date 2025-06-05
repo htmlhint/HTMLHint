@@ -6,7 +6,6 @@ import {
   SarifRunBuilder,
 } from 'node-sarif-builder'
 import * as path from 'path'
-import { pathToFileURL } from 'url'
 import { Result } from 'sarif'
 
 const pkg = require('../../../package.json')
