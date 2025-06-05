@@ -1,0 +1,535 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-2.1.0-rtm.5.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "HTMLHint",
+          "rules": [
+            {
+              "id": "attr-value-double-quotes",
+              "shortDescription": {
+                "text": "Attribute values must be in double quotes."
+              },
+              "helpUri": "https://htmlhint.com/rules/attr-value-double-quotes"
+            },
+            {
+              "id": "attr-no-duplication",
+              "shortDescription": {
+                "text": "Elements cannot have duplicate attributes."
+              },
+              "helpUri": "https://htmlhint.com/rules/attr-no-duplication"
+            },
+            {
+              "id": "tag-pair",
+              "shortDescription": {
+                "text": "Tag must be paired."
+              },
+              "helpUri": "https://htmlhint.com/rules/tag-pair"
+            },
+            {
+              "id": "spec-char-escape",
+              "shortDescription": {
+                "text": "Special characters must be escaped."
+              },
+              "helpUri": "https://htmlhint.com/rules/spec-char-escape"
+            }
+          ],
+          "version": "1.4.0",
+          "informationUri": "https://htmlhint.com/"
+        }
+      },
+      "results": [
+        {
+          "level": "error",
+          "message": {
+            "text": "The value of attribute [ bad ] must be in double quotes."
+          },
+          "ruleId": "attr-value-double-quotes",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 7,
+                  "endLine": 8,
+                  "endColumn": 7
+                }
+              }
+            }
+          ],
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "The value of attribute [ bad ] must be in double quotes."
+          },
+          "ruleId": "attr-value-double-quotes",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 14,
+                  "endLine": 8,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Duplicate of attribute name [ bad ] was found."
+          },
+          "ruleId": "attr-no-duplication",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 8,
+                  "startColumn": 14,
+                  "endLine": 8,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "The value of attribute [ bad ] must be in double quotes."
+          },
+          "ruleId": "attr-value-double-quotes",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 7,
+                  "endLine": 9,
+                  "endColumn": 7
+                }
+              }
+            }
+          ],
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "The value of attribute [ bad ] must be in double quotes."
+          },
+          "ruleId": "attr-value-double-quotes",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 14,
+                  "endLine": 9,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Duplicate of attribute name [ bad ] was found."
+          },
+          "ruleId": "attr-no-duplication",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 9,
+                  "startColumn": 14,
+                  "endLine": 9,
+                  "endColumn": 14
+                }
+              }
+            }
+          ],
+          "ruleIndex": 1
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </input> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 10,
+                  "startColumn": 22,
+                  "endLine": 10,
+                  "endColumn": 22
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Special characters must be escaped : [ < ]."
+          },
+          "ruleId": "spec-char-escape",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 3,
+                  "endLine": 11,
+                  "endColumn": 3
+                }
+              }
+            }
+          ],
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Special characters must be escaped : [ > ]."
+          },
+          "ruleId": "spec-char-escape",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 11,
+                  "startColumn": 18,
+                  "endLine": 11,
+                  "endColumn": 18
+                }
+              }
+            }
+          ],
+          "ruleIndex": 3
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </div> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 13,
+                  "startColumn": 11,
+                  "endLine": 13,
+                  "endColumn": 11
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </div> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 14,
+                  "startColumn": 9,
+                  "endLine": 14,
+                  "endColumn": 9
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </hello> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 15,
+                  "startColumn": 7,
+                  "endLine": 15,
+                  "endColumn": 7
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </test> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 16,
+                  "startColumn": 5,
+                  "endLine": 16,
+                  "endColumn": 5
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </div> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 17,
+                  "startColumn": 3,
+                  "endLine": 17,
+                  "endColumn": 3
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "The value of attribute [ class ] must be in double quotes."
+          },
+          "ruleId": "attr-value-double-quotes",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 15,
+                  "endLine": 21,
+                  "endColumn": 15
+                }
+              }
+            }
+          ],
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "The value of attribute [ what ] must be in double quotes."
+          },
+          "ruleId": "attr-value-double-quotes",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 24,
+                  "endLine": 21,
+                  "endColumn": 24
+                }
+              }
+            }
+          ],
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "The value of attribute [ something ] must be in double quotes."
+          },
+          "ruleId": "attr-value-double-quotes",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 21,
+                  "startColumn": 32,
+                  "endLine": 21,
+                  "endColumn": 32
+                }
+              }
+            }
+          ],
+          "ruleIndex": 0
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </div> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 25,
+                  "startColumn": 3,
+                  "endLine": 25,
+                  "endColumn": 3
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </bad> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 26,
+                  "startColumn": 1,
+                  "endLine": 26,
+                  "endColumn": 1
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        },
+        {
+          "level": "error",
+          "message": {
+            "text": "Tag must be paired, no start tag: [ </bad> ]"
+          },
+          "ruleId": "tag-pair",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "{{path}}",
+                  "index": 0
+                },
+                "region": {
+                  "startLine": 27,
+                  "startColumn": 1,
+                  "endLine": 27,
+                  "endColumn": 1
+                }
+              }
+            }
+          ],
+          "ruleIndex": 2
+        }
+      ],
+      "artifacts": [
+        {
+          "sourceLanguage": "HTML",
+          "location": {
+            "uri": "{{path}}"
+          }
+        }
+      ]
+    }
+  ]
+}
