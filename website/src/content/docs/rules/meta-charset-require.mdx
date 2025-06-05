@@ -1,0 +1,38 @@
+---
+id: meta-charset-require
+title: meta-charset-require
+description: Ensures every HTML document includes a meta charset tag within the head element for proper character encoding.
+sidebar:
+  hidden: true
+  badge: New
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+A `<meta charset="">` must be present in `<head>` tag.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+1. true: enable rule
+2. false: disable rule
+
+### The following patterns are **not** considered rule violations
+
+```html
+<html><head><meta charset="utf-8"></head></html>
+```
+
+### The following patterns are considered rule violations
+
+```html
+<!-- Missing meta charset -->
+<html><head></head></html>
+
+<!-- Empty meta charset value -->
+<html><head><meta charset=""></head></html>
+
+<!-- Whitespace-only meta charset value -->
+<html><head><meta charset=" "></head></html>
+```
