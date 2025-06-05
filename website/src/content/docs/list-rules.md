@@ -2,6 +2,7 @@
 id: list-rules
 title: List of rules
 description: A complete list of all the rules for HTMLHint
+draft: true
 ---
 
 ## Doctype and Head
@@ -10,6 +11,7 @@ description: A complete list of all the rules for HTMLHint
 - [`doctype-html5`](/rules/doctype-html5): Invalid doctype.
 - [`head-script-disabled`](/rules/head-script-disabled): The `<script>` tag cannot be used in `<head>` tag.
 - [`html-lang-require`](/rules/html-lang-require): The HTML lang attribute is required.
+- [`meta-charset-require`](/rules/meta-charset-require): `<meta charset="">` must be present in `<head>` tag.
 - [`meta-description-require`](/rules/meta-description-require): `<meta name="description">` with non-blank content must be present in `<head>` tag.
 - [`meta-viewport-require`](/rules/meta-viewport-require): `<meta name="viewport">` with non-blank content must be present in `<head>` tag.
 - [`script-disabled`](/rules/script-disabled): `<script>` tags cannot be used.
