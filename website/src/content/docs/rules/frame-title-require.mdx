@@ -1,0 +1,38 @@
+---
+id: frame-title-require
+title: frame-title-require
+description: Requires that frame and iframe elements have an accessible name for screen readers and assistive technologies.
+sidebar:
+  hidden: true
+  badge: New
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+A `<frame>` or `<iframe>` element must have an accessible name.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule
+
+### The following patterns are **not** considered rule violations
+
+```html
+<iframe src="content.html" aria-label="Interactive content"></iframe>
+<iframe src="content.html" aria-labelledby="frame-heading"></iframe>
+<iframe src="content.html" title="Embedded content"></iframe>
+<iframe src="content.html" role="presentation"></iframe>
+<frame src="content.html" title="Navigation frame">
+```
+
+### The following patterns are considered rule violations
+
+```html
+<iframe src="content.html"></iframe>
+<iframe src="content.html" aria-label=""></iframe>
+<iframe src="content.html" title=""></iframe>
+<frame src="content.html">
+```

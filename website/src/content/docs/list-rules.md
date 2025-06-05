@@ -31,6 +31,7 @@ draft: true
 - [`attr-value-single-quotes`](/rules/attr-value-single-quotes): Attribute values must be in single quotes.
 - [`attr-whitespace`](/rules/attr-whitespace): No leading or trailing spaces in attribute values.
 - [`button-type-require`](/rules/button-type-require): The type attribute of a button element must be present with a valid value: "button", "submit", or "reset".
+- [`frame-title-require`](/rules/frame-title-require): A `<frame>` or `<iframe>` element must have an accessible name.
 - [`input-requires-label`](/rules/input-requires-label): All [ input ] tags must have a corresponding [ label ] tag.
 
 ## Tags
