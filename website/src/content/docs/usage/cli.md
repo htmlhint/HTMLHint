@@ -1,7 +1,7 @@
 ---
 id: cli
 title: Command-Line Interface (CLI)
-description: Use HTMLHint from the command line to lint your HTML files. Theere are several options available to customize the behavior of the linter.
+description: Use HTMLHint from the command line to lint your HTML files. There are several options available to customize the behavior of the linter.
 ---
 
 You can use HTMLHint on the command-line. For example:
