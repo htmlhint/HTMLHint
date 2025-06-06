@@ -4,6 +4,9 @@
   "private": true,
   "description": "The HTMLHint website - built with Astro Starlight",
   "homepage": "https://htmlhint.com",
+  "bugs": {
+    "url": "https://github.com/htmlhint/HTMLHint/issues"
+  },
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/htmlhint"
@@ -21,13 +24,13 @@
   },
   "dependencies": {
     "@astrojs/starlight": "^0.34.3",
-    "astro": "^5.8.2",
+    "astro": "^5.9.0",
     "sharp": "^0.34.2"
   },
   "engines": {
     "node": ">=20"
   },
   "volta": {
-    "node": "20.19.1"
+    "node": "20.19.2"
   }
 }

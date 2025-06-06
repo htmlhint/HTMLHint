@@ -26,12 +26,12 @@
 
 [[redirects]]
   from = "/docs/user-guide/list-rules"
-  to = "/list-rules"
+  to = "/rules/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/docs/user-guide/usage/cli"
-  to = "/usage/cli"
+  to = "/usage/cli/"
   status = 301
   force = true
