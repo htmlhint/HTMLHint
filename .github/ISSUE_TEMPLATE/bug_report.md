@@ -1,37 +1,47 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: "\U0001F41E  Bug report"
+about: Report an issue with HTMLHint or rules bundled with HTMLHint
+title: ''
+labels: bug, triage
+assignees: ''
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+**Tell us about your environment**
 
-**To Reproduce**
-Steps to reproduce the behavior:
+- **HTMLHint Version:**
+- **Node Version:**
+- **npm Version:**
+- **os Version:**
 
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+**Please show your full configuration:**
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+<details>
+<summary>Configuration</summary>
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+<!-- Paste your .htmlhintrc configuration below: -->
 
-**Desktop (please complete the following information):**
+```json
 
-- OS: [e.g. iOS]
-- Browser [e.g. chrome, safari]
-- Version [e.g. 22]
+```
 
-**Smartphone (please complete the following information):**
+</details>
 
-- Device: [e.g. iPhone6]
-- OS: [e.g. iOS8.1]
-- Browser [e.g. stock browser, safari]
-- Version [e.g. 22]
+**What did you do? Please include the actual source code causing the issue, as well as the command that you used to run HTMLHint.**
 
-**Additional context**
-Add any other context about the problem here.
+<!-- Paste the source code below: -->
+
+```html
+
+```
+
+<!-- Paste the command you used to run HTMLHint: -->
+
+```shell
+
+```
+
+**What did you expect to happen?**
+
+**What actually happened? Please include the actual, raw output from HTMLHint.**
+
+**Are you willing to submit a pull request to fix this bug?**
