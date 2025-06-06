@@ -88,8 +88,8 @@ if (cliOptions.list) {
 }
 
 if (cliOptions.init) {
-  initConfig()
-  process.exit(0)
+  const success = initConfig()
+  process.exit(success ? 0 : 1)
 }
 
 const arrTargets = program.args
@@ -129,7 +129,7 @@ function listRules() {
 }
 
 // initialize config file
-function initConfig() {
+function initConfig(): boolean {
   const configPath = '.htmlhintrc'
 
   if (existsSync(configPath)) {
@@ -137,7 +137,7 @@ function initConfig() {
       chalk.yellow('Configuration file already exists: %s'),
       configPath
     )
-    return
+    return true // File exists is a successful state - no error
   }
 
   const defaultConfig = JSON.stringify(HTMLHint.defaultRuleset, null, 2)
@@ -148,11 +148,13 @@ function initConfig() {
     console.log('')
     console.log('Configuration file contents:')
     console.log(chalk.gray(defaultConfig))
+    return true
   } catch (error) {
     console.log(
       chalk.red('Failed to create configuration file: %s'),
       error instanceof Error ? error.message : String(error)
     )
+    return false
   }
 }
 

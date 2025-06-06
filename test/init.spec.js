@@ -59,6 +59,7 @@ describe('Init command', () => {
       ['node', path.resolve(__dirname, '../bin/htmlhint'), '--init'].join(' '),
       { cwd: __dirname },
       (error, stdout) => {
+        // Should exit with code 0 (success) since file already exists is OK
         expect(error).toBeNull()
         expect(stdout).toContain(
           'Configuration file already exists: .htmlhintrc'
@@ -69,6 +70,35 @@ describe('Init command', () => {
         const config = JSON.parse(configContent)
         expect(config['custom-rule']).toBe(true)
         expect(config['tagname-lowercase']).toBeUndefined()
+
+        done()
+      }
+    )
+  })
+
+  it('should exit with code 1 when file creation fails', (done) => {
+    // Skip this test on Windows as it's harder to simulate reliable write failures
+    if (process.platform === 'win32') {
+      done()
+      return
+    }
+
+    // Create a read-only directory to cause write failure
+    const readOnlyDir = path.resolve(__dirname, 'readonly-test')
+    fs.mkdirSync(readOnlyDir, { mode: 0o444 })
+
+    ChildProcess.exec(
+      ['node', path.resolve(__dirname, '../bin/htmlhint'), '--init'].join(' '),
+      { cwd: readOnlyDir },
+      (error, stdout) => {
+        // Clean up
+        fs.chmodSync(readOnlyDir, 0o755)
+        fs.rmSync(readOnlyDir, { recursive: true, force: true })
+
+        // Should exit with code 1 (failure) when file creation fails
+        expect(error).not.toBeNull()
+        expect(error.code).toBe(1)
+        expect(stdout).toContain('Failed to create configuration file')
 
         done()
       }
