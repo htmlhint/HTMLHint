@@ -16,11 +16,30 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
   </TabItem>
 </Tabs>
 
-2\. Create a `.htmlhintrc` configuration file in the root of your project:
+2\. Create a `.htmlhintrc` configuration file in the root of your project with `htmlhint --init`. This will create a file with default rules. You can customize it as needed. For example, you can use the following configuration to enforce some common best practices:
 
 ```json
 {
-  "attr-value-not-empty": false
+  "alt-require": true,
+  "attr-lowercase": true,
+  "attr-no-duplication": true,
+  "attr-value-double-quotes": true,
+  "button-type-require": true,
+  "doctype-first": true,
+  "doctype-html5": true,
+  "frame-title-require": true,
+  "h1-require": true,
+  "html-lang-require": true,
+  "id-unique": true,
+  "main-require": true,
+  "meta-charset-require": true,
+  "meta-description-require": true,
+  "meta-viewport-require": true,
+  "spec-char-escape": true,
+  "src-not-empty": true,
+  "tag-pair": true,
+  "tagname-lowercase": true,
+  "title-require": true
 }
 ```
 
