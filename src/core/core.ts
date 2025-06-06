@@ -156,10 +156,8 @@ function repeatStr(n: number, str?: string) {
 
 export const HTMLHint = new HTMLHintCore()
 
-Object.keys(HTMLRules).forEach((key) => {
-  // TODO: need a fix
-  // @ts-expect-error
-  HTMLHint.addRule(HTMLRules[key])
+Object.values(HTMLRules).forEach((rule) => {
+  HTMLHint.addRule(rule)
 })
 
 export { HTMLRules, Reporter, HTMLParser }
