@@ -3,7 +3,7 @@
 import { queue as asyncQueue, series as asyncSeries } from 'async'
 import * as chalk from 'chalk'
 import { Command } from 'commander'
-import { existsSync, readFileSync, statSync } from 'fs'
+import { existsSync, readFileSync, statSync, writeFileSync } from 'fs'
 import * as glob from 'glob'
 import { IGlob } from 'glob'
 import { parseGlob } from './parse-glob'
@@ -41,6 +41,7 @@ program.on('--help', () => {
   console.log('    htmlhint https://www.example.com/')
   console.log('    cat test.html | htmlhint stdin')
   console.log('    htmlhint --list')
+  console.log('    htmlhint --init')
   console.log(
     '    htmlhint --rules tag-pair,id-class-value=underline test.html'
   )
@@ -56,6 +57,7 @@ program
   .version(pkg.version)
   .usage('<file|folder|pattern|stdin|url ...> [options]')
   .option('-l, --list', 'show all of the rules available')
+  .option('--init', 'create a new .htmlhintrc config file with default rules')
   .option('-c, --config <file>', 'custom configuration file')
   .option(
     '-r, --rules <ruleid, ruleid=value ...>',
@@ -82,6 +84,11 @@ const cliOptions = program.opts()
 
 if (cliOptions.list) {
   listRules()
+  process.exit(0)
+}
+
+if (cliOptions.init) {
+  initConfig()
   process.exit(0)
 }
 
@@ -118,6 +125,34 @@ function listRules() {
   for (const id of ruleIds) {
     const rule = rules[id]
     console.log('     %s : %s', chalk.bold(rule.id), rule.description)
+  }
+}
+
+// initialize config file
+function initConfig() {
+  const configPath = '.htmlhintrc'
+
+  if (existsSync(configPath)) {
+    console.log(
+      chalk.yellow('Configuration file already exists: %s'),
+      configPath
+    )
+    return
+  }
+
+  const defaultConfig = JSON.stringify(HTMLHint.defaultRuleset, null, 2)
+
+  try {
+    writeFileSync(configPath, defaultConfig, 'utf-8')
+    console.log(chalk.green('Created configuration file: %s'), configPath)
+    console.log('')
+    console.log('Configuration file contents:')
+    console.log(chalk.gray(defaultConfig))
+  } catch (error) {
+    console.log(
+      chalk.red('Failed to create configuration file: %s'),
+      error instanceof Error ? error.message : String(error)
+    )
   }
 }
 
