@@ -19,6 +19,14 @@ In addition to the [standard options](/usage/options/), the CLI accepts:
 
 Force enabling/disabling of color.
 
+### `--init`
+
+Create a new HTMLHint configuration file (`.htmlhintrc`) in the current directory with default rules. If a configuration file already exists, this command will exit successfully without making changes.
+
+```shell
+npx htmlhint --init
+```
+
 ### `--list, -l`
 
 Show all the rules available
