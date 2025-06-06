@@ -34,7 +34,8 @@ describe('Rules documentation', () => {
       'src',
       'content',
       'docs',
-      'list-rules.md'
+      'rules',
+      'index.mdx'
     ),
     'utf-8'
   )
@@ -43,7 +44,7 @@ describe('Rules documentation', () => {
     it(`${rule} should have a documentation page`, () => {
       expect(docs).toContain(rule)
     })
-    it(`${rule} should be on the index.mdx`, () => {
+    it(`${rule} should be on the rules/index.mdx`, () => {
       expect(rulesListPage).toContain(rule)
     })
   })
