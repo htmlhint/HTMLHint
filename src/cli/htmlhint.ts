@@ -424,10 +424,6 @@ function getConfig(
         break
       }
 
-      if (!base) {
-        break
-      }
-
       base = base.substring(0, base.lastIndexOf(sep))
     }
   }
