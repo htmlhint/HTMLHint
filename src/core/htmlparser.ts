@@ -267,9 +267,8 @@ export default class HTMLParser {
     this.lastEvent = data
 
     for (let i = 0, l = listeners.length; i < l; i++) {
-      // TODO: we may improve where data is actually a Block or a Partial<Block>
-      // @ts-expect-error
-      listeners[i].call(this, data)
+      // Cast safely to Block as our listeners expect a Block
+      listeners[i].call(this, data as Block)
     }
   }
 

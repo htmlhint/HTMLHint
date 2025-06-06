@@ -55,7 +55,7 @@ describe('CLI', () => {
       })
 
       child.stderr.on('data', function (stderr) {
-        expect(stderr).toBe('')
+        expect(stderr.toString()).toBe('')
       })
 
       child.on('close', function (code) {
