@@ -5,8 +5,8 @@ description: A complete list of all the rules for HTMLHint
 
 ## Doctype and Head
 
-- [`doctype-first`](doctype-first/): Doctype must be declared first.
-- [`doctype-html5`](doctype-html5/): Invalid doctype.
+- [`doctype-first`](doctype-first/): `<doctype>` must be declared first.
+- [`doctype-html5`](doctype-html5/): `<doctype>` must be HTML5.
 - [`head-script-disabled`](head-script-disabled/): The `<script>` tag cannot be used in `<head>` tag.
 - [`html-lang-require`](html-lang-require/): The HTML lang attribute is required.
 - [`meta-charset-require`](meta-charset-require/): `<meta charset="">` must be present in `<head>` tag.
@@ -34,6 +34,7 @@ description: A complete list of all the rules for HTMLHint
 ## Tags
 
 - [`empty-tag-not-self-closed`](empty-tag-not-self-closed/): The empty tag should not be closed by self.
+- [`frame-title-require`](frame-title-require/): A `<frame>` or `<iframe>` element must have an accessible name.
 - [`h1-require`](h1-require/): A document must have at least one `<h1>` element.
 - [`href-abs-or-rel`](href-abs-or-rel/): An href attribute must be either absolute or relative.
 - [`main-require`](main-require/): A document must have at least one `<main>` element in the `<body>` tag.
@@ -44,7 +45,7 @@ description: A complete list of all the rules for HTMLHint
 - [`tagname-specialchars`](tagname-specialchars/): Tag names can only contain letters, numbers, "-", ":" or "\_".
 - [`tags-check`](tags-check/): Allowing specify rules for any tag and validate that
 
-## Id
+## ID
 
 - [`id-class-ad-disabled`](id-class-ad-disabled/): The id and class attributes cannot use the ad keyword, it will be blocked by adblock software.
 - [`id-class-value`](id-class-value/): The id and class attribute values must meet the specified rules.
