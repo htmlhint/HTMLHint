@@ -65,3 +65,4 @@ test/e2e/reports
 
 # HTML formatter output
 report.html
+htmlhint.sarif

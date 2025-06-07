@@ -60,6 +60,48 @@ describe('CLI', () => {
 
       child.on('close', function (code) {
         expect(code).toBe(1)
+
+        // Check if htmlhint.sarif file was created
+        const sarifFilePath = path.resolve(process.cwd(), 'htmlhint.sarif')
+        expect(fs.existsSync(sarifFilePath)).toBe(true)
+
+        // Verify the file content matches the stdout
+        const fileContent = fs.readFileSync(sarifFilePath, 'utf8')
+        const fileJson = JSON.parse(fileContent)
+
+        if (os.platform() !== 'darwin') {
+          expect(typeof fileJson).toBe('object')
+          expect(
+            fileJson['runs'][0]['artifacts'][0]['location']['uri']
+          ).toContain('example.html')
+
+          const fileResults = fileJson['runs'][0]['results']
+          const fileRules = fileJson['runs'][0]['tool']['driver']['rules']
+
+          expect(fileResults).toBeInstanceOf(Array)
+          expect(fileResults.length).toBe(expected['runs'][0]['results'].length)
+
+          expect(fileRules).toBeInstanceOf(Array)
+          expect(fileRules.length).toBe(
+            expected['runs'][0]['tool']['driver']['rules'].length
+          )
+
+          for (let i = 0; i < fileResults.length; i++) {
+            expect(fileResults[i]).toEqual(expected['runs'][0]['results'][i])
+          }
+
+          for (let i = 0; i < fileRules.length; i++) {
+            expect(fileRules[i]).toEqual(
+              expected['runs'][0]['tool']['driver']['rules'][i]
+            )
+          }
+        }
+
+        // Clean up the created file
+        if (fs.existsSync(sarifFilePath)) {
+          fs.unlinkSync(sarifFilePath)
+        }
+
         done()
       })
     })

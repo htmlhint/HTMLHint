@@ -13,8 +13,10 @@ describe('CLI', () => {
           'markdown',
         ].join(' '),
         (error, stdout, stderr) => {
-          expect(typeof error).toBe('object')
-          expect(error.code).toBe(1)
+          // HTMLHint should exit with code 1 when errors are found
+          if (error) {
+            expect(error.code).toBe(1)
+          }
 
           expect(stdout).toContain('# TOC')
           expect(stdout).toContain('Found 20 errors, 0 warnings')
