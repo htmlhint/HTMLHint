@@ -37,6 +37,7 @@
     "build:rollup": "npm run build:min && npm run build:unmin",
     "build:unmin": "rollup -c --bundleConfigAsCjs",
     "clean": "rimraf dist",
+    "full": "npm run build && npm run test && npm run lint",
     "lint": "eslint . --max-warnings 0 && prettier -c .",
     "lint:fix": "eslint . --fix && npm run prettier",
     "lint:markdown": "npx markdownlint-cli **/*.md",

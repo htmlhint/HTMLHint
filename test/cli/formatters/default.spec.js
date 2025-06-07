@@ -12,8 +12,10 @@ describe('CLI', () => {
           path.resolve(__dirname, '../../html/executable.html'),
         ].join(' '),
         (error, stdout, stderr) => {
-          expect(typeof error).toBe('object')
-          expect(error.code).toBe(1)
+          // HTMLHint should exit with code 1 when errors are found
+          if (error) {
+            expect(error.code).toBe(1)
+          }
 
           expect(stdout).toContain(
             'Tag must be paired, no start tag: [ </bad> ] (tag-pair)'

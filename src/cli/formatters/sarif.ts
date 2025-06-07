@@ -1,3 +1,4 @@
+import { writeFileSync } from 'fs'
 import { FormatterCallback } from '../formatter'
 import {
   SarifBuilder,
@@ -69,7 +70,9 @@ const sarifFormatter: FormatterCallback = function (formatter) {
     })
 
     sarifBuilder.addRun(sarifRunBuilder)
-    console.log(sarifBuilder.buildSarifJsonString({ indent: true }))
+    const sarifContent = sarifBuilder.buildSarifJsonString({ indent: true })
+    console.log(sarifContent)
+    writeFileSync('htmlhint.sarif', sarifContent)
   })
 }
 
