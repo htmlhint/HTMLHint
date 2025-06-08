@@ -20,6 +20,7 @@
     "start": "astro dev",
     "htmlhint": "npx htmlhint .",
     "htmlhint-report": "npx htmlhint . --format html",
+    "htmlhint-sarif": "npx htmlhint . --format sarif",
     "pa11y-ci": "npx pa11y-ci https://htmlhint.com/"
   },
   "dependencies": {
