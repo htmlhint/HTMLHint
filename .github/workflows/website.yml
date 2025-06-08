@@ -35,3 +35,16 @@ jobs:
         run: |
           cd website
           npm run build
+
+      - name: Run HTMLHint (SARIF)
+        run: |
+          cd website
+          npm run htmlhint-sarif || true
+        # Continue even if HTMLHint finds issues
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: website/htmlhint.sarif
+          category: HTMLHint
+        if: always()
