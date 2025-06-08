@@ -101,11 +101,30 @@ const sarifFormatter: FormatterCallback = function (formatter) {
           return
         }
         addedRuleSet.add(rule.id)
+
+        // Get rule documentation markdown content if available
+        const ruleMarkdown = getRuleMarkdown(rule.id)
+
         const sarifRuleBuilder = new SarifRuleBuilder().initSimple({
           ruleId: rule.id,
           shortDescriptionText: rule.description,
           helpUri: rule.link,
         })
+
+        // Add help content directly to the rule if available
+        if (ruleMarkdown) {
+          // Since initSimple doesn't support help, we'll need to access the internal rule object
+          // This is a more direct approach than the parse-modify-stringify cycle
+          const ruleObject = (
+            sarifRuleBuilder as unknown as { _rule?: { help?: object } }
+          )._rule
+          if (ruleObject) {
+            ruleObject.help = {
+              text: rule.description,
+              markdown: ruleMarkdown,
+            }
+          }
+        }
 
         sarifRunBuilder.addRule(sarifRuleBuilder)
       })
@@ -138,33 +157,7 @@ const sarifFormatter: FormatterCallback = function (formatter) {
 
     sarifBuilder.addRun(sarifRunBuilder)
     const sarifContent = sarifBuilder.buildSarifJsonString({ indent: true })
-
-    // Add help.markdown to rules if available
-    try {
-      const sarifJson = JSON.parse(sarifContent)
-      const rules = sarifJson.runs[0].tool.driver.rules
-
-      // Process each rule individually
-      for (const rule of rules) {
-        const ruleId = rule.id
-        const ruleMarkdown = getRuleMarkdown(ruleId)
-
-        if (ruleMarkdown) {
-          // Add the help object with markdown content to the rule
-          rule.help = {
-            text: rule.shortDescription.text,
-            markdown: ruleMarkdown,
-          }
-        }
-      }
-
-      // Convert back to string with indentation
-      const updatedSarifContent = JSON.stringify(sarifJson, null, 2)
-      writeFileSync('htmlhint.sarif', updatedSarifContent)
-    } catch (error) {
-      // If there's an error parsing or modifying the JSON, fall back to the original content
-      writeFileSync('htmlhint.sarif', sarifContent)
-    }
+    writeFileSync('htmlhint.sarif', sarifContent)
   })
 }
 
