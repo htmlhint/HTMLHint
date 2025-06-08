@@ -12,31 +12,47 @@
               "shortDescription": {
                 "text": "Attribute values must be in double quotes."
               },
-              "helpUri": "https://htmlhint.com/rules/attr-value-double-quotes"
+              "helpUri": "https://htmlhint.com/rules/attr-value-double-quotes",
+              "help": {
+                "text": "Attribute values must be in double quotes.",
+                "markdown": "\nAttribute value must closed by double quotes.\n\nLevel: Error\n\n## Config value\n\n1. true: enable rule\n2. false: disable rule\n\n### The following patterns are **not** considered rule violations\n\n```html\n`<a href=\"\" title=\"abc\">``</a>`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<a href='' title='abc'>``</a>`\n```"
+              }
             },
             {
               "id": "attr-no-duplication",
               "shortDescription": {
                 "text": "Elements cannot have duplicate attributes."
               },
-              "helpUri": "https://htmlhint.com/rules/attr-no-duplication"
+              "helpUri": "https://htmlhint.com/rules/attr-no-duplication",
+              "help": {
+                "text": "Elements cannot have duplicate attributes.",
+                "markdown": "\nThe same attribute can't be specified twice.\n\nLevel: Error\n\n## Config value\n\n1. true: enable rule\n2. false: disable rule\n\n### The following patterns are **not** considered rule violations\n\n```html\n`<img src=\"a.png\" />`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<img src=\"a.png\" src=\"b.png\" />`\n```"
+              }
             },
             {
               "id": "tag-pair",
               "shortDescription": {
                 "text": "Tag must be paired."
               },
-              "helpUri": "https://htmlhint.com/rules/tag-pair"
+              "helpUri": "https://htmlhint.com/rules/tag-pair",
+              "help": {
+                "text": "Tag must be paired.",
+                "markdown": "\nTag must be paired.\n\nLevel: Error\n\n## Config value\n\n1. true: enable rule\n2. false: disable rule\n\n### The following patterns are **not** considered rule violations\n\n```html\n`<ul>``<li>``</li>``</ul>`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<ul>``<li>``</ul>`\n`<ul>``</li>``</ul>`\n```"
+              }
             },
             {
               "id": "spec-char-escape",
               "shortDescription": {
                 "text": "Special characters must be escaped."
               },
-              "helpUri": "https://htmlhint.com/rules/spec-char-escape"
+              "helpUri": "https://htmlhint.com/rules/spec-char-escape",
+              "help": {
+                "text": "Special characters must be escaped.",
+                "markdown": "\nSpecial characters must be escaped.\n\nLevel: Error\n\n## Config value\n\n1. true: enable rule\n2. false: disable rule\n\n### The following patterns are **not** considered violations\n\n```html\n`<span>`aaa&gt;bbb&lt;ccc`</span>`\n`<span>`Steinway &amp; Sons, Q&amp;A`</span>`\n`<span>`Steinway & Sons, Q&A`</span>`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<span>`aaa>bbb`<ccc</span>`\n```"
+              }
             }
           ],
-          "version": "1.4.0",
+          "version": "1.5.1",
           "informationUri": "https://htmlhint.com/"
         }
       },
