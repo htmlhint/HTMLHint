@@ -59,12 +59,14 @@ function getRuleMarkdown(ruleId: string): string | undefined {
           '$1'
         )
 
-        // Wrap HTML elements in backticks for proper markdown formatting
-        // This matches HTML tags, DOCTYPE declarations, and other HTML elements
+        // Remove the Config value section as it's not needed in SARIF output
         processedMarkdown = processedMarkdown.replace(
-          /(<\/?[a-zA-Z][^>\s]*[^>]*>|<!DOCTYPE[^>]*>)/g,
-          '`$1`'
+          /## Config value\s*\n+1\.\s*true:\s*enable\s*rule\s*\n+2\.\s*false:\s*disable\s*rule\s*\n+/g,
+          ''
         )
+
+        // Note: HTML elements in code fences should not be wrapped in additional backticks
+        // as they are already properly formatted within the markdown code blocks
 
         // Replace any other Astro-specific components or syntax if needed
 
