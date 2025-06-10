@@ -1,0 +1,61 @@
+---
+title: GitHub Code Scanning
+description: Get HTMLHint to run on every pull request with GitHub Code Scanning.
+sidebar:
+  order: 3
+---
+
+import { Aside } from '@astrojs/starlight/components';
+
+Thanks to the newly added SARIF formatter, HTMLHint can now be integrated with [GitHub Code Scanning](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/uploading-a-sarif-file-to-github) to automatically check your HTML code.
+
+<img src="/img/htmlhint-github-code-scanning.png" alt="Screenshot of the HTMLHint GitHub Code Scanning Integration" width="720" height="372" />
+
+This integration can help maintain code quality and ensures that HTML standards are met across your projects. Fixing issues will automatically remove the warnings from the Code Scanning tab in GitHub.
+
+## Setting Up GitHub Code Scanning
+
+To set up HTMLHint with GitHub Code Scanning, you need to create a workflow file in your repository. This file will define the steps to run HTMLHint on your HTML files whenever a pull request is made.
+
+1. **Create a Workflow File**: In your repository, create a directory named `.github/workflows` if it doesn't already exist. Inside this directory, create a file named `htmlhint.yml`.
+2. **Define the Workflow**: Add the following content to `htmlhint.yml`:
+
+```yaml
+name: HTMLHint (SARIF) Code Scanning
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+
+      # If you need a website build script, include the steps here
+
+      - name: Run HTMLHint (SARIF)
+        run: npx htmlhint . --format sarif || true
+        # Continue even if HTMLHint finds issues
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: website/htmlhint.sarif
+          category: HTMLHint
+        if: always()
+```
+
+For a real-world example, you can see the Upload SARIF steps in the workflow for the HTMLHint website in the [HTMLHint GitHub repository](https://github.com/htmlhint/HTMLHint/blob/main/.github/workflows/website.yml#L39).
+Make sure to adjust the `sarif_file` path to match where HTMLHint outputs the SARIF file in your project.
+
+<Aside>
+For private and internal repositories, code scanning is available when GitHub Code Security features are enabled for the repository. If you see the error GitHub Code Security or GitHub Advanced Security must be enabled for this repository to use code scanning, check that GitHub Code Security is enabled. For more information, see
+[Managing security and analysis settings for your repository](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/enabling-features-for-your-repository/managing-security-and-analysis-settings-for-your-repository).
+</Aside>
