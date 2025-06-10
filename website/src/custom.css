@@ -102,6 +102,7 @@ h3[id^='the-following-patterns-are-not']::before {
   opacity: 0.5;
 }
 
+img[src='/img/htmlhint-github-code-scanning.png'],
 img[src='/img/htmlhint-vscode-extension.png'] {
   background-color: #000;
 }
@@ -119,4 +120,8 @@ img[src='/img/htmlhint-vscode-extension.png'] {
   ~ .expressive-code
   figure {
   border-left: 4px solid red !important;
+}
+
+article.card {
+  padding: 1.5rem;
 }

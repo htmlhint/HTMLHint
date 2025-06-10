@@ -2,6 +2,8 @@
 id: options
 title: Options
 description: Options for configuring HTMLHint config files, formatters, and more.
+sidebar:
+  order: 2
 ---
 
 ## `configFile`
