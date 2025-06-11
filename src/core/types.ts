@@ -17,6 +17,7 @@ export interface Ruleset {
   'attr-value-double-quotes'?: boolean
   'attr-value-not-empty'?: boolean
   'attr-value-single-quotes'?: boolean
+  'attr-value-no-duplication'?: boolean
   'attr-whitespace'?: boolean
   'doctype-first'?: boolean
   'doctype-html5'?: boolean

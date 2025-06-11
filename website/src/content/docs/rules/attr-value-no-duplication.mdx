@@ -1,0 +1,59 @@
+---
+id: attr-value-no-duplication
+title: attr-value-no-duplication
+description: Prevents duplicate values within the same attribute to ensure clean and efficient markup.
+draft: true
+sidebar:
+  badge: New
+
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+Attribute values should not contain duplicates.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule
+
+### The following patterns are **not** considered rule violations
+
+```html
+<div class="container fluid small">Content</div>
+```
+
+```html
+<span data-toggle="modal">Content</span>
+```
+
+```html
+<div class="btn btn-primary btn-large">Button</div>
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<div class="d-none small d-none">Content</div>
+```
+
+```html
+<span data-attributes="dark light dark">Content</span>
+```
+
+```html
+<div class="btn    primary   btn">Button</div>
+```
+
+## Why does this rule exist?
+
+Having duplicate values in attributes like `class` or custom data attributes can:
+
+- Make the markup unnecessarily verbose
+- Cause confusion during development
+- Lead to inefficient CSS specificity calculations
+- Indicate potential copy-paste errors or oversight
+
+This rule helps maintain clean, efficient markup by catching these duplicates early.
