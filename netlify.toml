@@ -35,3 +35,21 @@
   to = "/usage/cli/"
   status = 301
   force = true
+
+[[redirects]]
+  from = "/docs/user-guide/"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/user-guide/getting-started"
+  to = "/getting-started/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/docs/user-guide/integrations/task-runners"
+  to = "/integrations/task-runners/"
+  status = 301
+  force = true
