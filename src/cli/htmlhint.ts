@@ -131,25 +131,26 @@ function listRules() {
 // initialize config file
 function initConfig(): boolean {
   const configPath = '.htmlhintrc'
-
-  if (existsSync(configPath)) {
-    console.log(
-      chalk.yellow('Configuration file already exists: %s'),
-      configPath
-    )
-    return true // File exists is a successful state - no error
-  }
-
   const defaultConfig = JSON.stringify(HTMLHint.defaultRuleset, null, 2)
 
   try {
-    writeFileSync(configPath, defaultConfig, 'utf-8')
+    // Use 'wx' flag to create file only if it doesn't exist (atomic operation)
+    writeFileSync(configPath, defaultConfig, { encoding: 'utf-8', flag: 'wx' })
     console.log(chalk.green('Created configuration file: %s'), configPath)
     console.log('')
     console.log('Configuration file contents:')
     console.log(chalk.gray(defaultConfig))
     return true
   } catch (error) {
+    // Check if the error is because the file already exists
+    if (error instanceof Error && 'code' in error && error.code === 'EEXIST') {
+      console.log(
+        chalk.yellow('Configuration file already exists: %s'),
+        configPath
+      )
+      return true // File exists is a successful state - no error
+    }
+
     console.log(
       chalk.red('Failed to create configuration file: %s'),
       error instanceof Error ? error.message : String(error)
