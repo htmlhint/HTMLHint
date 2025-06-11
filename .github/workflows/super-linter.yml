@@ -49,6 +49,7 @@ jobs:
           VALIDATE_JAVASCRIPT_ES: false
           VALIDATE_JAVASCRIPT_PRETTIER: false
           VALIDATE_JAVASCRIPT_STANDARD: false
+          VALIDATE_JSON: false
           VALIDATE_JSON_PRETTIER: false
           VALIDATE_JSCPD: false
           VALIDATE_NATURAL_LANGUAGE: false

@@ -15,7 +15,6 @@ const markdownFormatter: FormatterCallback = function (formatter, HTMLHint) {
       let warningCount = 0
 
       arrMessages.forEach((message) => {
-        /* eslint-disable-next-line */
         if (message.type === 'error') {
           errorCount++
         } else {
