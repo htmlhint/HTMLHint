@@ -409,7 +409,7 @@ function getConfig(
   configPath: string | undefined,
   base: string,
   formatter: Formatter
-) {
+): Ruleset | undefined {
   if (configPath === undefined && existsSync(base)) {
     // find default config file in parent directory
     if (statSync(base).isDirectory() === false) {
@@ -428,7 +428,6 @@ function getConfig(
     }
   }
 
-  // TODO: can configPath be undefined here?
   if (configPath !== undefined && existsSync(configPath)) {
     const config = readFileSync(configPath, 'utf-8')
     let ruleset: Ruleset = {}
@@ -439,13 +438,15 @@ function getConfig(
         ruleset: ruleset,
         configPath: configPath,
       })
+      return ruleset
     } catch (e) {
       console.log('   Config could not be parsed: %s', chalk.yellow(configPath))
       console.log('')
     }
-
-    return ruleset
   }
+
+  // Return undefined if no valid config is found
+  return undefined
 }
 
 // walk path
