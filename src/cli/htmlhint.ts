@@ -8,7 +8,7 @@ import * as glob from 'glob'
 import { IGlob } from 'glob'
 import { parseGlob } from './parse-glob'
 import { dirname, resolve, sep } from 'path'
-import fetch from 'node-fetch'
+// Native fetch is available in Node.js 18+
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
