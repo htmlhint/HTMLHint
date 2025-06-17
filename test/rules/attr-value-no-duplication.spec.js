@@ -91,4 +91,11 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
+
+  it('Content attribute should be skipped entirely', () => {
+    const code =
+      '<meta name="keywords" content="HTML, CSS, JavaScript, HTML, responsive design">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
 })
