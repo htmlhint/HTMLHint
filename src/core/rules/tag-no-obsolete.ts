@@ -34,7 +34,7 @@ const OBSOLETE_TAGS = [
 
 export default {
   id: 'tag-no-obsolete',
-  description: 'Disallows the use of obsolete HTML5 tags.',
+  description: 'Disallows the use of obsolete HTML tags.',
   init(parser, reporter, _options) {
     parser.addListener('tagstart,tagend', (event) => {
       const tagName = event.tagName.toLowerCase()
