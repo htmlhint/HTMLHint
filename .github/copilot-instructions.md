@@ -7,7 +7,7 @@
 - Use ESLint to check for JavaScript errors.
 - Rollup is used for building the project.
 - Node v20 is used for development.
-- Core code is in TypeScript v4.
+- Core code is in TypeScript v5.4.5.
 - All new rules for HTMLHint should be placed in the rules directory.
 - Tests for new rules should be added in rules and follow the naming pattern <rule-name>.spec.js.
 - Do not use deprecated Node.js or TypeScript features.
