@@ -53,11 +53,8 @@ function getRuleMarkdown(ruleId: string): string | undefined {
 
   // Try each path until we find one that exists
   for (const mdxFilePath of possiblePaths) {
-    console.log(`Looking for rule documentation at: ${mdxFilePath}`)
-
     try {
       if (existsSync(mdxFilePath)) {
-        console.log(`Found documentation for rule ${ruleId} at ${mdxFilePath}`)
         const content = readFileSync(mdxFilePath, 'utf8')
 
         // Extract content after frontmatter
@@ -104,14 +101,10 @@ function getRuleMarkdown(ruleId: string): string | undefined {
         }
       }
     } catch (error) {
-      console.error(
-        `Error processing markdown for rule ${ruleId} at ${mdxFilePath}:`,
-        error
-      )
+      // Silent error handling for missing documentation files
     }
   }
 
-  console.warn(`No documentation found for rule: ${ruleId}`)
   return undefined
 }
 
@@ -202,10 +195,15 @@ const sarifFormatter: FormatterCallback = function (formatter) {
 
       const updatedSarifContent = JSON.stringify(sarifJson, null, 2)
       writeFileSync('htmlhint.sarif', updatedSarifContent)
+
+      // Output the SARIF content to stdout for CLI usage
+      console.log(updatedSarifContent)
     } catch (error) {
-      console.error('Error updating SARIF file with markdown help:', error)
       // If there's an error, fall back to the original content
       writeFileSync('htmlhint.sarif', sarifContent)
+
+      // Output the original SARIF content to stdout for CLI usage
+      console.log(sarifContent)
     }
   })
 }
