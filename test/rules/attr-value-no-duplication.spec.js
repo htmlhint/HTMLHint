@@ -64,4 +64,31 @@ describe(`Rules: ${ruleId}`, () => {
       'Duplicate value [ btn ] was found in attribute [ class ].'
     )
   })
+
+  it('SVG elements should be skipped entirely', () => {
+    const code = '<svg class="icon icon icon" viewBox="0 0 24 24"></svg>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Style attributes should be skipped entirely', () => {
+    const code =
+      '<div style="width: 2rem; height: 2rem; width: 2rem;">Test</div>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('CSS media queries with commas should not be flagged as duplicates', () => {
+    const code =
+      '<link rel="stylesheet" href="css/test.css" media="all and (-ms-high-contrast: active), (-ms-high-contrast: none)">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Media attribute with actual duplicates should be skipped', () => {
+    const code =
+      '<link rel="stylesheet" href="css/test.css" media="screen screen">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
 })
