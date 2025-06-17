@@ -1,0 +1,46 @@
+---
+id: tag-no-obsolete
+title: tag-no-obsolete
+description: Disallows the use of obsolete HTML5 tags that are no longer supported in modern browsers.
+sidebar:
+  badge: New
+hidden: true
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+Disallows the use of obsolete HTML5 tags.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule
+
+## Description
+
+This rule prevents the use of HTML tags that have been deprecated and are considered obsolete in HTML5. These tags are no longer supported by modern browsers and should be replaced with appropriate alternatives.
+
+### Obsolete tags include:
+
+- `applet`, `acronym`, `bgsound`, `dir`, `frame`, `frameset`, `noframes`
+- `isindex`, `keygen`, `listing`, `menuitem`, `nextid`, `noembed`
+- `plaintext`, `rb`, `rtc`, `strike`, `xmp`, `basefont`, `big`
+- `blink`, `center`, `font`, `marquee`, `multicol`, `nobr`, `spacer`, `tt`
+
+### The following patterns are **not** considered rule violations
+
+```html
+<div>Content</div>
+<span>Text</span>
+<p>Paragraph</p>
+```
+
+### The following patterns are considered rule violations:
+
+```html
+<center>Centered text</center>
+<font color="red">Red text</font>
+<marquee>Scrolling text</marquee>
+```

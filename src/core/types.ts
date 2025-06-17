@@ -51,6 +51,7 @@ export interface Ruleset {
   'spec-char-escape'?: boolean
   'src-not-empty'?: boolean
   'style-disabled'?: boolean
+  'tag-no-obsolete'?: boolean
   'tag-pair'?: boolean
   'tag-self-close'?: boolean
   'tagname-lowercase'?: boolean
