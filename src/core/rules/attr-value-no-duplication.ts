@@ -17,10 +17,11 @@ export default {
       for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
 
-        // Skip style and media attributes entirely
+        // Skip content, media, and style attributes entirely
         if (
-          attr.name.toLowerCase() === 'style' ||
-          attr.name.toLowerCase() === 'media'
+          attr.name.toLowerCase() === 'content' ||
+          attr.name.toLowerCase() === 'media' ||
+          attr.name.toLowerCase() === 'style'
         ) {
           continue
         }
