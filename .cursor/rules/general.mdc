@@ -1,0 +1,8 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+- When adding a new rule to website ensure that it has the frontmatter: `pagefind: false   sidebar:   badge: New  hidden: true`
+- Always run `npm run lint` before declaring that a task is complete (if you've changed any files)
+

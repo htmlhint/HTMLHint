@@ -28,6 +28,7 @@ report.html
 # Miscellaneous
 CODEOWNERS
 *.txt
+.cspell.json
 
 ## Website
 /website/.astro
