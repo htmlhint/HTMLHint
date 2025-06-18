@@ -31,6 +31,22 @@ Level: <Badge text="Error" variant="danger" />
 <div class="btn btn-primary btn-large">Button</div>
 ```
 
+```html
+<source type="" sizes="(min-width: 1rem) 1vw, (min-width: 2rem) 2vw" srcset="">
+```
+
+## Excluded attributes
+
+The following attributes are excluded from this rule and will not trigger errors even if they contain duplicate values:
+
+- `content` - Common for meta tags that may contain duplicate keywords
+- `d` - Used in SVG path data which may contain repetitive pattern data
+- `media` - Used for media queries which have special parsing rules
+- `on*` - All event handlers (onclick, onkeydown, etc.) that may contain legitimate duplicate JavaScript operations
+- `sizes` - Used in responsive images with complex viewport conditions
+- `src` - URLs and data URIs that might legitimately contain repeated patterns
+- `style` - Inline CSS which has its own syntax and may contain duplicate property names
+
 ### The following patterns are considered rule violations:
 
 ```html
@@ -42,7 +58,7 @@ Level: <Badge text="Error" variant="danger" />
 ```
 
 ```html
-<div class="btn    primary   btn">Button</div>
+<div class="btn  primary btn">Button</div>
 ```
 
 ## Why does this rule exist?

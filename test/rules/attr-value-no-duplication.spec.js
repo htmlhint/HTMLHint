@@ -98,4 +98,25 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
+
+  it('Script src attribute should be skipped entirely', () => {
+    const code =
+      '<script src="data:text/javascript,window.analytics = window.analytics || function() { (window.analytics.q = window.analytics.q || []).push(arguments) }"></script>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Sizes attribute should be skipped entirely', () => {
+    const code =
+      '<source type="" sizes="(min-width: 1rem) 1vw, (min-width: 2rem) 2vw" srcset="">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Event handler attributes should be skipped entirely', () => {
+    const code =
+      "<button onclick=\"trackEvent('click'); validateForm(); trackEvent('click');\">Submit</button>"
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
 })
