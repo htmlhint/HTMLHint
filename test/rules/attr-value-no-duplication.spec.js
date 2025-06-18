@@ -18,16 +18,28 @@ describe(`Rules: ${ruleId}`, () => {
     )
   })
 
-  it('Duplicate values in data attribute should result in an error', () => {
+  it('Duplicate values in id attribute should NOT result in an error with default config', () => {
+    const code = '<div id="section1 main section1">Test</div>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Duplicate values in role attribute should NOT result in an error with default config', () => {
+    const code = '<div role="button navigation button">Test</div>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Duplicate values in name attribute should NOT result in an error with default config', () => {
+    const code = '<input name="username form1 username">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Duplicate values in data attribute should not result in an error with default config', () => {
     const code = '<span data-attributes="dark light dark">Test</span>'
     const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(1)
-    expect(messages[0].rule.id).toBe(ruleId)
-    expect(messages[0].line).toBe(1)
-    expect(messages[0].col).toBe(6)
-    expect(messages[0].message).toBe(
-      'Duplicate value [ dark ] was found in attribute [ data-attributes ].'
-    )
+    expect(messages.length).toBe(0)
   })
 
   it('No duplicate values should not result in an error', () => {
@@ -65,58 +77,65 @@ describe(`Rules: ${ruleId}`, () => {
     )
   })
 
-  it('SVG elements should be skipped entirely', () => {
-    const code = '<svg class="icon icon icon" viewBox="0 0 24 24"></svg>'
+  it('Angular directive attributes should not result in an error', () => {
+    const code =
+      '<div [ngClass]="\'btn btn\'" *ngIf="condition condition">Test</div>'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
 
-  it('Style attributes should be skipped entirely', () => {
-    const code =
-      '<div style="width: 2rem; height: 2rem; width: 2rem;">Test</div>'
+  it('Alt attributes with duplicate words should not result in an error', () => {
+    // This has the word "a" repeated multiple times which would trigger an error if 'alt' was checked
+    const code = '<img src="image.jpg" alt="A cat and a dog and a ball">'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
 
-  it('CSS media queries with commas should not be flagged as duplicates', () => {
-    const code =
-      '<link rel="stylesheet" href="css/test.css" media="all and (-ms-high-contrast: active), (-ms-high-contrast: none)">'
-    const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(0)
+  it('Custom attribute configuration should work as expected', () => {
+    const customOptions = {}
+    customOptions[ruleId] = ['data-test', 'aria-label']
+
+    // This should now trigger an error with our custom config
+    const code = '<div data-test="unit test unit">Test</div>'
+    const messages = HTMLHint.verify(code, customOptions)
+    expect(messages.length).toBe(1)
+    expect(messages[0].rule.id).toBe(ruleId)
+    expect(messages[0].message).toBe(
+      'Duplicate value [ unit ] was found in attribute [ data-test ].'
+    )
+
+    // Class should no longer be checked with custom config
+    const code2 = '<div class="btn primary btn">Test</div>'
+    const messages2 = HTMLHint.verify(code2, customOptions)
+    expect(messages2.length).toBe(0)
   })
 
-  it('Media attribute with actual duplicates should be skipped', () => {
-    const code =
-      '<link rel="stylesheet" href="css/test.css" media="screen screen">'
-    const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(0)
-  })
+  it('Extended custom configuration should work as expected', () => {
+    const extendedOptions = {}
+    extendedOptions[ruleId] = ['class', 'id', 'role', 'name']
 
-  it('Content attribute should be skipped entirely', () => {
-    const code =
-      '<meta name="keywords" content="HTML, CSS, JavaScript, HTML, responsive design">'
-    const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(0)
-  })
+    // Class should still be checked
+    const code1 = '<div class="btn primary btn">Test</div>'
+    const messages1 = HTMLHint.verify(code1, extendedOptions)
+    expect(messages1.length).toBe(1)
+    expect(messages1[0].message).toBe(
+      'Duplicate value [ btn ] was found in attribute [ class ].'
+    )
 
-  it('Script src attribute should be skipped entirely', () => {
-    const code =
-      '<script src="data:text/javascript,window.analytics = window.analytics || function() { (window.analytics.q = window.analytics.q || []).push(arguments) }"></script>'
-    const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(0)
-  })
+    // Id should now be checked
+    const code2 = '<div id="section1 main section1">Test</div>'
+    const messages2 = HTMLHint.verify(code2, extendedOptions)
+    expect(messages2.length).toBe(1)
+    expect(messages2[0].message).toBe(
+      'Duplicate value [ section1 ] was found in attribute [ id ].'
+    )
 
-  it('Sizes attribute should be skipped entirely', () => {
-    const code =
-      '<source type="" sizes="(min-width: 1rem) 1vw, (min-width: 2rem) 2vw" srcset="">'
-    const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(0)
-  })
-
-  it('Event handler attributes should be skipped entirely', () => {
-    const code =
-      "<button onclick=\"trackEvent('click'); validateForm(); trackEvent('click');\">Submit</button>"
-    const messages = HTMLHint.verify(code, ruleOptions)
-    expect(messages.length).toBe(0)
+    // Role should now be checked
+    const code3 = '<div role="button navigation button">Test</div>'
+    const messages3 = HTMLHint.verify(code3, extendedOptions)
+    expect(messages3.length).toBe(1)
+    expect(messages3[0].message).toBe(
+      'Duplicate value [ button ] was found in attribute [ role ].'
+    )
   })
 })
