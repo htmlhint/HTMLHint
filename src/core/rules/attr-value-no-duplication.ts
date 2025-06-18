@@ -20,8 +20,12 @@ export default {
         // Skip content, media, and style attributes entirely
         if (
           attr.name.toLowerCase() === 'content' ||
+          attr.name.toLowerCase() === 'd' ||
           attr.name.toLowerCase() === 'media' ||
-          attr.name.toLowerCase() === 'style'
+          attr.name.toLowerCase() === 'sizes' ||
+          attr.name.toLowerCase() === 'src' ||
+          attr.name.toLowerCase() === 'style' ||
+          attr.name.toLowerCase().startsWith('on') // Skip all event handlers (onclick, onchange, etc.)
         ) {
           continue
         }
