@@ -8,14 +8,23 @@ sidebar:
 
 import { Badge } from '@astrojs/starlight/components';
 
-Attribute values should not contain duplicates.
+Class attributes should not contain duplicate values. Other attributes can be checked via configuration.
 
 Level: <Badge text="Error" variant="danger" />
 
 ## Config value
 
-- `true`: enable rule
+- `true`: enable rule with default attributes (only class)
+- `['attr1', 'attr2', ...]`: specify custom list of attributes to check
 - `false`: disable rule
+
+## Default attributes checked
+
+By default, this rule only checks the `class` attribute for duplicate values:
+
+- `class` - CSS class names should not be repeated
+
+Other attributes can be checked by providing a custom configuration.
 
 ### The following patterns are **not** considered rule violations
 
@@ -24,28 +33,9 @@ Level: <Badge text="Error" variant="danger" />
 ```
 
 ```html
-<span data-toggle="modal">Content</span>
+<!-- data-attributes not checked by default -->
+<input data-attribute="apple banana apple">
 ```
-
-```html
-<div class="btn btn-primary btn-large">Button</div>
-```
-
-```html
-<source type="" sizes="(min-width: 1rem) 1vw, (min-width: 2rem) 2vw" srcset="">
-```
-
-## Excluded attributes
-
-The following attributes are excluded from this rule and will not trigger errors even if they contain duplicate values:
-
-- `content` - Common for meta tags that may contain duplicate keywords
-- `d` - Used in SVG path data which may contain repetitive pattern data
-- `media` - Used for media queries which have special parsing rules
-- `on*` - All event handlers (onclick, onkeydown, etc.) that may contain legitimate duplicate JavaScript operations
-- `sizes` - Used in responsive images with complex viewport conditions
-- `src` - URLs and data URIs that might legitimately contain repeated patterns
-- `style` - Inline CSS which has its own syntax and may contain duplicate property names
 
 ### The following patterns are considered rule violations:
 
@@ -53,17 +43,9 @@ The following attributes are excluded from this rule and will not trigger errors
 <div class="d-none small d-none">Content</div>
 ```
 
-```html
-<span data-attributes="dark light dark">Content</span>
-```
-
-```html
-<div class="btn  primary btn">Button</div>
-```
-
 ## Why does this rule exist?
 
-Having duplicate values in attributes like `class` or custom data attributes can:
+Having duplicate values in class attributes can:
 
 - Make the markup unnecessarily verbose
 - Cause confusion during development
@@ -71,3 +53,21 @@ Having duplicate values in attributes like `class` or custom data attributes can
 - Indicate potential copy-paste errors or oversight
 
 This rule helps maintain clean, efficient markup by catching these duplicates early.
+
+## Custom configuration
+
+You can customize which attributes to check by providing an array:
+
+```json
+{
+  "attr-value-no-duplication": ["class", "id", "name", "role"]
+}
+```
+
+```json
+{
+  "attr-value-no-duplication": ["data-test", "aria-label", "custom-attr"]
+}
+```
+
+This allows you to focus on attributes specific to your project needs.
