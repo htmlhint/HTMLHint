@@ -12,12 +12,12 @@
 [[headers]]
   for = "/*.ico"
   [headers.values]
-    Cache-Control = "public, s-max-age=1604800, immutable"
+    Cache-Control = "public, s-max-age=31536000, immutable"
 
 [[headers]]
   for = "/*.png"
   [headers.values]
-    Cache-Control = "public, s-max-age=1604800, immutable"
+    Cache-Control = "public, s-max-age=31536000, immutable"
 
 [[headers]]
   for = "/*.webp"
