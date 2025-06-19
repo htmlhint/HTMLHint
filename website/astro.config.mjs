@@ -28,9 +28,9 @@ export default defineConfig({
           href: 'https://github.com/htmlhint/htmlhint',
         },
         {
-          icon: 'x.com',
-          label: 'x',
-          href: 'https://x.com/htmlhint',
+          icon: 'mastodon',
+          label: 'Mastodon',
+          href: 'https://mastodon.social/@htmlhint',
         },
         {
           icon: 'openCollective',
@@ -100,6 +100,13 @@ export default defineConfig({
           attrs: {
             name: 'color-scheme',
             content: 'light dark',
+          },
+        },
+        {
+          tag: 'meta',
+          attrs: {
+            name: 'fediverse:creator',
+            content: '@htmlhint@mastodon.social',
           },
         },
       ],
