@@ -40,7 +40,15 @@ Set all of the rules available
 
 ### `--rulesdir, -R`
 
-Load custom rules from file or folder
+Load custom rules from file or folder. See the [custom rules documentation](/usage/custom-rules/) for detailed information on creating and using custom rules.
+
+```shell
+# Load a single custom rule file
+npx htmlhint --rulesdir ./my-custom-rule.js index.html
+
+# Load all custom rules from a directory
+npx htmlhint --rulesdir ./custom-rules/ index.html
+```
 
 ### `--version, -V`
 
