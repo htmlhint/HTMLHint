@@ -1,0 +1,269 @@
+---
+id: custom-rules
+title: Custom Rules
+description: Learn how to create and use custom rules to extend HTMLHint's functionality for your specific needs.
+sidebar:
+  order: 4
+---
+
+# Custom Rules
+
+HTMLHint allows you to create custom rules to extend its functionality for your specific needs. Custom rules can be loaded using the `--rulesdir` option and follow the same pattern as built-in rules.
+
+## Creating Custom Rules
+
+Custom rules are JavaScript modules that export a function. The function receives the `HTMLHint` instance as a parameter and should register the custom rule using `HTMLHint.addRule()`.
+
+### Basic Custom Rule Structure
+
+```javascript
+// my-custom-rule.js
+module.exports = function(HTMLHint) {
+  HTMLHint.addRule({
+    id: 'my-custom-rule',
+    description: 'This is my custom rule description',
+    init: function(parser, reporter, options) {
+      // Rule implementation goes here
+    }
+  });
+};
+```
+
+### Rule Object Properties
+
+Each custom rule should have the following properties:
+
+- **`id`** (string): Unique identifier for the rule. This is used in configuration files and command line options.
+- **`description`** (string): Human-readable description of what the rule does. This appears in the `--list` output.
+- **`init`** (function): Function that initializes the rule with the parser and reporter.
+
+### The `init` Function
+
+The `init` function is where your rule logic goes. It receives three parameters:
+
+- **`parser`**: The HTML parser instance that provides events as it parses the HTML
+- **`reporter`**: The reporter instance for generating warnings, errors, or info messages
+- **`options`**: Rule-specific options from the configuration
+
+### Important: Using Arrow Functions
+
+When adding event listeners, **always use arrow functions** instead of function expressions to ensure the correct `this` context is maintained when calling reporter methods:
+
+```javascript
+// ✅ Correct - Arrow function preserves 'this' context
+parser.addListener('tagstart', (event) => {
+  reporter.warn('Message', event.line, event.col, this, event.raw);
+});
+
+// ❌ Incorrect - Function expression loses 'this' context
+parser.addListener('tagstart', function(event) {
+  reporter.warn('Message', event.line, event.col, this, event.raw); // 'this' is parser, not rule
+});
+```
+
+## Example Custom Rules
+
+### Example 1: Simple Tag Check
+
+This rule warns when a specific tag is used:
+
+```javascript
+// no-div-tags.js
+module.exports = function(HTMLHint) {
+  HTMLHint.addRule({
+    id: 'no-div-tags',
+    description: 'Div tags are not allowed',
+    init: function(parser, reporter, options) {
+      parser.addListener('tagstart', (event) => {
+        const tagName = event.tagName.toLowerCase();
+
+        if (tagName === 'div') {
+          reporter.warn(
+            'Div tags are not allowed. Use semantic HTML elements instead.',
+            event.line,
+            event.col,
+            this,
+            event.raw
+          );
+        }
+      });
+    }
+  });
+};
+```
+
+### Example 2: Attribute Validation
+
+This rule checks for specific attribute patterns:
+
+```javascript
+// data-attributes-required.js
+module.exports = function(HTMLHint) {
+  HTMLHint.addRule({
+    id: 'data-attributes-required',
+    description: 'Elements with class "component" must have a data-component attribute',
+    init: function(parser, reporter, options) {
+      parser.addListener('tagstart', (event) => {
+        const tagName = event.tagName.toLowerCase();
+        const mapAttrs = parser.getMapAttrs(event.attrs);
+
+        // Check if element has class "component"
+        if (mapAttrs.class && mapAttrs.class.includes('component')) {
+          // Check if it has data-component attribute
+          if (!mapAttrs['data-component']) {
+            reporter.warn(
+              'Elements with class "component" must have a data-component attribute',
+              event.line,
+              event.col,
+              this,
+              event.raw
+            );
+          }
+        }
+      });
+    }
+  });
+};
+```
+
+### Example 3: Complex Validation with Options
+
+This rule accepts configuration options:
+
+```javascript
+// max-attributes.js
+module.exports = function(HTMLHint) {
+  HTMLHint.addRule({
+    id: 'max-attributes',
+    description: 'Elements should not have more than the specified number of attributes',
+    init: function(parser, reporter, options) {
+      const maxAttrs = options || 5; // Default to 5 if no options provided
+
+      parser.addListener('tagstart', (event) => {
+        const attrCount = event.attrs.length;
+
+        if (attrCount > maxAttrs) {
+          reporter.warn(
+            `Element has ${attrCount} attributes, but maximum allowed is ${maxAttrs}`,
+            event.line,
+            event.col,
+            this,
+            event.raw
+          );
+        }
+      });
+    }
+  });
+};
+```
+
+## Using Custom Rules
+
+### Loading Custom Rules
+
+Use the `--rulesdir` option to load custom rules:
+
+```shell
+# Load a single custom rule file
+npx htmlhint --rulesdir ./my-custom-rule.js index.html
+
+# Load all custom rules from a directory
+npx htmlhint --rulesdir ./custom-rules/ index.html
+```
+
+### Enabling Custom Rules
+
+After loading custom rules, you can enable them in several ways:
+
+#### In Configuration File
+
+```json
+{
+  "no-div-tags": true,
+  "data-attributes-required": true,
+  "max-attributes": 3
+}
+```
+
+#### Via Command Line
+
+```shell
+npx htmlhint --rulesdir ./custom-rules/ --rules no-div-tags,data-attributes-required,max-attributes:3 index.html
+```
+
+#### Inline in HTML
+
+```html
+<!-- htmlhint no-div-tags:true,data-attributes-required:true -->
+<html lang="en">
+  <body>
+    <div class="component">This will trigger warnings</div>
+  </body>
+</html>
+```
+
+## Parser Events
+
+The HTML parser provides several events you can listen to:
+
+- **`tagstart`**: Fired when a start tag is encountered
+- **`tagend`**: Fired when an end tag is encountered
+- **`text`**: Fired when text content is encountered
+- **`comment`**: Fired when a comment is encountered
+- **`cdata`**: Fired when CDATA is encountered
+- **`doctype`**: Fired when a DOCTYPE declaration is encountered
+
+### Event Object Properties
+
+Event objects typically contain:
+
+- **`tagName`**: The name of the tag
+- **`attrs`**: Array of attributes
+- **`line`**: Line number where the event occurred
+- **`col`**: Column number where the event occurred
+- **`raw`**: The raw HTML string for this element
+
+## Reporter Methods
+
+The reporter provides three methods for generating messages:
+
+- **`reporter.warn(message, line, col, rule, raw)`**: Creates a warning message
+- **`reporter.error(message, line, col, rule, raw)`**: Creates an error message
+- **`reporter.info(message, line, col, rule, raw)`**: Creates an info message
+
+## Best Practices
+
+1. **Use arrow functions**: Always use arrow functions for event listeners to preserve the correct `this` context
+2. **Use descriptive rule IDs**: Choose clear, descriptive names for your rules
+3. **Provide helpful error messages**: Make error messages actionable and informative
+4. **Handle options gracefully**: Always provide sensible defaults for rule options
+5. **Test your rules**: Create test cases to ensure your rules work correctly
+6. **Follow existing patterns**: Look at built-in rules for examples of good practices
+7. **Document your rules**: Include clear descriptions and examples
+
+## Directory Structure
+
+When organizing multiple custom rules, you can use a directory structure:
+
+```
+custom-rules/
+├── accessibility/
+│   ├── aria-required.js
+│   └── semantic-headings.js
+├── performance/
+│   ├── image-optimization.js
+│   └── script-loading.js
+└── style/
+    ├── class-naming.js
+    └── attribute-order.js
+```
+
+HTMLHint will recursively find all `.js` files in the specified directory and load them as custom rules.
+
+## Troubleshooting
+
+- **Rule not loading**: Check that your file exports a function and calls `HTMLHint.addRule()`
+- **Rule not running**: Ensure the rule is enabled in your configuration
+- **Parser errors**: Verify that you're using the correct event names and object properties
+- **Silent failures**: Custom rules that fail to load are silently ignored - check your JavaScript syntax
+- **Incorrect rule reporting**: Make sure you're using arrow functions for event listeners to preserve the `this` context
