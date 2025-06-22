@@ -45,6 +45,22 @@ The `init` function is where your rule logic goes. It receives three parameters:
 - **`reporter`**: The reporter instance for generating warnings, errors, or info messages
 - **`options`**: Rule-specific options from the configuration
 
+### Important: Using Arrow Functions
+
+When adding event listeners, **always use arrow functions** instead of function expressions to ensure the correct `this` context is maintained when calling reporter methods:
+
+```javascript
+// ✅ Correct - Arrow function preserves 'this' context
+parser.addListener('tagstart', (event) => {
+  reporter.warn('Message', event.line, event.col, this, event.raw);
+});
+
+// ❌ Incorrect - Function expression loses 'this' context
+parser.addListener('tagstart', function(event) {
+  reporter.warn('Message', event.line, event.col, this, event.raw); // 'this' is parser, not rule
+});
+```
+
 ## Example Custom Rules
 
 ### Example 1: Simple Tag Check
@@ -58,7 +74,7 @@ module.exports = function(HTMLHint) {
     id: 'no-div-tags',
     description: 'Div tags are not allowed',
     init: function(parser, reporter, options) {
-      parser.addListener('tagstart', function(event) {
+      parser.addListener('tagstart', (event) => {
         const tagName = event.tagName.toLowerCase();
 
         if (tagName === 'div') {
@@ -87,7 +103,7 @@ module.exports = function(HTMLHint) {
     id: 'data-attributes-required',
     description: 'Elements with class "component" must have a data-component attribute',
     init: function(parser, reporter, options) {
-      parser.addListener('tagstart', function(event) {
+      parser.addListener('tagstart', (event) => {
         const tagName = event.tagName.toLowerCase();
         const mapAttrs = parser.getMapAttrs(event.attrs);
 
@@ -123,7 +139,7 @@ module.exports = function(HTMLHint) {
     init: function(parser, reporter, options) {
       const maxAttrs = options || 5; // Default to 5 if no options provided
 
-      parser.addListener('tagstart', function(event) {
+      parser.addListener('tagstart', (event) => {
         const attrCount = event.attrs.length;
 
         if (attrCount > maxAttrs) {
@@ -217,12 +233,13 @@ The reporter provides three methods for generating messages:
 
 ## Best Practices
 
-1. **Use descriptive rule IDs**: Choose clear, descriptive names for your rules
-2. **Provide helpful error messages**: Make error messages actionable and informative
-3. **Handle options gracefully**: Always provide sensible defaults for rule options
-4. **Test your rules**: Create test cases to ensure your rules work correctly
-5. **Follow existing patterns**: Look at built-in rules for examples of good practices
-6. **Document your rules**: Include clear descriptions and examples
+1. **Use arrow functions**: Always use arrow functions for event listeners to preserve the correct `this` context
+2. **Use descriptive rule IDs**: Choose clear, descriptive names for your rules
+3. **Provide helpful error messages**: Make error messages actionable and informative
+4. **Handle options gracefully**: Always provide sensible defaults for rule options
+5. **Test your rules**: Create test cases to ensure your rules work correctly
+6. **Follow existing patterns**: Look at built-in rules for examples of good practices
+7. **Document your rules**: Include clear descriptions and examples
 
 ## Directory Structure
 
@@ -249,3 +266,4 @@ HTMLHint will recursively find all `.js` files in the specified directory and lo
 - **Rule not running**: Ensure the rule is enabled in your configuration
 - **Parser errors**: Verify that you're using the correct event names and object properties
 - **Silent failures**: Custom rules that fail to load are silently ignored - check your JavaScript syntax
+- **Incorrect rule reporting**: Make sure you're using arrow functions for event listeners to preserve the `this` context

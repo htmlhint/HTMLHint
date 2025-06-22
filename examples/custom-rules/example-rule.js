@@ -8,8 +8,8 @@ module.exports = function (HTMLHint) {
     id: 'example-rule',
     description: 'Example custom rule that demonstrates custom rule creation',
     init: function (parser, reporter, options) {
-      // Listen for start tags
-      parser.addListener('tagstart', function (event) {
+      // Listen for start tags - Note: Use arrow functions for event listeners
+      parser.addListener('tagstart', (event) => {
         const tagName = event.tagName.toLowerCase()
         const mapAttrs = parser.getMapAttrs(event.attrs)
 

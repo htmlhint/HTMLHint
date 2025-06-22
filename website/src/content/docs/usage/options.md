@@ -68,8 +68,8 @@ module.exports = function(HTMLHint) {
     id: 'my-custom-rule',
     description: 'This is my custom rule description',
     init: function(parser, reporter, options) {
-      // Rule implementation
-      parser.addListener('tagstart', function(event) {
+      // Rule implementation - Note: Use arrow functions for event listeners
+      parser.addListener('tagstart', (event) => {
         const tagName = event.tagName.toLowerCase();
 
         if (tagName === 'div') {
@@ -86,6 +86,8 @@ module.exports = function(HTMLHint) {
   });
 };
 ```
+
+**Important**: Always use arrow functions for event listeners to ensure the correct `this` context is maintained when calling reporter methods.
 
 #### Using Custom Rules
 
