@@ -42,7 +42,7 @@ Create a test HTML file to see the rule in action:
 
 ```html
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <title>Test</title>
 </head>
@@ -62,4 +62,4 @@ Create a test HTML file to see the rule in action:
 
 ## Creating Your Own Rules
 
-See the [Custom Rules documentation](../../website/src/content/docs/usage/custom-rules.mdx) for detailed information on creating custom rules.
+See the [Custom Rules documentation](https://htmlhint.com/docs/usage/custom-rules/) for detailed information on creating custom rules.
