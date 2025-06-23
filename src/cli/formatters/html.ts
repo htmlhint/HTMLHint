@@ -24,12 +24,15 @@ const htmlFormatter: FormatterCallback = function (formatter) {
       '<meta name="viewport" content="width=device-width, initial-scale=1">\n'
     fileContent += '<title>HTML Hint Violation Report</title>\n'
     fileContent += '<meta name="generator" content="HTMLHint">\n'
+    fileContent += '<meta name="color-scheme" content="light dark">\n'
+    fileContent +=
+      '<meta name="description" content="HTMLHint Violation Report">\n'
     fileContent +=
       '<style>body{font-family:Arial,helvetica,sans-serif;} footer{margin-top:20px;text-align:center;opacity:0.5;}</style>\n'
     fileContent +=
       '<style>table{border-collapse:collapse;width:100%;} th,td{border:1px solid rgb(128,128,128,0.4);padding:8px;text-align:left;} th{background-color:rgb(128,128,128,0.2);}</style>\n'
     fileContent +=
-      '<style>@media (prefers-color-scheme: dark) {body {background-color:#333;color:#fff;}}</style>\n'
+      '<style>@media (prefers-color-scheme: dark) {body {background-color:#333;color-scheme: dark;color:#fff;}}</style>\n'
     fileContent += '</head>\n'
     fileContent += '<body>\n'
     fileContent += '<h1>Violation Report</h1>\n'
