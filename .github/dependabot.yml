@@ -3,7 +3,7 @@ updates:
   - package-ecosystem: npm
     directory: '/'
     schedule:
-      interval: monthly
+      interval: weekly
     versioning-strategy: increase
     groups:
       dependencies:
@@ -16,7 +16,7 @@ updates:
   - package-ecosystem: npm
     directory: '/website'
     schedule:
-      interval: monthly
+      interval: weekly
     versioning-strategy: increase
     groups:
       dependencies:
