@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config'
 import starlight from '@astrojs/starlight'
+import starlightLlmsTxt from 'starlight-llms-txt'
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,6 +22,7 @@ export default defineConfig({
       lastUpdated: true,
       pagination: false,
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
+      plugins: [starlightLlmsTxt()],
       social: [
         {
           icon: 'github',

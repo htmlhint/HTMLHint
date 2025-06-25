@@ -132,3 +132,12 @@ main:has(.sl-banner) .content-panel {
   background-position: 0 -300px;
   background-size: cover;
 }
+
+header.header {
+  backdrop-filter: blur(8px);
+  opacity: 0.98;
+}
+
+.sl-markdown-content .sl-anchor-link:focus {
+  opacity: 0.7;
+}
