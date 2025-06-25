@@ -22,7 +22,11 @@ export default defineConfig({
       lastUpdated: true,
       pagination: false,
       tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 },
-      plugins: [starlightLlmsTxt()],
+      plugins: [
+        starlightLlmsTxt({
+          projectName: 'HTMLHint',
+        }),
+      ],
       social: [
         {
           icon: 'github',
