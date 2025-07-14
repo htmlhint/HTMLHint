@@ -25,8 +25,8 @@
     "stylelint": "npx stylelint@latest \"src/*.css\" --fix -f verbose"
   },
   "dependencies": {
-    "@astrojs/starlight": "^0.34.5",
-    "astro": "^5.11.0",
+    "@astrojs/starlight": "^0.34.6",
+    "astro": "^5.11.1",
     "sharp": "^0.34.3",
     "starlight-llms-txt": "^0.5.1"
   },
