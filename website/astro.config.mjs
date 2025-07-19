@@ -115,6 +115,13 @@ export default defineConfig({
             content: '@htmlhint@mastodon.social',
           },
         },
+        {
+          tag: 'script',
+          attrs: {
+            type: 'speculationrules',
+          },
+          content: `\n{\n  "prerender": [{\n    "where": {\n      "href_matches": "/*"\n    },\n    "eagerness": "moderate"\n  }]\n}\n`,
+        },
       ],
       sidebar: [
         {
