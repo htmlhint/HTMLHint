@@ -139,7 +139,7 @@ header.header {
   opacity: 0.98;
 }
 
-[data-theme="dark"] header.header {
+[data-theme='dark'] header.header {
   background-color: rgba(35, 38, 47, 0.9);
 }
 
