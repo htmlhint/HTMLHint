@@ -61,7 +61,7 @@
     "@rollup/plugin-commonjs": "28.0.6",
     "@rollup/plugin-node-resolve": "16.0.1",
     "@rollup/plugin-terser": "^0.4.4",
-    "@types/async": "^3.2.24",
+    "@types/async": "^3.2.25",
     "@types/glob": "^8.1.0",
     "@types/is-glob": "4.0.4",
     "@types/xml": "^1.0.11",
