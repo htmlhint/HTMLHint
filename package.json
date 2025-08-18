@@ -65,22 +65,22 @@
     "@types/glob": "^8.1.0",
     "@types/is-glob": "4.0.4",
     "@types/xml": "^1.0.11",
-    "@typescript-eslint/eslint-plugin": "8.34.1",
-    "@typescript-eslint/parser": "8.34.1",
-    "eslint": "9.29.0",
-    "eslint-config-prettier": "^10.1.5",
-    "eslint-plugin-prettier": "^5.5.0",
+    "@typescript-eslint/eslint-plugin": "8.39.1",
+    "@typescript-eslint/parser": "8.39.1",
+    "eslint": "9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
     "jest": "^30.0.5",
     "parse-glob": "3.0.4",
-    "prettier": "3.6.0",
+    "prettier": "3.6.2",
     "rimraf": "6.0.1",
-    "rollup": "4.44.0",
+    "rollup": "4.46.3",
     "typescript": "5.4.5"
   },
   "engines": {
     "node": ">=20"
   },
   "volta": {
-    "node": "20.19.2"
+    "node": "20.19.4"
   }
 }
