@@ -1,51 +1,412 @@
----
-title: Getting Started
-description: How to set up HTMLHint in your project by adding it as a dev dependency and configuring it.
----
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack Audio Livros - Desenvolvimento Pessoal e Financeiro</title>
+    <meta name="description" content="200 audiolivros + 3.500 livros em PDF de desenvolvimento pessoal e financeiro por apenas R$ 19,90. Acesso vitalício, download ilimitado e garantia de 7 dias.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content="Pack Audio Livros - Desenvolvimento Pessoal e Financeiro">
+    <meta property="og:description" content="200 audiolivros + 3.500 livros em PDF de desenvolvimento pessoal e financeiro por apenas R$ 19,90. Acesso vitalício, download ilimitado e garantia de 7 dias.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-grid">
+                    <div class="hero-content animate-fade-in-up">
+                        <h1 class="hero-title">
+                            <span class="title-line">200 AUDIOLIVROS</span>
+                            <span class="title-highlight">+ 3.500 LIVROS EM PDF</span>
+                        </h1>
+                        <h2 class="hero-subtitle">
+                            BEST-SELLERS QUE TRANSFORMAM SUA MENTALIDADE E POTENCIALIZAM SUAS FINANÇAS
+                        </h2>
+                        <p class="hero-description">
+                            Tudo em um único lugar, com conteúdos selecionados para acelerar seu crescimento pessoal e profissional.
+                        </p>
+                        
+                        <div class="price-section">
+                            <div class="price-old">
+                                <span class="old-price">de R$ 97,00</span>
+                                <span class="price-label">por apenas</span>
+                            </div>
+                            <div class="price-current">R$19,90</div>
+                        </div>
+                        
+                        <button class="btn btn-cta-large animate-scale-in">
+                            QUERO IR PARA O PRÓXIMO NÍVEL! 🚀
+                        </button>
+                    </div>
+                    
+                    <div class="hero-image animate-slide-in-right">
+                        <img src="./src/assets/hero-audiobooks.jpg" alt="Audiolivros de desenvolvimento pessoal" class="hero-img">
+                    </div>
+                </div>
+            </div>
+        </section>
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+        <!-- Price Comparison Section -->
+        <section class="price-comparison-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title animate-fade-in-up">
+                        Você já pensou no valor que gastaria por esses livros?
+                    </h2>
+                </div>
+                
+                <div class="books-grid">
+                    <div class="book-card animate-scale-in">
+                        <div class="book-cover">
+                            <div class="book-placeholder">
+                                <span class="book-title-small">O Poder do Hábito</span>
+                            </div>
+                        </div>
+                        <h3 class="book-title">O Poder do Hábito</h3>
+                        <p class="book-source">Amazon.com.br</p>
+                        <p class="book-price">R$ 51,78</p>
+                    </div>
+                    
+                    <div class="book-card animate-scale-in">
+                        <div class="book-cover">
+                            <div class="book-placeholder">
+                                <span class="book-title-small">Pai Rico Pai Pobre +...</span>
+                            </div>
+                        </div>
+                        <h3 class="book-title">Pai Rico Pai Pobre +...</h3>
+                        <p class="book-source">Amazon.com.br</p>
+                        <p class="book-price">R$ 137,56</p>
+                    </div>
+                    
+                    <div class="book-card animate-scale-in">
+                        <div class="book-cover">
+                            <div class="book-placeholder">
+                                <span class="book-title-small">É Assim que Acaba</span>
+                            </div>
+                        </div>
+                        <h3 class="book-title">É Assim que Acaba</h3>
+                        <p class="book-source">Amazon.com.br</p>
+                        <p class="book-price">R$ 43,67</p>
+                    </div>
+                    
+                    <div class="book-card animate-scale-in">
+                        <div class="book-cover">
+                            <div class="book-placeholder">
+                                <span class="book-title-small">As 48 Leis do Poder</span>
+                            </div>
+                        </div>
+                        <h3 class="book-title">As 48 Leis do Poder</h3>
+                        <p class="book-source">Amazon.com.br</p>
+                        <p class="book-price">R$ 67,43</p>
+                    </div>
+                </div>
+                
+                <div class="price-comparison-text animate-fade-in-up">
+                    <p>Uma simples busca no Google mostra que o valor de um único livro pode ser maior do que o investimento que você fará neste acervo completo.</p>
+                </div>
+            </div>
+        </section>
 
-1\. Use npm or yarn to install HTMLHint:
+        <!-- Benefits Section -->
+        <section class="benefits-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title animate-fade-in-up">O Pack Audio Livros Incríveis é a melhor escolha</h2>
+                    <p class="section-subtitle animate-fade-in-up">Para quem deseja transformar sua mentalidade e alcançar a independência financeira.</p>
+                </div>
+                
+                <div class="benefits-grid">
+                    <div class="benefit-card animate-fade-in-up">
+                        <div class="benefit-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                <polyline points="7,10 12,15 17,10"/>
+                                <line x1="12" y1="15" x2="12" y2="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">DOWNLOAD ILIMITADO</h3>
+                        <p class="benefit-description">Baixe seus livros de forma rápida e fácil e quantas vezes quiser.</p>
+                    </div>
+                    
+                    <div class="benefit-card animate-fade-in-up">
+                        <div class="benefit-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M2 12h20"/>
+                                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">ACESSO VITALÍCIO</h3>
+                        <p class="benefit-description">Acesse a qualquer hora, em qualquer lugar.</p>
+                    </div>
+                    
+                    <div class="benefit-card benefit-highlight animate-fade-in-up">
+                        <div class="benefit-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                                <polyline points="14,2 14,8 20,8"/>
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">+ BÔNUS 3500 LIVROS EM PDF</h3>
+                        <p class="benefit-description">Compatível com qualquer dispositivo.</p>
+                    </div>
+                    
+                    <div class="benefit-card animate-fade-in-up">
+                        <div class="benefit-icon">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="23 4 23 10 17 10"/>
+                                <polyline points="1 20 1 14 7 14"/>
+                                <path d="M20.49 9A9 9 0 0 0 5.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 0 1 3.51 15"/>
+                            </svg>
+                        </div>
+                        <h3 class="benefit-title">ATUALIZAÇÕES CONSTANTES</h3>
+                        <p class="benefit-description">Você terá acesso a qualquer atualização, bônus e benefícios futuros.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-<Tabs>
-  <TabItem label="npm">
-`npm install --save-dev htmlhint`
-  </TabItem>
-  <TabItem label="yarn">
-`yarn add --dev htmlhint`
-  </TabItem>
-</Tabs>
+        <!-- Testimonials Section -->
+        <section class="testimonials-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title animate-fade-in-up">VEJA O QUE NOSSOS LEITORES ESTÃO DIZENDO:</h2>
+                </div>
+                
+                <div class="testimonials-grid">
+                    <div class="testimonial-card animate-scale-in">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Leonardo S.</h4>
+                                <p class="testimonial-role">Cliente</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-content">
+                            <div class="quote-start">"</div>
+                            <p class="testimonial-text">Queria agradecer o Pack de livros, muito bom. Nem sei por onde começar! Muito obrigado, vou indicar para os meus amigos.</p>
+                            <div class="quote-end">"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card animate-scale-in">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Luciano C.</h4>
+                                <p class="testimonial-role">Cliente</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-content">
+                            <div class="quote-start">"</div>
+                            <p class="testimonial-text">Nossa, são muitos livros bons. Já transferi alguns para o meu iPhone. Já vou começar a ler!</p>
+                            <div class="quote-end">"</div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card animate-scale-in">
+                        <div class="testimonial-header">
+                            <div class="testimonial-avatar">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                                    <circle cx="12" cy="7" r="4"/>
+                                </svg>
+                            </div>
+                            <div class="testimonial-info">
+                                <h4 class="testimonial-name">Jackeline V.</h4>
+                                <p class="testimonial-role">Cliente</p>
+                            </div>
+                        </div>
+                        
+                        <div class="testimonial-content">
+                            <div class="quote-start">"</div>
+                            <p class="testimonial-text">Recebi sim! Estava vendo agora, tem todos os livros que eu queria, estou tão feliz. Muito obrigada!</p>
+                            <div class="quote-end">"</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-2\. Create a `.htmlhintrc` configuration file in the root of your project with `htmlhint --init`. This will create a file with default rules. You can customize it as needed. For example, you can use the following configuration to enforce some common best practices:
+        <!-- Intermediate CTA Section -->
+        <section class="intermediate-cta-section">
+            <div class="container">
+                <div class="cta-content">
+                    <h2 class="section-title animate-fade-in-up">Acesso Imediato a Centenas de Obras Transformadoras</h2>
+                    <p class="cta-text animate-fade-in-up">Pare de adiar seu crescimento. Comece hoje mesmo a jornada que milhares de pessoas já fizeram.</p>
+                    <button class="btn btn-cta-large animate-scale-in">BAIXAR AGORA POR R$19,90 📚</button>
+                </div>
+            </div>
+        </section>
 
-```json
-{
-  "alt-require": true,
-  "attr-lowercase": true,
-  "attr-no-duplication": true,
-  "attr-value-double-quotes": true,
-  "button-type-require": true,
-  "doctype-first": true,
-  "doctype-html5": true,
-  "frame-title-require": true,
-  "h1-require": true,
-  "html-lang-require": true,
-  "id-unique": true,
-  "main-require": true,
-  "meta-charset-require": true,
-  "meta-description-require": true,
-  "meta-viewport-require": true,
-  "spec-char-escape": true,
-  "src-not-empty": true,
-  "tag-no-obsolete": true,
-  "tag-pair": true,
-  "tagname-lowercase": true,
-  "title-require": true
-}
-```
+        <!-- FAQ Section -->
+        <section class="faq-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title animate-fade-in-up">DÚVIDAS FREQUENTES</h2>
+                </div>
+                
+                <div class="faq-accordion">
+                    <div class="faq-item animate-fade-in-up">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>COMO VOU RECEBER MEU ACESSO?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Você receberá o acesso imediato assim que seu pagamento for aprovado, diretamente no seu e-mail de compra.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item animate-fade-in-up">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>POSSO COMPRAR DEPOIS?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Esta oferta é exclusiva e limitada. Se deixar para depois, poderá perder esta oportunidade única.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item animate-fade-in-up">
+                        <button class="faq-question" onclick="toggleFAQ(this)">
+                            <span>POSSO LER E BAIXAR EM QUALQUER DISPOSITIVO?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Sim, nosso pack é compatível com qualquer dispositivo. É só fazer o download.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Guarantee Badge -->
+                <div class="guarantee-section animate-scale-in">
+                    <div class="guarantee-card">
+                        <div class="guarantee-badge">
+                            <img src="./src/assets/guarantee-badge.jpg" alt="Garantia de 7 dias" class="guarantee-image">
+                        </div>
+                        <div class="guarantee-content">
+                            <h3 class="guarantee-title">Garantia de Satisfação de 7 Dias</h3>
+                            <p class="guarantee-text">Compre com tranquilidade! Se você não ficar satisfeito por qualquer motivo, devolvemos o seu dinheiro.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-3\. Run HTMLHint on, for example, all the HTML files in your project:
+        <!-- Final CTA Section -->
+        <section class="final-cta-section">
+            <div class="container">
+                <div class="final-cta-content">
+                    <h3 class="final-cta-title animate-fade-in-up">Invista no Seu Melhor. Acesso Ilimitado e Vitalício.</h3>
+                    
+                    <div class="final-price animate-scale-in">
+                        <div class="final-price-value">R$19,90</div>
+                        <p class="final-price-text">Oferta limitada - Não perca esta oportunidade</p>
+                    </div>
+                    
+                    <div class="final-cta-button animate-scale-in">
+                        <button class="btn btn-final-cta">QUERO GARANTIR MEU PACOTE! 🎯</button>
+                    </div>
+                    
+                    <p class="final-guarantee animate-fade-in-up">✅ Garantia de 7 dias • ✅ Acesso imediato • ✅ Sem mensalidades</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-```shell
-npx htmlhint "**/*.html"
-```
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copyright">Todos os direitos reservados | Biblioteca Encantada</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Termos de Uso</a>
+                    <a href="#" class="footer-link">Política de Privacidade</a>
+                    <a href="#" class="footer-link">Contato</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animation observer
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const animatedElements = entry.target.querySelectorAll(
+                            '.animate-fade-in-up, .animate-scale-in, .animate-slide-in-left, .animate-slide-in-right'
+                        );
+                        
+                        animatedElements.forEach((element, index) => {
+                            setTimeout(() => {
+                                element.classList.add('animate');
+                            }, index * 100);
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all sections
+            const sections = document.querySelectorAll('section');
+            sections.forEach((section) => observer.observe(section));
+        });
+
+        // FAQ Toggle Function
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = button.querySelector('.faq-icon');
+            
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) {
+                    item.classList.remove('active');
+                    item.querySelector('.faq-answer').style.maxHeight = '0';
+                    item.querySelector('.faq-icon').textContent = '+';
+                }
+            });
+            
+            // Toggle current FAQ item
+            if (faqItem.classList.contains('active')) {
+                faqItem.classList.remove('active');
+                answer.style.maxHeight = '0';
+                icon.textContent = '+';
+            } else {
+                faqItem.classList.add('active');
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.textContent = '-';
+            }
+        }
+    </script>
+</body>
+</html>
