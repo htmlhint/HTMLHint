@@ -1,0 +1,47 @@
+---
+id: form-method-require
+title: form-method-require
+description: Requires form elements to have a valid method attribute for better security and user experience.
+sidebar:
+  badge: New
+  hidden: true
+pagefind: false
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+The method attribute of a `<form>` element must be present with a valid value: "get", "post", or "dialog".
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule
+
+### The following patterns are **not** considered rule violations
+
+```html
+<form method="get"></form>
+<form method="post"></form>
+<form method="dialog"></form>
+```
+
+### The following patterns are considered rule violations
+
+```html
+<form>No method specified</form>
+<form method="invalid">Invalid method</form>
+```
+
+## Why this rule is important
+
+The absence of the method attribute means the form will use the default `GET` method. With `GET`, form data is included in the URL (e.g., `?username=john&password=secret`), which can expose sensitive information in browser history, logs, or the network request.
+
+The HTML specification requires that form elements have one of three valid methods:
+
+- `get`: Appends form data to the URL (default, but not recommended for sensitive data)
+- `post`: Sends form data in the request body (more secure for sensitive data)
+- `dialog`: Used for dialog forms (HTML5 feature)
+
+This rule helps ensure that forms have explicit, valid methods for better security and user experience.
