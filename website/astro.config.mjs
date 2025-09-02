@@ -70,6 +70,8 @@ export default defineConfig({
           attrs: {
             rel: 'manifest',
             href: '/site.webmanifest',
+            crossorigin: 'use-credentials',
+            fetchpriority: 'low',
           },
         },
         {
