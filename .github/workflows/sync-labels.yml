@@ -14,6 +14,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - uses: micnncim/action-label-syncer@v1
         with:
