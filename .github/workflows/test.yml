@@ -47,6 +47,8 @@ jobs:
 
       - name: ⬇️ Checkout
         uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: ⎔ Setup node ${{ matrix.node }}
         uses: actions/setup-node@v4
