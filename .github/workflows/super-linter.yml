@@ -46,7 +46,6 @@ jobs:
           VALIDATE_CSS_PRETTIER: false
           VALIDATE_EDITORCONFIG: false
           VALIDATE_GIT_COMMITLINT: false
-          VALIDATE_GITHUB_ACTIONS_ZIZMOR: false
           VALIDATE_HTML: false
           VALIDATE_HTML_PRETTIER: false
           VALIDATE_JAVASCRIPT_ES: false
