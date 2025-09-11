@@ -1,3 +1,4 @@
+---
 name: Scorecard supply-chain security
 on:
   branch_protection_rule:
