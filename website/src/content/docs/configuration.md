@@ -66,6 +66,7 @@ An example configuration file (with all rules disabled):
     "inline-script-disabled": false,
     "inline-style-disabled": false,
     "input-requires-label": false,
+    "link-rel-canonical-require": false,
     "main-require": false,
     "meta-charset-require": false,
     "meta-description-require": false,
