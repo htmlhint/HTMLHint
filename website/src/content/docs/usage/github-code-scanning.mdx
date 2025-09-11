@@ -22,6 +22,7 @@ To set up HTMLHint with GitHub Code Scanning, you need to create a workflow file
 
 ```yaml
 name: HTMLHint (SARIF) Code Scanning
+
 on:
   pull_request:
     branches:
@@ -33,10 +34,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          persist-credentials: false
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v5
 
       # If you need a website build script, include the steps here
 
