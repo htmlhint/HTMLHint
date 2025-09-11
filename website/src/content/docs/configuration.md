@@ -55,6 +55,7 @@ An example configuration file (with all rules disabled):
     "doctype-first": false,
     "doctype-html5": false,
     "empty-tag-not-self-closed": false,
+    "form-method-require": false,
     "frame-title-require": false,
     "h1-require": false,
     "head-script-disabled": false,
