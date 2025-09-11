@@ -1,0 +1,61 @@
+---
+id: link-rel-canonical-require
+title: link-rel-canonical-require
+description: Ensures every HTML document includes a canonical link tag within the head element for better SEO and duplicate content management.
+sidebar:
+  badge: New
+  hidden: true
+pagefind: false
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+A `<link rel="canonical">` with non-blank href must be present in `<head>` tag.
+
+Level: <Badge text="Error" variant="danger" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule
+
+## The following patterns are **not** considered rule violations
+
+```html
+<!-- Valid canonical link with absolute URL -->
+<html><head><link rel="canonical" href="https://example.com/dresses/green-dresses"></head></html>
+
+<!-- Valid canonical link with relative URL -->
+<html><head><link rel="canonical" href="/dresses/green-dresses"></head></html>
+
+<!-- Valid canonical link with query parameters -->
+<html><head><link rel="canonical" href="https://example.com/dresses/green-dresses?color=green&size=m"></head></html>
+
+<!-- Valid canonical link with fragment -->
+<html><head><link rel="canonical" href="https://example.com/dresses/green-dresses#section1"></head></html>
+```
+
+## The following patterns are considered rule violations
+
+```html
+<!-- Missing canonical link -->
+<html><head></head></html>
+
+<!-- Empty href attribute -->
+<html><head><link rel="canonical" href=""></head></html>
+
+<!-- Whitespace-only href attribute -->
+<html><head><link rel="canonical" href=" "></head></html>
+
+<!-- Missing href attribute -->
+<html><head><link rel="canonical"></head></html>
+```
+
+## Why this rule is important
+
+While it's generally not critical to specify a canonical preference for your URLs, there are several reasons why you would want to explicitly tell search engines about a canonical page in a set of duplicate or similar pages:
+
+- **Specify preferred URL**: Tell search engines which URL you want people to see in search results
+- **Consolidate signals**: Help search engines consolidate signals from similar pages into a single, preferred URL
+- **Simplify tracking**: Get consolidated metrics for specific content across multiple URLs
+- **Optimize crawling**: Prevent search engines from wasting time crawling duplicate content
