@@ -1,7 +1,7 @@
 name: Pull Request Labeler
 
 on:
-  - pull_request_target
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -9,8 +9,8 @@ permissions:
 jobs:
   triage:
     permissions:
-      contents: read  # for actions/labeler to determine modified files
-      pull-requests: write  # for actions/labeler to add labels to PRs
+      contents: read # for actions/labeler to determine modified files
+      pull-requests: write # for actions/labeler to add labels to PRs
     runs-on: ubuntu-latest
     steps:
       - uses: actions/labeler@634933edcd8ababfe52f92936142cc22ac488b1b # v6.0.1

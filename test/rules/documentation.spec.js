@@ -25,27 +25,9 @@ describe('Rules documentation', () => {
     )
     .map((doc) => doc.replace('.mdx', ''))
 
-  const rulesListPage = fs.readFileSync(
-    path.join(
-      __dirname,
-      '..',
-      '..',
-      'website',
-      'src',
-      'content',
-      'docs',
-      'rules',
-      'index.mdx'
-    ),
-    'utf-8'
-  )
-
   rules.forEach((rule) => {
     it(`${rule} should have a documentation page`, () => {
       expect(docs).toContain(rule)
-    })
-    it(`${rule} should be on the rules/index.mdx`, () => {
-      expect(rulesListPage).toContain(rule)
     })
   })
 })

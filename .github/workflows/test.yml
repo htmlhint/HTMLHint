@@ -34,14 +34,15 @@ jobs:
 
   build:
     permissions:
-      actions: write  # for styfle/cancel-workflow-action to cancel/stop running workflows
-      contents: read  # for actions/checkout to fetch code
+      actions: write # for styfle/cancel-workflow-action to cancel/stop running workflows
+      contents: read # for actions/checkout to fetch code
     runs-on: ${{ matrix.os }}
     needs: lint
     strategy:
       fail-fast: false
       matrix:
         node:
+          - 18
           - 20
           - 22
           - 24
