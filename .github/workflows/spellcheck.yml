@@ -18,7 +18,7 @@ jobs:
         with:
           persist-credentials: false
 
-      - uses: streetsidesoftware/cspell-action@157048954070986ce4315d0813573a2d8faee361 # v7.1.1
+      - uses: streetsidesoftware/cspell-action@dcd03dc3e8a59ec2e360d0c62db517baa0b4bb6d # v7.2.0
         with:
           check_dot_files: false
           incremental_files_only: true
