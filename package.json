@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "The Static Code Analysis Tool for your HTML",
   "keywords": [
     "html",
@@ -15,7 +15,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/htmlhint/HTMLHint.git"
+    "url": "git+https://github.com/htmlhint/HTMLHint.git"
   },
   "funding": {
     "type": "Open Collective",
