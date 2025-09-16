@@ -1,6 +1,6 @@
 import * as chalk from 'chalk'
 import { EventEmitter } from 'events'
-import { sync as globSync } from 'glob'
+import { globSync } from 'glob'
 import { parse, resolve } from 'path'
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
@@ -24,8 +24,6 @@ function loadFormatters() {
     cwd: __dirname,
     dot: false,
     nodir: true,
-    strict: false,
-    silent: true,
   })
 
   const mapFormatters: { [name: string]: FormatterCallback } = {}

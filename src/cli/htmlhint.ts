@@ -4,8 +4,7 @@ import { queue as asyncQueue, series as asyncSeries } from 'async'
 import * as chalk from 'chalk'
 import { Command } from 'commander'
 import { existsSync, readFileSync, statSync, writeFileSync } from 'fs'
-import * as glob from 'glob'
-import { IGlob } from 'glob'
+import { globStream, globSync } from 'glob'
 import { parseGlob } from './parse-glob'
 import { dirname, resolve, sep } from 'path'
 // Native fetch is available in Node.js 18+
@@ -223,13 +222,11 @@ function loadCustomRules(rulesdir: string) {
     if (statSync(rulesdir).isDirectory()) {
       rulesdir += /\/$/.test(rulesdir) ? '' : '/'
       rulesdir += '**/*.js'
-      const arrFiles = glob.sync(rulesdir, {
+      const arrFiles = globSync(rulesdir, {
         dot: false,
         nodir: true,
-        strict: false,
-        silent: true,
       })
-      arrFiles.forEach((file) => {
+      arrFiles.forEach((file: string) => {
         loadRule(file)
       })
     } else {
@@ -467,22 +464,14 @@ function walkPath(
     })
   }
 
-  const walk: IGlob = glob(
-    pattern,
-    {
-      cwd: base,
-      dot: false,
-      ignore: arrIgnores,
-      nodir: true,
-      strict: false,
-      silent: true,
-    },
-    () => {
-      onFinish()
-    }
-  )
+  const walk = globStream(pattern, {
+    cwd: base,
+    dot: false,
+    ignore: arrIgnores,
+    nodir: true,
+  })
 
-  walk.on('match', (file: string) => {
+  walk.on('data', (file: string) => {
     base = base.replace(/^.\//, '')
 
     if (sep !== '/') {
@@ -490,6 +479,10 @@ function walkPath(
     }
 
     callback(base + file)
+  })
+
+  walk.on('end', () => {
+    onFinish()
   })
 }
 
