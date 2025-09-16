@@ -26,7 +26,7 @@
               "helpUri": "https://htmlhint.com/rules/attr-no-duplication",
               "help": {
                 "text": "Elements cannot have duplicate attributes.",
-                "markdown": "\nThe same attribute can't be specified twice.\n\nLevel: Error\n\n## Config value\n\n- `true`: enable rule\n- `false`: disable rule\n\n### The following patterns are **not** considered rule violations\n\n```html\n`<img src=\"a.png\" />`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<img src=\"a.png\" src=\"b.png\" />`\n```"
+                "markdown": "\nThe same attribute can't be specified twice.\n\nLevel: Error\n\n## Config value\n\n- `true`: enable rule\n- `false`: disable rule\n\n### The following patterns are **not** considered rule violations\n\n```html\n`<img src=\"a.png\" />`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<img src=\"a.png\" src=\"b.png\" />`\n```\n\n### Why this rule is important\n\nDuplicate attributes can cause unexpected behavior and make the code harder to read and maintain."
               }
             },
             {
@@ -52,7 +52,7 @@
               }
             }
           ],
-          "version": "1.5.1",
+          "version": "1.7.0",
           "informationUri": "https://htmlhint.com/"
         }
       },
