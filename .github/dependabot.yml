@@ -16,7 +16,7 @@ updates:
   - package-ecosystem: npm
     directory: '/website'
     schedule:
-      interval: weekly
+      interval: monthly
     versioning-strategy: increase
     groups:
       dependencies:
@@ -29,4 +29,4 @@ updates:
   - package-ecosystem: github-actions
     directory: '/'
     schedule:
-      interval: weekly
+      interval: monthly
