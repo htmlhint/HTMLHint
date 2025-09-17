@@ -28,3 +28,7 @@ Level: <Badge text="Error" variant="danger" />
 ```html
 <span>aaa>bbb<ccc</span>
 ```
+
+## Why this rule is important
+
+Special HTML characters like `<`, `>`, and `&` must be escaped to prevent them from being interpreted as HTML tags or entities. This avoids rendering issues and potential cross-site scripting (XSS) vulnerabilities.
