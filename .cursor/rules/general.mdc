@@ -16,3 +16,8 @@ alwaysApply: true
 - The workflows should be named `<workflow-name>.yml`.
 - All GitHub Actions should be pinned versions to avoid breaking changes (SHA-1).
 - If using actions/checkout, it should have `persist-credentials: false` set.
+
+## Documentation
+
+- All documentation should be written in US English.
+- For the 'Why this rule is important' section, always include a link to the relevant documentation and prefer MDN and Google documentation along with official documentation from the W3C.
