@@ -48,7 +48,7 @@
               "helpUri": "https://htmlhint.com/rules/spec-char-escape",
               "help": {
                 "text": "Special characters must be escaped.",
-                "markdown": "\nSpecial characters must be escaped.\n\nLevel: Error\n\n## Config value\n\n- `true`: enable rule\n- `false`: disable rule\n\n### The following patterns are **not** considered violations\n\n```html\n`<span>`aaa&gt;bbb&lt;ccc`</span>`\n`<span>`Steinway &amp; Sons, Q&amp;A`</span>`\n`<span>`Steinway & Sons, Q&A`</span>`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<span>`aaa>bbb`<ccc</span>`\n```"
+                "markdown": "\nSpecial characters must be escaped.\n\nLevel: Error\n\n## Config value\n\n- `true`: enable rule\n- `false`: disable rule\n\n### The following patterns are **not** considered violations\n\n```html\n`<span>`aaa&gt;bbb&lt;ccc`</span>`\n`<span>`Steinway &amp; Sons, Q&amp;A`</span>`\n`<span>`Steinway & Sons, Q&A`</span>`\n```\n\n### The following pattern is considered a rule violation:\n\n```html\n`<span>`aaa>bbb`<ccc</span>`\n```\n\n## Why this rule is important\n\nSpecial HTML characters like `<`, `>`, and `&` must be escaped to prevent them from being interpreted as HTML tags or entities. This avoids rendering issues and potential cross-site scripting (XSS) vulnerabilities."
               }
             }
           ],
