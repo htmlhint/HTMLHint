@@ -10,7 +10,7 @@
 - Core code is in TypeScript v5.4.5.
 - All new rules for HTMLHint should be placed in the rules directory.
 - Tests for new rules should be added in rules and follow the naming pattern `<rule-name>.spec.js`.
-- Do not use deprecated Node.js or TypeScript features.
+- Do not use deprecated TypeScript features.
 - All user-facing messages and documentation should use clear, concise US English.
 - Keep dependencies up to date and avoid unnecessary packages.
 - All website content should be placed in the website directory and follow Astro Starlight conventions.
