@@ -53,7 +53,7 @@
     "commander": "11.1.0",
     "glob": "^9.0.0",
     "is-glob": "^4.0.3",
-    "node-sarif-builder": "^3.2.0",
+    "node-sarif-builder": "^3.3.0",
     "strip-json-comments": "3.1.1",
     "xml": "1.0.1"
   },
