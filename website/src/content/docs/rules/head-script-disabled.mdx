@@ -12,10 +12,13 @@ Level: <Badge text="Warning" variant="caution" />
 
 ## Config value
 
-- `true`: enable rule
+- `true`: enable rule (disallow all scripts in head)
 - `false`: disable rule
+- `"allow-non-blocking"`: allow non-blocking scripts (modules, deferred, and async scripts) in head
 
 ### The following patterns are **not** considered rule violations
+
+#### Default behavior (`true`)
 
 ```html
 <body>
@@ -23,10 +26,82 @@ Level: <Badge text="Warning" variant="caution" />
 </body>
 ```
 
-### The following pattern is considered a rule violation:
+```html
+<head>
+  <script type="text/template">
+    <div>Template content</div>
+  </script>
+</head>
+```
+
+#### With `"allow-non-blocking"` option
+
+```html
+<head>
+  <script type="module" src="module.js"></script>
+</head>
+```
+
+```html
+<head>
+  <script defer src="deferred.js"></script>
+</head>
+```
+
+```html
+<head>
+  <script async src="analytics.js"></script>
+</head>
+```
+
+```html
+<head>
+  <script type="module">
+    import { init } from './app.js';
+    init();
+  </script>
+</head>
+```
+
+### The following patterns are considered rule violations
+
+#### Default behavior (`true`)
 
 ```html
 <head>
   <script src="test.js"></script>
 </head>
 ```
+
+```html
+<head>
+  <script type="module" src="module.js"></script>
+</head>
+```
+
+#### With `"allow-non-blocking"` option
+
+```html
+<head>
+  <script src="test.js"></script>
+</head>
+```
+
+```html
+<head>
+  <script type="text/javascript">
+    console.log('blocking script');
+  </script>
+</head>
+```
+
+## Why this rule is important
+
+Scripts in the `<head>` section traditionally block HTML parsing and rendering, which can negatively impact page load performance. However, modern JavaScript features like ES6 modules (`type="module"`), the `defer` attribute, and the `async` attribute allow scripts to be non-blocking, making them safe to place in the head without performance penalties.
+
+For more information, see:
+
+- [MDN: Script element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script)
+- [MDN: defer attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer)
+- [MDN: async attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async)
+- [MDN: JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
