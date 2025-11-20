@@ -23,7 +23,7 @@ export interface Ruleset {
   'doctype-html5'?: boolean
   'empty-tag-not-self-closed'?: boolean
   'form-method-require'?: boolean
-  'head-script-disabled'?: boolean
+  'head-script-disabled'?: boolean | 'allow-non-blocking'
   'href-abs-or-rel'?: 'abs' | 'rel'
   'id-class-ad-disabled'?: boolean
   'id-class-value'?:
