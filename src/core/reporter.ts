@@ -1,4 +1,4 @@
-import { Hint, ReportType, Rule, Ruleset } from './types'
+import { Hint, ReportType, Rule, Ruleset, DisabledRulesMap } from './types'
 
 export default class Reporter {
   public html: string
@@ -6,8 +6,13 @@ export default class Reporter {
   public brLen: number
   public ruleset: Ruleset
   public messages: Hint[]
+  private disabledRulesMap: DisabledRulesMap
 
-  public constructor(html: string, ruleset: Ruleset) {
+  public constructor(
+    html: string,
+    ruleset: Ruleset,
+    disabledRulesMap: DisabledRulesMap = {}
+  ) {
     this.html = html
     this.lines = html.split(/\r?\n/)
     const match = /\r?\n/.exec(html)
@@ -15,6 +20,7 @@ export default class Reporter {
     this.brLen = match !== null ? match[0].length : 0
     this.ruleset = ruleset
     this.messages = []
+    this.disabledRulesMap = disabledRulesMap
   }
 
   public info(
@@ -55,6 +61,19 @@ export default class Reporter {
     rule: Rule,
     raw: string
   ) {
+    // Check if rule is disabled for this line
+    const lineDisabled = this.disabledRulesMap[line]
+    if (lineDisabled) {
+      if (lineDisabled.all === true) {
+        // All rules disabled for this line
+        return
+      }
+      if (lineDisabled.rules && lineDisabled.rules.has(rule.id)) {
+        // This specific rule is disabled for this line
+        return
+      }
+    }
+
     const lines = this.lines
     const brLen = this.brLen
     let evidence = ''
