@@ -33,6 +33,69 @@ Finally, rules can be specified inline directly in the HTML document:
 </html>
 ```
 
+## Disabling Rules Inline
+
+You can disable specific rules or all rules for specific lines in your HTML using HTML comments. This is useful when you need to temporarily disable linting for a particular section of code.
+
+### Disable All Rules
+
+To disable all HTMLHint rules for the following lines until re-enabled:
+
+<!-- prettier-ignore -->
+```html
+<!-- htmlhint-disable -->
+<div class="foo">Lorem</div>
+<div class="bar">Ipsum</div>
+<!-- htmlhint-enable -->
+<div class="baz">Dolor</div>
+```
+
+### Disable for Next Line
+
+To disable all rules for just the next line:
+
+<!-- prettier-ignore -->
+```html
+<!-- htmlhint-disable-next-line -->
+<div class="foo">Lorem</div>
+<div class="bar">Ipsum</div>
+```
+
+### Disable Specific Rules
+
+To disable specific rules for the following lines:
+
+<!-- prettier-ignore -->
+```html
+<!-- htmlhint-disable attr-lowercase -->
+<div CLASS="foo">Lorem</div>
+<div CLASS="bar">Ipsum</div>
+<!-- htmlhint-enable -->
+<div class="baz">Dolor</div>
+```
+
+### Disable Specific Rules for Next Line
+
+To disable specific rules for just the next line:
+
+<!-- prettier-ignore -->
+```html
+<!-- htmlhint-disable-next-line attr-lowercase -->
+<div CLASS="foo">Lorem</div>
+<div class="bar">Ipsum</div>
+```
+
+### Disable Multiple Rules
+
+You can disable multiple rules by listing them separated by spaces:
+
+<!-- prettier-ignore -->
+```html
+<!-- htmlhint-disable attr-lowercase tagname-lowercase -->
+<DIV CLASS="foo">Lorem</DIV>
+<div class="bar">Ipsum</div>
+```
+
 ## Example configuration file
 
 An example configuration file (with all rules disabled):

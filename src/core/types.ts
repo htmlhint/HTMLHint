@@ -79,3 +79,10 @@ export interface Hint {
   col: number
   rule: Rule
 }
+
+export interface DisabledRulesMap {
+  [line: number]: {
+    all?: boolean
+    rules?: Set<string>
+  }
+}

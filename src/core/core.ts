@@ -1,7 +1,7 @@
 import HTMLParser from './htmlparser'
 import Reporter from './reporter'
 import * as HTMLRules from './rules'
-import { Hint, Rule, Ruleset } from './types'
+import { Hint, Rule, Ruleset, DisabledRulesMap } from './types'
 
 export interface FormatOptions {
   colors?: boolean
@@ -58,8 +58,11 @@ class HTMLHintCore {
       }
     )
 
+    // Parse disable/enable comments
+    const disabledRulesMap = this.parseDisableComments(html)
+
     const parser = new HTMLParser()
-    const reporter = new Reporter(html, ruleset)
+    const reporter = new Reporter(html, ruleset, disabledRulesMap)
 
     const rules = this.rules
     let rule: Rule
@@ -74,6 +77,114 @@ class HTMLHintCore {
     parser.parse(html)
 
     return reporter.messages
+  }
+
+  private parseDisableComments(html: string): DisabledRulesMap {
+    const disabledRulesMap: DisabledRulesMap = {}
+    const lines = html.split(/\r?\n/)
+    const regComment =
+      /<!--\s*htmlhint-(disable|enable)(?:-next-line)?(?:\s+([^\r\n]+?))?\s*-->/gi
+
+    // Find all disable/enable comments and their positions
+    const comments: Array<{
+      line: number
+      command: string
+      isNextLine: boolean
+      rulesStr?: string
+    }> = []
+
+    let match: RegExpExecArray | null
+    while ((match = regComment.exec(html)) !== null) {
+      // Calculate line number from match position
+      const beforeMatch = html.substring(0, match.index)
+      const lineNumber = beforeMatch.split(/\r?\n/).length
+      const command = match[1].toLowerCase()
+      const isNextLine = match[0].includes('-next-line')
+      const rulesStr = match[2]?.trim()
+
+      comments.push({
+        line: lineNumber,
+        command,
+        isNextLine,
+        rulesStr,
+      })
+    }
+
+    // Process comments in order
+    let currentDisabledRules: Set<string> | null = null
+    let isAllDisabled = false
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = i + 1
+
+      // Check if there's a comment on this line
+      const commentOnLine = comments.find((c) => c.line === line)
+      if (commentOnLine) {
+        if (commentOnLine.command === 'disable') {
+          if (commentOnLine.isNextLine) {
+            // htmlhint-disable-next-line
+            const nextLine = line + 1
+            if (commentOnLine.rulesStr) {
+              // Specific rules disabled
+              const rules = commentOnLine.rulesStr
+                .split(/\s+/)
+                .filter((r) => r.length > 0)
+              if (!disabledRulesMap[nextLine]) {
+                disabledRulesMap[nextLine] = {}
+              }
+              if (!disabledRulesMap[nextLine].rules) {
+                disabledRulesMap[nextLine].rules = new Set()
+              }
+              rules.forEach((r) => disabledRulesMap[nextLine].rules!.add(r))
+            } else {
+              // All rules disabled
+              if (!disabledRulesMap[nextLine]) {
+                disabledRulesMap[nextLine] = {}
+              }
+              disabledRulesMap[nextLine].all = true
+            }
+          } else {
+            // htmlhint-disable
+            if (commentOnLine.rulesStr) {
+              // Specific rules disabled
+              const rules = commentOnLine.rulesStr
+                .split(/\s+/)
+                .filter((r) => r.length > 0)
+              currentDisabledRules = new Set(rules)
+              isAllDisabled = false
+            } else {
+              // All rules disabled
+              currentDisabledRules = null
+              isAllDisabled = true
+            }
+          }
+        } else if (commentOnLine.command === 'enable') {
+          // htmlhint-enable
+          currentDisabledRules = null
+          isAllDisabled = false
+        }
+      }
+
+      // Apply current disable state to this line (if not already set by next-line)
+      if (currentDisabledRules !== null || isAllDisabled) {
+        if (!disabledRulesMap[line]) {
+          disabledRulesMap[line] = {}
+        }
+        // Don't override if already set by next-line comment
+        if (isAllDisabled && disabledRulesMap[line].all !== true) {
+          disabledRulesMap[line].all = true
+        } else if (currentDisabledRules) {
+          if (!disabledRulesMap[line].rules) {
+            disabledRulesMap[line].rules = new Set()
+          }
+          currentDisabledRules.forEach((r) =>
+            disabledRulesMap[line].rules!.add(r)
+          )
+        }
+      }
+    }
+
+    return disabledRulesMap
   }
 
   public format(arrMessages: Hint[], options: FormatOptions = {}) {
