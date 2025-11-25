@@ -99,7 +99,7 @@ describe('Core', () => {
       const messages = HTMLHint.verify(code, {
         'attr-lowercase': true,
       })
-      // Line 2 should be disabled (no errors), line 3 should have errors
+      // Line 2 should be disabled (no errors), line 3 is valid (no errors)
       expect(messages.length).toBe(0)
     })
 
