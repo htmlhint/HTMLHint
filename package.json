@@ -72,8 +72,8 @@
     "eslint-plugin-prettier": "^5.5.4",
     "jest": "^30.2.0",
     "parse-glob": "3.0.4",
-    "prettier": "3.6.2",
-    "rimraf": "6.0.1",
+    "prettier": "3.7.0",
+    "rimraf": "6.1.2",
     "rollup": "4.53.3",
     "typescript": "5.4.5"
   },
