@@ -44,7 +44,7 @@
     "lint:fix": "eslint . --fix && npm run prettier",
     "lint:markdown": "npx markdownlint-cli **/*.md",
     "prettier": "prettier --write .",
-    "spellcheck": "npx cspell \"**/*[.html,.json,.md,.mdx,.yml]\" --no-progress",
+    "spellcheck": "npx cspell \"**/*.{html,json,md,mdx,yml}\" --no-progress",
     "test": "jest",
     "test:coverage": "jest --coverage"
   },
