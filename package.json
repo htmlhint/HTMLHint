@@ -43,7 +43,7 @@
     "lint": "eslint . --max-warnings 0 && prettier -c .",
     "lint:fix": "eslint . --fix && npm run prettier",
     "lint:markdown": "npx markdownlint-cli **/*.md",
-    "prettier": "prettier --write \"**/*.{css,json,js,md,mdx,scss,yml}\"",
+    "prettier": "prettier --write \"**/*.{css,html,js,json,jsonc,md,mdx,mjs,scss,ts,yaml,yml}\"",
     "spellcheck": "npx cspell \"**/*.{html,json,md,mdx,yml}\" --no-progress",
     "test": "jest",
     "test:coverage": "jest --coverage"
