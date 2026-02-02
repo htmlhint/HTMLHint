@@ -14,12 +14,18 @@ Level: <Badge text="Error" variant="danger" />
 
 - `true`: enable rule
 - `false`: disable rule
-- `['clipPath', 'data-Test']`: Ignore some tagname name
+- `['clipPath', 'data-Test']`: enable rule except for the given tag names. All SVG camelCase elements are included, for example `linearGradient`, `foreignObject`
 
 ### The following patterns are **not** considered rule violations
 
 ```html
 <span><div>
+```
+
+SVG elements with camelCase names (e.g. `linearGradient`, `foreignObject`) are allowed:
+
+```html
+<svg><linearGradient /><foreignObject /><textPath /></svg>
 ```
 
 ### The following pattern is considered a rule violation:
