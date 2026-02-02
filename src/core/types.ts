@@ -56,7 +56,7 @@ export interface Ruleset {
   'tag-no-obsolete'?: boolean
   'tag-pair'?: boolean
   'tag-self-close'?: boolean
-  'tagname-lowercase'?: boolean
+  'tagname-lowercase'?: boolean | Array<string | RegExp>
   'tagname-specialchars'?: boolean
   'tags-check'?: { [tagName: string]: Record<string, unknown> }
   'title-require'?: boolean

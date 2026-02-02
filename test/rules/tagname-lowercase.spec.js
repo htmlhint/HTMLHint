@@ -29,4 +29,27 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
+
+  it('Known SVG elements should be ignored with no config', () => {
+    const code =
+      '<svg><animateMotion /><linearGradient /><foreignObject /><textPath /></svg>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Known SVG elements should be ignored with a config override', () => {
+    const code = '<svg><feGaussianBlur /><radialGradient /></svg>'
+    ruleOptions[ruleId] = ['customTag']
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+    ruleOptions[ruleId] = true
+  })
+
+  it('Set to array list should not result in an error', () => {
+    const code = '<CustomComponent /><AnotherCamelCase />'
+    ruleOptions[ruleId] = ['CustomComponent', 'AnotherCamelCase']
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+    ruleOptions[ruleId] = true
+  })
 })
