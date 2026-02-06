@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "1.8.0",
+  "version": "1.8.1",
   "description": "The Static Code Analysis Tool for your HTML",
   "keywords": [
     "html",
@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "28.0.6",
-    "@rollup/plugin-node-resolve": "16.0.1",
+    "@rollup/plugin-node-resolve": "16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/async": "^3.2.25",
     "@types/is-glob": "4.0.4",
@@ -72,7 +72,7 @@
     "eslint-plugin-prettier": "^5.5.4",
     "jest": "^30.2.0",
     "parse-glob": "3.0.4",
-    "prettier": "3.7.3",
+    "prettier": "3.8.1",
     "rimraf": "6.1.2",
     "rollup": "4.53.3",
     "typescript": "5.4.5"
