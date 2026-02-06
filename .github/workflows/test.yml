@@ -82,10 +82,3 @@ jobs:
           timeout_minutes: 20
           max_attempts: 3
           command: npm run test
-
-      - name: Run coverage
-        if: matrix.node == '20' && matrix.os == 'ubuntu-latest'
-        uses: nick-invision/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08 # v3.0.2
-        with:
-          timeout_minutes: 20
-          max_attempts: 3
