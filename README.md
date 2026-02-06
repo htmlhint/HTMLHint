@@ -12,9 +12,6 @@
   <a href="https://www.npmjs.com/package/htmlhint">
     <img src="https://img.shields.io/npm/v/htmlhint" alt="npm Version">
   </a>
-  <a href="https://codecov.io/gh/htmlhint/HTMLHint">
-    <img src="https://codecov.io/gh/htmlhint/HTMLHint/branch/main/graph/badge.svg" alt="Codecov">
-  </a>
   <a href="https://www.bestpractices.dev/projects/6697">
     <img src="https://www.bestpractices.dev/projects/6697/badge" alt="Open Source Security Foundation (OpenSSF) best practices: Passing">
   </a>
