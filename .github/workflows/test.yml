@@ -82,19 +82,3 @@ jobs:
           timeout_minutes: 20
           max_attempts: 3
           command: npm run test
-
-      - name: Run coverage
-        if: matrix.node == '20' && matrix.os == 'ubuntu-latest'
-        uses: nick-invision/retry@ce71cc2ab81d554ebbe88c79ab5975992d79ba08 # v3.0.2
-        with:
-          timeout_minutes: 20
-          max_attempts: 3
-          command: npm run test:coverage
-
-      - name: ⬆️ Upload coverage to Codecov
-        if: matrix.node == '20' && matrix.os == 'ubuntu-latest'
-        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de # v5.5.2
-        with:
-          files: ./coverage/coverage-final.json
-          name: codecov-dev
-          token: ${{ secrets.CODECOV_TOKEN }}
