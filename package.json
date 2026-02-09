@@ -28,7 +28,8 @@
     ".": {
       "import": "./dist/core/core.js",
       "require": "./dist/htmlhint.js"
-    }
+    },
+    "./package.json": "./package.json"
   },
   "bin": {
     "htmlhint": "bin/htmlhint"
