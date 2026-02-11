@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "1.9.0",
+  "version": "1.9.1",
   "description": "The Static Code Analysis Tool for your HTML",
   "keywords": [
     "html",
@@ -24,13 +24,6 @@
   "license": "MIT",
   "main": "dist/htmlhint.js",
   "module": "dist/core/core.js",
-  "exports": {
-    ".": {
-      "import": "./dist/core/core.js",
-      "require": "./dist/htmlhint.js"
-    },
-    "./package.json": "./package.json"
-  },
   "bin": {
     "htmlhint": "bin/htmlhint"
   },
