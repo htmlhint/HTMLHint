@@ -48,6 +48,16 @@ export default defineConfig({
           label: 'stackOverflow',
           href: 'https://stackoverflow.com/questions/tagged/htmlhint',
         },
+        {
+          icon: 'npm',
+          label: 'npm',
+          href: 'https://www.npmjs.com/package/htmlhint',
+        },
+        {
+          icon: 'vscode',
+          label: 'VS Code Extension',
+          href: 'https://marketplace.visualstudio.com/items?itemName=HTMLHint.vscode-htmlhint',
+        },
       ],
       head: [
         {
