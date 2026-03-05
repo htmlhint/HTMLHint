@@ -484,6 +484,10 @@ function walkPath(
   walk.on('end', () => {
     onFinish()
   })
+
+  walk.on('error', () => {
+    onFinish()
+  })
 }
 
 // hint file
