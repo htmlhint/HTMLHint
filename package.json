@@ -52,9 +52,9 @@
     "async": "3.2.6",
     "chalk": "4.1.2",
     "commander": "11.1.0",
-    "glob": "^9.0.0",
+    "glob": "^13.0.6",
     "is-glob": "^4.0.3",
-    "node-sarif-builder": "^3.4.0",
+    "node-sarif-builder": "3.2.0",
     "strip-json-comments": "3.1.1",
     "xml": "1.0.1"
   },
@@ -67,13 +67,13 @@
     "@types/xml": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "8.44.0",
     "@typescript-eslint/parser": "8.44.0",
-    "eslint": "^9.39.1",
+    "eslint": "^9.39.3",
     "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.2.0",
     "parse-glob": "3.0.4",
     "prettier": "3.8.1",
-    "rimraf": "6.1.2",
+    "rimraf": "^5.0.0",
     "rollup": "4.53.3",
     "typescript": "5.4.5"
   },
@@ -81,6 +81,6 @@
     "node": ">=18"
   },
   "volta": {
-    "node": "20.19.5"
+    "node": "18.20.8"
   }
 }
