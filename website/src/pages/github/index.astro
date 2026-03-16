@@ -84,15 +84,22 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
           ${repo.forks_count.toLocaleString()}
         </span>`
 
-      return `<a href="${escapeHtml(repo.html_url)}" class="github-card" target="_blank" rel="noopener noreferrer">
-        <h2 class="github-card-title">${escapeHtml(repo.name)}</h2>
-        ${description}
-        <div class="github-card-meta">
-          ${language}
-          ${stars}
-          ${forks}
-        </div>
-      </a>`
+      return `<div class="github-card">
+        <span class="github-card-stack">
+          <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="github-card-link">
+            <span class="github-card-title">${escapeHtml(repo.name)}</span>
+          </a>
+          ${description}
+          <div class="github-card-meta">
+            ${language}
+            ${stars}
+            ${forks}
+          </div>
+        </span>
+        <svg aria-hidden="true" class="github-card-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/>
+        </svg>
+      </div>`
     }
 
     async function init() {
@@ -120,54 +127,83 @@ import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
   </script>
 </StarlightPage>
 
-<style>
+<style is:global>
   .github-card-grid {
     display: grid;
     gap: 1rem;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    margin-top: 1rem;
+    grid-template-columns: 100%;
+  }
+
+  @media (min-width: 50rem) {
+    .github-card-grid {
+      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+    }
   }
 
   .github-card {
-    border: 1px solid var(--sl-color-hairline);
+    border: 1px solid var(--sl-color-gray-5);
     border-radius: 0.5rem;
-    display: flex;
-    flex-direction: column;
+    box-shadow: var(--sl-shadow-sm);
+    display: grid;
     gap: 0.5rem;
-    padding: 1.25rem;
-    text-decoration: none;
-    transition:
-      border-color 0.2s,
-      box-shadow 0.2s;
+    grid-template-columns: 1fr auto;
+    padding: 1rem;
+    position: relative;
   }
 
   .github-card:hover {
-    border-color: var(--sl-color-accent);
-    box-shadow: 0 0 0 1px var(--sl-color-accent);
+    background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+    border-color: var(--sl-color-gray-2);
   }
 
-  .github-card::after {
+  .github-card:hover .github-card-icon {
+    color: var(--sl-color-white);
+  }
+
+  .github-card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .github-card-link {
+    line-height: var(--sl-line-height-headings);
+    text-decoration: none;
+  }
+
+  .github-card-link::before {
+    content: '';
+    inset: 0;
+    position: absolute;
+  }
+
+  .github-card-link::after {
     display: none !important;
   }
 
   .github-card-title {
-    color: var(--sl-color-accent);
-    font-size: var(--sl-text-base);
+    color: var(--sl-color-white);
+    font-size: var(--sl-text-lg);
     font-weight: 600;
-    margin: 0;
     overflow-wrap: break-word;
   }
 
   .github-card-description {
-    color: var(--sl-color-text);
-    flex: 1;
-    font-size: var(--sl-text-sm);
+    color: var(--sl-color-gray-3);
+    line-height: 1.5;
     margin: 0;
+  }
+
+  .github-card-icon {
+    color: var(--sl-color-gray-3);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
   }
 
   .github-card-meta {
     align-items: center;
-    color: var(--sl-color-text-accent);
+    color: var(--sl-color-gray-3);
     display: flex;
     flex-wrap: wrap;
     font-size: var(--sl-text-sm);
