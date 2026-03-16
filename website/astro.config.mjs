@@ -31,7 +31,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/htmlhint/htmlhint',
+          href: '/github/',
         },
         {
           icon: 'mastodon',
@@ -169,8 +169,7 @@ export default defineConfig({
         },
         {
           label: 'GitHub',
-          link: 'https://github.com/htmlhint/htmlhint',
-          attrs: { target: '_blank' },
+          link: '/github/',
         },
       ],
     }),
