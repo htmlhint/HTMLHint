@@ -1,0 +1,226 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro'
+---
+
+<StarlightPage
+  frontmatter={{
+    title: 'GitHub',
+    description:
+      'Browse all public repositories in the HTMLHint GitHub organization.',
+    tableOfContents: false,
+    editUrl: false,
+    lastUpdated: false,
+  }}
+>
+  <noscript>
+    <p>
+      Please enable JavaScript to view the list of HTMLHint GitHub
+      repositories.
+    </p>
+  </noscript>
+
+  <div id="github-repos-loading">Loading repositories&hellip;</div>
+  <div id="github-repos" class="github-card-grid" aria-live="polite"></div>
+
+  <script>
+    interface GitHubRepo {
+      id: number
+      name: string
+      full_name: string
+      html_url: string
+      description: string | null
+      stargazers_count: number
+      forks_count: number
+      language: string | null
+      archived: boolean
+      topics: string[]
+    }
+
+    async function fetchAllRepos(): Promise<GitHubRepo[]> {
+      const repos: GitHubRepo[] = []
+      let page = 1
+      while (true) {
+        const response = await fetch(
+          `https://api.github.com/orgs/htmlhint/repos?type=public&per_page=100&page=${page}`,
+        )
+        if (!response.ok) {
+          throw new Error(`GitHub API error: ${response.status}`)
+        }
+        const data: GitHubRepo[] = await response.json()
+        if (data.length === 0) break
+        repos.push(...data)
+        if (data.length < 100) break
+        page++
+      }
+      return repos
+    }
+
+    function escapeHtml(text: string): string {
+      return text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;')
+    }
+
+    function createRepoCard(repo: GitHubRepo): string {
+      const description = repo.description
+        ? `<p class="github-card-description">${escapeHtml(repo.description)}</p>`
+        : ''
+      const language = repo.language
+        ? `<span class="github-card-language">${escapeHtml(repo.language)}</span>`
+        : ''
+      const stars = `<span class="github-card-stat" aria-label="${repo.stargazers_count} stars">
+          <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M8 .25a.75.75 0 0 1 .673.418l1.882 3.815 4.21.612a.75.75 0 0 1 .416 1.279l-3.046 2.97.719 4.192a.75.75 0 0 1-1.088.791L8 12.347l-3.766 1.98a.75.75 0 0 1-1.088-.79l.72-4.194L.818 6.374a.75.75 0 0 1 .416-1.28l4.21-.611L7.327.668A.75.75 0 0 1 8 .25Z"/>
+          </svg>
+          ${repo.stargazers_count.toLocaleString()}
+        </span>`
+      const forks = `<span class="github-card-stat" aria-label="${repo.forks_count} forks">
+          <svg aria-hidden="true" height="16" width="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M5 5.372v.878c0 .414.336.75.75.75h4.5a.75.75 0 0 0 .75-.75v-.878a2.25 2.25 0 1 1 1.5 0v.878a2.25 2.25 0 0 1-2.25 2.25h-1.5v2.128a2.251 2.251 0 1 1-1.5 0V8.5h-1.5A2.25 2.25 0 0 1 3.5 6.25v-.878a2.25 2.25 0 1 1 1.5 0ZM5 3.25a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Zm6.75.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Zm-3 8.75a.75.75 0 1 0-1.5 0 .75.75 0 0 0 1.5 0Z"/>
+          </svg>
+          ${repo.forks_count.toLocaleString()}
+        </span>`
+
+      return `<div class="github-card">
+        <span class="github-card-stack">
+          <a href="${escapeHtml(repo.html_url)}" target="_blank" rel="noopener noreferrer" class="github-card-link">
+            <span class="github-card-title">${escapeHtml(repo.name)}</span>
+          </a>
+          ${description}
+          <div class="github-card-meta">
+            ${language}
+            ${stars}
+            ${forks}
+          </div>
+        </span>
+        <svg aria-hidden="true" class="github-card-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.92 11.62a1.001 1.001 0 0 0-.21-.33l-5-5a1.003 1.003 0 1 0-1.42 1.42l3.3 3.29H7a1 1 0 0 0 0 2h7.59l-3.3 3.29a1.002 1.002 0 0 0 .325 1.639 1 1 0 0 0 1.095-.219l5-5a1 1 0 0 0 .21-.33 1 1 0 0 0 0-.76Z"/>
+        </svg>
+      </div>`
+    }
+
+    async function init() {
+      const loadingEl = document.getElementById('github-repos-loading')
+      const containerEl = document.getElementById('github-repos')
+      if (!containerEl) return
+
+      try {
+        const repos = await fetchAllRepos()
+        const visible = repos
+          .filter((r) => !r.archived)
+          .sort((a, b) => b.stargazers_count - a.stargazers_count)
+
+        containerEl.innerHTML = visible.map(createRepoCard).join('')
+      } catch (error) {
+        console.error('Failed to load GitHub repositories:', error)
+        containerEl.innerHTML =
+          '<p>Failed to load repositories. Please try again later.</p>'
+      } finally {
+        loadingEl?.remove()
+      }
+    }
+
+    init()
+  </script>
+</StarlightPage>
+
+<style is:global>
+  .github-card-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 100%;
+  }
+
+  @media (min-width: 50rem) {
+    .github-card-grid {
+      gap: 1.5rem;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .github-card {
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.5rem;
+    box-shadow: var(--sl-shadow-sm);
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: 1fr auto;
+    padding: 1rem;
+    position: relative;
+  }
+
+  .github-card:hover {
+    background: var(--sl-color-gray-7, var(--sl-color-gray-6));
+    border-color: var(--sl-color-gray-2);
+  }
+
+  .github-card:hover .github-card-icon {
+    color: var(--sl-color-white);
+  }
+
+  .github-card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .github-card-link {
+    line-height: var(--sl-line-height-headings);
+    text-decoration: none;
+  }
+
+  .github-card-link::before {
+    content: '';
+    inset: 0;
+    position: absolute;
+  }
+
+  .github-card-link::after {
+    display: none !important;
+  }
+
+  .github-card-title {
+    color: var(--sl-color-white);
+    font-size: var(--sl-text-lg);
+    font-weight: 600;
+    overflow-wrap: break-word;
+  }
+
+  .github-card-description {
+    color: var(--sl-color-gray-3);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .github-card-icon {
+    color: var(--sl-color-gray-3);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .github-card-meta {
+    align-items: center;
+    color: var(--sl-color-gray-3);
+    display: flex;
+    flex-wrap: wrap;
+    font-size: var(--sl-text-sm);
+    gap: 0.75rem;
+    margin-top: auto;
+  }
+
+  .github-card-language {
+    background-color: var(--sl-color-bg-inline-code);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    padding: 0.1em 0.6em;
+  }
+
+  .github-card-stat {
+    align-items: center;
+    display: flex;
+    gap: 0.25rem;
+  }
+</style>
