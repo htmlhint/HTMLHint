@@ -31,7 +31,7 @@ jobs:
           fetch-depth: 0 # Needed for lastUpdated date to be set
 
       - name: ⎔ Setup node
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6.2.0
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: '22'
           cache: npm
@@ -54,7 +54,7 @@ jobs:
         # Continue even if HTMLHint finds issues
 
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@89a39a4e59826350b863aa6b6252a07ad50cf83e # v4.32.4
+        uses: github/codeql-action/upload-sarif@b1bff81932f5cdfc8695c7752dcee935dcd061c8 # v4.33.0
         with:
           sarif_file: website/htmlhint.sarif
           category: HTMLHint

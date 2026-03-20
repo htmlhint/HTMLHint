@@ -132,7 +132,7 @@ export default defineConfig({
           attrs: {
             type: 'speculationrules',
           },
-          content: `\n{\n  "prerender": [{\n    "where": {\n      "href_matches": "/*"\n    },\n    "eagerness": "moderate"\n  }]\n}\n`,
+          content: `\n{\n  "prefetch": [{\n    "where": {\n      "href_matches": "/*"\n    },\n    "eagerness": "moderate"\n  }]\n}\n`,
         },
       ],
       sidebar: [
