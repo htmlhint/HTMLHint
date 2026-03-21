@@ -31,7 +31,7 @@ export default defineConfig({
         {
           icon: 'github',
           label: 'GitHub',
-          href: 'https://github.com/htmlhint/htmlhint',
+          href: '/github/',
         },
         {
           icon: 'mastodon',
@@ -132,7 +132,7 @@ export default defineConfig({
           attrs: {
             type: 'speculationrules',
           },
-          content: `\n{\n  "prerender": [{\n    "where": {\n      "href_matches": "/*"\n    },\n    "eagerness": "moderate"\n  }]\n}\n`,
+          content: `\n{\n  "prefetch": [{\n    "where": {\n      "href_matches": "/*"\n    },\n    "eagerness": "moderate"\n  }]\n}\n`,
         },
       ],
       sidebar: [
@@ -169,8 +169,7 @@ export default defineConfig({
         },
         {
           label: 'GitHub',
-          link: 'https://github.com/htmlhint/htmlhint',
-          attrs: { target: '_blank' },
+          link: '/github/',
         },
       ],
     }),
