@@ -11,6 +11,10 @@ We welcome any type of contribution, not only code. You can help with
 - **Community**: presenting the project at meetups, organizing a dedicated meetup for the local community, ...
 - **Code**: take a look at the [open issues](https://github.com/HTMLHint/HTMLHint/issues). Even if you can't write code, commenting on them, showing that you care about a given issue matters. It helps us triage them.
 
+## Development setup
+
+Use Node.js 20 or later (the repo pins a version with [Volta](https://volta.sh/) in `package.json`).
+
 ## Submitting code
 
 Any code change should be submitted as a pull request. The description should explain what the code does and give steps to execute it. The pull request should also contain tests.

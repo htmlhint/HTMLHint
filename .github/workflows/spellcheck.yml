@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [main]
 
+concurrency:
+  group: spellcheck-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
