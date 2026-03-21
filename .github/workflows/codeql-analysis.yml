@@ -10,11 +10,6 @@ on:
     branches:
       - main
       - '!dependabot/**'
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - ready_for_review
   workflow_dispatch:
 
 permissions:
@@ -24,7 +19,6 @@ jobs:
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
-    if: ${{ github.event.pull_request.draft == false }}
     permissions:
       actions: read
       contents: read
