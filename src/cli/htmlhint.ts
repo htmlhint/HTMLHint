@@ -428,10 +428,8 @@ function getConfig(
 
   if (configPath !== undefined && existsSync(configPath)) {
     const config = readFileSync(configPath, 'utf-8')
-    let ruleset: Ruleset = {}
-
     try {
-      ruleset = JSON.parse(stripJsonComments(config))
+      const ruleset: Ruleset = JSON.parse(stripJsonComments(config))
       formatter.emit('config', {
         ruleset: ruleset,
         configPath: configPath,

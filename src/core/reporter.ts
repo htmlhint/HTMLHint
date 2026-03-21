@@ -77,11 +77,10 @@ export default class Reporter {
     const lines = this.lines
     const brLen = this.brLen
     let evidence = ''
-    let evidenceLen = 0
 
     for (let i = line - 1, lineCount = lines.length; i < lineCount; i++) {
       evidence = lines[i]
-      evidenceLen = evidence.length
+      const evidenceLen = evidence.length
       if (col > evidenceLen && line < lineCount) {
         line++
         col -= evidenceLen
