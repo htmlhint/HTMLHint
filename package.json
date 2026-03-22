@@ -58,13 +58,13 @@
     "xml": "1.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20.19.0",
     "@eslint/js": "^10.0.0",
     "@rollup/plugin-commonjs": "28.0.6",
     "@rollup/plugin-node-resolve": "16.0.3",
     "@rollup/plugin-terser": "^0.4.4",
     "@types/async": "^3.2.25",
     "@types/is-glob": "4.0.4",
+    "@types/node": "^20.19.0",
     "@types/xml": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "8.57.1",
     "@typescript-eslint/parser": "8.57.1",
@@ -75,7 +75,7 @@
     "parse-glob": "3.0.4",
     "prettier": "3.8.1",
     "rimraf": "^5.0.0",
-    "rollup": "4.53.3",
+    "rollup": "4.59.1",
     "typescript": "5.4.5"
   },
   "engines": {
