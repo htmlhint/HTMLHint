@@ -6,7 +6,7 @@
 - All code should be formatted with Prettier.
 - Use ESLint to check for JavaScript errors.
 - Rollup is used for building the project.
-- Node v20 is used for development.
+- Node.js 20 or newer is required; Volta pins the repo to Node 20 LTS in `package.json`.
 - Core code is in TypeScript v5.4.5.
 - All new rules for HTMLHint should be placed in the rules directory.
 - Tests for new rules should be added in rules and follow the naming pattern `<rule-name>.spec.js`.

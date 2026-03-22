@@ -7,6 +7,10 @@ on:
   push:
     branches: ['main']
 
+concurrency:
+  group: scorecard-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions: read-all
 
 jobs:
