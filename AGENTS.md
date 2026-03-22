@@ -4,7 +4,7 @@
 
 ## General
 
-- This projects is for HTMLHint, a static code analysis tool for HTML.
+- This project is for HTMLHint, a static code analysis tool for HTML.
 - All code and comments should be in US English.
 - The website is built with Astro Starlight.
 - All code should be formatted with Prettier.
@@ -26,7 +26,6 @@
 - When adding a new rule to website ensure that it has the frontmatter: `pagefind: false   sidebar:   badge: New  hidden: true`.
 - Always run `npm run lint` before declaring that a task is complete (if you've changed any files).
 - Always use lf for line endings.
-- Code is formatted with prettier.
 - As a general rule, rules should be listed alphabetically.
 
 ## Markdown Code Guide
