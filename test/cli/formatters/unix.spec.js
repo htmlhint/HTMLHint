@@ -24,6 +24,13 @@ describe('CLI', () => {
           '--format',
           'unix',
         ].join(' '),
+        {
+          env: (() => {
+            const env = { ...process.env, FORCE_COLOR: '1' }
+            delete env.NO_COLOR
+            return env
+          })(),
+        },
         (error, stdout, stderr) => {
           // HTMLHint should exit with code 1 when errors are found
           if (error) {

@@ -1,4 +1,4 @@
-import * as chalk from 'chalk'
+import { styleText } from 'node:util'
 import { FormatterCallback } from '../formatter'
 
 const defaultFormatter: FormatterCallback = function (
@@ -16,13 +16,13 @@ const defaultFormatter: FormatterCallback = function (
     const configPath = event.configPath!
     console.log(
       '   Config loaded: %s',
-      nocolor ? configPath : chalk.cyan(configPath)
+      nocolor ? configPath : styleText('cyan', configPath)
     )
     console.log('')
   })
 
   formatter.on('file', (event) => {
-    console.log(`   ${chalk.white(event.file)}`)
+    console.log(`   ${styleText('white', event.file)}`)
 
     const arrLogs = HTMLHint.format(event.messages, {
       colors: !nocolor,
@@ -46,7 +46,7 @@ const defaultFormatter: FormatterCallback = function (
     if (allHintCount > 0) {
       message = 'Scanned %d files, found %d errors in %d files (%d ms)'
       console.log(
-        nocolor ? message : chalk.red(message),
+        nocolor ? message : styleText('red', message),
         allFileCount,
         allHintCount,
         allHintFileCount,
@@ -54,7 +54,11 @@ const defaultFormatter: FormatterCallback = function (
       )
     } else {
       message = 'Scanned %d files, no errors found (%d ms).'
-      console.log(nocolor ? message : chalk.green(message), allFileCount, time)
+      console.log(
+        nocolor ? message : styleText('green', message),
+        allFileCount,
+        time
+      )
     }
   })
 }

@@ -1,4 +1,4 @@
-import * as chalk from 'chalk'
+import { styleText } from 'node:util'
 import { FormatterCallback } from '../formatter'
 
 const compactFormatter: FormatterCallback = function (
@@ -7,9 +7,6 @@ const compactFormatter: FormatterCallback = function (
   options
 ) {
   const nocolor = options.nocolor
-
-  const chalkInstance =
-    nocolor !== false ? new chalk.Instance({ level: 1 }) : chalk
 
   formatter.on('file', (event) => {
     event.messages.forEach((message) => {
@@ -31,7 +28,7 @@ const compactFormatter: FormatterCallback = function (
       console.log('')
       const message = '%d problems'
       console.log(
-        nocolor ? message : chalkInstance.red(message),
+        nocolor ? message : styleText('red', message),
         event.allHintCount
       )
     }
