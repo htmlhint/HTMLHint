@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 
 import { queue as asyncQueue, series as asyncSeries } from 'async'
-import * as chalk from 'chalk'
 import { Command } from 'commander'
 import { existsSync, readFileSync, statSync, writeFileSync } from 'fs'
 import { globStream, globSync } from 'glob'
-import { parseGlob } from './parse-glob'
 import { dirname, resolve, sep } from 'path'
+import { styleText } from 'node:util'
+import { parseGlob } from './parse-glob'
 // Native fetch is available in Node.js 18+
 import * as stripJsonComments from 'strip-json-comments'
 import type { HTMLHint as IHTMLHint } from '../core/core'
@@ -123,7 +123,7 @@ function listRules() {
 
   for (const id of ruleIds) {
     const rule = rules[id]
-    console.log('     %s : %s', chalk.bold(rule.id), rule.description)
+    console.log('     %s : %s', styleText('bold', rule.id), rule.description)
   }
 }
 
@@ -135,23 +135,26 @@ function initConfig(): boolean {
   try {
     // Use 'wx' flag to create file only if it doesn't exist (atomic operation)
     writeFileSync(configPath, defaultConfig, { encoding: 'utf-8', flag: 'wx' })
-    console.log(chalk.green('Created configuration file: %s'), configPath)
+    console.log(
+      styleText('green', 'Created configuration file: %s'),
+      configPath
+    )
     console.log('')
     console.log('Configuration file contents:')
-    console.log(chalk.gray(defaultConfig))
+    console.log(styleText('gray', defaultConfig))
     return true
   } catch (error) {
     // Check if the error is because the file already exists
     if (error instanceof Error && 'code' in error && error.code === 'EEXIST') {
       console.log(
-        chalk.yellow('Configuration file already exists: %s'),
+        styleText('yellow', 'Configuration file already exists: %s'),
         configPath
       )
       return true // File exists is a successful state - no error
     }
 
     console.log(
-      chalk.red('Failed to create configuration file: %s'),
+      styleText('red', 'Failed to create configuration file: %s'),
       error instanceof Error ? error.message : String(error)
     )
     return false
@@ -436,7 +439,10 @@ function getConfig(
       })
       return ruleset
     } catch (e) {
-      console.log('   Config could not be parsed: %s', chalk.yellow(configPath))
+      console.log(
+        '   Config could not be parsed: %s',
+        styleText('yellow', configPath)
+      )
       console.log('')
     }
   }
@@ -510,8 +516,8 @@ function hintStdin(
 
   const buffers: string[] = []
 
-  process.stdin.on('data', (text) => {
-    buffers.push(text)
+  process.stdin.on('data', (chunk) => {
+    buffers.push(typeof chunk === 'string' ? chunk : chunk.toString('utf8'))
   })
 
   process.stdin.on('end', () => {

@@ -50,7 +50,6 @@
   },
   "dependencies": {
     "async": "3.2.6",
-    "chalk": "4.1.2",
     "commander": "11.1.0",
     "glob": "^13.0.6",
     "is-glob": "^4.0.3",
@@ -59,6 +58,7 @@
     "xml": "1.0.1"
   },
   "devDependencies": {
+    "@types/node": "^20.19.0",
     "@eslint/js": "^10.0.0",
     "@rollup/plugin-commonjs": "28.0.6",
     "@rollup/plugin-node-resolve": "16.0.3",

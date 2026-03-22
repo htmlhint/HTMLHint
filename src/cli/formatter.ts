@@ -1,5 +1,5 @@
-import * as chalk from 'chalk'
 import { EventEmitter } from 'events'
+import { styleText } from 'node:util'
 import { globSync } from 'glob'
 import { parse, resolve } from 'path'
 import type { HTMLHint as IHTMLHint } from '../core/core'
@@ -91,7 +91,7 @@ formatter.setFormat = function (format) {
 
   if (formatHandel === undefined) {
     console.log(
-      chalk.red('No supported formatter, supported formatters: %s'),
+      styleText('red', 'No supported formatter, supported formatters: %s'),
       arrSupportedFormatters.join(', ')
     )
     process.exit(1)
