@@ -1,20 +1,20 @@
-# EditorConfig helps developers define and maintain consistent
-# coding styles between different editors and IDEs
-# editorconfig.org
+# https://editorconfig.org
 
 root = true
 
-# Apply for all files
 [*]
 charset = utf-8
-indent_style = space
-indent_size = 2
 end_of_line = lf
+indent_size = 2
+indent_style = space
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-# Apply for markdown files
-[*.md]
+[*.min.*]
+insert_final_newline = false
 
-max_line_length = off
-trim_trailing_whitespace = false
+[*.svg]
+insert_final_newline = false
+
+[CNAME]
+insert_final_newline = false

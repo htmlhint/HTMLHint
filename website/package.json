@@ -25,8 +25,8 @@
     "stylelint": "npx stylelint@latest \"src/*.css\" --fix -f verbose"
   },
   "dependencies": {
-    "@astrojs/starlight": "0.38.1",
-    "astro": "6.0.4",
+    "@astrojs/starlight": "^0.38.2",
+    "astro": "^6.0.8",
     "sharp": "^0.34.5",
     "starlight-llms-txt": "^0.8.0"
   },
@@ -34,9 +34,9 @@
     "stylelint-config-recommended": "^18.0.0"
   },
   "engines": {
-    "node": ">=22.12.0"
+    "node": ">=22.22.1"
   },
   "volta": {
-    "node": "22.12.0"
+    "node": "22.22.1"
   }
 }
