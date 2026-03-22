@@ -28,6 +28,7 @@ function map(val: string) {
 }
 
 const program = new Command()
+program.allowExcessArguments(true)
 
 program.on('--help', () => {
   console.log('  Examples:')
