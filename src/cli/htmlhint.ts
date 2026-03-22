@@ -516,8 +516,8 @@ function hintStdin(
 
   const buffers: string[] = []
 
-  process.stdin.on('data', (chunk) => {
-    buffers.push(typeof chunk === 'string' ? chunk : chunk.toString('utf8'))
+  process.stdin.on('data', (chunk: string) => {
+    buffers.push(chunk)
   })
 
   process.stdin.on('end', () => {
