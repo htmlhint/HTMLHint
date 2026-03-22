@@ -2,6 +2,32 @@
 
 <!-- https://agents.md -->
 
+## General
+
+- This project is for HTMLHint, a static code analysis tool for HTML.
+- All code and comments should be in US English.
+- The website is built with Astro Starlight.
+- All code should be formatted with Prettier.
+- Use ESLint to check for JavaScript errors.
+- Rollup is used for building the project.
+- Node.js 20 or newer is required; Volta pins the repo to Node 20 LTS in `package.json`.
+- Core code is in TypeScript v5.4.5.
+- All new rules for HTMLHint should be placed in the rules directory.
+- Tests for new rules should be added in rules and follow the naming pattern `<rule-name>.spec.js`.
+- Do not use deprecated TypeScript features.
+- All user-facing messages and documentation should use clear, concise US English.
+- Keep dependencies up to date and avoid unnecessary packages.
+- All website content should be placed in the website directory and follow Astro Starlight conventions.
+- Rules in the rules directory should always be documented in the website/src/content/docs/rules directory.
+- Rules in src/core/core.ts should be listed alphabetically.
+- Use the provided code snippets as examples for rule documentation.
+- Newly added rules pages for the website should have the frontmatter: sidebar: hidden: true badge: New
+- Always run `npm run build` before running tests or committing changes.
+- When adding a new rule to website ensure that it has the frontmatter: `pagefind: false   sidebar:   badge: New  hidden: true`.
+- Always run `npm run lint` before declaring that a task is complete (if you've changed any files).
+- Always use lf for line endings.
+- As a general rule, rules should be listed alphabetically.
+
 ## Markdown Code Guide
 
 - Markdown should be formatted with Prettier.
@@ -13,23 +39,11 @@
 - YML files should begin with --- on the first line.
 - YML should be formatted with Prettier.
 
-## Communication (MANDATORY)
+## GitHub Commit Messages
 
-- No apologies - State facts and solutions directly.
-- Concise style - Professional, avoid repetition and filler.
-- Single chunk edits - All file edits in one operation.
-- Real file links only - No placeholder files.
-- No unnecessary confirmations - Use available context.
+- If multiple changes are made then list changes using bullet points.
 
-## Quality & Validation (MANDATORY)
+## Documentation
 
-- Never assume commands worked without verification.
-- 98%+ confidence threshold for definitive claims.
-- Immediate re-investigation when findings don't match expectations.
-- Cross-tool validation when tools fail.
-
-## Code Standards (MANDATORY)
-
-- No emojis in code or documentation.
-- Only implement what's requested.
-- Preserve existing structures - Don't remove unrelated code.
+- All documentation should be written in US English.
+- For the 'Why this rule is important' section, always include a link to the relevant documentation and prefer MDN and Google documentation along with official documentation from the W3C.
