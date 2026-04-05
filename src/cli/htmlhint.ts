@@ -8,7 +8,7 @@ import { dirname, resolve, sep } from 'path'
 import { styleText } from 'node:util'
 import { parseGlob } from './parse-glob'
 // Native fetch is available in Node.js 18+
-import * as stripJsonComments from 'strip-json-comments'
+import stripJsonComments = require('strip-json-comments')
 import type { HTMLHint as IHTMLHint } from '../core/core'
 import type { Hint, Ruleset } from '../core/types'
 import { Formatter } from './formatter'

@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "target": "ES2018",
-    "module": "CommonJS",
+    "module": "Node16",
     "inlineSourceMap": true,
     "lib": ["ES2018", "DOM"],
-    "moduleResolution": "Node",
+    "moduleResolution": "Node16",
     "rootDir": "src",
     "outDir": "dist",
 

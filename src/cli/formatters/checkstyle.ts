@@ -1,4 +1,4 @@
-import * as xml from 'xml'
+import xml = require('xml')
 import type { XmlObject } from 'xml'
 import { FormatterCallback } from '../formatter'
 
