@@ -64,7 +64,7 @@
     "@rollup/plugin-terser": "^1.0.0",
     "@types/async": "^3.2.25",
     "@types/is-glob": "4.0.4",
-    "@types/node": "^20.19.37",
+    "@types/node": "^22.19.17",
     "@types/xml": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "8.57.2",
     "@typescript-eslint/parser": "8.57.2",
