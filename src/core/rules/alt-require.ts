@@ -8,10 +8,11 @@ export default {
     parser.addListener('tagstart', (event) => {
       const tagName = event.tagName.toLowerCase()
       const mapAttrs = parser.getMapAttrs(event.attrs)
+      const isAriaHidden = mapAttrs['aria-hidden']?.toLowerCase() === 'true'
       const col = event.col + tagName.length + 1
       let selector
 
-      if (tagName === 'img' && !('alt' in mapAttrs)) {
+      if (tagName === 'img' && !('alt' in mapAttrs) && !isAriaHidden) {
         reporter.warn(
           'An alt attribute must be present on <img> elements.',
           event.line,

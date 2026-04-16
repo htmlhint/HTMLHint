@@ -18,6 +18,18 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages.length).toBe(0)
   })
 
+  it('Img tag with aria-hidden="true" and no alt attribute should not result in an error', () => {
+    const code = '<img width="200" height="300" aria-hidden="true">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Img tag with aria-hidden="TRUE" and no alt attribute should not result in an error', () => {
+    const code = '<img width="200" height="300" aria-hidden="TRUE">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
   it('Img tag have not alt attribute should result in an error', () => {
     const code = '<img width="200" height="300">'
     const messages = HTMLHint.verify(code, ruleOptions)
