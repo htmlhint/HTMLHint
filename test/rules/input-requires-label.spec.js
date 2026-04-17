@@ -45,12 +45,6 @@ describe(`Rules: ${ruleId}`, () => {
       expect(messages.length).toBe(0)
     })
 
-    it('Input nested in label whose for points elsewhere should result in no error', () => {
-      const code = '<label for="other-id"><input type="password" /></label>'
-      const messages = HTMLHint.verify(code, ruleOptions)
-      expect(messages.length).toBe(0)
-    })
-
     // Multiple inputs inside one label are all accepted. The HTML spec
     // associates only the first labelable descendant with the label, but
     // this rule is about "every input has a label nearby" for a11y, not
@@ -108,6 +102,14 @@ describe(`Rules: ${ruleId}`, () => {
       expect(messages[0].rule.id).toBe(ruleId)
       expect(messages[0].line).toBe(1)
       expect(messages[0].col).toBe(7)
+      expect(messages[0].type).toBe('warning')
+    })
+
+    it('Input nested in label with for pointing elsewhere should result in error', () => {
+      const code = '<label for="other-id"><input type="password" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(1)
+      expect(messages[0].rule.id).toBe(ruleId)
       expect(messages[0].type).toBe('warning')
     })
 

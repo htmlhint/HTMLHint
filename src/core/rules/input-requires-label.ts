@@ -36,12 +36,13 @@ export default {
       }
 
       if (tagName === 'label') {
-        // a self-closing <label/> opens no scope and emits no tagend
-        if (!event.close) {
-          labelDepth++
-        }
         if ('for' in mapAttrs && mapAttrs['for'] !== '') {
+          // explicit label: associates with the referenced control, not nested ones
           labelTags.push({ event: event, col: col, forValue: mapAttrs['for'] })
+        } else if (!event.close) {
+          // implicit label (no `for`): nesting labels the input
+          // a self-closing <label/> opens no scope and emits no tagend
+          labelDepth++
         }
       }
     })
