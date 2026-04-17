@@ -11,7 +11,11 @@ export default {
       const col = event.col + tagName.length + 1
       let selector
 
-      if (tagName === 'img' && !('alt' in mapAttrs)) {
+      if (
+        tagName === 'img' &&
+        !('alt' in mapAttrs) &&
+        mapAttrs['aria-hidden']?.trim().toLowerCase() !== 'true'
+      ) {
         reporter.warn(
           'An alt attribute must be present on <img> elements.',
           event.line,
