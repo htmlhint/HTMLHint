@@ -10,7 +10,7 @@ keywords:
 
 import { Badge } from '@astrojs/starlight/components';
 
-Alt of `img` must be present and alt of `area[href]` and `input[type=image]` must be set with a value.
+Alt of `img` must be present unless the image is hidden from assistive technologies with `aria-hidden="true"`. Alt of `area[href]` and `input[type=image]` must be set with a value.
 
 Level: <Badge text="Warning" variant="caution" />
 
@@ -23,6 +23,7 @@ Level: <Badge text="Warning" variant="caution" />
 
 ```html
 <img src="test.png" alt="test" />
+<img src="decorative.png" aria-hidden="true" />
 <input type="image" alt="test" />
 <area shape="circle" coords="180,139,14" href="test.html" alt="test" />
 ```
