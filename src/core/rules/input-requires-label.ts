@@ -10,7 +10,13 @@ export default {
       col: number
       forValue?: string
     }> = []
-    const inputTags: Array<{ event: Block; col: number; id?: string }> = []
+    const inputTags: Array<{
+      event: Block
+      col: number
+      id?: string
+      nested: boolean
+    }> = []
+    let labelDepth = 0
 
     parser.addListener('tagstart', (event) => {
       const tagName = event.tagName.toLowerCase()
@@ -20,20 +26,36 @@ export default {
       if (tagName === 'input') {
         // label is not required for hidden input
         if (mapAttrs['type'] !== 'hidden') {
-          inputTags.push({ event: event, col: col, id: mapAttrs['id'] })
+          inputTags.push({
+            event: event,
+            col: col,
+            id: mapAttrs['id'],
+            nested: labelDepth > 0,
+          })
         }
       }
 
       if (tagName === 'label') {
         if ('for' in mapAttrs && mapAttrs['for'] !== '') {
+          // explicit label: associates with the referenced control, not nested ones
           labelTags.push({ event: event, col: col, forValue: mapAttrs['for'] })
+        } else if (!event.close) {
+          // implicit label (no `for`): nesting labels the input
+          // a self-closing <label/> opens no scope and emits no tagend
+          labelDepth++
         }
+      }
+    })
+
+    parser.addListener('tagend', (event) => {
+      if (event.tagName.toLowerCase() === 'label' && labelDepth > 0) {
+        labelDepth--
       }
     })
 
     parser.addListener('end', () => {
       inputTags.forEach((inputTag) => {
-        if (!hasMatchingLabelTag(inputTag)) {
+        if (!inputTag.nested && !hasMatchingLabelTag(inputTag)) {
           reporter.warn(
             'No matching [ label ] tag found.',
             inputTag.event.line,
