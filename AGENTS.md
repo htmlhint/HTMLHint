@@ -11,7 +11,7 @@
 - Use ESLint to check for JavaScript errors.
 - Rollup is used for building the project.
 - Node.js 20 or newer is required; Volta pins the repo to Node 20 LTS in `package.json`.
-- Core code is in TypeScript v5.4.5.
+- Core code is in TypeScript.
 - All new rules for HTMLHint should be placed in the rules directory.
 - Tests for new rules should be added in rules and follow the naming pattern `<rule-name>.spec.js`.
 - Do not use deprecated TypeScript features.
@@ -21,7 +21,6 @@
 - Rules in the rules directory should always be documented in the website/src/content/docs/rules directory.
 - Rules in src/core/core.ts should be listed alphabetically.
 - Use the provided code snippets as examples for rule documentation.
-- Newly added rules pages for the website should have the frontmatter: sidebar: hidden: true badge: New
 - Always run `npm run build` before running tests or committing changes.
 - When adding a new rule to website ensure that it has the frontmatter: `pagefind: false   sidebar:   badge: New  hidden: true`.
 - Always run `npm run lint` before declaring that a task is complete (if you've changed any files).
