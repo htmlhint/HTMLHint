@@ -62,9 +62,7 @@ Or, you can use HTMLHint programmatically.
 For ESM:
 
 ```js
-import htmlhint from 'htmlhint'
-
-const { HTMLHint } = htmlhint
+import { HTMLHint } from 'htmlhint'
 const htmlVerificationHints = HTMLHint.verify(localHtmlContent)
 console.log('htmlVerificationHints', htmlVerificationHints) // this logs a list of `Hint`s which contain information on all linting errors
 ```
