@@ -5,6 +5,43 @@ description: The release notes for HTMLHint, see what's changed with each new ve
 
 import { Badge } from '@astrojs/starlight/components'
 
+## 2.0.0-beta1 _(2026-04-20)_
+
+- <Badge text="Breaking" size="small" variant="danger" /> Node.js 20 or newer is now required
+  [#1832](https://github.com/htmlhint/HTMLHint/pull/1832)
+- <Badge text="Feat" size="small" /> Add modern package entry points and bundled TypeScript declarations via `types` and `exports` in `package.json`
+  [#1857](https://github.com/htmlhint/HTMLHint/pull/1857)
+- <Badge text="Fix" size="small" variant="danger" /> Improve [`alt-require`](/rules/alt-require/) to ignore images hidden with `aria-hidden`
+  [#1851](https://github.com/htmlhint/HTMLHint/pull/1851)
+- <Badge text="Fix" size="small" variant="danger" /> Improve [`input-requires-label`](/rules/input-requires-label/) to allow inputs nested inside labels
+  [#1852](https://github.com/htmlhint/HTMLHint/pull/1852)
+- <Badge text="Feat" size="small" /> CLI now allows excess arguments for `htmlhint`
+  [#1837](https://github.com/htmlhint/HTMLHint/pull/1837)
+- <Badge text="Feat" size="small" /> Replace `chalk` with Node.js `node:util.styleText`
+  [#1834](https://github.com/htmlhint/HTMLHint/pull/1834)
+- <Badge text="Feat" size="small" /> Upgrade SARIF output support by updating `node-sarif-builder` to v4
+  [#1819](https://github.com/htmlhint/HTMLHint/pull/1819)
+- <Badge text="Docs" size="small" variant="tip" /> Refresh documentation and website content, including the GitHub organization repos page and CLI docs fixes
+  [#1823](https://github.com/htmlhint/HTMLHint/pull/1823),
+  [#1824](https://github.com/htmlhint/HTMLHint/pull/1824),
+  [#1828](https://github.com/htmlhint/HTMLHint/pull/1828),
+  [#1858](https://github.com/htmlhint/HTMLHint/pull/1858)
+- <Badge text="Chore" size="small" /> Refresh project tooling, linting, CI, and website dependencies for the beta release
+  [#1821](https://github.com/htmlhint/HTMLHint/pull/1821),
+  [#1833](https://github.com/htmlhint/HTMLHint/pull/1833),
+  [#1836](https://github.com/htmlhint/HTMLHint/pull/1836),
+  [#1838](https://github.com/htmlhint/HTMLHint/pull/1838),
+  [#1839](https://github.com/htmlhint/HTMLHint/pull/1839),
+  [#1840](https://github.com/htmlhint/HTMLHint/pull/1840),
+  [#1842](https://github.com/htmlhint/HTMLHint/pull/1842),
+  [#1844](https://github.com/htmlhint/HTMLHint/pull/1844),
+  [#1845](https://github.com/htmlhint/HTMLHint/pull/1845),
+  [#1847](https://github.com/htmlhint/HTMLHint/pull/1847),
+  [#1848](https://github.com/htmlhint/HTMLHint/pull/1848),
+  [#1849](https://github.com/htmlhint/HTMLHint/pull/1849),
+  [#1853](https://github.com/htmlhint/HTMLHint/pull/1853),
+  [#1856](https://github.com/htmlhint/HTMLHint/pull/1856)
+
 ## 1.9.2 _(2026-03-05)_
 
 - <Badge text="Fix" size="small" /> Dependencies update
