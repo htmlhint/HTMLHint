@@ -57,10 +57,21 @@ After that, You can run HTMLHint on any file or directory like this:
 ./node_modules/.bin/htmlhint www/**/*.html
 ```
 
-Or, you can use HTMLHint linter programmatically, like this:
+Or, you can use HTMLHint programmatically.
+
+For ESM:
 
 ```js
 import { HTMLHint } from 'htmlhint'
+const htmlVerificationHints = HTMLHint.verify(localHtmlContent)
+console.log('htmlVerificationHints', htmlVerificationHints) // this logs a list of `Hint`s which contain information on all linting errors
+```
+
+For CommonJS:
+
+```js
+const { HTMLHint } = require('htmlhint')
+
 const htmlVerificationHints = HTMLHint.verify(localHtmlContent)
 console.log('htmlVerificationHints', htmlVerificationHints) // this logs a list of `Hint`s which contain information on all linting errors
 ```

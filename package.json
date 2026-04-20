@@ -1,6 +1,6 @@
 {
   "name": "htmlhint",
-  "version": "1.9.2",
+  "version": "2.0.0-beta-1",
   "description": "The Static Code Analysis Tool for your HTML",
   "keywords": [
     "html",
@@ -22,8 +22,15 @@
     "url": "https://opencollective.com/htmlhint"
   },
   "license": "MIT",
-  "main": "dist/htmlhint.js",
-  "module": "dist/core/core.js",
+  "main": "./dist/core/core.js",
+  "types": "./dist/core/core.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/core/core.d.ts",
+      "default": "./dist/core/core.js"
+    },
+    "./package.json": "./package.json"
+  },
   "bin": {
     "htmlhint": "bin/htmlhint"
   },
