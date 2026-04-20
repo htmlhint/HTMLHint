@@ -18,9 +18,9 @@ Use `npx htmlhint --help` to print the CLI documentation.
 
 In addition to the [standard options](/usage/options/), the CLI accepts:
 
-### `--color, --no-color`
+### `--nocolor`
 
-Force enabling/disabling of color.
+Disable color in the output.
 
 ### `--init`
 
