@@ -256,7 +256,7 @@
         <div class="tline" id="tl0"><span class="prompt">~/site ❯</span> <span class="cmd">htmlhint</span> <span class="arg">index.html</span></div>
         <div class="tline" id="tl1"><span class="scan">Scanning…</span></div>
         <div id="hits"></div>
-        <div class="tline" id="tl2"><div class="summary"><span class="n">5</span> problems · <span class="r">5</span> rules fired · <span class="g">42ms</span></div></div>
+        <div class="tline" id="tl2"><div class="summary" id="summary"></div></div>
         <div class="tline" id="tl3"><span class="prompt">~/site ❯</span> <span class="cursor"></span></div>
       </div>
     </div>
@@ -275,10 +275,19 @@
 
   const stream = document.getElementById('stream');
   const hitsWrap = document.getElementById('hits');
+  const summaryEl = document.getElementById('summary');
   const tl0 = document.getElementById('tl0');
   const tl1 = document.getElementById('tl1');
   const tl2 = document.getElementById('tl2');
   const tl3 = document.getElementById('tl3');
+
+  // Derived from HITS so summary stays in sync when hits are edited.
+  const problemCount = HITS.length;
+  const ruleCount = new Set(HITS.map(h => h.rule)).size;
+  summaryEl.innerHTML =
+    `<span class="n">${problemCount}</span> problems · ` +
+    `<span class="r">${ruleCount}</span> rules fired · ` +
+    `<span class="g">42ms</span>`;
 
   function renderHit(h) {
     const wrap = document.createElement('div');

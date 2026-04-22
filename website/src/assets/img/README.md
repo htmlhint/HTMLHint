@@ -37,13 +37,13 @@ const fs = require('fs');
 const HTML = path.resolve('hero.html');
 const OUT = path.resolve('frames');
 const MANIFEST = path.resolve('frames.txt');
-const DURATION_MS = 20700;
+const DURATION_MS = 20000;   // must match TIMELINE.loopEnd in hero.html
 const W = 1200, H = 260;
 
 (async () => {
   if (fs.existsSync(OUT)) fs.rmSync(OUT, { recursive: true });
   fs.mkdirSync(OUT);
-  const browser = await puppeteer.launch({ headless: 'new', args: ['--no-sandbox', '--hide-scrollbars'] });
+  const browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--hide-scrollbars'] });
   const page = await browser.newPage();
   await page.setViewport({ width: W * 2, height: H * 2, deviceScaleFactor: 1 });
   await page.goto('file://' + HTML, { waitUntil: 'networkidle0' });
@@ -61,7 +61,7 @@ const W = 1200, H = 260;
     if (stopped) return;
     if (startTs === null) startTs = metadata.timestamp;
     const ms = (metadata.timestamp - startTs) * 1000;
-    if (ms > DURATION_MS + 200) { stopped = true; return; }
+    if (ms > DURATION_MS) { stopped = true; return; }
     const name = `f${String(i++).padStart(5, '0')}.png`;
     fs.writeFileSync(path.join(OUT, name), Buffer.from(data, 'base64'));
     frames.push({ name, ms });
