@@ -17,6 +17,7 @@ export default {
       nested: boolean
     }> = []
     let labelDepth = 0
+    let labelHasText = false
 
     parser.addListener('tagstart', (event) => {
       const tagName = event.tagName.toLowerCase()
@@ -43,13 +44,27 @@ export default {
           // implicit label (no `for`): nesting labels the input
           // a self-closing <label/> opens no scope and emits no tagend
           labelDepth++
+          labelHasText = false
         }
       }
     })
 
     parser.addListener('tagend', (event) => {
       if (event.tagName.toLowerCase() === 'label' && labelDepth > 0) {
+        if (!labelHasText) {
+          inputTags.forEach((input) => {
+            if (input.nested) {
+              input.nested = false
+            }
+          })
+        }
         labelDepth--
+      }
+    })
+
+    parser.addListener('text', (event) => {
+      if (labelDepth > 0 && event.raw && !/^\s*$/.test(event.raw)) {
+        labelHasText = true
       }
     })
 
