@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://htmlhint.com"><img src="https://raw.githubusercontent.com/htmlhint/HTMLHint/main/website/src/assets/img/htmlhint.png" alt="Logo HTMLHint" width="170"></a>
+  <a href="https://htmlhint.com"><img src="https://raw.githubusercontent.com/htmlhint/HTMLHint/main/website/src/assets/img/hero.gif" alt="HTMLHint — static analysis for HTML"></a>
   <br>
   HTMLHint
   <br>
