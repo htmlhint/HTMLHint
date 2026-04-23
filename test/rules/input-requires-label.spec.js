@@ -69,20 +69,6 @@ describe(`Rules: ${ruleId}`, () => {
       const messages = HTMLHint.verify(code, ruleOptions)
       expect(messages.length).toBe(0)
     })
-
-    it('Valid label followed by empty label should only warn for the empty one', () => {
-      const code =
-        '<label>Username <input type="text" /></label><label><input type="password" /></label>'
-      const messages = HTMLHint.verify(code, ruleOptions)
-      expect(messages.length).toBe(1)
-    })
-
-    it('Nested labels: outer with text should not false-warn outer input', () => {
-      const code =
-        '<label>Outer <label><input type="checkbox" /></label><input type="text" /></label>'
-      const messages = HTMLHint.verify(code, ruleOptions)
-      expect(messages.length).toBe(1)
-    })
   })
 
   describe('Error cases', () => {
@@ -180,6 +166,20 @@ describe(`Rules: ${ruleId}`, () => {
         '<label><input type="text" /><input type="password" /></label>'
       const messages = HTMLHint.verify(code, ruleOptions)
       expect(messages.length).toBe(2)
+    })
+
+    it('Valid label followed by empty label should only warn for the empty one', () => {
+      const code =
+        '<label>Username <input type="text" /></label><label><input type="password" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(1)
+    })
+
+    it('Nested labels: outer with text should not false-warn outer input', () => {
+      const code =
+        '<label>Outer <label><input type="checkbox" /></label><input type="text" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(1)
     })
   })
 })
