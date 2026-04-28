@@ -39,19 +39,27 @@ describe(`Rules: ${ruleId}`, () => {
       expect(messages.length).toBe(0)
     })
 
-    it('Input tag nested inside label tag should result in no error', () => {
-      const code = '<label><input type="password" /></label>'
+    it('Input nested inside label with text before should result in no error', () => {
+      const code = '<label>Password <input type="password" /></label>'
       const messages = HTMLHint.verify(code, ruleOptions)
       expect(messages.length).toBe(0)
     })
 
-    // Multiple inputs inside one label are all accepted. The HTML spec
-    // associates only the first labelable descendant with the label, but
-    // this rule is about "every input has a label nearby" for a11y, not
-    // strict spec conformance.
-    it('Multiple inputs nested inside one label should result in no error', () => {
+    it('Input nested inside label with text after should result in no error', () => {
+      const code = '<label><input type="email" /> Email</label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(0)
+    })
+
+    it('Input nested inside label with text in child element should result in no error', () => {
+      const code = '<label><span>Email</span> <input type="email" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(0)
+    })
+
+    it('Multiple inputs nested inside label with text should result in no error', () => {
       const code =
-        '<label><input type="password" /><input type="text" /></label>'
+        '<label>Credentials <input type="text" /><input type="password" /></label>'
       const messages = HTMLHint.verify(code, ruleOptions)
       expect(messages.length).toBe(0)
     })
@@ -135,6 +143,43 @@ describe(`Rules: ${ruleId}`, () => {
       expect(messages.length).toBe(1)
       expect(messages[0].rule.id).toBe(ruleId)
       expect(messages[0].type).toBe('warning')
+    })
+
+    it('Input nested inside label with no text should result in error', () => {
+      const code = '<label><input type="password" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(1)
+      expect(messages[0].rule.id).toBe(ruleId)
+      expect(messages[0].type).toBe('warning')
+    })
+
+    it('Input nested inside label with whitespace only should result in error', () => {
+      const code = '<label>   <input type="text" />   </label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(1)
+      expect(messages[0].rule.id).toBe(ruleId)
+      expect(messages[0].type).toBe('warning')
+    })
+
+    it('Multiple inputs nested inside label with no text should result in errors', () => {
+      const code =
+        '<label><input type="text" /><input type="password" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(2)
+    })
+
+    it('Valid label followed by empty label should only warn for the empty one', () => {
+      const code =
+        '<label>Username <input type="text" /></label><label><input type="password" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(1)
+    })
+
+    it('Nested labels: outer with text should not false-warn outer input', () => {
+      const code =
+        '<label>Outer <label><input type="checkbox" /></label><input type="text" /></label>'
+      const messages = HTMLHint.verify(code, ruleOptions)
+      expect(messages.length).toBe(1)
     })
   })
 })
