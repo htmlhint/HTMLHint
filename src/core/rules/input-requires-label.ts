@@ -17,6 +17,10 @@ export default {
       nested: boolean
     }> = []
     let labelDepth = 0
+    const labelStateStack: Array<{
+      hasText: boolean
+      inputStartIndex: number
+    }> = []
 
     parser.addListener('tagstart', (event) => {
       const tagName = event.tagName.toLowerCase()
@@ -43,13 +47,36 @@ export default {
           // implicit label (no `for`): nesting labels the input
           // a self-closing <label/> opens no scope and emits no tagend
           labelDepth++
+          labelStateStack.push({
+            hasText: false,
+            inputStartIndex: inputTags.length,
+          })
         }
       }
     })
 
     parser.addListener('tagend', (event) => {
       if (event.tagName.toLowerCase() === 'label' && labelDepth > 0) {
+        const state = labelStateStack.pop()
+        if (state && !state.hasText) {
+          for (let i = state.inputStartIndex; i < inputTags.length; i++) {
+            inputTags[i].nested = false
+          }
+        } else if (state && state.hasText && labelStateStack.length > 0) {
+          labelStateStack[labelStateStack.length - 1].hasText = true
+        }
         labelDepth--
+      }
+    })
+
+    parser.addListener('text', (event) => {
+      if (
+        labelDepth > 0 &&
+        event.raw &&
+        !/^\s*$/.test(event.raw) &&
+        labelStateStack.length > 0
+      ) {
+        labelStateStack[labelStateStack.length - 1].hasText = true
       }
     })
 
