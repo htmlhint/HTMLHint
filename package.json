@@ -60,7 +60,7 @@
     "commander": "14.0.3",
     "glob": "^13.0.6",
     "is-glob": "^4.0.3",
-    "node-sarif-builder": "4.0.0",
+    "node-sarif-builder": "4.1.0",
     "strip-json-comments": "3.1.1",
     "xml": "1.0.1"
   },
