@@ -655,3 +655,31 @@ describe('HTMLParser: Case parse', () => {
     parser.parse('<img src="aaa" alt= />')
   })
 })
+
+describe('HTMLParser: Filepath', () => {
+  it('should include filepath in start event when provided to parse', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      // The start event must be the first event (index 0)
+      expect(arrEvents[0]).toEvent('start', {
+        filepath: '/some/example.txt',
+      })
+      done()
+    })
+    parser.parse('', '/some/example.txt')
+  })
+
+  it('should include empty string filepath in start event when not provided', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      // The start event must be the first event (index 0)
+      expect(arrEvents[0]).toEvent('start', {
+        filepath: '',
+      })
+      done()
+    })
+    parser.parse('')
+  })
+})
