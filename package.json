@@ -78,7 +78,7 @@
     "eslint": "^10.3.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
-    "jest": "^30.3.0",
+    "jest": "^30.4.2",
     "parse-glob": "3.0.4",
     "prettier": "3.8.3",
     "rimraf": "^6.1.3",
