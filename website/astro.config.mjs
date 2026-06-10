@@ -147,12 +147,12 @@ export default defineConfig({
         {
           label: 'Usage',
           collapsed: true,
-          autogenerate: { directory: 'usage' },
+          items: [{ autogenerate: { directory: 'usage' } }],
         },
         {
           label: 'Rules',
           collapsed: true,
-          autogenerate: { directory: 'rules' },
+          items: [{ autogenerate: { directory: 'rules' } }],
         },
         {
           label: 'VS Code Extension',
@@ -161,7 +161,7 @@ export default defineConfig({
         {
           label: 'Integrations',
           collapsed: true,
-          autogenerate: { directory: 'integrations' },
+          items: [{ autogenerate: { directory: 'integrations' } }],
         },
         {
           label: 'Changelog',
