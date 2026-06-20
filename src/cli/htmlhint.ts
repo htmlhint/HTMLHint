@@ -505,7 +505,7 @@ function hintFile(filepath: string, ruleset?: Ruleset) {
     // ignore
   }
 
-  return HTMLHint.verify(content, ruleset)
+  return HTMLHint.verify(content, ruleset, filepath)
 }
 
 // hint stdin
