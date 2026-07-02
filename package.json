@@ -75,7 +75,7 @@
     "@types/xml": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
-    "eslint": "^10.4.0",
+    "eslint": "^10.5.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.4.2",
