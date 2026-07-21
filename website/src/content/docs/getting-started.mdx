@@ -1,25 +1,454 @@
----
-title: Getting Started
-description: How to set up HTMLHint in your project by adding it as a dev dependency and configuring it.
----
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المشتركين والوجبات</title>
+    <style>
+        :root {
+            --primary: #1B4F72;
+            --primary-dark: #143D59;
+            --primary-light: #2E86C1;
+            --bg: #F4F6F7;
+            --card-bg: #FFFFFF;
+            --text: #2C3E50;
+            --text-muted: #7F8C8D;
+            --success: #27AE60;
+            --warning: #E67E22;
+            --danger: #C0392B;
+            --purple: #8E44AD;
+            --radius: 12px;
+            --shadow: 0 4px 15px rgba(0,0,0,0.06);
+            --shadow-hover: 0 8px 25px rgba(0,0,0,0.12);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 60px; }
 
-HTMLHint requires Node.js 20 or later.
+        header {
+            background-color: var(--primary);
+            color: #FFF;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            margin-bottom: 25px;
+        }
 
-1\. Use npm or yarn to install HTMLHint:
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
 
-<Tabs>
-  <TabItem label="npm">
-`npm install --save-dev htmlhint`
-  </TabItem>
-  <TabItem label="yarn">
-`yarn add --dev htmlhint`
-  </TabItem>
-</Tabs>
+        .logo-title h1 { font-size: 22px; font-weight: 700; }
+        .logo-title p { font-size: 13px; opacity: 0.85; }
+        .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
-2\. Create a `.htmlhintrc` configuration file in the root of your project with `htmlhint --init`. This will create a file with default rules. You can customize it as needed. For example, you can use the following configuration to enforce some common best practices:
+        .btn {
+            padding: 9px 16px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 14px;
+        }
 
+        .btn:hover { transform: translateY(-2px); }
+        .btn-header { background-color: rgba(255, 255, 255, 0.15); color: #FFF; border: 1px solid rgba(255, 255, 255, 0.25); }
+        .btn-primary { background-color: var(--primary); color: #FFF; }
+        .btn-success { background-color: var(--success); color: #FFF; }
+        .btn-warning { background-color: var(--warning); color: #FFF; }
+        .btn-danger { background-color: var(--danger); color: #FFF; }
+        .btn-share { background-color: var(--purple); color: #FFF; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            padding: 18px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-right: 5px solid var(--primary);
+        }
+
+        .stat-title { font-size: 13px; color: var(--text-muted); margin-bottom: 5px; }
+        .stat-value { font-size: 26px; font-weight: 800; color: var(--text); }
+
+        .search-container { margin-bottom: 25px; }
+        .search-input {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 16px;
+            border: 2px solid #E5E8E8;
+            border-radius: var(--radius);
+            background-color: var(--card-bg);
+            outline: none;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .subscriber-card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+            border: 1px solid #EAEDED;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+        }
+
+        .subscriber-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-hover); }
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+        .card-name { font-size: 17px; font-weight: 700; color: var(--primary); }
+        .badge { padding: 4px 10px; border-radius: 20px; font-size: 12px; font-weight: 700; }
+        .badge-green { background-color: #D4EFDF; color: #196F3D; }
+        .badge-orange { background-color: #FCF3CF; color: #B9770E; }
+        .badge-red { background-color: #FADBD8; color: #78281F; }
+
+        .card-info { display: flex; flex-direction: column; gap: 8px; margin-bottom: 15px; font-size: 14px; color: var(--text-muted); }
+        .info-row { display: flex; justify-content: space-between; }
+        .info-value { font-weight: 700; color: var(--text); }
+
+        .card-footer {
+            border-top: 1px solid #F2F4F4;
+            padding-top: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            padding: 20px;
+        }
+
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+
+        .modal-header {
+            background-color: var(--primary);
+            color: #FFF;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .close-btn { background: none; border: none; color: #FFF; font-size: 24px; cursor: pointer; }
+        .modal-body { padding: 25px; }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #F8F9F9;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .detail-item { display: flex; flex-direction: column; }
+        .detail-label { font-size: 12px; color: var(--text-muted); }
+        .detail-value { font-size: 15px; font-weight: 700; }
+
+        .progress-section { margin-bottom: 25px; }
+        .progress-labels { display: flex; justify-content: space-between; font-size: 13px; font-weight: 600; margin-bottom: 8px; }
+        .progress-bar-bg { height: 14px; background-color: #EAEDED; border-radius: 10px; overflow: hidden; }
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-light), var(--primary));
+            width: 0%;
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 10px;
+        }
+
+        .modal-actions { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; border-top: 1px solid #EAEDED; padding-top: 20px; }
+        .form-group { margin-bottom: 15px; text-align: right; }
+        .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 5px; }
+        .form-control { width: 100%; padding: 10px; border: 1px solid #BDC3C7; border-radius: 6px; font-size: 14px; outline: none; }
+        .form-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+        .toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 10px; }
+        .toast { background-color: #333; color: #FFF; padding: 12px 20px; border-radius: 8px; font-size: 14px; }
+        .toast-success { background-color: var(--success); }
+        .toast-warning { background-color: var(--warning); }
+        .toast-danger { background-color: var(--danger); }
+        .no-results { text-align: center; grid-column: 1 / -1; padding: 40px; color: var(--text-muted); }
+
+        @media (max-width: 600px) {
+            .header-container { flex-direction: column; text-align: center; }
+            .header-actions { justify-content: center; width: 100%; }
+            .details-grid, .form-row { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="logo-title">
+                <h1>نظام إدارة المشتركين والوجبات</h1>
+                <p>إدارة استلام ومتابعة اشتراكات الوجبات بسهولة</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-share" onclick="shareProject()">مشاركة الأداة</button>
+                <button class="btn btn-header" onclick="exportData()">تصدير JSON</button>
+                <button class="btn btn-header" onclick="document.getElementById('importFile').click()">استيراد JSON</button>
+                <input type="file" id="importFile" accept=".json" style="display: none;" onchange="importData(event)">
+                <button class="btn btn-danger" onclick="confirmReset()">إعادة ضبط</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-title">إجمالي المشتركين</div>
+                <div class="stat-value" id="stat-total-subscribers">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">إجمالي الوجبات</div>
+                <div class="stat-value" id="stat-total-meals">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">الوجبات المستهلكة</div>
+                <div class="stat-value" id="stat-consumed-meals">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-title">الوجبات المتبقية</div>
+                <div class="stat-value" id="stat-remaining-meals">0</div>
+            </div>
+        </section>
+
+        <section class="search-container">
+            <input type="text" id="searchInput" class="search-input" placeholder="ابحث بالاسم، رقم الاشتراك، أو رقم الصفحة..." oninput="handleSearch()">
+        </section>
+
+        <section class="cards-grid" id="cardsGrid"></section>
+    </main>
+
+    <div class="modal-overlay" id="subscriberModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="modalTitle">تفاصيل المشترك</h2>
+                <button class="close-btn" onclick="closeModal()">&times;</button>
+            </div>
+            <div class="modal-body" id="modalBody"></div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script>
+        // قائمة المشتركين دون تكرار في أرقام الصفحات أو أرقام الاشتراكات
+        const initialSubscribersList = [
+            { page: 1, sub_id: "486", name: "أحمد عادل" },
+            { page: 2, sub_id: "530", name: "عبدالله العطوي" },
+            { page: 3, sub_id: "207", name: "جواد طارق أحمد" },
+            { page: 4, sub_id: "208", name: "عبدالله عبدالملك" },
+            { page: 5, sub_id: "228", name: "عبدالرحمن البويلي" },
+            { page: 6, sub_id: "540", name: "نواف محمد" },
+            { page: 7, sub_id: "224", name: "زياد صالح" },
+            { page: 8, sub_id: "230", name: "محمد خميس" },
+            { page: 9, sub_id: "248", name: "هيثم علي" },
+            { page: 10, sub_id: "276", name: "إبراهيم بشير علي" },
+            { page: 11, sub_id: "222", name: "هاني هزاع" },
+            { page: 12, sub_id: "281", name: "محمد ظاهر" },
+            { page: 13, sub_id: "284", name: "سالم الشهري" },
+            { page: 14, sub_id: "701", name: "فيصل خير الزهري" },
+            { page: 15, sub_id: "717", name: "فيصل خلف" },
+            { page: 16, sub_id: "731", name: "رابح حمدان" },
+            { page: 17, sub_id: "729", name: "محمد الحكم" },
+            { page: 18, sub_id: "747", name: "أسامة الجربوي" },
+            { page: 19, sub_id: "748", name: "أحمد علي الحربي" },
+            { page: 20, sub_id: "749", name: "عبيد الخبراني" },
+            { page: 21, sub_id: "752", name: "محمد عبدالله الشهري" },
+            { page: 22, sub_id: "757", name: "فهد الحسن" },
+            { page: 23, sub_id: "759", name: "جواد طارق" },
+            { page: 24, sub_id: "763", name: "عبدالله العمري" },
+            { page: 25, sub_id: "765", name: "عبدالملك المطيري" },
+            { page: 26, sub_id: "770", name: "محمد يحيى" },
+            { page: 27, sub_id: "771", name: "حمادة العطوي" },
+            { page: 28, sub_id: "774", name: "محمود صلاح" },
+            { page: 29, sub_id: "781", name: "سلمان المطيري" },
+            { page: 30, sub_id: "782", name: "موسى محمد السيد" },
+            { page: 31, sub_id: "796", name: "مازن سالم" },
+            { page: 32, sub_id: "797", name: "عاطف الشهري" },
+            { page: 33, sub_id: "223", name: "عناد سلامة" },
+            { page: 34, sub_id: "478", name: "وليد المطيري" },
+            { page: 35, sub_id: "801", name: "وليد الأحمري" },
+            { page: 36, sub_id: "803", name: "عبدالرحمن العليان" },
+            { page: 37, sub_id: "805", name: "عقيل خالد" },
+            { page: 38, sub_id: "809", name: "فيصل المزيني" },
+            { page: 39, sub_id: "792", name: "عبدالعزيز المسعودي" },
+            { page: 40, sub_id: "709", name: "سليمان العطوي" },
+            { page: 41, sub_id: "810", name: "فيصل محمد الغامدي" },
+            { page: 42, sub_id: "811", name: "أمجد الزهراني" },
+            { page: 43, sub_id: "812", name: "كريم أحمد" },
+            { page: 44, sub_id: "813", name: "يزن الشهري" },
+            { page: 45, sub_id: "814", name: "عاصم البلوي" },
+            { page: 46, sub_id: "815", name: "إبراهيم سالم" }
+        ];
+
+        let subscribers = [];
+        let currentSubscriberId = null;
+        let isEditing = false;
+
+        function initApp() {
+            const stored = localStorage.getItem('meals_subscribers_data');
+            subscribers = stored ? JSON.parse(stored) : generateDefaultData();
+            saveData();
+            renderStats();
+            renderGrid();
+        }
+
+        function generateDefaultData() {
+            return initialSubscribersList.map((item, index) => ({
+                id: index + 1,
+                page: item.page,
+                sub_id: item.sub_id,
+                name: item.name,
+                phone: "",
+                package: "اشتراك شهري",
+                start_date: "",
+                total_meals: 30,
+                consumed: 0,
+                remaining: 30
+            }));
+        }
+
+        function saveData() {
+            localStorage.setItem('meals_subscribers_data', JSON.stringify(subscribers));
+            renderStats();
+        }
+
+        function renderStats() {
+            document.getElementById('stat-total-subscribers').innerText = subscribers.length;
+            document.getElementById('stat-total-meals').innerText = subscribers.reduce((a, c) => a + (parseInt(c.total_meals) || 0), 0);
+            document.getElementById('stat-consumed-meals').innerText = subscribers.reduce((a, c) => a + (parseInt(c.consumed) || 0), 0);
+            document.getElementById('stat-remaining-meals').innerText = subscribers.reduce((a, c) => a + (parseInt(c.remaining) || 0), 0);
+        }
+
+        function getBadgeInfo(r) {
+            if (r > 10) return { class: 'badge-green', text: `${r} وجبة متبقية` };
+            if (r > 0) return { class: 'badge-orange', text: `${r} وجبات متبقية` };
+            return { class: 'badge-red', text: 'انتهت الوجبات' };
+        }
+
+        function renderGrid(query = '') {
+            const grid = document.getElementById('cardsGrid');
+            grid.innerHTML = '';
+            const filtered = subscribers.filter(s => {
+                const q = query.trim().toLowerCase();
+                if (!q) return true;
+                return s.name.toLowerCase().includes(q) || s.sub_id.toString().includes(q) || s.page.toString().includes(q);
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-results">لم يتم العثور على نتائج.</div>';
+                return;
+            }
+
+            filtered.forEach(sub => {
+                const badge = getBadgeInfo(sub.remaining);
+                const card = document.createElement('div');
+                card.className = 'subscriber-card';
+                card.onclick = () => openModal(sub.id);
+                card.innerHTML = `
+                    <div class="card-header">
+                        <span class="card-name">${sub.name}</span>
+                        <span class="badge ${badge.class}">${badge.text}</span>
+                    </div>
+                    <div class="card-info">
+                        <div class="info-row"><span>رقم الاشتراك:</span><span class="info-value">#${sub.sub_id}</span></div>
+                        <div class="info-row"><span>رقم الصفحة:</span><span class="info-value">${sub.page}</span></div>
+                    </div>
+                    <div class="card-footer">
+                        <span>المستهلك: <strong>${sub.consumed}</strong> / ${sub.total_meals}</span>
+                        <button class="btn btn-primary" style="padding: 4px 10px; font-size: 12px;">التفاصيل</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function handleSearch() {
+            renderGrid(document.getElementById('searchInput').value);
+        }
+
+        function openModal(id) {
+            currentSubscriberId = id;
+            isEditing = false;
+            const sub = subscribers.find(s => s.id === id);
+            if (sub) {
+                document.getElementById('modalTitle').innerText = `تفاصيل: ${sub.name}`;
+                renderModalBody(sub);
+                document.getElementById('subscriberModal').classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('subscriberModal').classList.remove('active');
+        }
+
+        function renderModalBody(sub) {
+            const modalBody = document.getElementById('modalBody');
+            const percent = sub.total_meals > 0 ? Math.min(100, Math.round((sub.consumed / sub.total_meals) * 100)) : 0;
+
+            if (!isEditing) {
+                modalBody.innerHTML = `
+                    <div class="details-grid">
+                        <div class="detail-item"><span class="detail-label">الاسم</span><span class="detail-value">${sub.name}</span></div>
+                        <div class="detail-item"><span class="detail-label">رقم الاشتراك</span><span class="detail-value">#${sub.sub_id}</span></div>
+                        <div class="detail-item"><span class="detail-label">رقم الصفحة</span><span class="detail-value">${sub.page}</span></div>
+                        <div class="detail-item"><span class="detail-label">الهاتف</span><span class="detail-value">${sub.phone || 'غير مسجل'}</span></div>
+                        <div class="detail-item"><span class="detail-label">الوجبات المستهلكة</span><span class="detail-value">${sub.consumed}</span></div>
+                        <div class="detail-item"><span class="detail-label">الوجبات المتبقية</span><span class="detail-value">${sub.remaining}</span></div>
+                    </div>
+                    <div class="progress-section">
+                        <div class="progress-labels"><span>نسبة الاستهلاك</span><span>${percent}%</span></div>
+                        
 ```json
 {
   "alt-require": true,
