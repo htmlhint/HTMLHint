@@ -27,7 +27,11 @@ class HTMLHintCore {
     this.rules[rule.id] = rule
   }
 
-  public verify(html: string, ruleset: Ruleset = this.defaultRuleset) {
+  public verify(
+    html: string,
+    ruleset: Ruleset = this.defaultRuleset,
+    filepath: string = ''
+  ) {
     if (Object.keys(ruleset).length === 0) {
       ruleset = this.defaultRuleset
     }
@@ -74,7 +78,7 @@ class HTMLHintCore {
       }
     }
 
-    parser.parse(html)
+    parser.parse(html, filepath)
 
     return reporter.messages
   }
