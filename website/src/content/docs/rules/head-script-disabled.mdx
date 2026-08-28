@@ -97,7 +97,16 @@ Level: <Badge text="Warning" variant="caution" />
 
 ## Why this rule is important
 
-Scripts in the `<head>` section traditionally block HTML parsing and rendering, which can negatively impact page load performance. However, modern JavaScript features like ES6 modules (`type="module"`), the `defer` attribute, and the `async` attribute allow scripts to be non-blocking, making them safe to place in the head without performance penalties.
+Scripts in the `<head>` section affect HTML parsing differently depending on their attributes. A classic external script without `async` or `defer` pauses parsing while the browser fetches and executes it. The external `defer`, `async`, and module forms shown above let parsing continue while resources are fetched, but they provide different execution-order and DOM-readiness guarantees.
+
+| Script form                           | Parsing and execution                                                                     | Ordering and DOM readiness                                                                                  |
+| ------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `<script src="app.js">`               | Pauses parsing while the script is fetched and executed                                   | Preserves document order; elements after the script are not available yet                                   |
+| `<script defer src="app.js">`         | Fetches in parallel and executes after parsing, before `DOMContentLoaded`                 | Preserves document order; `DOMContentLoaded` waits for execution                                            |
+| `<script async src="app.js">`         | Fetches in parallel and executes as soon as it is ready, potentially interrupting parsing | Does not preserve document order; later DOM elements might not exist, and `DOMContentLoaded` does not wait  |
+| `<script type="module" src="app.js">` | Fetches the module graph in parallel and executes after parsing by default                | Preserves document order by default; `DOMContentLoaded` waits, while `async` removes the ordering guarantee |
+
+Non-blocking fetching does not mean zero performance cost. Downloading, compiling, and executing a script can still consume network bandwidth and main-thread time.
 
 For more information, see:
 
@@ -105,3 +114,7 @@ For more information, see:
 - [MDN: defer attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#defer)
 - [MDN: async attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#async)
 - [MDN: JavaScript modules](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+
+## Check your understanding
+
+Suppose two external scripts depend on each other and both query markup declared after the `<head>`. Which loading mode preserves their order and waits until parsing finishes? Compare your reasoning with the related script-loading question in the [FrontendAtlas HTML interview question set](https://frontendatlas.com/html/interview-questions).
