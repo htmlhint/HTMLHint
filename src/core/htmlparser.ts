@@ -18,6 +18,7 @@ export interface Block {
   long: boolean
   close: string
   lastEvent?: Partial<Block>
+  filepath?: string
 }
 
 export type Listener = (event: Block) => void
@@ -49,7 +50,7 @@ export default class HTMLParser {
     return obj
   }
 
-  public parse(html: string): void {
+  public parse(html: string, filepath: string = ''): void {
     const mapCdataTags = this._mapCdataTags
 
     const regTag =
@@ -78,6 +79,7 @@ export default class HTMLParser {
       pos: 0,
       line: 1,
       col: 1,
+      filepath: filepath,
     })
 
     // Do not ignore validation inside <script type="ng/template"> template
