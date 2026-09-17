@@ -20,6 +20,20 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages.length).toBe(0)
   })
 
+  it('Src be empty should result in an error whatever the case', () => {
+    // HTML tag and attribute names are ASCII case insensitive, so these are four
+    // spellings of one bug and all four have to be reported.
+    const code = '<img src="" /><img SRC="" /><IMG src="" /><IMG SRC="" />'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(4)
+  })
+
+  it('Uppercase href and data should result in an error', () => {
+    const code = '<LINK HREF="" type="text/css" /><OBJECT DATA="">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(2)
+  })
+
   it('Src be not set value should not result in an error', () => {
     const code =
       '<img width="200" /><script></script><link type="text/css" /><embed width="200"><bgsound /><iframe width="200"><object width="200">'

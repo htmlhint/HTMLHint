@@ -5,19 +5,23 @@ export default {
   description: 'The src attribute of an img(script,link) must have a value.',
   init(parser, reporter) {
     parser.addListener('tagstart', (event) => {
-      const tagName = event.tagName
+      // HTML tag and attribute names are ASCII case insensitive, so compare
+      // against the lowercased form. The parser hands them over exactly as they
+      // were written.
+      const tagName = event.tagName.toLowerCase()
       const attrs = event.attrs
       let attr
       const col = event.col + tagName.length + 1
 
       for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
+        const attrName = attr.name.toLowerCase()
 
         if (
           ((/^(img|script|embed|bgsound|iframe)$/.test(tagName) === true &&
-            attr.name === 'src') ||
-            (tagName === 'link' && attr.name === 'href') ||
-            (tagName === 'object' && attr.name === 'data')) &&
+            attrName === 'src') ||
+            (tagName === 'link' && attrName === 'href') ||
+            (tagName === 'object' && attrName === 'data')) &&
           attr.value === ''
         ) {
           reporter.error(
