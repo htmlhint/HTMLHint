@@ -41,4 +41,9 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(1)
   })
+  it('HTML tag with a lang value ending in a newline should result in an error', () => {
+    const code = '<html lang="en\n"></html>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(1)
+  })
 })
