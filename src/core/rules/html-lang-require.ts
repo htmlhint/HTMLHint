@@ -32,7 +32,7 @@ export default {
       const tagName = event.tagName.toLowerCase()
       const mapAttrs = parser.getMapAttrs(event.attrs)
       const col = event.col + tagName.length + 1
-      const langValidityPattern = new RegExp(languageTag, 'g')
+      const langValidityPattern = new RegExp(`^${languageTag}$`)
 
       if (tagName === 'html') {
         if ('lang' in mapAttrs) {
