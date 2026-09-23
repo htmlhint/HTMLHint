@@ -14,7 +14,9 @@ export default {
 
       for (let i = 0, l = attrs.length; i < l; i++) {
         attr = attrs[i]
-        attrName = attr.name
+        // HTML attribute names are ASCII case insensitive, so id and ID on the
+        // same element are a duplicate.
+        attrName = attr.name.toLowerCase()
 
         if (mapAttrName[attrName] === true) {
           reporter.error(
