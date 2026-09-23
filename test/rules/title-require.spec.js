@@ -41,4 +41,30 @@ describe(`Rules: ${ruleId}`, () => {
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(1)
   })
+
+  it('<title> containing only a comment should result in an error', () => {
+    const code =
+      '<html><head><title><!-- comment --></title></head><body></body></html>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(1)
+  })
+
+  it('<title> with text and comments should not result in an error', () => {
+    let code =
+      '<html><head><title>test<!-- comment --></title></head><body></body></html>'
+    let messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+
+    code = `<html><head><title>
+    <!--#if expr="\${REDIRECT_STATUS} = 400"-->
+        Page Name: Bad Request
+    <!--#elif expr="\${REDIRECT_STATUS} = 404"-->
+        Page Name: Resource Not Found
+    <!--#else-->
+        Page Name: Error <!--#echo var="REDIRECT_STATUS"-->
+    <!--#endif-->
+</title></head><body></body></html>`
+    messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
 })
