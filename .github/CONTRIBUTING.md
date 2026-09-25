@@ -13,7 +13,7 @@ We welcome any type of contribution, not only code. You can help with
 
 ## Development setup
 
-Use Node.js 20 or later (the repo pins a version with [Volta](https://volta.sh/) in `package.json`).
+Use Node.js 22 or later (the repo pins a version with [Volta](https://volta.sh/) in `package.json`).
 
 ## Submitting code
 

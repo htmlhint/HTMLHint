@@ -38,7 +38,7 @@
 
 ## 📟 Installation and Usage
 
-HTMLHint requires [Node.js](https://nodejs.org/) 20 or later.
+HTMLHint requires [Node.js](https://nodejs.org/) 22 or later.
 
 There are two ways to install HTMLHint: globally and locally.
 
