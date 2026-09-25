@@ -69,13 +69,13 @@
     "@rollup/plugin-commonjs": "29.0.2",
     "@rollup/plugin-node-resolve": "16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
-    "@types/async": "^3.2.25",
+    "@types/async": "^3.2.26",
     "@types/is-glob": "4.0.4",
-    "@types/node": "^20.19.39",
+    "@types/node": "^22.20.4",
     "@types/xml": "^1.0.11",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
-    "eslint": "^10.9.1",
+    "eslint": "^10.10.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "jest": "^30.5.1",
@@ -86,9 +86,9 @@
     "typescript": "^6.0.3"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "volta": {
-    "node": "20.20.1"
+    "node": "22.22.2"
   }
 }

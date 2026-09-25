@@ -22,6 +22,7 @@ Level: <Badge text="Error" variant="danger" />
 
 ```html
 <html><head><title>test</title></head></html>
+<html><head><title>test <!-- comment --></title></head></html>
 ```
 
 ### The following pattern is considered a rule violation:
@@ -29,6 +30,7 @@ Level: <Badge text="Error" variant="danger" />
 ```html
 <html><head></head></html>
 <html><head><title></title></head></html>
+<html><head><title><!-- comment --></title></head></html>
 <html><title></title><head></head></html>
 ```
 
