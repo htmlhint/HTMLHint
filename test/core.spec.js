@@ -206,4 +206,17 @@ describe('Core', () => {
       expect(messages[0].rule.id).toBe('attr-lowercase')
     })
   })
+
+  it('Inline ruleset should not leak into later verify calls', () => {
+    const ruleset = { 'tag-pair': true }
+    HTMLHint.verify(
+      '<!-- htmlhint alt-require:true --><img src="a.png">',
+      ruleset
+    )
+    expect(ruleset).toEqual({ 'tag-pair': true })
+
+    HTMLHint.verify('<!-- htmlhint alt-require:true --><img src="a.png">')
+    const messages = HTMLHint.verify('<img src="a.png">')
+    expect(messages.filter((m) => m.rule.id === 'alt-require').length).toBe(0)
+  })
 })

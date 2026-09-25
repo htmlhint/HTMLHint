@@ -25,7 +25,7 @@ export default {
       parser.removeListener('tagstart', onTagStart)
     }
 
-    parser.addListener('all', onComment)
+    parser.addListener('comment', onComment)
     parser.addListener('tagstart', onTagStart)
   },
 } as Rule

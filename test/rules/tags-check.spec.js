@@ -57,4 +57,9 @@ describe(`Rules: ${ruleId}`, () => {
     messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(1)
   })
+  it('Should not leak custom config into later runs', () => {
+    const code = '<sometag></sometag>'
+    const messages = HTMLHint.verify(code, { [ruleId]: {} })
+    expect(messages.length).toBe(0)
+  })
 })

@@ -22,4 +22,10 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
+
+  it('Non-doctype declarations after the first tag should not result in an error', () => {
+    const code = '<!DOCTYPE html><html><![CDATA[ x ]]></html>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
 })
