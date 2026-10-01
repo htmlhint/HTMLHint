@@ -1,6 +1,6 @@
 import { Rule } from '../types'
 
-let tagsTypings: Record<string, Record<string, unknown>> = {
+const defaultTagsTypings: Record<string, Record<string, unknown>> = {
   a: {
     selfclosing: false,
     attrsRequired: ['href', 'title'],
@@ -33,7 +33,7 @@ export default {
   id: 'tags-check',
   description: 'Checks html tags.',
   init(parser, reporter, options: Record<string, Record<string, unknown>>) {
-    tagsTypings = { ...tagsTypings, ...options }
+    const tagsTypings = { ...defaultTagsTypings, ...options }
 
     parser.addListener('tagstart', (event) => {
       const attrs = event.attrs

@@ -32,6 +32,10 @@ class HTMLHintCore {
       ruleset = this.defaultRuleset
     }
 
+    // Copy the ruleset so inline <!-- htmlhint --> rules don't leak into the
+    // caller's ruleset (or the shared default ruleset) on later calls
+    ruleset = { ...ruleset }
+
     // parse inline ruleset
     html = html.replace(
       /^\s*<!--\s*htmlhint\s+([^\r\n]+?)\s*-->/i,
