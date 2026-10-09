@@ -27,10 +27,7 @@ export interface Ruleset {
   'href-abs-or-rel'?: 'abs' | 'rel'
   'id-class-ad-disabled'?: boolean
   'id-class-value'?:
-    | 'underline'
-    | 'dash'
-    | 'hump'
-    | { regId: RegExp; message: string }
+    'underline' | 'dash' | 'hump' | { regId: RegExp; message: string }
   'id-unique'?: boolean
   'inline-script-disabled'?: boolean
   'inline-style-disabled'?: boolean
