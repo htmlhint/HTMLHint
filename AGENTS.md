@@ -41,6 +41,7 @@
 ## GitHub Commit Messages
 
 - If multiple changes are made then list changes using bullet points.
+- Pull requests should contain a single commit. Squash commits before pushing, including fixes for review feedback.
 
 ## Documentation
 
