@@ -654,4 +654,44 @@ describe('HTMLParser: Case parse', () => {
     })
     parser.parse('<img src="aaa" alt= />')
   })
+
+  it('should parse attributes without whitespace between quoted values', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('tagstart', {
+        tagName: 'div',
+        close: '',
+      })
+      const attrs = arrEvents[1].attrs
+      expect(attrs.length).toBe(2)
+      expect(attrs[0].name).toBe('id')
+      expect(attrs[0].value).toBe('abc')
+      expect(attrs[1].name).toBe('class')
+      expect(attrs[1].value).toBe('def')
+      expect(arrEvents[3]).toEvent('tagend', {
+        tagName: 'div',
+      })
+      done()
+    })
+    parser.parse('<div id="abc"class="def">test</div>')
+  })
+
+  it('should parse single quoted attributes without whitespace between values', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('tagstart', {
+        tagName: 'div',
+      })
+      const attrs = arrEvents[1].attrs
+      expect(attrs.length).toBe(2)
+      expect(attrs[0].name).toBe('id')
+      expect(attrs[0].value).toBe('abc')
+      expect(attrs[1].name).toBe('class')
+      expect(attrs[1].value).toBe('def')
+      done()
+    })
+    parser.parse("<div id='abc'class='def'>test</div>")
+  })
 })

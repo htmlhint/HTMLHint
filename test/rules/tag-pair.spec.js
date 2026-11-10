@@ -35,6 +35,12 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].col).toBe(3)
   })
 
+  it('Attributes without whitespace between quoted values should still pair', () => {
+    const code = '<div id="abc"class="def">test</div>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
   it('No start tag should result in an error', () => {
     const code = '</div>'
     const messages = HTMLHint.verify(code, ruleOptions)
