@@ -61,4 +61,10 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
+
+  it('Quoted markup inside malformed empty-assignment tag should not report unclosed inner tag', () => {
+    const code = '<div a= b="<span>">'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
 })

@@ -790,4 +790,35 @@ describe('HTMLParser: Case parse', () => {
     })
     parser.parse(input)
   })
+
+  it('should emit malformed empty-assignment start tag as single text block without parsing quoted markup', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents.length).toBe(3)
+      expect(arrEvents[1]).toEvent('text', {
+        raw: '<div a= b="<span>">',
+        pos: 0,
+        line: 1,
+        col: 1,
+      })
+      done()
+    })
+    parser.parse('<div a= b="<span>">')
+  })
+
+  it('should handle repeated unclosed comment prefixes and end-tag prefixes in linear time', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    const input = `${'<!--a'.repeat(5000)}>${'</!'.repeat(5000)}>${'<div a="'.repeat(5000)}>${'<div '.concat('a= '.repeat(5000), 'x="unclosed>')}`
+    const start = Date.now()
+    getAllEvents(parser, arrEvents, () => {
+      expect(Date.now() - start).toBeLessThan(500)
+      expect(arrEvents[1]).toEvent('comment', {
+        long: false,
+      })
+      done()
+    })
+    parser.parse(input)
+  })
 })
