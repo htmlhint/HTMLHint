@@ -54,7 +54,7 @@ export default class HTMLParser {
 
     const regTag =
       // eslint-disable-next-line no-control-regex
-      /<(?:\/([^\s>]+)\s*|!--([\s\S]*?)--|!([^>]*?)|([\w\-:]+)((?:(?:\s+|(?<=["']))[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]*))?)*?)\s*(\/?))>/g
+      /<(?:\/([^\s>]+)\s*|!--(?:-?|([\s\S]*?)--!?)|!([^>]*?)|([\w\-:]+)((?:(?:\s+|(?<=["']))[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+(?:\s*=\s*(?:"[^"]*"|'[^']*'|[^\s"'>]+))?)*(?:(?:\s+|(?<=["']))[^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+\s*=\s*)?)\s*(\/?))>/g
     const regAttr =
       // eslint-disable-next-line no-control-regex
       /\s*([^\s"'>\/=\x00-\x0F\x7F\x80-\x9F]+)(?:\s*=\s*(?:(")([^"]*)"|(')([^']*)'|([^\s"'>]*)))?/g
@@ -204,11 +204,12 @@ export default class HTMLParser {
             // If a miss match occurs, the current content is matched to text
             saveBlock('text', match[0], matchIndex)
           }
-        } else if (match[2] || match[3]) {
+        } else if (match[3] === undefined || match[3]) {
           // Comment tag
+          const isLongComment = match[3] === undefined
           saveBlock('comment', match[0], matchIndex, {
-            content: match[2] || match[3],
-            long: match[2] ? true : false,
+            content: isLongComment ? (match[2] ?? '') : match[3],
+            long: isLongComment,
           })
         }
       }
