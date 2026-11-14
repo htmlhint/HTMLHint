@@ -35,6 +35,12 @@ describe(`Rules: ${ruleId}`, () => {
     expect(messages[0].col).toBe(3)
   })
 
+  it('Attributes without whitespace between quoted values should still pair', () => {
+    const code = '<div id="abc"class="def">test</div>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
   it('No start tag should result in an error', () => {
     const code = '</div>'
     const messages = HTMLHint.verify(code, ruleOptions)
@@ -52,6 +58,12 @@ describe(`Rules: ${ruleId}`, () => {
 
   it('Void bgsound tag should not result in an error', () => {
     const code = '<body><bgsound src="a.mid"></body>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
+
+  it('Quoted markup inside malformed empty-assignment tag should not report unclosed inner tag', () => {
+    const code = '<div a= b="<span>">'
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
