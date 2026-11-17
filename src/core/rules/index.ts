@@ -1,6 +1,7 @@
 export { default as altRequire } from './alt-require'
 export { default as attrLowercase } from './attr-lowercase'
 export { default as attrNoDuplication } from './attr-no-duplication'
+export { default as attrNoProtocolRelativeUrl } from './attr-no-protocol-relative-url'
 export { default as attrNoUnnecessaryWhitespace } from './attr-no-unnecessary-whitespace'
 export { default as attrValueNoDuplication } from './attr-value-no-duplication'
 export { default as attrSort } from './attr-sorted'

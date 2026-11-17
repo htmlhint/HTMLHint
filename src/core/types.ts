@@ -11,6 +11,7 @@ export interface Ruleset {
   'alt-require'?: boolean
   'attr-lowercase'?: boolean | Array<string | RegExp>
   'attr-no-duplication'?: boolean
+  'attr-no-protocol-relative-url'?: boolean
   'attr-no-unnecessary-whitespace'?: boolean
   'attr-sorted'?: boolean
   'attr-unsafe-chars'?: boolean
