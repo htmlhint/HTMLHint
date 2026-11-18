@@ -1,0 +1,41 @@
+---
+id: attr-no-protocol-relative-url
+title: attr-no-protocol-relative-url
+description: Disallows protocol-relative URLs in src and href attributes.
+pagefind: false
+sidebar:
+  badge: New
+---
+
+import { Badge } from '@astrojs/starlight/components';
+
+The `src` and `href` attributes must not use URLs starting with `//`, including after leading whitespace.
+
+Level: <Badge text="Warning" variant="caution" />
+
+## Config value
+
+- `true`: enable rule
+- `false`: disable rule (default)
+
+### The following patterns are **not** considered rule violations
+
+```html
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/assets/app.js"></script>
+<a href="./about.html">About</a>
+```
+
+### The following patterns are considered rule violations
+
+```html
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link
+  rel="stylesheet"
+  href="//use.fontawesome.com/releases/v5.8.2/css/all.css"
+/>
+```
+
+## Why this rule is important
+
+Protocol-relative URLs can load resources over HTTP. The [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html#Protocol) recommends explicit HTTPS URLs when available.
