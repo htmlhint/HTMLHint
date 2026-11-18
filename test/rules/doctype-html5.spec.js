@@ -28,4 +28,10 @@ describe(`Rules: ${ruleId}`, () => {
     const messages = HTMLHint.verify(code, ruleOptions)
     expect(messages.length).toBe(0)
   })
+
+  it('Comments ending with --!> before html5 doctype should not result in an error', () => {
+    const code = '<!-- comment --!><!DOCTYPE html><html></html>'
+    const messages = HTMLHint.verify(code, ruleOptions)
+    expect(messages.length).toBe(0)
+  })
 })

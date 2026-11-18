@@ -654,4 +654,171 @@ describe('HTMLParser: Case parse', () => {
     })
     parser.parse('<img src="aaa" alt= />')
   })
+
+  it('should parse attributes without whitespace between quoted values', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('tagstart', {
+        tagName: 'div',
+        close: '',
+      })
+      const attrs = arrEvents[1].attrs
+      expect(attrs.length).toBe(2)
+      expect(attrs[0].name).toBe('id')
+      expect(attrs[0].value).toBe('abc')
+      expect(attrs[1].name).toBe('class')
+      expect(attrs[1].value).toBe('def')
+      expect(arrEvents[3]).toEvent('tagend', {
+        tagName: 'div',
+      })
+      done()
+    })
+    parser.parse('<div id="abc"class="def">test</div>')
+  })
+
+  it('should parse single quoted attributes without whitespace between values', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('tagstart', {
+        tagName: 'div',
+      })
+      const attrs = arrEvents[1].attrs
+      expect(attrs.length).toBe(2)
+      expect(attrs[0].name).toBe('id')
+      expect(attrs[0].value).toBe('abc')
+      expect(attrs[1].name).toBe('class')
+      expect(attrs[1].value).toBe('def')
+      done()
+    })
+    parser.parse("<div id='abc'class='def'>test</div>")
+  })
+
+  it('should parse comment ending with --!> as long comment', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('comment', {
+        content: 'comment\r\ntest',
+        long: true,
+      })
+      done()
+    })
+    parser.parse('<!--comment\r\ntest--!>')
+  })
+
+  it('should parse empty comment ending with --!> as long comment', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('comment', {
+        content: '',
+        long: true,
+        raw: '<!----!>',
+      })
+      done()
+    })
+    parser.parse('<!----!>')
+  })
+
+  it('should not swallow elements after abruptly closed comments', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('comment', {
+        content: '',
+        long: true,
+        raw: '<!-->',
+      })
+      expect(arrEvents[2]).toEvent('tagstart', {
+        tagName: 'div',
+      })
+      expect(arrEvents[3]).toEvent('comment', {
+        content: '',
+        long: true,
+        raw: '<!--->',
+      })
+      expect(arrEvents[4]).toEvent('tagstart', {
+        tagName: 'span',
+      })
+      expect(arrEvents[5]).toEvent('comment', {
+        content: 'x',
+        long: true,
+        raw: '<!--x--!>',
+      })
+      expect(arrEvents[6]).toEvent('comment', {
+        content: '--unfinished',
+        long: false,
+        raw: '<!--unfinished>',
+      })
+      done()
+    })
+    parser.parse('<!--><div><!---><span><!--x--!><!--unfinished>')
+  })
+
+  it('should parse trailing empty attribute assignment', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents[1]).toEvent('tagstart', {
+        tagName: 'div',
+        close: '',
+      })
+      const attrs = arrEvents[1].attrs
+      expect(attrs.length).toBe(2)
+      expect(attrs[0].name).toBe('id')
+      expect(attrs[0].value).toBe('abc')
+      expect(attrs[1].name).toBe('alt')
+      expect(attrs[1].value).toBe('')
+      done()
+    })
+    parser.parse('<div id="abc" alt=>')
+  })
+
+  it('should handle unclosed repeated attribute assignments without backtracking', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    const input = `<- !=${'  !='.repeat(2000)}`
+    const start = Date.now()
+    getAllEvents(parser, arrEvents, () => {
+      expect(Date.now() - start).toBeLessThan(500)
+      expect(arrEvents[1]).toEvent('text', {
+        raw: input,
+      })
+      done()
+    })
+    parser.parse(input)
+  })
+
+  it('should emit malformed empty-assignment start tag as single text block without parsing quoted markup', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    getAllEvents(parser, arrEvents, () => {
+      expect(arrEvents.length).toBe(3)
+      expect(arrEvents[1]).toEvent('text', {
+        raw: '<div a= b="<span>">',
+        pos: 0,
+        line: 1,
+        col: 1,
+      })
+      done()
+    })
+    parser.parse('<div a= b="<span>">')
+  })
+
+  it('should handle repeated unclosed comment prefixes and end-tag prefixes in linear time', (done) => {
+    const parser = new HTMLParser()
+    const arrEvents = []
+    const input = `${'<!--a'.repeat(5000)}>${'</!'.repeat(5000)}>${'<div a="'.repeat(5000)}>${'<div '.concat('a= '.repeat(5000), 'x="unclosed>')}`
+    const start = Date.now()
+    getAllEvents(parser, arrEvents, () => {
+      expect(Date.now() - start).toBeLessThan(500)
+      expect(arrEvents[1]).toEvent('comment', {
+        long: false,
+      })
+      done()
+    })
+    parser.parse(input)
+  })
 })
