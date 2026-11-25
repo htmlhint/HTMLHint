@@ -105,6 +105,7 @@ An example configuration file (with all rules disabled):
   "alt-require": false,
   "attr-lowercase": false,
   "attr-no-duplication": false,
+  "attr-no-protocol-relative-url": false,
   "attr-no-unnecessary-whitespace": false,
   "attr-sorted": false,
   "attr-unsafe-chars": false,
