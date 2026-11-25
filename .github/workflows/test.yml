@@ -10,6 +10,10 @@ on:
       - '**/*.md'
       - '**/*.mdx'
 
+concurrency:
+  group: test-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: read
 
@@ -34,9 +38,6 @@ jobs:
         run: npm run lint
 
   build:
-    permissions:
-      actions: write # for styfle/cancel-workflow-action to cancel/stop running workflows
-      contents: read # for actions/checkout to fetch code
     runs-on: ${{ matrix.os }}
     needs: lint
     strategy:
@@ -49,11 +50,6 @@ jobs:
         os: [ubuntu-latest, windows-latest]
 
     steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@d07a454dad7609a92316b57b23c9ccfd4f59af66 # 0.13.1
-        with:
-          access_token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: ⬇️ Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -75,8 +71,7 @@ jobs:
         run: git diff --exit-code
 
       - name: Run tests
-        if: matrix.os != 'ubuntu-latest'
-        uses: nick-invision/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
+        uses: nick-fields/retry@ad984534de44a9489a53aefd81eb77f87c70dc60 # v4.0.0
         with:
           timeout_minutes: 20
           max_attempts: 3
