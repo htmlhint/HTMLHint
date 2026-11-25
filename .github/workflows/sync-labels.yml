@@ -14,6 +14,9 @@ permissions:
 
 jobs:
   configure-labels:
+    permissions:
+      contents: read # for actions/checkout to fetch the labels manifest
+      issues: write # for action-label-syncer to create, update and delete labels
     runs-on: ubuntu-latest
 
     steps:
