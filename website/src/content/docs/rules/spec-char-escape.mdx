@@ -21,14 +21,16 @@ Level: <Badge text="Error" variant="danger" />
 <span>aaa&gt;bbb&lt;ccc</span>
 <span>Steinway &amp; Sons, Q&amp;A</span>
 <span>Steinway & Sons, Q&A</span>
+<span>&copy; 2026</span>
 ```
 
-### The following pattern is considered a rule violation:
+### The following patterns are considered violations
 
 ```html
 <span>aaa>bbb<ccc</span>
+<span>&copy 2026</span>
 ```
 
 ## Why this rule is important
 
-Special HTML characters like `<`, `>`, and `&` must be escaped to prevent them from being interpreted as HTML tags or entities. This avoids rendering issues and potential cross-site scripting (XSS) vulnerabilities.
+Angle brackets in plain text can be read as HTML markup. Browsers can also decode some [character references](https://html.spec.whatwg.org/multipage/parsing.html#character-reference-state) without a semicolon. Write `&copy;` for © or `&amp;copy` to display the literal text `&copy`.
