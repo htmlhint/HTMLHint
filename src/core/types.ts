@@ -13,6 +13,7 @@ export interface Ruleset {
   'attr-no-duplication'?: boolean
   'attr-no-unnecessary-whitespace'?: boolean
   'attr-sorted'?: boolean
+  'attr-space-between'?: boolean
   'attr-unsafe-chars'?: boolean
   'attr-value-double-quotes'?: boolean
   'attr-value-not-empty'?: boolean
